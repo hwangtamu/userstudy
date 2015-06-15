@@ -1,0 +1,33 @@
+body {
+  font: 10px sans-serif;
+  overflow: hidden;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.point {
+	stroke: steelblue;
+	fill: steelblue;
+}
+
+.point:hover {
+	stroke: red;
+	fill: red;
+}
+
+.snapshot {
+	fill: orange;
+	stroke: orange;
+	fill-opacity: 0.5;
+}
+
+.snapshot:hover {
+	fill: purple;
+	stroke: purple;
+	fill-opacity: 0.5;
+}
