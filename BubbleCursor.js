@@ -53,12 +53,14 @@ function BubbleCursor(svg, targetName) {
 		var points = d3.selectAll(targets);
 		var point;
 		var mousePt;
+
 		if (!arguments.length){
 			mousePt = prevMousePt;
 		} else {
 			mousePt = [mouse[0], mouse[1]];
 			prevMousePt = mousePt;
 		}
+		
 		var currMin = 0;
 		var currX, currY, currRad;
 		var Dist = [],
