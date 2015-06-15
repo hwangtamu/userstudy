@@ -52,26 +52,28 @@ function SnapshotBubbleCursor(svg, targetName) {
 	//Requires dynamic data to call this function in it's update loop
 	//Returns target obtain from bubble cursor as well
 	SnapshotBubbleCursor.draw = function(mouse) {
-		var points = d3.selectAll(targets);
+		var points = d3.selectAll(targets + ", .snapshot");
 		var point;
 		var mousePt;
+
 		if (!arguments.length){
 			mousePt = prevMousePt;
 		} else {
 			mousePt = [mouse[0], mouse[1]];
 			prevMousePt = mousePt;
 		}
+
 		var currMin = 0;
 		var currX, currY, currRad;
 		var Dist = [],
 			ConD = [],
 			IntD = [];
 
-
 		//Find closest target
 		points
 			.style("fill", defaultColor)
 			.style("stroke", defaultColor)
+			.filter(function() { return d3.select(this).attr("id") != "tagged"; })
 			.each(function(d, i) {
 				var x = +d3.select(this).attr("cx"),
 					y = +d3.select(this).attr("cy"),
@@ -91,18 +93,9 @@ function SnapshotBubbleCursor(svg, targetName) {
 					point = d3.select(this);
 				}
 			});
-		var targetHolder;
-		if (point != previousPoint) {
-			targetHolder = svg.append("circle")
-				.attr("class", "point")
-				.attr("r", currRad)
-				.attr("cx", currX)
-				.attr("cy", currY);
-			if (previousPoint != null) previousPoint.attr("id", "");
-			previousPoint = point;
-		}
 
 		point
+			.attr("id", "tagged")
 			.style("fill", targetColor)
 			.style("stroke", targetColor);
 
@@ -127,16 +120,14 @@ function SnapshotBubbleCursor(svg, targetName) {
 				y = +d3.select(this).attr("cy");
 
 			var targetPt = [x, y];
-			var currDist = distance(currPt,targetPt);
+			var currDist = distance(currPt,targetPt);	
 
-			if (d3.select(this) == targetHolder) {			
-				if (currDist < targetRadius && d3.select(".i" + d[0] +".snapshot").empty()) {
-					svg.append("circle")
-						.attr("class", "i" + d[0] + " snapshot")
-						.attr("r", currRad)
-						.attr("cx", x)
-						.attr("cy", y);
-				}
+			if (currDist < targetRadius) {
+				svg.append("circle")
+					.attr("class", "snapshot")
+					.attr("r", currRad)
+					.attr("cx", x)
+					.attr("cy", y);
 			}
 		});
 
@@ -155,17 +146,7 @@ function SnapshotBubbleCursor(svg, targetName) {
 		});
 
 		//Resize / apply morph if applicable
-		// if (cursorRadius < ConD[currMin]) {
-			cursorMorph
-				.attr("cx", currX)
-				.attr("cy", currY)
-				.attr("r", (targetRadius)); //Want to based this distance on furtherest point from morph
-		// } else {
-			// cursorMorph
-			// 	.attr("cx",0)
-			// 	.attr("cy",0)
-			// 	.attr("r",0);
-		// }
+
 
 		return point;
 	};
