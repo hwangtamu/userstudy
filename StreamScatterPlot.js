@@ -53,18 +53,17 @@ function StreamScatterPlot() {
 			var gEnter = svg.enter().append("svg")
 				.on("wheel.zoom", zoom);
 
+			gEnter.append("defs").append("clip")
+					.attr("id", "clip")
+				.append("rect")
+					.attr("width", 10)
+					.attr("height", 10);
+
+			svg.attr("clip-path", "url(#clip)");
 			//Create cursor before chart to prevent overlap
 			gEnter.call(cursor);
 
 			//Create rest of skeletal chart
-			gEnter.append("clipPath")
-					.attr("id", "clip")
-				.append("rect")
-					.attr("x", xScale(0))
-					.attr("y", yScale(1))
-					.attr("width", xScale(1) - xScale(0))
-					.attr("height", yScale(0) - yScale(1));
-			
 			gEnter = gEnter.append("g");
 			gEnter.append("g").attr("class", "x axis");
 			gEnter.append("g").attr("class", "y axis");
@@ -252,6 +251,11 @@ function StreamScatterPlot() {
 			.each(function(d) {
 				if(this.getAttribute("cx") < margin.left){
 					d3.select(this).remove();
+				}
+				if(this.getAttribute("cx") > width) {
+					d3.select(this).attr("display", "none");
+				} else {
+					d3.select(this).attr("display", "");
 				}
 			});
 

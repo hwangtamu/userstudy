@@ -8,8 +8,8 @@ var chart = StreamScatterPlot()
     // .setCursorFunction(function(mouse) {SnapshotCursor.draw(); })
 	// .setCursor(function(selection) {SnapshotBubbleCursor(selection); })
 	// .setCursorFunction(function(mouse) {SnapshotBubbleCursor.draw(); })
-	// .setCursor(function(selection) {SnapshotLineCursor(selection); })
-	// .setCursorFunction(function(mouse) {SnapshotLineCursor.draw(); })
+	.setCursor(function(selection) {SnapshotLineCursor(selection); })
+	.setCursorFunction(function(mouse) {SnapshotLineCursor.draw(); })
     ;
 
 //Load JSON file
