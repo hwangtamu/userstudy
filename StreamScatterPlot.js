@@ -57,6 +57,14 @@ function StreamScatterPlot() {
 			gEnter.call(cursor);
 
 			//Create rest of skeletal chart
+			gEnter.append("clipPath")
+					.attr("id", "clip")
+				.append("rect")
+					.attr("x", xScale(0))
+					.attr("y", yScale(1))
+					.attr("width", xScale(1) - xScale(0))
+					.attr("height", yScale(0) - yScale(1));
+			
 			gEnter = gEnter.append("g");
 			gEnter.append("g").attr("class", "x axis");
 			gEnter.append("g").attr("class", "y axis");

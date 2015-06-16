@@ -24,10 +24,12 @@ body {
 	fill: orange;
 	stroke: orange;
 	fill-opacity: 0.5;
+	stroke-opacity: 0.5;
 }
 
 .snapshot:hover {
 	fill: purple;
 	stroke: purple;
 	fill-opacity: 0.5;
+	stroke-opacity: 0.5;
 }
