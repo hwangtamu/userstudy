@@ -24,7 +24,7 @@ function SnapshotCursor(svg) {
 			.attr("cx",0)
 			.attr("cy",0)
 			.attr("r",cRad);
-		var target = SnapshotCursor.draw(d3.mouse(this));
+		var target = SnapshotCursor.redraw(d3.mouse(this));
 	});
 
 	//Hide mouse when outside svg selection
@@ -36,8 +36,9 @@ function SnapshotCursor(svg) {
 		prevMousePt = [-cRad ,-cRad];
 	});
 
-	SnapshotCursor.draw = function(mouse) {
+	SnapshotCursor.redraw = function(mouse) {
 		var mousePt;
+		var target;
 		if (!arguments.length){
 			mousePt = prevMousePt;
 		} else {
@@ -61,7 +62,6 @@ function SnapshotCursor(svg) {
 			var currDist = distance(mousePt,targetPt);
 
 			if (currDist < cRad && d3.select(".i" + d[0] +".snapshot").empty()) {
-
 				svg.append("circle")
 					.attr("class", "i" + d[0] + " snapshot")
 					.attr("r", pointRadius)
@@ -71,18 +71,32 @@ function SnapshotCursor(svg) {
 		});
 
 		//Only delete snapshots outside of cursor window
-		d3.selectAll(".snapshot").each(function(d, i) {
+		var closest = Infinity;
+		d3.selectAll(".snapshot")
+			.style("fill", "orange")
+			.style("stroke", "orange")
+			.each(function(d, i) {
+				var x = +d3.select(this).attr("cx"),
+					y = +d3.select(this).attr("cy");
 
-			var x = +d3.select(this).attr("cx"),
-				y = +d3.select(this).attr("cy");
+				var targetPt = [x, y];
+				var currDist = distance(mousePt,targetPt);
 
-			var targetPt = [x, y];
-			var currDist = distance(mousePt,targetPt);
+				if (currDist > cRad) {
+					d3.select(this).remove();
+				} else if (currDist < closest) {
+					target = d3.select(this);
+					closest = currDist;
+				}
+			});
 
-			if (currDist > cRad) {
-				d3.select(this).remove();
-			}
-		});
+		if (target != null) {
+			target
+				.style("fill", "springgreen")
+				.style("stroke", "springgreen");
+		}
+
+		return target;
 	};
 
 	SnapshotCursor.tarName = function(_) {

@@ -30,7 +30,7 @@ function BubbleCursor(svg, targetName) {
 
 	//Set on mousemove
 	svg.on("mousemove", function(d,i) {
-		var target = BubbleCursor.draw(d3.mouse(this));
+		var target = BubbleCursor.redraw(d3.mouse(this));
 	});
 
 	//Hide mouse when outside svg selection
@@ -49,9 +49,9 @@ function BubbleCursor(svg, targetName) {
 	//Draws bubble cursor, handles both static and dynamic data
 	//Requires dynamic data to call this function in it's update loop
 	//Returns target obtain from bubble cursor as well
-	BubbleCursor.draw = function(mouse) {
+	BubbleCursor.redraw = function(mouse) {
 		var points = d3.selectAll(targets);
-		var point;
+		var target;
 		var mousePt;
 
 		if (!arguments.length){
@@ -86,11 +86,11 @@ function BubbleCursor(svg, targetName) {
 					currX = x;
 					currY = y;
 					currRad = r;
-					point = d3.select(this);
+					target = d3.select(this);
 				}
 			});
 
-		point
+		target
 			.style("fill", targetColor)
 			.style("stroke", targetColor);
 
@@ -119,7 +119,7 @@ function BubbleCursor(svg, targetName) {
 				.attr("r",0);
 		}
 
-		return point;
+		return target;
 	};
 
 	BubbleCursor.tarColor = function(_) {

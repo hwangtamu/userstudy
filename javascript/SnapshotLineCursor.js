@@ -7,7 +7,6 @@ function SnapshotLineCursor(svg) {
 	var pts = [[]];
 	var i = 0;
 	var threshold = 10;
-	var cRad = 30;
 	var angle = 30;
 
 	//Name of svg element to grab for targets
@@ -19,9 +18,14 @@ function SnapshotLineCursor(svg) {
 		.style("fill", "lightgrey")
 		.style("fill-opacity", "0.5");
 
+	var dot = svg.append("circle")
+		.attr("cx", 0)
+		.attr("cy", 0)
+		.attr("r", 3);
+
 	//Set on mousemove
 	svg.on("mousemove", function(d,i) {
-		var target = SnapshotLineCursor.draw(d3.mouse(this));
+		var target = SnapshotLineCursor.redraw(d3.mouse(this));
 	});
 
 	//Hide mouse when outside svg selection
@@ -30,8 +34,9 @@ function SnapshotLineCursor(svg) {
 			.attr("points", "0,0 0,0 0,0");
 	});
 
-	SnapshotLineCursor.draw = function(mouse) {
+	SnapshotLineCursor.redraw = function(mouse) {
 		var mousePt;
+		var target = null;
 		if (arguments.length > 0) {
 			mousePt = [mouse[0], mouse[1]];
 			
@@ -106,32 +111,47 @@ function SnapshotLineCursor(svg) {
 			}
 		});
 
-		// //Only delete snapshots outside of cursor window
-		d3.selectAll(".snapshot").each(function(d, i) {
 
-			var x = +d3.select(this).attr("cx");
-			var y = +d3.select(this).attr("cy");
+		//Only delete snapshots outside of cursor window
+		var closest = Infinity;
+		d3.selectAll(".snapshot")
+			.style("fill", "orange")
+			.style("stroke", "orange")
+			.each(function(d, i) {
 
-			var ptA = [x1, y1];
-			var ptB = [lx1, ly1];
-			var ptC = [lx2, ly2];
-			var ptD = [x, y];
+				var x = +d3.select(this).attr("cx");
+				var y = +d3.select(this).attr("cy");
 
-			if(det(ptA, ptB, ptD) > 0 || det(ptA, ptC, ptD) < 0) {
-				d3.select(this).remove();
-			}
-		});
+				var ptA = [x1, y1];
+				var ptB = [lx1, ly1];
+				var ptC = [lx2, ly2];
+				var ptD = [x, y];
+
+				var dist = +distance(ptA, ptD);
+				if(det(ptA, ptB, ptD) > 0 || det(ptA, ptC, ptD) < 0) {
+					d3.select(this).remove();
+				} else if (dist < closest) {
+					closest = dist;
+					target = d3.select(this);
+				}
+			});
+
+		dot
+			.attr("cx", x1)
+			.attr("cy", y1);
+
+		if (target != null) {
+			target
+				.style("fill", "springgreen")
+				.style("stroke", "springgreen"); 
+		}
+
+		return target;
 	};
 
 	SnapshotLineCursor.tarName = function(_) {
 		if(!arguments.length) return targets;
 		targets = _;
-		return SnapshotLineCursor;
-	};
-
-	SnapshotLineCursor.cursorRadius = function(_) {
-		if(!arguments.length) return cRad;
-		cRad = _;
 		return SnapshotLineCursor;
 	};
 

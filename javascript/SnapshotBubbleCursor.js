@@ -9,6 +9,7 @@ function SnapshotBubbleCursor(svg, targetName) {
 
 	var targetRadius = 70;
 
+	//Default point colors
 	defaultColor = "steelblue";
 	targetColor = "springgreen";
 	snapColor = "orange";
@@ -33,7 +34,7 @@ function SnapshotBubbleCursor(svg, targetName) {
 
 	//Set on mousemove
 	svg.on("mousemove", function(d,i) {
-		var target = SnapshotBubbleCursor.draw(d3.mouse(this));
+		var target = SnapshotBubbleCursor.redraw(d3.mouse(this));
 	});
 
 	//Hide mouse when outside svg selection
@@ -49,10 +50,7 @@ function SnapshotBubbleCursor(svg, targetName) {
 			.attr("r",0);
 	});
 
-	//Draws bubble cursor, handles both static and dynamic data
-	//Requires dynamic data to call this function in it's update loop
-	//Returns target obtain from bubble cursor as well
-	SnapshotBubbleCursor.draw = function(mouse) {
+	SnapshotBubbleCursor.redraw = function(mouse) {
 		var points = d3.selectAll(".point, .snapshot");
 		var point;
 		var mousePt;
@@ -147,13 +145,13 @@ function SnapshotBubbleCursor(svg, targetName) {
 						.style("stroke", targetColor);
 				});
 		}
+		
 		point
 			.style("fill", targetColor)
 			.style("stroke", targetColor); 
 
 
 		//Find second closest point to pick from for cursor selection
-		//!! Second closest is becoming one of tagged points?! not good!
 		var secondMin = (currMin + 1) % points.size();
 		for (var j = 0; j < Dist.length; j++) {
 			if (j != currMin && IntD[j] < IntD[secondMin]) {
@@ -172,6 +170,7 @@ function SnapshotBubbleCursor(svg, targetName) {
 			.attr("cx",mousePt[0])
 			.attr("cy",mousePt[1])
 			.attr("r", cursorRadius);
+
 		cursorMorph
 			.attr("cx", currX)
 			.attr("cy", currY)
@@ -217,7 +216,7 @@ function SnapshotBubbleCursor(svg, targetName) {
 				if (currDist > targetRadius) {
 					d3.select(this).remove();
 				}
-		});
+			});
 
 
 		return point;

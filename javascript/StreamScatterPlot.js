@@ -13,7 +13,7 @@ function StreamScatterPlot() {
 		yScale = d3.scale.linear();
 		xAxis = d3.svg.axis().scale(xScale).orient("bottom"),
 		yAxis = d3.svg.axis().scale(yScale).orient("left"),
-		xLabel = "time (seconds)",
+		xLabel = "time",
 		yLabel = "value",
 		pointRadius = 6,
 		cursor = function(selection) {},
@@ -22,19 +22,21 @@ function StreamScatterPlot() {
 		ticks = 20; //Determines the number of ticks on axis based on time (n - 4 roughly shown)
 
 	var svg,
+		dataset,
 		points,
 		paused = false,
-		prevMousePt = [0,0];
+		target;
 
 	//Initial creation of streaming scatter plot
 	function chart(selection) {
 		selection.each(function(data) {
 
-			//Map corresponding data points to d[0] and d[1]
+			//Map corresponding data points x to d[0] and y to d[1]
 			data = data.map(function(d, i) {
 				return [xValue.call(data, d, i), yValue.call(data, d, i)];
 			});
 
+			dataset = data;
 			//Update the x-scale
 			var now = new Date(Date.now() - duration);
 			xScale
@@ -53,13 +55,6 @@ function StreamScatterPlot() {
 			var gEnter = svg.enter().append("svg")
 				.on("wheel.zoom", zoom);
 
-			gEnter.append("defs").append("clip")
-					.attr("id", "clip")
-				.append("rect")
-					.attr("width", 10)
-					.attr("height", 10);
-
-			svg.attr("clip-path", "url(#clip)");
 			//Create cursor before chart to prevent overlap
 			gEnter.call(cursor);
 
@@ -111,13 +106,13 @@ function StreamScatterPlot() {
 				.attr("cy", function(d) { return yScale(d[1]); });
 
 			//Create pause-start option
-			d3.select("body")
-				.on("keydown", function() {
-					//console.log(d3.event.keyCode);
-					if (d3.event.keyCode == 32) {
-						chart.pause();
-					}
-				})
+			// d3.select("body")
+			// 	.on("keydown", function() {
+			// 		//console.log(d3.event.keyCode);
+			// 		if (d3.event.keyCode == 32) {
+			// 			chart.pause();
+			// 		}
+			// 	})
 
 			/* FISHEYE CURSOR */
 			// svg.on("mousemove", function() {
@@ -231,9 +226,21 @@ function StreamScatterPlot() {
 	//Set function of cursor
 	chart.setCursorFunction = function(_) {
 		if (!arguments.length) return cursorFunction;
-			cursorFunction = _;
+		cursorFunction = _;
 		return chart;
 	}
+
+	//Push data to chart
+	chart.pushData = function(data) {
+		// data = data.map(function(d, i) {
+		// 		return [xValue.call(data, d, i), yValue.call(data, d, i)];
+		// });
+		dataset.push(data);
+	}
+
+	// chart.changeCursor = function() {
+	// 	svg.call(cursor);
+	// }
 
 	//Updates the visual stream
 	chart.step = function() {
@@ -242,25 +249,34 @@ function StreamScatterPlot() {
 		now = new Date();
 		xScale.domain([now - (ticks - 2) * duration, now - duration]);
 
+		//Update X Axis
 		d3.select(".x.axis")
 			.call(xAxis);
 
-		//Update position of points
+		//Bind data to points
+		points = svg.selectAll(".point").data(dataset, function(d) { return d; });
+
+		//Update
 		points
 			.attr("cx", function(d) { return xScale(d[0]); })
 			.each(function(d) {
 				if(this.getAttribute("cx") < margin.left){
-					d3.select(this).remove();
-				}
-				if(this.getAttribute("cx") > width) {
-					d3.select(this).attr("display", "none");
-				} else {
-					d3.select(this).attr("display", "");
+					dataset.splice(dataset.indexOf(d), 1)
 				}
 			});
 
-		//Update cursor if any
-		var target = svg.call(cursorFunction);
+		//Enter
+		points.enter().append("circle")
+			.attr("class", "point")
+			.attr("r", pointRadius)
+			.attr("cx", function(d) { return xScale(d[0]); })
+			.attr("cy", function(d) { return yScale(d[1]); });
+
+		//Exit
+		points.exit().remove();
+
+		//Update Cursor and grab target
+		target = svg.call(cursorFunction);
 	};
 
 	//Starts the chart streaming
@@ -272,7 +288,7 @@ function StreamScatterPlot() {
 		})
 	};
 
-	//Pauses the chart streaming
+	//Pauses the chart steptreaming
 	chart.pause = function() {
 		if(paused) {
 			paused = !paused;
@@ -291,9 +307,4 @@ function StreamScatterPlot() {
 	}
 
 	return chart;
-}
-
-function distance(ptA,ptB) {
-	var diff = [ptB[0]-ptA[0], ptB[1]-ptA[1]];
-	return Math.sqrt(diff[0] * diff[0] + diff[1] * diff[1]);
 }
