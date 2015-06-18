@@ -1,15 +1,16 @@
 //Note: Initiation of this cursor after other elements will put the cursor on top of them.
 function SnapshotBubbleCursor(svg, targetName) {
-	//Variable to hold previous mouse points for dynamic data
+	//Hold previous mouse points for dynamic data
 	var prevMousePt = [0,0];
 	var previousPoint;
 
 	//Name of svg element to grab for targets
 	var targets = ".point"
 
+	//Controls radius of freeze region
 	var targetRadius = 70;
 
-	//Default point colors
+	//Color for corresponding points
 	defaultColor = "steelblue";
 	targetColor = "springgreen";
 	snapColor = "orange";
@@ -50,6 +51,9 @@ function SnapshotBubbleCursor(svg, targetName) {
 			.attr("r",0);
 	});
 
+	//Draws bubble cursor and handles freezing of nearby targets
+	//Requires dynamic data to call this function in it's update loop
+	//Returns target obtained from bubble cursor as well
 	SnapshotBubbleCursor.redraw = function(mouse) {
 		var points = d3.selectAll(".point, .snapshot");
 		var point;

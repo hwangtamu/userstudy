@@ -1,12 +1,12 @@
 //Note: Initiation of this cursor after other elements will put the cursor on top of them.
 function SnapshotCursor(svg) {
-	//Variable to hold previous mouse points for dynamic data
+	//Hold previous mouse point for dynamic data
 	var prevMousePt = [0, 0];
 
 	//Name of svg element to grab for targets
 	var targets = ".point";
 
-	//default cursor radius
+	//Cursor radius
 	var cRad = 80;
 
 	//Create cursor

@@ -1,4 +1,4 @@
-//Creates a streaming scatter plot
+ //Creates a streaming scatter plot
 function StreamScatterPlot() {
 
 	//Default values for chart
@@ -105,14 +105,14 @@ function StreamScatterPlot() {
 				.attr("cx", function(d) { return xScale(d[0]); })
 				.attr("cy", function(d) { return yScale(d[1]); });
 
-			//Create pause-start option
-			// d3.select("body")
-			// 	.on("keydown", function() {
-			// 		//console.log(d3.event.keyCode);
-			// 		if (d3.event.keyCode == 32) {
-			// 			chart.pause();
-			// 		}
-			// 	})
+			//Bind pause-start option
+			d3.select("body")
+				.on("keydown", function() {
+					//console.log(d3.event.keyCode);
+					if (d3.event.keyCode == 32) {
+						chart.pause();
+					}
+				})
 
 			/* FISHEYE CURSOR */
 			// svg.on("mousemove", function() {
@@ -238,10 +238,6 @@ function StreamScatterPlot() {
 		dataset.push(data);
 	}
 
-	// chart.changeCursor = function() {
-	// 	svg.call(cursor);
-	// }
-
 	//Updates the visual stream
 	chart.step = function() {
 
@@ -297,6 +293,7 @@ function StreamScatterPlot() {
 		}
 	};
 
+	//Alters the time scale so you can 'zoom' in and out of time
 	function zoom() {
 		dy = +d3.event.wheelDeltaY;
 		if (duration + dy > 100)

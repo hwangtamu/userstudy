@@ -6,10 +6,10 @@ var chart = StreamScatterPlot()
 	// .setCursorFunction(function(mouse) { BubbleCursor.redraw(); })
 	// .setCursor(function(selection) {SnapshotCursor(selection); })
 	// .setCursorFunction(function(mouse) {SnapshotCursor.redraw(); })
-	// .setCursor(function(selection) {SnapshotBubbleCursor(selection); })
-	// .setCursorFunction(function(mouse) {SnapshotBubbleCursor.redraw(); })
-	.setCursor(function(selection) {SnapshotLineCursor(selection); })
-	.setCursorFunction(function(mouse) {SnapshotLineCursor.redraw(); })
+	.setCursor(function(selection) {SnapshotBubbleCursor(selection); })
+	.setCursorFunction(function(mouse) {SnapshotBubbleCursor.redraw(); })
+	// .setCursor(function(selection) {SnapshotLineCursor(selection); })
+	// .setCursorFunction(function(mouse) {SnapshotLineCursor.redraw(); })
     ;
 
 //Load JSON file
@@ -26,45 +26,19 @@ d3.json("data/stream_r2.json", function(error, data) {
 		d.id = (now - (20) * 1000) + d.id * 1000;
 	});
 
-	//Chunk up data
-	var d = [[]];
-	var j = 0;
-	var size = 20;
-	for (var i = 0; i < data.length; i+= size) {
-		d[j] = data.slice(i, i + size).reverse();
-		j++;
-	}
+	//Get past data
+	var past = [];
+	now = new Date();
+	data.forEach(function(d, i) {
+		if (d.id < now) {
+			past.push(d);
+			data.splice(data.indexOf(d), 1);
+		}
+	});
 
-	//keybind changes cursor
-	// d3.select("body")
-	// .on("keydown", function() {
-	// 	console.log(d3.event.keyCode);
-	// 	if (d3.event.keyCode == 49) {
-	// 		chart
-	// 			.setCursor(function(selection) {SnapshotLineCursor(selection); })
-	// 			.setCursorFunction(function(mouse) {SnapshotLineCursor.redraw(); });
-	// 			chart.changeCursor();
-	// 	} else if (d3.event.keyCode == 50) {
-	// 		chart
-	// 			.setCursor(function(selection) {SnapshotBubbleCursor(selection); })
-	// 			.setCursorFunction(function(mouse) {SnapshotBubbleCursor.redraw(); });
-	// 			chart.changeCursor();
-	// 	} else if (d3.event.keyCode == 51) {
-	// 		chart
-	// 		    .setCursor(function(selection) {SnapshotCursor(selection); })
- //   				.setCursorFunction(function(mouse) {SnapshotCursor.redraw(); });
- //   				chart.changeCursor();
-	// 	} else if (d3.event.keyCode == 52) {
-	// 		chart
-	// 		    .setCursor(function(selection) { BubbleCursor(selection); })
- //   				.setCursorFunction(function(mouse) { BubbleCursor.redraw(); });
- //   				chart.changeCursor();
-	// 	}
-	// })
-
-	//Create chart with data bound to it
+	//Create chart with past data bound to it
 	var stream = d3.select("#StreamScatterPlot")
-		.datum(d[0])
+		.datum(past)
 		.call(chart);
 
 	//Start streaming of chart

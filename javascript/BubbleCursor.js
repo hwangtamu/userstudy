@@ -46,9 +46,9 @@ function BubbleCursor(svg, targetName) {
 			.attr("r",0);
 	});
 
-	//Draws bubble cursor, handles both static and dynamic data
+	//Draws bubble cursor
 	//Requires dynamic data to call this function in it's update loop
-	//Returns target obtain from bubble cursor as well
+	//Returns target obtained from bubble cursor as well
 	BubbleCursor.redraw = function(mouse) {
 		var points = d3.selectAll(targets);
 		var target;

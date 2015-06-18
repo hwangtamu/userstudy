@@ -1,12 +1,16 @@
 //Note: Initiation of this cursor after other elements will put the cursor on top of them.
 function SnapshotLineCursor(svg) {
-	//Variable to hold previous mouse points for dynamic data
+	//Hold previous mouse points for dynamic data
 	var prevMousePt = [0, 0];
 	var ox = 0,
 		oy = 0;
 	var pts = [[]];
+
+	//Controls the 'tail' of cursor
 	var i = 0;
 	var threshold = 10;
+
+	//Angle of flashlight
 	var angle = 30;
 
 	//Name of svg element to grab for targets
@@ -34,6 +38,7 @@ function SnapshotLineCursor(svg) {
 			.attr("points", "0,0 0,0 0,0");
 	});
 
+	//Redraws 'flashlight' like cursor and 'freezes' targets on the inside
 	SnapshotLineCursor.redraw = function(mouse) {
 		var mousePt;
 		var target = null;
