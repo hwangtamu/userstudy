@@ -22,6 +22,9 @@ function StreamScatterPlot() {
 		ticks = 20; //Determines the number of ticks on axis based on time (n - 4 roughly shown)
 
 	var svg,
+		gChart,
+		gData,
+		gCursor,
 		dataset,
 		points,
 		paused = false,
@@ -55,25 +58,25 @@ function StreamScatterPlot() {
 			var gEnter = svg.enter().append("svg")
 				.on("wheel.zoom", zoom);
 
-			//Create cursor before chart to prevent overlap
-			gEnter.call(cursor);
-
 			//Create rest of skeletal chart
-			gEnter = gEnter.append("g");
-			gEnter.append("g").attr("class", "x axis");
-			gEnter.append("g").attr("class", "y axis");
+			gData = gEnter.append("g").attr("class", "data");
+			gEnter = gEnter.append("g").attr("class", "chart");
+				gEnter.append("g").attr("class", "x axis");
+				gEnter.append("g").attr("class", "y axis");
+			gCursor = svg.append("g").attr("class", "cursor");
 
+			svg.call(cursor);
 
 			//Update the outer dimensions
 			svg .attr("width", width)
 				.attr("height", height);
 
 			//Update the inner dimensions
-			var g = svg.select("g")
+			gChart = svg.select("g.chart")
 				.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 			//Update the x-axis
-			g.select(".x.axis")
+			gChart.select(".x.axis")
 					.attr("transform", "translate(0," + yScale.range()[0] + ")")
 					.call(xAxis)
 				.append("text")
@@ -84,7 +87,7 @@ function StreamScatterPlot() {
 					.text(xLabel);
 
 			//Update the y-axis
-			g.select(".y.axis")
+			gChart.select(".y.axis")
 					.call(yAxis)
 				.append("text")
 					.attr("class", "label")
@@ -95,7 +98,7 @@ function StreamScatterPlot() {
 					.text("value");
 
 			//Create the initial set of points
-			points = svg.selectAll(".point")
+			points = gData.selectAll(".point")
 				.data(data)
 				.datum(function(d) { return {id: d3.select(this).attr("id")}; });
 
@@ -107,12 +110,46 @@ function StreamScatterPlot() {
 
 			//Bind pause-start option
 			d3.select("body")
-				.on("keydown", function() {
+				.on("keydown.StreamScatterPlot." + selection.attr("id"), function() {
 					//console.log(d3.event.keyCode);
 					if (d3.event.keyCode == 32) {
 						chart.pause();
 					}
 				})
+
+			//Create Cursor
+			gCursor.append("line")
+				.attr("class", "vertical")
+				.style("stroke-width", "1")
+				.style("stroke", "black");
+			gCursor.append("line")
+				.attr("class", "horizontal")
+				.style("stroke-width", "1")
+				.style("stroke", "black");
+
+			//Set on mousemove to update position of cursor
+			svg.on("mousemove.StreamScatterPlot." + selection.attr("id"), function(d,i) {
+				var mouse = d3.mouse(this);
+				var x = mouse[0],
+					y = mouse[1];
+
+				gCursor.select(".vertical")
+					.attr("x1", x)
+					.attr("y1", y + 5)
+					.attr("x2", x)
+					.attr("y2", y - 5);
+				gCursor.select(".horizontal")
+					.attr("x1", x + 5)
+					.attr("y1", y)
+					.attr("x2", x - 5)
+					.attr("y2", y);
+			});
+
+			svg.on("click.StreamScatterPlot."  + selection.attr("id"), function(d, i) {
+				if (target != null) {
+					target.attr("r", 50);
+				}
+			});
 
 			/* FISHEYE CURSOR */
 			// svg.on("mousemove", function() {
@@ -250,7 +287,7 @@ function StreamScatterPlot() {
 			.call(xAxis);
 
 		//Bind data to points
-		points = svg.selectAll(".point").data(dataset, function(d) { return d; });
+		points = gData.selectAll(".point").data(dataset, function(d) { return d; });
 
 		//Update
 		points
@@ -272,7 +309,7 @@ function StreamScatterPlot() {
 		points.exit().remove();
 
 		//Update Cursor and grab target
-		target = svg.call(cursorFunction);
+		target = cursorFunction();
 	};
 
 	//Starts the chart streaming

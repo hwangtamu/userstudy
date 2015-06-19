@@ -1,8 +1,8 @@
 //Note: Initiation of this cursor after other elements will put the cursor on top of them.
-function SnapshotBubbleCursor(svg, targetName) {
+function SnapshotBubbleCursor(selection) {
 	//Hold previous mouse points for dynamic data
 	var prevMousePt = [0,0];
-	var previousPoint;
+	var previousPoint = null;
 
 	//Name of svg element to grab for targets
 	var targets = ".point"
@@ -10,13 +10,19 @@ function SnapshotBubbleCursor(svg, targetName) {
 	//Controls radius of freeze region
 	var targetRadius = 70;
 
+	//Controls accumulation behavior near freeze region
+	var accumulations = true;
+
 	//Color for corresponding points
 	defaultColor = "steelblue";
 	targetColor = "springgreen";
 	snapColor = "orange";
 
 	//Create cursor
-	var cursor = svg.append("circle")
+	var svg = selection;
+	var gCopies = svg.insert("g", ".chart").attr("class", "copies");
+	var gSelection = svg.insert("g", ":first-child").attr("class", "selection");
+	var cursor = gSelection.append("circle")
 		.attr("class","cursor")
 		.attr("cx",0)
 		.attr("cy",0)
@@ -25,7 +31,7 @@ function SnapshotBubbleCursor(svg, targetName) {
 		.style("fill-opacity","0.5");
 
 	//Create cursor morph
-	var cursorMorph = svg.append("circle")
+	var cursorMorph = gSelection.append("circle")
 		.attr("class","cursorMorph")
 		.attr("cx",0)
 		.attr("cy",0)
@@ -34,12 +40,12 @@ function SnapshotBubbleCursor(svg, targetName) {
 		.style("fill-opacity","0.5");
 
 	//Set on mousemove
-	svg.on("mousemove", function(d,i) {
+	svg.on("mousemove.SnapshotBubbleCursor." + selection.attr("id"), function(d,i) {
 		var target = SnapshotBubbleCursor.redraw(d3.mouse(this));
 	});
 
 	//Hide mouse when outside svg selection
-	svg.on("mouseout", function(d, i) {
+	svg.on("mouseout.SnapshotBubbleCursor."  + selection.attr("id"), function(d, i) {
 		cursor
 			.attr("cx",0)
 			.attr("cy",0)
@@ -56,9 +62,10 @@ function SnapshotBubbleCursor(svg, targetName) {
 	//Returns target obtained from bubble cursor as well
 	SnapshotBubbleCursor.redraw = function(mouse) {
 		var points = d3.selectAll(".point, .snapshot");
-		var point;
+		var target;
 		var mousePt;
 
+		//If no mouse input given; use previous placement of mouse
 		if (!arguments.length){
 			mousePt = prevMousePt;
 		} else {
@@ -74,51 +81,16 @@ function SnapshotBubbleCursor(svg, targetName) {
 
 		//Find closest target
 		points
-			.style("fill", function() {
-				var id = d3.select(this).attr("id");
-				var color = defaultColor;
-				if (id == "snap") {
-					color = "orange";
-				} else if (id == "tagged") {
-					color = "red";
-				}
-				return color;
-			})
-			.style("stroke", function() {
-				var id = d3.select(this).attr("id");
-				var color = defaultColor;
-				if (id == "snap") {
-					color = "orange";
-				} else if (id == "tagged") {
-					color = "red";
-				}
-				return color;
-			})
-			.style("fill-opacity", function() {
-				var id = d3.select(this).attr("id");
-				var opacity = 1.0;
-				if (id == "snap") {
-					opacity = 0.5;
-				} else if (id == "tagged") {
-					opacity = 0.1;
-				}
-				return opacity;
-			})
-			.style("stroke-opacity", function() {
-				var id = d3.select(this).attr("id");
-				var opacity = 1.0;
-				if (id == "snap") {
-					opacity = 0.5;
-				} else if (id == "tagged") {
-					opacity = 0.1;
-				}
-				return opacity;
-			})
+			.style("fill", function() { return d3.select(this).attr("id") == "snap" ? "orange" : defaultColor; })
+			.style("stroke", function() { return d3.select(this).attr("id") == "snap" ? "orange" : defaultColor; })
+			.style("fill-opacity", function() { return d3.select(this).attr("id") == "tagged" ? 0.5 : 1.0; })
+			.style("stroke-opacity", function() { return d3.select(this).attr("id") == "tagged" ? 0.5 : 1.0; })
 			.filter(function() { return d3.select(this).attr("id") != ("tagged"); })
 			.each(function(d, i) {
-				var x = +d3.select(this).attr("cx"),
-					y = +d3.select(this).attr("cy"),
-					r = +d3.select(this).attr("r");
+				var pt = d3.select(this);
+				var x = +pt.attr("cx"),
+					y = +pt.attr("cy"),
+					r = +pt.attr("r");
 				var targetPt = [x, y];
 				var currDist = distance(mousePt,targetPt);
 				Dist.push(currDist);
@@ -131,15 +103,21 @@ function SnapshotBubbleCursor(svg, targetName) {
 					currX = x;
 					currY = y;
 					currRad = r;
-					point = d3.select(this);
+					target = pt;
 				}
 			});
 
-		if (point.attr("id") != "snap") {
-			point
+		//Set previous point
+		if (target != null && target.attr("id") == "snap") {
+			previousPoint = target;
+		}
+
+		//If target isn't already a snapshot; create snapshot
+		if (target.attr("id") != "snap") {
+			target
 				.attr("id", "tagged")
 				.each(function(d, i) {
-					svg.append("circle")
+					gCopies.append("circle")
 						.attr("class", "i" + d[0] + " snapshot")
 						.attr("id", "snap")
 						.attr("cx", currX)
@@ -150,7 +128,8 @@ function SnapshotBubbleCursor(svg, targetName) {
 				});
 		}
 		
-		point
+		//Set coloration of selected target
+		target
 			.style("fill", targetColor)
 			.style("stroke", targetColor); 
 
@@ -170,32 +149,34 @@ function SnapshotBubbleCursor(svg, targetName) {
 			cursorRadius = ConD[currMin];
 		} 
 
+		//Set size of cursor
 		cursor
 			.attr("cx",mousePt[0])
 			.attr("cy",mousePt[1])
-			.attr("r", cursorRadius);
+			.attr("r", Math.abs(cursorRadius));
 
+		//Set size of cursor morph
 		cursorMorph
 			.attr("cx", currX)
 			.attr("cy", currY)
 			.attr("r", targetRadius);
 
+		//Snapshot points near target
 		var currPt = [currX, currY];
 		d3.selectAll(".point")
 			.each(function(d, i) {
-				var x = +d3.select(this).attr("cx"),
-					y = +d3.select(this).attr("cy"),
-					r = +d3.select(this).attr("r");
+				var pt = d3.select(this);
+				var x = +pt.attr("cx"),
+					y = +pt.attr("cy"),
+					r = +pt.attr("r");point
 
 				var targetPt = [x, y];
 				var currDist = distance(currPt,targetPt);
 
-				var target = d3.select(this);
-
-				//!! Need way to loosely couple original point with it's snapshot!
-				if(currDist < targetRadius && d3.select(".i" + d[0] +".snapshot").empty() && target.attr("id") != "tagged") {
-					target.attr("id", "tagged");
-					svg.append("circle")
+				var point = pt;
+				if(currDist < targetRadius && d3.select(".i" + d[0] +".snapshot").empty() && point.attr("id") != "tagged" && accumulations) {
+					point.attr("id", "tagged");
+					gCopies.append("circle")
 						.attr("class", "i" + d[0] + " snapshot")
 						.attr("id", "snap")
 						.attr("cx", x)
@@ -203,27 +184,35 @@ function SnapshotBubbleCursor(svg, targetName) {
 						.attr("r", r)
 						.style("fill", targetColor)
 						.style("stroke", targetColor);
-				} else if (currDist > targetRadius) {
-					target.attr("id", "untagged");
+				} else if (currDist > targetRadius && point.attr("id") == "tagged" && previousPoint != target) {
+					point.attr("id", "untagged");
+				} else if (currDist > targetRadius && d3.select(".i" + d[0] +".snapshot").empty()) {
+					point.attr("id", "untagged");
 				}
 
 			});
 
+		//Update previouspoint if target is different
+		if (previousPoint != target) {
+			previousPoint = target;
+		}
+
+		//Remove snapshots out of targets area
 		d3.selectAll(".snapshot") 
 			.each(function(d, i) {
-				var x = +d3.select(this).attr("cx"),
-					y = +d3.select(this).attr("cy");
+				var pt = d3.select(this);
+				var x = +pt.attr("cx"),
+					y = +pt.attr("cy");
 
 				var targetPt = [x, y];
 				var currDist = distance(currPt,targetPt);
 
 				if (currDist > targetRadius) {
-					d3.select(this).remove();
+					pt.remove();
 				}
 			});
-
-
-		return point;
+		
+		return target;
 	};
 
 	SnapshotBubbleCursor.tarName = function(_) {
@@ -231,6 +220,12 @@ function SnapshotBubbleCursor(svg, targetName) {
 		targets = _;
 		return SnapshotBubbleCursor;
 	};
+
+	SnapshotBubbleCursor.accumulate = function(_) {
+		if(!arguments.length) return accumulations;
+		accumulations = _;
+		return SnapshotBubbleCursor;
+	}
 }
 
 //Helper function for obtaining containment and intersection distances

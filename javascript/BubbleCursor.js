@@ -1,5 +1,5 @@
 //Note: Initiation of this cursor after other elements will put the cursor on top of them.
-function BubbleCursor(svg, targetName) {
+function BubbleCursor(selection, targetName) {
 	//Variable to hold previous mouse points for dynamic data
 	var prevMousePt = [0,0];
 
@@ -11,7 +11,9 @@ function BubbleCursor(svg, targetName) {
 	var targets = ".point"
 
 	//Create cursor
-	svg.append("circle")
+	var svg = selection;
+	var gSelection = svg.insert("g", ":first-child").attr("class", "selection");
+	var cursor = gSelection.append("circle")
 		.attr("class","cursor")
 		.attr("cx",0)
 		.attr("cy",0)
@@ -20,7 +22,7 @@ function BubbleCursor(svg, targetName) {
 		.style("fill-opacity","0.5");
 
 	//Create cursor morph
-	svg.append("circle")
+	var cursorMorph = gSelection.append("circle")
 		.attr("class","cursorMorph")
 		.attr("cx",0)
 		.attr("cy",0)
@@ -29,12 +31,12 @@ function BubbleCursor(svg, targetName) {
 		.style("fill-opacity","0.5");
 
 	//Set on mousemove
-	svg.on("mousemove", function(d,i) {
+	svg.on("mousemove.BubbleCursor." + selection.attr("id"), function(d,i) {
 		var target = BubbleCursor.redraw(d3.mouse(this));
 	});
 
 	//Hide mouse when outside svg selection
-	svg.on("mouseout", function(d, i) {
+	svg.on("mouseout.BubbleCursor." + selection.attr("id"), function(d, i) {
 		d3.select(".cursor")
 			.attr("cx",0)
 			.attr("cy",0)
@@ -102,23 +104,23 @@ function BubbleCursor(svg, targetName) {
 		}
 
 		cursorRadius = Math.min(ConD[currMin], IntD[secondMin]);
-		svg.select(".cursor")
+		cursor
 			.attr("cx",mousePt[0])
 			.attr("cy",mousePt[1])
 			.attr("r", cursorRadius);
 
 		if (cursorRadius < ConD[currMin]) {
-			svg.select(".cursorMorph")
+			cursorMorph
 				.attr("cx", currX)
 				.attr("cy", currY)
 				.attr("r", (currRad + 5));
 		} else {
-			svg.select(".cursorMorph")
+			cursorMorph
 				.attr("cx",0)
 				.attr("cy",0)
 				.attr("r",0);
 		}
-
+		
 		return target;
 	};
 

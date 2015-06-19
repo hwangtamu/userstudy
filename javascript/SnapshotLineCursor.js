@@ -1,10 +1,15 @@
 //Note: Initiation of this cursor after other elements will put the cursor on top of them.
-function SnapshotLineCursor(svg) {
+function SnapshotLineCursor(selection) {
 	//Hold previous mouse points for dynamic data
 	var prevMousePt = [0, 0];
 	var ox = 0,
 		oy = 0;
 	var pts = [[]];
+
+	//Used in calculation of 'velocity'
+	var velocity;
+	var lastTime = new Date();
+	var ptDistance;
 
 	//Controls the 'tail' of cursor
 	var i = 0;
@@ -13,27 +18,28 @@ function SnapshotLineCursor(svg) {
 	//Angle of flashlight
 	var angle = 30;
 
+	//Controls accumulation behavior near freeze region
+	var accumulations = true;
+
 	//Name of svg element to grab for targets
 	var targets = ".point";
 
 	//Create cursor
-	var polyline = svg.append("polyline")
+	var svg = selection;
+	var gCopies = svg.insert("g", ".chart").attr("class", "copies");
+	var gSelection = svg.insert("g", ":first-child").attr("class", "selection");
+	var polyline = gSelection.append("polyline")
 		.attr("points", "0,0 0,0 0,0")
 		.style("fill", "lightgrey")
 		.style("fill-opacity", "0.5");
 
-	var dot = svg.append("circle")
-		.attr("cx", 0)
-		.attr("cy", 0)
-		.attr("r", 3);
-
 	//Set on mousemove
-	svg.on("mousemove", function(d,i) {
+	svg.on("mousemove.SnapshotLineCursor." + selection.attr("id"), function(d,i) {
 		var target = SnapshotLineCursor.redraw(d3.mouse(this));
 	});
 
 	//Hide mouse when outside svg selection
-	svg.on("mouseout", function(d, i) {
+	svg.on("mouseout.SnapshotLineCursor." + selection.attr("id"), function(d, i) {
 		polyline
 			.attr("points", "0,0 0,0 0,0");
 	});
@@ -42,6 +48,7 @@ function SnapshotLineCursor(svg) {
 	SnapshotLineCursor.redraw = function(mouse) {
 		var mousePt;
 		var target = null;
+		if (arguments.length == 0 && !accumulations) return;
 		if (arguments.length > 0) {
 			mousePt = [mouse[0], mouse[1]];
 			
@@ -74,12 +81,32 @@ function SnapshotLineCursor(svg) {
 		//Scale points to extend 'flashlight'
 		dist = distance([x1, y1], [x2, y2]);
 		var length = Math.max(+svg.attr("width"),+svg.attr("length"));
-		x2 = x2 + (x2 - x1) / dist * length;
-		y2 = y2 + (y2 - y1) / dist * length;
+		x2 = x2 + (x2 - x1) / dist * length * 2;
+		y2 = y2 + (y2 - y1) / dist * length * 2;
+
+
+
+		//Calculate angle and velocity
+		var now = new Date();
+		ptDistance = dist;
+		if (arguments.length != 0) {
+			velocity = ptDistance * 2 / (now - lastTime);
+			lastTime = now;
+		}
+
+		angle = velocity;
+
+		if (angle > 175) {
+			angle = 175;
+		} else if (angle < 45) {
+			angle = 45;
+		}
+
+
 
 		//Convert angle to radians
-		var theta1 = angle * (Math.PI / 180),
-			theta2 = -angle * (Math.PI / 180);
+		var theta1 = angle * (Math.PI / 360),
+			theta2 = -angle * (Math.PI / 360);
 
 		//Apply rotation about origin
 		var lx1 = (x2 - ox) * Math.cos(theta1) - (y2 - oy) * Math.sin(theta1) + ox,
@@ -91,30 +118,37 @@ function SnapshotLineCursor(svg) {
 		//Update location of cursor
 		if (isFinite(x2) && isFinite(y2)) {
 			polyline
-				.attr("points", x1 + "," + y1 + " " +
+				.attr("points", ox + "," + oy + " " +
 								lx1 + "," + ly1 + " " +
 								lx2 + "," + ly2);
 		}
 
 		//Copy-Pause points within cursor
 		var points = d3.selectAll(targets);
-		points.each(function(d, i) {
-			var x = +d3.select(this).attr("cx");
-			var y = +d3.select(this).attr("cy");
+		points
+			.style("fill-opacity", function() { return d3.select(this).attr("id") == "tagged" ? 0.5 : 1.0; })
+			.style("stroke-opacity", function() { return d3.select(this).attr("id") == "tagged" ? 0.5 : 1.0; })
+			.each(function(d, i) {
+				var pt = d3.select(this);
+				var x = +pt.attr("cx");
+				var y = +pt.attr("cy");
 
-			var ptA = [x1, y1];
-			var ptB = [lx1, ly1];
-			var ptC = [lx2, ly2];
-			var ptD = [x, y];
+				var ptA = [ox, oy];
+				var ptB = [lx1, ly1];
+				var ptC = [lx2, ly2];
+				var ptD = [x, y];
 
-			if(det(ptA, ptB, ptD) <= 0 && det(ptA, ptC, ptD) >= 0 && d3.select(".i" + d[0] +".snapshot").empty()) {
-				svg.append("circle")
-					.attr("class", "i" + d[0] + " snapshot")
-					.attr("r", pointRadius)
-					.attr("cx", x)
-					.attr("cy", y);
-			}
-		});
+				if(det(ptA, ptB, ptD) <= 0 && det(ptA, ptC, ptD) >= 0 && d3.select(".i" + d[0] +".snapshot").empty()) {
+					pt.attr("id", "tagged");
+					gCopies.append("circle")
+						.attr("class", "i" + d[0] + " snapshot")
+						.attr("r", pointRadius)
+						.attr("cx", x)
+						.attr("cy", y);
+				} else if (det(ptA, ptB, ptD) >= 0 || det(ptA, ptC, ptD) <= 0) {
+					pt.attr("id", "untagged");
+				}
+			});
 
 
 		//Only delete snapshots outside of cursor window
@@ -123,34 +157,30 @@ function SnapshotLineCursor(svg) {
 			.style("fill", "orange")
 			.style("stroke", "orange")
 			.each(function(d, i) {
+				var pt = d3.select(this);
+				var x = +pt.attr("cx");
+				var y = +pt.attr("cy");
 
-				var x = +d3.select(this).attr("cx");
-				var y = +d3.select(this).attr("cy");
-
-				var ptA = [x1, y1];
+				var ptA = [ox, oy];
 				var ptB = [lx1, ly1];
 				var ptC = [lx2, ly2];
 				var ptD = [x, y];
 
 				var dist = +distance(ptA, ptD);
 				if(det(ptA, ptB, ptD) > 0 || det(ptA, ptC, ptD) < 0) {
-					d3.select(this).remove();
+					pt.remove();
 				} else if (dist < closest) {
 					closest = dist;
-					target = d3.select(this);
+					target = pt;
 				}
 			});
-
-		dot
-			.attr("cx", x1)
-			.attr("cy", y1);
 
 		if (target != null) {
 			target
 				.style("fill", "springgreen")
-				.style("stroke", "springgreen"); 
-		}
-
+				.style("stroke", "springgreen");
+		} 
+		
 		return target;
 	};
 
@@ -165,6 +195,12 @@ function SnapshotLineCursor(svg) {
 		angle = _;
 		return SnapshotLineCursor;
 	};
+
+	SnapshotLineCursor.accumulate = function(_) {
+		if(!arguments.length) return accumulations;
+		accumulations = _;
+		return SnapshotLineCursor;
+	}
 }
 
 //Helper function for obtaining containment and intersection distances
