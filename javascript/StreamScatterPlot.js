@@ -146,9 +146,9 @@ function StreamScatterPlot() {
 			});
 
 			svg.on("click.StreamScatterPlot."  + selection.attr("id"), function(d, i) {
-				if (target != null) {
-					target.attr("r", 50);
-				}
+				// if (target != null) {
+				// 	target.attr("r", 50);
+				// }
 			});
 
 			/* FISHEYE CURSOR */
@@ -222,7 +222,7 @@ function StreamScatterPlot() {
 		if (!arguments.length) return pointRadius;
 		pointRadius = _;
 		return chart;
-	}
+	};
 
 	//Set duration
 	//Selection from "seconds", "minutes", "hours", "days"
@@ -258,14 +258,14 @@ function StreamScatterPlot() {
 		if (!arguments.length) return cursor;
 		cursor = _;
 		return chart;
-	}
+	};
 
 	//Set function of cursor
 	chart.setCursorFunction = function(_) {
 		if (!arguments.length) return cursorFunction;
 		cursorFunction = _;
 		return chart;
-	}
+	};
 
 	//Push data to chart
 	chart.pushData = function(data) {
@@ -273,7 +273,7 @@ function StreamScatterPlot() {
 		// 		return [xValue.call(data, d, i), yValue.call(data, d, i)];
 		// });
 		dataset.push(data);
-	}
+	};
 
 	//Updates the visual stream
 	chart.step = function() {
@@ -338,7 +338,7 @@ function StreamScatterPlot() {
 		else 
 			duration = 100;
 		chart.step();
-	}
+	};
 
 	return chart;
 }

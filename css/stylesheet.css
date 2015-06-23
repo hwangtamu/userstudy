@@ -15,19 +15,33 @@ body {
 	fill: steelblue;
 }
 
+#untagged.point {
+	stroke: steelblue;
+	fill: steelblue;
+	fill-opacity: 1;
+	stroke-opacity: 1;
+}
+
+#tagged.point {
+	stroke: steelblue;
+	fill: steelblue;
+	fill-opacity: 0.5;
+	stroke-opacity: 0.5;
+}
+
 /*.point:hover {
 	stroke: red;
 	fill: red;
 }*/
 
 .snapshot {
-	fill: orange;
 	stroke: orange;
+	fill: orange;
 }
 
-.snapshot:hover {
-	fill: purple;
-	stroke: purple;
+.target {
+	stroke: springgreen;
+	fill: springgreen;
 }
 
 * {cursor: none;}

@@ -77,29 +77,30 @@ function SnapshotCursor(selection) {
 				var currDist = distance(mousePt,targetPt);
 
 				if (currDist < cRad && d3.select(".i" + d[0] + ".snapshot").empty()) {
-					pt.attr("id", "tagged");
-					gCopies.append("polyline")
-						.attr("class", "i" + d[0] + " trail")
-						.attr("stroke-width", r / 2)
-						.attr("points", x + "," + y)
-						.datum([x, y]);
+					//pt.attr("id", "tagged");
+					// gCopies.append("polyline")
+					// 	.attr("class", "i" + d[0] + " trail")
+					// 	.attr("stroke-width", r / 2)
+					// 	.attr("points", x + "," + y)
+					// 	.datum([x, y]);
 
 					gCopies.append("circle")
 						.attr("class", "i" + d[0] + " snapshot")
 						.attr("r", pointRadius)
 						.attr("cx", x)
 						.attr("cy", y);
-				} else if (currDist < cRad && !d3.select(".i" + d[0] + ".trail").empty()) {
-					var trail = d3.select(".i" + d[0] + ".trail");
-
-					trail
-						.attr("points", function(d) {
-							return x + "," + y + " " + d[0] + "," + d[1];
-						})
-						.attr("stroke", "orange");
-				} else if (currDist > cRad) {
-					pt.attr("id", "untagged");
 				}
+				// } else if (currDist < cRad && !d3.select(".i" + d[0] + ".trail").empty()) {
+				// 	var trail = d3.select(".i" + d[0] + ".trail");
+
+				// 	trail
+				// 		.attr("points", function(d) {
+				// 			return x + "," + y + " " + d[0] + "," + d[1];
+				// 		})
+				// 		.attr("stroke", "orange");
+				// } else if (currDist > cRad) {
+				// 	pt.attr("id", "untagged");
+				// }
 			});
 
 		//Only delete snapshots outside of cursor window
@@ -114,30 +115,29 @@ function SnapshotCursor(selection) {
 
 				var targetPt = [x, y];
 				var currDist = distance(mousePt,targetPt);
-				var pt = pt;
 
-				var trailid = pt.attr("class");
-				trailid = trailid.slice(0, -9);
-				trailid = "." + trailid + ".trail";
-				var trail = d3.select(trailid);
+				// var trailid = pt.attr("class");
+				// trailid = trailid.slice(0, -9);
+				// trailid = "." + trailid + ".trail";
+				// var trail = d3.select(trailid);
 
 				if (currDist > cRad) {
-					trail.remove();
+					//trail.remove();
 					pt.remove();
 				} else if (currDist < closest) {
 					target = pt;
-					targetTrail = trail;
+					//targetTrail = trail;
 					closest = currDist;
 				}
 			});
 
-		d3.selectAll(".trail").attr("stroke", "orange");
+		//d3.selectAll(".trail").attr("stroke", "orange");
 
 		if (target != null) {
 			target
 				.style("fill", "springgreen")
 				.style("stroke", "springgreen");
-			targetTrail.attr("stroke", "springgreen");
+			//targetTrail.attr("stroke", "springgreen");
 		}
 
 		return target;

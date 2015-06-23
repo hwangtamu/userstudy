@@ -3,10 +3,6 @@ function BubbleCursor(selection, targetName) {
 	//Variable to hold previous mouse points for dynamic data
 	var prevMousePt = [0,0];
 
-	//Default variables for cursor
-	var defaultColor = "steelblue";
-	var targetColor = "springgreen";
-
 	//Name of svg element to grab for targets
 	var targets = ".point"
 
@@ -53,7 +49,7 @@ function BubbleCursor(selection, targetName) {
 	//Returns target obtained from bubble cursor as well
 	BubbleCursor.redraw = function(mouse) {
 		var points = d3.selectAll(targets);
-		var target;
+		var target = null;
 		var mousePt;
 
 		if (!arguments.length){
@@ -70,8 +66,6 @@ function BubbleCursor(selection, targetName) {
 			IntD = [];
 
 		points
-			.style("fill", defaultColor)
-			.style("stroke", defaultColor)
 			.each(function(d, i) {
 				var x = +d3.select(this).attr("cx"),
 					y = +d3.select(this).attr("cy"),
@@ -92,9 +86,13 @@ function BubbleCursor(selection, targetName) {
 				}
 			});
 
-		target
-			.style("fill", targetColor)
-			.style("stroke", targetColor);
+		d3.selectAll(targets + ".target")
+			.attr("class", function() { return d3.select(this).attr("class").slice(0, -7); });
+
+		if (target != null) {
+			target
+				.attr("class", target.attr("class") + " target");
+		}
 
 		var secondMin = (currMin + 1) % points.size();
 		for (var j = 0; j < Dist.length; j++) {
@@ -104,10 +102,18 @@ function BubbleCursor(selection, targetName) {
 		}
 
 		cursorRadius = Math.min(ConD[currMin], IntD[secondMin]);
-		cursor
-			.attr("cx",mousePt[0])
-			.attr("cy",mousePt[1])
-			.attr("r", cursorRadius);
+
+		if (isFinite(cursorRadius) && cursorRadius > 0) {
+			cursor
+				.attr("cx",mousePt[0])
+				.attr("cy",mousePt[1])
+				.attr("r", cursorRadius);
+		} else if (target == null) {
+			cursor
+				.attr("cx",mousePt[0])
+				.attr("cy",mousePt[1])
+				.attr("r", 0);
+		}
 
 		if (cursorRadius < ConD[currMin]) {
 			cursorMorph
@@ -122,18 +128,6 @@ function BubbleCursor(selection, targetName) {
 		}
 		
 		return target;
-	};
-
-	BubbleCursor.tarColor = function(_) {
-		if(!arguments.length) return targetColor;
-		targetColor = _;
-		return BubbleCursor;
-	};
-
-	BubbleCursor.defaultColor = function(_) {
-		if(!arguments.length) return defaultColor;
-		defaultColor = _;
-		return BubbleCursor;
 	};
 
 	BubbleCursor.tarName = function(_) {

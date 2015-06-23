@@ -1,22 +1,17 @@
 //Note: Initiation of this cursor after other elements will put the cursor on top of them.
-function SnapshotLineCursor(selection) {
+function SnapshotTrajectoryCursor(selection) {
 	//Hold previous mouse points for dynamic data
 	var prevMousePt = [0, 0];
 	var ox = 0,
 		oy = 0;
 	var pts = [[]];
 
-	//Used in calculation of 'velocity'
-	var velocity;
-	var lastTime = new Date();
-	var ptDistance;
-
 	//Controls the 'tail' of cursor
 	var i = 0;
 	var threshold = 10;
 
 	//Angle of flashlight
-	var angle = 30;
+	var angle = 50;
 
 	//Controls accumulation behavior near freeze region
 	var accumulations = true;
@@ -34,18 +29,18 @@ function SnapshotLineCursor(selection) {
 		.style("fill-opacity", "0.5");
 
 	//Set on mousemove
-	svg.on("mousemove.SnapshotLineCursor." + selection.attr("id"), function(d,i) {
-		var target = SnapshotLineCursor.redraw(d3.mouse(this));
+	svg.on("mousemove.SnapshotTrajectoryCursor." + selection.attr("id"), function(d,i) {
+		var target = SnapshotTrajectoryCursor.redraw(d3.mouse(this));
 	});
 
 	//Hide mouse when outside svg selection
-	svg.on("mouseout.SnapshotLineCursor." + selection.attr("id"), function(d, i) {
+	svg.on("mouseout.SnapshotTrajectoryCursor." + selection.attr("id"), function(d, i) {
 		polyline
 			.attr("points", "0,0 0,0 0,0");
 	});
 
 	//Redraws 'flashlight' like cursor and 'freezes' targets on the inside
-	SnapshotLineCursor.redraw = function(mouse) {
+	SnapshotTrajectoryCursor.redraw = function(mouse) {
 		var mousePt;
 		var target = null;
 		if (arguments.length == 0 && !accumulations) return;
@@ -83,26 +78,6 @@ function SnapshotLineCursor(selection) {
 		var length = Math.max(+svg.attr("width"),+svg.attr("length"));
 		x2 = x2 + (x2 - x1) / dist * length * 2;
 		y2 = y2 + (y2 - y1) / dist * length * 2;
-
-
-
-		//Calculate angle and velocity
-		var now = new Date();
-		ptDistance = dist;
-		if (arguments.length != 0) {
-			velocity = ptDistance * 2 / (now - lastTime);
-			lastTime = now;
-		}
-
-		angle = velocity;
-
-		if (angle > 175) {
-			angle = 175;
-		} else if (angle < 45) {
-			angle = 45;
-		}
-
-
 
 		//Convert angle to radians
 		var theta1 = angle * (Math.PI / 360),
@@ -184,22 +159,22 @@ function SnapshotLineCursor(selection) {
 		return target;
 	};
 
-	SnapshotLineCursor.tarName = function(_) {
+	SnapshotTrajectoryCursor.tarName = function(_) {
 		if(!arguments.length) return targets;
 		targets = _;
-		return SnapshotLineCursor;
+		return SnapshotTrajectoryCursor;
 	};
 
-	SnapshotLineCursor.cursorAngle = function(_) {
+	SnapshotTrajectoryCursor.cursorAngle = function(_) {
 		if(!arguments.length) return angle;
 		angle = _;
-		return SnapshotLineCursor;
+		return SnapshotTrajectoryCursor;
 	};
 
-	SnapshotLineCursor.accumulate = function(_) {
+	SnapshotTrajectoryCursor.accumulate = function(_) {
 		if(!arguments.length) return accumulations;
 		accumulations = _;
-		return SnapshotLineCursor;
+		return SnapshotTrajectoryCursor;
 	}
 }
 
