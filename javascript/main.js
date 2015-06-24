@@ -1,31 +1,49 @@
-var cursor = FreezeAroundCursor2()
-	.accumulate(true);
-var cursorFunction = cursor.redraw();
 var chart = StreamScatterPlot()
     .x(function(d) { return +d.id; })
     .y(function(d) { return +d.yVal; })
     .width(window.innerWidth)
     .height(window.innerHeight/2)
     .pointRadius(10)
-	// .setCursor(function(selection) { BubbleCursor(selection); })
-	// .setCursorFunction(function(mouse) { return BubbleCursor.redraw(); })
 	// .setCursor(function(selection) {SnapshotCursor(selection); SnapshotCursor.accumulate(false); })
 	// .setCursorFunction(function(mouse) {SnapshotCursor.redraw(); })
-	// .setCursor(function(selection) {SnapshotBubbleCursor(selection); SnapshotBubbleCursor.accumulate(true); })
+	// .setCursor(function(selection) {SnapshotBub bleCursor(selection); SnapshotBubbleCursor.accumulate(true); })
 	// .setCursorFunction(function(mouse) {SnapshotBubbleCursor.redraw(); })
 	// .setCursor(function(selection) {SnapshotTrajectoryCursor(selection); SnapshotTrajectoryCursor.accumulate(true); })
 	// .setCursorFunction(function(mouse) {SnapshotTrajectoryCursor.redraw(); })
+	
 
+	/* Cursors Without Freeze Regions */
+	//Normal Cursor
+	// .setCursor(function(selection) {NormalCursor(selection);})
+	// .setCursorFunction(function(mouse) {return NormalCursor.redraw();})
 
-	// .setCursor(function(selection) {BubbleCursor(selection); BubbleCursor.tarName(".snapshot"); FreezeAroundCursor(selection);  FreezeAroundCursor.accumulate(false); })
+	//Bubble Cursor
+	// .setCursor(function(selection) { BubbleCursor(selection); })
+	// .setCursorFunction(function(mouse) { return BubbleCursor.redraw(); })
+
+	/* Around Cursor Freeze Region */
+	//Normal Around Cursor
+	// .setCursor(function(selection) { NormalCursor(selection); NormalCursor.tarName(".snapshot"); FreezeAroundCursor(selection, false); FreezeAroundCursor.accumulate(false); })
+	// .setCursorFunction(function(mouse) { FreezeAroundCursor.redraw(); return NormalCursor.redraw(); })
+	//Bubble Around Cursor
+	// .setCursor(function(selection) { BubbleCursor(selection); BubbleCursor.tarName(".snapshot"); FreezeAroundCursor(selection, false);  FreezeAroundCursor.accumulate(false); })
 	// .setCursorFunction(function(mouse) { FreezeAroundCursor.redraw(); return BubbleCursor.redraw();})
 
-	// .setCursor(function(selection) {BubbleCursor(selection); BubbleCursor.tarName(".snapshot"); FreezeTrajectoryCursor(selection);  FreezeTrajectoryCursor.accumulate(false); })
+	/* Trajectory Freeze Region */
+	//Normal Trajectory
+	// .setCursor(function(selection) { NormalCursor(selection); NormalCursor.tarName(".snapshot"); FreezeTrajectoryCursor(selection, true); FreezeTrajectoryCursor.accumulate(false); })
+	// .setCursorFunction(function(mouse) { FreezeTrajectoryCursor.redraw(); return NormalCursor.redraw(); })
+	//Bubble Trajectory
+	// .setCursor(function(selection) { BubbleCursor(selection); BubbleCursor.tarName(".snapshot"); FreezeTrajectoryCursor(selection, false);  FreezeTrajectoryCursor.accumulate(false); })
 	// .setCursorFunction(function(mouse) { FreezeTrajectoryCursor.redraw(); return BubbleCursor.redraw();})
-	// .setCursor(function(selection) {FreezeAroundCursor(selection); })
-	// .setCursorFunction(function(mouse) { return FreezeAroundCursor.redraw(); })
-	.setCursor(cursor)
-	.setCursorFunction(cursorFunction)
+
+	/* Around Closest Freeze Region */
+	// Normal Around Closest
+	.setCursor(function(selection) { NormalCursor(selection); NormalCursor.tarName(".snapshot"); FreezeAroundClosest(selection, false); FreezeAroundClosest.accumulate(false); })
+	.setCursorFunction(function(mouse) { FreezeAroundClosest.redraw(); return NormalCursor.redraw(); })
+	//Bubble Around Closest
+	// .setCursor(function(selection) { BubbleCursor(selection); BubbleCursor.tarName(".snapshot"); FreezeAroundClosest(selection, false); FreezeAroundClosest.accumulate(false); })
+	// .setCursorFunction(function(mouse) { FreezeAroundClosest.redraw(); return BubbleCursor.redraw(); })
     ;
 
 //Load JSON file

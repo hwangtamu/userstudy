@@ -22,6 +22,7 @@ function StreamScatterPlot() {
 		ticks = 20; //Determines the number of ticks on axis based on time (n - 4 roughly shown)
 
 	var svg,
+		defs,
 		gChart,
 		gData,
 		gCursor,
@@ -33,7 +34,6 @@ function StreamScatterPlot() {
 	//Initial creation of streaming scatter plot
 	function chart(selection) {
 		selection.each(function(data) {
-
 			//Map corresponding data points x to d[0] and y to d[1]
 			data = data.map(function(d, i) {
 				return [xValue.call(data, d, i), yValue.call(data, d, i)];
@@ -59,11 +59,12 @@ function StreamScatterPlot() {
 				.on("wheel.zoom", zoom);
 
 			//Create rest of skeletal chart
+			defs = gEnter.append("defs");
 			gData = gEnter.append("g").attr("class", "data");
 			gEnter = gEnter.append("g").attr("class", "chart");
 				gEnter.append("g").attr("class", "x axis");
 				gEnter.append("g").attr("class", "y axis");
-			gCursor = svg.append("g").attr("class", "cursor");
+			gCursor = svg.append("g").attr("class", "basic cursor");
 
 			svg.call(cursor);
 

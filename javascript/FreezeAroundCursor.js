@@ -1,5 +1,5 @@
 //NOTE: Initiation of this cursor after other elements will put the cursor on top of them.
-function FreezeAroundCursor(selection) {
+function FreezeAroundCursor(selection, clickOnly) {
 	//Hold previous mouse point for dynamic data
 	var prevMousePt = [0, 0];
 
@@ -13,7 +13,7 @@ function FreezeAroundCursor(selection) {
 	//Controls accumulation behavior near freeze region
 	var accumulations = false;
 	//If click is true then freeze will only happen on click
-	var click = false;
+	var click = (typeof clickOnly === 'undefined') ? false : clickOnly;
 
 	//Create cursor
 	var svg = selection;
@@ -44,7 +44,7 @@ function FreezeAroundCursor(selection) {
 				.attr("cx",0)
 				.attr("cy",0)
 				.attr("r",frzRadius);
-			var target = FreezeAroundCursor.redraw(d3.mouse(this));
+			FreezeAroundCursor.redraw(d3.mouse(this));
 		});
 	} else {
 		svg.on("mousemove.FreezeAroundCursor." + selection.attr("id"), function(d,i) {
@@ -53,14 +53,6 @@ function FreezeAroundCursor(selection) {
 				.attr("cx",mouse[0])
 				.attr("cy",mouse[1])
 				.attr("r",frzRadius);
-			var target = FreezeAroundCursor.getTarget(mouse);
-			d3.selectAll(".snapshot.target")
-				.attr("class", function() { return d3.select(this).attr("class").slice(0, -7); });
-
-			if (target != null) {
-				target
-					.attr("class", target.attr("class") + " target");
-			}
 		});
 	}
 
@@ -78,8 +70,6 @@ function FreezeAroundCursor(selection) {
 
 	FreezeAroundCursor.redraw = function(mouse) {
 		var mousePt;
-		var target = null,
-			targetTrail;
 		if (!arguments.length && !accumulations){
 			return;
 		} else if (!arguments.length) {
@@ -91,25 +81,20 @@ function FreezeAroundCursor(selection) {
 		prevMousePt = mousePt;
 
 		//Update location of cursor
-		cursor
-			.attr("cx", mousePt[0])
-			.attr("cy", mousePt[1]);
+		FreezeAroundCursor.drawCursor(mousePt);
 
 		//Copy-Pause points within cursor
 		FreezeAroundCursor.createSnapshots(mousePt);
 
 		//Only delete snapshots outside of cursor window
-		target = FreezeAroundCursor.cleanSnapshots(mousePt);
-		d3.selectAll(".snapshot.target")
-			.attr("class", function() { return d3.select(this).attr("class").slice(0, -7); });
-
-		if (target != null) {
-			target
-				.attr("class", target.attr("class") + " target");
-		}
-
-		return target;
+		FreezeAroundCursor.cleanSnapshots(mousePt);
 	};
+
+	FreezeAroundCursor.drawCursor = function(mousePt) {
+		cursor
+			.attr("cx", mousePt[0])
+			.attr("cy", mousePt[1]);
+	}
 
 	FreezeAroundCursor.createSnapshots = function(mousePt) {
 		var points = d3.selectAll(targets);
@@ -136,10 +121,9 @@ function FreezeAroundCursor(selection) {
 					pt.attr("id", "untagged");
 				}
 			});
-	}
+	};
 
 	FreezeAroundCursor.cleanSnapshots = function(mousePt) {
-		var target = null
 		d3.selectAll(".snapshot")
 			.each(function(d, i) {
 				var pt = d3.select(this)
@@ -149,35 +133,12 @@ function FreezeAroundCursor(selection) {
 
 				var targetPt = [x, y];
 
-				var currDist = distance(mousePt,targetPt);
-				if (currDist < r) {
-					target = pt;
-				}
+				var currDist = distance(mousePt, targetPt);
 				if (currDist > frzRadius) {
 					pt.remove();
 				}
 			});
-		return target;
-	}
-
-	FreezeAroundCursor.getTarget = function(mousePt) {
-		var target = null
-		d3.selectAll(".snapshot")
-			.each(function(d, i) {
-				var pt = d3.select(this)
-				var x = +pt.attr("cx"),
-					y = +pt.attr("cy"),
-					r = +pt.attr("r");
-
-				var targetPt = [x, y];
-
-				var currDist = distance(mousePt,targetPt);
-				if (currDist < r) {
-					target = pt;
-				}
-			});
-		return target;
-	}
+	};
 
 	FreezeAroundCursor.tarName = function(_) {
 		if(!arguments.length) return targets;
@@ -195,13 +156,9 @@ function FreezeAroundCursor(selection) {
 		if(!arguments.length) return accumulations;
 		accumulations = _;
 		return FreezeAroundCursor;
-	}
+	};
 
-	FreezeAroundCursor.clickOnly = function(_) {
-		if(!arguments.length) return click;
-		click = _;
-		return FreezeAroundCursor;
-	}
+	return FreezeAroundCursor;
 }
 
 //Helper function for obtaining containment and intersection distances

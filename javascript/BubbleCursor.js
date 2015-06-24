@@ -1,5 +1,5 @@
 //Note: Initiation of this cursor after other elements will put the cursor on top of them.
-function BubbleCursor(selection, targetName) {
+function BubbleCursor(selection) {
 	//Variable to hold previous mouse points for dynamic data
 	var prevMousePt = [0,0];
 
@@ -10,7 +10,7 @@ function BubbleCursor(selection, targetName) {
 	var svg = selection;
 	var gSelection = svg.insert("g", ":first-child").attr("class", "selection");
 	var cursor = gSelection.append("circle")
-		.attr("class","cursor")
+		.attr("class","bubble cursor")
 		.attr("cx",0)
 		.attr("cy",0)
 		.attr("r",0)
@@ -19,7 +19,7 @@ function BubbleCursor(selection, targetName) {
 
 	//Create cursor morph
 	var cursorMorph = gSelection.append("circle")
-		.attr("class","cursorMorph")
+		.attr("class","bubble cursorMorph")
 		.attr("cx",0)
 		.attr("cy",0)
 		.attr("r",0)
