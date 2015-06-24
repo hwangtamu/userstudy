@@ -19,34 +19,43 @@ function FreezeAroundClosest(selection, clickOnly) {
 
 	//Create cursor
 	var svg = selection;
-	var gCopies = svg.insert("g", ".chart").attr("class", "copies");
-	var gSelection = svg.insert("g", ":first-child").attr("class", "selection");
+	var gCopies = svg.insert("g", ".chart").attr("class", "snapshots");
+	var gSelection = svg.insert("g", ":first-child").attr("class", "freeze selector");
 
 	//Create cursor morph
-	var cursor = gSelection.append("circle")
-		.attr("class","cursor")
+	var freezeRegion = gSelection.append("circle")
+		.attr("class","freezeRegion")
 		.attr("cx",0)
 		.attr("cy",0)
-		.attr("r",0)
-		.style("fill","lightgray")
-		.style("fill-opacity","0.5");
+		.attr("r",0);
+
+	if(click) {
+		var clickFreezeRegion = gSelection.append("circle")
+			.attr("class","click freezeRegion")
+			.attr("cx", 0)
+			.attr("cy", 0)
+			.attr("r", 0);
+	}
 
 	//Set on mousemove
 	svg.on("mousemove.FreezeAroundClosest." + selection.attr("id"), function(d,i) {
 		FreezeAroundClosest.redraw(d3.mouse(this));
 	});
 
-	//Hide mouse when outside svg selection
-	svg.on("mouseout.FreezeAroundClosest."  + selection.attr("id"), function(d, i) {
-		cursor
-			.attr("cx",0)
-			.attr("cy",0)
-			.attr("r",0);
-	});
+	if (click) {
+		svg.on("click.FreezeAroundCursor." + selection.attr("id"), function(d,i) {
+			var mouse = d3.mouse(this);
+			var target = FreezeAroundClosest.findClosest(mouse);
+			var currPt = [target.attr("cx"), target.attr("cy")];
+			FreezeAroundClosest.cleanSnapshots(currPt);
+			FreezeAroundClosest.createSnapshots(currPt, target);
+			clickFreezeRegion
+				.attr("cx",currPt[0])
+				.attr("cy",currPt[1])
+				.attr("r",frzRadius);
+		});
+	}
 
-	//Draws bubble cursor and handles freezing of nearby targets
-	//Requires dynamic data to call this function in it's update loop
-	//Returns target obtained from bubble cursor as well
 	FreezeAroundClosest.redraw = function(mouse) {
 		var target;
 		var mousePt;
@@ -61,19 +70,20 @@ function FreezeAroundClosest(selection, clickOnly) {
 
 		//Find closest target
 		var target = FreezeAroundClosest.findClosest(mousePt);
-		var currX = target.attr("cx"), 
-			currY = target.attr("cy"), 
-			currRad = target.attr("r");
+		var currPt = [target.attr("cx"), target.attr("cy")];
 		
 		//Set size of cursor morph
-		FreezeAroundClosest.drawCursor();
+		FreezeAroundClosest.drawCursor(currPt);
 
 		//Snapshot points near target
-		var currPt = [currX, currY];
-		FreezeAroundClosest.createSnapshots(currPt, target);
+		if(!click) {
+			FreezeAroundClosest.createSnapshots(currPt, target);
+		}
 
 		//Remove snapshots out of targets area
-		FreezeAroundClosest.cleanSnapshots(currPt);
+		if (!click) {
+			FreezeAroundClosest.cleanSnapshots(currPt);
+		}
 	};
 
 	FreezeAroundClosest.findClosest = function(mousePt) {
@@ -101,9 +111,6 @@ function FreezeAroundClosest(selection, clickOnly) {
 
 				if(IntD[i] <= IntD[currMin]) {
 					currMin = i;
-					currX = x;
-					currY = y;
-					currRad = r;
 					target = pt;
 				}
 			});
@@ -122,10 +129,10 @@ function FreezeAroundClosest(selection, clickOnly) {
 		return target;
 	};
 
-	FreezeAroundClosest.drawCursor = function() {
-		cursor
-			.attr("cx", currX)
-			.attr("cy", currY)
+	FreezeAroundClosest.drawCursor = function(currPt) {
+		freezeRegion
+			.attr("cx", currPt[0])
+			.attr("cy", currPt[1])
 			.attr("r", frzRadius);
 	};
 
@@ -137,9 +144,9 @@ function FreezeAroundClosest(selection, clickOnly) {
 					gCopies.append("circle")
 						.attr("class", "i" + d[0] + " snapshot")
 						.attr("id", "snap")
-						.attr("cx", currX)
-						.attr("cy", currY)				
-						.attr("r", currRad)
+						.attr("cx", currPt[0])
+						.attr("cy", currPt[1])				
+						.attr("r", d3.select(this).attr("r"));
 				});
 		}
 
@@ -154,7 +161,7 @@ function FreezeAroundClosest(selection, clickOnly) {
 				var currDist = distance(currPt,targetPt);
 
 				var point = pt;
-				if(currDist <= frzRadius && d3.select(".i" + d[0] +".snapshot").empty() && point.attr("id") != "tagged" && (accumulations || swap)) {
+				if(currDist <= frzRadius && d3.select(".i" + d[0] +".snapshot").empty() && point.attr("id") != "tagged" && (accumulations || swap || click)) {
 					point.attr("id", "tagged");
 					gCopies.append("circle")
 						.attr("class", "i" + d[0] + " snapshot")

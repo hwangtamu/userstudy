@@ -22,14 +22,6 @@ body {
 	stroke-opacity: 1;
 }
 
-.bubble.cursor {
-	clip-path: url(#trajectoryClip);
-}
-
-.bubble.cursorMorph {
-	clip-path: url(#trajectoryClip);
-}
-
 #tagged.point {
 	stroke: steelblue;
 	fill: steelblue;
@@ -37,6 +29,16 @@ body {
 	stroke-opacity: 0.5;
 }
 
+.bubble {
+	clip-path: url(#trajectoryClip);
+	fill: lightgrey;
+	fill-opacity: 0.5;
+}
+
+.freezeRegion {
+	fill: lightgrey;
+	fill-opacity: 0.5;
+}
 /*.point:hover {
 	stroke: red;
 	fill: red;

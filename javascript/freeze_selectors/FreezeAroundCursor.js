@@ -17,30 +17,26 @@ function FreezeAroundCursor(selection, clickOnly) {
 
 	//Create cursor
 	var svg = selection;
-	var gCopies = svg.insert("g", ".chart").attr("class", "copies");
-	var gSelection = svg.insert("g", ":first-child").attr("class", "selection");
-	var cursor = gSelection.append("circle")
-		.attr("class","cursor")
+	var gCopies = svg.insert("g", ".chart").attr("class", "snapshots");
+	var gSelection = svg.insert("g", ":first-child").attr("class", "freeze selector");
+	var freezeRegion = gSelection.append("circle")
+		.attr("class","freezeRegion")
 		.attr("cx", 0)
 		.attr("cy", 0)
-		.attr("r", frzRadius)
-		.style("fill","lightgray")
-		.style("fill-opacity","0.5")
+		.attr("r", frzRadius);
 
 	if(click) {
-		var cursorClick = gSelection.append("circle")
-			.attr("class","cursor")
+		var clickFreezeRegion = gSelection.append("circle")
+			.attr("class","click freezeRegion")
 			.attr("cx", 0)
 			.attr("cy", 0)
-			.attr("r", 0)
-			.style("fill","lightgray")
-			.style("fill-opacity","0.5");
+			.attr("r", 0);
 	}
 
 	//Set on mousemove
 	if (!click) {
 		svg.on("mousemove.FreezeAroundCursor." + selection.attr("id"), function(d,i) {
-			cursor
+			freezeRegion
 				.attr("cx",0)
 				.attr("cy",0)
 				.attr("r",frzRadius);
@@ -49,7 +45,7 @@ function FreezeAroundCursor(selection, clickOnly) {
 	} else {
 		svg.on("mousemove.FreezeAroundCursor." + selection.attr("id"), function(d,i) {
 			var mouse = d3.mouse(this);
-			cursor
+			freezeRegion
 				.attr("cx",mouse[0])
 				.attr("cy",mouse[1])
 				.attr("r",frzRadius);
@@ -59,7 +55,7 @@ function FreezeAroundCursor(selection, clickOnly) {
 	if (click) {
 		svg.on("click.FreezeAroundCursor." + selection.attr("id"), function(d,i) {
 			var mouse = d3.mouse(this);
-			cursorClick
+			clickFreezeRegion
 				.attr("cx",mouse[0])
 				.attr("cy",mouse[1])
 				.attr("r",frzRadius);
@@ -91,7 +87,7 @@ function FreezeAroundCursor(selection, clickOnly) {
 	};
 
 	FreezeAroundCursor.drawCursor = function(mousePt) {
-		cursor
+		freezeRegion
 			.attr("cx", mousePt[0])
 			.attr("cy", mousePt[1]);
 	}
@@ -117,7 +113,7 @@ function FreezeAroundCursor(selection, clickOnly) {
 						.attr("cx", x)
 						.attr("cy", y);
 
-				} else if (currDist > frzRadius) {
+				} else if (currDist > frzRadius && d3.select(".i" + d[0] +".snapshot").empty()) {
 					pt.attr("id", "untagged");
 				}
 			});

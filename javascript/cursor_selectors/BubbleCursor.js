@@ -8,23 +8,20 @@ function BubbleCursor(selection) {
 
 	//Create cursor
 	var svg = selection;
-	var gSelection = svg.insert("g", ":first-child").attr("class", "selection");
+	var gSelection = svg.insert("g", ":first-child").attr("class", "cursor selector");
+
 	var cursor = gSelection.append("circle")
 		.attr("class","bubble cursor")
 		.attr("cx",0)
 		.attr("cy",0)
-		.attr("r",0)
-		.style("fill","lightgray")
-		.style("fill-opacity","0.5");
+		.attr("r",0);
 
 	//Create cursor morph
 	var cursorMorph = gSelection.append("circle")
 		.attr("class","bubble cursorMorph")
 		.attr("cx",0)
 		.attr("cy",0)
-		.attr("r",0)
-		.style("fill","lightgray")
-		.style("fill-opacity","0.5");
+		.attr("r",0);
 
 	//Set on mousemove
 	svg.on("mousemove.BubbleCursor." + selection.attr("id"), function(d,i) {

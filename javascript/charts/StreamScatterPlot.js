@@ -64,7 +64,7 @@ function StreamScatterPlot() {
 			gEnter = gEnter.append("g").attr("class", "chart");
 				gEnter.append("g").attr("class", "x axis");
 				gEnter.append("g").attr("class", "y axis");
-			gCursor = svg.append("g").attr("class", "basic cursor");
+			gCursor = svg.append("g").attr("class", "cursor icon");
 
 			svg.call(cursor);
 
@@ -333,12 +333,12 @@ function StreamScatterPlot() {
 
 	//Alters the time scale so you can 'zoom' in and out of time
 	function zoom() {
-		dy = +d3.event.wheelDeltaY;
-		if (duration + dy > 100)
-			duration += dy;
-		else 
-			duration = 100;
-		chart.step();
+		// dy = +d3.event.wheelDeltaY;
+		// if (duration + dy > 100)
+		// 	duration += dy;
+		// else 
+		// 	duration = 100;
+		// chart.step();
 	};
 
 	return chart;

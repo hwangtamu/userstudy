@@ -1,5 +1,5 @@
 //Note: Initiation of this cursor after other elements will put the cursor on top of them.
-function FreezeTrajectoryCursor(selection, clickOnly) {
+function FreezeTrajectory(selection, clickOnly) {
 	//Hold previous mouse points for dynamic data
 	var prevMousePt = [0, 0];
 	var extMousePt = [0, 0];
@@ -11,7 +11,6 @@ function FreezeTrajectoryCursor(selection, clickOnly) {
 		lx2 = 0,
 		ly2 = 0,
 		x1 = 0, y1 = 0, x2 = 0, y2 = 0;
-
 
 	//Name of svg element to grab for targets
 	var targets = ".point";
@@ -30,12 +29,11 @@ function FreezeTrajectoryCursor(selection, clickOnly) {
 
 	//Create cursor
 	var svg = selection;
-	var gCopies = svg.insert("g", ".chart").attr("class", "copies");
-	var gSelection = svg.insert("g", ":first-child").attr("class", "selection");
-	var polyline = gSelection.append("polyline")
-		.attr("points", "0,0 0,0 0,0")
-		.style("fill", "lightgrey")
-		.style("fill-opacity", "0.5");
+	var gCopies = svg.insert("g", ".chart").attr("class", "snapshots");
+	var gSelection = svg.insert("g", ":first-child").attr("class", "freeze selector");
+	var freezeRegion = gSelection.append("polyline")
+		.attr("class", "freezeRegion")
+		.attr("points", "0,0 0,0 0,0");
 
 	//Create clipping for cursor selector
 	var clip = svg.select("defs")
@@ -43,39 +41,36 @@ function FreezeTrajectoryCursor(selection, clickOnly) {
 			.attr("id", "trajectoryClip")
 		.append("path");
 
-	var polylineClick = gSelection.append("polyline")
-		.attr("points", "0,0 0,0 0,0")
-		.style("fill", "lightgrey")
-		.style("fill-opacity", "0.5");
+	if (click) {
+		var clickFreezeRegion = gSelection.append("polyline")
+			.attr("class", "click freezeRegion")
+			.attr("points", "0,0 0,0 0,0");
+	}
 
 	//Set on mousemove
-	svg.on("mousemove.FreezeTrajectoryCursor." + selection.attr("id"), function(d,i) {
-		FreezeTrajectoryCursor.redraw(d3.mouse(this));
+	svg.on("mousemove.FreezeTrajectory." + selection.attr("id"), function(d,i) {
+		FreezeTrajectory.redraw(d3.mouse(this));
 	});
 
 	if (click) {
-		svg.on("click.FreezeTrajectoryCursor." + selection.attr("id"), function(d,i) {
+		svg.on("click.FreezeTrajectory." + selection.attr("id"), function(d,i) {
 			mousePt = d3.mouse(this);
-
-
-			//Update location of cursor
-
-			polylineClick
+			clickFreezeRegion
 				.attr("points", ox + "," + oy + " " +
 								lx1 + "," + ly1 + " " +
 								lx2 + "," + ly2);
-			FreezeTrajectoryCursor.drawClipPath();
+			FreezeTrajectory.drawClipPath();
 			//Only delete snapshots outside of cursor window
-			FreezeTrajectoryCursor.cleanSnapshots([ox, oy], [lx1, ly1], [lx2, ly2], mousePt);
+			FreezeTrajectory.cleanSnapshots([ox, oy], [lx1, ly1], [lx2, ly2], mousePt);
 			//Copy-Pause points within cursor
-			FreezeTrajectoryCursor.createSnapshots([ox, oy], [lx1, ly1], [lx2, ly2]);
+			FreezeTrajectory.createSnapshots([ox, oy], [lx1, ly1], [lx2, ly2]);
 
 	});
 	}
 
 
 	//Redraws 'flashlight' like cursor and 'freezes' targets on the inside
-	FreezeTrajectoryCursor.redraw = function(mouse) {
+	FreezeTrajectory.redraw = function(mouse) {
 		var mousePt;
 		if (arguments.length == 0 && !accumulations) return;
 		if (arguments.length > 0) {
@@ -110,25 +105,25 @@ function FreezeTrajectoryCursor(selection, clickOnly) {
 		extMousePt = mousePt;
 
 		//Compute points to draw
-			FreezeTrajectoryCursor.computeTrajectory();
+		FreezeTrajectory.computeTrajectory();
 
 		//Update location of cursor
 		if (!click)
-			FreezeTrajectoryCursor.drawClipPath();
+			FreezeTrajectory.drawClipPath();
 
-		FreezeTrajectoryCursor.drawCursor();
+		FreezeTrajectory.drawCursor();
 
 
 		//Copy-Pause points within cursor
 		if (!click)
-			FreezeTrajectoryCursor.createSnapshots([ox, oy], [lx1, ly1], [lx2, ly2]);
+			FreezeTrajectory.createSnapshots([ox, oy], [lx1, ly1], [lx2, ly2]);
 
 		//Only delete snapshots outside of cursor window
 		if (!click)
-			FreezeTrajectoryCursor.cleanSnapshots([ox, oy], [lx1, ly1], [lx2, ly2], mousePt);
+			FreezeTrajectory.cleanSnapshots([ox, oy], [lx1, ly1], [lx2, ly2], mousePt);
 	};
 
-	FreezeTrajectoryCursor.computeTrajectory = function() {
+	FreezeTrajectory.computeTrajectory = function() {
 		//Hold origin x,y
 		ox = x2;
 		oy = y2;
@@ -151,16 +146,16 @@ function FreezeTrajectoryCursor(selection, clickOnly) {
 		ly2 = (x2 - ox) * Math.sin(theta2) + (y2 - oy) * Math.cos(theta2) + oy;
 	};
 
-	FreezeTrajectoryCursor.drawCursor = function() {
+	FreezeTrajectory.drawCursor = function() {
 		if (isFinite(ox + oy + lx1 + lx2 + ly1 + ly2)) {
-			polyline
+			freezeRegion
 				.attr("points", ox + "," + oy + " " +
 								lx1 + "," + ly1 + " " +
 								lx2 + "," + ly2);
 		}
 	};
 
-	FreezeTrajectoryCursor.drawClipPath = function() {
+	FreezeTrajectory.drawClipPath = function() {
 		if (isFinite(ox + oy + lx1 + lx2 + ly1 + ly2)) {
 			clip
 				.attr("d", "M " + ox + "," + oy + 
@@ -170,7 +165,7 @@ function FreezeTrajectoryCursor(selection, clickOnly) {
 		}
 	};
 
-	FreezeTrajectoryCursor.createSnapshots = function(ptA, ptB, ptC) {
+	FreezeTrajectory.createSnapshots = function(ptA, ptB, ptC) {
 		var points = d3.selectAll(targets);
 		points
 			.each(function(d, i) {
@@ -187,13 +182,13 @@ function FreezeTrajectoryCursor(selection, clickOnly) {
 						.attr("r", pointRadius)
 						.attr("cx", x)
 						.attr("cy", y);
-				} else if (det(ptA, ptB, ptD) >= 0 || det(ptA, ptC, ptD) <= 0) {
+				} else if ((det(ptA, ptB, ptD) >= 0 || det(ptA, ptC, ptD) <= 0) && d3.select(".i" + d[0] +".snapshot").empty()) {
 					pt.attr("id", "untagged");
 				}
 			});
 	};
 
-	FreezeTrajectoryCursor.cleanSnapshots = function(ptA, ptB, ptC, mousePt) {
+	FreezeTrajectory.cleanSnapshots = function(ptA, ptB, ptC, mousePt) {
 		d3.selectAll(".snapshot")
 			.each(function(d, i) {
 				var pt = d3.select(this);
@@ -210,22 +205,22 @@ function FreezeTrajectoryCursor(selection, clickOnly) {
 			});
 	};
 
-	FreezeTrajectoryCursor.tarName = function(_) {
+	FreezeTrajectory.tarName = function(_) {
 		if(!arguments.length) return targets;
 		targets = _;
-		return FreezeTrajectoryCursor;
+		return FreezeTrajectory;
 	};
 
-	FreezeTrajectoryCursor.cursorAngle = function(_) {
+	FreezeTrajectory.cursorAngle = function(_) {
 		if(!arguments.length) return angle;
 		angle = _;
-		return FreezeTrajectoryCursor;
+		return FreezeTrajectory;
 	};
 
-	FreezeTrajectoryCursor.accumulate = function(_) {
+	FreezeTrajectory.accumulate = function(_) {
 		if(!arguments.length) return accumulations;
 		accumulations = _;
-		return FreezeTrajectoryCursor;
+		return FreezeTrajectory;
 	}
 }
 

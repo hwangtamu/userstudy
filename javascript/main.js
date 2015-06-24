@@ -4,14 +4,6 @@ var chart = StreamScatterPlot()
     .width(window.innerWidth)
     .height(window.innerHeight/2)
     .pointRadius(10)
-	// .setCursor(function(selection) {SnapshotCursor(selection); SnapshotCursor.accumulate(false); })
-	// .setCursorFunction(function(mouse) {SnapshotCursor.redraw(); })
-	// .setCursor(function(selection) {SnapshotBub bleCursor(selection); SnapshotBubbleCursor.accumulate(true); })
-	// .setCursorFunction(function(mouse) {SnapshotBubbleCursor.redraw(); })
-	// .setCursor(function(selection) {SnapshotTrajectoryCursor(selection); SnapshotTrajectoryCursor.accumulate(true); })
-	// .setCursorFunction(function(mouse) {SnapshotTrajectoryCursor.redraw(); })
-	
-
 	/* Cursors Without Freeze Regions */
 	//Normal Cursor
 	// .setCursor(function(selection) {NormalCursor(selection);})
@@ -31,19 +23,19 @@ var chart = StreamScatterPlot()
 
 	/* Trajectory Freeze Region */
 	//Normal Trajectory
-	// .setCursor(function(selection) { NormalCursor(selection); NormalCursor.tarName(".snapshot"); FreezeTrajectoryCursor(selection, true); FreezeTrajectoryCursor.accumulate(false); })
-	// .setCursorFunction(function(mouse) { FreezeTrajectoryCursor.redraw(); return NormalCursor.redraw(); })
+	// .setCursor(function(selection) { NormalCursor(selection); NormalCursor.tarName(".snapshot"); FreezeTrajectory(selection, false); FreezeTrajectory.accumulate(false); })
+	// .setCursorFunction(function(mouse) { FreezeTrajectory.redraw(); return NormalCursor.redraw(); })
 	//Bubble Trajectory
-	// .setCursor(function(selection) { BubbleCursor(selection); BubbleCursor.tarName(".snapshot"); FreezeTrajectoryCursor(selection, false);  FreezeTrajectoryCursor.accumulate(false); })
-	// .setCursorFunction(function(mouse) { FreezeTrajectoryCursor.redraw(); return BubbleCursor.redraw();})
+	// .setCursor(function(selection) { BubbleCursor(selection); BubbleCursor.tarName(".snapshot"); FreezeTrajectory(selection, false);  FreezeTrajectory.accumulate(false); })
+	// .setCursorFunction(function(mouse) { FreezeTrajectory.redraw(); return BubbleCursor.redraw();})
 
 	/* Around Closest Freeze Region */
 	// Normal Around Closest
-	.setCursor(function(selection) { NormalCursor(selection); NormalCursor.tarName(".snapshot"); FreezeAroundClosest(selection, false); FreezeAroundClosest.accumulate(false); })
-	.setCursorFunction(function(mouse) { FreezeAroundClosest.redraw(); return NormalCursor.redraw(); })
+	// .setCursor(function(selection) { NormalCursor(selection); NormalCursor.tarName(".snapshot"); FreezeAroundClosest(selection, true); FreezeAroundClosest.accumulate(false); })
+	// .setCursorFunction(function(mouse) { FreezeAroundClosest.redraw(); return NormalCursor.redraw(); })
 	//Bubble Around Closest
-	// .setCursor(function(selection) { BubbleCursor(selection); BubbleCursor.tarName(".snapshot"); FreezeAroundClosest(selection, false); FreezeAroundClosest.accumulate(false); })
-	// .setCursorFunction(function(mouse) { FreezeAroundClosest.redraw(); return BubbleCursor.redraw(); })
+	.setCursor(function(selection) { BubbleCursor(selection); BubbleCursor.tarName(".snapshot"); FreezeAroundClosest(selection, true); FreezeAroundClosest.accumulate(false); })
+	.setCursorFunction(function(mouse) { FreezeAroundClosest.redraw(); return BubbleCursor.redraw(); })
     ;
 
 //Load JSON file
