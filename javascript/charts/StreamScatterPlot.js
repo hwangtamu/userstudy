@@ -1,4 +1,3 @@
- //Creates a streaming scatter plot
 function StreamScatterPlot() {
 
 	//Default values for chart
@@ -17,6 +16,8 @@ function StreamScatterPlot() {
 		cursor = function(selection) {},
 		cursorFunction = function(selection) {},
 		targetName = ".target",
+		zoomAllowed = true,
+		pauseAllowed = true,
 		duration = 1000, //Determines the unit of time used on axis
 		ticks = 20; //Determines the number of ticks on axis based on time (n - 4 roughly shown)
 
@@ -54,8 +55,8 @@ function StreamScatterPlot() {
 			svg = d3.select(this).selectAll("svg").data([data]);
 
 			//Otherwise, create the skeletal chart
-			var gEnter = svg.enter().append("svg");
-				//.on("wheel.zoom", zoom);
+			var gEnter = svg.enter().append("svg")
+				.on("wheel.zoom", zoom);
 
 			//Create rest of skeletal chart
 			defs = gEnter.append("defs");
@@ -111,7 +112,6 @@ function StreamScatterPlot() {
 			//Bind pause-start option
 			d3.select("body")
 				.on("keydown.StreamScatterPlot", function() {
-					//console.log(d3.event.keyCode);
 					if (d3.event.keyCode == 32) {
 						chart.pause();
 					}
@@ -148,14 +148,13 @@ function StreamScatterPlot() {
 			//Set on click handler
 			svg.on("click.StreamScatterPlot."  + selection.attr("id"), function(d, i) {
 				var t = d3.select(targetName);
-				if (t != null) {
+				if (t != null && !d3.event.shiftKey) {
 					t.transition().duration(500).ease("bounce")
 							.attr("r", pointRadius * 2)
 							.style("fill-opacity", 0.0)
 						.transition().duration(500).ease("bounce")
 							.attr("r", pointRadius)
 							.style("fill-opacity", 1.0);
-
 				}
 			});
 		});
@@ -313,21 +312,38 @@ function StreamScatterPlot() {
 
 	//Pauses the chart steptreaming
 	chart.pause = function() {
-		if(paused) {
+		if (!pauseAllowed) {
+			pause = false;
+		}
+		else if(paused) {
 			paused = !paused;
 		} else {
 			paused = true;
 		}
 	};
 
+	chart.allowZoom = function(_) {
+		if (!arguments.length) return zoomAllowed;
+		zoomAllowed = _;
+		return chart;
+	};
+
+	chart.allowPause = function(_) {
+		if (!arguments.length) return pauseAllowed;
+		pauseAllowed = _;
+		return chart;
+	};
+
 	//Alters the time scale so you can 'zoom' in and out of time
 	function zoom() {
-		dy = +d3.event.wheelDeltaY;
-		if (duration + dy > 100)
-			duration += dy;
-		else 
-			duration = 100;
-		chart.step();
+		if (zoomAllowed) {
+			dy = +d3.event.wheelDeltaY;
+			if (duration + dy > 100)
+				duration += dy;
+			else 
+				duration = 100;
+			chart.step();
+		}
 	};
 
 	return chart;

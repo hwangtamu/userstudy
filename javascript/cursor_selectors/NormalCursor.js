@@ -10,7 +10,7 @@ function NormalCursor(selection) {
 
 	//Set on mousemove functionality
 	var svg = selection;
-	svg.on("mousemove.NormalCursor." + selection.attr("id"), function(d,i) {
+	svg.on("mousemove.cursorSelector", function(d,i) {
 		var target = NormalCursor.redraw(d3.mouse(this));
 	});
 

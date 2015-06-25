@@ -23,12 +23,12 @@ function BubbleCursor(selection) {
 		.attr("r",0);
 
 	//Set on mousemove functionality
-	svg.on("mousemove.BubbleCursor." + selection.attr("id"), function(d,i) {
+	svg.on("mousemove.cursorSelector", function(d,i) {
 		BubbleCursor.redraw(d3.mouse(this));
 	});
 
 	//Hide mouse when outside svg selection
-	svg.on("mouseout.BubbleCursor." + selection.attr("id"), function(d, i) {
+	svg.on("mouseout.cursorSelector", function(d, i) {
 		d3.select(".cursor")
 			.attr("cx",0)
 			.attr("cy",0)

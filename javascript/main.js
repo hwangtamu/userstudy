@@ -3,7 +3,9 @@ var chart = StreamScatterPlot()
     .y(function(d) { return +d.yVal; })
     .width(window.innerWidth)
     .height(window.innerHeight/2)
-    .pointRadius(10);
+    .pointRadius(10)
+    .allowZoom(false)
+    .allowPause(false);
 
 //Set handlers for each menu
 var cursorMenu = d3.select("#cursormenu select")
@@ -104,6 +106,8 @@ function change() {
 	d3.selectAll(".point").attr("id", "untagged");
 	svg.on("click.freezeSelector", null);
 	svg.on("mousemove.freezeSelector", null);
+	svg.on("mousemove.cursorSelector", null);
+	svg.on("mousemove.cursorSelector", null);
 
 	//Convert click to bool
 	if (click == "true") {
@@ -142,10 +146,3 @@ function change() {
 		if (freeze != "None") BubbleCursor.tarName(".snapshot"); 
 	}
 }
-
-
-
-
-
-
-
