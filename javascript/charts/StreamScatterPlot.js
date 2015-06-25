@@ -110,7 +110,7 @@ function StreamScatterPlot() {
 
 			//Bind pause-start option
 			d3.select("body")
-				.on("keydown.StreamScatterPlot." + selection.attr("id"), function() {
+				.on("keydown.StreamScatterPlot", function() {
 					//console.log(d3.event.keyCode);
 					if (d3.event.keyCode == 32) {
 						chart.pause();

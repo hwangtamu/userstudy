@@ -100,6 +100,7 @@ function change() {
 	//Remove any old cursor / freeze 
 	d3.selectAll(".selector").remove();
 	d3.selectAll(".snapshots").remove();
+	d3.select("#trajectoryClip").remove();
 	d3.selectAll(".point").attr("id", "untagged");
 	svg.on("click.freezeSelector", null);
 	svg.on("mousemove.freezeSelector", null);

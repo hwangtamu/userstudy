@@ -1,4 +1,4 @@
-function FreezeAroundClosest(selection, clickOnly) {
+function FreezeAroundClosest(selection, manualFreeze) {
 	//Hold previous mouse points for dynamic data
 	var prevMousePt = [0,0];
 	var previousPoint = null;
@@ -14,7 +14,7 @@ function FreezeAroundClosest(selection, clickOnly) {
 	var swap = false;
 	
 	//If click is true then freeze will only happen on click
-	var click = (typeof clickOnly === 'undefined') ? false : clickOnly;
+	var manualFrz = (typeof manualFreeze === 'undefined') ? false : manualFreeze;
 
 	//Create cursor
 	var svg = selection;
@@ -29,7 +29,7 @@ function FreezeAroundClosest(selection, clickOnly) {
 		.attr("r",0);
 
 	//Create clicked frozen region element if set
-	if(click) {
+	if(manualFrz) {
 		var clickFreezeRegion = gSelection.append("circle")
 			.attr("class","click freezeRegion")
 			.attr("cx", 0)
@@ -43,23 +43,25 @@ function FreezeAroundClosest(selection, clickOnly) {
 	});
 
 	//Set on click functionality if set
-	if (click) {
+	if (manualFrz) {
 		svg.on("click.freezeSelector", function(d,i) {
-			var mouse = d3.mouse(this);
-			var target = FreezeAroundClosest.findClosest(mouse);
-			var currPt = [target.attr("cx"), target.attr("cy")];
-			FreezeAroundClosest.cleanSnapshots(currPt);
-			d3.selectAll(".point").attr("id", "untagged");
-			FreezeAroundClosest.createSnapshots(currPt, target);
-			clickFreezeRegion
-				.transition()
-					.attr("cx",currPt[0])
-					.attr("cy",currPt[1])
-					.attr("r",0)
-				.transition()
-					.attr("cx",currPt[0])
-					.attr("cy",currPt[1])
-					.attr("r",frzRadius);
+			if (d3.event.shiftKey) {
+				var mouse = d3.mouse(this);
+				var target = FreezeAroundClosest.findClosest(mouse);
+				var currPt = [target.attr("cx"), target.attr("cy")];
+				FreezeAroundClosest.cleanSnapshots(currPt);
+				d3.selectAll(".point").attr("id", "untagged");
+				FreezeAroundClosest.createSnapshots(currPt, target);
+				clickFreezeRegion
+					.transition()
+						.attr("cx",currPt[0])
+						.attr("cy",currPt[1])
+						.attr("r",0)
+					.transition()
+						.attr("cx",currPt[0])
+						.attr("cy",currPt[1])
+						.attr("r",frzRadius);
+			}
 		});
 	}
 
@@ -84,12 +86,12 @@ function FreezeAroundClosest(selection, clickOnly) {
 		FreezeAroundClosest.drawCursor(currPt);
 
 		//Snapshot points near target
-		if(!click) {
+		if(!manualFrz) {
 			FreezeAroundClosest.createSnapshots(currPt, target);
 		}
 
 		//Remove snapshots out of targets area
-		if (!click) {
+		if (!manualFrz) {
 			FreezeAroundClosest.cleanSnapshots(currPt);
 		}
 	};

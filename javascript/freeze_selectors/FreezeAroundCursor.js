@@ -1,4 +1,4 @@
-function FreezeAroundCursor(selection, clickOnly) {
+function FreezeAroundCursor(selection, manualFreeze) {
 	//Hold previous mouse point for dynamic data
 	var prevMousePt = [0, 0];
 
@@ -12,7 +12,7 @@ function FreezeAroundCursor(selection, clickOnly) {
 	//Controls accumulation behavior near freeze region
 	var accumulations = false;
 	//If click is true then freeze will only happen on click
-	var click = (typeof clickOnly === 'undefined') ? false : clickOnly;
+	var manualFrz = (typeof manualFreeze === 'undefined') ? false : manualFreeze;
 
 	//Create cursor
 	var svg = selection;
@@ -25,7 +25,7 @@ function FreezeAroundCursor(selection, clickOnly) {
 		.attr("r", frzRadius);
 
 	//Create clicked frozen region element if set
-	if(click) {
+	if(manualFrz) {
 		var clickFreezeRegion = gSelection.append("circle")
 			.attr("class","click freezeRegion")
 			.attr("cx", 0)
@@ -34,7 +34,7 @@ function FreezeAroundCursor(selection, clickOnly) {
 	}
 
 	//Set on mousemove functionality
-	if (!click) {
+	if (!manualFrz) {
 		svg.on("mousemove.freezeSelector", function(d,i) {
 			freezeRegion
 				.attr("cx",0)
@@ -52,21 +52,23 @@ function FreezeAroundCursor(selection, clickOnly) {
 		});
 	}
 
-	//Set on click functionality if set
-	if (click) {
+	//Set on click functionality
+	if (manualFrz) {
 		svg.on("click.freezeSelector", function(d,i) {
-			var mouse = d3.mouse(this);
-			clickFreezeRegion
-				.transition()
-					.attr("r", 0)
-					.attr("cx",mouse[0])
-					.attr("cy",mouse[1])
-				.transition()
-					.attr("cx",mouse[0])
-					.attr("cy",mouse[1])
-					.attr("r",frzRadius);
-			FreezeAroundCursor.cleanSnapshots(mouse);
-			FreezeAroundCursor.createSnapshots(mouse);
+			if (d3.event.shiftKey) {
+				var mouse = d3.mouse(this);
+				clickFreezeRegion
+					.transition().ease("sin")
+						.attr("r", 0)
+						.attr("cx",mouse[0])
+						.attr("cy",mouse[1])
+					.transition().ease("sin")
+						.attr("cx",mouse[0])
+						.attr("cy",mouse[1])
+						.attr("r",frzRadius);
+				FreezeAroundCursor.cleanSnapshots(mouse);
+				FreezeAroundCursor.createSnapshots(mouse);
+			}
 		});
 	}
 

@@ -1,4 +1,4 @@
-function FreezeTrajectory(selection, clickOnly) {
+function FreezeTrajectory(selection, manualFreeze) {
 	//Hold previous mouse points for dynamic data
 	var prevMousePt = [0, 0];
 	var extMousePt = [0, 0];
@@ -24,7 +24,7 @@ function FreezeTrajectory(selection, clickOnly) {
 	//Controls accumulation behavior near freeze region
 	var accumulations = false;
 	//If click is true then freeze will only happen on click
-	var click = (typeof clickOnly === 'undefined') ? false : clickOnly;;
+	var manualFrz = (typeof manualFreeze === 'undefined') ? false : manualFreeze;;
 
 	//Create cursor
 	var svg = selection;
@@ -41,7 +41,7 @@ function FreezeTrajectory(selection, clickOnly) {
 		.append("path");
 
 	//Create clicked frozen region element if set
-	if (click) {
+	if (manualFrz) {
 		var clickFreezeRegion = gSelection.append("polyline")
 			.attr("class", "click freezeRegion")
 			.attr("points", "0,0 0,0 0,0");
@@ -54,18 +54,20 @@ function FreezeTrajectory(selection, clickOnly) {
 
 
 	//Set on click functionality if set
-	if (click) {
+	if (manualFrz) {
 		svg.on("click.freezeSelector", function(d,i) {
-			mousePt = d3.mouse(this);
-			clickFreezeRegion.transition()
-				.attr("points", ox + "," + oy + " " +
-								lx1 + "," + ly1 + " " +
-								lx2 + "," + ly2);
-			FreezeTrajectory.drawClipPath();
-			//Only delete snapshots outside of cursor window
-			FreezeTrajectory.cleanSnapshots([ox, oy], [lx1, ly1], [lx2, ly2], mousePt);
-			//Copy-Pause points within cursor
-			FreezeTrajectory.createSnapshots([ox, oy], [lx1, ly1], [lx2, ly2]);
+			if (d3.event.shiftKey) {
+				mousePt = d3.mouse(this);
+				clickFreezeRegion.transition().ease("linear")
+					.attr("points", ox + "," + oy + " " +
+									lx1 + "," + ly1 + " " +
+									lx2 + "," + ly2);
+				FreezeTrajectory.drawClipPath();
+				//Only delete snapshots outside of cursor window
+				FreezeTrajectory.cleanSnapshots([ox, oy], [lx1, ly1], [lx2, ly2], mousePt);
+				//Copy-Pause points within cursor
+				FreezeTrajectory.createSnapshots([ox, oy], [lx1, ly1], [lx2, ly2]);
+			}
 	});
 	}
 
@@ -109,18 +111,18 @@ function FreezeTrajectory(selection, clickOnly) {
 		FreezeTrajectory.computeTrajectory();
 
 		//Update location of cursor
-		if (!click)
+		if (!manualFrz)
 			FreezeTrajectory.drawClipPath();
 
 		FreezeTrajectory.drawCursor();
 
 
 		//Copy-Pause points within cursor
-		if (!click)
+		if (!manualFrz)
 			FreezeTrajectory.createSnapshots([ox, oy], [lx1, ly1], [lx2, ly2]);
 
 		//Only delete snapshots outside of cursor window
-		if (!click)
+		if (!manualFrz)
 			FreezeTrajectory.cleanSnapshots([ox, oy], [lx1, ly1], [lx2, ly2], mousePt);
 	};
 
