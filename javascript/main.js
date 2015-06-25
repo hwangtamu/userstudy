@@ -54,6 +54,7 @@ d3.json("data/stream_r2.json", function(error, data) {
 
 	//Start streaming of chart
 	chart.start();
+	change();
 
 	//Load data into chart over time
 	d3.timer(function() {

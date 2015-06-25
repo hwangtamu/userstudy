@@ -55,7 +55,6 @@ function FreezeAroundClosest(selection, clickOnly) {
 				.attr("cx",currPt[0])
 				.attr("cy",currPt[1])
 				.attr("r",frzRadius);
-						console.log("FreezeAroundClosest");
 		});
 	}
 

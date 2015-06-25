@@ -62,7 +62,6 @@ function FreezeAroundCursor(selection, clickOnly) {
 				.attr("r",frzRadius);
 			FreezeAroundCursor.cleanSnapshots(mouse);
 			FreezeAroundCursor.createSnapshots(mouse);
-						console.log("FreezeAroundCursor");
 		});
 	}
 
