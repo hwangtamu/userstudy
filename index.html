@@ -7,6 +7,37 @@
 	<body>
 
 		<div id="StreamScatterPlot"></div>
+		Note: Don't mix click:true with accumulations:true
+		<table style="width:100%">
+			<tr>
+				<td> <p id="cursormenu"><b>Cursor Type</b><br>
+					<select>
+						<option>NormalCursor</option>
+						<option>BubbleCursor</option>
+					</select>
+				</td>
+				<td> <p id="freezemenu"><b>Freeze Type</b><br>
+					<select>
+						<option>None</option>
+						<option>FreezeAroundCursor</option>
+						<option>FreezeAroundClosest</option>
+						<option>FreezeTrajectory</option>
+					</select>
+				</td>
+				<td> <p id="onclickmenu"><b>On Click</b><br>
+					<select>
+						<option>false</option>
+						<option>true</option>
+					</select>
+				</td>
+				<td> <p id="accumulatemenu"><b>Accumulations</b><br>
+					<select>
+						<option>false</option>
+						<option>true</option>
+					</select>
+				</td>
+			</tr>
+		</table>
 		
 		<!-- D3 Library -->
 		<script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>

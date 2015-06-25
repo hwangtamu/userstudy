@@ -1,13 +1,14 @@
-//Note: Initiation of this cursor after other elements will put the cursor on top of them.
 function NormalCursor(selection) {
 	//Variable to hold previous mouse points for dynamic data
 	var prevMousePt = [0,0];
 
 	//Name of svg element to grab for targets
-	var targets = ".point"
+	var targets = ".point";
+
+	//Used to extend radius for selecting target
 	var tolerance = 0;
 
-	//Set on mousemove
+	//Set on mousemove functionality
 	var svg = selection;
 	svg.on("mousemove.NormalCursor." + selection.attr("id"), function(d,i) {
 		var target = NormalCursor.redraw(d3.mouse(this));
@@ -31,6 +32,7 @@ function NormalCursor(selection) {
 			ConD = [],
 			IntD = [];
 
+		//Find target over mouse position
 		d3.selectAll(targets)
 			.each(function(d, i) {
 				var pt = d3.select(this);
@@ -46,6 +48,7 @@ function NormalCursor(selection) {
 				}
 			});
 
+		//Set class of  target
 		d3.selectAll(targets + ".target")
 			.attr("class", function() { return d3.select(this).attr("class").slice(0, -7); });
 
@@ -57,12 +60,14 @@ function NormalCursor(selection) {
 		return target;
 	};
 
+	//Set the class name used to obtain targets
 	NormalCursor.tarName = function(_) {
 		if(!arguments.length) return targets;
 		targets = _;
 		return NormalCursor;
 	};
 
+	//Set tolerance for how close you have to be to target
 	NormalCursor.setTolerance = function(_) {
 		if(!arguments.length) return tolerance;
 		tolerance = _;
@@ -70,7 +75,6 @@ function NormalCursor(selection) {
 	};
 }
 
-//Helper function for obtaining containment and intersection distances
 function distance(ptA,ptB) {
 	var diff = [ptB[0]-ptA[0], ptB[1]-ptA[1]];
 	return Math.sqrt(diff[0] * diff[0] + diff[1] * diff[1]);

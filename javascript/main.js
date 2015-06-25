@@ -3,40 +3,23 @@ var chart = StreamScatterPlot()
     .y(function(d) { return +d.yVal; })
     .width(window.innerWidth)
     .height(window.innerHeight/2)
-    .pointRadius(10)
-	/* Cursors Without Freeze Regions */
-	//Normal Cursor
-	// .setCursor(function(selection) {NormalCursor(selection);})
-	// .setCursorFunction(function(mouse) {return NormalCursor.redraw();})
+    .pointRadius(10);
 
-	//Bubble Cursor
-	// .setCursor(function(selection) { BubbleCursor(selection); })
-	// .setCursorFunction(function(mouse) { return BubbleCursor.redraw(); })
+//Set handlers for each menu
+var cursorMenu = d3.select("#cursormenu select")
+	.on("change.cursor", change);
 
-	/* Around Cursor Freeze Region */
-	//Normal Around Cursor
-	// .setCursor(function(selection) { NormalCursor(selection); NormalCursor.tarName(".snapshot"); FreezeAroundCursor(selection, false); FreezeAroundCursor.accumulate(false); })
-	// .setCursorFunction(function(mouse) { FreezeAroundCursor.redraw(); return NormalCursor.redraw(); })
-	//Bubble Around Cursor
-	// .setCursor(function(selection) { BubbleCursor(selection); BubbleCursor.tarName(".snapshot"); FreezeAroundCursor(selection, false);  FreezeAroundCursor.accumulate(false); })
-	// .setCursorFunction(function(mouse) { FreezeAroundCursor.redraw(); return BubbleCursor.redraw();})
+var freezeMenu = d3.select("#freezemenu select")
+	.on("change.freeze", change);
 
-	/* Trajectory Freeze Region */
-	//Normal Trajectory
-	// .setCursor(function(selection) { NormalCursor(selection); NormalCursor.tarName(".snapshot"); FreezeTrajectory(selection, false); FreezeTrajectory.accumulate(false); })
-	// .setCursorFunction(function(mouse) { FreezeTrajectory.redraw(); return NormalCursor.redraw(); })
-	//Bubble Trajectory
-	// .setCursor(function(selection) { BubbleCursor(selection); BubbleCursor.tarName(".snapshot"); FreezeTrajectory(selection, false);  FreezeTrajectory.accumulate(false); })
-	// .setCursorFunction(function(mouse) { FreezeTrajectory.redraw(); return BubbleCursor.redraw();})
+var onclickMenu = d3.select("#onclickmenu select")
+	.on("change.click", change);
 
-	/* Around Closest Freeze Region */
-	// Normal Around Closest
-	// .setCursor(function(selection) { NormalCursor(selection); NormalCursor.tarName(".snapshot"); FreezeAroundClosest(selection, true); FreezeAroundClosest.accumulate(false); })
-	// .setCursorFunction(function(mouse) { FreezeAroundClosest.redraw(); return NormalCursor.redraw(); })
-	//Bubble Around Closest
-	.setCursor(function(selection) { BubbleCursor(selection); BubbleCursor.tarName(".snapshot"); FreezeAroundClosest(selection, true); FreezeAroundClosest.accumulate(false); })
-	.setCursorFunction(function(mouse) { FreezeAroundClosest.redraw(); return BubbleCursor.redraw(); })
-    ;
+var accumulateMenu = d3.select("#accumulatemenu select")
+	.on("change.click", change);
+
+//Holds current menus value
+var cursor, freeze, onclickMenu, accumulate;
 
 //Load JSON file
 d3.json("data/stream_r2.json", function(error, data) {
@@ -77,9 +60,88 @@ d3.json("data/stream_r2.json", function(error, data) {
 		data.forEach(function(d, i) {
 			now = new Date();
 			if (d.id < now) {
-				chart.pushData([+data[i].id, +data[i].yVal]);
+				chart.pushDatum([+data[i].id, +data[i].yVal]);
 				data.splice(data.indexOf(d), 1);
 			}
 		});
 	});
 });
+
+//Update current selectors
+d3.timer(function() {
+	//Redraw cursor selector
+	if (cursor == "NormalCursor") {
+		NormalCursor.redraw();
+	} else  if (cursor == "BubbleCursor") {
+		BubbleCursor.redraw();
+	}
+
+	//Redraw freeze selector
+	if (freeze == "FreezeAroundCursor") {
+		FreezeAroundCursor.redraw();
+	} else if (freeze == "FreezeAroundClosest") {
+		FreezeAroundClosest.redraw();
+	} else if (freeze == "FreezeTrajectory") {
+		FreezeTrajectory.redraw();
+	}
+});
+
+function change() {
+	//Obtain options from menus
+	cursor = cursorMenu.property("value");
+	freeze = freezeMenu.property("value");
+	click = onclickMenu.property("value");
+	accumulate = accumulateMenu.property("value");
+
+	//Grab Svg
+	var svg = d3.select("svg");
+
+	//Remove any old cursor / freeze 
+	d3.selectAll(".selector").remove();
+	d3.selectAll(".snapshots").remove();
+	d3.selectAll(".point").attr("id", "untagged");
+	svg.on("click.freezeSelector", null);
+	svg.on("mousemove.freezeSelector", null);
+
+	//Convert click to bool
+	if (click == "true") {
+		click = true;
+	} else {
+		click = false;
+	}
+
+	//Convert accumulate to bool
+	if (accumulate == "true") {
+		accumulate = true;
+	} else {
+		accumulate = false;
+	}
+
+	//Set freeze selector
+	if (freeze == "FreezeAroundCursor") {
+		FreezeAroundCursor(svg, click);
+		FreezeAroundCursor.accumulate(accumulate);
+	} else if (freeze == "FreezeAroundClosest") {
+		FreezeAroundClosest(svg, click);
+		FreezeAroundClosest.accumulate(accumulate);
+	} else if (freeze == "FreezeTrajectory") {
+		FreezeTrajectory(svg, click);
+		FreezeTrajectory.accumulate(accumulate);
+	}
+	
+	//Set cursor selector
+	if (cursor == "NormalCursor") {
+		NormalCursor(svg);
+		if (freeze != "None") NormalCursor.tarName(".snapshot");
+	} else  if (cursor == "BubbleCursor") {
+		BubbleCursor(svg);
+		if (freeze != "None") BubbleCursor.tarName(".snapshot"); 
+	}
+}
+
+
+
+
+
+
+

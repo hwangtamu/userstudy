@@ -1,4 +1,3 @@
-//Note: Initiation of this cursor after other elements will put the cursor on top of them.
 function BubbleCursor(selection) {
 	//Variable to hold previous mouse points for dynamic data
 	var prevMousePt = [0,0];
@@ -23,9 +22,9 @@ function BubbleCursor(selection) {
 		.attr("cy",0)
 		.attr("r",0);
 
-	//Set on mousemove
+	//Set on mousemove functionality
 	svg.on("mousemove.BubbleCursor." + selection.attr("id"), function(d,i) {
-		var target = BubbleCursor.redraw(d3.mouse(this));
+		BubbleCursor.redraw(d3.mouse(this));
 	});
 
 	//Hide mouse when outside svg selection
@@ -42,7 +41,7 @@ function BubbleCursor(selection) {
 	});
 
 	//Draws bubble cursor
-	//Requires dynamic data to call this function in it's update loop
+	//If data is dynamic this call must be made in a loop
 	//Returns target obtained from bubble cursor as well
 	BubbleCursor.redraw = function(mouse) {
 		var points = d3.selectAll(targets);
@@ -62,6 +61,7 @@ function BubbleCursor(selection) {
 			ConD = [],
 			IntD = [];
 
+		//Find closest target
 		points
 			.each(function(d, i) {
 				var x = +d3.select(this).attr("cx"),
@@ -83,6 +83,7 @@ function BubbleCursor(selection) {
 				}
 			});
 
+		//Set class of traget
 		d3.selectAll(targets + ".target")
 			.attr("class", function() { return d3.select(this).attr("class").slice(0, -7); });
 
@@ -91,6 +92,7 @@ function BubbleCursor(selection) {
 				.attr("class", target.attr("class") + " target");
 		}
 
+		//Find second closest
 		var secondMin = (currMin + 1) % points.size();
 		for (var j = 0; j < Dist.length; j++) {
 			if (j != currMin && IntD[j] < IntD[secondMin]) {
@@ -98,8 +100,10 @@ function BubbleCursor(selection) {
 			}
 		}
 
+		//Set cursor radius based on the min of the closest and second closest targets
 		cursorRadius = Math.min(ConD[currMin], IntD[secondMin]);
 
+		//Update cursor and cursor morph
 		if (isFinite(cursorRadius) && cursorRadius > 0) {
 			cursor
 				.attr("cx",mousePt[0])
@@ -127,6 +131,7 @@ function BubbleCursor(selection) {
 		return target;
 	};
 
+	//Set the class name used to obtain targets
 	BubbleCursor.tarName = function(_) {
 		if(!arguments.length) return targets;
 		targets = _;

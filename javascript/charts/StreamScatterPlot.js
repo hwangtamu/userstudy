@@ -7,8 +7,6 @@ function StreamScatterPlot() {
 		width = 860,
 		xValue = function(d) { return d[0]; },
 		yValue = function (d) { return d[1]; },
-		// xScale = d3.fisheye.scale(d3.time.scale),
-		// yScale = d3.fisheye.scale(d3.scale.linear),
 		xScale = d3.time.scale();
 		yScale = d3.scale.linear();
 		xAxis = d3.svg.axis().scale(xScale).orient("bottom"),
@@ -55,8 +53,8 @@ function StreamScatterPlot() {
 			svg = d3.select(this).selectAll("svg").data([data]);
 
 			//Otherwise, create the skeletal chart
-			var gEnter = svg.enter().append("svg")
-				.on("wheel.zoom", zoom);
+			var gEnter = svg.enter().append("svg");
+				//.on("wheel.zoom", zoom);
 
 			//Create rest of skeletal chart
 			defs = gEnter.append("defs");
@@ -146,26 +144,12 @@ function StreamScatterPlot() {
 					.attr("y2", y);
 			});
 
+			//Set on click handler
 			svg.on("click.StreamScatterPlot."  + selection.attr("id"), function(d, i) {
 				// if (target != null) {
 				// 	target.attr("r", 50);
 				// }
 			});
-
-			/* FISHEYE CURSOR */
-			// svg.on("mousemove", function() {
-			// 	var mouse = d3.mouse(this);
-
-			// 	xScale.distortion(4.5).focus(mouse[0]);
-			// 	yScale.distortion(2.5).focus(mouse[1]);
-
-			// 	svg.select("x.axis").call(xAxis);
-			// 	svg.select(".y.axis").call(yAxis);
-			// 	svg.call(cursorFunction, mouse);
-			// 	//BubbleCursor.draw(d3.mouse(this));
-			// 	chart.step();
-			// 	points.attr("cy", function(d) { return yScale(d[1]); })
-			// });
 		});
 	}
 
@@ -269,11 +253,8 @@ function StreamScatterPlot() {
 	};
 
 	//Push data to chart
-	chart.pushData = function(data) {
-		// data = data.map(function(d, i) {
-		// 		return [xValue.call(data, d, i), yValue.call(data, d, i)];
-		// });
-		dataset.push(data);
+	chart.pushDatum = function(datum) {
+		dataset.push(datum);
 	};
 
 	//Updates the visual stream
@@ -333,12 +314,12 @@ function StreamScatterPlot() {
 
 	//Alters the time scale so you can 'zoom' in and out of time
 	function zoom() {
-		// dy = +d3.event.wheelDeltaY;
-		// if (duration + dy > 100)
-		// 	duration += dy;
-		// else 
-		// 	duration = 100;
-		// chart.step();
+		dy = +d3.event.wheelDeltaY;
+		if (duration + dy > 100)
+			duration += dy;
+		else 
+			duration = 100;
+		chart.step();
 	};
 
 	return chart;

@@ -1,4 +1,3 @@
-//Note: Initiation of this cursor after other elements will put the cursor on top of them.
 function FreezeAroundClosest(selection, clickOnly) {
 	//Hold previous mouse points for dynamic data
 	var prevMousePt = [0,0];
@@ -29,6 +28,7 @@ function FreezeAroundClosest(selection, clickOnly) {
 		.attr("cy",0)
 		.attr("r",0);
 
+	//Create clicked frozen region element if set
 	if(click) {
 		var clickFreezeRegion = gSelection.append("circle")
 			.attr("class","click freezeRegion")
@@ -37,25 +37,29 @@ function FreezeAroundClosest(selection, clickOnly) {
 			.attr("r", 0);
 	}
 
-	//Set on mousemove
-	svg.on("mousemove.FreezeAroundClosest." + selection.attr("id"), function(d,i) {
+	//Set on mousemove functionality
+	svg.on("mousemove.freezeSelector", function(d,i) {
 		FreezeAroundClosest.redraw(d3.mouse(this));
 	});
 
+	//Set on click functionality if set
 	if (click) {
-		svg.on("click.FreezeAroundCursor." + selection.attr("id"), function(d,i) {
+		svg.on("click.freezeSelector", function(d,i) {
 			var mouse = d3.mouse(this);
 			var target = FreezeAroundClosest.findClosest(mouse);
 			var currPt = [target.attr("cx"), target.attr("cy")];
 			FreezeAroundClosest.cleanSnapshots(currPt);
+			d3.selectAll(".point").attr("id", "untagged");
 			FreezeAroundClosest.createSnapshots(currPt, target);
 			clickFreezeRegion
 				.attr("cx",currPt[0])
 				.attr("cy",currPt[1])
 				.attr("r",frzRadius);
+						console.log("FreezeAroundClosest");
 		});
 	}
 
+	//Update Selector
 	FreezeAroundClosest.redraw = function(mouse) {
 		var target;
 		var mousePt;
@@ -86,6 +90,7 @@ function FreezeAroundClosest(selection, clickOnly) {
 		}
 	};
 
+	//Gets the closest target
 	FreezeAroundClosest.findClosest = function(mousePt) {
 		var points = d3.selectAll(".point, .snapshot");
 		var target;
@@ -129,6 +134,7 @@ function FreezeAroundClosest(selection, clickOnly) {
 		return target;
 	};
 
+	//Update position of freeze region
 	FreezeAroundClosest.drawCursor = function(currPt) {
 		freezeRegion
 			.attr("cx", currPt[0])
@@ -136,6 +142,7 @@ function FreezeAroundClosest(selection, clickOnly) {
 			.attr("r", frzRadius);
 	};
 
+	//Create snapshots inside of freeze region
 	FreezeAroundClosest.createSnapshots = function(currPt, target) {
 		if (target.attr("id") != "snap") {
 			target
@@ -176,6 +183,7 @@ function FreezeAroundClosest(selection, clickOnly) {
 			});
 	};
 
+	//Destroy snapshots outside of freeze region
 	FreezeAroundClosest.cleanSnapshots = function(currPt) {
 		d3.selectAll(".snapshot") 
 			.each(function(d, i) {
@@ -192,12 +200,14 @@ function FreezeAroundClosest(selection, clickOnly) {
 			});
 	};
 
+	//Set the class name used to obtain targets
 	FreezeAroundClosest.tarName = function(_) {
 		if(!arguments.length) return targets;
 		targets = _;
 		return FreezeAroundClosest;
 	};
 
+	//If accumulations is true, then build up will occur on the edge of freeze region
 	FreezeAroundClosest.accumulate = function(_) {
 		if(!arguments.length) return accumulations;
 		accumulations = _;
@@ -205,7 +215,6 @@ function FreezeAroundClosest(selection, clickOnly) {
 	}
 }
 
-//Helper function for obtaining containment and intersection distances
 function distance(ptA,ptB) {
 	var diff = [ptB[0]-ptA[0], ptB[1]-ptA[1]];
 	return Math.sqrt(diff[0] * diff[0] + diff[1] * diff[1]);

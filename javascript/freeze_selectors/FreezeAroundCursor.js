@@ -1,4 +1,3 @@
-//NOTE: Initiation of this cursor after other elements will put the cursor on top of them.
 function FreezeAroundCursor(selection, clickOnly) {
 	//Hold previous mouse point for dynamic data
 	var prevMousePt = [0, 0];
@@ -25,6 +24,7 @@ function FreezeAroundCursor(selection, clickOnly) {
 		.attr("cy", 0)
 		.attr("r", frzRadius);
 
+	//Create clicked frozen region element if set
 	if(click) {
 		var clickFreezeRegion = gSelection.append("circle")
 			.attr("class","click freezeRegion")
@@ -33,9 +33,9 @@ function FreezeAroundCursor(selection, clickOnly) {
 			.attr("r", 0);
 	}
 
-	//Set on mousemove
+	//Set on mousemove functionality
 	if (!click) {
-		svg.on("mousemove.FreezeAroundCursor." + selection.attr("id"), function(d,i) {
+		svg.on("mousemove.freezeSelector", function(d,i) {
 			freezeRegion
 				.attr("cx",0)
 				.attr("cy",0)
@@ -43,7 +43,7 @@ function FreezeAroundCursor(selection, clickOnly) {
 			FreezeAroundCursor.redraw(d3.mouse(this));
 		});
 	} else {
-		svg.on("mousemove.FreezeAroundCursor." + selection.attr("id"), function(d,i) {
+		svg.on("mousemove.freezeSelector", function(d,i) {
 			var mouse = d3.mouse(this);
 			freezeRegion
 				.attr("cx",mouse[0])
@@ -52,8 +52,9 @@ function FreezeAroundCursor(selection, clickOnly) {
 		});
 	}
 
+	//Set on click functionality if set
 	if (click) {
-		svg.on("click.FreezeAroundCursor." + selection.attr("id"), function(d,i) {
+		svg.on("click.freezeSelector", function(d,i) {
 			var mouse = d3.mouse(this);
 			clickFreezeRegion
 				.attr("cx",mouse[0])
@@ -61,9 +62,11 @@ function FreezeAroundCursor(selection, clickOnly) {
 				.attr("r",frzRadius);
 			FreezeAroundCursor.cleanSnapshots(mouse);
 			FreezeAroundCursor.createSnapshots(mouse);
+						console.log("FreezeAroundCursor");
 		});
 	}
 
+	//Update freeze selector
 	FreezeAroundCursor.redraw = function(mouse) {
 		var mousePt;
 		if (!arguments.length && !accumulations){
@@ -86,12 +89,14 @@ function FreezeAroundCursor(selection, clickOnly) {
 		FreezeAroundCursor.cleanSnapshots(mousePt);
 	};
 
+	//Update position of freeze region
 	FreezeAroundCursor.drawCursor = function(mousePt) {
 		freezeRegion
 			.attr("cx", mousePt[0])
 			.attr("cy", mousePt[1]);
 	}
 
+	//Create snapshots inside of freeze region
 	FreezeAroundCursor.createSnapshots = function(mousePt) {
 		var points = d3.selectAll(targets);
 		points
@@ -119,6 +124,7 @@ function FreezeAroundCursor(selection, clickOnly) {
 			});
 	};
 
+	//Destroy snapshots outside of freeze region
 	FreezeAroundCursor.cleanSnapshots = function(mousePt) {
 		d3.selectAll(".snapshot")
 			.each(function(d, i) {
@@ -136,18 +142,21 @@ function FreezeAroundCursor(selection, clickOnly) {
 			});
 	};
 
+	//Set the class name used to obtain targets
 	FreezeAroundCursor.tarName = function(_) {
 		if(!arguments.length) return targets;
 		targets = _;
 		return FreezeAroundCursor;
 	};
 
+	//Set freeze region radius
 	FreezeAroundCursor.freezeRadius = function(_) {
 		if(!arguments.length) return frzRadius;
 		frzRadius = _;
 		return FreezeAroundCursor;
 	};
 
+	//If accumulations is true, then build up will occur on the edge of freeze region
 	FreezeAroundCursor.accumulate = function(_) {
 		if(!arguments.length) return accumulations;
 		accumulations = _;

@@ -1,4 +1,3 @@
-//Note: Initiation of this cursor after other elements will put the cursor on top of them.
 function FreezeTrajectory(selection, clickOnly) {
 	//Hold previous mouse points for dynamic data
 	var prevMousePt = [0, 0];
@@ -23,7 +22,7 @@ function FreezeTrajectory(selection, clickOnly) {
 	var angle = 50;
 
 	//Controls accumulation behavior near freeze region
-	var accumulations = true;
+	var accumulations = false;
 	//If click is true then freeze will only happen on click
 	var click = (typeof clickOnly === 'undefined') ? false : clickOnly;;
 
@@ -41,19 +40,22 @@ function FreezeTrajectory(selection, clickOnly) {
 			.attr("id", "trajectoryClip")
 		.append("path");
 
+	//Create clicked frozen region element if set
 	if (click) {
 		var clickFreezeRegion = gSelection.append("polyline")
 			.attr("class", "click freezeRegion")
 			.attr("points", "0,0 0,0 0,0");
 	}
 
-	//Set on mousemove
-	svg.on("mousemove.FreezeTrajectory." + selection.attr("id"), function(d,i) {
+	//Set on mousemove functionality
+	svg.on("mousemove.freezeSelector", function(d,i) {
 		FreezeTrajectory.redraw(d3.mouse(this));
 	});
 
+
+	//Set on click functionality if set
 	if (click) {
-		svg.on("click.FreezeTrajectory." + selection.attr("id"), function(d,i) {
+		svg.on("click.freezeSelector", function(d,i) {
 			mousePt = d3.mouse(this);
 			clickFreezeRegion
 				.attr("points", ox + "," + oy + " " +
@@ -64,7 +66,6 @@ function FreezeTrajectory(selection, clickOnly) {
 			FreezeTrajectory.cleanSnapshots([ox, oy], [lx1, ly1], [lx2, ly2], mousePt);
 			//Copy-Pause points within cursor
 			FreezeTrajectory.createSnapshots([ox, oy], [lx1, ly1], [lx2, ly2]);
-
 	});
 	}
 
@@ -123,6 +124,7 @@ function FreezeTrajectory(selection, clickOnly) {
 			FreezeTrajectory.cleanSnapshots([ox, oy], [lx1, ly1], [lx2, ly2], mousePt);
 	};
 
+	//Computes the points required to draw trajectory projection
 	FreezeTrajectory.computeTrajectory = function() {
 		//Hold origin x,y
 		ox = x2;
@@ -146,6 +148,7 @@ function FreezeTrajectory(selection, clickOnly) {
 		ly2 = (x2 - ox) * Math.sin(theta2) + (y2 - oy) * Math.cos(theta2) + oy;
 	};
 
+	//Update position of freeze region
 	FreezeTrajectory.drawCursor = function() {
 		if (isFinite(ox + oy + lx1 + lx2 + ly1 + ly2)) {
 			freezeRegion
@@ -155,6 +158,7 @@ function FreezeTrajectory(selection, clickOnly) {
 		}
 	};
 
+	//Set clip path to be inside the trajectory
 	FreezeTrajectory.drawClipPath = function() {
 		if (isFinite(ox + oy + lx1 + lx2 + ly1 + ly2)) {
 			clip
@@ -165,6 +169,7 @@ function FreezeTrajectory(selection, clickOnly) {
 		}
 	};
 
+	//Create snapshots inside of freeze region
 	FreezeTrajectory.createSnapshots = function(ptA, ptB, ptC) {
 		var points = d3.selectAll(targets);
 		points
@@ -188,6 +193,7 @@ function FreezeTrajectory(selection, clickOnly) {
 			});
 	};
 
+	//Destroy snapshots outside of freeze region
 	FreezeTrajectory.cleanSnapshots = function(ptA, ptB, ptC, mousePt) {
 		d3.selectAll(".snapshot")
 			.each(function(d, i) {
@@ -199,24 +205,27 @@ function FreezeTrajectory(selection, clickOnly) {
 				var ptD = [x, y];
 
 				var dist = +distance(mousePt, ptD);
-				if((det(ptA, ptB, ptD) > 0 || det(ptA, ptC, ptD) < 0) && dist > r + 1) {
+				if((det(ptA, ptB, ptD) > 0 || det(ptA, ptC, ptD) < 0) && dist > r + r/2) {
 					pt.remove();
 				}
 			});
 	};
 
+	//Set the class name used to obtain targets
 	FreezeTrajectory.tarName = function(_) {
 		if(!arguments.length) return targets;
 		targets = _;
 		return FreezeTrajectory;
 	};
 
+	//Sets the angle of trajectory
 	FreezeTrajectory.cursorAngle = function(_) {
 		if(!arguments.length) return angle;
 		angle = _;
 		return FreezeTrajectory;
 	};
 
+	//If accumulations is true, then build up will occur on the edge of freeze region
 	FreezeTrajectory.accumulate = function(_) {
 		if(!arguments.length) return accumulations;
 		accumulations = _;
