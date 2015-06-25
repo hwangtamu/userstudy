@@ -52,9 +52,14 @@ function FreezeAroundClosest(selection, clickOnly) {
 			d3.selectAll(".point").attr("id", "untagged");
 			FreezeAroundClosest.createSnapshots(currPt, target);
 			clickFreezeRegion
-				.attr("cx",currPt[0])
-				.attr("cy",currPt[1])
-				.attr("r",frzRadius);
+				.transition()
+					.attr("cx",currPt[0])
+					.attr("cy",currPt[1])
+					.attr("r",0)
+				.transition()
+					.attr("cx",currPt[0])
+					.attr("cy",currPt[1])
+					.attr("r",frzRadius);
 		});
 	}
 
@@ -135,7 +140,7 @@ function FreezeAroundClosest(selection, clickOnly) {
 
 	//Update position of freeze region
 	FreezeAroundClosest.drawCursor = function(currPt) {
-		freezeRegion
+		freezeRegion.transition().duration(50)
 			.attr("cx", currPt[0])
 			.attr("cy", currPt[1])
 			.attr("r", frzRadius);

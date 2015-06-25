@@ -16,9 +16,11 @@ function StreamScatterPlot() {
 		pointRadius = 6,
 		cursor = function(selection) {},
 		cursorFunction = function(selection) {},
+		targetName = ".target",
 		duration = 1000, //Determines the unit of time used on axis
 		ticks = 20; //Determines the number of ticks on axis based on time (n - 4 roughly shown)
 
+	//G selections (g*), dataset to generate points, chart flow 'pause'
 	var svg,
 		defs,
 		gChart,
@@ -26,8 +28,7 @@ function StreamScatterPlot() {
 		gCursor,
 		dataset,
 		points,
-		paused = false,
-		target;
+		paused = false;
 
 	//Initial creation of streaming scatter plot
 	function chart(selection) {
@@ -146,9 +147,16 @@ function StreamScatterPlot() {
 
 			//Set on click handler
 			svg.on("click.StreamScatterPlot."  + selection.attr("id"), function(d, i) {
-				// if (target != null) {
-				// 	target.attr("r", 50);
-				// }
+				var t = d3.select(targetName);
+				if (t != null) {
+					t.transition().duration(500).ease("bounce")
+							.attr("r", pointRadius * 2)
+							.style("fill-opacity", 0.0)
+						.transition().duration(500).ease("bounce")
+							.attr("r", pointRadius)
+							.style("fill-opacity", 1.0);
+
+				}
 			});
 		});
 	}
@@ -290,8 +298,8 @@ function StreamScatterPlot() {
 		//Exit
 		points.exit().remove();
 
-		//Update Cursor and grab target
-		target = cursorFunction();
+		//Update Cursor
+		cursorFunction();
 	};
 
 	//Starts the chart streaming

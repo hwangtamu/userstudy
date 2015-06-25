@@ -57,7 +57,7 @@ function FreezeTrajectory(selection, clickOnly) {
 	if (click) {
 		svg.on("click.freezeSelector", function(d,i) {
 			mousePt = d3.mouse(this);
-			clickFreezeRegion
+			clickFreezeRegion.transition()
 				.attr("points", ox + "," + oy + " " +
 								lx1 + "," + ly1 + " " +
 								lx2 + "," + ly2);

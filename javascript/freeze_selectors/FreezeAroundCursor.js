@@ -57,9 +57,14 @@ function FreezeAroundCursor(selection, clickOnly) {
 		svg.on("click.freezeSelector", function(d,i) {
 			var mouse = d3.mouse(this);
 			clickFreezeRegion
-				.attr("cx",mouse[0])
-				.attr("cy",mouse[1])
-				.attr("r",frzRadius);
+				.transition()
+					.attr("r", 0)
+					.attr("cx",mouse[0])
+					.attr("cy",mouse[1])
+				.transition()
+					.attr("cx",mouse[0])
+					.attr("cy",mouse[1])
+					.attr("r",frzRadius);
 			FreezeAroundCursor.cleanSnapshots(mouse);
 			FreezeAroundCursor.createSnapshots(mouse);
 		});
