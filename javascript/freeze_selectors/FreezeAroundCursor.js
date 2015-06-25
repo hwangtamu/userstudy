@@ -120,7 +120,7 @@ function FreezeAroundCursor(selection, manualFreeze) {
 
 					gCopies.append("circle")
 						.attr("class", "i" + d[0] + " snapshot")
-						.attr("r", pointRadius)
+						.attr("r", r)
 						.attr("cx", x)
 						.attr("cy", y);
 

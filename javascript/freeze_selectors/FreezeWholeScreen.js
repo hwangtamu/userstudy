@@ -9,29 +9,47 @@ function FreezeWholeScreen(selection) {
 
 	//Set on click functionality if set
 	svg.on("click.freezeSelector", function(d,i) {
-		var mouse = d3.mouse(this);
+		if (d3.event.shiftKey) {
+			FreezeWholeScreen.freeze();
+		}
 	});
 
-
 	//Update Selector
-	FreezeAroundClosest.freeze = function(mouse) {
-
+	FreezeWholeScreen.freeze = function() {
+		FreezeWholeScreen.cleanSnapshots();
+		FreezeWholeScreen.createSnapshots();
 	};
 
 	//Create snapshots inside of freeze region
-	FreezeAroundClosest.createSnapshots = function(currPt, target) {
+	FreezeWholeScreen.createSnapshots = function() {
+		var points = d3.selectAll(targets);
+		points
+			.each(function(d, i) {
+				var pt = d3.select(this);
+				var x = +pt.attr("cx"),
+					y = +pt.attr("cy"),
+					r = +pt.attr("r");
 
+				pt.attr("id", "tagged");
+
+				gCopies.append("circle")
+					.attr("class", "i" + d[0] + " snapshot")
+					.attr("r", r)
+					.attr("cx", x)
+					.attr("cy", y);
+			});
 	};
 
 	//Destroy snapshots outside of freeze region
-	FreezeAroundClosest.cleanSnapshots = function(currPt) {
-
+	FreezeWholeScreen.cleanSnapshots = function(currPt) {
+		d3.selectAll(targets).attr("id", "untagged");
+		d3.selectAll(".snapshot").remove();
 	};
 
 	//Set the class name used to obtain targets
-	FreezeAroundClosest.tarName = function(_) {
+	FreezeWholeScreen.tarName = function(_) {
 		if(!arguments.length) return targets;
 		targets = _;
-		return FreezeAroundClosest;
+		return FreezeWholeScreen;
 	};
 }

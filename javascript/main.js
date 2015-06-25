@@ -120,7 +120,9 @@ function change() {
 	}
 
 	//Set freeze selector
-	if (freeze == "FreezeAroundCursor") {
+	if (freeze == "FreezeWholeScreen") {
+		FreezeWholeScreen(svg);
+	} else if (freeze == "FreezeAroundCursor"){
 		FreezeAroundCursor(svg, click);
 		FreezeAroundCursor.accumulate(accumulate);
 	} else if (freeze == "FreezeAroundClosest") {
