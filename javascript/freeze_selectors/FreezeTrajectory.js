@@ -13,8 +13,9 @@ function FreezeTrajectory(selection, manualFreeze) {
 	var targets = ".point";
 
 	//Controls the 'tail' of cursor
-	var i = 0, j = 0;
-	var threshold = 10;
+	var i = 0;
+	var j = 0;
+	var threshold = 8;
 
 	//Angle of 'flashlight'
 	var angle = 50;
@@ -82,18 +83,24 @@ function FreezeTrajectory(selection, manualFreeze) {
 			x2 = mousePt[0];
 			y2 = mousePt[1];
 
-			if ( i < threshold && (j % threshold == 0)) {
-				i++;
+			if (i == threshold && j % 4 == 0) {
 				j = 0;
 				pts.push(mousePt);
-				console.log("sampled a point");
-			} else {
-				j++;
-				console.log(j);
-				i = 0;
-				prevMousePt = pts.shift();
-				console.log("used a point");
+				prevMousePt = catmullRomSpline2D(pts, 0.5);
+				// prevMousePt = pts.shift();
+				pts.shift();
+			} else if (i < threshold && j % 4 == 0) {
+				i++;
+				pts.push(mousePt);
 			}
+
+			j++;
+
+			if (pts.length < threshold) {
+				console.log("ok");
+				prevMousePt = mousePt;
+			} 
+
 		} else {
 			x1 = prevMousePt[0],
 			y1 = prevMousePt[1],
@@ -106,7 +113,6 @@ function FreezeTrajectory(selection, manualFreeze) {
 		}
 
 		extMousePt = mousePt;
-
 		//Compute points to draw
 		FreezeTrajectory.computeTrajectory();
 
@@ -207,7 +213,7 @@ function FreezeTrajectory(selection, manualFreeze) {
 				var ptD = [x, y];
 
 				var dist = +distance(mousePt, ptD);
-				if((det(ptA, ptB, ptD) > 0 || det(ptA, ptC, ptD) < 0) && dist > r + r/2) {
+				if((det(ptA, ptB, ptD) > 0 || det(ptA, ptC, ptD) < 0) && dist > r * (r/Math.PI)) {
 					pt.remove();
 				}
 			});
@@ -235,7 +241,23 @@ function FreezeTrajectory(selection, manualFreeze) {
 	}
 }
 
-//Helper function for obtaining containment and intersection distances
+function catmullRomSpline2D(arr, t) {
+	p0 = arr[0];
+	p1 = arr[1];
+	p2 = arr[2];
+	p3 = arr[3];
+	var x = q(p0[0], p1[0], p2[0], p3[0], t);
+	var y = q(p0[1], p1[1], p2[1], p3[1], t);
+	return [x, y];
+}
+
+function  q(p0, p1, p2, p3, t) {
+    return 0.5 * ((2 * p1) +
+                  (p2 - p0) * t +
+                  (2*p0 - 5*p1 + 4*p2 - p3) * t * t +
+                  (3*p1 -p0 - 3 * p2 + p3) * t * t * t);    
+}
+
 function distance(ptA, ptB) {
 	var diff = [ptB[0]-ptA[0], ptB[1]-ptA[1]];
 	return Math.sqrt(diff[0] * diff[0] + diff[1] * diff[1]);

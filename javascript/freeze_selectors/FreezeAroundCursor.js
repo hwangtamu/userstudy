@@ -115,7 +115,7 @@ function FreezeAroundCursor(selection, manualFreeze) {
 				var targetPt = [x, y];
 				var currDist = distance(mousePt,targetPt);
 
-				if (currDist < frzRadius && d3.select(".i" + d[0] + ".snapshot").empty()) {
+				if (currDist <= frzRadius && d3.select(".i" + d[0] + ".snapshot").empty()) {
 					pt.attr("id", "tagged");
 
 					gCopies.append("circle")

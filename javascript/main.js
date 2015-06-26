@@ -77,6 +77,7 @@ d3.timer(function() {
 		NormalCursor.redraw();
 	} else  if (cursor == "BubbleCursor") {
 		BubbleCursor.redraw();
+		// NormalCursor.redraw();
 	}
 
 	//Redraw freeze selector
@@ -142,6 +143,7 @@ function change() {
 		NormalCursor(svg);
 		if (freeze != "None") NormalCursor.tarName(".snapshot");
 	} else  if (cursor == "BubbleCursor") {
+		// NormalCursor(svg);
 		BubbleCursor(svg);
 		if (freeze != "None") BubbleCursor.tarName(".snapshot"); 
 	}
