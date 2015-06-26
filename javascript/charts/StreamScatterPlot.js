@@ -48,7 +48,7 @@ function StreamScatterPlot() {
 
 			//Update the y-scale
 			yScale
-				.domain(d3.extent(data, function(d) { return d[1]; }))
+				.domain([0, 100])
 				.range([height - margin.top - margin.bottom, 0]);
 
 			//Select the svg element, if it exists

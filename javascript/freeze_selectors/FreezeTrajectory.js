@@ -3,19 +3,17 @@ function FreezeTrajectory(selection, manualFreeze) {
 	var prevMousePt = [0, 0];
 	var extMousePt = [0, 0];
 	var pts = [[]];
-	var ox = 0,
-		oy = 0
-		lx1 = 0,
-		ly1 = 0,
-		lx2 = 0,
-		ly2 = 0,
-		x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+	var ox = 0, oy = 0
+		lx1 = 0, ly1 = 0,
+		lx2 = 0, ly2 = 0,
+		x1 = 0, y1 = 0,
+		x2 = 0, y2 = 0;
 
 	//Name of svg element to grab for targets
 	var targets = ".point";
 
 	//Controls the 'tail' of cursor
-	var i = 0;
+	var i = 0, j = 0;
 	var threshold = 10;
 
 	//Angle of 'flashlight'
@@ -68,7 +66,7 @@ function FreezeTrajectory(selection, manualFreeze) {
 				//Copy-Pause points within cursor
 				FreezeTrajectory.createSnapshots([ox, oy], [lx1, ly1], [lx2, ly2]);
 			}
-	});
+		});
 	}
 
 
@@ -84,15 +82,17 @@ function FreezeTrajectory(selection, manualFreeze) {
 			x2 = mousePt[0];
 			y2 = mousePt[1];
 
-			if (i == threshold) {
-				prevMousePt = pts.shift();
-				pts.push(mousePt);
-			} else if ( i < threshold) {
+			if ( i < threshold && (j % threshold == 0)) {
 				i++;
+				j = 0;
 				pts.push(mousePt);
+				console.log("sampled a point");
 			} else {
-				pts.push(mousePt);
+				j++;
+				console.log(j);
+				i = 0;
 				prevMousePt = pts.shift();
+				console.log("used a point");
 			}
 		} else {
 			x1 = prevMousePt[0],
@@ -115,7 +115,6 @@ function FreezeTrajectory(selection, manualFreeze) {
 			FreezeTrajectory.drawClipPath();
 
 		FreezeTrajectory.drawCursor();
-
 
 		//Copy-Pause points within cursor
 		if (!manualFrz)
