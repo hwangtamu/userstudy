@@ -20,6 +20,8 @@ function FreezeTrajectory(selection, manualFreeze) {
 	//Angle of 'flashlight'
 	var angle = 50;
 
+	var freezeRadius = 0;
+
 	//Controls accumulation behavior near freeze region
 	var accumulations = false;
 	//If click is true then freeze will only happen on click
@@ -57,7 +59,7 @@ function FreezeTrajectory(selection, manualFreeze) {
 		svg.on("click.freezeSelector", function(d,i) {
 			if (d3.event.shiftKey) {
 				mousePt = d3.mouse(this);
-				clickFreezeRegion.transition().ease("linear")
+				clickFreezeRegion
 					.attr("points", ox + "," + oy + " " +
 									lx1 + "," + ly1 + " " +
 									lx2 + "," + ly2);
@@ -97,7 +99,6 @@ function FreezeTrajectory(selection, manualFreeze) {
 			j++;
 
 			if (pts.length < threshold) {
-				console.log("ok");
 				prevMousePt = mousePt;
 			} 
 
@@ -139,9 +140,12 @@ function FreezeTrajectory(selection, manualFreeze) {
 
 		//Scale points to extend 'flashlight'
 		var dist = distance([x1, y1], [x2, y2]);
-		var length = Math.max(+svg.attr("width"),+svg.attr("length"));
-		x2 = x2 + (x2 - x1) / dist * length * 2;
-		y2 = y2 + (y2 - y1) / dist * length * 2;
+		var length = Math.sqrt(Math.pow(+window.innerWidth, 2) + Math.pow(+window.innerHeight/2, 2));
+		x2 = x2 + (x2 - x1) / dist * length;
+		y2 = y2 + (y2 - y1) / dist * length;
+
+		ox = ox + (ox - x1) / dist * -100;
+		oy = oy + (oy - y1) / dist * -100;
 
 		//Convert angle to radians
 		var theta1 = angle * (Math.PI / 360),
@@ -213,7 +217,7 @@ function FreezeTrajectory(selection, manualFreeze) {
 				var ptD = [x, y];
 
 				var dist = +distance(mousePt, ptD);
-				if((det(ptA, ptB, ptD) > 0 || det(ptA, ptC, ptD) < 0) && dist > r * (r/Math.PI)) {
+				if((det(ptA, ptB, ptD) > 0 || det(ptA, ptC, ptD) < 0) && dist > freezeRadius) {
 					pt.remove();
 				}
 			});

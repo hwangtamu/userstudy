@@ -6,9 +6,10 @@ function FreezeAroundCursor(selection, manualFreeze) {
 	var targets = ".point";
 
 	//Freeze/Cursor radius
-	var frzRadius = Math.sqrt((window.innerWidth * window.innerHeight/2) / (10 * Math.PI));
-	//NOTE: Don't combine click with accumulations... it doesn't work.
+	var ratio = Math.pow((1 + Math.sqrt(5) / 2), 4);
+	var frzRadius = Math.sqrt((window.innerWidth * window.innerHeight/2) / (ratio * Math.PI));
 
+	//NOTE: Don't combine click with accumulations... it doesn't work.
 	//Controls accumulation behavior near freeze region
 	var accumulations = false;
 	//If click is true then freeze will only happen on click
@@ -58,11 +59,6 @@ function FreezeAroundCursor(selection, manualFreeze) {
 			if (d3.event.shiftKey) {
 				var mouse = d3.mouse(this);
 				clickFreezeRegion
-					.transition().ease("sin")
-						.attr("r", 0)
-						.attr("cx",mouse[0])
-						.attr("cy",mouse[1])
-					.transition().ease("sin")
 						.attr("cx",mouse[0])
 						.attr("cy",mouse[1])
 						.attr("r",frzRadius);

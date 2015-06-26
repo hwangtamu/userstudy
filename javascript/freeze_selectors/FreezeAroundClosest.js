@@ -7,7 +7,8 @@ function FreezeAroundClosest(selection, manualFreeze) {
 	var targets = ".point"
 
 	//Controls radius of freeze region
-	var frzRadius = Math.sqrt((window.innerWidth * window.innerHeight/2) / (10 * Math.PI));
+	var ratio = Math.pow((1 + Math.sqrt(5) / 2), 4);
+	var frzRadius = Math.sqrt((window.innerWidth * window.innerHeight/2) / (ratio * Math.PI));
 
 	//Controls accumulation behavior near freeze region
 	var accumulations = false;
@@ -53,14 +54,9 @@ function FreezeAroundClosest(selection, manualFreeze) {
 				d3.selectAll(".point").attr("id", "untagged");
 				FreezeAroundClosest.createSnapshots(currPt, target);
 				clickFreezeRegion
-					.transition()
-						.attr("cx",currPt[0])
-						.attr("cy",currPt[1])
-						.attr("r",0)
-					.transition()
-						.attr("cx",currPt[0])
-						.attr("cy",currPt[1])
-						.attr("r",frzRadius);
+						.attr("cx", currPt[0])
+						.attr("cy", currPt[1])
+						.attr("r", frzRadius);
 			}
 		});
 	}
