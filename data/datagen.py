@@ -5,7 +5,8 @@ import sys, getopt, json, random, math
 
 #Define function to generate data by
 def function(*args):
-	return math.fabs(math.cos(args[0]))
+	return math.fabs(math.sin(args[0])) * 100
+	#return random.randrange(0, 100)
 
 #Create json data file
 def main(argv):
@@ -32,7 +33,7 @@ def main(argv):
 	i = 0
 	j = 0
 	while i < repeat:
-		datum = {'id': i, 'timeoffset': round(j, 2), 'val': function(j) * 100}
+		datum = {'id': i, 'timeoffset': round(j, 2), 'val': function(j)}
 		data.append(datum)
 		i += 1
 		j += timeoffset

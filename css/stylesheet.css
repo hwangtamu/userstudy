@@ -19,6 +19,7 @@ body {
 .point {
 	stroke: #4D85DC;
 	fill: #4D85DC;
+	clip-path: url(#StreamScatterPlotClip);
 }
 
 #untagged.point {

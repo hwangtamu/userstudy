@@ -10,6 +10,7 @@ Class(.) and ID(#) names for reference in use with Javascript/CSS<br />
 <br />
 --------Charts--------<br />
 .point //Data point on chart<br />
+#StreamScatterPlotClip //clip used by scatter plot<br />
 <br />
 --------Cursor Selectors--------<br />
 .bubble cursor //Bubble cursor region<br />

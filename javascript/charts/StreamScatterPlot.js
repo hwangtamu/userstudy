@@ -60,6 +60,12 @@ function StreamScatterPlot() {
 
 			//Create rest of skeletal chart
 			defs = gEnter.append("defs");
+			defs.append("clipPath")
+					.attr("id", "StreamScatterPlotClip")
+				.append("rect")
+					.attr("width", width)
+					.attr("height", height)
+					.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 			gData = gEnter.append("g").attr("class", "data");
 			gEnter = gEnter.append("g").attr("class", "chart");
 				gEnter.append("g").attr("class", "x axis");
@@ -283,7 +289,7 @@ function StreamScatterPlot() {
 			.attr("cx", function(d) { return xScale(d[0]); })
 			.each(function(d) {
 				if(this.getAttribute("cx") < margin.left){
-					dataset.splice(dataset.indexOf(d), 1)
+					dataset.splice(dataset.indexOf(d), 1);
 				}
 			});
 
@@ -345,6 +351,10 @@ function StreamScatterPlot() {
 			chart.step();
 		}
 	};
+
+	StreamScatterPlot.getData = function(_) {
+		return dataset;
+	}
 
 	return chart;
 }

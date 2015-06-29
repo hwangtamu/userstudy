@@ -25,7 +25,7 @@ var cursor, freeze, onclickMenu, accumulate;
 
 //Load JSON file
 //d3.json("data/stream_r2.json", function(error, data) {
-d3.json("data/stream3.json", function(error, data) {
+d3.json("data/stream_s1.json", function(error, data) {
 	if (error) {
 		console.log(error);
 	} else {
@@ -99,7 +99,7 @@ function change() {
 	accumulate = accumulateMenu.property("value");
 
 	//Grab Svg
-	var svg = d3.select("svg");
+	var svg = d3.select("svg").data(StreamScatterPlot.getData());
 
 	//Remove any old cursor / freeze 
 	d3.selectAll(".selector").remove();
