@@ -20,8 +20,6 @@ function FreezeTrajectory(selection, manualFreeze) {
 	//Angle of 'flashlight'
 	var angle = 50;
 
-	var freezeRadius = 0;
-
 	//Controls accumulation behavior near freeze region
 	var accumulations = false;
 	//If click is true then freeze will only happen on click
@@ -144,8 +142,9 @@ function FreezeTrajectory(selection, manualFreeze) {
 		x2 = x2 + (x2 - x1) / dist * length;
 		y2 = y2 + (y2 - y1) / dist * length;
 
-		ox = ox + (ox - x1) / dist * -100;
-		oy = oy + (oy - y1) / dist * -100;
+		var ratio = Math.pow((1 + Math.sqrt(5) / 2), 4);
+		ox = ox + (ox - x1) / dist * -(length/ratio);
+		oy = oy + (oy - y1) / dist * -(length/ratio);
 
 		//Convert angle to radians
 		var theta1 = angle * (Math.PI / 360),
@@ -217,7 +216,7 @@ function FreezeTrajectory(selection, manualFreeze) {
 				var ptD = [x, y];
 
 				var dist = +distance(mousePt, ptD);
-				if((det(ptA, ptB, ptD) > 0 || det(ptA, ptC, ptD) < 0) && dist > freezeRadius) {
+				if((det(ptA, ptB, ptD) > 0 || det(ptA, ptC, ptD) < 0)) {
 					pt.remove();
 				}
 			});

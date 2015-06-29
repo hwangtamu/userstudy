@@ -111,7 +111,7 @@ function FreezeAroundCursor(selection, manualFreeze) {
 				var targetPt = [x, y];
 				var currDist = distance(mousePt,targetPt);
 
-				if (currDist <= frzRadius && d3.select(".i" + d[0] + ".snapshot").empty()) {
+				if (currDist <= (frzRadius + r) && d3.select(".i" + d[0] + ".snapshot").empty()) {
 					pt.attr("id", "tagged");
 
 					gCopies.append("circle")
@@ -120,8 +120,9 @@ function FreezeAroundCursor(selection, manualFreeze) {
 						.attr("cx", x)
 						.attr("cy", y);
 
-				} else if (currDist > frzRadius && d3.select(".i" + d[0] +".snapshot").empty()) {
+				} else if (currDist > (frzRadius + r) && d3.select(".i" + d[0] +".snapshot").empty()) {
 					pt.attr("id", "untagged");
+					console.log("untagged");
 				}
 			});
 	};
@@ -138,7 +139,7 @@ function FreezeAroundCursor(selection, manualFreeze) {
 				var targetPt = [x, y];
 
 				var currDist = distance(mousePt, targetPt);
-				if (currDist > frzRadius) {
+				if (currDist > frzRadius + r) {
 					pt.remove();
 				}
 			});

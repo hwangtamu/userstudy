@@ -5,7 +5,7 @@ var chart = StreamScatterPlot()
     .height(window.innerHeight/2)
     .pointRadius(10)
     .allowZoom(false)
-    .allowPause(false);
+    .allowPause(true);
 
 //Set handlers for each menu
 var cursorMenu = d3.select("#cursormenu select")
