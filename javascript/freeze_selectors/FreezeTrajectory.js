@@ -22,7 +22,7 @@ function FreezeTrajectory(selection, manualFreeze) {
 
 	//Controls accumulation behavior near freeze region
 	var accumulations = false;
-	//If click is true then freeze will only happen on click
+	//If manual is true then freeze will only happen on shift
 	var manualFrz = (typeof manualFreeze === 'undefined') ? false : manualFreeze;;
 
 	//Create cursor
@@ -39,10 +39,10 @@ function FreezeTrajectory(selection, manualFreeze) {
 			.attr("id", "trajectoryClip")
 		.append("path");
 
-	//Create clicked frozen region element if set
+	//Create manual frozen region element if set
 	if (manualFrz) {
-		var clickFreezeRegion = gSelection.append("polyline")
-			.attr("class", "click freezeRegion")
+		var manualFreezeRegion = gSelection.append("polyline")
+			.attr("class", "manual freezeRegion")
 			.attr("points", "0,0 0,0 0,0");
 	}
 
@@ -58,7 +58,7 @@ function FreezeTrajectory(selection, manualFreeze) {
 			.on("keydown.StreamScatterPlot", function() {
 				if (d3.event.shiftKey) {
 					mousePt = d3.mouse(this);
-					clickFreezeRegion
+					manualFreezeRegion
 						.attr("points", ox + "," + oy + " " +
 										lx1 + "," + ly1 + " " +
 										lx2 + "," + ly2);

@@ -14,7 +14,7 @@ function FreezeAroundClosest(selection, manualFreeze) {
 	var accumulations = false;
 	var swap = false;
 	
-	//If click is true then freeze will only happen on click
+	//If manual is true then freeze will only happen on shift
 	var manualFrz = (typeof manualFreeze === 'undefined') ? false : manualFreeze;
 
 	//Create cursor
@@ -29,10 +29,10 @@ function FreezeAroundClosest(selection, manualFreeze) {
 		.attr("cy",0)
 		.attr("r",0);
 
-	//Create clicked frozen region element if set
+	//Create manual frozen region element if set
 	if(manualFrz) {
-		var clickFreezeRegion = gSelection.append("circle")
-			.attr("class","click freezeRegion")
+		var manualFreezeRegion = gSelection.append("circle")
+			.attr("class","manual freezeRegion")
 			.attr("cx", 0)
 			.attr("cy", 0)
 			.attr("r", 0);
@@ -49,13 +49,12 @@ function FreezeAroundClosest(selection, manualFreeze) {
 		.on("keydown.StreamScatterPlot", function() {
 			if (d3.event.shiftKey) {
 				var mouse = prevMousePt;
-				console.log(previousPoint);
 				var target = FreezeAroundClosest.findClosest(mouse);
 				var currPt = [target.attr("cx"), target.attr("cy")];
 				FreezeAroundClosest.cleanSnapshots(currPt);
 				d3.selectAll(".point").attr("id", "untagged");
 				FreezeAroundClosest.createSnapshots(currPt, target);
-				clickFreezeRegion
+				manualFreezeRegion
 						.attr("cx", currPt[0])
 						.attr("cy", currPt[1])
 						.attr("r", frzRadius);
@@ -172,7 +171,7 @@ function FreezeAroundClosest(selection, manualFreeze) {
 				var currDist = distance(currPt,targetPt);
 
 				var point = pt;
-				if(currDist <= (frzRadius + r) && d3.select(".i" + d[0] +".snapshot").empty() && point.attr("id") != "tagged" && (accumulations || swap || click)) {
+				if(currDist <= (frzRadius + r) && d3.select(".i" + d[0] +".snapshot").empty() && point.attr("id") != "tagged" && (accumulations || swap || manualFrz)) {
 					point.attr("id", "tagged");
 					gCopies.append("circle")
 						.attr("class", "i" + d[0] + " snapshot")

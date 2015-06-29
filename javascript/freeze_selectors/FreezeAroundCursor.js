@@ -9,10 +9,10 @@ function FreezeAroundCursor(selection, manualFreeze) {
 	var ratio = Math.pow((1 + Math.sqrt(5) / 2), 4);
 	var frzRadius = Math.sqrt((window.innerWidth * window.innerHeight/2) / (ratio * Math.PI));
 
-	//NOTE: Don't combine click with accumulations... it doesn't work.
+	//NOTE: Don't combine manual with accumulations... it doesn't work.
 	//Controls accumulation behavior near freeze region
 	var accumulations = false;
-	//If click is true then freeze will only happen on click
+	//If manual is true then freeze will only happen on shift
 	var manualFrz = (typeof manualFreeze === 'undefined') ? false : manualFreeze;
 
 	//Create cursor
@@ -25,10 +25,10 @@ function FreezeAroundCursor(selection, manualFreeze) {
 		.attr("cy", 0)
 		.attr("r", frzRadius);
 
-	//Create clicked frozen region element if set
+	//Create manual frozen region element if set
 	if(manualFrz) {
-		var clickFreezeRegion = gSelection.append("circle")
-			.attr("class","click freezeRegion")
+		var manualFreezeRegion = gSelection.append("circle")
+			.attr("class","manual freezeRegion")
 			.attr("cx", 0)
 			.attr("cy", 0)
 			.attr("r", 0);
@@ -60,7 +60,7 @@ function FreezeAroundCursor(selection, manualFreeze) {
 		.on("keydown.StreamScatterPlot", function() {
 			if (d3.event.shiftKey) {
 				var mouse = prevMousePt;
-				clickFreezeRegion
+				manualFreezeRegion
 						.attr("cx",mouse[0])
 						.attr("cy",mouse[1])
 						.attr("r",frzRadius);
