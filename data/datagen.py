@@ -5,8 +5,8 @@ import sys, getopt, json, random, math
 
 #Define function to generate data by
 def function(*args):
-	return math.fabs(math.sin(args[0])) * 100
-	#return random.randrange(0, 100)
+	#return math.fabs(math.sin(args[0])) * 100
+	return random.randrange(0, 100)
 
 #Create json data file
 def main(argv):

@@ -26,12 +26,12 @@ var speedMenu = d3.select("#speedmenu select")
 var speedInput = d3.select("#speedinput")
 	.on("change.customSpeed", setSpeed);
 
-//Holds current menus value
+//Holds the value of it's corresponding menu
 var cursor, freeze, manual, accumulate, speed;
 
 //Load JSON file
 //d3.json("data/stream_r2.json", function(error, data) {
-d3.json("data/stream_s08.json", function(error, data) {
+d3.json("data/stream_r05.json", function(error, data) {
 	if (error) {
 		console.log(error);
 	} else {
@@ -140,6 +140,9 @@ function change() {
 	} else if (speed == "super fast") {
 		StreamScatterPlot.setSpeed(100);
 		speedInput.property("value", 100);
+	} else if (speed == "blazing fast") {
+		StreamScatterPlot.setSpeed(1);
+		speedInput.property("value", 1);
 	} else if (speed == "custom") {
 		StreamScatterPlot.setSpeed(speedInput.property("value"));
 	}
