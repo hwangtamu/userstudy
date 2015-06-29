@@ -50,14 +50,16 @@ function FreezeAroundCursor(selection, manualFreeze) {
 				.attr("cx",mouse[0])
 				.attr("cy",mouse[1])
 				.attr("r",frzRadius);
+			prevMousePt = mouse;
 		});
 	}
 
-	//Set on click functionality
+	//Set activator for freeze
 	if (manualFrz) {
-		svg.on("click.freezeSelector", function(d,i) {
+		d3.select("body")
+		.on("keydown.StreamScatterPlot", function() {
 			if (d3.event.shiftKey) {
-				var mouse = d3.mouse(this);
+				var mouse = prevMousePt;
 				clickFreezeRegion
 						.attr("cx",mouse[0])
 						.attr("cy",mouse[1])
@@ -67,7 +69,6 @@ function FreezeAroundCursor(selection, manualFreeze) {
 			}
 		});
 	}
-
 	//Update freeze selector
 	FreezeAroundCursor.redraw = function(mouse) {
 		var mousePt;

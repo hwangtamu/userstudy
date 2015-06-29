@@ -52,22 +52,23 @@ function FreezeTrajectory(selection, manualFreeze) {
 	});
 
 
-	//Set on click functionality if set
+	//Set activator for freeze
 	if (manualFrz) {
-		svg.on("click.freezeSelector", function(d,i) {
-			if (d3.event.shiftKey) {
-				mousePt = d3.mouse(this);
-				clickFreezeRegion
-					.attr("points", ox + "," + oy + " " +
-									lx1 + "," + ly1 + " " +
-									lx2 + "," + ly2);
-				FreezeTrajectory.drawClipPath();
-				//Only delete snapshots outside of cursor window
-				FreezeTrajectory.cleanSnapshots([ox, oy], [lx1, ly1], [lx2, ly2], mousePt);
-				//Copy-Pause points within cursor
-				FreezeTrajectory.createSnapshots([ox, oy], [lx1, ly1], [lx2, ly2]);
-			}
-		});
+		d3.select("body")
+			.on("keydown.StreamScatterPlot", function() {
+				if (d3.event.shiftKey) {
+					mousePt = d3.mouse(this);
+					clickFreezeRegion
+						.attr("points", ox + "," + oy + " " +
+										lx1 + "," + ly1 + " " +
+										lx2 + "," + ly2);
+					FreezeTrajectory.drawClipPath();
+					//Only delete snapshots outside of cursor window
+					FreezeTrajectory.cleanSnapshots([ox, oy], [lx1, ly1], [lx2, ly2], mousePt);
+					//Copy-Pause points within cursor
+					FreezeTrajectory.createSnapshots([ox, oy], [lx1, ly1], [lx2, ly2]);
+				}
+			});
 	}
 
 

@@ -1,18 +1,20 @@
 function FreezeWholeScreen(selection) {
 	//Name of svg element to grab for targets
 	var targets = ".point"
-	
+
 	//Create cursor
 	var svg = selection;
 	var gCopies = svg.insert("g", ".chart").attr("class", "snapshots");
 	var gSelection = svg.insert("g", ":first-child").attr("class", "freeze selector");
 
-	//Set on click functionality if set
-	svg.on("click.freezeSelector", function(d,i) {
-		if (d3.event.shiftKey) {
-			FreezeWholeScreen.freeze();
-		}
-	});
+	//Set activator for freeze
+	d3.select("body")
+		.on("keydown.StreamScatterPlot", function() {
+			if (d3.event.shiftKey) {
+				FreezeWholeScreen.freeze()
+			}
+		});
+
 
 	//Update Selector
 	FreezeWholeScreen.freeze = function() {

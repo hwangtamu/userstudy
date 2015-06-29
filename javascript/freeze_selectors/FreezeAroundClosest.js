@@ -43,11 +43,13 @@ function FreezeAroundClosest(selection, manualFreeze) {
 		FreezeAroundClosest.redraw(d3.mouse(this));
 	});
 
-	//Set on click functionality if set
+	//Set activator for freeze
 	if (manualFrz) {
-		svg.on("click.freezeSelector", function(d,i) {
+		d3.select("body")
+		.on("keydown.StreamScatterPlot", function() {
 			if (d3.event.shiftKey) {
-				var mouse = d3.mouse(this);
+				var mouse = prevMousePt;
+				console.log(previousPoint);
 				var target = FreezeAroundClosest.findClosest(mouse);
 				var currPt = [target.attr("cx"), target.attr("cy")];
 				FreezeAroundClosest.cleanSnapshots(currPt);
