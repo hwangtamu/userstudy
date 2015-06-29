@@ -1,6 +1,6 @@
 var chart = StreamScatterPlot()
-    .x(function(d) { return +d.id; })
-    .y(function(d) { return +d.yVal; })
+    .x(function(d) { return +d.timeoffset; })
+    .y(function(d) { return +d.val; })
     .width(window.innerWidth)
     .height(window.innerHeight/2)
     .pointRadius(10)
@@ -24,26 +24,27 @@ var accumulateMenu = d3.select("#accumulatemenu select")
 var cursor, freeze, onclickMenu, accumulate;
 
 //Load JSON file
-d3.json("data/stream_r2.json", function(error, data) {
+//d3.json("data/stream_r2.json", function(error, data) {
+d3.json("data/stream3.json", function(error, data) {
 	if (error) {
 		console.log(error);
 	} else {
 		console.log(data);
 	}
 
-	//Adds time to id (simulate time stamp for streaming data)
+	//Adds current time to time offset to simulate a realtime dataset
 	var now = new Date();
 	data.forEach(function (d) {
-		d.id = (now - (20) * 1000) + d.id * 1000;
-		d.id = +d.id;
-		d.yVal = + d.yVal;
+		d.timeoffset = (now - (20) * 1000) + d.timeoffset * 1000;
+		d.timeoffset = +d.timeoffset;
+		d.val = + d.val;
 	});
 
 	//Get past data
 	var past = [];
 	now = new Date();
 	data.forEach(function(d, i) {
-		if (d.id < now) {
+		if (d.timeoffset < now) {
 			past.push(d);
 			data.splice(data.indexOf(d), 1);
 		}
@@ -62,8 +63,8 @@ d3.json("data/stream_r2.json", function(error, data) {
 	d3.timer(function() {
 		data.forEach(function(d, i) {
 			now = new Date();
-			if (d.id < now) {
-				chart.pushDatum([+data[i].id, +data[i].yVal]);
+			if (d.timeoffset < now) {
+				chart.pushDatum([+data[i].timeoffset, +data[i].val]);
 				data.splice(data.indexOf(d), 1);
 			}
 		});

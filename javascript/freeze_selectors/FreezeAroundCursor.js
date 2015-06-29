@@ -122,7 +122,6 @@ function FreezeAroundCursor(selection, manualFreeze) {
 
 				} else if (currDist > (frzRadius + r) && d3.select(".i" + d[0] +".snapshot").empty()) {
 					pt.attr("id", "untagged");
-					console.log("untagged");
 				}
 			});
 	};
