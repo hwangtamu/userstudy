@@ -352,9 +352,13 @@ function StreamScatterPlot() {
 		}
 	};
 
+	StreamScatterPlot.setSpeed = function(_) {
+		duration = _;
+	};
+
 	StreamScatterPlot.getData = function(_) {
 		return dataset;
-	}
+	};
 
 	return chart;
 }

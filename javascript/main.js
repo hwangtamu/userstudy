@@ -5,7 +5,7 @@ var chart = StreamScatterPlot()
     .height(window.innerHeight/2)
     .pointRadius(10)
     .allowZoom(false)
-    .allowPause(true);
+    .allowPause(false);
 
 //Set handlers for each menu
 var cursorMenu = d3.select("#cursormenu select")
@@ -14,18 +14,24 @@ var cursorMenu = d3.select("#cursormenu select")
 var freezeMenu = d3.select("#freezemenu select")
 	.on("change.freeze", change);
 
-var onManualMenu = d3.select("#onclickmenu select")
+var onManualMenu = d3.select("#onmanualmenu select")
 	.on("change.manual", change);
 
 var accumulateMenu = d3.select("#accumulatemenu select")
 	.on("change.accumulate", change);
 
+var speedMenu = d3.select("#speedmenu select")
+	.on("change.speed", change);
+
+var speedInput = d3.select("#speedinput")
+	.on("change.customSpeed", setSpeed);
+
 //Holds current menus value
-var cursor, freeze, onclickMenu, accumulate;
+var cursor, freeze, manual, accumulate, speed;
 
 //Load JSON file
 //d3.json("data/stream_r2.json", function(error, data) {
-d3.json("data/stream_s1.json", function(error, data) {
+d3.json("data/stream_s08.json", function(error, data) {
 	if (error) {
 		console.log(error);
 	} else {
@@ -57,6 +63,7 @@ d3.json("data/stream_s1.json", function(error, data) {
 
 	//Start streaming of chart
 	chart.start();
+	speedMenu.property("value", "normal");
 	change();
 
 	//Load data into chart over time
@@ -91,12 +98,18 @@ d3.timer(function() {
 	}
 });
 
+function setSpeed() {
+	speedMenu.property("value", "custom");
+	StreamScatterPlot.setSpeed(speedInput.property("value"));
+}
+
 function change() {
 	//Obtain options from menus
 	cursor = cursorMenu.property("value");
 	freeze = freezeMenu.property("value");
 	manual = onManualMenu.property("value");
 	accumulate = accumulateMenu.property("value");
+	speed = speedMenu.property("value");
 
 	//Grab Svg
 	var svg = d3.select("svg").data(StreamScatterPlot.getData());
@@ -110,6 +123,26 @@ function change() {
 	svg.on("mousemove.freezeSelector", null);
 	svg.on("mousemove.cursorSelector", null);
 	svg.on("mousemove.cursorSelector", null);
+
+	//Set speed
+	if (speed == "super slow") {
+		StreamScatterPlot.setSpeed(2000);
+		speedInput.property("value", 200);
+	} else if (speed == "slow") {
+		StreamScatterPlot.setSpeed(1500);
+		speedInput.property("value", 1500);
+	} else if (speed == "normal") {
+		StreamScatterPlot.setSpeed(1000);
+		speedInput.property("value", 1000);
+	} else if (speed == "fast") {
+		StreamScatterPlot.setSpeed(500);
+		speedInput.property("value", 500);
+	} else if (speed == "super fast") {
+		StreamScatterPlot.setSpeed(100);
+		speedInput.property("value", 100);
+	} else if (speed == "custom") {
+		StreamScatterPlot.setSpeed(speedInput.property("value"));
+	}
 
 	//Convert manual to bool
 	if (manual == "true") {

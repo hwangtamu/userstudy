@@ -8,7 +8,7 @@
 
 		<div id="StreamScatterPlot"></div><br>
 		Note: Don't mix click:true with accumulations:true<br>
-		<table id="optionsPanel" style="width:75%">
+		<table id="optionsPanel" style="width:50%">
 			<tr>
 				<td> <p id="cursormenu"><b>Cursor Type</b><br>
 					<select>
@@ -25,7 +25,7 @@
 						<option>FreezeTrajectory</option>
 					</select>
 				</td>
-				<td> <p id="onclickmenu"><b>Freeze On Shift</b><br>
+				<td> <p id="onmanualmenu"><b>Freeze On Shift</b><br>
 					<select>
 						<option>false</option>
 						<option>true</option>
@@ -36,6 +36,17 @@
 						<option>false</option>
 						<option>true</option>
 					</select>
+				</td>
+				<td> <p id="speedmenu"><b>Speed</b><br>
+					<select>
+						<option>super slow</option>
+						<option>slow</option>
+						<option>normal</option>
+						<option>fast</option>
+						<option>super fast</option>
+						<option>custom</option>
+					</select>
+					<input type="text" id="speedinput" placeholder="0">
 				</td>
 			</tr>
 		</table>
