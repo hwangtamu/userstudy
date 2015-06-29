@@ -56,6 +56,8 @@ function FreezeAroundClosest(selection, manualFreeze) {
 		d3.select("body")
 		.on("keydown.freezeSelector", function() {
 			if (d3.event.shiftKey) {
+				d3.selectAll(targets).attr("id", "untagged");
+				d3.selectAll(".snapshot").remove();
 				var mouse = prevMousePt;
 				var target = FreezeAroundClosest.findClosest(mouse);
 				var currPt = [target.attr("cx"), target.attr("cy")];

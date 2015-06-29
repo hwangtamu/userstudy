@@ -68,6 +68,8 @@ function FreezeAroundCursor(selection, manualFreeze) {
 		d3.select("body")
 		.on("keydown.freezeSelector", function() {
 			if (d3.event.shiftKey) {
+				d3.selectAll(targets).attr("id", "untagged");
+				d3.selectAll(".snapshot").remove();
 				var mouse = prevMousePt;
 				manualFreezeRegion
 						.attr("cx",mouse[0])

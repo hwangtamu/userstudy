@@ -26,12 +26,15 @@ var speedMenu = d3.select("#speedmenu select")
 var speedInput = d3.select("#speedinput")
 	.on("change.customSpeed", setSpeed);
 
+var tickInput = d3.select("#tickinput")
+	.on("change.customTick", setTick);
+
 //Holds the value of it's corresponding menu
 var cursor, freeze, manual, accumulate, speed;
 
 //Load JSON file
 //d3.json("data/stream_r2.json", function(error, data) {
-d3.json("data/stream_r05.json", function(error, data) {
+d3.json("data/stream_s05.json", function(error, data) {
 	if (error) {
 		console.log(error);
 	} else {
@@ -103,6 +106,10 @@ function setSpeed() {
 	StreamScatterPlot.setSpeed(speedInput.property("value"));
 }
 
+function setTick() {
+	StreamScatterPlot.setClockDrift(tickInput.property("value"));
+}
+
 function change() {
 	//Obtain options from menus
 	cursor = cursorMenu.property("value");
@@ -144,7 +151,7 @@ function change() {
 		StreamScatterPlot.setSpeed(1);
 		speedInput.property("value", 1);
 	} else if (speed == "custom") {
-		StreamScatterPlot.setSpeed(speedInput.property("value"));
+		StreamScatterPlot.setSpeed(+speedInput.property("value"));
 	}
 
 	//Convert manual to bool

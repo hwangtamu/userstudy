@@ -51,12 +51,13 @@ function FreezeTrajectory(selection, manualFreeze) {
 		FreezeTrajectory.redraw(d3.mouse(this));
 	});
 
-
 	//Set activator for freeze
 	if (manualFrz) {
 		d3.select("body")
 			.on("keydown.freezeSelector", function() {
 				if (d3.event.shiftKey) {
+					d3.selectAll(targets).attr("id", "untagged");
+					d3.selectAll(".snapshot").remove();
 					mousePt = d3.mouse(this);
 					manualFreezeRegion
 						.attr("points", ox + "," + oy + " " +

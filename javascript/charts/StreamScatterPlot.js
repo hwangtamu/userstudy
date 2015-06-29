@@ -21,6 +21,7 @@ function StreamScatterPlot() {
 		duration = 1000, //Determines the unit of time used on axis
 		ticks = 20; //Determines the number of ticks on axis based on time (n - 4 roughly shown)
 
+	var clockdrift = 0;
 	//G selections (g*), dataset to generate points, chart flow 'pause'
 	var svg,
 		defs,
@@ -274,7 +275,7 @@ function StreamScatterPlot() {
 	chart.step = function() {
 
 		//Slide window of time for x axis
-		now = new Date();
+		now = +new Date();
 		xScale.domain([now - (ticks - 2) * duration, now - duration]);
 
 		//Update X Axis
@@ -352,8 +353,17 @@ function StreamScatterPlot() {
 		}
 	};
 
+
+	StreamScatterPlot.setTicks = function(_) {
+		ticks = _;
+	};
+
 	StreamScatterPlot.setSpeed = function(_) {
 		duration = _;
+	};
+
+	StreamScatterPlot.setClockDrift = function(_) {
+		clockdrift = _;
 	};
 
 	StreamScatterPlot.getData = function(_) {
