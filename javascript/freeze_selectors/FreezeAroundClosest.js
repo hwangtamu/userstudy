@@ -36,6 +36,14 @@ function FreezeAroundClosest(selection, manualFreeze) {
 			.attr("cx", 0)
 			.attr("cy", 0)
 			.attr("r", 0);
+		var clip = svg.select("defs")
+			.append("clipPath")
+				.attr("id", "freezeClip")
+			.append("circle")
+				.attr("class","manual freezeRegion")
+				.attr("cx", 0)
+				.attr("cy", 0)
+				.attr("r", frzRadius);
 	}
 
 	//Set on mousemove functionality
@@ -46,7 +54,7 @@ function FreezeAroundClosest(selection, manualFreeze) {
 	//Set activator for freeze
 	if (manualFrz) {
 		d3.select("body")
-		.on("keydown.StreamScatterPlot", function() {
+		.on("keydown.freezeSelector", function() {
 			if (d3.event.shiftKey) {
 				var mouse = prevMousePt;
 				var target = FreezeAroundClosest.findClosest(mouse);
@@ -58,6 +66,9 @@ function FreezeAroundClosest(selection, manualFreeze) {
 						.attr("cx", currPt[0])
 						.attr("cy", currPt[1])
 						.attr("r", frzRadius);
+				clip
+					.attr("cx",currPt[0])
+					.attr("cy",currPt[1]);
 			}
 		});
 	}

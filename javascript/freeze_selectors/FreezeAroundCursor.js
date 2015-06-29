@@ -32,6 +32,15 @@ function FreezeAroundCursor(selection, manualFreeze) {
 			.attr("cx", 0)
 			.attr("cy", 0)
 			.attr("r", 0);
+
+		var clip = svg.select("defs")
+			.append("clipPath")
+				.attr("id", "freezeClip")
+			.append("circle")
+				.attr("class","manual freezeRegion")
+				.attr("cx", 0)
+				.attr("cy", 0)
+				.attr("r", frzRadius);
 	}
 
 	//Set on mousemove functionality
@@ -57,13 +66,16 @@ function FreezeAroundCursor(selection, manualFreeze) {
 	//Set activator for freeze
 	if (manualFrz) {
 		d3.select("body")
-		.on("keydown.StreamScatterPlot", function() {
+		.on("keydown.freezeSelector", function() {
 			if (d3.event.shiftKey) {
 				var mouse = prevMousePt;
 				manualFreezeRegion
 						.attr("cx",mouse[0])
 						.attr("cy",mouse[1])
 						.attr("r",frzRadius);
+				clip
+					.attr("cx",mouse[0])
+					.attr("cy",mouse[1]);
 				FreezeAroundCursor.cleanSnapshots(mouse);
 				FreezeAroundCursor.createSnapshots(mouse);
 			}

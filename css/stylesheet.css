@@ -37,7 +37,7 @@ body {
 }
 
 .bubble {
-	clip-path: url(#trajectoryClip);
+	clip-path: url(#freezeClip);
 	fill: lightgrey;
 	fill-opacity: 0.5;
 }

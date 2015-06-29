@@ -9,7 +9,7 @@ function FreezeWholeScreen(selection) {
 
 	//Set activator for freeze
 	d3.select("body")
-		.on("keydown.StreamScatterPlot", function() {
+		.on("keydown.freezeSelector", function() {
 			if (d3.event.shiftKey) {
 				FreezeWholeScreen.freeze()
 			}

@@ -14,11 +14,11 @@ var cursorMenu = d3.select("#cursormenu select")
 var freezeMenu = d3.select("#freezemenu select")
 	.on("change.freeze", change);
 
-var onclickMenu = d3.select("#onclickmenu select")
-	.on("change.click", change);
+var onManualMenu = d3.select("#onclickmenu select")
+	.on("change.manual", change);
 
 var accumulateMenu = d3.select("#accumulatemenu select")
-	.on("change.click", change);
+	.on("change.accumulate", change);
 
 //Holds current menus value
 var cursor, freeze, onclickMenu, accumulate;
@@ -95,7 +95,7 @@ function change() {
 	//Obtain options from menus
 	cursor = cursorMenu.property("value");
 	freeze = freezeMenu.property("value");
-	click = onclickMenu.property("value");
+	manual = onManualMenu.property("value");
 	accumulate = accumulateMenu.property("value");
 
 	//Grab Svg
@@ -104,18 +104,18 @@ function change() {
 	//Remove any old cursor / freeze 
 	d3.selectAll(".selector").remove();
 	d3.selectAll(".snapshots").remove();
-	d3.select("#trajectoryClip").remove();
+	d3.select("#freezeClip").remove();
 	d3.selectAll(".point").attr("id", "untagged");
-	svg.on("click.freezeSelector", null);
+	d3.select("body").on("keydown.freezeSelector", null);
 	svg.on("mousemove.freezeSelector", null);
 	svg.on("mousemove.cursorSelector", null);
 	svg.on("mousemove.cursorSelector", null);
 
-	//Convert click to bool
-	if (click == "true") {
-		click = true;
+	//Convert manual to bool
+	if (manual == "true") {
+		manual = true;
 	} else {
-		click = false;
+		manual = false;
 	}
 
 	//Convert accumulate to bool
@@ -129,13 +129,13 @@ function change() {
 	if (freeze == "FreezeWholeScreen") {
 		FreezeWholeScreen(svg);
 	} else if (freeze == "FreezeAroundCursor"){
-		FreezeAroundCursor(svg, click);
+		FreezeAroundCursor(svg, manual);
 		FreezeAroundCursor.accumulate(accumulate);
 	} else if (freeze == "FreezeAroundClosest") {
-		FreezeAroundClosest(svg, click);
+		FreezeAroundClosest(svg, manual);
 		FreezeAroundClosest.accumulate(accumulate);
 	} else if (freeze == "FreezeTrajectory") {
-		FreezeTrajectory(svg, click);
+		FreezeTrajectory(svg, manual);
 		FreezeTrajectory.accumulate(accumulate);
 	}
 	

@@ -36,7 +36,7 @@ function FreezeTrajectory(selection, manualFreeze) {
 	//Create clipping for cursor selector
 	var clip = svg.select("defs")
 		.append("clipPath")
-			.attr("id", "trajectoryClip")
+			.attr("id", "freezeClip")
 		.append("path");
 
 	//Create manual frozen region element if set
@@ -55,7 +55,7 @@ function FreezeTrajectory(selection, manualFreeze) {
 	//Set activator for freeze
 	if (manualFrz) {
 		d3.select("body")
-			.on("keydown.StreamScatterPlot", function() {
+			.on("keydown.freezeSelector", function() {
 				if (d3.event.shiftKey) {
 					mousePt = d3.mouse(this);
 					manualFreezeRegion
