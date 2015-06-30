@@ -276,7 +276,7 @@ function StreamScatterPlot() {
 
 		//Slide window of time for x axis
 		now = +new Date();
-		xScale.domain([now - (ticks - 2) * duration, now - duration]);
+		xScale.domain([now - (ticks) * duration, now - duration]);
 
 		//Update X Axis
 		d3.select(".x.axis")

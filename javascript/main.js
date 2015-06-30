@@ -34,7 +34,7 @@ var cursor, freeze, manual, accumulate, speed;
 
 //Load JSON file
 //d3.json("data/stream_r2.json", function(error, data) {
-d3.json("data/stream_s05.json", function(error, data) {
+d3.json("data/stream_r1.json", function(error, data) {
 	if (error) {
 		console.log(error);
 	} else {
@@ -107,7 +107,7 @@ function setSpeed() {
 }
 
 function setTick() {
-	StreamScatterPlot.setClockDrift(tickInput.property("value"));
+	StreamScatterPlot.setTicks(tickInput.property("value"));
 }
 
 function change() {

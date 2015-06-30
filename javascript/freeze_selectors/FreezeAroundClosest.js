@@ -18,14 +18,14 @@ function FreezeAroundClosest(selection, manualFreeze) {
 	var svg = selection;
 	var width = +svg.style("width").slice(0, -2);
 	var height = +svg.style("height").slice(0, -2);
-	
+
 	//Create cursor
 	var gCopies = svg.insert("g", ".chart").attr("class", "snapshots");
 	var gSelection = svg.insert("g", ":first-child").attr("class", "freeze selector");
 
 	//Freeze radius
 	var ratio = Math.pow((1 + Math.sqrt(5) / 2), 4);
-	var frzRadius = Math.sqrt((window.innerWidth * window.innerHeight/2) / (ratio * Math.PI));
+	var frzRadius = Math.sqrt((width * height) / (ratio * Math.PI));
 
 	//Create cursor morph
 	var freezeRegion = gSelection.append("circle")
