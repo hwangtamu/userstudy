@@ -5,20 +5,27 @@ function FreezeAroundCursor(selection, manualFreeze) {
 	//Name of svg element to grab for targets
 	var targets = ".point";
 
-	//Freeze/Cursor radius
-	var ratio = Math.pow((1 + Math.sqrt(5) / 2), 4);
-	var frzRadius = Math.sqrt((window.innerWidth * window.innerHeight/2) / (ratio * Math.PI));
-
 	//NOTE: Don't combine manual with accumulations... it doesn't work.
 	//Controls accumulation behavior near freeze region
 	var accumulations = false;
 	//If manual is true then freeze will only happen on shift
 	var manualFrz = (typeof manualFreeze === 'undefined') ? false : manualFreeze;
 
-	//Create cursor
+	//Grab svg width/height
 	var svg = selection;
+	var width = +svg.style("width").slice(0, -2);
+	var height = +svg.style("height").slice(0, -2);
+
+	//Create cursor
+	var width = +svg.style("width").slice(0, -2);
+	var height = +svg.style("height").slice(0, -2);
 	var gCopies = svg.insert("g", ".chart").attr("class", "snapshots");
 	var gSelection = svg.insert("g", ":first-child").attr("class", "freeze selector");
+
+	//Freeze radius
+	var ratio = Math.pow((1 + Math.sqrt(5) / 2), 4);
+	var frzRadius = Math.sqrt((width * height) / (ratio * Math.PI));
+
 	var freezeRegion = gSelection.append("circle")
 		.attr("class","freezeRegion")
 		.attr("cx", 0)

@@ -140,7 +140,9 @@ function FreezeTrajectory(selection, manualFreeze) {
 
 		//Scale points to extend 'flashlight'
 		var dist = distance([x1, y1], [x2, y2]);
-		var length = Math.sqrt(Math.pow(+window.innerWidth, 2) + Math.pow(+window.innerHeight/2, 2));
+		var width = +svg.style("width").slice(0, -2);
+		var height = +svg.style("height").slice(0, -2);
+		var length = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));
 		x2 = x2 + (x2 - x1) / dist * length;
 		y2 = y2 + (y2 - y1) / dist * length;
 
