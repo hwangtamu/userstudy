@@ -2,7 +2,7 @@ function TrailDrawer(selection) {
 	var originalName = "#tagged",
 		snapshotName = ".snapshot";
 
-	var stroke_width = 20;
+	var stroke_width = 3;
 
 	var gTrails = selection.insert("g", ".data").attr("class", "trails");
 

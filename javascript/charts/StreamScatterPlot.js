@@ -166,10 +166,10 @@ function StreamScatterPlot() {
 							.style("fill-opacity", 1.0);
 					if (trailsAllowed) {
 						targetTrail.transition().duration(500).ease("bounce")
-								.attr("stroke-width", 20 + 10)
+								.attr("stroke-width", 9)
 								.style("stroke-opacity", 0.0)
 							.transition().duration(500).ease("bounce")
-								.attr("stroke-width", 20)
+								.attr("stroke-width", 3)
 								.style("stroke-opacity", 1.0);
 					}
 				}
