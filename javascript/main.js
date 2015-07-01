@@ -3,7 +3,7 @@ var chart = StreamScatterPlot()
     .y(function(d) { return +d.val; })
     .width(window.innerWidth)
     .height(window.innerHeight/2)
-    .pointRadius(10)
+    .pointRadius(6)
     .allowZoom(false)
     .allowPause(false);
 
@@ -43,8 +43,7 @@ setClockDrift();
 
 
 //Load JSON file
-//d3.json("data/stream_r2.json", function(error, data) {
-d3.json("data/stream_r1.json", function(error, data) {
+d3.json("data/stream_s3.json", function(error, data) {
 	if (error) {
 		console.log(error);
 	} else {

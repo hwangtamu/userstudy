@@ -1,4 +1,3 @@
-
 `StreamScatterPlot.js` creates a scatter plot that shows data over time:
 
 * Using the mouse wheel will cause the time to increase/decrease

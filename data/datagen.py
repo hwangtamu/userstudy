@@ -6,7 +6,7 @@ import sys, getopt, json, random, math
 #Define function to generate data by
 def function(*args):
 	#return math.fabs(math.sin(args[0])) * 100
-	return random.randrange(0, 100)
+	return random.randrange(0, 50)
 
 #Create json data file
 def main(argv):
@@ -14,17 +14,17 @@ def main(argv):
 	repeat = 0
 	timeoffset = 1
 	try:
-		opts, args = getopt.getopt(argv,"ho:r:t",["ofile=","repeat_count=","timeoffset="])
+		opts, args = getopt.getopt(argv,"ho:r:t:",["outfile=","repeat=","timeoffset="])
 	except getopt.GetoptError:
-		print 'datagen.py -o <outputfile> -r <repeat_count> -t <timeoffset>'
+		print 'datagen.py -o <outputfile> -r <repeat> -t <timeoffset>'
 		sys.exit(2)
 	for opt, arg in opts:
 		if opt == '-h':
-			print 'datagen.py -o <outputfile> -r <repeat_count> -t <timeoffset>'
+			print 'datagen.py -o <outputfile> -r <repeat> -t <timeoffset>'
 			sys.exit()
-		elif opt in ("-o", "--ofile"):
+		elif opt in ("-o", "--outfile"):
 			outputfile = arg
-		elif opt in ("-r", "--repeat_count"):
+		elif opt in ("-r", "--repeat"):
 			repeat = int(arg)
 		elif opt in ("-t", "--timeoffset"):
 			timeoffset = float(arg)
