@@ -15,7 +15,7 @@ function FreezeTrajectory(selection, manualFreeze) {
 	//Controls the 'tail' of cursor
 	var i = 0;
 	var j = 0;
-	var threshold = 8;
+	var threshold = 6;
 
 	//Angle of 'flashlight'
 	var angle = 50;
