@@ -7,6 +7,9 @@ var chart = StreamScatterPlot()
     .allowZoom(false)
     .allowPause(false);
 
+//Holds the value of it's corresponding menu
+var cursor, freeze, manual, accumulate, interval, clockdrift;
+
 //Set handlers for each menu
 var cursorMenu = d3.select("#cursormenu select")
 	.on("change.cursor", change);
@@ -20,6 +23,9 @@ var onManualMenu = d3.select("#onmanualmenu select")
 var accumulateMenu = d3.select("#accumulatemenu select")
 	.on("change.accumulate", change);
 
+var trailMenu = d3.select("#trailmenu select")
+	.on("change.trailMenu", change);
+
 var intervalMenu = d3.select("#intervalmenu select")
 	.on("change.interval", change);
 
@@ -29,11 +35,12 @@ var intervalInput = d3.select("#intervalinput")
 var numIntervalInput = d3.select("#numintervalsinput")
 	.on("change.numIntervals", setNumIntervals);
 
-var trailMenu = d3.select("#trailmenu select")
-	.on("change.trailMenu", change);
+var clockdriftInput = d3.select("#clockdriftinput")
+	.on("change.numIntervals", setClockDrift);
 
-//Holds the value of it's corresponding menu
-var cursor, freeze, manual, accumulate, interval;
+clockdriftInput.property("value", 0);
+setClockDrift();
+
 
 //Load JSON file
 //d3.json("data/stream_r2.json", function(error, data) {
@@ -49,41 +56,42 @@ d3.json("data/stream_r1.json", function(error, data) {
 	data.forEach(function (d) {
 		d.timeoffset = (now - (20) * 1000) + d.timeoffset * 1000;
 		d.timeoffset = +d.timeoffset;
-		d.val = + d.val;
+		d.val = +d.val;
 	});
 
 	//Get past data
-	var past = [];
-	now = new Date();
-	data.forEach(function(d, i) {
-		if (d.timeoffset < now) {
-			past.push(d);
-			data.splice(data.indexOf(d), 1);
-		}
-	});
+	// var past = [];
+	// now = new Date();
+	// data.forEach(function(d, i) {
+	// 	if (d.timeoffset < now) {
+	// 		past.push(d);
+	// 		data.splice(data.indexOf(d), 1);
+	// 	}
+	// });
 
-	//Create chart with past data bound to it
+	//Now loading in whole datastream! StreamScatterPlot has been fixed to handle large dataset's itself
 	var stream = d3.select("#StreamScatterPlot")
-		.datum(past)
+		.datum(data)
 		.call(chart);
 
 	//Start streaming of chart
 	chart.start();
 	intervalMenu.property("value", "1 second");
-	numIntervalInput.property("value", "60");
+	numIntervalInput.property("value", "20");
 	trailMenu.property("value", "false");
 	change();
 
 	//Load data into chart over time
-	d3.timer(function() {
-		data.forEach(function(d, i) {
-			now = new Date();
-			if (d.timeoffset < now) {
-				chart.pushDatum([+data[i].timeoffset, +data[i].val]);
-				data.splice(data.indexOf(d), 1);
-			}
-		});
-	});
+	// d3.timer(function() {
+	// 	data.forEach(function(d, i) {
+	// 		now = new Date();
+	// 		d[0] -= clockdrift;
+	// 		if (d.timeoffset < now) {
+	// 			chart.pushDatum([+data[i].timeoffset, +data[i].val]);
+	// 			data.splice(data.indexOf(d), 1);
+	// 		}
+	// 	});
+	// });
 });
 
 //Update current selectors
@@ -113,6 +121,10 @@ function setInterval() {
 
 function setNumIntervals() {
 	StreamScatterPlot.setNumIntervals(numIntervalInput.property("value"));
+}
+
+function setClockDrift() {
+	StreamScatterPlot.setClockDrift(clockdriftInput.property("value"));
 }
 
 function change() {

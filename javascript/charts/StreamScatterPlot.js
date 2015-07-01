@@ -18,20 +18,22 @@ function StreamScatterPlot() {
 		targetName = ".target",
 		zoomAllowed = true,
 		pauseAllowed = true,
+		paused = false,
 		trailsAllowed = true,
 		interval = 1000, //Determines the unit of time used on axis
 		numIntervals = 20; //Determines the number of numIntervals on axis based on time (n - 4 roughly shown)
 
+	//Controls some wacky experimental clockdrift
 	var clockdrift = 0;
-	//G selections (g*), dataset to generate points, chart flow 'pause'
+
+	//Selectors, dataset, and points to grab
 	var svg,
 		defs,
 		gChart,
 		gData,
 		gCursor,
 		dataset,
-		points,
-		paused = false;
+		points;
 
 	//Initial creation of streaming scatter plot
 	function chart(selection) {
@@ -106,16 +108,10 @@ function StreamScatterPlot() {
 					.style("text-anchor", "end")
 					.text("value");
 
-			//Create the initial set of points
+			//Bind the initial set of points
 			points = gData.selectAll(".point")
 				.data(data)
 				.datum(function(d) { return {id: d3.select(this).attr("id")}; });
-
-			points.enter().append("circle")
-				.attr("class", "point")
-				.attr("r", pointRadius)
-				.attr("cx", function(d) { return xScale(d[0]); })
-				.attr("cy", function(d) { return yScale(d[1]); });
 
 			//Bind pause-start option
 			d3.select("body")
@@ -281,8 +277,15 @@ function StreamScatterPlot() {
 		d3.select(".x.axis")
 			.call(xAxis);
 
-		//Bind data to points
-		points = gData.selectAll(".point").data(dataset, function(d) { return d; });
+		//Simulates clock drifting
+		//NOTE: Should never really be used expect when having to do weird things for experimental reasons
+		dataset.forEach(function(d, i) {
+			d[0] -= clockdrift;
+		});
+
+		//Bind only data that would show up on screen to points
+		var subset = dataset.filter(function(d, i) { return d[0] < now; } );
+		points = gData.selectAll(".point").data(subset, function(d, i) { return d; });
 
 		//Update
 		points
@@ -294,11 +297,13 @@ function StreamScatterPlot() {
 			});
 
 		//Enter
-		points.enter().append("circle")
-			.attr("class", "point")
-			.attr("r", pointRadius)
-			.attr("cx", function(d) { return xScale(d[0]); })
-			.attr("cy", function(d) { return yScale(d[1]); });
+		points
+			.enter()
+			.append("circle")
+				.attr("class", "point")
+				.attr("r", pointRadius)
+				.attr("cx", function(d) { return xScale(d[0]); })
+				.attr("cy", function(d) { return yScale(d[1]); });
 
 		//Exit
 		points.exit().each(function(d, i) {

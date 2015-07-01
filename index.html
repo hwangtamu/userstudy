@@ -7,8 +7,9 @@
 	<body>
 
 		<div id="StreamScatterPlot"></div><br>
-		Note: Don't mix click:true with accumulations:true<br>
-		<table id="optionsPanel" style="width:75%">
+		Note: Don't mix click:true with accumulations:true.<br>
+		Note: Clockdrift adds miliseconds to every point each d3.timer tick.<br>
+		<table id="optionsPanel" style="width:50%">
 			<tr>
 				<td> <p id="cursormenu"><b>Cursor Type</b><br>
 					<select>
@@ -37,6 +38,8 @@
 						<option>true</option>
 					</select>
 				</td>
+			</tr>
+			<tr>
 				<td> <p id="trailmenu"><b>Trails</b><br>
 					<select>
 						<option>false</option>
@@ -52,11 +55,14 @@
 						<option>250 millisecond</option>
 						<option>1 millisecond</option>
 						<option>custom</option>
-					</select>
+					</select><br>
 					<input type="text" id="intervalinput" placeholder="0">
 				</td>
 				<td> <p><b># of Intervals</b><br>
 					<input type="text" id="numintervalsinput" placeholder="0">
+				</td>
+				<td> <p><b>Clockdrift</b><br>
+					<input type="text" id="clockdriftinput" placeholder="0">
 				</td>
 			</tr>
 		</table>
