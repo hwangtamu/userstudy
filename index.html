@@ -8,7 +8,7 @@
 
 		<div id="StreamScatterPlot"></div><br>
 		Note: Don't mix click:true with accumulations:true<br>
-		<table id="optionsPanel" style="width:50%">
+		<table id="optionsPanel" style="width:75%">
 			<tr>
 				<td> <p id="cursormenu"><b>Cursor Type</b><br>
 					<select>
@@ -37,20 +37,20 @@
 						<option>true</option>
 					</select>
 				</td>
-				<td> <p id="speedmenu"><b>Speed</b><br>
+				<td> <p id="intervalmenu"><b>Interval of Time</b><br>
 					<select>
-						<option>super slow</option>
-						<option>slow</option>
-						<option>normal</option>
-						<option>fast</option>
-						<option>super fast</option>
-						<option>blazing fast</option>
+						<option>10 second</option>
+						<option>2 second</option>
+						<option>1 second</option>
+						<option>500 millisecond</option>
+						<option>250 millisecond</option>
+						<option>1 millisecond</option>
 						<option>custom</option>
 					</select>
-					<input type="text" id="speedinput" placeholder="0">
+					<input type="text" id="intervalinput" placeholder="0">
 				</td>
-				<td> <p id="tickmenu"><b>Ticks</b><br>
-					<input type="text" id="tickinput" placeholder="0">
+				<td> <p><b># of Intervals</b><br>
+					<input type="text" id="numintervalsinput" placeholder="0">
 				</td>
 			</tr>
 		</table>

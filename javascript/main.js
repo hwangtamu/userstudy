@@ -20,17 +20,17 @@ var onManualMenu = d3.select("#onmanualmenu select")
 var accumulateMenu = d3.select("#accumulatemenu select")
 	.on("change.accumulate", change);
 
-var speedMenu = d3.select("#speedmenu select")
-	.on("change.speed", change);
+var intervalMenu = d3.select("#intervalmenu select")
+	.on("change.interval", change);
 
-var speedInput = d3.select("#speedinput")
-	.on("change.customSpeed", setSpeed);
+var intervalInput = d3.select("#intervalinput")
+	.on("change.customInterval", setInterval);
 
-var tickInput = d3.select("#tickinput")
-	.on("change.customTick", setTick);
+var numIntervalInput = d3.select("#numintervalsinput")
+	.on("change.numIntervals", setNumIntervals);
 
 //Holds the value of it's corresponding menu
-var cursor, freeze, manual, accumulate, speed;
+var cursor, freeze, manual, accumulate, interval;
 
 //Load JSON file
 //d3.json("data/stream_r2.json", function(error, data) {
@@ -66,7 +66,8 @@ d3.json("data/stream_r1.json", function(error, data) {
 
 	//Start streaming of chart
 	chart.start();
-	speedMenu.property("value", "normal");
+	intervalMenu.property("value", "1 second");
+	numIntervalInput.property("value", "20");
 	change();
 
 	//Load data into chart over time
@@ -101,13 +102,13 @@ d3.timer(function() {
 	}
 });
 
-function setSpeed() {
-	speedMenu.property("value", "custom");
-	StreamScatterPlot.setSpeed(speedInput.property("value"));
+function setInterval() {
+	intervalMenu.property("value", "custom");
+	StreamScatterPlot.setInterval(intervalInput.property("value"));
 }
 
-function setTick() {
-	StreamScatterPlot.setTicks(tickInput.property("value"));
+function setNumIntervals() {
+	StreamScatterPlot.setNumIntervals(numIntervalInput.property("value"));
 }
 
 function change() {
@@ -116,7 +117,7 @@ function change() {
 	freeze = freezeMenu.property("value");
 	manual = onManualMenu.property("value");
 	accumulate = accumulateMenu.property("value");
-	speed = speedMenu.property("value");
+	interval = intervalMenu.property("value");
 
 	//Grab Svg
 	var svg = d3.select("svg").data(StreamScatterPlot.getData());
@@ -131,27 +132,27 @@ function change() {
 	svg.on("mousemove.cursorSelector", null);
 	svg.on("mousemove.cursorSelector", null);
 
-	//Set speed
-	if (speed == "super slow") {
-		StreamScatterPlot.setSpeed(2000);
-		speedInput.property("value", 200);
-	} else if (speed == "slow") {
-		StreamScatterPlot.setSpeed(1500);
-		speedInput.property("value", 1500);
-	} else if (speed == "normal") {
-		StreamScatterPlot.setSpeed(1000);
-		speedInput.property("value", 1000);
-	} else if (speed == "fast") {
-		StreamScatterPlot.setSpeed(500);
-		speedInput.property("value", 500);
-	} else if (speed == "super fast") {
-		StreamScatterPlot.setSpeed(100);
-		speedInput.property("value", 100);
-	} else if (speed == "blazing fast") {
-		StreamScatterPlot.setSpeed(1);
-		speedInput.property("value", 1);
-	} else if (speed == "custom") {
-		StreamScatterPlot.setSpeed(+speedInput.property("value"));
+	//Set interval
+	if (interval == "10 second") {
+		StreamScatterPlot.setInterval(10000);
+		intervalInput.property("value", 10000);
+	} else if (interval == "2 second") {
+		StreamScatterPlot.setInterval(2000);
+		intervalInput.property("value", 2000);
+	} else if (interval == "1 second") {
+		StreamScatterPlot.setInterval(1000);
+		intervalInput.property("value", 1000);
+	} else if (interval == "500 millisecond") {
+		StreamScatterPlot.setInterval(500);
+		intervalInput.property("value", 500);
+	} else if (interval == "250 millisecond") {
+		StreamScatterPlot.setInterval(250);
+		intervalInput.property("value", 250);
+	} else if (interval == "1 millisecond") {
+		StreamScatterPlot.setInterval(1);
+		intervalInput.property("value", 1);
+	} else if (interval == "custom") {
+		StreamScatterPlot.setInterval(+intervalInput.property("value"));
 	}
 
 	//Convert manual to bool

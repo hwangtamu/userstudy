@@ -18,8 +18,8 @@ function StreamScatterPlot() {
 		targetName = ".target",
 		zoomAllowed = true,
 		pauseAllowed = true,
-		duration = 1000, //Determines the unit of time used on axis
-		ticks = 20; //Determines the number of ticks on axis based on time (n - 4 roughly shown)
+		interval = 1000, //Determines the unit of time used on axis
+		numIntervals = 20; //Determines the number of numIntervals on axis based on time (n - 4 roughly shown)
 
 	var clockdrift = 0;
 	//G selections (g*), dataset to generate points, chart flow 'pause'
@@ -42,9 +42,9 @@ function StreamScatterPlot() {
 
 			dataset = data;
 			//Update the x-scale
-			var now = new Date(Date.now() - duration);
+			var now = new Date(Date.now() - interval);
 			xScale
-				.domain([now - (ticks) * duration, now - duration])
+				.domain([now - (numIntervals) * interval, now - interval])
 				.range([0, width - margin.left - margin.right]);
 
 			//Update the y-scale
@@ -156,10 +156,10 @@ function StreamScatterPlot() {
 			svg.on("click.StreamScatterPlot."  + selection.attr("id"), function(d, i) {
 				var t = d3.select(targetName);
 				if (t != null && !d3.event.shiftKey) {
-					t.transition().duration(500).ease("bounce")
+					t.transition().interval(500).ease("bounce")
 							.attr("r", pointRadius * 2)
 							.style("fill-opacity", 0.0)
-						.transition().duration(500).ease("bounce")
+						.transition().interval(500).ease("bounce")
 							.attr("r", pointRadius)
 							.style("fill-opacity", 1.0);
 				}
@@ -223,32 +223,32 @@ function StreamScatterPlot() {
 		return chart;
 	};
 
-	//Set duration
+	//Set interval
 	//Selection from "seconds", "minutes", "hours", "days"
-	chart.duration = function(_) {
-		if (!arguments.length) return duration;
+	chart.interval = function(_) {
+		if (!arguments.length) return interval;
 		if (_ === "seconds") {
-			duration = 1000;
+			interval = 1000;
 		}
 		else if (_ === "minutes") {
-			duration = 60000;
+			interval = 60000;
 		}
 		else if (_ === "hours") {
-			duration = 3600000;
+			interval = 3600000;
 		}
 		else if (_ === "days") {
-			duration = 86400000;
+			interval = 86400000;
 		}
 		else {
-			console.log("not an optional duration of time");
+			console.log("not an optional interval of time");
 		}
 		return chart;
 	};
 
-	//Set #ticks
-	chart.ticks = function(_) {
-		if (!arguments.length) return ticks;
-		ticks = _;
+	//Set #numIntervals
+	chart.numIntervals = function(_) {
+		if (!arguments.length) return numIntervals;
+		numIntervals = _;
 		return chart;
 	};
 
@@ -276,7 +276,7 @@ function StreamScatterPlot() {
 
 		//Slide window of time for x axis
 		now = +new Date();
-		xScale.domain([now - (ticks) * duration, now - duration]);
+		xScale.domain([now - (numIntervals) * interval, now - interval]);
 
 		//Update X Axis
 		d3.select(".x.axis")
@@ -345,21 +345,21 @@ function StreamScatterPlot() {
 	function zoom() {
 		if (zoomAllowed) {
 			dy = +d3.event.wheelDeltaY;
-			if (duration + dy > 100)
-				duration += dy;
+			if (interval + dy > 100)
+				interval += dy;
 			else 
-				duration = 100;
+				interval = 100;
 			chart.step();
 		}
 	};
 
 
-	StreamScatterPlot.setTicks = function(_) {
-		ticks = _;
+	StreamScatterPlot.setNumIntervals = function(_) {
+		numIntervals = _;
 	};
 
-	StreamScatterPlot.setSpeed = function(_) {
-		duration = _;
+	StreamScatterPlot.setInterval = function(_) {
+		interval = _;
 	};
 
 	StreamScatterPlot.setClockDrift = function(_) {
