@@ -61,4 +61,12 @@ body {
 	fill: #50DC64;
 }
 
+.trail {
+	stroke: #FFA300;
+}
+
+#targetTrail {
+	stroke: #50DC64;
+}
+
 svg {cursor: none;}

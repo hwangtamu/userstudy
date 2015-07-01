@@ -38,3 +38,10 @@ Class(.) and ID(#) names for reference in use with Javascript/CSS.
 
 #freezeClip //clip used by freeze regions
 ```
+
+## Misc
+
+```
+.trail //Optional trails on snapshots
+#targettrail //target trail
+```

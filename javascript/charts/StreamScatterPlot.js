@@ -18,6 +18,7 @@ function StreamScatterPlot() {
 		targetName = ".target",
 		zoomAllowed = true,
 		pauseAllowed = true,
+		trailsAllowed = true,
 		interval = 1000, //Determines the unit of time used on axis
 		numIntervals = 20; //Determines the number of numIntervals on axis based on time (n - 4 roughly shown)
 
@@ -154,16 +155,28 @@ function StreamScatterPlot() {
 
 			//Set on click handler
 			svg.on("click.StreamScatterPlot."  + selection.attr("id"), function(d, i) {
-				var t = d3.select(targetName);
-				if (t != null && !d3.event.shiftKey) {
-					t.transition().interval(500).ease("bounce")
+				var target = d3.select(targetName);
+				if (trailsAllowed) var targetTrail = d3.select("#targetTrail");
+				if (target != null && !d3.event.shiftKey) {
+					target.transition().duration(500).ease("bounce")
 							.attr("r", pointRadius * 2)
 							.style("fill-opacity", 0.0)
-						.transition().interval(500).ease("bounce")
+						.transition().duration(500).ease("bounce")
 							.attr("r", pointRadius)
 							.style("fill-opacity", 1.0);
+					if (trailsAllowed) {
+						targetTrail.transition().duration(500).ease("bounce")
+								.attr("stroke-width", 20 + 10)
+								.style("stroke-opacity", 0.0)
+							.transition().duration(500).ease("bounce")
+								.attr("stroke-width", 20)
+								.style("stroke-opacity", 1.0);
+					}
 				}
 			});
+
+			//Init trails for optional use
+			TrailDrawer(svg);
 		});
 	}
 
@@ -227,21 +240,7 @@ function StreamScatterPlot() {
 	//Selection from "seconds", "minutes", "hours", "days"
 	chart.interval = function(_) {
 		if (!arguments.length) return interval;
-		if (_ === "seconds") {
-			interval = 1000;
-		}
-		else if (_ === "minutes") {
-			interval = 60000;
-		}
-		else if (_ === "hours") {
-			interval = 3600000;
-		}
-		else if (_ === "days") {
-			interval = 86400000;
-		}
-		else {
-			console.log("not an optional interval of time");
-		}
+		interval = _;
 		return chart;
 	};
 
@@ -302,10 +301,19 @@ function StreamScatterPlot() {
 			.attr("cy", function(d) { return yScale(d[1]); });
 
 		//Exit
-		points.exit().remove();
+		points.exit().each(function(d, i) {
+			var point = d3.select(this);
+			if (trailsAllowed) TrailDrawer.destroyTrail(d[0]);
+			point.remove();
+		});
 
 		//Update Cursor
 		cursorFunction();
+
+		//Update Trails if ON
+		if (trailsAllowed) {
+			TrailDrawer.redraw();
+		}
 	};
 
 	//Starts the chart streaming
@@ -341,6 +349,12 @@ function StreamScatterPlot() {
 		return chart;
 	};
 
+	chart.allowTrails = function(_) {
+		if (!arguments.length) return trailsAllowed;
+		trailsAllowed = _;
+		return chart;
+	}
+
 	//Alters the time scale so you can 'zoom' in and out of time
 	function zoom() {
 		if (zoomAllowed) {
@@ -353,6 +367,9 @@ function StreamScatterPlot() {
 		}
 	};
 
+	StreamScatterPlot.setTrails = function(_) {
+		trailsAllowed = _;
+	};
 
 	StreamScatterPlot.setNumIntervals = function(_) {
 		numIntervals = _;

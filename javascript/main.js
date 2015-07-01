@@ -29,12 +29,15 @@ var intervalInput = d3.select("#intervalinput")
 var numIntervalInput = d3.select("#numintervalsinput")
 	.on("change.numIntervals", setNumIntervals);
 
+var trailMenu = d3.select("#trailmenu select")
+	.on("change.trailMenu", change);
+
 //Holds the value of it's corresponding menu
 var cursor, freeze, manual, accumulate, interval;
 
 //Load JSON file
 //d3.json("data/stream_r2.json", function(error, data) {
-d3.json("data/stream_r1.json", function(error, data) {
+d3.json("data/stream_r9.json", function(error, data) {
 	if (error) {
 		console.log(error);
 	} else {
@@ -67,7 +70,8 @@ d3.json("data/stream_r1.json", function(error, data) {
 	//Start streaming of chart
 	chart.start();
 	intervalMenu.property("value", "1 second");
-	numIntervalInput.property("value", "20");
+	numIntervalInput.property("value", "60");
+	trailMenu.property("value", "false");
 	change();
 
 	//Load data into chart over time
@@ -128,9 +132,19 @@ function change() {
 	d3.select("#freezeClip").remove();
 	d3.selectAll(".point").attr("id", "untagged");
 	d3.select("body").on("keydown.freezeSelector", null);
+	d3.selectAll(".trail").remove();
 	svg.on("mousemove.freezeSelector", null);
 	svg.on("mousemove.cursorSelector", null);
 	svg.on("mousemove.cursorSelector", null);
+
+	//Convert choice to bool
+	var choice = trailMenu.property("value");
+	if (choice == "true") {
+		choice = true;
+	} else {
+		choice = false;
+	}
+	StreamScatterPlot.setTrails(choice);
 
 	//Set interval
 	if (interval == "10 second") {
