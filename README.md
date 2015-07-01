@@ -36,5 +36,5 @@ Class(.) and ID(#) names for reference in use with Javascript/CSS.
 #untagged //Data that's been untagged by freeze region
 #tagged //Data that's been tagged by freeze region
 
-#freezeClip //clip used freeze regions
+#freezeClip //clip used by freeze regions
 ```
