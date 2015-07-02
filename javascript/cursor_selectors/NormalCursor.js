@@ -49,10 +49,10 @@ function NormalCursor(selection) {
 			});
 
 		//Set class of  target
-		d3.selectAll(targets + ".target")
-			.attr("class", function() { return d3.select(this).attr("class").slice(0, -7); });
 
 		if (target != null) {
+			d3.selectAll(targets + ".target")
+				.attr("class", function() { return d3.select(this).attr("class").slice(0, -7); });
 			target
 				.attr("class", target.attr("class") + " target");
 		}

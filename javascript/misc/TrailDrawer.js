@@ -2,7 +2,7 @@ function TrailDrawer(selection) {
 	var originalName = "#tagged",
 		snapshotName = ".snapshot";
 
-	var stroke_width = 3;
+	var stroke_width = 6;
 
 	var gTrails = selection.insert("g", ".data").attr("class", "trails");
 
@@ -24,17 +24,9 @@ function TrailDrawer(selection) {
 				var taggedY = +tagged.attr("cy");
 				if (d[0] == timestamp) {
 					if (d3.select(".i" + timestamp + ".trail").empty()) {
-						gTrails.append("line")
-							.attr("id", "")
-							.attr("class", "i" + timestamp + " trail")
-							.attr("stroke-width", stroke_width);
+						TrailDrawer.createTrail(timestamp);
 					} else {
-						d3.select(".i" + timestamp + ".trail")
-							.attr("id", "")
-							.attr("x1", snapX)
-							.attr("y1", snapY)
-							.attr("x2", taggedX)
-							.attr("y2", taggedY);
+						TrailDrawer.updateTrail([snapX, snapY], [taggedX, taggedY], timestamp, "");
 					}
 				}
 			});
@@ -51,17 +43,9 @@ function TrailDrawer(selection) {
 				var taggedY = +tagged.attr("cy");
 				if (d[0] == timestamp) {
 					if (d3.select(".i" + timestamp + ".trail").empty()) {
-						gTrails.append("line")
-							.attr("id", "targetTrail")
-							.attr("class", "i" + timestamp + " trail")
-							.attr("stroke-width", stroke_width);
+						TrailDrawer.createTrail(timestamp);
 					} else {
-						d3.select(".i" + timestamp + ".trail")
-							.attr("id", "targetTrail")
-							.attr("x1", snapX)
-							.attr("y1", snapY)
-							.attr("x2", taggedX)
-							.attr("y2", taggedY);
+						TrailDrawer.updateTrail([snapX, snapY], [taggedX, taggedY], timestamp, "targetTrail");
 					}
 				}
 			});
@@ -76,8 +60,39 @@ function TrailDrawer(selection) {
 		});
 	};
 
-	TrailDrawer.destroyTrail = function(point_timestamp) {
-		d3.select(".i" + point_timestamp + ".trail").remove();
+	TrailDrawer.createTrail = function(timestamp) {
+		gTrails.append("line")
+			.attr("id", "targetTrail")
+			.attr("class", "i" + timestamp + " trail")
+			.attr("stroke-width", stroke_width)
+			.on("mouseover", function(d, i) {
+				var trail = d3.select(this);
+				var timestamp = trail.attr("class").slice(1, -6);
+				var target = d3.select(".i" + timestamp + ".snapshot");
+				d3.selectAll(snapshotName + ".target")
+					.attr("class", function() { return d3.select(this).attr("class").slice(0, -7); });
+
+				if (target != null) {
+					target
+						.attr("class", target.attr("class") + " target");
+				}
+			})
+			.on("mouseout", function(d, i) {
+				d3.select("#targetTrail").attr("id", "");
+			})
+	};
+
+	TrailDrawer.destroyTrail = function(timestamp) {
+		d3.select(".i" + timestamp + ".trail").remove();
+	};
+
+	TrailDrawer.updateTrail = function(pA, pB, timestamp, id) {
+		d3.select(".i" + timestamp + ".trail")
+			.attr("id", id)
+			.attr("x1", pA[0])
+			.attr("y1", pA[1])
+			.attr("x2", pB[0])
+			.attr("y2", pB[1]);
 	};
 
 	TrailDrawer.setWidth = function(_) {

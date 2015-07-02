@@ -41,9 +41,8 @@ var clockdriftInput = d3.select("#clockdriftinput")
 clockdriftInput.property("value", 0);
 setClockDrift();
 
-
 //Load JSON file
-d3.json("data/stream_s3.json", function(error, data) {
+d3.json("data/stream_s1.json", function(error, data) {
 	if (error) {
 		console.log(error);
 	} else {
