@@ -3,12 +3,35 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+		<!-- D3 Library -->
+		<script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
+
+		<!-- Misc Scripts -->
+		<script type="text/javascript" src="javascript/misc/fisheye.js"></script>
+		<script type="text/javascript" src="javascript/misc/SnapshotBubbleCursor.js"></script>
+		<script type="text/javascript" src="javascript/misc/SnapshotTrajectoryCursor.js"></script>
+		<script type="text/javascript" src="javascript/misc/SnapshotCursor.js"></script>
+		<script type="text/javascript" src="javascript/misc/TrailDrawer.js"></script>
+
+		<!-- Cursor Scripts -->
+		<script type="text/javascript" src="javascript/cursor_selectors/BubbleCursor.js"></script>
+		<script type="text/javascript" src="javascript/cursor_selectors/NormalCursor.js"></script>
+
+		<!-- Freeze Scripts -->
+		<script type="text/javascript" src="javascript/freeze_selectors/FreezeWholeScreen.js"></script>
+		<script type="text/javascript" src="javascript/freeze_selectors/FreezeAroundCursor.js"></script>
+		<script type="text/javascript" src="javascript/freeze_selectors/FreezeTrajectory.js"></script>
+		<script type="text/javascript" src="javascript/freeze_selectors/FreezeAroundClosest.js"></script>
+
+		<!-- Chart Scripts-->
+		<script type="text/javascript" src="javascript/charts/StreamScatterPlot.js"></script>
+
 	</head>
 	<body>
 
 		<div id="StreamScatterPlot"></div><br>
-		Note: Don't mix click:true with accumulations:true.<br>
-		Note: Clockdrift adds miliseconds to every point each d3.timer tick.<br>
+		<p>Note: Don't mix click:true with accumulations:true.</p>
+		<p>Note: Clockdrift adds miliseconds to every point each d3.timer tick.</p>
 		<table id="optionsPanel" style="width:50%">
 			<tr>
 				<td> <p id="cursormenu"><b>Cursor Type</b><br>
@@ -66,30 +89,6 @@
 				</td>
 			</tr>
 		</table>
-		
-		<!-- D3 Library -->
-		<script type="text/javascript" src="http://d3js.org/d3.v3.js"></script>
-
-		<!-- Misc Scripts -->
-		<script type="text/javascript" src="javascript/misc/fisheye.js"></script>
-		<script type="text/javascript" src="javascript/misc/SnapshotBubbleCursor.js"></script>
-		<script type="text/javascript" src="javascript/misc/SnapshotTrajectoryCursor.js"></script>
-		<script type="text/javascript" src="javascript/misc/SnapshotCursor.js"></script>
-		<script type="text/javascript" src="javascript/misc/TrailDrawer.js"></script>
-
-		<!-- Cursor Scripts -->
-		<script type="text/javascript" src="javascript/cursor_selectors/BubbleCursor.js"></script>
-		<script type="text/javascript" src="javascript/cursor_selectors/NormalCursor.js"></script>
-
-		<!-- Freeze Scripts -->
-		<script type="text/javascript" src="javascript/freeze_selectors/FreezeWholeScreen.js"></script>
-		<script type="text/javascript" src="javascript/freeze_selectors/FreezeAroundCursor.js"></script>
-		<script type="text/javascript" src="javascript/freeze_selectors/FreezeTrajectory.js"></script>
-		<script type="text/javascript" src="javascript/freeze_selectors/FreezeAroundClosest.js"></script>
-
-		<!-- Chart Scripts-->
-		<script type="text/javascript" src="javascript/charts/StreamScatterPlot.js"></script>
-
 		<!-- Main Load Script-->
 		<script type="text/javascript" src="javascript/main.js"></script>
 	</body>

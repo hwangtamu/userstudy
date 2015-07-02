@@ -150,7 +150,7 @@ function StreamScatterPlot() {
 			});
 
 			//Set on click handler
-			svg.on("click.StreamScatterPlot."  + selection.attr("id"), function(d, i) {
+			svg.on("mousedown.StreamScatterPlot."  + selection.attr("id"), function(d, i) {
 				var target = d3.select(targetName);
 				if (trailsAllowed) var targetTrail = d3.select("#targetTrail");
 				if (target != null && !d3.event.shiftKey) {
