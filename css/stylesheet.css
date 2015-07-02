@@ -22,16 +22,24 @@ body {
 	clip-path: url(#StreamScatterPlotClip);
 }
 
+.primary.point {
+	stroke: red;
+	fill: red;
+	clip-path: url(#StreamScatterPlotClip);
+}
+
+.secondary.point {
+	stroke: black;
+	fill: black;
+	clip-path: url(#StreamScatterPlotClip);
+}
+
 #untagged.point {
-	stroke: #4D85DC;
-	fill: #4D85DC;
 	fill-opacity: 1;
 	stroke-opacity: 1;
 }
 
 #tagged.point {
-	stroke: #4D85DC;
-	fill: #4D85DC;
 	fill-opacity: 0.5;
 	stroke-opacity: 0.5;
 }
@@ -46,10 +54,6 @@ body {
 	fill: lightgrey;
 	fill-opacity: 0.5;
 }
-/*.point:hover {
-	stroke: red;
-	fill: red;
-}*/
 
 .snapshot {
 	stroke: #FFA300;

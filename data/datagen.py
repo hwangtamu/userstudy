@@ -3,10 +3,20 @@
 from datetime import datetime
 import sys, getopt, json, random, math
 
-#Define function to generate data by
-def function(*args):
+#Define return for function that generates data.value
+def valueFunction(*args):
 	#return math.fabs(math.sin(args[0])) * 100
 	return random.randrange(0, 50)
+
+#Define return for function that generates data.flag
+def flagFunction(*args):
+	flag = "point"
+	if (args[0] == 26):
+		flag = "primary point"
+	if (args[0] % 5 == 0):
+		flag = "secondary point"
+	return flag
+
 
 #Create json data file
 def main(argv):
@@ -33,13 +43,17 @@ def main(argv):
 	i = 0
 	j = 0
 	while i < repeat:
-		datum = {'id': i, 'timeoffset': round(j, 2), 'val': function(j)}
+		datum = {'id': i, 'timeoffset': round(j, 3), 'value': valueFunction(j), 'flag': flagFunction(i) }
 		data.append(datum)
 		i += 1
 		j += timeoffset
 
-	with open(outputfile, 'w') as outfile:
-	    json.dump(data, outfile, indent=4, sort_keys=True)
+	try:
+		with open(outputfile, 'w') as outfile:
+		    json.dump(data, outfile, indent=4, sort_keys=True)
+	except:
+		print 'datagen.py -o <outputfile> -r <repeat> -t <timeoffset>'
+		sys.exit(2)
 
 if __name__ == "__main__":
    main(sys.argv[1:])

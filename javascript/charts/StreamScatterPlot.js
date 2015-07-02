@@ -6,6 +6,7 @@ function StreamScatterPlot() {
 		width = 860,
 		xValue = function(d) { return d[0]; },
 		yValue = function (d) { return d[1]; },
+		flagValue = function(d) { return d[2]; },
 		xScale = d3.time.scale();
 		yScale = d3.scale.linear();
 		xAxis = d3.svg.axis().scale(xScale).orient("bottom"),
@@ -40,7 +41,7 @@ function StreamScatterPlot() {
 		selection.each(function(data) {
 			//Map corresponding data points x to d[0] and y to d[1]
 			data = data.map(function(d, i) {
-				return [xValue.call(data, d, i), yValue.call(data, d, i)];
+				return [xValue.call(data, d, i), yValue.call(data, d, i), flagValue.call(data, d, i)];
 			});
 
 			dataset = data;
@@ -225,6 +226,13 @@ function StreamScatterPlot() {
 		return chart;
 	};
 
+	//Set flag
+	chart.flag = function(_) {
+		if (!arguments.length) return flagValue;
+		flagValue = _;
+		return chart;
+	};
+
 	//Set point radius
 	chart.pointRadius = function(_) {
 		if (!arguments.length) return pointRadius;
@@ -300,7 +308,7 @@ function StreamScatterPlot() {
 		points
 			.enter()
 			.append("circle")
-				.attr("class", "point")
+				.attr("class", function(d) { return d[2]; })
 				.attr("r", pointRadius)
 				.attr("cx", function(d) { return xScale(d[0]); })
 				.attr("cy", function(d) { return yScale(d[1]); });

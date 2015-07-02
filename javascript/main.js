@@ -1,6 +1,7 @@
 var chart = StreamScatterPlot()
     .x(function(d) { return +d.timeoffset; })
-    .y(function(d) { return +d.val; })
+    .y(function(d) { return +d.value; })
+    .flag(function(d) { return d.flag; })
     .width(window.innerWidth)
     .height(window.innerHeight/2)
     .pointRadius(6)
@@ -42,7 +43,7 @@ clockdriftInput.property("value", 0);
 setClockDrift();
 
 //Load JSON file
-d3.json("data/stream_s1.json", function(error, data) {
+d3.json("data/stream_r1.json", function(error, data) {
 	if (error) {
 		console.log(error);
 	} else {
@@ -54,18 +55,10 @@ d3.json("data/stream_s1.json", function(error, data) {
 	data.forEach(function (d) {
 		d.timeoffset = (now - (20) * 1000) + d.timeoffset * 1000;
 		d.timeoffset = +d.timeoffset;
-		d.val = +d.val;
+		d.value = +d.value;
+		d.primary = d.primary;
+		d.secondary = d3.secondary;
 	});
-
-	//Get past data
-	// var past = [];
-	// now = new Date();
-	// data.forEach(function(d, i) {
-	// 	if (d.timeoffset < now) {
-	// 		past.push(d);
-	// 		data.splice(data.indexOf(d), 1);
-	// 	}
-	// });
 
 	//Now loading in whole datastream! StreamScatterPlot has been fixed to handle large dataset's itself
 	var stream = d3.select("#StreamScatterPlot")
@@ -78,18 +71,6 @@ d3.json("data/stream_s1.json", function(error, data) {
 	numIntervalInput.property("value", "20");
 	trailMenu.property("value", "false");
 	change();
-
-	//Load data into chart over time
-	// d3.timer(function() {
-	// 	data.forEach(function(d, i) {
-	// 		now = new Date();
-	// 		d[0] -= clockdrift;
-	// 		if (d.timeoffset < now) {
-	// 			chart.pushDatum([+data[i].timeoffset, +data[i].val]);
-	// 			data.splice(data.indexOf(d), 1);
-	// 		}
-	// 	});
-	// });
 });
 
 //Update current selectors
