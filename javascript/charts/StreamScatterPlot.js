@@ -70,7 +70,7 @@ function StreamScatterPlot() {
 				.append("rect")
 					.attr("width", width)
 					.attr("height", height)
-					.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+					.attr("transform", "translate(" + margin.left + "," + -margin.bottom + ")");
 			gData = gEnter.append("g").attr("class", "data");
 			gEnter = gEnter.append("g").attr("class", "chart");
 				gEnter.append("g").attr("class", "x axis");

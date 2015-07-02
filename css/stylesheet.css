@@ -17,20 +17,20 @@ body {
 }
 
 .point {
-	stroke: #4D85DC;
-	fill: #4D85DC;
+	stroke: #000000;
+	fill: #FFFFFF;
 	clip-path: url(#StreamScatterPlotClip);
 }
 
 .primary.point {
-	stroke: red;
-	fill: red;
+	stroke: #E91E63;
+	fill: #E91E63;
 	clip-path: url(#StreamScatterPlotClip);
 }
 
 .secondary.point {
-	stroke: black;
-	fill: black;
+	stroke: #0288D1;
+	fill: #0288D1;
 	clip-path: url(#StreamScatterPlotClip);
 }
 
@@ -44,33 +44,37 @@ body {
 	stroke-opacity: 0.5;
 }
 
+.snapshot {
+	stroke: #FFA300;
+	fill: #FFA300;
+	clip-path: url(#StreamScatterPlotClip);
+}
+
+
+.trail {
+	stroke: #FFA300;
+	clip-path: url(#StreamScatterPlotClip);
+}
+
+.point.target,
+.snapshot.target,
+.trail.target {
+	stroke: #50DC64;
+	fill: #50DC64;
+	clip-path: url(#StreamScatterPlotClip);
+}
+
 .bubble {
-	clip-path: url(#freezeClip);
 	fill: lightgrey;
 	fill-opacity: 0.5;
+	clip-path: url(#freezeClip);
 }
 
 .freezeRegion {
 	fill: lightgrey;
 	fill-opacity: 0.5;
+	clip-path: url(#StreamScatterPlotClip);
 }
 
-.snapshot {
-	stroke: #FFA300;
-	fill: #FFA300;
-}
-
-.target {
-	stroke: #50DC64;
-	fill: #50DC64;
-}
-
-.trail {
-	stroke: #FFA300;
-}
-
-#targetTrail {
-	stroke: #50DC64;
-}
 
 svg {cursor: none;}

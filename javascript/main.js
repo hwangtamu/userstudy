@@ -6,7 +6,7 @@ var chart = StreamScatterPlot()
     .height(window.innerHeight/2)
     .pointRadius(6)
     .allowZoom(false)
-    .allowPause(false);
+    .allowPause(true);
 
 //Holds the value of it's corresponding menu
 var cursor, freeze, manual, accumulate, interval, clockdrift;
