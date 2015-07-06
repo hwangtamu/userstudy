@@ -35,7 +35,7 @@ function FreezeWholeScreen(selection) {
 				pt.attr("id", "tagged");
 
 				gCopies.append("circle")
-					.attr("class", "i" + d[0] + " snapshot")
+					.attr("class", "i" + d[3] + " snapshot")
 					.attr("r", r)
 					.attr("cx", x)
 					.attr("cy", y);

@@ -79,7 +79,7 @@ function FreezeTrajectory(selection, manualFreeze) {
 		if (arguments.length == 0 && !accumulations) return;
 		if (arguments.length > 0) {
 			mousePt = [mouse[0], mouse[1]];
-			
+
 			x1 = prevMousePt[0];
 			y1 = prevMousePt[1];
 			x2 = mousePt[0];
@@ -100,7 +100,7 @@ function FreezeTrajectory(selection, manualFreeze) {
 
 			if (pts.length < threshold) {
 				prevMousePt = mousePt;
-			} 
+			}
 
 		} else {
 			x1 = prevMousePt[0],
@@ -176,9 +176,9 @@ function FreezeTrajectory(selection, manualFreeze) {
 	FreezeTrajectory.drawClipPath = function() {
 		if (isFinite(ox + oy + lx1 + lx2 + ly1 + ly2)) {
 			clip
-				.attr("d", "M " + ox + "," + oy + 
-							" L " + lx1 + "," + ly1 + 
-							" L " + lx2 + "," + ly2 + 
+				.attr("d", "M " + ox + "," + oy +
+							" L " + lx1 + "," + ly1 +
+							" L " + lx2 + "," + ly2 +
 							" L " + ox + "," + oy);
 		}
 	};
@@ -195,14 +195,14 @@ function FreezeTrajectory(selection, manualFreeze) {
 
 				var ptD = [x, y];
 
-				if(det(ptA, ptB, ptD) <= 0 && det(ptA, ptC, ptD) >= 0 && d3.select(".i" + d[0] +".snapshot").empty()) {
+				if(det(ptA, ptB, ptD) <= 0 && det(ptA, ptC, ptD) >= 0 && d3.select(".i" + d[3] +".snapshot").empty()) {
 					pt.attr("id", "tagged");
 					gCopies.append("circle")
-						.attr("class", "i" + d[0] + " snapshot")
+						.attr("class", "i" + d[3] + " snapshot")
 						.attr("r", r)
 						.attr("cx", x)
 						.attr("cy", y);
-				} else if ((det(ptA, ptB, ptD) >= 0 || det(ptA, ptC, ptD) <= 0) && d3.select(".i" + d[0] +".snapshot").empty()) {
+				} else if ((det(ptA, ptB, ptD) >= 0 || det(ptA, ptC, ptD) <= 0) && d3.select(".i" + d[3] +".snapshot").empty()) {
 					pt.attr("id", "untagged");
 				}
 			});
@@ -262,7 +262,7 @@ function  q(p0, p1, p2, p3, t) {
     return 0.5 * ((2 * p1) +
                   (p2 - p0) * t +
                   (2*p0 - 5*p1 + 4*p2 - p3) * t * t +
-                  (3*p1 -p0 - 3 * p2 + p3) * t * t * t);    
+                  (3*p1 -p0 - 3 * p2 + p3) * t * t * t);
 }
 
 function distance(ptA, ptB) {

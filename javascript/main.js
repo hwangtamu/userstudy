@@ -2,6 +2,7 @@ var chart = StreamScatterPlot()
     .x(function(d) { return +d.timeoffset; })
     .y(function(d) { return +d.value; })
     .flag(function(d) { return d.flag; })
+    .id(function(d) { return d.id; })
     .width(window.innerWidth)
     .height(window.innerHeight/2)
     .pointRadius(6)
@@ -117,13 +118,14 @@ function change() {
 	//Grab Svg
 	var svg = d3.select("svg").data(StreamScatterPlot.getData());
 
-	//Remove any old cursor / freeze 
+	//Remove any old cursor / freeze
 	d3.selectAll(".selector").remove();
 	d3.selectAll(".snapshots").remove();
 	d3.select("#freezeClip").remove();
 	d3.selectAll(".point").attr("id", "untagged");
 	d3.select("body").on("keydown.freezeSelector", null);
 	d3.selectAll(".trail").remove();
+	d3.selectAll(".target").attr("class", function() { return d3.select(this).attr("class").slice(0, -7); });
 	svg.on("mousemove.freezeSelector", null);
 	svg.on("mousemove.cursorSelector", null);
 	svg.on("mousemove.cursorSelector", null);
@@ -187,7 +189,7 @@ function change() {
 		FreezeTrajectory(svg, manual);
 		FreezeTrajectory.accumulate(accumulate);
 	}
-	
+
 	//Set cursor selector
 	if (cursor == "NormalCursor") {
 		NormalCursor(svg);
@@ -195,6 +197,6 @@ function change() {
 	} else  if (cursor == "BubbleCursor") {
 		// NormalCursor(svg);
 		BubbleCursor(svg);
-		if (freeze != "None") BubbleCursor.tarName(".snapshot"); 
+		if (freeze != "None") BubbleCursor.tarName(".snapshot");
 	}
 }

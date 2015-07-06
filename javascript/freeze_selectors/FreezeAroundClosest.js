@@ -10,7 +10,7 @@ function FreezeAroundClosest(selection, manualFreeze) {
 	//Controls accumulation behavior near freeze region
 	var accumulations = false;
 	var swap = false;
-	
+
 	//If manual is true then freeze will only happen on shift
 	var manualFrz = (typeof manualFreeze === 'undefined') ? false : manualFreeze;
 
@@ -96,7 +96,7 @@ function FreezeAroundClosest(selection, manualFreeze) {
 		//Find closest target
 		var target = FreezeAroundClosest.findClosest(mousePt);
 		var currPt = [target.attr("cx"), target.attr("cy")];
-		
+
 		//Set size of cursor morph
 		FreezeAroundClosest.drawCursor(currPt);
 
@@ -144,7 +144,7 @@ function FreezeAroundClosest(selection, manualFreeze) {
 		//Set previous point
 		if (target != null && previousPoint == null) {
 			previousPoint = target;
-		} else if (target == null || previousPoint == null) { 
+		} else if (target == null || previousPoint == null) {
 			console.log("bad");
 		} else if ( target.attr("class") != previousPoint.attr("class") ) {
 			previousPoint = target;
@@ -170,10 +170,10 @@ function FreezeAroundClosest(selection, manualFreeze) {
 				.attr("id", "tagged")
 				.each(function(d, i) {
 					gCopies.append("circle")
-						.attr("class", "i" + d[0] + " snapshot")
+						.attr("class", "i" + d[3] + " snapshot")
 						.attr("id", "snap")
 						.attr("cx", currPt[0])
-						.attr("cy", currPt[1])				
+						.attr("cy", currPt[1])
 						.attr("r", d3.select(this).attr("r"));
 				});
 		}
@@ -189,15 +189,15 @@ function FreezeAroundClosest(selection, manualFreeze) {
 				var currDist = distance(currPt,targetPt);
 
 				var point = pt;
-				if(currDist <= (frzRadius + r) && d3.select(".i" + d[0] +".snapshot").empty() && point.attr("id") != "tagged" && (accumulations || swap || manualFrz)) {
+				if(currDist <= (frzRadius + r) && d3.select(".i" + d[3] +".snapshot").empty() && point.attr("id") != "tagged" && (accumulations || swap || manualFrz)) {
 					point.attr("id", "tagged");
 					gCopies.append("circle")
-						.attr("class", "i" + d[0] + " snapshot")
+						.attr("class", "i" + d[3] + " snapshot")
 						.attr("id", "snap")
 						.attr("cx", x)
-						.attr("cy", y)				
+						.attr("cy", y)
 						.attr("r", r)
-				} else if (currDist > (frzRadius + r) && point.attr("id") == "tagged" && d3.select(".i" + d[0] +".snapshot").empty()) {
+				} else if (currDist > (frzRadius + r) && point.attr("id") == "tagged" && d3.select(".i" + d[3] +".snapshot").empty()) {
 					point.attr("id", "untagged");
 				}
 
@@ -206,7 +206,7 @@ function FreezeAroundClosest(selection, manualFreeze) {
 
 	//Destroy snapshots outside of freeze region
 	FreezeAroundClosest.cleanSnapshots = function(currPt) {
-		d3.selectAll(".snapshot") 
+		d3.selectAll(".snapshot")
 			.each(function(d, i) {
 				var pt = d3.select(this);
 				var x = +pt.attr("cx"),

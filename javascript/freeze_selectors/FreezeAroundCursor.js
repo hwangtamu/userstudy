@@ -133,16 +133,16 @@ function FreezeAroundCursor(selection, manualFreeze) {
 				var targetPt = [x, y];
 				var currDist = distance(mousePt,targetPt);
 
-				if (currDist <= (frzRadius + r) && d3.select(".i" + d[0] + ".snapshot").empty()) {
+				if (currDist <= (frzRadius + r) && d3.select(".i" + d[3] + ".snapshot").empty()) {
 					pt.attr("id", "tagged");
 
 					gCopies.append("circle")
-						.attr("class", "i" + d[0] + " snapshot")
+						.attr("class", "i" + d[3] + " snapshot")
 						.attr("r", r)
 						.attr("cx", x)
 						.attr("cy", y);
 
-				} else if (currDist > (frzRadius + r) && d3.select(".i" + d[0] +".snapshot").empty()) {
+				} else if (currDist > (frzRadius + r) && d3.select(".i" + d[3] +".snapshot").empty()) {
 					pt.attr("id", "untagged");
 				}
 			});

@@ -22,7 +22,7 @@ function TrailDrawer(selection) {
 				var tagged = d3.select(this);
 				var taggedX = +tagged.attr("cx");
 				var taggedY = +tagged.attr("cy");
-				if (d[0] == timestamp) {
+				if (d[3] == timestamp) {
 					if (d3.select(".i" + timestamp + ".trail").empty()) {
 						TrailDrawer.createTrail(timestamp);
 					} else {
@@ -41,7 +41,7 @@ function TrailDrawer(selection) {
 				var tagged = d3.select(this);
 				var taggedX = +tagged.attr("cx");
 				var taggedY = +tagged.attr("cy");
-				if (d[0] == timestamp) {
+				if (d[3] == timestamp) {
 					if (d3.select(".i" + timestamp + ".trail").empty()) {
 						TrailDrawer.createTrail(timestamp);
 					} else {
@@ -53,7 +53,7 @@ function TrailDrawer(selection) {
 
 		d3.selectAll("#untagged").each(function(d, i) {
 			var untagged = d3.select(this);
-			var timestamp = d[0];
+			var timestamp = d[3];
 			if (!d3.select(".i" + timestamp + ".trail").empty()) {
 				d3.select(".i" + timestamp + ".trail").remove();
 			}

@@ -7,6 +7,7 @@ function StreamScatterPlot() {
 		xValue = function(d) { return d[0]; },
 		yValue = function (d) { return d[1]; },
 		flagValue = function(d) { return d[2]; },
+		idValue = function(d) { return d[2]; },
 		xScale = d3.time.scale();
 		yScale = d3.scale.linear();
 		xAxis = d3.svg.axis().scale(xScale).orient("bottom"),
@@ -41,8 +42,10 @@ function StreamScatterPlot() {
 		selection.each(function(data) {
 			//Map corresponding data points x to d[0] and y to d[1]
 			data = data.map(function(d, i) {
-				return [xValue.call(data, d, i), yValue.call(data, d, i), flagValue.call(data, d, i)];
-			});
+				return [xValue.call(data, d, i),
+								yValue.call(data, d, i),
+								flagValue.call(data, d, i),
+								idValue.call(data, d, i)]; });
 
 			dataset = data;
 			//Update the x-scale
@@ -233,6 +236,13 @@ function StreamScatterPlot() {
 		return chart;
 	};
 
+	//Set id
+	chart.id = function(_) {
+		if (!arguments.length) return idValue;
+		idValue = _;
+		return chart;
+	};
+
 	//Set point radius
 	chart.pointRadius = function(_) {
 		if (!arguments.length) return pointRadius;
@@ -316,7 +326,7 @@ function StreamScatterPlot() {
 		//Exit
 		points.exit().each(function(d, i) {
 			var point = d3.select(this);
-			if (trailsAllowed) TrailDrawer.destroyTrail(d[0]);
+			if (trailsAllowed) TrailDrawer.destroyTrail(d[3]);
 			point.remove();
 		});
 
@@ -374,7 +384,7 @@ function StreamScatterPlot() {
 			dy = +d3.event.wheelDeltaY;
 			if (interval + dy > 100)
 				interval += dy;
-			else 
+			else
 				interval = 100;
 			chart.step();
 		}

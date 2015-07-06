@@ -58,7 +58,7 @@ body {
 
 .point.target,
 .snapshot.target,
-.trail.target {
+#targetTrail {
 	stroke: #50DC64;
 	fill: #50DC64;
 	clip-path: url(#StreamScatterPlotClip);
