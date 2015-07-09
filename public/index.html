@@ -1,0 +1,67 @@
+<meta charset="utf-8">
+<title>Streaming Data Selection</title>
+
+<!-- Load Source Scripts -->
+<script src="components/d3js/d3.v3.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
+<script src="javascript/misc/experimentr.js"></script>
+
+<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+
+<!-- Misc Scripts -->
+<script src="javascript/misc/TrailDrawer.js"></script>
+
+<!-- Cursor Scripts -->
+<script src="javascript/cursor_selectors/BubbleCursor.js"></script>
+<script src="javascript/cursor_selectors/NormalCursor.js"></script>
+
+<!-- Freeze Scripts -->
+<script src="javascript/freeze_selectors/FreezeWholeScreen.js"></script>
+<script src="javascript/freeze_selectors/FreezeAroundCursor.js"></script>
+<script src="javascript/freeze_selectors/FreezeTrajectory.js"></script>
+<script src="javascript/freeze_selectors/FreezeAroundClosest.js"></script>
+
+<!-- Chart Scripts -->
+<script src="javascript/charts/StreamScatterPlot.js"></script>
+
+<style>
+* {
+    color: #333;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  }
+
+  body {
+    margin: 1em auto auto 1em;
+    width: 960px;
+  }
+  #experimentr {
+    margin: 1em auto auto 1em;
+    width: 720px;
+  }
+  #control {
+    margin-top: 1em;
+  }
+  #next-button {
+    float: left;
+  }
+
+  .placeholder {
+    color: #7A378B;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+</style>
+
+<body></body>
+
+<script>
+experimentr.sequence([
+  //'modules/consent.html',
+  //'modules/background.html',
+  //'modules/test.html',
+  'modules/trials.html',
+  //'modules/closing.html',
+  'modules/end.html'
+]).start();
+</script>

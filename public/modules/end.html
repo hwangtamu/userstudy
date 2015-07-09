@@ -1,0 +1,48 @@
+<h2>The End</h2>
+
+<p>Thank you for your participation in the study. This is the end. You're done.</p>
+<p>
+<div id="doneMessage"></div>
+</p>
+<script>
+
+(function() {
+    var messageThing = d3.select('#doneMessage');
+    var pid = getParameterByName('pid');
+    var codePart1 = "X";
+    var num = Math.random();
+    if (num < 0.3){
+        codePart1 = 'Y';
+    }
+    else if (num < 0.6){
+        codePart1 = 'Z';
+    }
+    var codePart2 = "T";
+    var num = Math.random();
+    if (num < 0.3){
+        codePart2 = 'G';
+    }
+    else if (num < 0.7){
+        codePart2 = 'P';
+    }
+
+    var remainder = pid.substring(3);
+
+    if (remainder !== undefined && remainder.length > 0) {
+      var endCode = Math.floor(Math.random()*11) + codePart2 + remainder + codePart1 + Math.floor(Math.random()*11);
+      messageThing.html("<strong> Your Completion Confirmation: " + endCode + "</strong>");
+      //console.log('endCode ',endCode);
+    }
+
+  // get query string value by name
+  function getParameterByName(varname) {
+      varname = varname.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + varname + "=([^&#]*)");
+      var results = regex.exec(location.search);
+      return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+
+  experimentr.save();
+
+}());
+</script>

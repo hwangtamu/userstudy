@@ -1,0 +1,97 @@
+<div id="consent">
+
+<h2>Selection of Streaming Data</h2>
+
+<p>
+This is a web-based study of visualizations for streaming data. The study involves selecting a dot using various selection techniques. Participation will take approximately 45 minutes.
+</p>
+
+<p>
+For each trial, you will click the 'GO' button and the data will start streaming. You will then click the red dot and once the dot is clicked you will be asked how many blue dots were on the screen.  The 'GO' button will appear again and you will repeat the task.
+</p>
+
+<p>
+<strong>IMPORTANT: Once you begin, please do not use your browser's back button.</strong> It will not allow you to go back.
+</p>
+
+<p>
+This study requires modern versions of <strong>Chrome</strong> or <strong>Firefox</strong> browsers. The application will <strong>not</strong> work correctly on Internet Explorer or Safari.
+</p>
+
+<p>
+Participation is voluntary and no compensation will be given. You may stop at any time if you do not wish to continue. If you need more information about your rights as a study participant, you may contact: The Oak Ridge Site-Wide Institutional Review Board at 865-574-4359 or e-mail ORSIRB@orau.org. If you have other questions about this research, please contact Eric Ragan at raganed@ornl.gov.
+</p>
+<p>
+If you agree to participate, please click the button to provide consent and continue with the study.
+</p>
+
+<button id="consentYes" type="button" class="start-button" disabled>I agree to participate</button>
+<br>
+<p>
+<div id="validateMessage" class="validate"></div>
+</p>
+
+<br />
+
+</div>
+
+<input type="text" id="workerId" name="workerId" disabled="true" size="30" />
+<button id="checkId" type="button">checkId</button>
+
+<style>
+  #invalidMessage {
+    display: none;
+    color: red;
+  }
+  /*#consentForm {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 200px;
+    overflow-y: scroll;
+    padding: 15px;
+  }*/
+</style>
+
+<script>
+(function() {
+  var data    = {}
+    , workers = null;
+
+  init();
+
+  function init() {
+    experimentr.hideNext();
+
+    // load previous workers file
+    d3.json('modules/blocked-workers.json', function(err, d) {
+      workers = d;
+      d3.select('#workerId').attr('disabled', null);
+    });
+
+    d3.selectAll('#workerId')
+      .on('keypress', function() { data.workerId = this.value; })
+      .on('blur', function() { data.workerId = this.value; });
+
+    d3.select('#consentYes').on('click', experimentr.next);
+
+    d3.select('#checkId').on('click', validate);
+  }
+
+  //Create Function Fetch workerID from handler
+
+  function validate() {
+    if( data.workerId ) {
+      experimentr.addData(data);
+
+      if( workers.indexOf(data.workerId) == -1 ) {
+        d3.select('#consentYes').attr('disabled', null);
+      } else {
+        d3.select('#invalidMessage').style('display', 'inline');
+      }
+    }
+  }
+
+}());
+
+
+</script>

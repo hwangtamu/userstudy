@@ -1,0 +1,221 @@
+<strong>Background Questionnaire</strong>
+<div id="demographics">
+  <br>
+  <div id="age">
+    <text id="ageLabel" fill="red">Age:</text>
+    <input type="text" class="textfield" value="" id="ageText" size="3" maxlength="2" name="ageText" onkeypress="return isNumber(event)" />
+    <div id="ageValidate" class="validate" style="font-size: 150%; left: 10px; float: left;"></div>
+  </div>
+  <br>
+  <div id="gender">
+      <text id="genderLabel" fill="red">Gender: </text>
+      <div id="genderValidate" class="validate" style="font-size: 150%; left: 10px; float: left;"></div>
+      <div id="genderRadio">
+          <input type="radio" id="s1" name="gender" value="Male"> Male
+          <input type="radio" id="s2" name="gender" value="Female"> Female
+          <input type="radio" id="s3" name="gender" value="Unspecified"> Unspecified
+      </div>
+  </div>
+  <br>
+  <div id="occupation">
+    <text id="occupationLabel" fill="red">Occupation:</text>
+    <div id="occupationValidate" class="validate" style="font-size: 150%; left: 10px; float: left;"></div>
+    <br>
+    <input type="text" class="textfield" value="" id="occupationText" size="50" maxlength="50" name="occupationText" />
+  </div>
+  <br>
+  <div id="degree">
+    <text id="degreeLabel" fill="red">Highest Degree Obtained: </text>
+    <div id="degreeValidate" class="validate" style="font-size: 150%; left: 10px; float: left;"></div>
+      <div id="degreeRadio">
+          <input type="radio" id="d1" name="degree" value="High School"> High School
+          <input type="radio" id="d2" name="degree" value="Bachelors"> Bachelors
+          <input type="radio" id="d3" name="degree" value="Masters"> Masters
+          <input type="radio" id="d4" name="degree" value="PhD"> PhD
+          <input type="radio" id="d5" name="degree" value="Other"> Other
+      </div>
+  </div>
+  <br>
+  <div id="major">
+    <text id="majorLabel" fill="red">Major/Degree specialization:</text>
+    <div id="majorValidate" class="validate" style="font-size: 150%; left: 10px; float: left;"></div>
+    <br>
+    <input type="text" class="textfield" value="" id="majorText" size="50" maxlength="50" name="majorText" />
+  </div>
+  <br>
+  <div id="blind">
+    <text id="blindLabel" fill="red">Do you have any known color blindness?</text>
+    <div id="blindValidate" class="validate" style="font-size: 150%; left: 10px; float: left;"></div>
+      <div id="blindRadio">
+        <input type="radio" id="b1" name="blind" value="Yes"> Yes
+        <input type="radio" id="b2" name="blind" value="No"> No
+      </div>
+  </div>
+  <br>
+  <strong>Computer and Game Experience</strong>
+  <div id="experience">
+    <br>
+    <div id="hrsComputer">
+      <text id="hrsComputerLabel" fill="red">Approximately how many hours a week do you use computers? </text>
+      <input type="text" class="textfield" value="" id="hrsComputerText" size="3" maxlength="2" name="hrsComputerText" onkeypress="return isNumber(event)" />
+      <div id="hrsComputerValidate" class="validate" style="font-size: 150%; left: 10px; float: left;"></div>
+    </div>
+    <div id="hrsGames">
+      <text id="hrsGamesLabel" fill="red">Approximately how many hours a week do you play video games? </text>
+      <input type="text" class="textfield" value="" id="hrsGamesText" size="3" maxlength="2" name="hrsGamesText" onkeypress="return isNumber(event)" />
+      <div id="hrsGamesValidate" class="validate" style="font-size: 150%; left: 10px; float: left;"></div>
+    </div>
+    <div id="hrsMouse">
+      <text id="hrsMouseLabel" fill="red">Approximately how many hours a week do you player computer games using a mouse? </text>
+      <input type="text" class="textfield" value="" id="hrsMouseText" size="3" maxlength="2" name="hrsMouseText" onkeypress="return isNumber(event)" />
+      <div id="hrsMouseValidate" class="validate" style="font-size: 150%; left: 10px; float: left;"></div>
+    </div>
+  </div>
+  <br>
+  <button id="submitComments" class="next-button" type="button">Next</button>
+  <div id="validateMessage" class="validate"></div>
+<br>
+</div>
+
+<script>
+
+  //d3.select('#consent').remove();
+  function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+  }
+
+(function() {
+  var data = {};
+
+  experimentr.hideNext();
+
+  experimentr.startTimer('demo');
+
+  var ageText = d3.select('#ageText');
+  var occupationText = d3.select('#occupationText');
+  var majorText = d3.select('#majorText');
+
+  var degreeRadio = d3.select('#degreeRadio');
+  var genderRadio = d3.select('#genderRadio');
+  var blindRadio = d3.select('#blindRadio');
+
+  var hrsComputerText = d3.select('#hrsComputerText');
+  var hrsGamesText = d3.select('#hrsGamesText');
+  var hrsMouseText = d3.select('#hrsMouseText');
+
+  d3.selectAll('input')
+    .filter(function(d) { return this.name === 'gender' ? this : null; })
+    .on('change', function() { data.gender = this.value; });
+
+  d3.selectAll('input')
+    .filter(function(d) { return this.name === 'degree' ? this : null; })
+    .on('change', function() { data.degree = this.value; });
+
+  d3.selectAll('input')
+    .filter(function(d) { return this.name === 'blind' ? this : null; })
+    .on('change', function() { data.blind = this.value; });
+
+  function goToNext() {
+    experimentr.endTimer('demo');
+    experimentr.addData(data);
+    //experimentr.release();
+    experimentr.next();
+  }
+
+  function validate() {
+
+    data.age = ageText.property('value');
+    data.major = majorText.property('value');
+    data.occupation = occupationText.property('value');
+
+    data.hrsComputer = hrsComputerText.property('value');
+    data.hrsGames = hrsGamesText.property('value');
+    data.hrsMouse = hrsMouseText.property('value');
+
+    var messageThing = d3.select('#validateMessage');
+    var messageText = "";
+    messageThing.html("");
+
+    if (data.age) {
+      d3.select('#ageValidate').text("");
+    } else {
+      d3.select('#ageValidate').text("* ");
+      messageText += "<p>* Please provide your age.</p>"
+    }
+
+    if (data.major) {
+      d3.select('#majorValidate').text("");
+    } else {
+      d3.select('#majorValidate').text("* ");
+      messageText += "<p>* Please provide your major/degree specialization.</p>"
+    }
+
+    if (data.degree) {
+      d3.select('#degreeValidate').text("");
+    } else {
+      d3.select('#degreeValidate').text("* ");
+      messageText += "<p>* Please select your highest degree obtained.</p>"
+    }
+
+    if (data.gender) {
+      d3.select('#genderValidate').text("");
+    } else {
+      d3.select('#genderValidate').text("* ");
+      messageText += "<p>* Please select your gender.</p>"
+    }
+
+    if (data.occupation) {
+      d3.select('#occupationValidate').text("");
+    } else {
+      d3.select('#occupationValidate').text("* ");
+      messageText += "<p>* Please enter your occupation.</p>"
+    }
+
+    if (data.blind) {
+      d3.select('#blindValidate').text("");
+    } else {
+      d3.select('#blindValidate').text("* ");
+      messageText += "<p>* Please select your color blindness status."
+    }
+
+    if (data.hrsComputer) {
+      d3.select('#hrsComputerValidate').text("");
+    } else {
+      d3.select('#hrsComputerValidate').text("* ");
+      messageText += "<p>* Please enter how many hours you have using a computer.</p>"
+    }
+
+    if (data.hrsGames) {
+      d3.select('#hrsGamesValidate').text("");
+    } else {
+      d3.select('#hrsGamesValidate').text("* ");
+      messageText += "<p>* Please enter how many hours you have playing games.</p>"
+    }
+
+    if (data.hrsMouse) {
+      d3.select('#hrsMouseValidate').text("");
+    } else {
+      d3.select('#hrsMouseValidate').text("* ");
+      messageText += "<p>* Please enter how many hours you have player pc games using a mouse.</p>"
+    }
+
+
+    if(data.age && data.gender && data.degree && data.major && data.blind && data.occupation && data.hrsComputer && data.hrsGames && data.hrsMouse) {
+      //d3.select('#submitComments').attr('disabled', null);
+      goToNext();
+    } else {
+      messageThing.html(messageText);
+    }
+  }//end validate
+
+  d3.select('#submitComments')
+    .on('click', function () {
+      validate();
+    });
+}());
+</script>
