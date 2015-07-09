@@ -58,15 +58,21 @@ function BubbleCursor(selection) {
 		var currMin = 0;
 		var currX, currY, currRad;
 		var Dist = [],
-			ConD = [],
-			IntD = [];
+				ConD = [],
+				IntD = [];
 
 		//Find closest target
 		points
 			.each(function(d, i) {
-				var x = +d3.select(this).attr("cx"),
-					y = +d3.select(this).attr("cy"),
-					r = +d3.select(this).attr("r");
+				var pt = d3.select(this);
+				var x = +pt.attr("x"),
+						y = +pt.attr("y"),
+						w = 2 - +pt.attr("width");
+						h = 1 - +pt.attr("height");
+
+				var r = Math.sqrt(w*w + h*h);
+				var x = x - w/2;
+				var y = y - h/2;
 				var targetPt = [x, y];
 				var currDist = distance(mousePt,targetPt);
 				Dist.push(currDist);
@@ -106,8 +112,8 @@ function BubbleCursor(selection) {
 		//Update cursor
 		if (isFinite(cursorRadius) && cursorRadius > 0) {
 			cursor
-				.attr("cx",mousePt[0])
-				.attr("cy",mousePt[1])
+				.attr("cx", mousePt[0])
+				.attr("cy", mousePt[1])
 				.attr("r", cursorRadius);
 		} else if (target == null) {
 			cursor
@@ -121,12 +127,12 @@ function BubbleCursor(selection) {
 			cursorMorph
 				.attr("cx", currX)
 				.attr("cy", currY)
-				.attr("r", (currRad + 5));
+				.attr("r", currRad * 1.1);
 		} else {
 			cursorMorph
-				.attr("cx",0)
-				.attr("cy",0)
-				.attr("r",0);
+				.attr("cx", 0)
+				.attr("cy", 0)
+				.attr("r", 0);
 		}
 
 		return target;

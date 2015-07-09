@@ -19,7 +19,8 @@ function StreamScatterPlot() {
 		yAxis = d3.svg.axis().scale(yScale).orient("left"),
 		xLabel = "time",
 		yLabel = "value",
-		pointRadius = 6,
+		pWidth = 10,
+		pHeight = 10,
 		cursor = function(selection) {},
 		cursorFunction = function(selection) {},
 		targetName = ".target",
@@ -61,7 +62,7 @@ function StreamScatterPlot() {
 
 			//Update the y-scale
 			yScale
-				.domain([0, d3.max(dataset, function(d) { return d[1]; }) + pointRadius])
+				.domain([-pHeight, d3.max(dataset, function(d) { return d[1]; }) + pHeight])
 				.range([height - margin.top - margin.bottom, 0]);
 
 			//Select the svg element, if it exists
@@ -157,7 +158,7 @@ function StreamScatterPlot() {
 			svg.on("mousemove.StreamScatterPlot." + selection.attr("id"), function(d,i) {
 				var mouse = d3.mouse(this);
 				var x = mouse[0],
-					y = mouse[1];
+						y = mouse[1];
 
 				gCursor.select(".vertical")
 					.attr("x1", x)
@@ -186,13 +187,17 @@ function StreamScatterPlot() {
 						createQuestion();
 					} else {
 						errors += 1;
-						target.transition().duration(500).ease("bounce")
-								.attr("width", pointRadius * 2 * 2)
-								.attr("height", pointRadius * 2 * 2)
+						x = +target.attr("x");
+						y = +target.attr("y");
+						target.transition().duration(0).transition().duration(500).ease("bounce")
+								.attr("width", pWidth * 2)
+								.attr("height", pHeight * 2)
+								.attr("y", function(d) { return yScale(d[1]); })
 								.style("fill-opacity", 0.0)
 							.transition().duration(500).ease("bounce")
-								.attr("width", pointRadius * 2)
-								.attr("height", pointRadius * 2)
+								.attr("width", pWidth)
+								.attr("height", pHeight)
+								.attr("y", function(d) { return yScale(d[1]) + pHeight/2; })
 								.style("fill-opacity", 1.0);
 						if (trailsAllowed) {
 							targetTrail.transition().duration(500).ease("bounce")
@@ -274,10 +279,17 @@ function StreamScatterPlot() {
 		return chart;
 	};
 
-	//Set point radius
-	chart.pointRadius = function(_) {
-		if (!arguments.length) return pointRadius;
-		pointRadius = _;
+	//Set point width
+	chart.pointWidth = function(_) {
+		if (!arguments.length) return pWidth;
+		pWidth = _;
+		return chart;
+	};
+
+	//Set point height
+	chart.pointHeight = function(_) {
+		if (!arguments.length) return pHeight;
+		pHeight = _;
 		return chart;
 	};
 
@@ -338,9 +350,9 @@ function StreamScatterPlot() {
 
 		//Update
 		points
-			.attr("x", function(d) { return xScale(d[0]); })
+			.attr("x", function(d) { return xScale(d[0]) + pWidth/2; })
 			.each(function(d) {
-				if(this.getAttribute("x") < margin.left){
+				if(this.getAttribute("x") < margin.left - pWidth){
 					dataset.splice(dataset.indexOf(d), 1);
 					if(this.getAttribute("class") == "primary point") {
 						d3.select("svg").remove();
@@ -357,13 +369,12 @@ function StreamScatterPlot() {
 			.enter()
 			.append("rect")
 				.attr("class", function(d) { return d[2]; })
-				//.attr("r", pointRadius)
 				.attr("rx", function(d) { return d[2] == "secondary point" ? 0 : 100})
 				.attr("ry", function(d) { return d[2] == "secondary point" ? 0 : 100})
-				.attr("width", pointRadius * 2)
-				.attr("height", pointRadius * 2)
-				.attr("x", function(d) { return xScale(d[0]); })
-				.attr("y", function(d) { return yScale(d[1]); });
+				.attr("width", pWidth)
+				.attr("height", pHeight)
+				.attr("x", function(d) { return xScale(d[0]) + pWidth/2; })
+				.attr("y", function(d) { return yScale(d[1]) + pHeight/2; });
 
 		//Exit
 		points.exit().each(function(d, i) {

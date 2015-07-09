@@ -21,8 +21,8 @@ def createSet(repeat, timeoffset):
 	subset = list()
 	i = 0
 	j = 0
-	r1 = random.randrange(1, 10)
-	r2 = random.randrange(1, 10)
+	r1 = random.randrange(50, 100) #Primary Goal
+	r2 = random.randrange(3, 16) #Secondary Goal
 	if r1 == r2:
 		r2 += 1
 	while i < repeat:

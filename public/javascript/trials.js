@@ -62,13 +62,14 @@ function createChart() {
 //Create Cursor
 function createCursor() {
   var svg = d3.select("svg").data(StreamScatterPlot.getData());
-  NormalCursor(svg);
-  FreezeTrajectory(svg);
+  BubbleCursor(svg);
+  FreezeAroundClosest(svg);
+  BubbleCursor.tarName(".snapshot");
   //Update current selectors
   d3.timer(function() {
   	//Redraw cursor selector
-  	NormalCursor.redraw();
-    FreezeTrajectory.redraw();
+  	BubbleCursor.redraw();
+    FreezeAroundClosest.redraw();
   });
 }
 
