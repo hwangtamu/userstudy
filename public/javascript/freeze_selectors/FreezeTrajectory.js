@@ -206,19 +206,27 @@ function FreezeTrajectory(selection, manualFreeze) {
 		points
 			.each(function(d, i) {
 				var pt = d3.select(this);
-				var x = +pt.attr("cx"),
-					y = +pt.attr("cy"),
-					r = +pt.attr("r");
-
+				var x = +pt.attr("x"),
+						y = +pt.attr("y"),
+						w = +pt.attr("width")
+						h = +pt.attr("height")
+						rx = +pt.attr("rx")
+						ry = +pt.attr("ry")
+						fill = pt.attr("fill");
+console.log(fill);
 				var ptD = [x, y];
 
 				if(det(ptA, ptB, ptD) <= 0 && det(ptA, ptC, ptD) >= 0 && d3.select(".i" + d[3] +".snapshot").empty()) {
 					pt.attr("id", "tagged");
-					gCopies.append("circle")
+					gCopies.append("rect")
 						.attr("class", "i" + d[3] + " snapshot")
-						.attr("r", r)
-						.attr("cx", x)
-						.attr("cy", y);
+						.attr("width", w)
+						.attr("height", h)
+						.attr("x", x)
+						.attr("y", y)
+						.attr("rx", rx)
+						.attr("ry", ry)
+						.attr("fill", fill);
 				} else if ((det(ptA, ptB, ptD) >= 0 || det(ptA, ptC, ptD) <= 0) && d3.select(".i" + d[3] +".snapshot").empty()) {
 					pt.attr("id", "untagged");
 				}
@@ -230,9 +238,8 @@ function FreezeTrajectory(selection, manualFreeze) {
 		d3.selectAll(".snapshot")
 			.each(function(d, i) {
 				var pt = d3.select(this);
-				var x = +pt.attr("cx"),
-					y = +pt.attr("cy"),
-					r = +pt.attr("r");
+				var x = +pt.attr("x"),
+						y = +pt.attr("y");
 
 				var ptD = [x, y];
 

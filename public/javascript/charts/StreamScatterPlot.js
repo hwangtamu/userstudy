@@ -188,10 +188,10 @@ function StreamScatterPlot() {
 						errors += 1;
 						target.transition().duration(500).ease("bounce")
 								.attr("width", pointRadius * 2 * 2)
-								.attr("height", pointRadius * 2)
+								.attr("height", pointRadius * 2 * 2)
 								.style("fill-opacity", 0.0)
 							.transition().duration(500).ease("bounce")
-								.attr("width", pointRadius * 2 * 2)
+								.attr("width", pointRadius * 2)
 								.attr("height", pointRadius * 2)
 								.style("fill-opacity", 1.0);
 						if (trailsAllowed) {
@@ -358,8 +358,8 @@ function StreamScatterPlot() {
 			.append("rect")
 				.attr("class", function(d) { return d[2]; })
 				//.attr("r", pointRadius)
-				.attr("rx", function(d) { return d[2] == "primary point" ? 0 : 100})
-				.attr("ry", function(d) { return d[2] == "primary point" ? 0 : 100})
+				.attr("rx", function(d) { return d[2] == "secondary point" ? 0 : 100})
+				.attr("ry", function(d) { return d[2] == "secondary point" ? 0 : 100})
 				.attr("width", pointRadius * 2)
 				.attr("height", pointRadius * 2)
 				.attr("x", function(d) { return xScale(d[0]); })

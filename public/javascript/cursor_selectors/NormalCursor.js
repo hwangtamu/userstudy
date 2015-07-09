@@ -37,14 +37,15 @@ function NormalCursor(selection) {
 		d3.selectAll(targets)
 			.each(function(d, i) {
 				var pt = d3.select(this);
-				var x = +pt.attr("cx");
-				var y = +pt.attr("cy");
-				var r = +pt.attr("r");
+				var x = +pt.attr("x");
+				var y = +pt.attr("y");
+				var w = +pt.attr("width");
+				var h = +pt.attr("height");
 
 				var ptA = [x, y];
 
 				var dist = +distance(mousePt, ptA);
-				if (dist < r + tolerance) {
+				if (dist < w && dist < h) {
 					target = pt;
 				}
 			});
