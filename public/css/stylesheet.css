@@ -29,14 +29,20 @@ body {
 	fill: #FFFFFF;
 	clip-path: url(#StreamScatterPlotClip);
 }
+/*Order Must be Maintained for snapshot, primary, and secondary*/
+.snapshot {
+	stroke: #FFA300;
+	fill: #FFA300;
+	clip-path: url(#StreamScatterPlotClip);
+}
 
-.primary.point {
+.primary {
 	stroke: #E91E63;
 	fill: #E91E63;
 	clip-path: url(#StreamScatterPlotClip);
 }
 
-.secondary.point {
+.secondary {
 	stroke: #0288D1;
 	fill: #0288D1;
 	clip-path: url(#StreamScatterPlotClip);
@@ -52,11 +58,6 @@ body {
 	stroke-opacity: 0.5;
 }
 
-.snapshot {
-	stroke: #FFA300;
-	fill: #FFA300;
-	clip-path: url(#StreamScatterPlotClip);
-}
 
 .trail {
 	stroke: #FFA300;

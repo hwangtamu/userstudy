@@ -137,12 +137,12 @@ function StreamScatterPlot() {
 				.datum(function(d) { return {id: d3.select(this).attr("id")}; });
 
 			//Bind pause-start option
-			d3.select("body")
-				.on("keydown.StreamScatterPlot", function() {
-					if (d3.event.keyCode == 32) {
-						chart.pause();
-					}
-				})
+			// d3.select("body")
+			// 	.on("keydown.StreamScatterPlot", function() {
+			// 		if (d3.event.keyCode == 32) {
+			// 			chart.pause();
+			// 		}
+			// 	})
 
 			//Create Cursor
 			gCursor.append("line")
@@ -179,8 +179,10 @@ function StreamScatterPlot() {
 					target = null;
 				if (trailsAllowed) var targetTrail = d3.select("#targetTrail");
 				if (target != null && !d3.event.shiftKey) {
-					if (target.attr("class") == "primary point target") {
-						d3.select("svg").remove();
+					if (target.attr("class").includes("target") && target.attr("class").includes("primary")) {
+						svg.on("mousedown.StreamScatterPlot", null);
+						svg.on("mousemove.StreamScatterPlot", null);
+						d3.select('#trialsChart').html('');
 						var time_end = +new Date();
 						var trial_time = time_end - time_start;
 						addTrialData(errors, trial_time);
@@ -355,7 +357,10 @@ function StreamScatterPlot() {
 				if(this.getAttribute("x") < margin.left - pWidth){
 					dataset.splice(dataset.indexOf(d), 1);
 					if(this.getAttribute("class") == "primary point") {
-						d3.select("svg").remove();
+						svg.on("mousedown.StreamScatterPlot", null);
+						svg.on("mousemove.StreamScatterPlot", null);
+						d3.select('#trialsChart').html('');
+						console.log("LOST POINT")
 						var time_end = +new Date();
 						var trial_time = time_end - time_start;
 						addTrialData(errors, trial_time);

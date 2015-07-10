@@ -5,6 +5,15 @@ var numTrials = 0;
 var dataset;
 var width = 900,
     height = 360;
+var chart = StreamScatterPlot()
+    .x(function(d) { return +d.timeoffset; })
+    .y(function(d) { return +d.value; })
+    .flag(function(d) { return d.flag; })
+    .id(function(d) { return d.id; })
+    .width(width)
+    .height(height)
+    .allowZoom(false)
+    .allowPause(false);
 
 createGo();
 
@@ -42,15 +51,6 @@ function load() {
 
 //Create chart
 function createChart() {
-  var chart = StreamScatterPlot()
-      .x(function(d) { return +d.timeoffset; })
-      .y(function(d) { return +d.value; })
-      .flag(function(d) { return d.flag; })
-      .id(function(d) { return d.id; })
-      .width(width)
-      .height(height)
-      .allowZoom(false)
-      .allowPause(false);
   var stream = d3.select("#trialsChart")
     .datum(dataset)
     .call(chart);
@@ -61,15 +61,17 @@ function createChart() {
 
 //Create Cursor
 function createCursor() {
+  d3.select("svg").on("mousemove.cursorSelector", null);
+  d3.select("body").on("keydown.freezeSelector", null);
   var svg = d3.select("svg").data(StreamScatterPlot.getData());
   NormalCursor(svg);
-  FreezeAroundClosest(svg);
+  FreezeWholeScreen(svg);
   NormalCursor.tarName(".snapshot");
   //Update current selectors
   d3.timer(function() {
   	//Redraw cursor selector
   	NormalCursor.redraw();
-    if (!d3.select(".point").empty())FreezeAroundClosest.redraw();
+    // if (!d3.select(".point").empty())FreezeAroundClosest.redraw();
   });
 }
 
@@ -107,7 +109,11 @@ function createGo() {
 
   goCircle.transition().duration(500).attr("r", 50);
   goText.transition().duration(500).style("font-size", "50px");
-  g.on("click.go", function() { d3.select("#go").remove(); load(); });
+  g.on("click.go", function() {
+    g.on("click.go", null);
+    d3.select('#trialsChart').html('');
+    load();
+  });
 }
 
 //Loads up secondary task
@@ -159,7 +165,9 @@ function createQuestion() {
 
   numpad.on("click.numpad", function(d, i) {
     console.log(d3.select(this).data());
-    d3.select("#question").remove();
+    numpad.on("click.numpad", null);
+    text.on("click.numpad", null);
+    d3.select('#trialsChart').html('');
     if (trialNumber < numTrials)
       createGo();
     else
@@ -168,7 +176,9 @@ function createQuestion() {
 
   text.on("click.numpad", function(d, i) {
     console.log(d3.select(this).data());
-    d3.select("#question").remove();
+    numpad.on("click.numpad", null);
+    text.on("click.numpad", null);
+    d3.select('#trialsChart').html('');
     if (trialNumber < numTrials)
       createGo();
     else

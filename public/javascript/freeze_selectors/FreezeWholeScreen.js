@@ -30,19 +30,17 @@ function FreezeWholeScreen(selection) {
 						w = +pt.attr("width")
 						h = +pt.attr("height")
 						rx = +pt.attr("rx")
-						ry = +pt.attr("ry")
-						fill = pt.attr("fill");
+						ry = +pt.attr("ry");
 
 				pt.attr("id", "tagged");
 				gCopies.append("rect")
-					.attr("class", "i" + d[3] + " snapshot")
+					.attr("class", d[2].replace("point", "") + "i" + d[3] + " snapshot")
 					.attr("width", w)
 					.attr("height", h)
 					.attr("x", x)
 					.attr("y", y)
 					.attr("rx", rx)
-					.attr("ry", ry)
-					.attr("fill", fill);
+					.attr("ry", ry);
 			});
 	};
 
