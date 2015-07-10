@@ -213,7 +213,7 @@ function FreezeTrajectory(selection, manualFreeze) {
 						rx = +pt.attr("rx")
 						ry = +pt.attr("ry")
 						fill = pt.attr("fill");
-console.log(fill);
+
 				var ptD = [x, y];
 
 				if(det(ptA, ptB, ptD) <= 0 && det(ptA, ptC, ptD) >= 0 && d3.select(".i" + d[3] +".snapshot").empty()) {

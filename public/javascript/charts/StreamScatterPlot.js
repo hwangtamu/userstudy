@@ -187,26 +187,26 @@ function StreamScatterPlot() {
 						createQuestion();
 					} else {
 						errors += 1;
-						x = +target.attr("x");
-						y = +target.attr("y");
-						target.transition().duration(0).transition().duration(500).ease("bounce")
-								.attr("width", pWidth * 2)
-								.attr("height", pHeight * 2)
-								.attr("y", function(d) { return yScale(d[1]); })
-								.style("fill-opacity", 0.0)
-							.transition().duration(500).ease("bounce")
-								.attr("width", pWidth)
-								.attr("height", pHeight)
-								.attr("y", function(d) { return yScale(d[1]) + pHeight/2; })
-								.style("fill-opacity", 1.0);
-						if (trailsAllowed) {
-							targetTrail.transition().duration(500).ease("bounce")
-									.attr("stroke-width", 12)
-									.style("stroke-opacity", 0.0)
-								.transition().duration(500).ease("bounce")
-									.attr("stroke-width", 6)
-									.style("stroke-opacity", 1.0);
-						}
+						// x = +target.attr("x");
+						// y = +target.attr("y");
+						// target.transition().duration(0).transition().duration(500).ease("bounce")
+						// 		.attr("width", pWidth * 2)
+						// 		.attr("height", pHeight * 2)
+						// 		.attr("y", function(d) { return yScale(d[1]); })
+						// 		.style("fill-opacity", 0.0)
+						// 	.transition().duration(500).ease("bounce")
+						// 		.attr("width", pWidth)
+						// 		.attr("height", pHeight)
+						// 		.attr("y", function(d) { return yScale(d[1]) + pHeight/2; })
+						// 		.style("fill-opacity", 1.0);
+						// if (trailsAllowed) {
+						// 	targetTrail.transition().duration(500).ease("bounce")
+						// 			.attr("stroke-width", 12)
+						// 			.style("stroke-opacity", 0.0)
+						// 		.transition().duration(500).ease("bounce")
+						// 			.attr("stroke-width", 6)
+						// 			.style("stroke-opacity", 1.0);
+						// }
 					}
 				}
 			});

@@ -193,13 +193,12 @@ function FreezeAroundClosest(selection, manualFreeze) {
 					gCopies.append("rect")
 						.attr("class", "i" + d[3] + " snapshot")
 						.attr("id", "snap")
-						.attr("width", w)
-						.attr("height", h)
-						.attr("x", x)
-						.attr("y", y)
-						.attr("rx", rx)
-						.attr("ry", ry)
-						.attr("fill", fill);
+						.attr("x", currPt[0])
+						.attr("y", currPt[1])
+						.attr("width", d3.select(this).attr("width"))
+						.attr("height", d3.select(this).attr("height"))
+						.attr("rx", d3.select(this).attr("rx"))
+						.attr("ry", d3.select(this).attr("ry"));
 				});
 		}
 
@@ -250,6 +249,7 @@ function FreezeAroundClosest(selection, manualFreeze) {
 						rx = +pt.attr("rx")
 						ry = +pt.attr("ry")
 						fill = pt.attr("fill");
+				var r = Math.sqrt(w*w + h*h);
 
 				var targetPt = [x, y];
 				var currDist = distance(currPt,targetPt);

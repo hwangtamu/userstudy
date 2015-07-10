@@ -62,14 +62,14 @@ function createChart() {
 //Create Cursor
 function createCursor() {
   var svg = d3.select("svg").data(StreamScatterPlot.getData());
-  BubbleCursor(svg);
+  NormalCursor(svg);
   FreezeAroundClosest(svg);
-  BubbleCursor.tarName(".snapshot");
+  NormalCursor.tarName(".snapshot");
   //Update current selectors
   d3.timer(function() {
   	//Redraw cursor selector
-  	BubbleCursor.redraw();
-    FreezeAroundClosest.redraw();
+  	NormalCursor.redraw();
+    if (!d3.select(".point").empty())FreezeAroundClosest.redraw();
   });
 }
 
@@ -95,6 +95,7 @@ function createGo() {
     .attr("cy", height/2)
     .attr("r", 0)
     .style("fill", "#4CAF50");
+
   var goText = g.append("text")
     .attr("x", width/2 - 40)
     .attr("y", height/2 + 20)
