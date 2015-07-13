@@ -4,6 +4,7 @@ function StreamScatterPlot() {
 	var errors = 0;
 	var time_start = +new Date();
 
+	var end = false;
 
 	//Default values for chart
 	var margin = {top: 10, right: 10, bottom: 30, left: 0},
@@ -51,7 +52,8 @@ function StreamScatterPlot() {
 				return [xValue.call(data, d, i),
 								yValue.call(data, d, i),
 								flagValue.call(data, d, i),
-								idValue.call(data, d, i)]; });
+								idValue.call(data, d, i)];
+			});
 
 			dataset = data;
 			//Update the x-scale
@@ -137,12 +139,12 @@ function StreamScatterPlot() {
 				.datum(function(d) { return {id: d3.select(this).attr("id")}; });
 
 			//Bind pause-start option
-			// d3.select("body")
-			// 	.on("keydown.StreamScatterPlot", function() {
-			// 		if (d3.event.keyCode == 32) {
-			// 			chart.pause();
-			// 		}
-			// 	})
+			d3.select("body")
+				.on("keydown.StreamScatterPlot", function() {
+					if (d3.event.keyCode == 32) {
+						chart.pause();
+					}
+				})
 
 			//Create Cursor
 			gCursor.append("line")
@@ -155,7 +157,7 @@ function StreamScatterPlot() {
 				.style("stroke", "black");
 
 			//Set on mousemove to update position of cursor
-			svg.on("mousemove.StreamScatterPlot." + selection.attr("id"), function(d,i) {
+			svg.on("mousemove.StreamScatterPlot", function(d,i) {
 				var mouse = d3.mouse(this);
 				var x = mouse[0],
 						y = mouse[1];
@@ -173,42 +175,40 @@ function StreamScatterPlot() {
 			});
 
 			//Set on click handler
-			svg.on("mousedown.StreamScatterPlot."  + selection.attr("id"), function(d, i) {
+			svg.on("mousedown.StreamScatterPlot", function(d, i) {
 				var target = d3.select(targetName);
 				if (d3.select(targetName).empty())
 					target = null;
 				if (trailsAllowed) var targetTrail = d3.select("#targetTrail");
 				if (target != null && !d3.event.shiftKey) {
 					if (target.attr("class").includes("target") && target.attr("class").includes("primary")) {
-						svg.on("mousedown.StreamScatterPlot", null);
-						svg.on("mousemove.StreamScatterPlot", null);
-						d3.select('#trialsChart').html('');
+						chart.destroy();
 						var time_end = +new Date();
 						var trial_time = time_end - time_start;
 						addTrialData(errors, trial_time);
 						createQuestion();
 					} else {
 						errors += 1;
-						// x = +target.attr("x");
-						// y = +target.attr("y");
-						// target.transition().duration(0).transition().duration(500).ease("bounce")
-						// 		.attr("width", pWidth * 2)
-						// 		.attr("height", pHeight * 2)
-						// 		.attr("y", function(d) { return yScale(d[1]); })
-						// 		.style("fill-opacity", 0.0)
-						// 	.transition().duration(500).ease("bounce")
-						// 		.attr("width", pWidth)
-						// 		.attr("height", pHeight)
-						// 		.attr("y", function(d) { return yScale(d[1]) + pHeight/2; })
-						// 		.style("fill-opacity", 1.0);
-						// if (trailsAllowed) {
-						// 	targetTrail.transition().duration(500).ease("bounce")
-						// 			.attr("stroke-width", 12)
-						// 			.style("stroke-opacity", 0.0)
-						// 		.transition().duration(500).ease("bounce")
-						// 			.attr("stroke-width", 6)
-						// 			.style("stroke-opacity", 1.0);
-						// }
+						x = +target.attr("x");
+						y = +target.attr("y");
+						target.transition().duration(0).transition().duration(500).ease("bounce")
+								.attr("width", pWidth * 2)
+								.attr("height", pHeight * 2)
+								.attr("y", function(d) { return yScale(d[1]); })
+								.style("fill-opacity", 0.0)
+							.transition().duration(500).ease("bounce")
+								.attr("width", pWidth)
+								.attr("height", pHeight)
+								.attr("y", function(d) { return yScale(d[1]) + pHeight/2; })
+								.style("fill-opacity", 1.0);
+						if (trailsAllowed) {
+							targetTrail.transition().duration(500).ease("bounce")
+									.attr("stroke-width", 12)
+									.style("stroke-opacity", 0.0)
+								.transition().duration(500).ease("bounce")
+									.attr("stroke-width", 6)
+									.style("stroke-opacity", 1.0);
+						}
 					}
 				}
 			});
@@ -217,6 +217,16 @@ function StreamScatterPlot() {
 			TrailDrawer(svg);
 		});
 	}
+
+	chart.destroy = function() {
+		d3.select("body").on("keydown.StreamScatterPlot", null);
+		svg
+			.on("wheel.zoom", null)
+			.on("mousemove.StreamScatterPlot.", null)
+			.on("mousedown.StreamScatterPlot", null)
+			.remove();
+		end = true;
+	};
 
 	//Set margins
 	chart.margin = function(_) {
@@ -354,13 +364,10 @@ function StreamScatterPlot() {
 		points
 			.attr("x", function(d) { return xScale(d[0]) + pWidth/2; })
 			.each(function(d) {
-				if(this.getAttribute("x") < margin.left - pWidth){
+				if (this.getAttribute("x") < margin.left - pWidth){
 					dataset.splice(dataset.indexOf(d), 1);
-					if(this.getAttribute("class") == "primary point") {
-						svg.on("mousedown.StreamScatterPlot", null);
-						svg.on("mousemove.StreamScatterPlot", null);
-						d3.select('#trialsChart').html('');
-						console.log("LOST POINT")
+					if (this.getAttribute("class") == "primary point") {
+						chart.destroy();
 						var time_end = +new Date();
 						var trial_time = time_end - time_start;
 						addTrialData(errors, trial_time);
@@ -395,14 +402,17 @@ function StreamScatterPlot() {
 		if (trailsAllowed) {
 			TrailDrawer.redraw();
 		}
+		return;
 	};
 
 	//Starts the chart streaming
 	chart.start = function() {
+		end = false;
 		d3.timer(function() {
 			if(!paused) {
 				chart.step();
 			}
+			return end;
 		})
 	};
 

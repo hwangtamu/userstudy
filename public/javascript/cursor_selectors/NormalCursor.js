@@ -9,10 +9,13 @@ function NormalCursor(selection) {
 	var tolerance = 0;
 
 	//Redraw cursor on mouse move
-	var svg = selection;
-	svg.on("mousemove.cursorSelector", function(d,i) {
+	selection.on("mousemove.cursorSelector", function(d,i) {
 		var target = NormalCursor.redraw(d3.mouse(this));
 	});
+
+	NormalCursor.destroy = function() {
+		selection.on("mousemove.cursorSelector", null);
+	}
 
 	//Update position of cursor and obtain target
 	NormalCursor.redraw = function(mouse) {

@@ -40,6 +40,12 @@ function BubbleCursor(selection) {
 			.attr("r",0);
 	});
 
+	BubbleCursor.destroy = function() {
+		selection.on("mouseout.cursorSelector", null);
+		selection.on("mousemove.cursorSelector", null);
+		gSelection.remove();
+	};
+
 	//Draws bubble cursor
 	//If data is dynamic this call must be made in a loop
 	//Sets target obtained from cursor as well

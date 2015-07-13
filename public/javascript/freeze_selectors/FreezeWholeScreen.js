@@ -5,13 +5,20 @@ function FreezeWholeScreen(selection) {
 	//Element that contains the 'snapshots' of frozen data
 	var gCopies = selection.insert("g", ".chart").attr("class", "snapshots");
 
-	//Freeze when user hits shift
+	//Freeze when user hits shift / Clear when user hits C
 	d3.select("body")
 		.on("keydown.freezeSelector", function() {
 			if (d3.event.shiftKey) {
 				FreezeWholeScreen.freeze()
+			} else if (d3.event.keyCode == 67) {
+				FreezeWholeScreen.cleanSnapshots();
 			}
 		});
+
+	FreezeWholeScreen.destroy = function() {
+		d3.select("body").on("keydown.freezeSelector", null);
+		gCopies.remove();
+	};
 
 	//Freezes all the data points currently shown
 	FreezeWholeScreen.freeze = function() {

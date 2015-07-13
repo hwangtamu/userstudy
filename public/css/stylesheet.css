@@ -24,15 +24,15 @@ body {
 	stroke: none;
 }
 
-.point {
-	stroke: #000000;
-	fill: #FFFFFF;
-	clip-path: url(#StreamScatterPlotClip);
-}
-/*Order Must be Maintained for snapshot, primary, and secondary*/
 .snapshot {
 	stroke: #FFA300;
 	fill: #FFA300;
+	clip-path: url(#StreamScatterPlotClip);
+}
+
+.point {
+	stroke: #000000;
+	fill: #FFFFFF;
 	clip-path: url(#StreamScatterPlotClip);
 }
 

@@ -3,12 +3,12 @@
 from datetime import datetime
 import sys, getopt, json, random, math
 
-#Define return for function that generates data.value
+#Define function that generates data.value
 def valueFunction(*args):
 	#return math.fabs(math.sin(args[0])) * 100
 	return random.randrange(0, 50)
 
-#Define return for function that generates data.flag
+#Define function that generates data.flag
 def flagFunction(*args):
 	flag = "point"
 	if (args[0] == args[1]):
@@ -62,8 +62,9 @@ def main(argv):
 		elif opt in ("-a", "--append"):
 			append = True
 
-	#Create data
 	dataset = list()
+
+	#Load data set to append
 	if append == True:
 		try:
 			with open(outputfile) as f:
@@ -73,6 +74,7 @@ def main(argv):
 			print 'cant load file'
 			sys.exit(2)
 
+	#Create data
 	i = 0
 	while i < sets:
 		dataset.append(createSet(repeat, timeoffset))

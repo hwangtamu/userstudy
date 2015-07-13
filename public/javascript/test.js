@@ -125,11 +125,10 @@ function change() {
 	d3.selectAll(".snapshots").remove();
 	d3.select("#freezeClip").remove();
 	d3.selectAll(".point").attr("id", "untagged");
-	d3.select("body").on("keydown.freezeSelector", null);
 	d3.selectAll(".trail").remove();
 	d3.selectAll(".target").attr("class", function() { return d3.select(this).attr("class").slice(0, -7); });
+	d3.select("body").on("keydown.freezeSelector", null);
 	svg.on("mousemove.freezeSelector", null);
-	svg.on("mousemove.cursorSelector", null);
 	svg.on("mousemove.cursorSelector", null);
 
 	//Convert choice to bool
