@@ -1,8 +1,8 @@
 function StreamScatterPlot() {
 
 	//FOR EXPERIMENTAL REASONS
-	var errors = 0;
-	var time_start = +new Date();
+	var errors;
+	var time_start;
 
 	//Default values for chart
 	var margin = {top: 10, right: 10, bottom: 30, left: 0},
@@ -27,8 +27,8 @@ function StreamScatterPlot() {
 		pauseAllowed = true,
 		paused = false,
 		trailsAllowed = true,
-		interval = 1000, //Determines the unit of time used on axis
-		numIntervals = 20; //Determines the number of numIntervals on axis based on time (n - 4 roughly shown)
+		interval = 1000, //Determines base unit to measure by
+		numIntervals = 20; //Determines the number of base intervals shown in window of time
 
 	//Used to kill step timer
 	var end = false;
@@ -47,6 +47,10 @@ function StreamScatterPlot() {
 
 	//Initial creation of streaming scatter plot
 	function chart(selection) {
+		//Init experimental things
+		time_start = +new Date();
+		errors = 0;
+
 		selection.each(function(data) {
 			//Map corresponding data points x to d[0] and y to d[1]
 			data = data.map(function(d, i) {
