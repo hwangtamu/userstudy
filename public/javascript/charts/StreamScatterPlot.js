@@ -1,10 +1,8 @@
 function StreamScatterPlot() {
 
-	//FOR EXPERIMENTAL REASONS!!!
+	//FOR EXPERIMENTAL REASONS
 	var errors = 0;
 	var time_start = +new Date();
-
-	var end = false;
 
 	//Default values for chart
 	var margin = {top: 10, right: 10, bottom: 30, left: 0},
@@ -32,7 +30,10 @@ function StreamScatterPlot() {
 		interval = 1000, //Determines the unit of time used on axis
 		numIntervals = 20; //Determines the number of numIntervals on axis based on time (n - 4 roughly shown)
 
-	//Controls some wacky experimental clockdrift
+	//Used to kill step timer
+	var end = false;
+
+	//Controls experimental clockdrift
 	var clockdrift = 0;
 
 	//Selectors, dataset, and points to grab
@@ -194,19 +195,17 @@ function StreamScatterPlot() {
 						target.transition().duration(0).transition().duration(500).ease("bounce")
 								.attr("width", pWidth * 2)
 								.attr("height", pHeight * 2)
-								.attr("y", function(d) { return yScale(d[1]); })
 								.style("fill-opacity", 0.0)
 							.transition().duration(500).ease("bounce")
 								.attr("width", pWidth)
 								.attr("height", pHeight)
-								.attr("y", function(d) { return yScale(d[1]) + pHeight/2; })
 								.style("fill-opacity", 1.0);
 						if (trailsAllowed) {
 							targetTrail.transition().duration(500).ease("bounce")
-									.attr("stroke-width", 12)
+									.attr("stroke-width", pHeight)
 									.style("stroke-opacity", 0.0)
 								.transition().duration(500).ease("bounce")
-									.attr("stroke-width", 6)
+									.attr("stroke-width", pHeight/2)
 									.style("stroke-opacity", 1.0);
 						}
 					}
