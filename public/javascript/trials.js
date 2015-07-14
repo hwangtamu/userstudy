@@ -380,7 +380,7 @@ function addTrialData(err, time) {
   //data[id_time] = { "id": trialNumber, "errors": err, "time": time };
   data[id_err] = err;
   data[id_time] = time;
-console.log(JSON.stringify(data, null, '\t'))
+  // console.log(JSON.stringify(data, null, '\t'));
   trialNumber += 1;
   if (trialNumber >= numTrials) {
     trialNumber = 0;

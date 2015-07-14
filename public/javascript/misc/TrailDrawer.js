@@ -17,75 +17,63 @@ function TrailDrawer(selection) {
 	};
 
 	TrailDrawer.redraw = function() {
-		d3.selectAll(snapshotName).each(function(d, i) {
+		d3.selectAll("#tagged").each(function(d, i) {
 			var snap = d3.select(this);
 			var snapX = +snap.attr("x");
 			var snapY = +snap.attr("y");
 			var snapWidth = +snap.attr("width");
 			var snapHeight = +snap.attr("height");
-			console.log(snap.attr("class"));
-			var uniqueID = snap.attr("class").slice(0, -9).replace(" ", "."); //Slice snapshot off and fix spaces
-			d3.selectAll(originalName).each(function(d, i) {
-				var tagged = d3.select(this);
+			var cls = snap.attr("class").replace("point", "trail");
+			var uniqueID = d[3];
+			if (!d3.select(".i" + uniqueID + ".snapshot").empty()) {
+				var tagged = d3.select(".i" + uniqueID + ".snapshot");
 				var taggedX = +tagged.attr("x");
 				var taggedY = +tagged.attr("y");
 				var taggedWidth = +tagged.attr("width");
 				var taggedHeight = +tagged.attr("height");
-				if (uniqueID.includes(d[3])) {
-					if (d3.select("." + uniqueID + ".trail").empty()) {
-						console.log("created", uniqueID);
-						TrailDrawer.createTrail(uniqueID);
-					} else {
-						console.log("updated", uniqueID);
-						TrailDrawer.updateTrail([snapX + snapWidth/2, snapY + snapHeight/2], [taggedX + taggedWidth/2, taggedY + taggedHeight/2], uniqueID, "");
-					}
+				if (d3.select(".i" + uniqueID + ".trail").empty()) {
+					TrailDrawer.createTrail(uniqueID, cls);
+				} else {
+					TrailDrawer.updateTrail([snapX + snapWidth/2, snapY + snapHeight/2], [taggedX + taggedWidth/2, taggedY + taggedHeight/2], uniqueID, cls);
 				}
-			});
-		});
-
-		// d3.select(".target").each(function(d, i) {
-		// 	var snap = d3.select(this);
-		// 	var uniqueID = +snap.attr("class").slice(1, -15);
-		// 	var snapX = +snap.attr("x");
-		// 	var snapY = +snap.attr("y");
-		// 	var snapWidth = +snap.attr("width");
-		// 	var snapHeight = +snap.attr("height");
-		//
-		// 	//Find targets matching trail
-		// 	d3.selectAll(originalName).each(function(d, i) {
-		// 		var tagged = d3.select(this);
-		// 		var taggedX = +tagged.attr("x");
-		// 		var taggedY = +tagged.attr("y");
-		// 		var taggedWidth = +tagged.attr("width");
-		// 		var taggedHeight = +tagged.attr("height");
-		// 		if (d[3] == uniqueID) {
-		// 			if (d3.select("." + uniqueID + ".trail").empty()) {
-		// 				TrailDrawer.createTrail(uniqueID);
-		// 			} else {
-		// 				TrailDrawer.updateTrail([snapX + snapWidth/2, snapY + snapHeight/2], [taggedX + taggedWidth/2, taggedY + taggedHeight/2], uniqueID, "targetTrail");
-		// 			}
-		// 		}
-		// 	});
-		// });
-
-		d3.selectAll("#untagged").each(function(d, i) {
-			var untagged = d3.select(this);
-			var uniqueID = untagged.attr("class").slice(0, -9).replace(" ", ".");;
-			if (!d3.select("." + uniqueID + "trail").empty()) {
-				d3.select("." + uniqueID + "trail").remove();
+				if (!d3.select(".i" + uniqueID + ".snapshot.target").empty()) {
+					d3.select(".i" + uniqueID + ".trail").each(function(d, i) {
+						d3.select(this).attr("id", "targetTrail");
+					});
+				} else {
+					d3.select(".i" + uniqueID + ".trail").each(function(d, i) {
+						d3.select(this).attr("id", function() {
+							var id = "trail";
+							if (cls.includes("primary")) {
+								id = "primary_trail";
+							} else if (cls.includes("secondary")) {
+								id = "secondary_trail";
+							}
+							return id;
+						})
+					});
+				}
 			}
 		});
+
+		d3.selectAll(".trail").filter(function(d,i) {
+			return d3.select(".i" + d + ".snapshot").empty();
+		}).remove();
+
 	};
 
-	TrailDrawer.createTrail = function(uniqueID) {
-		gTrails.append("line")
-			.attr("id", "targetTrail")
-			.attr("class", uniqueID.replace(".", " ") + " trail")
+	TrailDrawer.createTrail = function(uniqueID, cls) {
+		gTrails.append("line").datum(uniqueID)
+			.attr("id", cls.replace(" ", "_"))
+			.attr("class", "i" + uniqueID + " trail")
 			.attr("stroke-width", stroke_width)
+			.attr("stroke-linecap", "round")
+			//.attr("stroke-dasharray", "5, 5")
 			.on("mouseover", function(d, i) {
 				var trail = d3.select(this);
-				var uniqueID = trail.attr("class").slice(1, -6);
-				var target = d3.select("." + uniqueID + ".snapshot");
+				var uniqueID = d;
+				var target = d3.select(".i" + uniqueID + ".snapshot");
+				d3.selectAll(".trail").attr("id", "trail");
 				d3.selectAll(snapshotName + ".target")
 					.attr("class", function() { return d3.select(this).attr("class").slice(0, -7); });
 
@@ -93,20 +81,27 @@ function TrailDrawer(selection) {
 					target
 						.attr("class", target.attr("class") + " target");
 				}
-			})
-			.on("mouseout", function(d, i) {
-				d3.select("#targetTrail").attr("id", "");
-			})
+				trail.attr("id", "targetTrail")
+			});
 	};
 
 	TrailDrawer.destroyTrail = function(uniqueID) {
-	//	d3.select("." + uniqueID + ".trail").remove();
+		d3.select(".i" + uniqueID + ".trail").remove();
 	};
 
-	TrailDrawer.updateTrail = function(pA, pB, uniqueID, id) {
-		console.log("Updating", uniqueID);
-		d3.select("." + uniqueID + ".trail")
-			.attr("id", id)
+	TrailDrawer.updateTrail = function(pA, pB, uniqueID, cls) {
+		d3.select(".i" + uniqueID + ".trail")
+			.attr("id", function() {
+				var id = "trail";
+				if (d3.select(this).attr("id") == "targetTrail") {
+					id = "targetTrail";
+				} else if (cls.includes("primary")) {
+					id = "primary_trail";
+				} else if (cls.includes("secondary")) {
+					id = "secondary_trail";
+				}
+				return id;
+			})
 			.attr("x1", pA[0])
 			.attr("y1", pA[1])
 			.attr("x2", pB[0])

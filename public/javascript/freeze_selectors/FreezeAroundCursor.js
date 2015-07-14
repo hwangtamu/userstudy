@@ -167,7 +167,7 @@ function FreezeAroundCursor(selection, manualFreeze) {
 				if (currDist <= frzRadius && d3.select(".i" + d[3] + ".snapshot").empty()) {
 					pt.attr("id", "tagged");
 
-					gCopies.append("rect")
+					gCopies.append("rect").datum(d[3])
 						.attr("class", d[2].replace("point", "") + "i" + d[3] + " snapshot")
 						.attr("width", w)
 						.attr("height", h)
