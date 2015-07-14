@@ -126,11 +126,29 @@ function createChart(_speed, _trail) {
 
   //Set trail modifier
   if (_trail === "none") {
-
+      d3.select("#module style").html(
+        "#tagged.point {" +
+            "fill-opacity: 0.0 !important;" +
+            "stroke-opacity: 0.0 !important;" +
+        "}"
+      );
+      StreamScatterPlot.setTrails(false);
   } else if (_trail === "trail") {
-
+      d3.select("#module style").html(
+        "#tagged.point {" +
+            "fill-opacity: 0.5 !important;" +
+            "stroke-opacity: 0.5 !important;" +
+        "}"
+      );
+      StreamScatterPlot.setTrails(true);
   } else {
-
+      d3.select("#module style").html(
+        "#tagged.point {" +
+            "fill-opacity: 0.5 !important;" +
+            "stroke-opacity: 0.5 !important;" +
+        "}"
+      );
+      StreamScatterPlot.setTrails(false);
   }
 
   //Start streaming
