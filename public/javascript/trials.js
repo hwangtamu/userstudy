@@ -82,7 +82,7 @@ d3.json("data/sequence.json", function(error, data) {
 
 //Load JSON file
 function load(file, callback) {
-    d3.json("data/stream_testing.json", function(error, data) {
+    d3.json("data/" + file, function(error, data) {
         if (error) {
             console.log(error);
         } else {
@@ -290,6 +290,13 @@ function createQuestion(err, time, dis, got) {
         svg.remove();
         d3.select("#trialsChart").html("");
 
+        if (practice) {
+            d3.select(".question_info").text(
+                "Distractors On Screen: " + dis +
+                " Your answer: " + ans[0]
+            );
+        }
+
         if (experiment_number < experiment_length) {
             addTrialData(err, time, dis, ans[0], got);
             createGo();
@@ -306,6 +313,13 @@ function createQuestion(err, time, dis, got) {
         svg.remove();
         d3.select("#trialsChart").html("");
 
+        if (practice) {
+            d3.select("#question_info").text(
+                "Distractors On Screen: " + dis +
+                " Your answer: " + ans[0]
+            );
+        }
+
         if (experiment_number < experiment_length) {
             addTrialData(err, time, dis, ans[0], got);
             createGo();
@@ -317,18 +331,19 @@ function createQuestion(err, time, dis, got) {
 }
 
 function createTrainer() {
-    practice = true;
-
     var _freeze = experiment_sequence[experiment_number].freezeType;
     var _trail= experiment_sequence[experiment_number].trailType;
 
+    d3.select("#trainInfo").append("div")
+        .attr("class", "question_info");
 
-    var button = d3.select("#trainInfo")
-        .append("div")
-            .html("<b>Freeze Technique: " + _freeze + "<br>" +
-                    "Trail Style: " + _trail + "</b><br>" +
-                    "'Shift' to activate freeze; 'C' to clear frozen elements" + "<br>")
-        .append("button")
+    d3.select("#trainInfo").append("div")
+        .attr("class", "training_info")
+        .html("<b>Freeze Technique: " + _freeze + "<br>" +
+                "Trail Style: " + _trail + "</b><br>" +
+                "'Shift' to activate freeze; 'C' to clear frozen elements" + "<br>");
+
+    var button = d3.select("#trainInfo").append("button")
             .attr("id", "done_training")
             .text("DONE TRAINING");
 
@@ -365,15 +380,20 @@ function loadNextTrial() {
     if (previousFrz != _freeze || previousTrail != _trail) {
         previousFrz = _freeze;
         previousTrail = _trail;
-        //DO PRACTICE TRIAL
-        load(null, function() {
-            createTrainer()
+        practice = true;
+        createTrainer()
+    }
+
+
+    if (practice) {
+        //LOAD WITH RANDOM DENSITY/SPEED?
+        load("practice_data.json", function() {
             createChart(_speed, _trail);
             setSelectors("normal", _freeze);
         });
     } else {
-        //DO REAL TRIAL
-        load(null, function() {
+        //LOAD FILE BASED ON DENSITY PARAM
+        load("stream_testing.json", function() {
             createChart(_speed, _trail);
             setSelectors("normal", _freeze);
         });
