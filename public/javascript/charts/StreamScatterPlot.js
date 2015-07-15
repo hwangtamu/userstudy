@@ -185,13 +185,13 @@ function StreamScatterPlot() {
 				if (d3.select(targetName).empty())
 					target = null;
 				if (trailsAllowed) var targetTrail = d3.select("#targetTrail");
-				if (target != null && !d3.event.shiftKey) {
+				if (target != null && !d3.event.shiftKey && !end) {
 					if (target.attr("class").includes("target") && target.attr("class").includes("primary")) {
-						chart.destroy();
 						var time_end = +new Date();
 						var trial_time = time_end - time_start;
-						addTrialData(errors, trial_time);
-						createQuestion();
+						var dis = chart.getDistractors();
+						chart.destroy();
+						createQuestion(errors, trial_time, dis, true);
 					} else {
 						errors += 1;
 						x = +target.attr("x");
@@ -222,6 +222,8 @@ function StreamScatterPlot() {
 	}
 
 	chart.destroy = function() {
+		d3.selectAll("snapshot.target, point.target")
+			.attr("class", function() { return d3.select(this).attr("class").slice(0, -7); });
 		d3.select("body").on("keydown.StreamScatterPlot", null);
 		svg
 			.on("wheel.zoom", null)
@@ -370,11 +372,11 @@ function StreamScatterPlot() {
 				if (this.getAttribute("x") < margin.left - pWidth){
 					dataset.splice(dataset.indexOf(d), 1);
 					if (this.getAttribute("class") == "primary point") {
-						chart.destroy();
 						var time_end = +new Date();
 						var trial_time = time_end - time_start;
-						addTrialData(errors, trial_time);
-						createQuestion();
+						var dis = chart.getDistractors();
+						chart.destroy();
+						createQuestion(errors, trial_time, dis, false);
 					}
 				}
 			});
@@ -480,6 +482,14 @@ function StreamScatterPlot() {
 	StreamScatterPlot.getData = function(_) {
 		return dataset;
 	};
+
+	chart.getDistractors = function() {
+		var n = 0;
+		d3.selectAll(".secondary.point").each(function() {
+			n += 1;
+		});
+		return n;
+	}
 
 	return chart;
 }

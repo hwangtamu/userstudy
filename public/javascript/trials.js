@@ -15,8 +15,6 @@ var experiment_length = 0;
 var width = 900,
     height = 360;
 
-var loading = false;
-
 var chart = StreamScatterPlot()
     .x(function(d) { return +d.timeoffset; })
     .y(function(d) { return +d.value; })
@@ -26,7 +24,7 @@ var chart = StreamScatterPlot()
     .height(height)
     .allowZoom(false)
     .allowPause(false)
-    .allowTrails(true);
+    .allowTrails(false);
 
 var cursorFunc = null;
 var freezeFunc = null;
@@ -83,22 +81,21 @@ d3.json("data/sequence.json", function(error, data) {
 });
 
 //Load JSON file
-function load(callback) {
-  loading = true;
-  d3.json("data/stream_testing.json", function(error, data) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log(data);
-    }
+function load(file, callback) {
+    d3.json("data/stream_testing.json", function(error, data) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log(data);
+        }
 
-    numTrials = data.length;
-    dataset = data;
-    loading = false;
-    if (typeof callback == 'function') {
-        callback();
-    }
-  });
+        numTrials = data.length;
+        dataset = data;
+
+        if (typeof callback == "function") {
+            callback();
+        }
+    });
 }
 
 //Create chart
@@ -243,7 +240,7 @@ function createGo() {
   g.on("click.go", function() {
     g.on("click.go", null);
     svg.remove();
-    d3.select('#trialsChart').html('');
+    d3.select("#trialsChart").html("");
     loadNextTrial();
   });
 }
@@ -251,73 +248,9 @@ function createGo() {
 //Loads up secondary task
 //If last trial continues to closing questionnaire
 //Else pass over to secondary task
-function createQuestion() {
-  var svg = d3.select("#trialsChart").append("svg")
-    .attr("id", "question")
-    .attr("width", width)
-    .attr("height", height);
-
-  svg.append("rect")
-    .attr("x", 0)
-    .attr("y", 0)
-    .attr("width", width)
-    .attr("height", height)
-    .style("stroke", "black")
-    .style("fill", "none")
-    .style("stroke-width", "1px");
-
-  var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  var rows = 3;
-  var cols = 3;
-  var g = svg.append("g").attr("class", "questionNumpad");
-  var numpad = g.selectAll("nums").data(numbers);
-  var text = g.selectAll("numtext").data(numbers);
-  numpad.enter().append("rect")
-    .attr("x", function(d, i) { return width/2 - cols*50/2 + (i%cols)*50; })
-    .attr("y", function(d, i) { return height/2 - rows*50/2 + Math.trunc(i/rows)*50; })
-    .attr("width", 40)
-    .attr("height", 40)
-    .style("fill", "#F44336");
-
-  text.enter().append("text")
-    .text(function(d, i) { return d; } )
-    .attr("x", function(d, i) { return width/2 - cols*40/2 + (i%cols)*50; })
-    .attr("y", function(d, i) { return height/2 - rows*40/2 + Math.trunc(i/rows)*50; })
-    .style("fill", "#F4F4F4")
-    .style("cursor", "default");
-
-  numpad.on("click.numpad", function(d, i) {
-    console.log(d3.select(this).data());
-    numpad.on("click.numpad", null);
-    svg.remove();
-    d3.select('#trialsChart').html('');
-    if (experiment_number < experiment_length)
-      createGo();
-    else
-      goToNext();
-  });
-
-  text.on("click.numpadText", function(d, i) {
-    console.log(d3.select(this).data());
-    text.on("click.numpadText", null);
-    svg.remove();
-    d3.select('#trialsChart').html('');
-    if (experiment_number < experiment_length)
-      createGo();
-    else
-      goToNext();
-  });
-}
-
-function createTrainer() {
-    practice = true;
-    d3.select("#trainInfo").html(
-        "<b>Left_Shift - </b> To Freeze <br>" +
-        "<b>C - </b> To clear frozen objects <br>");
-
-    d3.select("#trialInfo").html("");
+function createQuestion(err, time, dis, got) {
     var svg = d3.select("#trialsChart").append("svg")
-        .attr("id", "train")
+        .attr("id", "question")
         .attr("width", width)
         .attr("height", height);
 
@@ -330,91 +263,158 @@ function createTrainer() {
         .style("fill", "none")
         .style("stroke-width", "1px");
 
-    var g = svg.append("g").attr("class", "trainButton");
-    var trainCircle = g.append("circle")
-        .attr("cx", width/2)
-        .attr("cy", height/2)
-        .attr("r", 50)
-        .style("fill", "#8BC34A");
+    var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    var rows = 3;
+    var cols = 3;
+    var g = svg.append("g").attr("class", "questionNumpad");
+    var numpad = g.selectAll("nums").data(numbers);
+    var text = g.selectAll("numtext").data(numbers);
+    numpad.enter().append("rect")
+        .attr("x", function(d, i) { return width/2 - cols*50/2 + (i%cols)*50; })
+        .attr("y", function(d, i) { return height/2 - rows*50/2 + Math.trunc(i/rows)*50; })
+        .attr("width", 40)
+        .attr("height", 40)
+        .style("fill", "#F44336");
 
-    var trainText = g.append("text")
-        .attr("x", width/2 - 40)
-        .attr("y", height/2 + 20)
-        .style("font-family", "sans-serif")
-        .style("font-size", "50px")
+    text.enter().append("text")
+        .text(function(d, i) { return d; } )
+        .attr("x", function(d, i) { return width/2 - cols*40/2 + (i%cols)*50; })
+        .attr("y", function(d, i) { return height/2 - rows*40/2 + Math.trunc(i/rows)*50; })
         .style("fill", "#F4F4F4")
-        .style("cursor", "default")
-        .text("Huh");
+        .style("cursor", "default");
 
-    g.on("click.train", function() {
-        g.on("click.train", null);
+    numpad.on("click.numpad", function(d, i) {
+        var ans = d3.select(this).data();
+
+        numpad.on("click.numpad", null);
         svg.remove();
-        d3.select('#trialsChart').html('');
+        d3.select("#trialsChart").html("");
+
+        if (experiment_number < experiment_length) {
+            addTrialData(err, time, dis, ans[0], got);
+            createGo();
+        } else {
+            addTrialData(err, time, dis, ans[0], got);
+            goToNext();
+        }
+    });
+
+    text.on("click.numpadText", function(d, i) {
+        var ans = d3.select(this).data();
+
+        text.on("click.numpadText", null);
+        svg.remove();
+        d3.select("#trialsChart").html("");
+
+        if (experiment_number < experiment_length) {
+            addTrialData(err, time, dis, ans[0], got);
+            createGo();
+        } else {
+            addTrialData(err, time, dis, ans[0], got);
+            goToNext();
+        }
+    });
+}
+
+function createTrainer() {
+    practice = true;
+
+    var _freeze = experiment_sequence[experiment_number].freezeType;
+    var _trail= experiment_sequence[experiment_number].trailType;
+
+
+    var button = d3.select("#trainInfo")
+        .append("div")
+            .html("<b>Freeze Technique: " + _freeze + "<br>" +
+                    "Trail Style: " + _trail + "</b><br>" +
+                    "'Shift' to activate freeze; 'C' to clear frozen elements" + "<br>")
+        .append("button")
+            .attr("id", "done_training")
+            .text("DONE TRAINING");
+
+    d3.select("#trialInfo").html("");
+
+    button.on("click", function() {
+        chart.destroy();
+        button.on("click.train", null);
+        d3.select("#trialsChart").html("");
+        d3.select("#trainInfo").html("");
         practice = false;
         createGo();
     });
 };
 
 function loadNextTrial() {
-  //load and display trial information
-  var _freeze = experiment_sequence[experiment_number].freezeType;
-  var _trail= experiment_sequence[experiment_number].trailType;
-  var _speed = experiment_sequence[experiment_number].speed;
-  var _density = experiment_sequence[experiment_number].density;
+    //load and display trial information
+    var _freeze = experiment_sequence[experiment_number].freezeType;
+    var _trail= experiment_sequence[experiment_number].trailType;
+    var _speed = experiment_sequence[experiment_number].speed;
+    var _density = experiment_sequence[experiment_number].density;
 
-  d3.select("#trainInfo").html("");
+    if(!practice) {
+        d3.select("#trainInfo").html("");
 
-  d3.select("#trialInfo").html(
-    "<b>Freeze Selector: </b>" + _freeze + "<br>" +
-    "<b>Trail Type: </b>" + _trail + "<br>" +
-    "<b>Speed: </b>" + _speed + "<br>" +
-    "<b>Density: </b>" + _density + "<br>"
-  );
+        d3.select("#trialInfo").html(
+        "<b>Freeze Selector: </b>" + _freeze + "<br>" +
+        "<b>Trail Type: </b>" + _trail + "<br>" +
+        "<b>Speed: </b>" + _speed + "<br>" +
+        "<b>Density: </b>" + _density + "<br>"
+        );
+    }
 
-  if (previousFrz != _freeze || previousTrail != _trail) {
-    //DO PRACTICE
-    previousFrz = _freeze;
-    previousTrail = _trail;
-    //DO REAL TRIAL
-    load(function() {
-        createTrainer()
-        // createChart(_speed, _trail);
-        // setSelectors("normal", _freeze);
-    });
-  } else {
-    //DO REAL TRIAL
-    load(function() {
-        createChart(_speed, _trail);
-        setSelectors("normal", _freeze);
-    });
-  }
+    if (previousFrz != _freeze || previousTrail != _trail) {
+        previousFrz = _freeze;
+        previousTrail = _trail;
+        //DO PRACTICE TRIAL
+        load(null, function() {
+            createTrainer()
+            createChart(_speed, _trail);
+            setSelectors("normal", _freeze);
+        });
+    } else {
+        //DO REAL TRIAL
+        load(null, function() {
+            createChart(_speed, _trail);
+            setSelectors("normal", _freeze);
+        });
+    }
 }
 
 function goToNext() {
-  experimentr.endTimer('all_trials');
-  experimentr.addData(data);
-  experimentr.next();
+    experimentr.endTimer("all_trials");
+    experimentr.addData(data);
+    experimentr.next();
 }
 
-function addTrialData(err, time) {
-    if (practice) {
-        // data.trials[experiment_number] = { "id": trialNumber, "errors": err, "time": time };
+function addTrialData(err, time, dis, dis_ans, got) {
+    if (!practice) {
+
         var _freeze = experiment_sequence[experiment_number].freezeType;
         var _trail = experiment_sequence[experiment_number].trailType;
         var _speed = experiment_sequence[experiment_number].speed;
         var _density = experiment_sequence[experiment_number].density;
-        var id_time = "time_" + _freeze + "_" + _trail + "_" + _speed + "_" + _density + "_" + trialNumber;
-        var id_err = "errors_" + _freeze + "_" + _trail + "_" + _speed + "_" + _density + "_" + trialNumber;
-        //data[id_time] = { "id": trialNumber, "errors": err, "time": time };
+
+        var t_id = _freeze + "_" + _trail + "_" + _speed + "_" + _density + "_" + trialNumber;
+
+        var id_time = "time_" + t_id;
+        var id_err = "errors_" + t_id;
+        var id_dis = "num_distractors_" + t_id;
+        var id_dis_ans = "distractors_answer_" + t_id;
+        var id_clicked = "clicked_" + t_id;
+
         data[id_err] = err;
         data[id_time] = time;
-        // console.log(JSON.stringify(data, null, '\t'));
+        data[id_dis] = dis;
+        data[id_dis_ans] = dis_ans;
+        data[id_clicked] = got;
+
+        // console.log(JSON.stringify(data, null, "\t"));
+
         trialNumber += 1;
 
         if (trialNumber >= numTrials) {
             trialNumber = 0;
             experiment_number += 1;
-
         }
     }
 }
