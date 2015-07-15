@@ -1,0 +1,7206 @@
+[
+    [
+        {
+            "flag": "secondary point",
+            "id": 0,
+            "timeoffset": 0.0,
+            "value": 4
+        },
+        {
+            "flag": "point",
+            "id": 1,
+            "timeoffset": 0.7,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 2,
+            "timeoffset": 1.4,
+            "value": 46
+        },
+        {
+            "flag": "point",
+            "id": 3,
+            "timeoffset": 2.1,
+            "value": 31
+        },
+        {
+            "flag": "point",
+            "id": 4,
+            "timeoffset": 2.8,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 5,
+            "timeoffset": 3.5,
+            "value": 37
+        },
+        {
+            "flag": "point",
+            "id": 6,
+            "timeoffset": 4.2,
+            "value": 40
+        },
+        {
+            "flag": "point",
+            "id": 7,
+            "timeoffset": 4.9,
+            "value": 17
+        },
+        {
+            "flag": "point",
+            "id": 8,
+            "timeoffset": 5.6,
+            "value": 40
+        },
+        {
+            "flag": "point",
+            "id": 9,
+            "timeoffset": 6.3,
+            "value": 29
+        },
+        {
+            "flag": "point",
+            "id": 10,
+            "timeoffset": 7.0,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 11,
+            "timeoffset": 7.7,
+            "value": 37
+        },
+        {
+            "flag": "point",
+            "id": 12,
+            "timeoffset": 8.4,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 13,
+            "timeoffset": 9.1,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 14,
+            "timeoffset": 9.8,
+            "value": 1
+        },
+        {
+            "flag": "secondary point",
+            "id": 15,
+            "timeoffset": 10.5,
+            "value": 31
+        },
+        {
+            "flag": "point",
+            "id": 16,
+            "timeoffset": 11.2,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 17,
+            "timeoffset": 11.9,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 18,
+            "timeoffset": 12.6,
+            "value": 42
+        },
+        {
+            "flag": "point",
+            "id": 19,
+            "timeoffset": 13.3,
+            "value": 10
+        },
+        {
+            "flag": "point",
+            "id": 20,
+            "timeoffset": 14.0,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 21,
+            "timeoffset": 14.7,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 22,
+            "timeoffset": 15.4,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 23,
+            "timeoffset": 16.1,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 24,
+            "timeoffset": 16.8,
+            "value": 13
+        },
+        {
+            "flag": "point",
+            "id": 25,
+            "timeoffset": 17.5,
+            "value": 11
+        },
+        {
+            "flag": "point",
+            "id": 26,
+            "timeoffset": 18.2,
+            "value": 25
+        },
+        {
+            "flag": "point",
+            "id": 27,
+            "timeoffset": 18.9,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 28,
+            "timeoffset": 19.6,
+            "value": 40
+        },
+        {
+            "flag": "point",
+            "id": 29,
+            "timeoffset": 20.3,
+            "value": 12
+        },
+        {
+            "flag": "secondary point",
+            "id": 30,
+            "timeoffset": 21.0,
+            "value": 24
+        },
+        {
+            "flag": "point",
+            "id": 31,
+            "timeoffset": 21.7,
+            "value": 10
+        },
+        {
+            "flag": "point",
+            "id": 32,
+            "timeoffset": 22.4,
+            "value": 34
+        },
+        {
+            "flag": "point",
+            "id": 33,
+            "timeoffset": 23.1,
+            "value": 48
+        },
+        {
+            "flag": "point",
+            "id": 34,
+            "timeoffset": 23.8,
+            "value": 42
+        },
+        {
+            "flag": "point",
+            "id": 35,
+            "timeoffset": 24.5,
+            "value": 15
+        },
+        {
+            "flag": "point",
+            "id": 36,
+            "timeoffset": 25.2,
+            "value": 2
+        },
+        {
+            "flag": "point",
+            "id": 37,
+            "timeoffset": 25.9,
+            "value": 47
+        },
+        {
+            "flag": "point",
+            "id": 38,
+            "timeoffset": 26.6,
+            "value": 32
+        },
+        {
+            "flag": "point",
+            "id": 39,
+            "timeoffset": 27.3,
+            "value": 26
+        },
+        {
+            "flag": "point",
+            "id": 40,
+            "timeoffset": 28.0,
+            "value": 37
+        },
+        {
+            "flag": "point",
+            "id": 41,
+            "timeoffset": 28.7,
+            "value": 30
+        },
+        {
+            "flag": "point",
+            "id": 42,
+            "timeoffset": 29.4,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 43,
+            "timeoffset": 30.1,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 44,
+            "timeoffset": 30.8,
+            "value": 10
+        },
+        {
+            "flag": "secondary point",
+            "id": 45,
+            "timeoffset": 31.5,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 46,
+            "timeoffset": 32.2,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 47,
+            "timeoffset": 32.9,
+            "value": 13
+        },
+        {
+            "flag": "point",
+            "id": 48,
+            "timeoffset": 33.6,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 49,
+            "timeoffset": 34.3,
+            "value": 30
+        },
+        {
+            "flag": "point",
+            "id": 50,
+            "timeoffset": 35.0,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 51,
+            "timeoffset": 35.7,
+            "value": 35
+        },
+        {
+            "flag": "primary point", 
+            "id": 52,
+            "timeoffset": 36.4,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 53,
+            "timeoffset": 37.1,
+            "value": 19
+        },
+        {
+            "flag": "point",
+            "id": 54,
+            "timeoffset": 37.8,
+            "value": 26
+        },
+        {
+            "flag": "point",
+            "id": 55,
+            "timeoffset": 38.5,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 56,
+            "timeoffset": 39.2,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 57,
+            "timeoffset": 39.9,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 58,
+            "timeoffset": 40.6,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 59,
+            "timeoffset": 41.3,
+            "value": 32
+        },
+        {
+            "flag": "secondary point",
+            "id": 60,
+            "timeoffset": 42.0,
+            "value": 15
+        },
+        {
+            "flag": "point",
+            "id": 61,
+            "timeoffset": 42.7,
+            "value": 42
+        },
+        {
+            "flag": "point",
+            "id": 62,
+            "timeoffset": 43.4,
+            "value": 27
+        },
+        {
+            "flag": "point",
+            "id": 63,
+            "timeoffset": 44.1,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 64,
+            "timeoffset": 44.8,
+            "value": 18
+        },
+        {
+            "flag": "point",
+            "id": 65,
+            "timeoffset": 45.5,
+            "value": 14
+        },
+        {
+            "flag": "point",
+            "id": 66,
+            "timeoffset": 46.2,
+            "value": 17
+        },
+        {
+            "flag": "point",
+            "id": 67,
+            "timeoffset": 46.9,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 68,
+            "timeoffset": 47.6,
+            "value": 43
+        },
+        {
+            "flag": "point",
+            "id": 69,
+            "timeoffset": 48.3,
+            "value": 49
+        },
+        {
+            "flag": "point",
+            "id": 70,
+            "timeoffset": 49.0,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 71,
+            "timeoffset": 49.7,
+            "value": 28
+        },
+        {
+            "flag": "point",
+            "id": 72,
+            "timeoffset": 50.4,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 73,
+            "timeoffset": 51.1,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 74,
+            "timeoffset": 51.8,
+            "value": 37
+        },
+        {
+            "flag": "secondary point",
+            "id": 75,
+            "timeoffset": 52.5,
+            "value": 15
+        },
+        {
+            "flag": "point",
+            "id": 76,
+            "timeoffset": 53.2,
+            "value": 31
+        },
+        {
+            "flag": "point",
+            "id": 77,
+            "timeoffset": 53.9,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 78,
+            "timeoffset": 54.6,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 79,
+            "timeoffset": 55.3,
+            "value": 42
+        },
+        {
+            "flag": "point",
+            "id": 80,
+            "timeoffset": 56.0,
+            "value": 8
+        },
+        {
+            "flag": "point",
+            "id": 81,
+            "timeoffset": 56.7,
+            "value": 14
+        },
+        {
+            "flag": "point",
+            "id": 82,
+            "timeoffset": 57.4,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 83,
+            "timeoffset": 58.1,
+            "value": 16
+        },
+        {
+            "flag": "point",
+            "id": 84,
+            "timeoffset": 58.8,
+            "value": 42
+        },
+        {
+            "flag": "point",
+            "id": 85,
+            "timeoffset": 59.5,
+            "value": 40
+        },
+        {
+            "flag": "point",
+            "id": 86,
+            "timeoffset": 60.2,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 87,
+            "timeoffset": 60.9,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 88,
+            "timeoffset": 61.6,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 89,
+            "timeoffset": 62.3,
+            "value": 31
+        },
+        {
+            "flag": "secondary point",
+            "id": 90,
+            "timeoffset": 63.0,
+            "value": 8
+        },
+        {
+            "flag": "point",
+            "id": 91,
+            "timeoffset": 63.7,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 92,
+            "timeoffset": 64.4,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 93,
+            "timeoffset": 65.1,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 94,
+            "timeoffset": 65.8,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 95,
+            "timeoffset": 66.5,
+            "value": 29
+        },
+        {
+            "flag": "point",
+            "id": 96,
+            "timeoffset": 67.2,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 97,
+            "timeoffset": 67.9,
+            "value": 20
+        },
+        {
+            "flag": "point",
+            "id": 98,
+            "timeoffset": 68.6,
+            "value": 30
+        },
+        {
+            "flag": "point",
+            "id": 99,
+            "timeoffset": 69.3,
+            "value": 28
+        },
+        {
+            "flag": "point",
+            "id": 100,
+            "timeoffset": 70.0,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 101,
+            "timeoffset": 70.7,
+            "value": 6
+        },
+        {
+            "flag": "point",
+            "id": 102,
+            "timeoffset": 71.4,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 103,
+            "timeoffset": 72.1,
+            "value": 18
+        },
+        {
+            "flag": "point",
+            "id": 104,
+            "timeoffset": 72.8,
+            "value": 43
+        },
+        {
+            "flag": "secondary point",
+            "id": 105,
+            "timeoffset": 73.5,
+            "value": 29
+        },
+        {
+            "flag": "point",
+            "id": 106,
+            "timeoffset": 74.2,
+            "value": 47
+        },
+        {
+            "flag": "point",
+            "id": 107,
+            "timeoffset": 74.9,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 108,
+            "timeoffset": 75.6,
+            "value": 49
+        },
+        {
+            "flag": "point",
+            "id": 109,
+            "timeoffset": 76.3,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 110,
+            "timeoffset": 77.0,
+            "value": 37
+        },
+        {
+            "flag": "point",
+            "id": 111,
+            "timeoffset": 77.7,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 112,
+            "timeoffset": 78.4,
+            "value": 25
+        },
+        {
+            "flag": "point",
+            "id": 113,
+            "timeoffset": 79.1,
+            "value": 47
+        },
+        {
+            "flag": "point",
+            "id": 114,
+            "timeoffset": 79.8,
+            "value": 32
+        },
+        {
+            "flag": "point",
+            "id": 115,
+            "timeoffset": 80.5,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 116,
+            "timeoffset": 81.2,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 117,
+            "timeoffset": 81.9,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 118,
+            "timeoffset": 82.6,
+            "value": 16
+        },
+        {
+            "flag": "point",
+            "id": 119,
+            "timeoffset": 83.3,
+            "value": 31
+        },
+        {
+            "flag": "secondary point",
+            "id": 120,
+            "timeoffset": 84.0,
+            "value": 34
+        },
+        {
+            "flag": "point",
+            "id": 121,
+            "timeoffset": 84.7,
+            "value": 11
+        },
+        {
+            "flag": "point",
+            "id": 122,
+            "timeoffset": 85.4,
+            "value": 43
+        },
+        {
+            "flag": "point",
+            "id": 123,
+            "timeoffset": 86.1,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 124,
+            "timeoffset": 86.8,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 125,
+            "timeoffset": 87.5,
+            "value": 15
+        },
+        {
+            "flag": "point",
+            "id": 126,
+            "timeoffset": 88.2,
+            "value": 2
+        },
+        {
+            "flag": "point",
+            "id": 127,
+            "timeoffset": 88.9,
+            "value": 30
+        },
+        {
+            "flag": "point",
+            "id": 128,
+            "timeoffset": 89.6,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 129,
+            "timeoffset": 90.3,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 130,
+            "timeoffset": 91.0,
+            "value": 32
+        },
+        {
+            "flag": "point",
+            "id": 131,
+            "timeoffset": 91.7,
+            "value": 8
+        },
+        {
+            "flag": "point",
+            "id": 132,
+            "timeoffset": 92.4,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 133,
+            "timeoffset": 93.1,
+            "value": 14
+        },
+        {
+            "flag": "point",
+            "id": 134,
+            "timeoffset": 93.8,
+            "value": 10
+        },
+        {
+            "flag": "secondary point",
+            "id": 135,
+            "timeoffset": 94.5,
+            "value": 33
+        },
+        {
+            "flag": "point",
+            "id": 136,
+            "timeoffset": 95.2,
+            "value": 17
+        },
+        {
+            "flag": "point",
+            "id": 137,
+            "timeoffset": 95.9,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 138,
+            "timeoffset": 96.6,
+            "value": 42
+        },
+        {
+            "flag": "point",
+            "id": 139,
+            "timeoffset": 97.3,
+            "value": 46
+        },
+        {
+            "flag": "point",
+            "id": 140,
+            "timeoffset": 98.0,
+            "value": 8
+        },
+        {
+            "flag": "point",
+            "id": 141,
+            "timeoffset": 98.7,
+            "value": 14
+        },
+        {
+            "flag": "point",
+            "id": 142,
+            "timeoffset": 99.4,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 143,
+            "timeoffset": 100.1,
+            "value": 3
+        },
+        {
+            "flag": "point",
+            "id": 144,
+            "timeoffset": 100.8,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 145,
+            "timeoffset": 101.5,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 146,
+            "timeoffset": 102.2,
+            "value": 46
+        },
+        {
+            "flag": "point",
+            "id": 147,
+            "timeoffset": 102.9,
+            "value": 49
+        },
+        {
+            "flag": "point",
+            "id": 148,
+            "timeoffset": 103.6,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 149,
+            "timeoffset": 104.3,
+            "value": 20
+        },
+        {
+            "flag": "secondary point",
+            "id": 150,
+            "timeoffset": 105.0,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 151,
+            "timeoffset": 105.7,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 152,
+            "timeoffset": 106.4,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 153,
+            "timeoffset": 107.1,
+            "value": 43
+        },
+        {
+            "flag": "point",
+            "id": 154,
+            "timeoffset": 107.8,
+            "value": 20
+        },
+        {
+            "flag": "point",
+            "id": 155,
+            "timeoffset": 108.5,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 156,
+            "timeoffset": 109.2,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 157,
+            "timeoffset": 109.9,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 158,
+            "timeoffset": 110.6,
+            "value": 24
+        },
+        {
+            "flag": "point",
+            "id": 159,
+            "timeoffset": 111.3,
+            "value": 6
+        },
+        {
+            "flag": "point",
+            "id": 160,
+            "timeoffset": 112.0,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 161,
+            "timeoffset": 112.7,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 162,
+            "timeoffset": 113.4,
+            "value": 12
+        },
+        {
+            "flag": "point",
+            "id": 163,
+            "timeoffset": 114.1,
+            "value": 16
+        },
+        {
+            "flag": "point",
+            "id": 164,
+            "timeoffset": 114.8,
+            "value": 40
+        },
+        {
+            "flag": "secondary point",
+            "id": 165,
+            "timeoffset": 115.5,
+            "value": 43
+        },
+        {
+            "flag": "point",
+            "id": 166,
+            "timeoffset": 116.2,
+            "value": 3
+        },
+        {
+            "flag": "point",
+            "id": 167,
+            "timeoffset": 116.9,
+            "value": 26
+        },
+        {
+            "flag": "point",
+            "id": 168,
+            "timeoffset": 117.6,
+            "value": 32
+        },
+        {
+            "flag": "point",
+            "id": 169,
+            "timeoffset": 118.3,
+            "value": 11
+        },
+        {
+            "flag": "point",
+            "id": 170,
+            "timeoffset": 119.0,
+            "value": 8
+        },
+        {
+            "flag": "point",
+            "id": 171,
+            "timeoffset": 119.7,
+            "value": 12
+        },
+        {
+            "flag": "point",
+            "id": 172,
+            "timeoffset": 120.4,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 173,
+            "timeoffset": 121.1,
+            "value": 13
+        },
+        {
+            "flag": "point",
+            "id": 174,
+            "timeoffset": 121.8,
+            "value": 41
+        },
+        {
+            "flag": "point",
+            "id": 175,
+            "timeoffset": 122.5,
+            "value": 37
+        },
+        {
+            "flag": "point",
+            "id": 176,
+            "timeoffset": 123.2,
+            "value": 19
+        },
+        {
+            "flag": "point",
+            "id": 177,
+            "timeoffset": 123.9,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 178,
+            "timeoffset": 124.6,
+            "value": 2
+        },
+        {
+            "flag": "point",
+            "id": 179,
+            "timeoffset": 125.3,
+            "value": 29
+        },
+        {
+            "flag": "secondary point",
+            "id": 180,
+            "timeoffset": 126.0,
+            "value": 11
+        },
+        {
+            "flag": "point",
+            "id": 181,
+            "timeoffset": 126.7,
+            "value": 14
+        },
+        {
+            "flag": "point",
+            "id": 182,
+            "timeoffset": 127.4,
+            "value": 30
+        },
+        {
+            "flag": "point",
+            "id": 183,
+            "timeoffset": 128.1,
+            "value": 47
+        },
+        {
+            "flag": "point",
+            "id": 184,
+            "timeoffset": 128.8,
+            "value": 12
+        },
+        {
+            "flag": "point",
+            "id": 185,
+            "timeoffset": 129.5,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 186,
+            "timeoffset": 130.2,
+            "value": 42
+        },
+        {
+            "flag": "point",
+            "id": 187,
+            "timeoffset": 130.9,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 188,
+            "timeoffset": 131.6,
+            "value": 32
+        },
+        {
+            "flag": "point",
+            "id": 189,
+            "timeoffset": 132.3,
+            "value": 43
+        },
+        {
+            "flag": "point",
+            "id": 190,
+            "timeoffset": 133.0,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 191,
+            "timeoffset": 133.7,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 192,
+            "timeoffset": 134.4,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 193,
+            "timeoffset": 135.1,
+            "value": 14
+        },
+        {
+            "flag": "point",
+            "id": 194,
+            "timeoffset": 135.8,
+            "value": 46
+        },
+        {
+            "flag": "secondary point",
+            "id": 195,
+            "timeoffset": 136.5,
+            "value": 33
+        },
+        {
+            "flag": "point",
+            "id": 196,
+            "timeoffset": 137.2,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 197,
+            "timeoffset": 137.9,
+            "value": 27
+        },
+        {
+            "flag": "point",
+            "id": 198,
+            "timeoffset": 138.6,
+            "value": 20
+        },
+        {
+            "flag": "point",
+            "id": 199,
+            "timeoffset": 139.3,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 200,
+            "timeoffset": 140.0,
+            "value": 6
+        },
+        {
+            "flag": "point",
+            "id": 201,
+            "timeoffset": 140.7,
+            "value": 36
+        },
+        {
+            "flag": "point",
+            "id": 202,
+            "timeoffset": 141.4,
+            "value": 12
+        },
+        {
+            "flag": "point",
+            "id": 203,
+            "timeoffset": 142.1,
+            "value": 29
+        },
+        {
+            "flag": "point",
+            "id": 204,
+            "timeoffset": 142.8,
+            "value": 34
+        },
+        {
+            "flag": "point",
+            "id": 205,
+            "timeoffset": 143.5,
+            "value": 18
+        },
+        {
+            "flag": "point",
+            "id": 206,
+            "timeoffset": 144.2,
+            "value": 47
+        },
+        {
+            "flag": "point",
+            "id": 207,
+            "timeoffset": 144.9,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 208,
+            "timeoffset": 145.6,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 209,
+            "timeoffset": 146.3,
+            "value": 31
+        },
+        {
+            "flag": "secondary point",
+            "id": 210,
+            "timeoffset": 147.0,
+            "value": 19
+        },
+        {
+            "flag": "point",
+            "id": 211,
+            "timeoffset": 147.7,
+            "value": 48
+        },
+        {
+            "flag": "point",
+            "id": 212,
+            "timeoffset": 148.4,
+            "value": 42
+        },
+        {
+            "flag": "point",
+            "id": 213,
+            "timeoffset": 149.1,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 214,
+            "timeoffset": 149.8,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 215,
+            "timeoffset": 150.5,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 216,
+            "timeoffset": 151.2,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 217,
+            "timeoffset": 151.9,
+            "value": 42
+        },
+        {
+            "flag": "point",
+            "id": 218,
+            "timeoffset": 152.6,
+            "value": 19
+        },
+        {
+            "flag": "point",
+            "id": 219,
+            "timeoffset": 153.3,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 220,
+            "timeoffset": 154.0,
+            "value": 2
+        },
+        {
+            "flag": "point",
+            "id": 221,
+            "timeoffset": 154.7,
+            "value": 10
+        },
+        {
+            "flag": "point",
+            "id": 222,
+            "timeoffset": 155.4,
+            "value": 33
+        },
+        {
+            "flag": "point",
+            "id": 223,
+            "timeoffset": 156.1,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 224,
+            "timeoffset": 156.8,
+            "value": 43
+        },
+        {
+            "flag": "secondary point",
+            "id": 225,
+            "timeoffset": 157.5,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 226,
+            "timeoffset": 158.2,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 227,
+            "timeoffset": 158.9,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 228,
+            "timeoffset": 159.6,
+            "value": 24
+        },
+        {
+            "flag": "point",
+            "id": 229,
+            "timeoffset": 160.3,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 230,
+            "timeoffset": 161.0,
+            "value": 32
+        },
+        {
+            "flag": "point",
+            "id": 231,
+            "timeoffset": 161.7,
+            "value": 2
+        },
+        {
+            "flag": "point",
+            "id": 232,
+            "timeoffset": 162.4,
+            "value": 28
+        },
+        {
+            "flag": "point",
+            "id": 233,
+            "timeoffset": 163.1,
+            "value": 18
+        },
+        {
+            "flag": "point",
+            "id": 234,
+            "timeoffset": 163.8,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 235,
+            "timeoffset": 164.5,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 236,
+            "timeoffset": 165.2,
+            "value": 46
+        },
+        {
+            "flag": "point",
+            "id": 237,
+            "timeoffset": 165.9,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 238,
+            "timeoffset": 166.6,
+            "value": 27
+        },
+        {
+            "flag": "point",
+            "id": 239,
+            "timeoffset": 167.3,
+            "value": 44
+        },
+        {
+            "flag": "secondary point",
+            "id": 240,
+            "timeoffset": 168.0,
+            "value": 17
+        },
+        {
+            "flag": "point",
+            "id": 241,
+            "timeoffset": 168.7,
+            "value": 10
+        },
+        {
+            "flag": "point",
+            "id": 242,
+            "timeoffset": 169.4,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 243,
+            "timeoffset": 170.1,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 244,
+            "timeoffset": 170.8,
+            "value": 3
+        },
+        {
+            "flag": "point",
+            "id": 245,
+            "timeoffset": 171.5,
+            "value": 12
+        },
+        {
+            "flag": "point",
+            "id": 246,
+            "timeoffset": 172.2,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 247,
+            "timeoffset": 172.9,
+            "value": 2
+        },
+        {
+            "flag": "point",
+            "id": 248,
+            "timeoffset": 173.6,
+            "value": 42
+        },
+        {
+            "flag": "point",
+            "id": 249,
+            "timeoffset": 174.3,
+            "value": 43
+        },
+        {
+            "flag": "point",
+            "id": 250,
+            "timeoffset": 175.0,
+            "value": 3
+        },
+        {
+            "flag": "point",
+            "id": 251,
+            "timeoffset": 175.7,
+            "value": 20
+        },
+        {
+            "flag": "point",
+            "id": 252,
+            "timeoffset": 176.4,
+            "value": 40
+        },
+        {
+            "flag": "point",
+            "id": 253,
+            "timeoffset": 177.1,
+            "value": 48
+        },
+        {
+            "flag": "point",
+            "id": 254,
+            "timeoffset": 177.8,
+            "value": 5
+        },
+        {
+            "flag": "secondary point",
+            "id": 255,
+            "timeoffset": 178.5,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 256,
+            "timeoffset": 179.2,
+            "value": 49
+        },
+        {
+            "flag": "point",
+            "id": 257,
+            "timeoffset": 179.9,
+            "value": 10
+        },
+        {
+            "flag": "point",
+            "id": 258,
+            "timeoffset": 180.6,
+            "value": 10
+        },
+        {
+            "flag": "point",
+            "id": 259,
+            "timeoffset": 181.3,
+            "value": 16
+        },
+        {
+            "flag": "point",
+            "id": 260,
+            "timeoffset": 182.0,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 261,
+            "timeoffset": 182.7,
+            "value": 41
+        },
+        {
+            "flag": "point",
+            "id": 262,
+            "timeoffset": 183.4,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 263,
+            "timeoffset": 184.1,
+            "value": 14
+        },
+        {
+            "flag": "point",
+            "id": 264,
+            "timeoffset": 184.8,
+            "value": 37
+        },
+        {
+            "flag": "point",
+            "id": 265,
+            "timeoffset": 185.5,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 266,
+            "timeoffset": 186.2,
+            "value": 15
+        },
+        {
+            "flag": "point",
+            "id": 267,
+            "timeoffset": 186.9,
+            "value": 29
+        },
+        {
+            "flag": "point",
+            "id": 268,
+            "timeoffset": 187.6,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 269,
+            "timeoffset": 188.3,
+            "value": 46
+        },
+        {
+            "flag": "secondary point",
+            "id": 270,
+            "timeoffset": 189.0,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 271,
+            "timeoffset": 189.7,
+            "value": 13
+        },
+        {
+            "flag": "point",
+            "id": 272,
+            "timeoffset": 190.4,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 273,
+            "timeoffset": 191.1,
+            "value": 3
+        },
+        {
+            "flag": "point",
+            "id": 274,
+            "timeoffset": 191.8,
+            "value": 34
+        },
+        {
+            "flag": "point",
+            "id": 275,
+            "timeoffset": 192.5,
+            "value": 17
+        },
+        {
+            "flag": "point",
+            "id": 276,
+            "timeoffset": 193.2,
+            "value": 31
+        },
+        {
+            "flag": "point",
+            "id": 277,
+            "timeoffset": 193.9,
+            "value": 25
+        },
+        {
+            "flag": "point",
+            "id": 278,
+            "timeoffset": 194.6,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 279,
+            "timeoffset": 195.3,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 280,
+            "timeoffset": 196.0,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 281,
+            "timeoffset": 196.7,
+            "value": 31
+        },
+        {
+            "flag": "point",
+            "id": 282,
+            "timeoffset": 197.4,
+            "value": 49
+        },
+        {
+            "flag": "point",
+            "id": 283,
+            "timeoffset": 198.1,
+            "value": 10
+        },
+        {
+            "flag": "point",
+            "id": 284,
+            "timeoffset": 198.8,
+            "value": 27
+        },
+        {
+            "flag": "secondary point",
+            "id": 285,
+            "timeoffset": 199.5,
+            "value": 26
+        },
+        {
+            "flag": "point",
+            "id": 286,
+            "timeoffset": 200.2,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 287,
+            "timeoffset": 200.9,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 288,
+            "timeoffset": 201.6,
+            "value": 34
+        },
+        {
+            "flag": "point",
+            "id": 289,
+            "timeoffset": 202.3,
+            "value": 30
+        },
+        {
+            "flag": "point",
+            "id": 290,
+            "timeoffset": 203.0,
+            "value": 4
+        },
+        {
+            "flag": "point",
+            "id": 291,
+            "timeoffset": 203.7,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 292,
+            "timeoffset": 204.4,
+            "value": 34
+        },
+        {
+            "flag": "point",
+            "id": 293,
+            "timeoffset": 205.1,
+            "value": 8
+        },
+        {
+            "flag": "point",
+            "id": 294,
+            "timeoffset": 205.8,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 295,
+            "timeoffset": 206.5,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 296,
+            "timeoffset": 207.2,
+            "value": 32
+        },
+        {
+            "flag": "point",
+            "id": 297,
+            "timeoffset": 207.9,
+            "value": 41
+        },
+        {
+            "flag": "point",
+            "id": 298,
+            "timeoffset": 208.6,
+            "value": 13
+        },
+        {
+            "flag": "point",
+            "id": 299,
+            "timeoffset": 209.3,
+            "value": 16
+        },
+        {
+            "flag": "secondary point",
+            "id": 300,
+            "timeoffset": 210.0,
+            "value": 8
+        },
+        {
+            "flag": "point",
+            "id": 301,
+            "timeoffset": 210.7,
+            "value": 43
+        },
+        {
+            "flag": "point",
+            "id": 302,
+            "timeoffset": 211.4,
+            "value": 12
+        },
+        {
+            "flag": "point",
+            "id": 303,
+            "timeoffset": 212.1,
+            "value": 31
+        },
+        {
+            "flag": "point",
+            "id": 304,
+            "timeoffset": 212.8,
+            "value": 33
+        },
+        {
+            "flag": "point",
+            "id": 305,
+            "timeoffset": 213.5,
+            "value": 18
+        },
+        {
+            "flag": "point",
+            "id": 306,
+            "timeoffset": 214.2,
+            "value": 11
+        },
+        {
+            "flag": "point",
+            "id": 307,
+            "timeoffset": 214.9,
+            "value": 28
+        },
+        {
+            "flag": "point",
+            "id": 308,
+            "timeoffset": 215.6,
+            "value": 31
+        },
+        {
+            "flag": "point",
+            "id": 309,
+            "timeoffset": 216.3,
+            "value": 32
+        },
+        {
+            "flag": "point",
+            "id": 310,
+            "timeoffset": 217.0,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 311,
+            "timeoffset": 217.7,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 312,
+            "timeoffset": 218.4,
+            "value": 34
+        },
+        {
+            "flag": "point",
+            "id": 313,
+            "timeoffset": 219.1,
+            "value": 32
+        },
+        {
+            "flag": "point",
+            "id": 314,
+            "timeoffset": 219.8,
+            "value": 33
+        },
+        {
+            "flag": "secondary point",
+            "id": 315,
+            "timeoffset": 220.5,
+            "value": 31
+        },
+        {
+            "flag": "point",
+            "id": 316,
+            "timeoffset": 221.2,
+            "value": 40
+        },
+        {
+            "flag": "point",
+            "id": 317,
+            "timeoffset": 221.9,
+            "value": 25
+        },
+        {
+            "flag": "point",
+            "id": 318,
+            "timeoffset": 222.6,
+            "value": 31
+        },
+        {
+            "flag": "point",
+            "id": 319,
+            "timeoffset": 223.3,
+            "value": 49
+        },
+        {
+            "flag": "point",
+            "id": 320,
+            "timeoffset": 224.0,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 321,
+            "timeoffset": 224.7,
+            "value": 33
+        },
+        {
+            "flag": "point",
+            "id": 322,
+            "timeoffset": 225.4,
+            "value": 3
+        },
+        {
+            "flag": "point",
+            "id": 323,
+            "timeoffset": 226.1,
+            "value": 8
+        },
+        {
+            "flag": "point",
+            "id": 324,
+            "timeoffset": 226.8,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 325,
+            "timeoffset": 227.5,
+            "value": 41
+        },
+        {
+            "flag": "point",
+            "id": 326,
+            "timeoffset": 228.2,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 327,
+            "timeoffset": 228.9,
+            "value": 42
+        },
+        {
+            "flag": "point",
+            "id": 328,
+            "timeoffset": 229.6,
+            "value": 2
+        },
+        {
+            "flag": "point",
+            "id": 329,
+            "timeoffset": 230.3,
+            "value": 34
+        },
+        {
+            "flag": "secondary point",
+            "id": 330,
+            "timeoffset": 231.0,
+            "value": 11
+        },
+        {
+            "flag": "point",
+            "id": 331,
+            "timeoffset": 231.7,
+            "value": 3
+        },
+        {
+            "flag": "point",
+            "id": 332,
+            "timeoffset": 232.4,
+            "value": 31
+        },
+        {
+            "flag": "point",
+            "id": 333,
+            "timeoffset": 233.1,
+            "value": 33
+        },
+        {
+            "flag": "point",
+            "id": 334,
+            "timeoffset": 233.8,
+            "value": 20
+        },
+        {
+            "flag": "point",
+            "id": 335,
+            "timeoffset": 234.5,
+            "value": 18
+        },
+        {
+            "flag": "point",
+            "id": 336,
+            "timeoffset": 235.2,
+            "value": 13
+        },
+        {
+            "flag": "point",
+            "id": 337,
+            "timeoffset": 235.9,
+            "value": 3
+        },
+        {
+            "flag": "point",
+            "id": 338,
+            "timeoffset": 236.6,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 339,
+            "timeoffset": 237.3,
+            "value": 4
+        },
+        {
+            "flag": "point",
+            "id": 340,
+            "timeoffset": 238.0,
+            "value": 12
+        },
+        {
+            "flag": "point",
+            "id": 341,
+            "timeoffset": 238.7,
+            "value": 29
+        },
+        {
+            "flag": "point",
+            "id": 342,
+            "timeoffset": 239.4,
+            "value": 47
+        },
+        {
+            "flag": "point",
+            "id": 343,
+            "timeoffset": 240.1,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 344,
+            "timeoffset": 240.8,
+            "value": 6
+        },
+        {
+            "flag": "secondary point",
+            "id": 345,
+            "timeoffset": 241.5,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 346,
+            "timeoffset": 242.2,
+            "value": 3
+        },
+        {
+            "flag": "point",
+            "id": 347,
+            "timeoffset": 242.9,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 348,
+            "timeoffset": 243.6,
+            "value": 6
+        },
+        {
+            "flag": "point",
+            "id": 349,
+            "timeoffset": 244.3,
+            "value": 17
+        },
+        {
+            "flag": "point",
+            "id": 350,
+            "timeoffset": 245.0,
+            "value": 32
+        },
+        {
+            "flag": "point",
+            "id": 351,
+            "timeoffset": 245.7,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 352,
+            "timeoffset": 246.4,
+            "value": 34
+        },
+        {
+            "flag": "point",
+            "id": 353,
+            "timeoffset": 247.1,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 354,
+            "timeoffset": 247.8,
+            "value": 48
+        },
+        {
+            "flag": "point",
+            "id": 355,
+            "timeoffset": 248.5,
+            "value": 18
+        },
+        {
+            "flag": "point",
+            "id": 356,
+            "timeoffset": 249.2,
+            "value": 10
+        },
+        {
+            "flag": "point",
+            "id": 357,
+            "timeoffset": 249.9,
+            "value": 19
+        },
+        {
+            "flag": "point",
+            "id": 358,
+            "timeoffset": 250.6,
+            "value": 2
+        },
+        {
+            "flag": "point",
+            "id": 359,
+            "timeoffset": 251.3,
+            "value": 7
+        },
+        {
+            "flag": "secondary point",
+            "id": 360,
+            "timeoffset": 252.0,
+            "value": 19
+        },
+        {
+            "flag": "point",
+            "id": 361,
+            "timeoffset": 252.7,
+            "value": 29
+        },
+        {
+            "flag": "point",
+            "id": 362,
+            "timeoffset": 253.4,
+            "value": 30
+        },
+        {
+            "flag": "point",
+            "id": 363,
+            "timeoffset": 254.1,
+            "value": 47
+        },
+        {
+            "flag": "point",
+            "id": 364,
+            "timeoffset": 254.8,
+            "value": 4
+        },
+        {
+            "flag": "point",
+            "id": 365,
+            "timeoffset": 255.5,
+            "value": 14
+        },
+        {
+            "flag": "point",
+            "id": 366,
+            "timeoffset": 256.2,
+            "value": 31
+        },
+        {
+            "flag": "point",
+            "id": 367,
+            "timeoffset": 256.9,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 368,
+            "timeoffset": 257.6,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 369,
+            "timeoffset": 258.3,
+            "value": 48
+        },
+        {
+            "flag": "point",
+            "id": 370,
+            "timeoffset": 259.0,
+            "value": 14
+        },
+        {
+            "flag": "point",
+            "id": 371,
+            "timeoffset": 259.7,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 372,
+            "timeoffset": 260.4,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 373,
+            "timeoffset": 261.1,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 374,
+            "timeoffset": 261.8,
+            "value": 20
+        },
+        {
+            "flag": "secondary point",
+            "id": 375,
+            "timeoffset": 262.5,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 376,
+            "timeoffset": 263.2,
+            "value": 18
+        },
+        {
+            "flag": "point",
+            "id": 377,
+            "timeoffset": 263.9,
+            "value": 46
+        },
+        {
+            "flag": "point",
+            "id": 378,
+            "timeoffset": 264.6,
+            "value": 33
+        },
+        {
+            "flag": "point",
+            "id": 379,
+            "timeoffset": 265.3,
+            "value": 4
+        },
+        {
+            "flag": "point",
+            "id": 380,
+            "timeoffset": 266.0,
+            "value": 3
+        },
+        {
+            "flag": "point",
+            "id": 381,
+            "timeoffset": 266.7,
+            "value": 26
+        },
+        {
+            "flag": "point",
+            "id": 382,
+            "timeoffset": 267.4,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 383,
+            "timeoffset": 268.1,
+            "value": 32
+        },
+        {
+            "flag": "point",
+            "id": 384,
+            "timeoffset": 268.8,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 385,
+            "timeoffset": 269.5,
+            "value": 37
+        },
+        {
+            "flag": "point",
+            "id": 386,
+            "timeoffset": 270.2,
+            "value": 20
+        },
+        {
+            "flag": "point",
+            "id": 387,
+            "timeoffset": 270.9,
+            "value": 26
+        },
+        {
+            "flag": "point",
+            "id": 388,
+            "timeoffset": 271.6,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 389,
+            "timeoffset": 272.3,
+            "value": 27
+        },
+        {
+            "flag": "secondary point",
+            "id": 390,
+            "timeoffset": 273.0,
+            "value": 19
+        },
+        {
+            "flag": "point",
+            "id": 391,
+            "timeoffset": 273.7,
+            "value": 33
+        },
+        {
+            "flag": "point",
+            "id": 392,
+            "timeoffset": 274.4,
+            "value": 2
+        },
+        {
+            "flag": "point",
+            "id": 393,
+            "timeoffset": 275.1,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 394,
+            "timeoffset": 275.8,
+            "value": 33
+        },
+        {
+            "flag": "point",
+            "id": 395,
+            "timeoffset": 276.5,
+            "value": 4
+        },
+        {
+            "flag": "point",
+            "id": 396,
+            "timeoffset": 277.2,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 397,
+            "timeoffset": 277.9,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 398,
+            "timeoffset": 278.6,
+            "value": 30
+        },
+        {
+            "flag": "point",
+            "id": 399,
+            "timeoffset": 279.3,
+            "value": 12
+        },
+        {
+            "flag": "point",
+            "id": 400,
+            "timeoffset": 280.0,
+            "value": 11
+        },
+        {
+            "flag": "point",
+            "id": 401,
+            "timeoffset": 280.7,
+            "value": 6
+        },
+        {
+            "flag": "point",
+            "id": 402,
+            "timeoffset": 281.4,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 403,
+            "timeoffset": 282.1,
+            "value": 48
+        },
+        {
+            "flag": "point",
+            "id": 404,
+            "timeoffset": 282.8,
+            "value": 23
+        },
+        {
+            "flag": "secondary point",
+            "id": 405,
+            "timeoffset": 283.5,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 406,
+            "timeoffset": 284.2,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 407,
+            "timeoffset": 284.9,
+            "value": 8
+        },
+        {
+            "flag": "point",
+            "id": 408,
+            "timeoffset": 285.6,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 409,
+            "timeoffset": 286.3,
+            "value": 3
+        },
+        {
+            "flag": "point",
+            "id": 410,
+            "timeoffset": 287.0,
+            "value": 24
+        },
+        {
+            "flag": "point",
+            "id": 411,
+            "timeoffset": 287.7,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 412,
+            "timeoffset": 288.4,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 413,
+            "timeoffset": 289.1,
+            "value": 29
+        },
+        {
+            "flag": "point",
+            "id": 414,
+            "timeoffset": 289.8,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 415,
+            "timeoffset": 290.5,
+            "value": 24
+        },
+        {
+            "flag": "point",
+            "id": 416,
+            "timeoffset": 291.2,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 417,
+            "timeoffset": 291.9,
+            "value": 32
+        },
+        {
+            "flag": "point",
+            "id": 418,
+            "timeoffset": 292.6,
+            "value": 41
+        },
+        {
+            "flag": "point",
+            "id": 419,
+            "timeoffset": 293.3,
+            "value": 28
+        },
+        {
+            "flag": "secondary point",
+            "id": 420,
+            "timeoffset": 294.0,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 421,
+            "timeoffset": 294.7,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 422,
+            "timeoffset": 295.4,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 423,
+            "timeoffset": 296.1,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 424,
+            "timeoffset": 296.8,
+            "value": 25
+        },
+        {
+            "flag": "point",
+            "id": 425,
+            "timeoffset": 297.5,
+            "value": 30
+        },
+        {
+            "flag": "point",
+            "id": 426,
+            "timeoffset": 298.2,
+            "value": 37
+        },
+        {
+            "flag": "point",
+            "id": 427,
+            "timeoffset": 298.9,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 428,
+            "timeoffset": 299.6,
+            "value": 43
+        },
+        {
+            "flag": "point",
+            "id": 429,
+            "timeoffset": 300.3,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 430,
+            "timeoffset": 301.0,
+            "value": 36
+        },
+        {
+            "flag": "point",
+            "id": 431,
+            "timeoffset": 301.7,
+            "value": 2
+        },
+        {
+            "flag": "point",
+            "id": 432,
+            "timeoffset": 302.4,
+            "value": 29
+        },
+        {
+            "flag": "point",
+            "id": 433,
+            "timeoffset": 303.1,
+            "value": 47
+        },
+        {
+            "flag": "point",
+            "id": 434,
+            "timeoffset": 303.8,
+            "value": 2
+        },
+        {
+            "flag": "secondary point",
+            "id": 435,
+            "timeoffset": 304.5,
+            "value": 40
+        },
+        {
+            "flag": "point",
+            "id": 436,
+            "timeoffset": 305.2,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 437,
+            "timeoffset": 305.9,
+            "value": 29
+        },
+        {
+            "flag": "point",
+            "id": 438,
+            "timeoffset": 306.6,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 439,
+            "timeoffset": 307.3,
+            "value": 28
+        },
+        {
+            "flag": "point",
+            "id": 440,
+            "timeoffset": 308.0,
+            "value": 26
+        },
+        {
+            "flag": "point",
+            "id": 441,
+            "timeoffset": 308.7,
+            "value": 40
+        },
+        {
+            "flag": "point",
+            "id": 442,
+            "timeoffset": 309.4,
+            "value": 20
+        },
+        {
+            "flag": "point",
+            "id": 443,
+            "timeoffset": 310.1,
+            "value": 41
+        },
+        {
+            "flag": "point",
+            "id": 444,
+            "timeoffset": 310.8,
+            "value": 46
+        },
+        {
+            "flag": "point",
+            "id": 445,
+            "timeoffset": 311.5,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 446,
+            "timeoffset": 312.2,
+            "value": 47
+        },
+        {
+            "flag": "point",
+            "id": 447,
+            "timeoffset": 312.9,
+            "value": 48
+        },
+        {
+            "flag": "point",
+            "id": 448,
+            "timeoffset": 313.6,
+            "value": 16
+        },
+        {
+            "flag": "point",
+            "id": 449,
+            "timeoffset": 314.3,
+            "value": 25
+        },
+        {
+            "flag": "secondary point",
+            "id": 450,
+            "timeoffset": 315.0,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 451,
+            "timeoffset": 315.7,
+            "value": 42
+        },
+        {
+            "flag": "point",
+            "id": 452,
+            "timeoffset": 316.4,
+            "value": 11
+        },
+        {
+            "flag": "point",
+            "id": 453,
+            "timeoffset": 317.1,
+            "value": 29
+        },
+        {
+            "flag": "point",
+            "id": 454,
+            "timeoffset": 317.8,
+            "value": 6
+        },
+        {
+            "flag": "point",
+            "id": 455,
+            "timeoffset": 318.5,
+            "value": 47
+        },
+        {
+            "flag": "point",
+            "id": 456,
+            "timeoffset": 319.2,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 457,
+            "timeoffset": 319.9,
+            "value": 30
+        },
+        {
+            "flag": "point",
+            "id": 458,
+            "timeoffset": 320.6,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 459,
+            "timeoffset": 321.3,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 460,
+            "timeoffset": 322.0,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 461,
+            "timeoffset": 322.7,
+            "value": 42
+        },
+        {
+            "flag": "point",
+            "id": 462,
+            "timeoffset": 323.4,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 463,
+            "timeoffset": 324.1,
+            "value": 18
+        },
+        {
+            "flag": "point",
+            "id": 464,
+            "timeoffset": 324.8,
+            "value": 22
+        },
+        {
+            "flag": "secondary point",
+            "id": 465,
+            "timeoffset": 325.5,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 466,
+            "timeoffset": 326.2,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 467,
+            "timeoffset": 326.9,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 468,
+            "timeoffset": 327.6,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 469,
+            "timeoffset": 328.3,
+            "value": 11
+        },
+        {
+            "flag": "point",
+            "id": 470,
+            "timeoffset": 329.0,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 471,
+            "timeoffset": 329.7,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 472,
+            "timeoffset": 330.4,
+            "value": 34
+        },
+        {
+            "flag": "point",
+            "id": 473,
+            "timeoffset": 331.1,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 474,
+            "timeoffset": 331.8,
+            "value": 31
+        },
+        {
+            "flag": "point",
+            "id": 475,
+            "timeoffset": 332.5,
+            "value": 46
+        },
+        {
+            "flag": "point",
+            "id": 476,
+            "timeoffset": 333.2,
+            "value": 18
+        },
+        {
+            "flag": "point",
+            "id": 477,
+            "timeoffset": 333.9,
+            "value": 14
+        },
+        {
+            "flag": "point",
+            "id": 478,
+            "timeoffset": 334.6,
+            "value": 12
+        },
+        {
+            "flag": "point",
+            "id": 479,
+            "timeoffset": 335.3,
+            "value": 13
+        },
+        {
+            "flag": "secondary point",
+            "id": 480,
+            "timeoffset": 336.0,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 481,
+            "timeoffset": 336.7,
+            "value": 15
+        },
+        {
+            "flag": "point",
+            "id": 482,
+            "timeoffset": 337.4,
+            "value": 29
+        },
+        {
+            "flag": "point",
+            "id": 483,
+            "timeoffset": 338.1,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 484,
+            "timeoffset": 338.8,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 485,
+            "timeoffset": 339.5,
+            "value": 28
+        },
+        {
+            "flag": "point",
+            "id": 486,
+            "timeoffset": 340.2,
+            "value": 10
+        },
+        {
+            "flag": "point",
+            "id": 487,
+            "timeoffset": 340.9,
+            "value": 36
+        },
+        {
+            "flag": "point",
+            "id": 488,
+            "timeoffset": 341.6,
+            "value": 36
+        },
+        {
+            "flag": "point",
+            "id": 489,
+            "timeoffset": 342.3,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 490,
+            "timeoffset": 343.0,
+            "value": 16
+        },
+        {
+            "flag": "point",
+            "id": 491,
+            "timeoffset": 343.7,
+            "value": 34
+        },
+        {
+            "flag": "point",
+            "id": 492,
+            "timeoffset": 344.4,
+            "value": 41
+        },
+        {
+            "flag": "point",
+            "id": 493,
+            "timeoffset": 345.1,
+            "value": 4
+        },
+        {
+            "flag": "point",
+            "id": 494,
+            "timeoffset": 345.8,
+            "value": 13
+        },
+        {
+            "flag": "secondary point",
+            "id": 495,
+            "timeoffset": 346.5,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 496,
+            "timeoffset": 347.2,
+            "value": 41
+        },
+        {
+            "flag": "point",
+            "id": 497,
+            "timeoffset": 347.9,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 498,
+            "timeoffset": 348.6,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 499,
+            "timeoffset": 349.3,
+            "value": 6
+        },
+        {
+            "flag": "point",
+            "id": 500,
+            "timeoffset": 350.0,
+            "value": 20
+        },
+        {
+            "flag": "point",
+            "id": 501,
+            "timeoffset": 350.7,
+            "value": 33
+        },
+        {
+            "flag": "point",
+            "id": 502,
+            "timeoffset": 351.4,
+            "value": 28
+        },
+        {
+            "flag": "point",
+            "id": 503,
+            "timeoffset": 352.1,
+            "value": 48
+        },
+        {
+            "flag": "point",
+            "id": 504,
+            "timeoffset": 352.8,
+            "value": 33
+        },
+        {
+            "flag": "point",
+            "id": 505,
+            "timeoffset": 353.5,
+            "value": 40
+        },
+        {
+            "flag": "point",
+            "id": 506,
+            "timeoffset": 354.2,
+            "value": 15
+        },
+        {
+            "flag": "point",
+            "id": 507,
+            "timeoffset": 354.9,
+            "value": 13
+        },
+        {
+            "flag": "point",
+            "id": 508,
+            "timeoffset": 355.6,
+            "value": 41
+        },
+        {
+            "flag": "point",
+            "id": 509,
+            "timeoffset": 356.3,
+            "value": 11
+        },
+        {
+            "flag": "secondary point",
+            "id": 510,
+            "timeoffset": 357.0,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 511,
+            "timeoffset": 357.7,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 512,
+            "timeoffset": 358.4,
+            "value": 33
+        },
+        {
+            "flag": "point",
+            "id": 513,
+            "timeoffset": 359.1,
+            "value": 28
+        },
+        {
+            "flag": "point",
+            "id": 514,
+            "timeoffset": 359.8,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 515,
+            "timeoffset": 360.5,
+            "value": 46
+        },
+        {
+            "flag": "point",
+            "id": 516,
+            "timeoffset": 361.2,
+            "value": 4
+        },
+        {
+            "flag": "point",
+            "id": 517,
+            "timeoffset": 361.9,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 518,
+            "timeoffset": 362.6,
+            "value": 25
+        },
+        {
+            "flag": "point",
+            "id": 519,
+            "timeoffset": 363.3,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 520,
+            "timeoffset": 364.0,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 521,
+            "timeoffset": 364.7,
+            "value": 46
+        },
+        {
+            "flag": "point",
+            "id": 522,
+            "timeoffset": 365.4,
+            "value": 29
+        },
+        {
+            "flag": "point",
+            "id": 523,
+            "timeoffset": 366.1,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 524,
+            "timeoffset": 366.8,
+            "value": 19
+        },
+        {
+            "flag": "secondary point",
+            "id": 525,
+            "timeoffset": 367.5,
+            "value": 2
+        },
+        {
+            "flag": "point",
+            "id": 526,
+            "timeoffset": 368.2,
+            "value": 41
+        },
+        {
+            "flag": "point",
+            "id": 527,
+            "timeoffset": 368.9,
+            "value": 18
+        },
+        {
+            "flag": "point",
+            "id": 528,
+            "timeoffset": 369.6,
+            "value": 19
+        },
+        {
+            "flag": "point",
+            "id": 529,
+            "timeoffset": 370.3,
+            "value": 17
+        },
+        {
+            "flag": "point",
+            "id": 530,
+            "timeoffset": 371.0,
+            "value": 42
+        },
+        {
+            "flag": "point",
+            "id": 531,
+            "timeoffset": 371.7,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 532,
+            "timeoffset": 372.4,
+            "value": 26
+        },
+        {
+            "flag": "point",
+            "id": 533,
+            "timeoffset": 373.1,
+            "value": 19
+        },
+        {
+            "flag": "point",
+            "id": 534,
+            "timeoffset": 373.8,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 535,
+            "timeoffset": 374.5,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 536,
+            "timeoffset": 375.2,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 537,
+            "timeoffset": 375.9,
+            "value": 4
+        },
+        {
+            "flag": "point",
+            "id": 538,
+            "timeoffset": 376.6,
+            "value": 31
+        },
+        {
+            "flag": "point",
+            "id": 539,
+            "timeoffset": 377.3,
+            "value": 38
+        },
+        {
+            "flag": "secondary point",
+            "id": 540,
+            "timeoffset": 378.0,
+            "value": 6
+        },
+        {
+            "flag": "point",
+            "id": 541,
+            "timeoffset": 378.7,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 542,
+            "timeoffset": 379.4,
+            "value": 37
+        },
+        {
+            "flag": "point",
+            "id": 543,
+            "timeoffset": 380.1,
+            "value": 34
+        },
+        {
+            "flag": "point",
+            "id": 544,
+            "timeoffset": 380.8,
+            "value": 32
+        },
+        {
+            "flag": "point",
+            "id": 545,
+            "timeoffset": 381.5,
+            "value": 13
+        },
+        {
+            "flag": "point",
+            "id": 546,
+            "timeoffset": 382.2,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 547,
+            "timeoffset": 382.9,
+            "value": 2
+        },
+        {
+            "flag": "point",
+            "id": 548,
+            "timeoffset": 383.6,
+            "value": 16
+        },
+        {
+            "flag": "point",
+            "id": 549,
+            "timeoffset": 384.3,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 550,
+            "timeoffset": 385.0,
+            "value": 31
+        },
+        {
+            "flag": "point",
+            "id": 551,
+            "timeoffset": 385.7,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 552,
+            "timeoffset": 386.4,
+            "value": 33
+        },
+        {
+            "flag": "point",
+            "id": 553,
+            "timeoffset": 387.1,
+            "value": 6
+        },
+        {
+            "flag": "point",
+            "id": 554,
+            "timeoffset": 387.8,
+            "value": 46
+        },
+        {
+            "flag": "secondary point",
+            "id": 555,
+            "timeoffset": 388.5,
+            "value": 49
+        },
+        {
+            "flag": "point",
+            "id": 556,
+            "timeoffset": 389.2,
+            "value": 28
+        },
+        {
+            "flag": "point",
+            "id": 557,
+            "timeoffset": 389.9,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 558,
+            "timeoffset": 390.6,
+            "value": 30
+        },
+        {
+            "flag": "point",
+            "id": 559,
+            "timeoffset": 391.3,
+            "value": 31
+        },
+        {
+            "flag": "point",
+            "id": 560,
+            "timeoffset": 392.0,
+            "value": 15
+        },
+        {
+            "flag": "point",
+            "id": 561,
+            "timeoffset": 392.7,
+            "value": 29
+        },
+        {
+            "flag": "point",
+            "id": 562,
+            "timeoffset": 393.4,
+            "value": 28
+        },
+        {
+            "flag": "point",
+            "id": 563,
+            "timeoffset": 394.1,
+            "value": 15
+        },
+        {
+            "flag": "point",
+            "id": 564,
+            "timeoffset": 394.8,
+            "value": 46
+        },
+        {
+            "flag": "point",
+            "id": 565,
+            "timeoffset": 395.5,
+            "value": 25
+        },
+        {
+            "flag": "point",
+            "id": 566,
+            "timeoffset": 396.2,
+            "value": 18
+        },
+        {
+            "flag": "point",
+            "id": 567,
+            "timeoffset": 396.9,
+            "value": 11
+        },
+        {
+            "flag": "point",
+            "id": 568,
+            "timeoffset": 397.6,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 569,
+            "timeoffset": 398.3,
+            "value": 2
+        },
+        {
+            "flag": "secondary point",
+            "id": 570,
+            "timeoffset": 399.0,
+            "value": 46
+        },
+        {
+            "flag": "point",
+            "id": 571,
+            "timeoffset": 399.7,
+            "value": 17
+        },
+        {
+            "flag": "point",
+            "id": 572,
+            "timeoffset": 400.4,
+            "value": 10
+        },
+        {
+            "flag": "point",
+            "id": 573,
+            "timeoffset": 401.1,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 574,
+            "timeoffset": 401.8,
+            "value": 16
+        },
+        {
+            "flag": "point",
+            "id": 575,
+            "timeoffset": 402.5,
+            "value": 3
+        },
+        {
+            "flag": "point",
+            "id": 576,
+            "timeoffset": 403.2,
+            "value": 20
+        },
+        {
+            "flag": "point",
+            "id": 577,
+            "timeoffset": 403.9,
+            "value": 37
+        },
+        {
+            "flag": "point",
+            "id": 578,
+            "timeoffset": 404.6,
+            "value": 28
+        },
+        {
+            "flag": "point",
+            "id": 579,
+            "timeoffset": 405.3,
+            "value": 28
+        },
+        {
+            "flag": "point",
+            "id": 580,
+            "timeoffset": 406.0,
+            "value": 24
+        },
+        {
+            "flag": "point",
+            "id": 581,
+            "timeoffset": 406.7,
+            "value": 37
+        },
+        {
+            "flag": "point",
+            "id": 582,
+            "timeoffset": 407.4,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 583,
+            "timeoffset": 408.1,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 584,
+            "timeoffset": 408.8,
+            "value": 8
+        },
+        {
+            "flag": "secondary point",
+            "id": 585,
+            "timeoffset": 409.5,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 586,
+            "timeoffset": 410.2,
+            "value": 6
+        },
+        {
+            "flag": "point",
+            "id": 587,
+            "timeoffset": 410.9,
+            "value": 36
+        },
+        {
+            "flag": "point",
+            "id": 588,
+            "timeoffset": 411.6,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 589,
+            "timeoffset": 412.3,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 590,
+            "timeoffset": 413.0,
+            "value": 15
+        },
+        {
+            "flag": "point",
+            "id": 591,
+            "timeoffset": 413.7,
+            "value": 48
+        },
+        {
+            "flag": "point",
+            "id": 592,
+            "timeoffset": 414.4,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 593,
+            "timeoffset": 415.1,
+            "value": 6
+        },
+        {
+            "flag": "point",
+            "id": 594,
+            "timeoffset": 415.8,
+            "value": 15
+        },
+        {
+            "flag": "point",
+            "id": 595,
+            "timeoffset": 416.5,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 596,
+            "timeoffset": 417.2,
+            "value": 20
+        },
+        {
+            "flag": "point",
+            "id": 597,
+            "timeoffset": 417.9,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 598,
+            "timeoffset": 418.6,
+            "value": 26
+        },
+        {
+            "flag": "point",
+            "id": 599,
+            "timeoffset": 419.3,
+            "value": 2
+        }
+    ],
+    [
+        {
+            "flag": "secondary point",
+            "id": 0,
+            "timeoffset": 0.0,
+            "value": 13
+        },
+        {
+            "flag": "point",
+            "id": 1,
+            "timeoffset": 0.7,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 2,
+            "timeoffset": 1.4,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 3,
+            "timeoffset": 2.1,
+            "value": 19
+        },
+        {
+            "flag": "point",
+            "id": 4,
+            "timeoffset": 2.8,
+            "value": 49
+        },
+        {
+            "flag": "secondary point",
+            "id": 5,
+            "timeoffset": 3.5,
+            "value": 47
+        },
+        {
+            "flag": "point",
+            "id": 6,
+            "timeoffset": 4.2,
+            "value": 32
+        },
+        {
+            "flag": "point",
+            "id": 7,
+            "timeoffset": 4.9,
+            "value": 46
+        },
+        {
+            "flag": "point",
+            "id": 8,
+            "timeoffset": 5.6,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 9,
+            "timeoffset": 6.3,
+            "value": 40
+        },
+        {
+            "flag": "secondary point",
+            "id": 10,
+            "timeoffset": 7.0,
+            "value": 47
+        },
+        {
+            "flag": "point",
+            "id": 11,
+            "timeoffset": 7.7,
+            "value": 25
+        },
+        {
+            "flag": "point",
+            "id": 12,
+            "timeoffset": 8.4,
+            "value": 19
+        },
+        {
+            "flag": "point",
+            "id": 13,
+            "timeoffset": 9.1,
+            "value": 11
+        },
+        {
+            "flag": "point",
+            "id": 14,
+            "timeoffset": 9.8,
+            "value": 8
+        },
+        {
+            "flag": "secondary point",
+            "id": 15,
+            "timeoffset": 10.5,
+            "value": 24
+        },
+        {
+            "flag": "point",
+            "id": 16,
+            "timeoffset": 11.2,
+            "value": 47
+        },
+        {
+            "flag": "point",
+            "id": 17,
+            "timeoffset": 11.9,
+            "value": 16
+        },
+        {
+            "flag": "point",
+            "id": 18,
+            "timeoffset": 12.6,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 19,
+            "timeoffset": 13.3,
+            "value": 3
+        },
+        {
+            "flag": "secondary point",
+            "id": 20,
+            "timeoffset": 14.0,
+            "value": 47
+        },
+        {
+            "flag": "point",
+            "id": 21,
+            "timeoffset": 14.7,
+            "value": 10
+        },
+        {
+            "flag": "point",
+            "id": 22,
+            "timeoffset": 15.4,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 23,
+            "timeoffset": 16.1,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 24,
+            "timeoffset": 16.8,
+            "value": 42
+        },
+        {
+            "flag": "secondary point",
+            "id": 25,
+            "timeoffset": 17.5,
+            "value": 6
+        },
+        {
+            "flag": "point",
+            "id": 26,
+            "timeoffset": 18.2,
+            "value": 24
+        },
+        {
+            "flag": "point",
+            "id": 27,
+            "timeoffset": 18.9,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 28,
+            "timeoffset": 19.6,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 29,
+            "timeoffset": 20.3,
+            "value": 29
+        },
+        {
+            "flag": "secondary point",
+            "id": 30,
+            "timeoffset": 21.0,
+            "value": 30
+        },
+        {
+            "flag": "point",
+            "id": 31,
+            "timeoffset": 21.7,
+            "value": 32
+        },
+        {
+            "flag": "point",
+            "id": 32,
+            "timeoffset": 22.4,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 33,
+            "timeoffset": 23.1,
+            "value": 29
+        },
+        {
+            "flag": "point",
+            "id": 34,
+            "timeoffset": 23.8,
+            "value": 4
+        },
+        {
+            "flag": "secondary point",
+            "id": 35,
+            "timeoffset": 24.5,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 36,
+            "timeoffset": 25.2,
+            "value": 18
+        },
+        {
+            "flag": "point",
+            "id": 37,
+            "timeoffset": 25.9,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 38,
+            "timeoffset": 26.6,
+            "value": 42
+        },
+        {
+            "flag": "point",
+            "id": 39,
+            "timeoffset": 27.3,
+            "value": 44
+        },
+        {
+            "flag": "secondary point",
+            "id": 40,
+            "timeoffset": 28.0,
+            "value": 8
+        },
+        {
+            "flag": "point",
+            "id": 41,
+            "timeoffset": 28.7,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 42,
+            "timeoffset": 29.4,
+            "value": 4
+        },
+        {
+            "flag": "point",
+            "id": 43,
+            "timeoffset": 30.1,
+            "value": 40
+        },
+        {
+            "flag": "point",
+            "id": 44,
+            "timeoffset": 30.8,
+            "value": 9
+        },
+        {
+            "flag": "secondary point",
+            "id": 45,
+            "timeoffset": 31.5,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 46,
+            "timeoffset": 32.2,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 47,
+            "timeoffset": 32.9,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 48,
+            "timeoffset": 33.6,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 49,
+            "timeoffset": 34.3,
+            "value": 19
+        },
+        {
+            "flag": "secondary point",
+            "id": 50,
+            "timeoffset": 35.0,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 51,
+            "timeoffset": 35.7,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 52,
+            "timeoffset": 36.4,
+            "value": 11
+        },
+        {
+            "flag": "point",
+            "id": 53,
+            "timeoffset": 37.1,
+            "value": 48
+        },
+        {
+            "flag": "point",
+            "id": 54,
+            "timeoffset": 37.8,
+            "value": 27
+        },
+        {
+            "flag": "secondary point",
+            "id": 55,
+            "timeoffset": 38.5,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 56,
+            "timeoffset": 39.2,
+            "value": 33
+        },
+        {
+            "flag": "point",
+            "id": 57,
+            "timeoffset": 39.9,
+            "value": 31
+        },
+        {
+            "flag": "point",
+            "id": 58,
+            "timeoffset": 40.6,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 59,
+            "timeoffset": 41.3,
+            "value": 49
+        },
+        {
+            "flag": "secondary point",
+            "id": 60,
+            "timeoffset": 42.0,
+            "value": 32
+        },
+        {
+            "flag": "primary point",
+            "id": 61,
+            "timeoffset": 42.7,
+            "value": 12
+        },
+        {
+            "flag": "point",
+            "id": 62,
+            "timeoffset": 43.4,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 63,
+            "timeoffset": 44.1,
+            "value": 6
+        },
+        {
+            "flag": "point",
+            "id": 64,
+            "timeoffset": 44.8,
+            "value": 47
+        },
+        {
+            "flag": "secondary point",
+            "id": 65,
+            "timeoffset": 45.5,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 66,
+            "timeoffset": 46.2,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 67,
+            "timeoffset": 46.9,
+            "value": 27
+        },
+        {
+            "flag": "point",
+            "id": 68,
+            "timeoffset": 47.6,
+            "value": 48
+        },
+        {
+            "flag": "point",
+            "id": 69,
+            "timeoffset": 48.3,
+            "value": 6
+        },
+        {
+            "flag": "secondary point",
+            "id": 70,
+            "timeoffset": 49.0,
+            "value": 12
+        },
+        {
+            "flag": "point",
+            "id": 71,
+            "timeoffset": 49.7,
+            "value": 26
+        },
+        {
+            "flag": "point",
+            "id": 72,
+            "timeoffset": 50.4,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 73,
+            "timeoffset": 51.1,
+            "value": 31
+        },
+        {
+            "flag": "point",
+            "id": 74,
+            "timeoffset": 51.8,
+            "value": 12
+        },
+        {
+            "flag": "secondary point",
+            "id": 75,
+            "timeoffset": 52.5,
+            "value": 20
+        },
+        {
+            "flag": "point",
+            "id": 76,
+            "timeoffset": 53.2,
+            "value": 46
+        },
+        {
+            "flag": "point",
+            "id": 77,
+            "timeoffset": 53.9,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 78,
+            "timeoffset": 54.6,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 79,
+            "timeoffset": 55.3,
+            "value": 44
+        },
+        {
+            "flag": "secondary point",
+            "id": 80,
+            "timeoffset": 56.0,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 81,
+            "timeoffset": 56.7,
+            "value": 41
+        },
+        {
+            "flag": "point",
+            "id": 82,
+            "timeoffset": 57.4,
+            "value": 19
+        },
+        {
+            "flag": "point",
+            "id": 83,
+            "timeoffset": 58.1,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 84,
+            "timeoffset": 58.8,
+            "value": 31
+        },
+        {
+            "flag": "secondary point",
+            "id": 85,
+            "timeoffset": 59.5,
+            "value": 14
+        },
+        {
+            "flag": "point",
+            "id": 86,
+            "timeoffset": 60.2,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 87,
+            "timeoffset": 60.9,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 88,
+            "timeoffset": 61.6,
+            "value": 48
+        },
+        {
+            "flag": "point",
+            "id": 89,
+            "timeoffset": 62.3,
+            "value": 8
+        },
+        {
+            "flag": "secondary point",
+            "id": 90,
+            "timeoffset": 63.0,
+            "value": 32
+        },
+        {
+            "flag": "point",
+            "id": 91,
+            "timeoffset": 63.7,
+            "value": 20
+        },
+        {
+            "flag": "point",
+            "id": 92,
+            "timeoffset": 64.4,
+            "value": 30
+        },
+        {
+            "flag": "point",
+            "id": 93,
+            "timeoffset": 65.1,
+            "value": 32
+        },
+        {
+            "flag": "point",
+            "id": 94,
+            "timeoffset": 65.8,
+            "value": 20
+        },
+        {
+            "flag": "secondary point",
+            "id": 95,
+            "timeoffset": 66.5,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 96,
+            "timeoffset": 67.2,
+            "value": 18
+        },
+        {
+            "flag": "point",
+            "id": 97,
+            "timeoffset": 67.9,
+            "value": 4
+        },
+        {
+            "flag": "point",
+            "id": 98,
+            "timeoffset": 68.6,
+            "value": 42
+        },
+        {
+            "flag": "point",
+            "id": 99,
+            "timeoffset": 69.3,
+            "value": 39
+        },
+        {
+            "flag": "secondary point",
+            "id": 100,
+            "timeoffset": 70.0,
+            "value": 28
+        },
+        {
+            "flag": "point",
+            "id": 101,
+            "timeoffset": 70.7,
+            "value": 47
+        },
+        {
+            "flag": "point",
+            "id": 102,
+            "timeoffset": 71.4,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 103,
+            "timeoffset": 72.1,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 104,
+            "timeoffset": 72.8,
+            "value": 31
+        },
+        {
+            "flag": "secondary point",
+            "id": 105,
+            "timeoffset": 73.5,
+            "value": 40
+        },
+        {
+            "flag": "point",
+            "id": 106,
+            "timeoffset": 74.2,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 107,
+            "timeoffset": 74.9,
+            "value": 15
+        },
+        {
+            "flag": "point",
+            "id": 108,
+            "timeoffset": 75.6,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 109,
+            "timeoffset": 76.3,
+            "value": 49
+        },
+        {
+            "flag": "secondary point",
+            "id": 110,
+            "timeoffset": 77.0,
+            "value": 26
+        },
+        {
+            "flag": "point",
+            "id": 111,
+            "timeoffset": 77.7,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 112,
+            "timeoffset": 78.4,
+            "value": 6
+        },
+        {
+            "flag": "point",
+            "id": 113,
+            "timeoffset": 79.1,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 114,
+            "timeoffset": 79.8,
+            "value": 17
+        },
+        {
+            "flag": "secondary point",
+            "id": 115,
+            "timeoffset": 80.5,
+            "value": 27
+        },
+        {
+            "flag": "point",
+            "id": 116,
+            "timeoffset": 81.2,
+            "value": 33
+        },
+        {
+            "flag": "point",
+            "id": 117,
+            "timeoffset": 81.9,
+            "value": 12
+        },
+        {
+            "flag": "point",
+            "id": 118,
+            "timeoffset": 82.6,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 119,
+            "timeoffset": 83.3,
+            "value": 37
+        },
+        {
+            "flag": "secondary point",
+            "id": 120,
+            "timeoffset": 84.0,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 121,
+            "timeoffset": 84.7,
+            "value": 16
+        },
+        {
+            "flag": "point",
+            "id": 122,
+            "timeoffset": 85.4,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 123,
+            "timeoffset": 86.1,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 124,
+            "timeoffset": 86.8,
+            "value": 4
+        },
+        {
+            "flag": "secondary point",
+            "id": 125,
+            "timeoffset": 87.5,
+            "value": 28
+        },
+        {
+            "flag": "point",
+            "id": 126,
+            "timeoffset": 88.2,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 127,
+            "timeoffset": 88.9,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 128,
+            "timeoffset": 89.6,
+            "value": 30
+        },
+        {
+            "flag": "point",
+            "id": 129,
+            "timeoffset": 90.3,
+            "value": 31
+        },
+        {
+            "flag": "secondary point",
+            "id": 130,
+            "timeoffset": 91.0,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 131,
+            "timeoffset": 91.7,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 132,
+            "timeoffset": 92.4,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 133,
+            "timeoffset": 93.1,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 134,
+            "timeoffset": 93.8,
+            "value": 37
+        },
+        {
+            "flag": "secondary point",
+            "id": 135,
+            "timeoffset": 94.5,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 136,
+            "timeoffset": 95.2,
+            "value": 14
+        },
+        {
+            "flag": "point",
+            "id": 137,
+            "timeoffset": 95.9,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 138,
+            "timeoffset": 96.6,
+            "value": 4
+        },
+        {
+            "flag": "point",
+            "id": 139,
+            "timeoffset": 97.3,
+            "value": 16
+        },
+        {
+            "flag": "secondary point",
+            "id": 140,
+            "timeoffset": 98.0,
+            "value": 11
+        },
+        {
+            "flag": "point",
+            "id": 141,
+            "timeoffset": 98.7,
+            "value": 31
+        },
+        {
+            "flag": "point",
+            "id": 142,
+            "timeoffset": 99.4,
+            "value": 8
+        },
+        {
+            "flag": "point",
+            "id": 143,
+            "timeoffset": 100.1,
+            "value": 37
+        },
+        {
+            "flag": "point",
+            "id": 144,
+            "timeoffset": 100.8,
+            "value": 11
+        },
+        {
+            "flag": "secondary point",
+            "id": 145,
+            "timeoffset": 101.5,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 146,
+            "timeoffset": 102.2,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 147,
+            "timeoffset": 102.9,
+            "value": 10
+        },
+        {
+            "flag": "point",
+            "id": 148,
+            "timeoffset": 103.6,
+            "value": 43
+        },
+        {
+            "flag": "point",
+            "id": 149,
+            "timeoffset": 104.3,
+            "value": 43
+        },
+        {
+            "flag": "secondary point",
+            "id": 150,
+            "timeoffset": 105.0,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 151,
+            "timeoffset": 105.7,
+            "value": 24
+        },
+        {
+            "flag": "point",
+            "id": 152,
+            "timeoffset": 106.4,
+            "value": 24
+        },
+        {
+            "flag": "point",
+            "id": 153,
+            "timeoffset": 107.1,
+            "value": 15
+        },
+        {
+            "flag": "point",
+            "id": 154,
+            "timeoffset": 107.8,
+            "value": 39
+        },
+        {
+            "flag": "secondary point",
+            "id": 155,
+            "timeoffset": 108.5,
+            "value": 49
+        },
+        {
+            "flag": "point",
+            "id": 156,
+            "timeoffset": 109.2,
+            "value": 32
+        },
+        {
+            "flag": "point",
+            "id": 157,
+            "timeoffset": 109.9,
+            "value": 42
+        },
+        {
+            "flag": "point",
+            "id": 158,
+            "timeoffset": 110.6,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 159,
+            "timeoffset": 111.3,
+            "value": 4
+        },
+        {
+            "flag": "secondary point",
+            "id": 160,
+            "timeoffset": 112.0,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 161,
+            "timeoffset": 112.7,
+            "value": 12
+        },
+        {
+            "flag": "point",
+            "id": 162,
+            "timeoffset": 113.4,
+            "value": 28
+        },
+        {
+            "flag": "point",
+            "id": 163,
+            "timeoffset": 114.1,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 164,
+            "timeoffset": 114.8,
+            "value": 13
+        },
+        {
+            "flag": "secondary point",
+            "id": 165,
+            "timeoffset": 115.5,
+            "value": 25
+        },
+        {
+            "flag": "point",
+            "id": 166,
+            "timeoffset": 116.2,
+            "value": 15
+        },
+        {
+            "flag": "point",
+            "id": 167,
+            "timeoffset": 116.9,
+            "value": 27
+        },
+        {
+            "flag": "point",
+            "id": 168,
+            "timeoffset": 117.6,
+            "value": 10
+        },
+        {
+            "flag": "point",
+            "id": 169,
+            "timeoffset": 118.3,
+            "value": 46
+        },
+        {
+            "flag": "secondary point",
+            "id": 170,
+            "timeoffset": 119.0,
+            "value": 26
+        },
+        {
+            "flag": "point",
+            "id": 171,
+            "timeoffset": 119.7,
+            "value": 42
+        },
+        {
+            "flag": "point",
+            "id": 172,
+            "timeoffset": 120.4,
+            "value": 27
+        },
+        {
+            "flag": "point",
+            "id": 173,
+            "timeoffset": 121.1,
+            "value": 34
+        },
+        {
+            "flag": "point",
+            "id": 174,
+            "timeoffset": 121.8,
+            "value": 40
+        },
+        {
+            "flag": "secondary point",
+            "id": 175,
+            "timeoffset": 122.5,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 176,
+            "timeoffset": 123.2,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 177,
+            "timeoffset": 123.9,
+            "value": 20
+        },
+        {
+            "flag": "point",
+            "id": 178,
+            "timeoffset": 124.6,
+            "value": 37
+        },
+        {
+            "flag": "point",
+            "id": 179,
+            "timeoffset": 125.3,
+            "value": 44
+        },
+        {
+            "flag": "secondary point",
+            "id": 180,
+            "timeoffset": 126.0,
+            "value": 41
+        },
+        {
+            "flag": "point",
+            "id": 181,
+            "timeoffset": 126.7,
+            "value": 40
+        },
+        {
+            "flag": "point",
+            "id": 182,
+            "timeoffset": 127.4,
+            "value": 2
+        },
+        {
+            "flag": "point",
+            "id": 183,
+            "timeoffset": 128.1,
+            "value": 2
+        },
+        {
+            "flag": "point",
+            "id": 184,
+            "timeoffset": 128.8,
+            "value": 40
+        },
+        {
+            "flag": "secondary point",
+            "id": 185,
+            "timeoffset": 129.5,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 186,
+            "timeoffset": 130.2,
+            "value": 14
+        },
+        {
+            "flag": "point",
+            "id": 187,
+            "timeoffset": 130.9,
+            "value": 12
+        },
+        {
+            "flag": "point",
+            "id": 188,
+            "timeoffset": 131.6,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 189,
+            "timeoffset": 132.3,
+            "value": 45
+        },
+        {
+            "flag": "secondary point",
+            "id": 190,
+            "timeoffset": 133.0,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 191,
+            "timeoffset": 133.7,
+            "value": 24
+        },
+        {
+            "flag": "point",
+            "id": 192,
+            "timeoffset": 134.4,
+            "value": 8
+        },
+        {
+            "flag": "point",
+            "id": 193,
+            "timeoffset": 135.1,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 194,
+            "timeoffset": 135.8,
+            "value": 26
+        },
+        {
+            "flag": "secondary point",
+            "id": 195,
+            "timeoffset": 136.5,
+            "value": 47
+        },
+        {
+            "flag": "point",
+            "id": 196,
+            "timeoffset": 137.2,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 197,
+            "timeoffset": 137.9,
+            "value": 11
+        },
+        {
+            "flag": "point",
+            "id": 198,
+            "timeoffset": 138.6,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 199,
+            "timeoffset": 139.3,
+            "value": 29
+        },
+        {
+            "flag": "secondary point",
+            "id": 200,
+            "timeoffset": 140.0,
+            "value": 8
+        },
+        {
+            "flag": "point",
+            "id": 201,
+            "timeoffset": 140.7,
+            "value": 27
+        },
+        {
+            "flag": "point",
+            "id": 202,
+            "timeoffset": 141.4,
+            "value": 20
+        },
+        {
+            "flag": "point",
+            "id": 203,
+            "timeoffset": 142.1,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 204,
+            "timeoffset": 142.8,
+            "value": 0
+        },
+        {
+            "flag": "secondary point",
+            "id": 205,
+            "timeoffset": 143.5,
+            "value": 20
+        },
+        {
+            "flag": "point",
+            "id": 206,
+            "timeoffset": 144.2,
+            "value": 2
+        },
+        {
+            "flag": "point",
+            "id": 207,
+            "timeoffset": 144.9,
+            "value": 19
+        },
+        {
+            "flag": "point",
+            "id": 208,
+            "timeoffset": 145.6,
+            "value": 40
+        },
+        {
+            "flag": "point",
+            "id": 209,
+            "timeoffset": 146.3,
+            "value": 8
+        },
+        {
+            "flag": "secondary point",
+            "id": 210,
+            "timeoffset": 147.0,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 211,
+            "timeoffset": 147.7,
+            "value": 13
+        },
+        {
+            "flag": "point",
+            "id": 212,
+            "timeoffset": 148.4,
+            "value": 41
+        },
+        {
+            "flag": "point",
+            "id": 213,
+            "timeoffset": 149.1,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 214,
+            "timeoffset": 149.8,
+            "value": 5
+        },
+        {
+            "flag": "secondary point",
+            "id": 215,
+            "timeoffset": 150.5,
+            "value": 10
+        },
+        {
+            "flag": "point",
+            "id": 216,
+            "timeoffset": 151.2,
+            "value": 41
+        },
+        {
+            "flag": "point",
+            "id": 217,
+            "timeoffset": 151.9,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 218,
+            "timeoffset": 152.6,
+            "value": 29
+        },
+        {
+            "flag": "point",
+            "id": 219,
+            "timeoffset": 153.3,
+            "value": 28
+        },
+        {
+            "flag": "secondary point",
+            "id": 220,
+            "timeoffset": 154.0,
+            "value": 14
+        },
+        {
+            "flag": "point",
+            "id": 221,
+            "timeoffset": 154.7,
+            "value": 47
+        },
+        {
+            "flag": "point",
+            "id": 222,
+            "timeoffset": 155.4,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 223,
+            "timeoffset": 156.1,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 224,
+            "timeoffset": 156.8,
+            "value": 39
+        },
+        {
+            "flag": "secondary point",
+            "id": 225,
+            "timeoffset": 157.5,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 226,
+            "timeoffset": 158.2,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 227,
+            "timeoffset": 158.9,
+            "value": 15
+        },
+        {
+            "flag": "point",
+            "id": 228,
+            "timeoffset": 159.6,
+            "value": 33
+        },
+        {
+            "flag": "point",
+            "id": 229,
+            "timeoffset": 160.3,
+            "value": 29
+        },
+        {
+            "flag": "secondary point",
+            "id": 230,
+            "timeoffset": 161.0,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 231,
+            "timeoffset": 161.7,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 232,
+            "timeoffset": 162.4,
+            "value": 30
+        },
+        {
+            "flag": "point",
+            "id": 233,
+            "timeoffset": 163.1,
+            "value": 27
+        },
+        {
+            "flag": "point",
+            "id": 234,
+            "timeoffset": 163.8,
+            "value": 14
+        },
+        {
+            "flag": "secondary point",
+            "id": 235,
+            "timeoffset": 164.5,
+            "value": 8
+        },
+        {
+            "flag": "point",
+            "id": 236,
+            "timeoffset": 165.2,
+            "value": 33
+        },
+        {
+            "flag": "point",
+            "id": 237,
+            "timeoffset": 165.9,
+            "value": 8
+        },
+        {
+            "flag": "point",
+            "id": 238,
+            "timeoffset": 166.6,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 239,
+            "timeoffset": 167.3,
+            "value": 1
+        },
+        {
+            "flag": "secondary point",
+            "id": 240,
+            "timeoffset": 168.0,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 241,
+            "timeoffset": 168.7,
+            "value": 24
+        },
+        {
+            "flag": "point",
+            "id": 242,
+            "timeoffset": 169.4,
+            "value": 40
+        },
+        {
+            "flag": "point",
+            "id": 243,
+            "timeoffset": 170.1,
+            "value": 48
+        },
+        {
+            "flag": "point",
+            "id": 244,
+            "timeoffset": 170.8,
+            "value": 0
+        },
+        {
+            "flag": "secondary point",
+            "id": 245,
+            "timeoffset": 171.5,
+            "value": 34
+        },
+        {
+            "flag": "point",
+            "id": 246,
+            "timeoffset": 172.2,
+            "value": 46
+        },
+        {
+            "flag": "point",
+            "id": 247,
+            "timeoffset": 172.9,
+            "value": 48
+        },
+        {
+            "flag": "point",
+            "id": 248,
+            "timeoffset": 173.6,
+            "value": 16
+        },
+        {
+            "flag": "point",
+            "id": 249,
+            "timeoffset": 174.3,
+            "value": 30
+        },
+        {
+            "flag": "secondary point",
+            "id": 250,
+            "timeoffset": 175.0,
+            "value": 14
+        },
+        {
+            "flag": "point",
+            "id": 251,
+            "timeoffset": 175.7,
+            "value": 30
+        },
+        {
+            "flag": "point",
+            "id": 252,
+            "timeoffset": 176.4,
+            "value": 48
+        },
+        {
+            "flag": "point",
+            "id": 253,
+            "timeoffset": 177.1,
+            "value": 24
+        },
+        {
+            "flag": "point",
+            "id": 254,
+            "timeoffset": 177.8,
+            "value": 27
+        },
+        {
+            "flag": "secondary point",
+            "id": 255,
+            "timeoffset": 178.5,
+            "value": 30
+        },
+        {
+            "flag": "point",
+            "id": 256,
+            "timeoffset": 179.2,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 257,
+            "timeoffset": 179.9,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 258,
+            "timeoffset": 180.6,
+            "value": 27
+        },
+        {
+            "flag": "point",
+            "id": 259,
+            "timeoffset": 181.3,
+            "value": 24
+        },
+        {
+            "flag": "secondary point",
+            "id": 260,
+            "timeoffset": 182.0,
+            "value": 10
+        },
+        {
+            "flag": "point",
+            "id": 261,
+            "timeoffset": 182.7,
+            "value": 17
+        },
+        {
+            "flag": "point",
+            "id": 262,
+            "timeoffset": 183.4,
+            "value": 46
+        },
+        {
+            "flag": "point",
+            "id": 263,
+            "timeoffset": 184.1,
+            "value": 27
+        },
+        {
+            "flag": "point",
+            "id": 264,
+            "timeoffset": 184.8,
+            "value": 15
+        },
+        {
+            "flag": "secondary point",
+            "id": 265,
+            "timeoffset": 185.5,
+            "value": 19
+        },
+        {
+            "flag": "point",
+            "id": 266,
+            "timeoffset": 186.2,
+            "value": 31
+        },
+        {
+            "flag": "point",
+            "id": 267,
+            "timeoffset": 186.9,
+            "value": 34
+        },
+        {
+            "flag": "point",
+            "id": 268,
+            "timeoffset": 187.6,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 269,
+            "timeoffset": 188.3,
+            "value": 8
+        },
+        {
+            "flag": "secondary point",
+            "id": 270,
+            "timeoffset": 189.0,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 271,
+            "timeoffset": 189.7,
+            "value": 25
+        },
+        {
+            "flag": "point",
+            "id": 272,
+            "timeoffset": 190.4,
+            "value": 32
+        },
+        {
+            "flag": "point",
+            "id": 273,
+            "timeoffset": 191.1,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 274,
+            "timeoffset": 191.8,
+            "value": 7
+        },
+        {
+            "flag": "secondary point",
+            "id": 275,
+            "timeoffset": 192.5,
+            "value": 3
+        },
+        {
+            "flag": "point",
+            "id": 276,
+            "timeoffset": 193.2,
+            "value": 13
+        },
+        {
+            "flag": "point",
+            "id": 277,
+            "timeoffset": 193.9,
+            "value": 49
+        },
+        {
+            "flag": "point",
+            "id": 278,
+            "timeoffset": 194.6,
+            "value": 26
+        },
+        {
+            "flag": "point",
+            "id": 279,
+            "timeoffset": 195.3,
+            "value": 33
+        },
+        {
+            "flag": "secondary point",
+            "id": 280,
+            "timeoffset": 196.0,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 281,
+            "timeoffset": 196.7,
+            "value": 15
+        },
+        {
+            "flag": "point",
+            "id": 282,
+            "timeoffset": 197.4,
+            "value": 26
+        },
+        {
+            "flag": "point",
+            "id": 283,
+            "timeoffset": 198.1,
+            "value": 29
+        },
+        {
+            "flag": "point",
+            "id": 284,
+            "timeoffset": 198.8,
+            "value": 36
+        },
+        {
+            "flag": "secondary point",
+            "id": 285,
+            "timeoffset": 199.5,
+            "value": 26
+        },
+        {
+            "flag": "point",
+            "id": 286,
+            "timeoffset": 200.2,
+            "value": 36
+        },
+        {
+            "flag": "point",
+            "id": 287,
+            "timeoffset": 200.9,
+            "value": 19
+        },
+        {
+            "flag": "point",
+            "id": 288,
+            "timeoffset": 201.6,
+            "value": 6
+        },
+        {
+            "flag": "point",
+            "id": 289,
+            "timeoffset": 202.3,
+            "value": 9
+        },
+        {
+            "flag": "secondary point",
+            "id": 290,
+            "timeoffset": 203.0,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 291,
+            "timeoffset": 203.7,
+            "value": 33
+        },
+        {
+            "flag": "point",
+            "id": 292,
+            "timeoffset": 204.4,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 293,
+            "timeoffset": 205.1,
+            "value": 12
+        },
+        {
+            "flag": "point",
+            "id": 294,
+            "timeoffset": 205.8,
+            "value": 28
+        },
+        {
+            "flag": "secondary point",
+            "id": 295,
+            "timeoffset": 206.5,
+            "value": 14
+        },
+        {
+            "flag": "point",
+            "id": 296,
+            "timeoffset": 207.2,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 297,
+            "timeoffset": 207.9,
+            "value": 32
+        },
+        {
+            "flag": "point",
+            "id": 298,
+            "timeoffset": 208.6,
+            "value": 12
+        },
+        {
+            "flag": "point",
+            "id": 299,
+            "timeoffset": 209.3,
+            "value": 21
+        },
+        {
+            "flag": "secondary point",
+            "id": 300,
+            "timeoffset": 210.0,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 301,
+            "timeoffset": 210.7,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 302,
+            "timeoffset": 211.4,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 303,
+            "timeoffset": 212.1,
+            "value": 25
+        },
+        {
+            "flag": "point",
+            "id": 304,
+            "timeoffset": 212.8,
+            "value": 26
+        },
+        {
+            "flag": "secondary point",
+            "id": 305,
+            "timeoffset": 213.5,
+            "value": 27
+        },
+        {
+            "flag": "point",
+            "id": 306,
+            "timeoffset": 214.2,
+            "value": 36
+        },
+        {
+            "flag": "point",
+            "id": 307,
+            "timeoffset": 214.9,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 308,
+            "timeoffset": 215.6,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 309,
+            "timeoffset": 216.3,
+            "value": 27
+        },
+        {
+            "flag": "secondary point",
+            "id": 310,
+            "timeoffset": 217.0,
+            "value": 10
+        },
+        {
+            "flag": "point",
+            "id": 311,
+            "timeoffset": 217.7,
+            "value": 26
+        },
+        {
+            "flag": "point",
+            "id": 312,
+            "timeoffset": 218.4,
+            "value": 27
+        },
+        {
+            "flag": "point",
+            "id": 313,
+            "timeoffset": 219.1,
+            "value": 40
+        },
+        {
+            "flag": "point",
+            "id": 314,
+            "timeoffset": 219.8,
+            "value": 40
+        },
+        {
+            "flag": "secondary point",
+            "id": 315,
+            "timeoffset": 220.5,
+            "value": 29
+        },
+        {
+            "flag": "point",
+            "id": 316,
+            "timeoffset": 221.2,
+            "value": 49
+        },
+        {
+            "flag": "point",
+            "id": 317,
+            "timeoffset": 221.9,
+            "value": 28
+        },
+        {
+            "flag": "point",
+            "id": 318,
+            "timeoffset": 222.6,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 319,
+            "timeoffset": 223.3,
+            "value": 14
+        },
+        {
+            "flag": "secondary point",
+            "id": 320,
+            "timeoffset": 224.0,
+            "value": 8
+        },
+        {
+            "flag": "point",
+            "id": 321,
+            "timeoffset": 224.7,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 322,
+            "timeoffset": 225.4,
+            "value": 17
+        },
+        {
+            "flag": "point",
+            "id": 323,
+            "timeoffset": 226.1,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 324,
+            "timeoffset": 226.8,
+            "value": 28
+        },
+        {
+            "flag": "secondary point",
+            "id": 325,
+            "timeoffset": 227.5,
+            "value": 10
+        },
+        {
+            "flag": "point",
+            "id": 326,
+            "timeoffset": 228.2,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 327,
+            "timeoffset": 228.9,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 328,
+            "timeoffset": 229.6,
+            "value": 2
+        },
+        {
+            "flag": "point",
+            "id": 329,
+            "timeoffset": 230.3,
+            "value": 15
+        },
+        {
+            "flag": "secondary point",
+            "id": 330,
+            "timeoffset": 231.0,
+            "value": 40
+        },
+        {
+            "flag": "point",
+            "id": 331,
+            "timeoffset": 231.7,
+            "value": 33
+        },
+        {
+            "flag": "point",
+            "id": 332,
+            "timeoffset": 232.4,
+            "value": 13
+        },
+        {
+            "flag": "point",
+            "id": 333,
+            "timeoffset": 233.1,
+            "value": 6
+        },
+        {
+            "flag": "point",
+            "id": 334,
+            "timeoffset": 233.8,
+            "value": 35
+        },
+        {
+            "flag": "secondary point",
+            "id": 335,
+            "timeoffset": 234.5,
+            "value": 4
+        },
+        {
+            "flag": "point",
+            "id": 336,
+            "timeoffset": 235.2,
+            "value": 47
+        },
+        {
+            "flag": "point",
+            "id": 337,
+            "timeoffset": 235.9,
+            "value": 15
+        },
+        {
+            "flag": "point",
+            "id": 338,
+            "timeoffset": 236.6,
+            "value": 12
+        },
+        {
+            "flag": "point",
+            "id": 339,
+            "timeoffset": 237.3,
+            "value": 36
+        },
+        {
+            "flag": "secondary point",
+            "id": 340,
+            "timeoffset": 238.0,
+            "value": 27
+        },
+        {
+            "flag": "point",
+            "id": 341,
+            "timeoffset": 238.7,
+            "value": 18
+        },
+        {
+            "flag": "point",
+            "id": 342,
+            "timeoffset": 239.4,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 343,
+            "timeoffset": 240.1,
+            "value": 43
+        },
+        {
+            "flag": "point",
+            "id": 344,
+            "timeoffset": 240.8,
+            "value": 46
+        },
+        {
+            "flag": "secondary point",
+            "id": 345,
+            "timeoffset": 241.5,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 346,
+            "timeoffset": 242.2,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 347,
+            "timeoffset": 242.9,
+            "value": 18
+        },
+        {
+            "flag": "point",
+            "id": 348,
+            "timeoffset": 243.6,
+            "value": 4
+        },
+        {
+            "flag": "point",
+            "id": 349,
+            "timeoffset": 244.3,
+            "value": 15
+        },
+        {
+            "flag": "secondary point",
+            "id": 350,
+            "timeoffset": 245.0,
+            "value": 29
+        },
+        {
+            "flag": "point",
+            "id": 351,
+            "timeoffset": 245.7,
+            "value": 36
+        },
+        {
+            "flag": "point",
+            "id": 352,
+            "timeoffset": 246.4,
+            "value": 37
+        },
+        {
+            "flag": "point",
+            "id": 353,
+            "timeoffset": 247.1,
+            "value": 46
+        },
+        {
+            "flag": "point",
+            "id": 354,
+            "timeoffset": 247.8,
+            "value": 34
+        },
+        {
+            "flag": "secondary point",
+            "id": 355,
+            "timeoffset": 248.5,
+            "value": 3
+        },
+        {
+            "flag": "point",
+            "id": 356,
+            "timeoffset": 249.2,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 357,
+            "timeoffset": 249.9,
+            "value": 19
+        },
+        {
+            "flag": "point",
+            "id": 358,
+            "timeoffset": 250.6,
+            "value": 3
+        },
+        {
+            "flag": "point",
+            "id": 359,
+            "timeoffset": 251.3,
+            "value": 6
+        },
+        {
+            "flag": "secondary point",
+            "id": 360,
+            "timeoffset": 252.0,
+            "value": 24
+        },
+        {
+            "flag": "point",
+            "id": 361,
+            "timeoffset": 252.7,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 362,
+            "timeoffset": 253.4,
+            "value": 48
+        },
+        {
+            "flag": "point",
+            "id": 363,
+            "timeoffset": 254.1,
+            "value": 49
+        },
+        {
+            "flag": "point",
+            "id": 364,
+            "timeoffset": 254.8,
+            "value": 24
+        },
+        {
+            "flag": "secondary point",
+            "id": 365,
+            "timeoffset": 255.5,
+            "value": 27
+        },
+        {
+            "flag": "point",
+            "id": 366,
+            "timeoffset": 256.2,
+            "value": 26
+        },
+        {
+            "flag": "point",
+            "id": 367,
+            "timeoffset": 256.9,
+            "value": 25
+        },
+        {
+            "flag": "point",
+            "id": 368,
+            "timeoffset": 257.6,
+            "value": 34
+        },
+        {
+            "flag": "point",
+            "id": 369,
+            "timeoffset": 258.3,
+            "value": 16
+        },
+        {
+            "flag": "secondary point",
+            "id": 370,
+            "timeoffset": 259.0,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 371,
+            "timeoffset": 259.7,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 372,
+            "timeoffset": 260.4,
+            "value": 27
+        },
+        {
+            "flag": "point",
+            "id": 373,
+            "timeoffset": 261.1,
+            "value": 33
+        },
+        {
+            "flag": "point",
+            "id": 374,
+            "timeoffset": 261.8,
+            "value": 6
+        },
+        {
+            "flag": "secondary point",
+            "id": 375,
+            "timeoffset": 262.5,
+            "value": 4
+        },
+        {
+            "flag": "point",
+            "id": 376,
+            "timeoffset": 263.2,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 377,
+            "timeoffset": 263.9,
+            "value": 13
+        },
+        {
+            "flag": "point",
+            "id": 378,
+            "timeoffset": 264.6,
+            "value": 34
+        },
+        {
+            "flag": "point",
+            "id": 379,
+            "timeoffset": 265.3,
+            "value": 24
+        },
+        {
+            "flag": "secondary point",
+            "id": 380,
+            "timeoffset": 266.0,
+            "value": 11
+        },
+        {
+            "flag": "point",
+            "id": 381,
+            "timeoffset": 266.7,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 382,
+            "timeoffset": 267.4,
+            "value": 17
+        },
+        {
+            "flag": "point",
+            "id": 383,
+            "timeoffset": 268.1,
+            "value": 29
+        },
+        {
+            "flag": "point",
+            "id": 384,
+            "timeoffset": 268.8,
+            "value": 38
+        },
+        {
+            "flag": "secondary point",
+            "id": 385,
+            "timeoffset": 269.5,
+            "value": 27
+        },
+        {
+            "flag": "point",
+            "id": 386,
+            "timeoffset": 270.2,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 387,
+            "timeoffset": 270.9,
+            "value": 28
+        },
+        {
+            "flag": "point",
+            "id": 388,
+            "timeoffset": 271.6,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 389,
+            "timeoffset": 272.3,
+            "value": 43
+        },
+        {
+            "flag": "secondary point",
+            "id": 390,
+            "timeoffset": 273.0,
+            "value": 31
+        },
+        {
+            "flag": "point",
+            "id": 391,
+            "timeoffset": 273.7,
+            "value": 28
+        },
+        {
+            "flag": "point",
+            "id": 392,
+            "timeoffset": 274.4,
+            "value": 13
+        },
+        {
+            "flag": "point",
+            "id": 393,
+            "timeoffset": 275.1,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 394,
+            "timeoffset": 275.8,
+            "value": 35
+        },
+        {
+            "flag": "secondary point",
+            "id": 395,
+            "timeoffset": 276.5,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 396,
+            "timeoffset": 277.2,
+            "value": 15
+        },
+        {
+            "flag": "point",
+            "id": 397,
+            "timeoffset": 277.9,
+            "value": 29
+        },
+        {
+            "flag": "point",
+            "id": 398,
+            "timeoffset": 278.6,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 399,
+            "timeoffset": 279.3,
+            "value": 42
+        },
+        {
+            "flag": "secondary point",
+            "id": 400,
+            "timeoffset": 280.0,
+            "value": 30
+        },
+        {
+            "flag": "point",
+            "id": 401,
+            "timeoffset": 280.7,
+            "value": 47
+        },
+        {
+            "flag": "point",
+            "id": 402,
+            "timeoffset": 281.4,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 403,
+            "timeoffset": 282.1,
+            "value": 13
+        },
+        {
+            "flag": "point",
+            "id": 404,
+            "timeoffset": 282.8,
+            "value": 41
+        },
+        {
+            "flag": "secondary point",
+            "id": 405,
+            "timeoffset": 283.5,
+            "value": 9
+        },
+        {
+            "flag": "point",
+            "id": 406,
+            "timeoffset": 284.2,
+            "value": 34
+        },
+        {
+            "flag": "point",
+            "id": 407,
+            "timeoffset": 284.9,
+            "value": 43
+        },
+        {
+            "flag": "point",
+            "id": 408,
+            "timeoffset": 285.6,
+            "value": 28
+        },
+        {
+            "flag": "point",
+            "id": 409,
+            "timeoffset": 286.3,
+            "value": 26
+        },
+        {
+            "flag": "secondary point",
+            "id": 410,
+            "timeoffset": 287.0,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 411,
+            "timeoffset": 287.7,
+            "value": 3
+        },
+        {
+            "flag": "point",
+            "id": 412,
+            "timeoffset": 288.4,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 413,
+            "timeoffset": 289.1,
+            "value": 32
+        },
+        {
+            "flag": "point",
+            "id": 414,
+            "timeoffset": 289.8,
+            "value": 34
+        },
+        {
+            "flag": "secondary point",
+            "id": 415,
+            "timeoffset": 290.5,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 416,
+            "timeoffset": 291.2,
+            "value": 34
+        },
+        {
+            "flag": "point",
+            "id": 417,
+            "timeoffset": 291.9,
+            "value": 16
+        },
+        {
+            "flag": "point",
+            "id": 418,
+            "timeoffset": 292.6,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 419,
+            "timeoffset": 293.3,
+            "value": 24
+        },
+        {
+            "flag": "secondary point",
+            "id": 420,
+            "timeoffset": 294.0,
+            "value": 20
+        },
+        {
+            "flag": "point",
+            "id": 421,
+            "timeoffset": 294.7,
+            "value": 27
+        },
+        {
+            "flag": "point",
+            "id": 422,
+            "timeoffset": 295.4,
+            "value": 48
+        },
+        {
+            "flag": "point",
+            "id": 423,
+            "timeoffset": 296.1,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 424,
+            "timeoffset": 296.8,
+            "value": 29
+        },
+        {
+            "flag": "secondary point",
+            "id": 425,
+            "timeoffset": 297.5,
+            "value": 40
+        },
+        {
+            "flag": "point",
+            "id": 426,
+            "timeoffset": 298.2,
+            "value": 15
+        },
+        {
+            "flag": "point",
+            "id": 427,
+            "timeoffset": 298.9,
+            "value": 49
+        },
+        {
+            "flag": "point",
+            "id": 428,
+            "timeoffset": 299.6,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 429,
+            "timeoffset": 300.3,
+            "value": 2
+        },
+        {
+            "flag": "secondary point",
+            "id": 430,
+            "timeoffset": 301.0,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 431,
+            "timeoffset": 301.7,
+            "value": 6
+        },
+        {
+            "flag": "point",
+            "id": 432,
+            "timeoffset": 302.4,
+            "value": 11
+        },
+        {
+            "flag": "point",
+            "id": 433,
+            "timeoffset": 303.1,
+            "value": 34
+        },
+        {
+            "flag": "point",
+            "id": 434,
+            "timeoffset": 303.8,
+            "value": 26
+        },
+        {
+            "flag": "secondary point",
+            "id": 435,
+            "timeoffset": 304.5,
+            "value": 27
+        },
+        {
+            "flag": "point",
+            "id": 436,
+            "timeoffset": 305.2,
+            "value": 49
+        },
+        {
+            "flag": "point",
+            "id": 437,
+            "timeoffset": 305.9,
+            "value": 20
+        },
+        {
+            "flag": "point",
+            "id": 438,
+            "timeoffset": 306.6,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 439,
+            "timeoffset": 307.3,
+            "value": 14
+        },
+        {
+            "flag": "secondary point",
+            "id": 440,
+            "timeoffset": 308.0,
+            "value": 17
+        },
+        {
+            "flag": "point",
+            "id": 441,
+            "timeoffset": 308.7,
+            "value": 12
+        },
+        {
+            "flag": "point",
+            "id": 442,
+            "timeoffset": 309.4,
+            "value": 14
+        },
+        {
+            "flag": "point",
+            "id": 443,
+            "timeoffset": 310.1,
+            "value": 28
+        },
+        {
+            "flag": "point",
+            "id": 444,
+            "timeoffset": 310.8,
+            "value": 26
+        },
+        {
+            "flag": "secondary point",
+            "id": 445,
+            "timeoffset": 311.5,
+            "value": 14
+        },
+        {
+            "flag": "point",
+            "id": 446,
+            "timeoffset": 312.2,
+            "value": 13
+        },
+        {
+            "flag": "point",
+            "id": 447,
+            "timeoffset": 312.9,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 448,
+            "timeoffset": 313.6,
+            "value": 2
+        },
+        {
+            "flag": "point",
+            "id": 449,
+            "timeoffset": 314.3,
+            "value": 8
+        },
+        {
+            "flag": "secondary point",
+            "id": 450,
+            "timeoffset": 315.0,
+            "value": 12
+        },
+        {
+            "flag": "point",
+            "id": 451,
+            "timeoffset": 315.7,
+            "value": 13
+        },
+        {
+            "flag": "point",
+            "id": 452,
+            "timeoffset": 316.4,
+            "value": 37
+        },
+        {
+            "flag": "point",
+            "id": 453,
+            "timeoffset": 317.1,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 454,
+            "timeoffset": 317.8,
+            "value": 2
+        },
+        {
+            "flag": "secondary point",
+            "id": 455,
+            "timeoffset": 318.5,
+            "value": 14
+        },
+        {
+            "flag": "point",
+            "id": 456,
+            "timeoffset": 319.2,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 457,
+            "timeoffset": 319.9,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 458,
+            "timeoffset": 320.6,
+            "value": 25
+        },
+        {
+            "flag": "point",
+            "id": 459,
+            "timeoffset": 321.3,
+            "value": 18
+        },
+        {
+            "flag": "secondary point",
+            "id": 460,
+            "timeoffset": 322.0,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 461,
+            "timeoffset": 322.7,
+            "value": 24
+        },
+        {
+            "flag": "point",
+            "id": 462,
+            "timeoffset": 323.4,
+            "value": 17
+        },
+        {
+            "flag": "point",
+            "id": 463,
+            "timeoffset": 324.1,
+            "value": 28
+        },
+        {
+            "flag": "point",
+            "id": 464,
+            "timeoffset": 324.8,
+            "value": 26
+        },
+        {
+            "flag": "secondary point",
+            "id": 465,
+            "timeoffset": 325.5,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 466,
+            "timeoffset": 326.2,
+            "value": 13
+        },
+        {
+            "flag": "point",
+            "id": 467,
+            "timeoffset": 326.9,
+            "value": 40
+        },
+        {
+            "flag": "point",
+            "id": 468,
+            "timeoffset": 327.6,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 469,
+            "timeoffset": 328.3,
+            "value": 27
+        },
+        {
+            "flag": "secondary point",
+            "id": 470,
+            "timeoffset": 329.0,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 471,
+            "timeoffset": 329.7,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 472,
+            "timeoffset": 330.4,
+            "value": 32
+        },
+        {
+            "flag": "point",
+            "id": 473,
+            "timeoffset": 331.1,
+            "value": 13
+        },
+        {
+            "flag": "point",
+            "id": 474,
+            "timeoffset": 331.8,
+            "value": 25
+        },
+        {
+            "flag": "secondary point",
+            "id": 475,
+            "timeoffset": 332.5,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 476,
+            "timeoffset": 333.2,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 477,
+            "timeoffset": 333.9,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 478,
+            "timeoffset": 334.6,
+            "value": 31
+        },
+        {
+            "flag": "point",
+            "id": 479,
+            "timeoffset": 335.3,
+            "value": 22
+        },
+        {
+            "flag": "secondary point",
+            "id": 480,
+            "timeoffset": 336.0,
+            "value": 10
+        },
+        {
+            "flag": "point",
+            "id": 481,
+            "timeoffset": 336.7,
+            "value": 32
+        },
+        {
+            "flag": "point",
+            "id": 482,
+            "timeoffset": 337.4,
+            "value": 31
+        },
+        {
+            "flag": "point",
+            "id": 483,
+            "timeoffset": 338.1,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 484,
+            "timeoffset": 338.8,
+            "value": 48
+        },
+        {
+            "flag": "secondary point",
+            "id": 485,
+            "timeoffset": 339.5,
+            "value": 14
+        },
+        {
+            "flag": "point",
+            "id": 486,
+            "timeoffset": 340.2,
+            "value": 17
+        },
+        {
+            "flag": "point",
+            "id": 487,
+            "timeoffset": 340.9,
+            "value": 36
+        },
+        {
+            "flag": "point",
+            "id": 488,
+            "timeoffset": 341.6,
+            "value": 12
+        },
+        {
+            "flag": "point",
+            "id": 489,
+            "timeoffset": 342.3,
+            "value": 44
+        },
+        {
+            "flag": "secondary point",
+            "id": 490,
+            "timeoffset": 343.0,
+            "value": 28
+        },
+        {
+            "flag": "point",
+            "id": 491,
+            "timeoffset": 343.7,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 492,
+            "timeoffset": 344.4,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 493,
+            "timeoffset": 345.1,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 494,
+            "timeoffset": 345.8,
+            "value": 18
+        },
+        {
+            "flag": "secondary point",
+            "id": 495,
+            "timeoffset": 346.5,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 496,
+            "timeoffset": 347.2,
+            "value": 29
+        },
+        {
+            "flag": "point",
+            "id": 497,
+            "timeoffset": 347.9,
+            "value": 10
+        },
+        {
+            "flag": "point",
+            "id": 498,
+            "timeoffset": 348.6,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 499,
+            "timeoffset": 349.3,
+            "value": 3
+        },
+        {
+            "flag": "secondary point",
+            "id": 500,
+            "timeoffset": 350.0,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 501,
+            "timeoffset": 350.7,
+            "value": 10
+        },
+        {
+            "flag": "point",
+            "id": 502,
+            "timeoffset": 351.4,
+            "value": 33
+        },
+        {
+            "flag": "point",
+            "id": 503,
+            "timeoffset": 352.1,
+            "value": 8
+        },
+        {
+            "flag": "point",
+            "id": 504,
+            "timeoffset": 352.8,
+            "value": 3
+        },
+        {
+            "flag": "secondary point",
+            "id": 505,
+            "timeoffset": 353.5,
+            "value": 10
+        },
+        {
+            "flag": "point",
+            "id": 506,
+            "timeoffset": 354.2,
+            "value": 41
+        },
+        {
+            "flag": "point",
+            "id": 507,
+            "timeoffset": 354.9,
+            "value": 23
+        },
+        {
+            "flag": "point",
+            "id": 508,
+            "timeoffset": 355.6,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 509,
+            "timeoffset": 356.3,
+            "value": 7
+        },
+        {
+            "flag": "secondary point",
+            "id": 510,
+            "timeoffset": 357.0,
+            "value": 40
+        },
+        {
+            "flag": "point",
+            "id": 511,
+            "timeoffset": 357.7,
+            "value": 19
+        },
+        {
+            "flag": "point",
+            "id": 512,
+            "timeoffset": 358.4,
+            "value": 46
+        },
+        {
+            "flag": "point",
+            "id": 513,
+            "timeoffset": 359.1,
+            "value": 13
+        },
+        {
+            "flag": "point",
+            "id": 514,
+            "timeoffset": 359.8,
+            "value": 46
+        },
+        {
+            "flag": "secondary point",
+            "id": 515,
+            "timeoffset": 360.5,
+            "value": 40
+        },
+        {
+            "flag": "point",
+            "id": 516,
+            "timeoffset": 361.2,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 517,
+            "timeoffset": 361.9,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 518,
+            "timeoffset": 362.6,
+            "value": 4
+        },
+        {
+            "flag": "point",
+            "id": 519,
+            "timeoffset": 363.3,
+            "value": 38
+        },
+        {
+            "flag": "secondary point",
+            "id": 520,
+            "timeoffset": 364.0,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 521,
+            "timeoffset": 364.7,
+            "value": 4
+        },
+        {
+            "flag": "point",
+            "id": 522,
+            "timeoffset": 365.4,
+            "value": 1
+        },
+        {
+            "flag": "point",
+            "id": 523,
+            "timeoffset": 366.1,
+            "value": 6
+        },
+        {
+            "flag": "point",
+            "id": 524,
+            "timeoffset": 366.8,
+            "value": 12
+        },
+        {
+            "flag": "secondary point",
+            "id": 525,
+            "timeoffset": 367.5,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 526,
+            "timeoffset": 368.2,
+            "value": 35
+        },
+        {
+            "flag": "point",
+            "id": 527,
+            "timeoffset": 368.9,
+            "value": 0
+        },
+        {
+            "flag": "point",
+            "id": 528,
+            "timeoffset": 369.6,
+            "value": 8
+        },
+        {
+            "flag": "point",
+            "id": 529,
+            "timeoffset": 370.3,
+            "value": 5
+        },
+        {
+            "flag": "secondary point",
+            "id": 530,
+            "timeoffset": 371.0,
+            "value": 6
+        },
+        {
+            "flag": "point",
+            "id": 531,
+            "timeoffset": 371.7,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 532,
+            "timeoffset": 372.4,
+            "value": 28
+        },
+        {
+            "flag": "point",
+            "id": 533,
+            "timeoffset": 373.1,
+            "value": 5
+        },
+        {
+            "flag": "point",
+            "id": 534,
+            "timeoffset": 373.8,
+            "value": 26
+        },
+        {
+            "flag": "secondary point",
+            "id": 535,
+            "timeoffset": 374.5,
+            "value": 20
+        },
+        {
+            "flag": "point",
+            "id": 536,
+            "timeoffset": 375.2,
+            "value": 2
+        },
+        {
+            "flag": "point",
+            "id": 537,
+            "timeoffset": 375.9,
+            "value": 6
+        },
+        {
+            "flag": "point",
+            "id": 538,
+            "timeoffset": 376.6,
+            "value": 19
+        },
+        {
+            "flag": "point",
+            "id": 539,
+            "timeoffset": 377.3,
+            "value": 1
+        },
+        {
+            "flag": "secondary point",
+            "id": 540,
+            "timeoffset": 378.0,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 541,
+            "timeoffset": 378.7,
+            "value": 4
+        },
+        {
+            "flag": "point",
+            "id": 542,
+            "timeoffset": 379.4,
+            "value": 17
+        },
+        {
+            "flag": "point",
+            "id": 543,
+            "timeoffset": 380.1,
+            "value": 18
+        },
+        {
+            "flag": "point",
+            "id": 544,
+            "timeoffset": 380.8,
+            "value": 26
+        },
+        {
+            "flag": "secondary point",
+            "id": 545,
+            "timeoffset": 381.5,
+            "value": 40
+        },
+        {
+            "flag": "point",
+            "id": 546,
+            "timeoffset": 382.2,
+            "value": 44
+        },
+        {
+            "flag": "point",
+            "id": 547,
+            "timeoffset": 382.9,
+            "value": 6
+        },
+        {
+            "flag": "point",
+            "id": 548,
+            "timeoffset": 383.6,
+            "value": 21
+        },
+        {
+            "flag": "point",
+            "id": 549,
+            "timeoffset": 384.3,
+            "value": 32
+        },
+        {
+            "flag": "secondary point",
+            "id": 550,
+            "timeoffset": 385.0,
+            "value": 11
+        },
+        {
+            "flag": "point",
+            "id": 551,
+            "timeoffset": 385.7,
+            "value": 8
+        },
+        {
+            "flag": "point",
+            "id": 552,
+            "timeoffset": 386.4,
+            "value": 14
+        },
+        {
+            "flag": "point",
+            "id": 553,
+            "timeoffset": 387.1,
+            "value": 34
+        },
+        {
+            "flag": "point",
+            "id": 554,
+            "timeoffset": 387.8,
+            "value": 49
+        },
+        {
+            "flag": "secondary point",
+            "id": 555,
+            "timeoffset": 388.5,
+            "value": 39
+        },
+        {
+            "flag": "point",
+            "id": 556,
+            "timeoffset": 389.2,
+            "value": 19
+        },
+        {
+            "flag": "point",
+            "id": 557,
+            "timeoffset": 389.9,
+            "value": 34
+        },
+        {
+            "flag": "point",
+            "id": 558,
+            "timeoffset": 390.6,
+            "value": 4
+        },
+        {
+            "flag": "point",
+            "id": 559,
+            "timeoffset": 391.3,
+            "value": 25
+        },
+        {
+            "flag": "secondary point",
+            "id": 560,
+            "timeoffset": 392.0,
+            "value": 3
+        },
+        {
+            "flag": "point",
+            "id": 561,
+            "timeoffset": 392.7,
+            "value": 17
+        },
+        {
+            "flag": "point",
+            "id": 562,
+            "timeoffset": 393.4,
+            "value": 6
+        },
+        {
+            "flag": "point",
+            "id": 563,
+            "timeoffset": 394.1,
+            "value": 33
+        },
+        {
+            "flag": "point",
+            "id": 564,
+            "timeoffset": 394.8,
+            "value": 40
+        },
+        {
+            "flag": "secondary point",
+            "id": 565,
+            "timeoffset": 395.5,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 566,
+            "timeoffset": 396.2,
+            "value": 27
+        },
+        {
+            "flag": "point",
+            "id": 567,
+            "timeoffset": 396.9,
+            "value": 20
+        },
+        {
+            "flag": "point",
+            "id": 568,
+            "timeoffset": 397.6,
+            "value": 26
+        },
+        {
+            "flag": "point",
+            "id": 569,
+            "timeoffset": 398.3,
+            "value": 40
+        },
+        {
+            "flag": "secondary point",
+            "id": 570,
+            "timeoffset": 399.0,
+            "value": 24
+        },
+        {
+            "flag": "point",
+            "id": 571,
+            "timeoffset": 399.7,
+            "value": 16
+        },
+        {
+            "flag": "point",
+            "id": 572,
+            "timeoffset": 400.4,
+            "value": 38
+        },
+        {
+            "flag": "point",
+            "id": 573,
+            "timeoffset": 401.1,
+            "value": 36
+        },
+        {
+            "flag": "point",
+            "id": 574,
+            "timeoffset": 401.8,
+            "value": 44
+        },
+        {
+            "flag": "secondary point",
+            "id": 575,
+            "timeoffset": 402.5,
+            "value": 7
+        },
+        {
+            "flag": "point",
+            "id": 576,
+            "timeoffset": 403.2,
+            "value": 34
+        },
+        {
+            "flag": "point",
+            "id": 577,
+            "timeoffset": 403.9,
+            "value": 12
+        },
+        {
+            "flag": "point",
+            "id": 578,
+            "timeoffset": 404.6,
+            "value": 11
+        },
+        {
+            "flag": "point",
+            "id": 579,
+            "timeoffset": 405.3,
+            "value": 45
+        },
+        {
+            "flag": "secondary point",
+            "id": 580,
+            "timeoffset": 406.0,
+            "value": 12
+        },
+        {
+            "flag": "point",
+            "id": 581,
+            "timeoffset": 406.7,
+            "value": 22
+        },
+        {
+            "flag": "point",
+            "id": 582,
+            "timeoffset": 407.4,
+            "value": 48
+        },
+        {
+            "flag": "point",
+            "id": 583,
+            "timeoffset": 408.1,
+            "value": 36
+        },
+        {
+            "flag": "point",
+            "id": 584,
+            "timeoffset": 408.8,
+            "value": 42
+        },
+        {
+            "flag": "secondary point",
+            "id": 585,
+            "timeoffset": 409.5,
+            "value": 45
+        },
+        {
+            "flag": "point",
+            "id": 586,
+            "timeoffset": 410.2,
+            "value": 36
+        },
+        {
+            "flag": "point",
+            "id": 587,
+            "timeoffset": 410.9,
+            "value": 17
+        },
+        {
+            "flag": "point",
+            "id": 588,
+            "timeoffset": 411.6,
+            "value": 25
+        },
+        {
+            "flag": "point",
+            "id": 589,
+            "timeoffset": 412.3,
+            "value": 21
+        },
+        {
+            "flag": "secondary point",
+            "id": 590,
+            "timeoffset": 413.0,
+            "value": 30
+        },
+        {
+            "flag": "point",
+            "id": 591,
+            "timeoffset": 413.7,
+            "value": 30
+        },
+        {
+            "flag": "point",
+            "id": 592,
+            "timeoffset": 414.4,
+            "value": 26
+        },
+        {
+            "flag": "point",
+            "id": 593,
+            "timeoffset": 415.1,
+            "value": 30
+        },
+        {
+            "flag": "point",
+            "id": 594,
+            "timeoffset": 415.8,
+            "value": 43
+        },
+        {
+            "flag": "secondary point",
+            "id": 595,
+            "timeoffset": 416.5,
+            "value": 36
+        },
+        {
+            "flag": "point",
+            "id": 596,
+            "timeoffset": 417.2,
+            "value": 46
+        },
+        {
+            "flag": "point",
+            "id": 597,
+            "timeoffset": 417.9,
+            "value": 8
+        },
+        {
+            "flag": "point",
+            "id": 598,
+            "timeoffset": 418.6,
+            "value": 43
+        },
+        {
+            "flag": "point",
+            "id": 599,
+            "timeoffset": 419.3,
+            "value": 12
+        }
+    ]
+]

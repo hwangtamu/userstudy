@@ -12,6 +12,8 @@ var dataset;
 var experiment_number = 0;
 var experiment_length = 0;
 
+var practice_number = 0;
+
 var width = 900,
     height = 360;
 
@@ -381,19 +383,24 @@ function loadNextTrial() {
         previousFrz = _freeze;
         previousTrail = _trail;
         practice = true;
+        practice_number = Math.floor((Math.random() * 3))
         createTrainer()
     }
 
 
     if (practice) {
-        //LOAD WITH RANDOM DENSITY/SPEED?
-        load("practice_data.json", function() {
-            createChart(_speed, _trail);
+        _practice_speed = speed_density[practice_number].speed;
+        _practice_density = speed_density[practice_number].density;
+        load("practice_" + _practice_density + "_density.json", function() {
+            createChart(_practice_speed, _trail);
             setSelectors("normal", _freeze);
         });
+        practice_number += 1;
+        if (practice_number > 3)
+            practice_number = 0;
     } else {
         //LOAD FILE BASED ON DENSITY PARAM
-        load("stream_testing.json", function() {
+        load("stream_" + _density + "_density.json", function() {
             createChart(_speed, _trail);
             setSelectors("normal", _freeze);
         });
