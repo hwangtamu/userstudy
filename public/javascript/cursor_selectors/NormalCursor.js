@@ -54,13 +54,8 @@ function NormalCursor(selection) {
 			});
 
 		//Having this line inside 'target != null' causes sticky targeting
-		if (StreamScatterPlot.getTrailsAllowed() && target != null) {
-			d3.selectAll(targets + ".target")
-				.attr("class", function() { return d3.select(this).attr("class").slice(0, -7); });
-		} else if (!StreamScatterPlot.getTrailsAllowed()){
-			d3.selectAll(targets + ".target")
-				.attr("class", function() { return d3.select(this).attr("class").slice(0, -7); });
-		}
+		d3.selectAll(targets + ".target")
+			.attr("class", function() { return d3.select(this).attr("class").slice(0, -7); });
 		//Set class of  target
 		if (target != null) {
 			target

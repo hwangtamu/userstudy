@@ -61,7 +61,7 @@ d3.json("data/sequence.json", function(error, data) {
     sequence = data.sequence;
 
     var n = 0;
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < sequence.length; i++) {
         var freezeType = sequence[i];
         for (j = 0; j < 3; j++) {
             var trailType = trail[j];
@@ -435,13 +435,13 @@ function addTrialData(err, time, dis, dis_ans, got) {
         data[id_dis_ans] = dis_ans;
         data[id_clicked] = got;
 
-        // console.log(JSON.stringify(data, null, "\t"));
+        console.log(JSON.stringify(data, null, "\t"));
 
         trialNumber += 1;
 
         if (trialNumber >= numTrials) {
             trialNumber = 0;
-            experiment_number += 1;
+            if (experiment_number < experiment_length) experiment_number += 1;
         }
     }
 }

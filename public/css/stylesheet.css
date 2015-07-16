@@ -71,12 +71,12 @@ body {
 }
 
 #trail {
-	stroke: #CFD8DC;
+	stroke: #607D8B;
 	clip-path: url(#StreamScatterPlotClip);
 }
 
 #secondary_trail {
-	stroke: #CFD8DC;
+	stroke: #607D8B;
 	clip-path: url(#StreamScatterPlotClip);
 }
 
@@ -86,13 +86,13 @@ body {
 }
 
 .bubble {
-	fill: #607D8B;
+	fill: ##CFD8DC;
 	fill-opacity: 0.5;
 	clip-path: url(#freezeClip);
 }
 
 .freezeRegion {
-	fill: #607D8B;
+	fill: #CFD8DC;
 	fill-opacity: 0.5;
 	clip-path: url(#StreamScatterPlotClip);
 }

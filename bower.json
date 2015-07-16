@@ -1,0 +1,10 @@
+{
+  "name": "vis-",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "jquery": "~1.7",
+    "jquery-ui": "~1.7"
+  },
+  "devDependencies": {}
+}

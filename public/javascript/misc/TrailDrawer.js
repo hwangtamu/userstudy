@@ -2,7 +2,7 @@ function TrailDrawer(selection) {
 	var originalName = "#tagged",
 		snapshotName = ".snapshot";
 
-	var stroke_width = 6;
+	var stroke_width = 2;
 
 	var gTrails = selection.insert("g", ".data").attr("class", "trails");
 
@@ -69,20 +69,22 @@ function TrailDrawer(selection) {
 			.attr("stroke-width", stroke_width)
 			.attr("stroke-linecap", "round")
 			//.attr("stroke-dasharray", "5, 5")
-			.on("mouseover", function(d, i) {
-				var trail = d3.select(this);
-				var uniqueID = d;
-				var target = d3.select(".i" + uniqueID + ".snapshot");
-				d3.selectAll(".trail").attr("id", "trail");
-				d3.selectAll(snapshotName + ".target")
-					.attr("class", function() { return d3.select(this).attr("class").slice(0, -7); });
-
-				if (target != null) {
-					target
-						.attr("class", target.attr("class") + " target");
-				}
-				trail.attr("id", "targetTrail")
-			});
+			//NOTE: Getting rid of this functionality for experiment
+			//		because it alters selection, which isn't exactly what we are studying now
+			// .on("mouseover", function(d, i) {
+			// 	var trail = d3.select(this);
+			// 	var uniqueID = d;
+			// 	var target = d3.select(".i" + uniqueID + ".snapshot");
+			// 	d3.selectAll(".trail").attr("id", "trail");
+			// 	d3.selectAll(snapshotName + ".target")
+			// 		.attr("class", function() { return d3.select(this).attr("class").slice(0, -7); });
+			//
+			// 	if (target != null) {
+			// 		target
+			// 			.attr("class", target.attr("class") + " target");
+			// 	}
+			// 	trail.attr("id", "targetTrail")
+			// });
 	};
 
 	TrailDrawer.destroyTrail = function(uniqueID) {
