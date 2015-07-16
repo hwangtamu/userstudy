@@ -119,9 +119,9 @@ function createChart(_speed, _trail) {
 
   //Set speed modifier
   if (_speed === "high") {
-    StreamScatterPlot.setClockDrift(50);
+    StreamScatterPlot.setClockDrift(300);
   } else {
-    StreamScatterPlot.setClockDrift(0);
+    StreamScatterPlot.setClockDrift(300);
   }
 
   //Set trail modifier
@@ -289,6 +289,7 @@ function createQuestion(err, time, dis, got) {
         var ans = d3.select(this).data();
 
         numpad.on("click.numpad", null);
+        text.on("click.numpadText", null);
         svg.remove();
         d3.select("#trialsChart").html("");
 
@@ -299,11 +300,10 @@ function createQuestion(err, time, dis, got) {
             );
         }
 
-        if (experiment_number < experiment_length) {
+        if (experiment_number != experiment_length) {
             addTrialData(err, time, dis, ans[0], got);
             createGo();
         } else {
-            addTrialData(err, time, dis, ans[0], got);
             goToNext();
         }
     });
@@ -312,6 +312,7 @@ function createQuestion(err, time, dis, got) {
         var ans = d3.select(this).data();
 
         text.on("click.numpadText", null);
+        numpad.on("click.numpad", null);
         svg.remove();
         d3.select("#trialsChart").html("");
 
@@ -322,11 +323,16 @@ function createQuestion(err, time, dis, got) {
             );
         }
 
-        if (experiment_number < experiment_length) {
+        // if (experiment_number == experiment_length && trialNumber + 1 >= numTrials) {
+        //     goToNext();
+        // } else {
+        //     addTrialData(err, time, dis, ans[0], got);
+        //     createGo();
+        // }
+        if (experiment_number != experiment_length) {
             addTrialData(err, time, dis, ans[0], got);
             createGo();
         } else {
-            addTrialData(err, time, dis, ans[0], got);
             goToNext();
         }
     });
@@ -435,13 +441,13 @@ function addTrialData(err, time, dis, dis_ans, got) {
         data[id_dis_ans] = dis_ans;
         data[id_clicked] = got;
 
-        console.log(JSON.stringify(data, null, "\t"));
+    console.log(JSON.stringify(data, null, "\t"));
 
         trialNumber += 1;
-
         if (trialNumber >= numTrials) {
             trialNumber = 0;
-            if (experiment_number < experiment_length) experiment_number += 1;
+            experiment_number += 1;
+            // console.log(experiment_number);
         }
     }
 }
