@@ -119,7 +119,7 @@ function createChart(_speed, _trail) {
 
   //Set speed modifier
   if (_speed === "high") {
-    StreamScatterPlot.setClockDrift(100);
+    StreamScatterPlot.setClockDrift(50);
   } else {
     StreamScatterPlot.setClockDrift(0);
   }
@@ -276,7 +276,7 @@ function createQuestion(err, time, dis, got) {
         .attr("y", function(d, i) { return height/2 - rows*50/2 + Math.trunc(i/rows)*50; })
         .attr("width", 40)
         .attr("height", 40)
-        .style("fill", "#F44336");
+        .style("fill", "#E57373");
 
     text.enter().append("text")
         .text(function(d, i) { return d; } )

@@ -37,8 +37,8 @@ body {
 }
 
 .primary {
-	stroke: #F44336;
-	fill: #F44336;
+	stroke: #E57373;
+	fill: #E57373;
 	clip-path: url(#StreamScatterPlotClip);
 }
 
@@ -81,7 +81,7 @@ body {
 }
 
 #primary_trail {
-	stroke: #F44336;
+	stroke: #E57373;
 	clip-path: url(#StreamScatterPlotClip);
 }
 

@@ -22,9 +22,16 @@ def createSet(repeat, timeoffset):
 	i = 0
 	j = 0
 	r1 = random.randrange(50, 100) #Primary Goal
-	r2 = random.randrange(3, 16) #Secondary Goal
+	r2 = random.randrange(3, 16) #Approximate number of secondary goal per window
+
+	print r2
+	window_size = 20000
+	interval_size = 1000
+	r2 = math.floor((window_size/timeoffset/interval_size) / r2)
+
 	if r1 == r2:
-		r2 += 1
+		r1 += 1
+
 	while i < repeat:
 		datum = {'id': i, 'timeoffset': round(j, 3), 'value': valueFunction(j), 'flag': flagFunction(i, r1, r2) }
 		subset.append(datum)

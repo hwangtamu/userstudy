@@ -69,7 +69,7 @@ function StreamScatterPlot() {
 
 			//Update the y-scale
 			yScale
-				.domain([-pHeight, d3.max(dataset, function(d) { return d[1]; }) + pHeight])
+				.domain([0, d3.max(dataset, function(d) { return d[1]; })])
 				.range([height - margin.top - margin.bottom, 0]);
 
 			//Select the svg element, if it exists
@@ -95,7 +95,7 @@ function StreamScatterPlot() {
 					.attr("id", "StreamScatterPlotClip")
 				.append("rect")
 					.attr("width", width)
-					.attr("height", height)
+					.attr("height", height + margin.bottom)
 					.attr("transform", "translate(" + margin.left + "," + -margin.bottom + ")");
 			gData = gEnter.append("g").attr("class", "data");
 			gEnter = gEnter.append("g").attr("class", "chart");
@@ -196,20 +196,18 @@ function StreamScatterPlot() {
 						errors += 1;
 						x = +target.attr("x");
 						y = +target.attr("y");
+
+						//Point animation
 						target.transition().duration(0).transition().duration(500).ease("bounce")
-								.attr("width", pWidth * 2)
-								.attr("height", pHeight * 2)
 								.style("fill-opacity", 0.0)
 							.transition().duration(500).ease("bounce")
-								.attr("width", pWidth)
-								.attr("height", pHeight)
 								.style("fill-opacity", 1.0);
+
+						//Trail animation
 						if (trailsAllowed) {
 							targetTrail.transition().duration(500).ease("bounce")
-									.attr("stroke-width", pHeight)
 									.style("stroke-opacity", 0.0)
 								.transition().duration(500).ease("bounce")
-									.attr("stroke-width", pHeight/2)
 									.style("stroke-opacity", 1.0);
 						}
 					}
