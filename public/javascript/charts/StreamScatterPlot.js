@@ -489,5 +489,9 @@ function StreamScatterPlot() {
 		return n;
 	}
 
+	StreamScatterPlot.getTrailsAllowed = function() {
+		return trailsAllowed;
+	}
+
 	return chart;
 }

@@ -399,7 +399,7 @@ function loadNextTrial() {
         if (practice_number > 3)
             practice_number = 0;
     } else {
-        //LOAD FILE BASED ON DENSITY PARAM
+        //Do some checking to load new file only when density changes or trial number is too high
         load("stream_" + _density + "_density.json", function() {
             createChart(_speed, _trail);
             setSelectors("normal", _freeze);

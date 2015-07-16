@@ -53,11 +53,16 @@ function NormalCursor(selection) {
 				}
 			});
 
-		//Set class of  target
-		if (target != null) {
-			//Having this line inside check causes sticky targeting
+		//Having this line inside 'target != null' causes sticky targeting
+		if (StreamScatterPlot.getTrailsAllowed() && target != null) {
 			d3.selectAll(targets + ".target")
 				.attr("class", function() { return d3.select(this).attr("class").slice(0, -7); });
+		} else if (!StreamScatterPlot.getTrailsAllowed()){
+			d3.selectAll(targets + ".target")
+				.attr("class", function() { return d3.select(this).attr("class").slice(0, -7); });
+		}
+		//Set class of  target
+		if (target != null) {
 			target
 				.attr("class", target.attr("class") + " target");
 		}
