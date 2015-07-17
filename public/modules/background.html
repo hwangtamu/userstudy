@@ -94,7 +94,7 @@
 
   experimentr.hideNext();
 
-  experimentr.startTimer('demo');
+  experimentr.startTimer('background_info');
 
   var ageText = d3.select('#ageText');
   var occupationText = d3.select('#occupationText');
@@ -121,7 +121,7 @@
     .on('change', function() { data.blind = this.value; });
 
   function goToNext() {
-    experimentr.endTimer('demo');
+    experimentr.endTimer('background_info');
     experimentr.addData(data);
     //experimentr.release();
     experimentr.next();

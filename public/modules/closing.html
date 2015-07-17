@@ -261,7 +261,7 @@
 
     experimentr.hideNext();
 
-    experimentr.startTimer('demo');
+    experimentr.startTimer('closing_survey');
 
     //Question A
     var wholText = [];
@@ -307,7 +307,7 @@
       .on('change', function() { data.least = this.value; });
 
     function goToNext() {
-      experimentr.endTimer('demo');
+      experimentr.endTimer('closing_survey');
       experimentr.addData(data);
       //experimentr.release();
       experimentr.next();

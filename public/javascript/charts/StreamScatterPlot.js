@@ -5,8 +5,11 @@ function StreamScatterPlot() {
 	var time_start;
 	var dots_clicked;
 	var dots_missed;
-
 	var click_period;
+
+	//Controls experimental clockdrift
+	var clockdrift = 0;
+	var drift_timer = 0;
 
 	//Default values for chart
 	var margin = {top: 10, right: 10, bottom: 30, left: 0},
@@ -37,9 +40,6 @@ function StreamScatterPlot() {
 	//Used to kill step timer
 	var end = false;
 
-	//Controls experimental clockdrift
-	var clockdrift = 0;
-
 	//Selectors, dataset, and points to grab
 	var svg,
 		defs,
@@ -57,6 +57,8 @@ function StreamScatterPlot() {
 		dots_clicked = 0;
 		dots_missed = 0;
 		click_period = Math.floor((Math.random() * 5) + 5) * 1000;
+
+		drift_timer = +new Date();
 
 		selection.each(function(data) {
 			//Map corresponding data points x to d[0] and y to d[1]
@@ -364,10 +366,13 @@ function StreamScatterPlot() {
 
 		//Simulates clock drifting
 		//NOTE: Should never really be used expect when having to do weird things for experimental reasons
-		dataset.forEach(function(d, i) {
-			d[0] -= clockdrift;
-		});
-
+		if ( ((+new Date()) - drift_timer) > 1) {
+			drift_timer = +new Date()
+			console.log("drift")
+			dataset.forEach(function(d, i) {
+				d[0] -= clockdrift;
+			});
+		}
 		//Bind only data that would show up on screen to points
 		var subset = dataset.filter(function(d, i) { return d[0] < now; } );
 		points = gData.selectAll(".point").data(subset, function(d, i) { return d; });

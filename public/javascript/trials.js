@@ -119,7 +119,7 @@ function createChart(_speed, _trail) {
 
   //Set speed modifier
   if (_speed === "high") {
-    StreamScatterPlot.setClockDrift(50);
+    StreamScatterPlot.setClockDrift(25);
   } else {
     StreamScatterPlot.setClockDrift(0);
   }
