@@ -250,7 +250,7 @@ function createGo() {
 //Loads up secondary task
 //If last trial continues to closing questionnaire
 //Else pass over to secondary task
-function createQuestion(err, time, dis, got) {
+function createQuestion(err, time, dis, click_period, dots_c, dots_m) {
     var svg = d3.select("#trialsChart").append("svg")
         .attr("id", "question")
         .attr("width", width)
@@ -301,7 +301,7 @@ function createQuestion(err, time, dis, got) {
         }
 
         if (experiment_number != experiment_length) {
-            addTrialData(err, time, dis, ans[0], got);
+            addTrialData(err, time, dis, ans[0], click_period, dots_c, dots_m);
             createGo();
         } else {
             goToNext();
@@ -326,11 +326,11 @@ function createQuestion(err, time, dis, got) {
         // if (experiment_number == experiment_length && trialNumber + 1 >= numTrials) {
         //     goToNext();
         // } else {
-        //     addTrialData(err, time, dis, ans[0], got);
+        //     addTrialData(err, time, dis, ans[0], click_period, dots_c, dots_m);
         //     createGo();
         // }
         if (experiment_number != experiment_length) {
-            addTrialData(err, time, dis, ans[0], got);
+            addTrialData(err, time, dis, ans[0], click_period, dots_c, dots_m);
             createGo();
         } else {
             goToNext();
@@ -419,7 +419,7 @@ function goToNext() {
     experimentr.next();
 }
 
-function addTrialData(err, time, dis, dis_ans, got) {
+function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m) {
     if (!practice) {
 
         var _freeze = experiment_sequence[experiment_number].freezeType;
@@ -433,13 +433,18 @@ function addTrialData(err, time, dis, dis_ans, got) {
         var id_err = "errors_" + t_id;
         var id_dis = "num_distractors_" + t_id;
         var id_dis_ans = "distractors_answer_" + t_id;
-        var id_clicked = "clicked_" + t_id;
+        var id_dots_c = "dots_clicked_" + t_id;
+        var id_dots_m = "dots_missed_" + t_id;
+        var id_click_period = "click_time_period" + t_id;
 
         data[id_err] = err;
         data[id_time] = time;
         data[id_dis] = dis;
         data[id_dis_ans] = dis_ans;
-        data[id_clicked] = got;
+        data[id_dots_c] = dots_c;
+        data[id_dots_m] = dots_m;
+        data[id_click_period] = click_period;
+
 
     console.log(JSON.stringify(data, null, "\t"));
 
@@ -447,7 +452,6 @@ function addTrialData(err, time, dis, dis_ans, got) {
         if (trialNumber >= numTrials) {
             trialNumber = 0;
             experiment_number += 1;
-            // console.log(experiment_number);
         }
     }
 }

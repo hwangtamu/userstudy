@@ -2,8 +2,9 @@ function StreamScatterPlot() {
 
 	//FOR EXPERIMENTAL REASONS
 	var errors;
-	var correct;
 	var time_start;
+	var dots_clicked;
+	var dots_missed;
 
 	var click_period;
 
@@ -53,6 +54,8 @@ function StreamScatterPlot() {
 		//Init experimental things
 		time_start = +new Date();
 		errors = 0;
+		dots_clicked = 0;
+		dots_missed = 0;
 		click_period = Math.floor((Math.random() * 5) + 5) * 1000;
 
 		selection.each(function(data) {
@@ -204,46 +207,11 @@ function StreamScatterPlot() {
 								.style("stroke-opacity", 1.0);
 					}
 
-					//Experiment stuff
-					var prev_id = null;
+					//Start Experiment Stuff
 					if (target.attr("class").includes("target") && target.attr("class").includes("primary")) {
-						correct += 1;
-						if (target.attr("class").includes("snapshot")) {
-							var pt = d3.select(".primary.point")
-								.attr("class", "point");
-							target.attr("class", target.attr("class").replace("primary", ""));
-							pt.datum()[2] = "point";
-							// dataset[dataset.indexOf(pt)][2] = "point";
-							prev_id = pt.datum()[3];
-						} else {
-							target.attr("class", "point");
-							target.datum()[2] = "point";
-							// dataset[target.datum()[3]][2] = "point";
-							prev_id = target.datum()[3];
-						}
+						dots_clicked += 1;
+						StreamScatterPlot.newRedDot(target);
 
-						var new_id = prev_id;
-						var pt = null;
-						while (prev_id == new_id) {
-							var points = d3.selectAll(".point");
-							var sz = points[0].length;
-							new_index = Math.floor((Math.random() * sz*2/3) + sz/3);
-							pt = d3.select(points[0][new_index]);
-							new_id = pt.datum()[3];
-							console.log(prev_id, new_id);
-						}
-
-						pt.attr("class", "primary point");
-						pt.datum()[2] = "primary point";
-						// dataset[pt.datum()[3]][2] = "primary point";
-
-						if (!d3.select(".i" + new_id + ".snapshot").empty()) {
-							var snap = d3.select(".i" + new_id + ".snapshot");
-							snap
-								.attr("class", "primary " + snap.attr("class"))
-						};
-
-						// d3.select(points[0])
 						// var time_end = +new Date();
 						// var trial_time = time_end - time_start;
 						// // var dis = chart.getDistractors();
@@ -251,7 +219,7 @@ function StreamScatterPlot() {
 						// createQuestion(errors, trial_time, dis, true);
 					} else {
 						errors += 1;
-					}
+					} //End Experiment Stuff
 				}
 			});
 
@@ -411,11 +379,8 @@ function StreamScatterPlot() {
 				if (this.getAttribute("x") < margin.left - pWidth){
 					dataset.splice(dataset.indexOf(d), 1);
 					if (this.getAttribute("class") == "primary point") {
-						var time_end = +new Date();
-						var trial_time = time_end - time_start;
-						var dis = chart.getDistractors();
-						chart.destroy();
-						createQuestion(errors, trial_time, dis, false);
+						dots_missed += 1;
+						StreamScatterPlot.newRedDot();
 					}
 				}
 			});
@@ -453,6 +418,13 @@ function StreamScatterPlot() {
 	chart.start = function() {
 		end = false;
 		d3.timer(function() {
+			var time_end = +new Date();
+			var trial_time = time_end - time_start;
+			if(trial_time >= click_period) {
+				var dis = chart.getDistractors();
+				chart.destroy();
+				createQuestion(errors, trial_time, dis, click_period, dots_clicked, dots_missed);
+			}
 			if(!paused) {
 				chart.step();
 			}
@@ -534,8 +506,44 @@ function StreamScatterPlot() {
 		return trailsAllowed;
 	}
 
-	StreamScatterPlot.gatherResults = function() {
+	StreamScatterPlot.newRedDot = function(target) {
+		var prev_id = null;
 
+		if (target != null) {
+			if (target.attr("class").includes("snapshot")) {
+				var pt = d3.select(".primary.point")
+					.attr("class", "point");
+				target.attr("class", target.attr("class").replace("primary", ""));
+				pt.datum()[2] = "point";
+				// dataset[dataset.indexOf(pt)][2] = "point";
+				prev_id = pt.datum()[3];
+			} else {
+				target.attr("class", "point");
+				target.datum()[2] = "point";
+				// dataset[target.datum()[3]][2] = "point";
+				prev_id = target.datum()[3];
+			}
+		}
+
+		var new_id = prev_id;
+		var pt = null;
+		while (prev_id == new_id) {
+			var points = d3.selectAll(".point");
+			var sz = points[0].length;
+			new_index = Math.floor((Math.random() * sz*2/3) + sz/3);
+			pt = d3.select(points[0][new_index]);
+			new_id = pt.datum()[3];
+		}
+
+		pt.attr("class", "primary point");
+		pt.datum()[2] = "primary point";
+		// dataset[pt.datum()[3]][2] = "primary point";
+
+		if (!d3.select(".i" + new_id + ".snapshot").empty()) {
+			var snap = d3.select(".i" + new_id + ".snapshot");
+			snap
+				.attr("class", "primary " + snap.attr("class"))
+		};
 	}
 
 	return chart;
