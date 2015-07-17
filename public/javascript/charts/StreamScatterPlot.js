@@ -227,7 +227,7 @@ function StreamScatterPlot() {
 						while (prev_id == new_id) {
 							var points = d3.selectAll(".point");
 							var sz = points[0].length;
-							new_index = Math.floor((Math.random() * sz/2) + sz/2);
+							new_index = Math.floor((Math.random() * sz*2/3) + sz/3);
 							pt = d3.select(points[0][new_index]);
 							new_id = pt.datum()[3];
 							console.log(prev_id, new_id);
