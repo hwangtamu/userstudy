@@ -213,12 +213,6 @@ function StreamScatterPlot() {
 					if (target.attr("class").includes("target") && target.attr("class").includes("primary")) {
 						dots_clicked += 1;
 						StreamScatterPlot.newRedDot(target);
-
-						// var time_end = +new Date();
-						// var trial_time = time_end - time_start;
-						// // var dis = chart.getDistractors();
-						// chart.destroy();
-						// createQuestion(errors, trial_time, dis, true);
 					} else {
 						errors += 1;
 					} //End Experiment Stuff
@@ -367,8 +361,7 @@ function StreamScatterPlot() {
 		//Simulates clock drifting
 		//NOTE: Should never really be used expect when having to do weird things for experimental reasons
 		if ( ((+new Date()) - drift_timer) > 1) {
-			drift_timer = +new Date()
-			console.log("drift")
+			drift_timer = +new Date();
 			dataset.forEach(function(d, i) {
 				d[0] -= clockdrift;
 			});
