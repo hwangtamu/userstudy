@@ -68,7 +68,7 @@ function TrailDrawer(selection) {
 			.attr("class", "i" + uniqueID + " trail")
 			.attr("stroke-width", stroke_width)
 			.attr("stroke-linecap", "round")
-			//.attr("stroke-dasharray", "5, 5")
+			.attr("stroke-dasharray", "5, 5")
 			//NOTE: Getting rid of this functionality for experiment
 			//		because it alters selection, which isn't exactly what we are studying now
 			// .on("mouseover", function(d, i) {

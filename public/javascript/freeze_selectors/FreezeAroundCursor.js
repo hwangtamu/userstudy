@@ -158,8 +158,7 @@ function FreezeAroundCursor(selection, manualFreeze) {
 						w = +pt.attr("width")
 						h = +pt.attr("height")
 						rx = +pt.attr("rx")
-						ry = +pt.attr("ry")
-						fill = pt.attr("fill");
+						ry = +pt.attr("ry");
 				var r = Math.sqrt(w*w + h*h);
 				var targetPt = [x, y];
 				var currDist = distance(mousePt,targetPt);
@@ -174,8 +173,7 @@ function FreezeAroundCursor(selection, manualFreeze) {
 						.attr("x", x)
 						.attr("y", y)
 						.attr("rx", rx)
-						.attr("ry", ry)
-						.attr("fill", fill);
+						.attr("ry", ry);
 
 				} else if (currDist > frzRadius && d3.select(".i" + d[3] +".snapshot").empty()) {
 					pt.attr("id", "untagged");
