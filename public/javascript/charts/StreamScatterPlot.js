@@ -384,6 +384,7 @@ function StreamScatterPlot() {
 			});
 
 		//Enter
+		//NOTE: MAKE WIDTH HEIGHT FOR NON SECONDARY BASED ON DIAGONAL
 		points
 			.enter()
 			.append("rect")

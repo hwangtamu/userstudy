@@ -48,6 +48,7 @@ function NormalCursor(selection) {
 				var ptA = [x, y];
 
 				var dist = +distance(mousePt, ptA);
+				//NOTE: MAKE RADIUS CHECK
 				if (dist < w && dist < h) {
 					target = pt;
 				}

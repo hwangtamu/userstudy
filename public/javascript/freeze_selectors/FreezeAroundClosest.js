@@ -194,7 +194,7 @@ function FreezeAroundClosest(selection, manualFreeze) {
 	//Update position of freeze region
 	FreezeAroundClosest.drawCursor = function(currPt) {
 		//NOTE: This is no good on node server; great on python server?????
-		freezeRegion.transition().duration(25).ease("linear")
+		freezeRegion//.transition().duration(10).ease("linear")
 			.attr("cx", currPt[0])
 			.attr("cy", currPt[1])
 			.attr("r", frzRadius);
