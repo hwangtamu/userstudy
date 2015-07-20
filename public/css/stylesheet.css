@@ -9,6 +9,10 @@
 	stroke: none;
 }
 
+div {
+	display: inline-block;
+}
+
 .label {
 	fill: none;
 	stroke: none;
@@ -33,8 +37,8 @@
 }
 
 .secondary {
-	stroke: #000000;
-	fill: #FFFFFF;
+	stroke: #2196F3;
+	fill: #2196F3;
 	clip-path: url(#StreamScatterPlotClip);
 }
 
@@ -66,7 +70,7 @@
 }
 
 #secondary_trail {
-	stroke: #607D8B;
+	stroke: #2196F3;
 	clip-path: url(#StreamScatterPlotClip);
 }
 

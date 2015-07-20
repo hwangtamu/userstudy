@@ -83,7 +83,6 @@ d3.json("data/sequence.json", function(error, data) {
         }
     }
     experiment_length = experiment_sequence.length;
-    console.log(experiment_length);
     loadNextTrial();
 });
 
@@ -319,26 +318,43 @@ function createQuestion(err, time, dis, click_period, dots_c, dots_m) {
     }
 }
 
-function createTrainer() {
+function createPractice() {
     var _freeze = experiment_sequence[experiment_number].freezeType;
     var _trail= experiment_sequence[experiment_number].trailType;
 
     d3.select("#trainInfo").append("div")
         .attr("class", "question_info");
 
-    d3.select("#trainInfo").append("div")
+    var trainInfoBox = d3.select("#trainInfo").append("div")
         .attr("class", "training_info")
-        .html("<b>Freeze Technique: " + _freeze + "<br>" +
-                "Trail Style: " + _trail + "</b><br>" +
-                "'Shift' to activate freeze; 'C' to clear frozen elements" + "<br>");
+        .attr("display", "inline-block")
+        .attr("overflow", "auto")
+        .attr("width", "100%")
+        .attr("white-space", "nowrap");
 
-    var button = d3.select("#trainInfo").append("button")
-            .attr("id", "done_training")
+    var text = trainInfoBox.append("div")
+        .attr("class", "train_text")
+        .attr("width", "50%")
+        .attr("display", "inline-block");
+
+    text.append("p")
+            .text("Freeze Selector: " + _freeze)
+    text.append("p")
+            .text("Trail Type: " + _trail);
+
+
+    var button = trainInfoBox.append("div")
+        .attr("id", "train_button")
+        .attr("width", "50%")
+        .attr("display", "inline-block");
+
+    button
+        .append("button")
             .text("DONE TRAINING");
 
     d3.select("#trialInfo").html("");
 
-    button.on("click", function() {
+    button.on("click.train", function() {
         chart.destroy();
         button.on("click.train", null);
         d3.select("#trialsChart").html("");
@@ -371,7 +387,7 @@ function loadNextTrial() {
         previousTrail = _trail;
         practice = true;
         practice_number = Math.floor((Math.random() * 3))
-        createTrainer()
+        createPractice()
     }
 
     if (practice) {
