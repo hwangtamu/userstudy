@@ -1,3 +1,3 @@
 {
-	"sequence": ["FreezeAroundCursor", "none", "FreezeTrajectory", "FreezeWholeScreen", "FreezeAroundClosest"]
+	"sequence": ["none", "FreezeAroundCursor", "FreezeTrajectory", "FreezeWholeScreen", "FreezeAroundClosest"]
 }

@@ -35,21 +35,10 @@ If you agree to participate, please click the button to provide consent and cont
 
 </div>
 
-<!-- <input type="text" id="workerId" name="workerId" disabled="true" size="30" />
-<button id="checkId" type="button">checkId</button> -->
-
 <style>
-  #invalidMessage {
-    display: none;
-    color: red;
-  }
-  /*#consentForm {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    height: 200px;
-    overflow-y: scroll;
-    padding: 15px;
-  }*/
+    #validateMessage {
+        color: #FF5555;
+    }
 </style>
 
 <script>
@@ -62,35 +51,69 @@ If you agree to participate, please click the button to provide consent and cont
   function init() {
     experimentr.hideNext();
 
-    data.workerId = (+new Date()).toString(16);
-    data.experiment_date = new Date();
+    data.workerId = (+new Date()).toString(16) + "-" + Math.random().toString(16).replace("0.", "");
+
+    var browser = get_browser_info();
+
+    data.browserName = browser.name;
+    data.browserVersion = browser.version;
+
+    data.userDate = Date();
 
     // load previous workers file
-    d3.json('modules/blocked-workers.json', function(err, d) {
-      workers = d;
-      validate();
-    });
 
-    // d3.selectAll('#workerId')
-    //   .on('keypress', function() { data.workerId = this.value; })
-    //   .on('blur', function() { data.workerId = this.value; });
+    if (browser.name === "Firefox" || browser.name === "Chrome") {
 
-    d3.select('#consentYes').on('click', experimentr.next);
-    // d3.select('#checkId').on('click', validate);
+        d3.json('modules/blocked-workers.json', function(err, d) {
+          workers = d;
+          validate();
+        });
+
+    } else {
+        badBrowser();
+    }
   }
 
   function validate() {
-    if( data.workerId ) {
-      experimentr.addData(data);
-
+    if(data.workerId) {
       if( workers.indexOf(data.workerId) == -1 ) {
+        d3.select('#consentYes').on('click', function() {
+            experimentr.addData(data);
+            experimentr.next();
+        });
         d3.select('#consentYes').attr('disabled', null);
       } else {
-        // d3.select('#invalidMessage').style('display', 'inline');
-        console.log("Bad workerId.");
+        var messageThing = d3.select('#validateMessage');
+        messageThing.html("Uh oh. Our records show that you already attempted this study, so we cannot allow you to participate again. If you think this is an error, try the link again, or you can contact " + contactPerson + " to ask for a new code.");
+        d3.select('#consentYes').attr('disabled', 'disabled');
       }
     }
   }
+
+  function badBrowser() {
+    var messageThing = d3.select('#validateMessage');
+    messageThing.html("Oops. You need to run this application in either a Chrome or Firefox browser. It will not work correctly in other browsers. Please copy the address into the address bar of Chrome or Firefox to participate in this study.");
+
+    d3.select('#consentYes').attr('disabled', 'disabled');
+  }
+
+  function get_browser_info(){
+    var ua=navigator.userAgent,tem,M=ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+    if(/trident/i.test(M[1])){
+        tem=/\brv[ :]+(\d+)/g.exec(ua) || [];
+        return 'IE '+(tem[1]||'');
+        }
+    if(M[1]==='Chrome'){
+        tem=ua.match(/\bOPR\/(\d+)/)
+        if(tem!=null)   {return 'Opera '+tem[1];}
+        }
+    M=M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+    if((tem=ua.match(/version\/(\d+)/i))!=null) {M.splice(1,1,tem[1]);}
+    return {
+      name: M[0],
+      version: M[1]
+    }
+ }
 
 }());
 
