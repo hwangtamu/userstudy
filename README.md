@@ -1,52 +1,37 @@
-`StreamScatterPlot.js` creates a scatter plot that shows data over time:
+Streaming Selection Vis
+================
 
-* Using the mouse wheel will cause the time to increase/decrease
-* Spacebar will pause the chart
-* New data can easily be pushed to chart using `pushDatum`
+This is based on [experimentr](https://github.com/codementum/experimentr), a hosting/data-collection backend and module-based frontend for web-based visualization studies.
 
-`freeze_selectors` folder contains various freeze selection methods.
+## Installation
 
-`cursor_selectors` folder contains normal cursor (will actually update selection on redraws) and bubble cursor.
+* Install [nodejs](http://nodejs.org/download/)
+* Install [redis](http://redis.io/download)
+* Install node modules:  `npm install`
 
-Class(.) and ID(#) names for reference in use with Javascript/CSS.
+## Usage
 
-## Charts
+Start redis:
 
-```
-.point //Data point on chart
-//NOTE primary and secondary class are defined by JSON flag
-.primary.point //Primary target
-.secondary.point //Secondary target
-.point.target //Targeted point
-#StreamScatterPlotClip //clip used by scatter plot
-```
+    redis-server redis.conf
 
-## Cursor Selectors
+Run the server:
 
-```
-.bubble cursor //Bubble cursor region
-.bubble cursrMorph //Bubble cursor's morph region that envelopes targets
-?.target //Target obtained by cursor selector
-```
+    node app.js
 
-## Freeze Selectors
+Then access the page at [localhost:8000](http://localhost:8000).
 
-```
-.freezeRegion //The continous freeze region overlay
-.click.freezeRegion //The freeze region overlay set by clicking
+## Analysis
 
-.snapshot //'Frozen' copy of data captured by freeze region
-.snapshot.target //Targeted snapshot
-#untagged //Data that's been untagged by freeze region
-#tagged //Data that's been tagged by freeze region
+Helper scripts are in the `analysis` directory.
 
-#freezeClip //clip used by freeze regions
-```
+* To get results data from server, use `pull.sh`
+* To convert results to csv, use `convert.sh`
+* To flush redis database, use 'flushdb.sh'
 
-## Misc
+### Testing experiments
 
-```
-.trail //Optional trails on snapshots
-.trail.target //Targeted trail
-#targettrail //target trail
-```
+You can use `debug` as your workerId when testing live experiments to help make sure your data doesn't end up the experiment data.
+See [convert.js](https://github.com/codementum/experimentr/blob/master/analysis/src/convert.js#L24) for details.
+
+Another useful trick is to empty the redis database. To do so, run `redis-cli` to get the redis command line prompt, then type `FLUSHDB` to delete all current keys.
