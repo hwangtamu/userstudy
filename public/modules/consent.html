@@ -51,7 +51,7 @@ If you agree to participate, please click the button to provide consent and cont
   function init() {
     experimentr.hideNext();
 
-    data.workerId = (+new Date()).toString(16) + "-" + Math.random().toString(16).replace("0.", "");
+    data.workerId = Math.random().toString(36).substring(2, 7);
 
     var browser = get_browser_info();
 

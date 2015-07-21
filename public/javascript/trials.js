@@ -12,6 +12,8 @@ var dataset;
 var experiment_number = 0;
 var experiment_length = 0;
 
+var global_trial_id = 0;
+
 var practice_number = 0;
 
 var width = 900,
@@ -323,30 +325,21 @@ function createPractice() {
     var _trail= experiment_sequence[experiment_number].trailType;
 
     d3.select("#trainInfo").append("div")
-        .attr("class", "question_info");
+        .attr("id", "question_info");
 
     var trainInfoBox = d3.select("#trainInfo").append("div")
-        .attr("class", "training_info")
-        .attr("display", "inline-block")
-        .attr("overflow", "auto")
-        .attr("width", "100%")
-        .attr("white-space", "nowrap");
+        .attr("class", "training_info");
 
     var text = trainInfoBox.append("div")
-        .attr("class", "train_text")
-        .attr("width", "50%")
-        .attr("display", "inline-block");
+        .attr("class", "train_text");
 
     text.append("p")
             .text("Freeze Selector: " + _freeze)
     text.append("p")
             .text("Trail Type: " + _trail);
 
-
     var button = trainInfoBox.append("div")
-        .attr("id", "train_button")
-        .attr("width", "50%")
-        .attr("display", "inline-block");
+        .attr("id", "train_button");
 
     button
         .append("button")
@@ -395,7 +388,7 @@ function loadNextTrial() {
         _practice_density = speed_density[practice_number].density;
         load("practice_" + _practice_density + "_density.json", function() {
             createChart(_practice_speed, _trail);
-            setSelectors("normal", _freeze);
+            setSelectors("bubble", _freeze);
         });
         practice_number += 1;
         if (practice_number > 3)
@@ -404,7 +397,7 @@ function loadNextTrial() {
         //Do some checking to load new file only when density changes or trial number is too high
         load("stream_" + _density + "_density.json", function() {
             createChart(_speed, _trail);
-            setSelectors("normal", _freeze);
+            setSelectors("bubble", _freeze);
         });
     }
 }
@@ -418,6 +411,8 @@ function goToNext() {
 function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m) {
     if (!practice) {
 
+        var worker_id = experimentr.workerId();
+
         var _freeze = experiment_sequence[experiment_number].freezeType;
         var _trail = experiment_sequence[experiment_number].trailType;
         var _speed = experiment_sequence[experiment_number].speed;
@@ -425,14 +420,16 @@ function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m) {
 
         var t_id = _freeze + "_" + _trail + "_" + _speed + "_" + _density + "_" + trialNumber;
 
-        var id_time = "time_" + t_id;
-        var id_err = "errors_" + t_id;
-        var id_dis = "num_distractors_" + t_id;
-        var id_dis_ans = "distractors_answer_" + t_id;
-        var id_dots_c = "dots_clicked_" + t_id;
-        var id_dots_m = "dots_missed_" + t_id;
-        var id_click_period = "click_time_period_" + t_id;
+        var id_glob = worker_id + "_global_id_" + t_id;
+        var id_err = worker_id + "_errors_" + t_id;
+        var id_time = worker_id + "_time_" + t_id;
+        var id_dis = worker_id + "_num_distractors_" + t_id;
+        var id_dis_ans = worker_id + "_distractors_answer_" + t_id;
+        var id_dots_c = worker_id + "_dots_clicked_" + t_id;
+        var id_dots_m = worker_id + "_dots_missed_" + t_id;
+        var id_click_period = worker_id + "_click_time_period_" + t_id;
 
+        data[id_glob] = global_trial_id;
         data[id_err] = err;
         data[id_time] = time;
         data[id_dis] = dis;
@@ -441,6 +438,7 @@ function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m) {
         data[id_dots_m] = dots_m;
         data[id_click_period] = click_period;
 
+        global_trial_id += 1;
         trialNumber += 1;
         if (trialNumber >= numTrials) {
             console.log(JSON.stringify(data, null, "\t"));

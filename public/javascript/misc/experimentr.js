@@ -8,6 +8,11 @@ experimentr = function() {
   // Add a random postId for each new participant
   data.postId = (+new Date()).toString(36);
 
+  // Accessor for workerId
+  experimentr.workerId = function() {
+      return data.workerId;
+  }
+
   // Accessor for postId
   experimentr.postId = function() {
     return data.postId;

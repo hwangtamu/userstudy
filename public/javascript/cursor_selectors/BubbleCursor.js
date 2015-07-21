@@ -72,13 +72,13 @@ function BubbleCursor(selection) {
 			.each(function(d, i) {
 				var pt = d3.select(this);
 				var x = +pt.attr("x"),
-						y = +pt.attr("y"),
-						w = 2 - +pt.attr("width");
-						h = 1 - +pt.attr("height");
+					y = +pt.attr("y"),
+					w = +pt.attr("width");
+					h = +pt.attr("height");
 
-				var r = Math.sqrt(w*w + h*h);
-				var x = x - w/2;
-				var y = y - h/2;
+				var r = w;
+				x = x + w/2;
+				y = y + h/2;
 				var targetPt = [x, y];
 				var currDist = distance(mousePt,targetPt);
 				Dist.push(currDist);
@@ -133,7 +133,7 @@ function BubbleCursor(selection) {
 			cursorMorph
 				.attr("cx", currX)
 				.attr("cy", currY)
-				.attr("r", currRad * 1.1);
+				.attr("r", currRad * 1.05);
 		} else {
 			cursorMorph
 				.attr("cx", 0)

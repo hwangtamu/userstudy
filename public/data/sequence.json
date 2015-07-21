@@ -1,3 +1,3 @@
 {
-	"sequence": ["FreezeAroundClosest", "FreezeAroundCursor", "none", "FreezeWholeScreen", "FreezeWholeScreen"]
+	"sequence": ["FreezeWholeScreen", "FreezeAroundCursor", "none", "FreezeAroundClosest", "FreezeWholeScreen"]
 }

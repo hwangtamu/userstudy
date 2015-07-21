@@ -11,6 +11,8 @@ function StreamScatterPlot() {
 	var clockdrift = 0;
 	var drift_timer = 0;
 
+	var trailClock;
+
 	//Default values for chart
 	var margin = {top: 10, right: 10, bottom: 30, left: 0},
 		height = 420,
@@ -57,8 +59,10 @@ function StreamScatterPlot() {
 		dots_clicked = 0;
 		dots_missed = 0;
 		click_period = Math.floor((Math.random() * 5) + 5) * 1000;
-
+		click_period = 10000000;
 		drift_timer = +new Date();
+
+		trailClock = +new Date();
 
 		selection.each(function(data) {
 			//Map corresponding data points x to d[0] and y to d[1]
@@ -195,17 +199,24 @@ function StreamScatterPlot() {
 					target = null;
 				if (trailsAllowed) var targetTrail = d3.select("#targetTrail");
 				if (target != null && !d3.event.shiftKey && !end) {
+
 					//Point animation
-					target.transition().duration(0).transition().duration(500).ease("bounce")
+					target
+						.transition().duration(0)
+						.transition().duration(100).ease("bounce")
 							.style("fill-opacity", 0.0)
-						.transition().duration(500).ease("bounce")
+						.transition().duration(100).ease("bounce")
+							.style("fill-opacity", 1.0)
+						.transition().duration(100).ease("bounce")
+							.style("fill-opacity", 0.0)
+						.transition().duration(100).ease("bounce")
 							.style("fill-opacity", 1.0);
 
 					//Trail animation
 					if (trailsAllowed) {
-						targetTrail.transition().duration(500).ease("bounce")
+						targetTrail.transition().duration(250).ease("bounce")
 								.style("stroke-opacity", 0.0)
-							.transition().duration(500).ease("bounce")
+							.transition().duration(250).ease("bounce")
 								.style("stroke-opacity", 1.0);
 					}
 
@@ -384,7 +395,6 @@ function StreamScatterPlot() {
 			});
 
 		//Enter
-		//NOTE: MAKE WIDTH HEIGHT FOR NON SECONDARY BASED ON DIAGONAL
 		points
 			.enter()
 			.append("rect")
@@ -407,7 +417,8 @@ function StreamScatterPlot() {
 		cursorFunction();
 
 		//Update Trails if ON
-		if (trailsAllowed) {
+		if (trailsAllowed && (((+new Date()) - trailClock) > 200)) {
+			trailClock = +new Date();
 			TrailDrawer.redraw();
 		}
 		return;

@@ -31,11 +31,13 @@ function TrailDrawer(selection) {
 				var taggedY = +tagged.attr("y");
 				var taggedWidth = +tagged.attr("width");
 				var taggedHeight = +tagged.attr("height");
+
 				if (d3.select(".i" + uniqueID + ".trail").empty()) {
 					TrailDrawer.createTrail(uniqueID, cls);
 				} else {
 					TrailDrawer.updateTrail([snapX + snapWidth/2, snapY + snapHeight/2], [taggedX + taggedWidth/2, taggedY + taggedHeight/2], uniqueID, cls);
 				}
+				
 				if (!d3.select(".i" + uniqueID + ".snapshot.target").empty()) {
 					d3.select(".i" + uniqueID + ".trail").each(function(d, i) {
 						d3.select(this).attr("id", "targetTrail");
