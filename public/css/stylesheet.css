@@ -43,13 +43,13 @@
 }
 
 .primary {
-	stroke: #E57373;
+	stroke: #000000;
 	fill: #E57373;
 	clip-path: url(#StreamScatterPlotClip);
 }
 
 .secondary {
-	stroke: #2196F3;
+	stroke: #000000;
 	fill: #2196F3;
 	clip-path: url(#StreamScatterPlotClip);
 }
@@ -66,28 +66,33 @@
 
 .point.target,
 .snapshot.target {
-	stroke: #8BC34A;
-	fill: #8BC34A;
+	/*stroke: #8BC34A;*/
+	/*fill: #8BC34A;*/
+	stroke-width: 2;
 	clip-path: url(#StreamScatterPlotClip);
 }
 
 #targetTrail {
-	stroke: #8BC34A;
-	clip-path: url(#StreamScatterPlotClip);
+	/*stroke: #8BC34A;*/
+	/*stroke-width: 4;*/
+	/*clip-path: url(#StreamScatterPlotClip);*/
 }
 
 #trail {
 	stroke: #607D8B;
+	stroke-width: 2;
 	clip-path: url(#StreamScatterPlotClip);
 }
 
 #secondary_trail {
 	stroke: #2196F3;
+	stroke-width: 2;
 	clip-path: url(#StreamScatterPlotClip);
 }
 
 #primary_trail {
 	stroke: #E57373;
+	stroke-width: 2;
 	clip-path: url(#StreamScatterPlotClip);
 }
 

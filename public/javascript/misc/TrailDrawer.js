@@ -37,10 +37,10 @@ function TrailDrawer(selection) {
 				} else {
 					TrailDrawer.updateTrail([snapX + snapWidth/2, snapY + snapHeight/2], [taggedX + taggedWidth/2, taggedY + taggedHeight/2], uniqueID, cls);
 				}
-				
+
 				if (!d3.select(".i" + uniqueID + ".snapshot.target").empty()) {
 					d3.select(".i" + uniqueID + ".trail").each(function(d, i) {
-						d3.select(this).attr("id", "targetTrail");
+						//d3.select(this).attr("id", "targetTrail");
 					});
 				} else {
 					d3.select(".i" + uniqueID + ".trail").each(function(d, i) {
@@ -68,7 +68,7 @@ function TrailDrawer(selection) {
 		gTrails.append("line").datum(uniqueID)
 			.attr("id", cls.replace(" ", "_"))
 			.attr("class", "i" + uniqueID + " trail")
-			.attr("stroke-width", stroke_width)
+			//.attr("stroke-width", stroke_width)
 			.attr("stroke-linecap", "round")
 			.attr("stroke-dasharray", "5, 5")
 			//NOTE: Getting rid of this functionality for experiment
@@ -98,7 +98,7 @@ function TrailDrawer(selection) {
 			.attr("id", function() {
 				var id = "trail";
 				if (d3.select(this).attr("id") == "targetTrail") {
-					id = "targetTrail";
+					//id = "targetTrail";
 				} else if (cls.includes("primary")) {
 					id = "primary_trail";
 				} else if (cls.includes("secondary")) {

@@ -283,6 +283,8 @@ function createQuestion(err, time, dis, click_period, dots_c, dots_m) {
     var numpad = g.selectAll("nums").data(numbers);
     var text = g.selectAll("numtext").data(numbers);
     numpad.enter().append("rect")
+        .attr("x"), function(d, i) { return width/2 - }
+    numpad.enter().append("rect")
         .attr("x", function(d, i) { return width/2 - cols*50/2 + (i%cols)*50; })
         .attr("y", function(d, i) { return height/2 - rows*50/2 + Math.trunc(i/rows)*50; })
         .attr("width", 40)

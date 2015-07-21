@@ -198,7 +198,10 @@ function StreamScatterPlot() {
 				var target = d3.select(targetName);
 				if (d3.select(targetName).empty())
 					target = null;
-				if (trailsAllowed) var targetTrail = d3.select("#targetTrail");
+				if (trailsAllowed) {
+					var uniqueID = target.datum();
+					var targetTrail = d3.select(".i" + uniqueID + ".trail");
+				}
 				if (target != null && !d3.event.shiftKey && !end) {
 
 					//Start Experiment Stuff
@@ -217,26 +220,26 @@ function StreamScatterPlot() {
 					//Point animation
 					target
 						.transition().duration(0)
-						.transition().duration(100).ease("bounce")
+						.transition().duration(100).ease("exp")
 							.style("fill-opacity", 0.0)
-						.transition().duration(100).ease("bounce")
+						.transition().duration(100).ease("exp")
 							.style("fill-opacity", 1.0)
-						.transition().duration(100).ease("bounce")
+						.transition().duration(100).ease("exp")
 							.style("fill-opacity", 0.0)
-						.transition().duration(100).ease("bounce")
+						.transition().duration(100).ease("exp")
 							.style("fill-opacity", 1.0);
 
 					//Trail animation
 					if (trailsAllowed) {
 						targetTrail
 							.transition().duration(0)
-							.transition().duration(100).ease("bounce")
+							.transition().duration(100).ease("exp")
 								.style("stroke-opacity", 0.0)
-							.transition().duration(100).ease("bounce")
+							.transition().duration(100).ease("exp")
 								.style("stroke-opacity", 1.0)
-							.transition().duration(100).ease("bounce")
+							.transition().duration(100).ease("exp")
 								.style("stroke-opacity", 0.0)
-							.transition().duration(100).ease("bounce")
+							.transition().duration(100).ease("exp")
 								.style("stroke-opacity", 1.0);
 					}
 				}
@@ -391,7 +394,7 @@ function StreamScatterPlot() {
 			});
 		}
 		//Bind only data that would show up on screen to points
-		var subset = dataset.filter(function(d, i) { return d[0] < now; } );
+		var subset = dataset.filter(function(d, i) { return d[0] < now - interval; } );
 		points = gData.selectAll(".point").data(subset, function(d, i) { return d; });
 
 		//Update
@@ -418,8 +421,10 @@ function StreamScatterPlot() {
 			.enter()
 			.append("rect")
 				.attr("class", function(d) { return d[2]; })
-				.attr("rx", function(d) { return d[2] == "secondary point" ? 0 : 100})
-				.attr("ry", function(d) { return d[2] == "secondary point" ? 0 : 100})
+				// .attr("rx", function(d) { return d[2] == "secondary point" ? 0 : 100})
+				// .attr("ry", function(d) { return d[2] == "secondary point" ? 0 : 100})
+				.attr("rx", 100)
+				.attr("ry", 100)
 				.attr("width", pWidth)
 				.attr("height", pHeight)
 				.attr("x", function(d) { return xScale(d[0]) + pWidth/2; })
@@ -573,6 +578,21 @@ function StreamScatterPlot() {
 		pt.attr("class", "primary point");
 		pt.datum()[2] = "primary point";
 		// dataset[pt.datum()[3]][2] = "primary point";
+
+		pt
+			.transition().duration(0)
+			.transition().duration(100).ease("exp")
+				.style("fill-opacity", 0.0)
+				.style("stroke-width", 0)
+			.transition().duration(100).ease("exp")
+				.style("fill-opacity", 1.0)
+				.style("stroke-width", 2)
+			.transition().duration(100).ease("exp")
+				.style("fill-opacity", 0.0)
+				.style("stroke-width", 0)
+			.transition().duration(100).ease("exp")
+				.style("fill-opacity", 1.0)
+				.style("stroke-width", "");
 
 		if (!d3.select(".i" + new_id + ".snapshot").empty()) {
 			var snap = d3.select(".i" + new_id + ".snapshot");
