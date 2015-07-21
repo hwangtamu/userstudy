@@ -388,7 +388,7 @@ function loadNextTrial() {
         _practice_density = speed_density[practice_number].density;
         load("practice_" + _practice_density + "_density.json", function() {
             createChart(_practice_speed, _trail);
-            setSelectors("bubble", _freeze);
+            setSelectors("normal", _freeze);
         });
         practice_number += 1;
         if (practice_number > 3)
@@ -397,7 +397,7 @@ function loadNextTrial() {
         //Do some checking to load new file only when density changes or trial number is too high
         load("stream_" + _density + "_density.json", function() {
             createChart(_speed, _trail);
-            setSelectors("bubble", _freeze);
+            setSelectors("normal", _freeze);
         });
     }
 }
@@ -440,8 +440,8 @@ function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m) {
 
         global_trial_id += 1;
         trialNumber += 1;
-        if (trialNumber >= numTrials) {
             console.log(JSON.stringify(data, null, "\t"));
+        if (trialNumber >= numTrials) {
             trialNumber = 0;
             experiment_number += 1;
         }

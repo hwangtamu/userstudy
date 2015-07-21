@@ -6,6 +6,8 @@ function StreamScatterPlot() {
 	var dots_clicked;
 	var dots_missed;
 	var click_period;
+	var early_terminate;
+	var offscreen_primary;
 
 	//Controls experimental clockdrift
 	var clockdrift = 0;
@@ -59,7 +61,7 @@ function StreamScatterPlot() {
 		dots_clicked = 0;
 		dots_missed = 0;
 		click_period = Math.floor((Math.random() * 5) + 5) * 1000;
-		click_period = 10000000;
+		click_period = 20 * 1000;
 		drift_timer = +new Date();
 
 		trailClock = +new Date();
@@ -200,6 +202,19 @@ function StreamScatterPlot() {
 				if (trailsAllowed) var targetTrail = d3.select("#targetTrail");
 				if (target != null && !d3.event.shiftKey && !end) {
 
+					//Start Experiment Stuff
+					if (target.attr("class").includes("target") && target.attr("class").includes("primary")) {
+						if (offscreen_primary) {
+							early_terminate = true;
+							offscreen_primary = false;
+						}
+						dots_clicked += 1;
+
+						StreamScatterPlot.newRedDot(target);
+					} else {
+						errors += 1;
+					} //End Experiment Stuff
+
 					//Point animation
 					target
 						.transition().duration(0)
@@ -214,19 +229,17 @@ function StreamScatterPlot() {
 
 					//Trail animation
 					if (trailsAllowed) {
-						targetTrail.transition().duration(250).ease("bounce")
+						targetTrail
+							.transition().duration(0)
+							.transition().duration(100).ease("bounce")
 								.style("stroke-opacity", 0.0)
-							.transition().duration(250).ease("bounce")
+							.transition().duration(100).ease("bounce")
+								.style("stroke-opacity", 1.0)
+							.transition().duration(100).ease("bounce")
+								.style("stroke-opacity", 0.0)
+							.transition().duration(100).ease("bounce")
 								.style("stroke-opacity", 1.0);
 					}
-
-					//Start Experiment Stuff
-					if (target.attr("class").includes("target") && target.attr("class").includes("primary")) {
-						dots_clicked += 1;
-						StreamScatterPlot.newRedDot(target);
-					} else {
-						errors += 1;
-					} //End Experiment Stuff
 				}
 			});
 
@@ -245,6 +258,7 @@ function StreamScatterPlot() {
 			.on("mousedown.StreamScatterPlot", null)
 			.remove();
 		end = true;
+		early_terminate = true;
 	};
 
 	//Set margins
@@ -388,8 +402,14 @@ function StreamScatterPlot() {
 				if (this.getAttribute("x") < margin.left - pWidth){
 					dataset.splice(dataset.indexOf(d), 1);
 					if (this.getAttribute("class") == "primary point") {
-						dots_missed += 1;
-						StreamScatterPlot.newRedDot();
+						if (d3.select("[class*=primary].snapshot").empty()) {
+							dots_missed += 1;
+							StreamScatterPlot.newRedDot();
+						} else {
+							early_terminate = false;
+							offscreen_primary = true;
+							StreamScatterPlot.offScreenDot();
+						}
 					}
 				}
 			});
@@ -520,13 +540,16 @@ function StreamScatterPlot() {
 		var prev_id = null;
 
 		if (target != null) {
-			if (target.attr("class").includes("snapshot")) {
+			if (target.attr("class").includes("snapshot") && !d3.select(".primary.point").empty()) {
 				var pt = d3.select(".primary.point")
 					.attr("class", "point");
 				target.attr("class", target.attr("class").replace("primary", ""));
 				pt.datum()[2] = "point";
 				// dataset[dataset.indexOf(pt)][2] = "point";
 				prev_id = pt.datum()[3];
+			} else if (target.attr("class").includes("snapshot")){
+				target.attr("class", target.attr("class").replace("primary", ""));
+				target.datum()[2] = "point";
 			} else {
 				target.attr("class", "point");
 				target.datum()[2] = "point";
@@ -538,7 +561,10 @@ function StreamScatterPlot() {
 		var new_id = prev_id;
 		var pt = null;
 		while (prev_id == new_id) {
-			var points = d3.selectAll(".point");
+			var points = d3.selectAll(".point").filter(function(d) {
+				return d[2].includes("secondary") ? false : true;
+			});
+
 			var sz = points[0].length;
 			new_index = Math.floor((Math.random() * sz*2/3) + sz/3);
 			pt = d3.select(points[0][new_index]);
@@ -554,6 +580,30 @@ function StreamScatterPlot() {
 			snap
 				.attr("class", "primary " + snap.attr("class"))
 		};
+	}
+
+	StreamScatterPlot.offScreenDot = function() {
+		var then = +new Date();
+		d3.timer(function() {
+			var now = +new Date();
+			var diff = now - then;
+			console.log(diff);
+			if (d3.select("[class*=primary].snapshot").empty() && !early_terminate) {
+				dots_missed += 1;
+				StreamScatterPlot.newRedDot();
+				return true;
+			}
+			if (diff >= 2000 && !early_terminate) {
+				if (!d3.select("[class*=primary].snapshot").empty()) {
+					var t = d3.select("[class*=primary].snapshot");
+					t.attr("class", t.attr("class").replace("primary", ""))
+				}
+				dots_missed += 1;
+				StreamScatterPlot.newRedDot();
+				return true;
+			}
+			return early_terminate;
+		})
 	}
 
 	return chart;

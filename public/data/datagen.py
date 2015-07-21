@@ -22,7 +22,7 @@ def createSet(repeat, timeoffset):
 	i = 0
 	j = 0
 	r1 = random.randrange(50, 100) #Primary Goal
-	r2 = random.randrange(3, 16) #Approximate number of secondary goal per window
+	r2 = 1 #Approximate number of secondary goal per window
 
 	print r2
 	window_size = 20000

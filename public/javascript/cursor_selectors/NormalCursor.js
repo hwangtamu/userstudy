@@ -46,7 +46,7 @@ function NormalCursor(selection) {
 					h = +pt.attr("height");
 
 				var r = w;
-				
+
 				var ptA = [x + w/2, y + h/2];
 
 				var dist = +distance(mousePt, ptA);
@@ -63,8 +63,8 @@ function NormalCursor(selection) {
 		if (target != null) {
 			target
 				.attr("class", target.attr("class") + " target");
-		}
 
+		}
 		return target;
 	};
 
