@@ -61,7 +61,6 @@ function StreamScatterPlot() {
 		dots_clicked = 0;
 		dots_missed = 0;
 		click_period = Math.floor((Math.random() * 5) + 5) * 1000;
-		click_period = 20 * 1000;
 		drift_timer = +new Date();
 
 		trailClock = +new Date();

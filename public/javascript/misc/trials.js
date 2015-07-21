@@ -215,42 +215,47 @@ function setSelectors(cursorType, freezeType) {
 
 //Loads up chart streaming once GO is clicked
 function createGo() {
-  var svg = d3.select("#trialsChart").append("svg")
-    .attr("id", "go")
-    .attr("width", width)
-    .attr("height", height);
+    if (practice) {
+        d3.select("#trialsChart").html("");
+        loadNextTrial();
+        return;
+    }
+    var svg = d3.select("#trialsChart").append("svg")
+        .attr("id", "go")
+        .attr("width", width)
+        .attr("height", height);
 
-  svg.append("rect")
-             .attr("x", 0)
-             .attr("y", 0)
-             .attr("width", width)
-             .attr("height", height)
-             .style("stroke", "black")
-             .style("fill", "none")
-             .style("stroke-width", "1px");
+    svg.append("rect")
+        .attr("x", 0)
+        .attr("y", 0)
+        .attr("width", width)
+        .attr("height", height)
+        .style("stroke", "black")
+        .style("fill", "none")
+        .style("stroke-width", "1px");
 
-  var g = svg.append("g").attr("class", "goButton");
-  var goCircle = g.append("circle")
-    .attr("cx", width/2)
-    .attr("cy", height/2)
-    .attr("r", 50)
-    .style("fill", "#8BC34A");
+    var g = svg.append("g").attr("class", "goButton");
+    var goCircle = g.append("circle")
+        .attr("cx", width/2)
+        .attr("cy", height/2)
+        .attr("r", 50)
+        .style("fill", "#8BC34A");
 
-  var goText = g.append("text")
-    .attr("x", width/2 - 40)
-    .attr("y", height/2 + 20)
-    .style("font-family", "sans-serif")
-    .style("font-size", "50px")
-    .style("fill", "#F4F4F4")
-    .style("cursor", "default")
-    .text("GO");
+    var goText = g.append("text")
+        .attr("x", width/2 - 40)
+        .attr("y", height/2 + 20)
+        .style("font-family", "sans-serif")
+        .style("font-size", "50px")
+        .style("fill", "#F4F4F4")
+        .style("cursor", "default")
+        .text("GO");
 
-  g.on("click.go", function() {
-    g.on("click.go", null);
-    svg.remove();
-    d3.select("#trialsChart").html("");
-    loadNextTrial();
-  });
+    g.on("click.go", function() {
+        g.on("click.go", null);
+        svg.remove();
+        d3.select("#trialsChart").html("");
+        loadNextTrial();
+    });
 }
 
 //Loads up secondary task
@@ -320,6 +325,46 @@ function createQuestion(err, time, dis, click_period, dots_c, dots_m) {
     }
 }
 
+function startPractice(callback) {
+    var svg = d3.select("#trialsChart").append("svg")
+      .attr("id", "go")
+      .attr("width", width)
+      .attr("height", height);
+
+    svg.append("rect")
+               .attr("x", 0)
+               .attr("y", 0)
+               .attr("width", width)
+               .attr("height", height)
+               .style("stroke", "black")
+               .style("fill", "none")
+               .style("stroke-width", "1px");
+
+   var g = svg.append("g").attr("class", "practice");
+   var practiceBtn = g.append("rect")
+       .attr("x", width/4)
+       .attr("y", height/4)
+       .attr("width", width/2)
+       .attr("height", height/2)
+       .style("fill", "#8BC34A");
+
+   var practiceBtn = g.append("text")
+       .attr("x", width/2)
+       .attr("y", height/2 + 50/4)
+       .style("font-family", "sans-serif")
+       .style("font-size", "50px")
+       .style("fill", "#F4F4F4")
+       .style("cursor", "default")
+       .style("text-anchor", "middle")
+       .text("PRACTICE");
+
+       g.on("click.practice", function() {
+           g.on("click.practice", null);
+           svg.remove();
+           callback();
+       });
+}
+
 function createPractice() {
     var _freeze = experiment_sequence[experiment_number].freezeType;
     var _trail= experiment_sequence[experiment_number].trailType;
@@ -386,9 +431,11 @@ function loadNextTrial() {
     if (practice) {
         _practice_speed = speed_density[practice_number].speed;
         _practice_density = speed_density[practice_number].density;
-        load("practice_" + _practice_density + "_density.json", function() {
-            createChart(_practice_speed, _trail);
-            setSelectors("normal", _freeze);
+        startPractice(function() {
+            load("practice_" + _practice_density + "_density.json", function() {
+                createChart(_practice_speed, _trail);
+                setSelectors("normal", _freeze);
+            });
         });
         practice_number += 1;
         if (practice_number > 3)
@@ -400,12 +447,6 @@ function loadNextTrial() {
             setSelectors("normal", _freeze);
         });
     }
-}
-
-function goToNext() {
-    experimentr.endTimer("all_trials");
-    experimentr.addData(data);
-    experimentr.next();
 }
 
 function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m) {
@@ -440,10 +481,16 @@ function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m) {
 
         global_trial_id += 1;
         trialNumber += 1;
-            console.log(JSON.stringify(data, null, "\t"));
+        console.log(JSON.stringify(data, null, "\t"));
         if (trialNumber >= numTrials) {
             trialNumber = 0;
             experiment_number += 1;
         }
     }
+}
+
+function goToNext() {
+    experimentr.endTimer("all_trials");
+    experimentr.addData(data);
+    experimentr.next();
 }
