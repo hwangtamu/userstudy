@@ -88,7 +88,9 @@
   function init() {
     experimentr.hideNext();
 
-    data.workerId = Math.random().toString(36).substring(2, 7);
+    d3.json('data/sequence.json', function(err, d) {
+      data.workerId = d.worker_id + "_" + Math.random().toString(36).substring(2, 7);
+    });
 
     var browser = get_browser_info();
 

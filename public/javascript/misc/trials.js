@@ -29,7 +29,7 @@ var chart = StreamScatterPlot()
     .width(width)
     .height(height)
     .allowZoom(false)
-    .allowPause(false)
+    .allowPause(true)
     .allowTrails(false);
 
 var cursorFunc = null;
@@ -321,9 +321,10 @@ function createQuestion(err, time, dis, click_period, dots_c, dots_m) {
         d3.select("#trialsChart").html("");
 
         if (practice) {
-            d3.select("#question_info").text(
-                "Distractors On Screen: " + dis +
-                " Your answer: " + ans[0]
+            d3.select("#question_info").html(
+                "<b>Distractors that were on screen: </b>" + dis +
+                "<b><br>Your answer: </b>" + ans[0] +
+                "<b><br>Number of dots you clicked: </b>" + dots_c
             );
         }
 
@@ -386,17 +387,16 @@ function createPractice() {
     var instructions = d3.select("#instructions");
     var instructionsText;
     if (_freeze === "FreezeWholeScreen") {
-        instructionsText = "<h3>Freeze Whole Screen</h3><p> The freeze region for this technique is the whole screen and therefore no highlighted region will be displayed.</p><img src='images/freeze_whole.png' position='fixed' left='50%>";
+        instructionsText = "<h3>Freeze Whole Screen</h3><p> The freeze region for this technique is the whole screen and therefore no highlighted region will be displayed.</p><img src='images/freeze_whole.png'><p><b>'Shift'</b> to freeze the dots inside the highlighted region.</p><p><b>'C'</b> to clear the dots you froze previously.</p>";
     } else if (_freeze === "FreezeTrajectory") {
-        instructionsText = "<h3>Freeze Trajectory</h3><p> The highlighted region for this technique is a cone/flashlight like region drawn in the direction of your cursors movement.</p><img src='images/freeze_trajectory.png'>"
+        instructionsText = "<h3>Freeze Trajectory</h3><p> The highlighted region for this technique is a cone/flashlight like region drawn in the direction of your cursors movement.</p><img src='images/freeze_trajectory.png'><p><b>'Shift'</b> to freeze the dots inside the highlighted region.</p><p><b>'C'</b> to clear the dots you froze previously.</p>"
     } else if (_freeze === "FreezeAroundClosest") {
-        instructionsText = "<h3>Freeze Around Closest</h3><p> The highlighted region for this technique is a circle created around the closest dot/square to your cursor.</p><img src='images/freeze_closest.png'>";
+        instructionsText = "<h3>Freeze Around Closest</h3><p> The highlighted region for this technique is a circle created around the closest dot/square to your cursor.</p><img src='images/freeze_closest.png'><p><b>'Shift'</b> to freeze the dots inside the highlighted region.</p><p><b>'C'</b> to clear the dots you froze previously.</p>";
     } else if (_freeze === "FreezeAroundCursor") {
-        instructionsText = "<h3>Freeze Around Cursor</h3><p> The highlighted region for this technique is a circle created around your cursor.</p><img src='images/freeze_cursor.png'>";
+        instructionsText = "<h3>Freeze Around Cursor</h3><p> The highlighted region for this technique is a circle created around your cursor.</p><img src='images/freeze_cursor.png'><p><b>'Shift'</b> to freeze the dots inside the highlighted region.</p><p><b>'C'</b> to clear the dots you froze previously.</p>";
     } else if (_freeze === "none") {
-        instructionsText = "<h3>No Freeze</h3>";
+        instructionsText = "<h3>No Freeze</h3><p>No freeze technique to aid you.</p><img src='images/freeze_none.png'>";
     }
-
     instructions.html(instructionsText);
 
     d3.select("#trainInfo").append("div")
@@ -410,9 +410,7 @@ function createPractice() {
 
     text.html(
         "<b>Freeze Selector: </b>" + _freeze + "<br>" +
-        "<b>Trail Type: </b>" + _trail + "<br>" +
-        "<b>'Shift'</b> to freeze <br>" +
-        "<b>'C'</b> to clear <br>"
+        "<b>Trail Type: </b>" + _trail + "<br>"
     )
 
     var button = trainInfoBox.append("div")
@@ -467,7 +465,7 @@ function loadNextTrial() {
         startPractice(function() {
             load("practice_" + _practice_density + "_density.json", function() {
                 createChart(_practice_speed, _trail);
-                setSelectors("normal", _freeze);
+                setSelectors("bubble", _freeze);
             });
         });
         practice_number += 1;
@@ -481,7 +479,7 @@ function loadNextTrial() {
         stream_file = "stream_" + _density + "_density_" + setNumber + ".json";
         load(stream_file, function() {
             createChart(_speed, _trail);
-            setSelectors("normal", _freeze);
+            setSelectors("bubble", _freeze);
         });
     }
 }

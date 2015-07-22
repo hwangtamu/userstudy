@@ -579,26 +579,40 @@ function StreamScatterPlot() {
 		pt.datum()[2] = "primary point";
 		// dataset[pt.datum()[3]][2] = "primary point";
 
-		pt
-			.transition().duration(0)
-			.transition().duration(100).ease("exp")
-				.style("fill-opacity", 0.0)
-				.style("stroke-width", 0)
-			.transition().duration(100).ease("exp")
-				.style("fill-opacity", 1.0)
-				.style("stroke-width", 2)
-			.transition().duration(100).ease("exp")
-				.style("fill-opacity", 0.0)
-				.style("stroke-width", 0)
-			.transition().duration(100).ease("exp")
-				.style("fill-opacity", 1.0)
-				.style("stroke-width", "");
-
 		if (!d3.select(".i" + new_id + ".snapshot").empty()) {
 			var snap = d3.select(".i" + new_id + ".snapshot");
 			snap
-				.attr("class", "primary " + snap.attr("class"))
-		};
+				.attr("class", "primary " + snap.attr("class"));
+			snap
+				.transition().duration(0)
+				.transition().duration(100).ease("exp")
+					.style("fill-opacity", 0.0)
+					.style("stroke-width", 0)
+				.transition().duration(100).ease("exp")
+					.style("fill-opacity", 1.0)
+					.style("stroke-width", 2)
+				.transition().duration(100).ease("exp")
+					.style("fill-opacity", 0.0)
+					.style("stroke-width", 0)
+				.transition().duration(100).ease("exp")
+					.style("fill-opacity", 1.0)
+					.style("stroke-width", "");
+		} else {
+			pt
+				.transition().duration(0)
+				.transition().duration(100).ease("exp")
+					.style("fill-opacity", 0.0)
+					.style("stroke-width", 0)
+				.transition().duration(100).ease("exp")
+					.style("fill-opacity", 1.0)
+					.style("stroke-width", 2)
+				.transition().duration(100).ease("exp")
+					.style("fill-opacity", 0.0)
+					.style("stroke-width", 0)
+				.transition().duration(100).ease("exp")
+					.style("fill-opacity", 1.0)
+					.style("stroke-width", "");
+		}
 	}
 
 	StreamScatterPlot.offScreenDot = function() {
