@@ -1,6 +1,8 @@
 //Hold data collected
 var data = {};
+var worker_id = experimentr.workerId();
 
+var stream_file;
 //Hold per combination trial numbers
 var trialNumber = 0;
 var numTrials = 0;
@@ -354,6 +356,8 @@ function startPractice(callback) {
    var practiceBtn = g.append("rect")
        .attr("x", width/4)
        .attr("y", height/4)
+       .attr("rx", 100)
+       .attr("ry", 100)
        .attr("width", width/2)
        .attr("height", height/2)
        .style("fill", "#8BC34A");
@@ -454,7 +458,11 @@ function loadNextTrial() {
             practice_number = 0;
     } else {
         //Do some checking to load new file only when density changes or trial number is too high
-        load("stream_" + _density + "_density.json", function() {
+        var setNumber = Math.floor((Math.random() * 10) + 1)
+        console.log(setNumber);
+        setNumber = 1;
+        stream_file = "stream_" + _density + "_density_" + setNumber + ".json";
+        load(stream_file, function() {
             createChart(_speed, _trail);
             setSelectors("normal", _freeze);
         });
@@ -464,8 +472,6 @@ function loadNextTrial() {
 function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m) {
     if (!practice) {
 
-        var worker_id = experimentr.workerId();
-
         var _freeze = experiment_sequence[experiment_number].freezeType;
         var _trail = experiment_sequence[experiment_number].trailType;
         var _speed = experiment_sequence[experiment_number].speed;
@@ -474,6 +480,7 @@ function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m) {
         var t_id = _freeze + "_" + _trail + "_" + _speed + "_" + _density + "_" + trialNumber;
 
         var id_glob = worker_id + "_global_id_" + t_id;
+        var id_file = worker_id + "_file_" + t_id;
         var id_err = worker_id + "_errors_" + t_id;
         var id_time = worker_id + "_time_" + t_id;
         var id_dis = worker_id + "_num_distractors_" + t_id;
@@ -483,6 +490,7 @@ function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m) {
         var id_click_period = worker_id + "_click_time_period_" + t_id;
 
         data[id_glob] = global_trial_id;
+        data[id_file] = stream_file;
         data[id_err] = err;
         data[id_time] = time;
         data[id_dis] = dis;

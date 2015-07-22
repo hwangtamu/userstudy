@@ -40,7 +40,7 @@ function FreezeWholeScreen(selection) {
 						ry = +pt.attr("ry");
 
 				pt.attr("id", "tagged");
-				gCopies.append("rect")
+				gCopies.append("rect").datum(d[3])
 					.attr("class", d[2].replace("point", "") + "i" + d[3] + " snapshot")
 					.attr("width", w)
 					.attr("height", h)

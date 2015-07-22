@@ -206,7 +206,7 @@ function FreezeAroundClosest(selection, manualFreeze) {
 			target
 				.attr("id", "tagged")
 				.each(function(d, i) {
-					gCopies.append("rect")
+					gCopies.append("rect").datum(d[3])
 						.attr("class", d[2].replace("point", "") + "i" + d[3] + " snapshot")
 						.attr("id", "snap")
 						.attr("x", currPt[0])
@@ -236,7 +236,7 @@ function FreezeAroundClosest(selection, manualFreeze) {
 				var point = pt;
 				if(currDist <= frzRadius && d3.select(".i" + d[3] +".snapshot").empty() && point.attr("id") != "tagged" && (accumulations || swap || manualFrz)) {
 					point.attr("id", "tagged");
-					gCopies.append("rect")
+					gCopies.append("rect").datum(d[3])
 						.attr("class", d[2].replace("point", "") + "i" + d[3] + " snapshot")
 						.attr("id", "snap")
 						.attr("width", w)

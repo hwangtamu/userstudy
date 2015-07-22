@@ -224,7 +224,7 @@ function FreezeTrajectory(selection, manualFreeze) {
 
 				if(det(ptA, ptB, ptD) <= 0 && det(ptA, ptC, ptD) >= 0 && d3.select(".i" + d[3] +".snapshot").empty()) {
 					pt.attr("id", "tagged");
-					gCopies.append("rect")
+					gCopies.append("rect").datum(d[3])
 						.attr("class", d[2].replace("point", "") + "i" + d[3] + " snapshot")
 						.attr("width", w)
 						.attr("height", h)
