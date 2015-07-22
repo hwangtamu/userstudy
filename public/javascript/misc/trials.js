@@ -258,9 +258,7 @@ function createGo() {
     });
 }
 
-//Loads up secondary task
-//If last trial continues to closing questionnaire
-//Else pass over to secondary task
+//Loads up secondary task question
 function createQuestion(err, time, dis, click_period, dots_c, dots_m) {
     var svg = d3.select("#trialsChart").append("svg")
         .attr("id", "question")
@@ -276,36 +274,46 @@ function createQuestion(err, time, dis, click_period, dots_c, dots_m) {
         .style("fill", "none")
         .style("stroke-width", "1px");
 
-    var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    var rows = 3;
-    var cols = 3;
+    var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
     var g = svg.append("g").attr("class", "questionNumpad");
-    var numpad = g.selectAll("nums").data(numbers);
-    var text = g.selectAll("numtext").data(numbers);
-    // numpad.enter().append("rect")
-    //     .attr("x"), function(d, i) { return width/2 - }
+    var numpad = g.selectAll(".numpad").data(numbers);
+    var numpadText = g.selectAll(".numpadText").data(numbers);
+
+
     numpad.enter().append("rect")
-        .attr("x", function(d, i) { return width/2 - cols*50/2 + (i%cols)*50; })
-        .attr("y", function(d, i) { return height/2 - rows*50/2 + Math.trunc(i/rows)*50; })
+        .attr("class", "numpad")
+        .attr("x", function(d, i) { return width/2 - numbers.length/2 * 50 + i*50; })
+        .attr("y", height/2)
         .attr("width", 40)
         .attr("height", 40)
         .style("fill", "#E57373");
 
-    text.enter().append("text")
+    numpadText.enter().append("text")
+        .attr("class", "numpadText")
         .text(function(d, i) { return d; } )
-        .attr("x", function(d, i) { return width/2 - cols*40/2 + (i%cols)*50; })
-        .attr("y", function(d, i) { return height/2 - rows*40/2 + Math.trunc(i/rows)*50; })
+        .attr("x", function(d, i) { return width/2 - numbers.length/2 * 50 + i*50 + 15; })
+        .attr("y", height/2 + 50/2)
         .style("fill", "#F4F4F4")
-        .style("cursor", "default");
+        .style("cursor", "default")
+        .style("text-anchor", "start");
+
+    var question = g.append("text")
+        .text("How many blue dots were on the screen?")
+        .attr("x", width/2)
+        .attr("y", height/2 - 50)
+        .style("fill", "#0F0F0F")
+        .style("cursor", "default")
+        .style("font-size", "25")
+        .style("text-anchor", "middle");
 
     numpad.on("click.numpad", click_handler)
 
-    text.on("click.numpadText", click_handler);
+    numpadText.on("click.numpadText", click_handler);
 
     function click_handler() {
         var ans = d3.select(this).data();
 
-        text.on("click.numpadText", null);
+        numpadText.on("click.numpadText", null);
         numpad.on("click.numpad", null);
         svg.remove();
         d3.select("#trialsChart").html("");
