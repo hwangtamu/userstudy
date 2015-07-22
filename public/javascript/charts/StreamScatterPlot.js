@@ -61,7 +61,6 @@ function StreamScatterPlot() {
 		dots_clicked = 0;
 		dots_missed = 0;
 		click_period = Math.floor((Math.random() * 5) + 5) * 1000;
-		click_period = 3;
 		drift_timer = +new Date();
 
 		trailClock = +new Date();
@@ -607,7 +606,6 @@ function StreamScatterPlot() {
 		d3.timer(function() {
 			var now = +new Date();
 			var diff = now - then;
-			console.log(diff);
 			if (d3.select("[class*=primary].snapshot").empty() && !early_terminate) {
 				dots_missed += 1;
 				StreamScatterPlot.newRedDot();

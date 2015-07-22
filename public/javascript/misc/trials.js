@@ -389,9 +389,11 @@ function createPractice() {
         .attr("class", "train_text");
 
     text.append("p")
-            .text("Freeze Selector: " + _freeze)
+        .text("Freeze Selector: " + _freeze)
     text.append("p")
-            .text("Trail Type: " + _trail);
+        .text("Trail Type: " + _trail);
+    text.append("p")
+        .text("'Shift' to freeze / 'C' to clear");
 
     var button = trainInfoBox.append("div")
         .attr("id", "train_button");
