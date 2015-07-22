@@ -276,7 +276,7 @@ function createQuestion(err, time, dis, click_period, dots_c, dots_m) {
         .style("fill", "none")
         .style("stroke-width", "1px");
 
-    var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+    var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
     var g = svg.append("g").attr("class", "questionNumpad");
     var numpad = g.selectAll(".numpad").data(numbers);
     var numpadText = g.selectAll(".numpadText").data(numbers);
@@ -284,25 +284,25 @@ function createQuestion(err, time, dis, click_period, dots_c, dots_m) {
 
     numpad.enter().append("rect")
         .attr("class", "numpad")
-        .attr("x", function(d, i) { return width/2 - numbers.length/2 * 50 + i*50; })
+        .attr("x", function(d, i) { return width/2 - numbers.length/2 * 40 + i*40; })
         .attr("y", height/2)
-        .attr("width", 40)
-        .attr("height", 40)
+        .attr("width", 35)
+        .attr("height", 35)
         .style("fill", "#E57373");
 
     numpadText.enter().append("text")
         .attr("class", "numpadText")
         .text(function(d, i) { return d; } )
-        .attr("x", function(d, i) { return width/2 - numbers.length/2 * 50 + i*50 + 15; })
-        .attr("y", height/2 + 50/2)
+        .attr("x", function(d, i) { return width/2 - numbers.length/2 * 40 + i*40 + 35/2; })
+        .attr("y", height/2 + 35/2 + 12/2)
         .style("fill", "#F4F4F4")
         .style("cursor", "default")
-        .style("text-anchor", "start");
+        .style("text-anchor", "middle");
 
     var question = g.append("text")
         .text("How many blue dots were on the screen?")
         .attr("x", width/2)
-        .attr("y", height/2 - 50)
+        .attr("y", height/2 - 35)
         .style("fill", "#0F0F0F")
         .style("cursor", "default")
         .style("font-size", "25")
@@ -364,7 +364,7 @@ function startPractice(callback) {
 
    var practiceBtn = g.append("text")
        .attr("x", width/2)
-       .attr("y", height/2 + 50/4)
+       .attr("y", height/2 + 50/2)
        .style("font-family", "sans-serif")
        .style("font-size", "50px")
        .style("fill", "#F4F4F4")
@@ -382,6 +382,22 @@ function startPractice(callback) {
 function createPractice() {
     var _freeze = experiment_sequence[experiment_number].freezeType;
     var _trail= experiment_sequence[experiment_number].trailType;
+
+    var instructions = d3.select("#instructions");
+    var instructionsText;
+    if (_freeze === "FreezeWholeScreen") {
+        instructionsText = "<h3>Freeze Whole Screen</h3><p> The freeze region for this technique is the whole screen and therefore no highlighted region will be displayed.</p><img src='images/freeze_whole.png' position='fixed' left='50%>";
+    } else if (_freeze === "FreezeTrajectory") {
+        instructionsText = "<h3>Freeze Trajectory</h3><p> The highlighted region for this technique is a cone/flashlight like region drawn in the direction of your cursors movement.</p><img src='images/freeze_trajectory.png'>"
+    } else if (_freeze === "FreezeAroundClosest") {
+        instructionsText = "<h3>Freeze Around Closest</h3><p> The highlighted region for this technique is a circle created around the closest dot/square to your cursor.</p><img src='images/freeze_closest.png'>";
+    } else if (_freeze === "FreezeAroundCursor") {
+        instructionsText = "<h3>Freeze Around Cursor</h3><p> The highlighted region for this technique is a circle created around your cursor.</p><img src='images/freeze_cursor.png'>";
+    } else if (_freeze === "none") {
+        instructionsText = "<h3>No Freeze</h3>";
+    }
+
+    instructions.html(instructionsText);
 
     d3.select("#trainInfo").append("div")
         .attr("id", "question_info");
@@ -413,6 +429,7 @@ function createPractice() {
         button.on("click.train", null);
         d3.select("#trialsChart").html("");
         d3.select("#trainInfo").html("");
+        d3.select("#instructions").html("");
         practice = false;
         createGo();
     });
