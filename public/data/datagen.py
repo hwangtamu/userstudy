@@ -21,13 +21,25 @@ def createSet(repeat, timeoffset):
 	subset = list()
 	i = 0
 	j = 0
-	r1 = random.randrange(50, 100) #Primary Goal
-	r2 = random.randrange(5, 16) #Approximate number of secondary goal per window
 
-	print r2
 	window_size = 20000
 	interval_size = 1000
-	r2 = math.floor((window_size/timeoffset/interval_size) / r2)
+
+	dots_per_window = (window_size/timeoffset/interval_size)
+	print 'Dots per window of time', dots_per_window
+
+	r2 = random.randrange(5, 16) #Approximate number of secondary goal per window
+	_r2 = r2
+	print 'Number of secondary goals', r2
+	r2 = math.floor(dots_per_window / r2)
+
+	r1 = random.randrange(math.floor(dots_per_window / 3), math.floor(dots_per_window * 2 / 3)) #Primary Goal
+
+	#Fix any possible collisions
+	while r1 % _r2 == 0:
+		r1 = random.randrange(math.floor(dots_per_window / 3), math.floor(dots_per_window * 2 / 3)) #Primary Goal
+
+	print 'First primary goal at', r1, '\n'
 
 	if r1 == r2:
 		r1 += 1
