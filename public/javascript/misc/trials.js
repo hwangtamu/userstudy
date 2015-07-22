@@ -392,12 +392,12 @@ function createPractice() {
     var text = trainInfoBox.append("div")
         .attr("class", "train_text");
 
-    text.append("p")
-        .text("Freeze Selector: " + _freeze)
-    text.append("p")
-        .text("Trail Type: " + _trail);
-    text.append("p")
-        .text("'Shift' to freeze / 'C' to clear");
+    text.html(
+        "<b>Freeze Selector: </b>" + _freeze + "<br>" +
+        "<b>Trail Type: </b>" + _trail + "<br>" +
+        "<b>'Shift'</b> to freeze <br>" +
+        "<b>'C'</b> to clear <br>"
+    )
 
     var button = trainInfoBox.append("div")
         .attr("id", "train_button");
@@ -430,9 +430,9 @@ function loadNextTrial() {
 
         d3.select("#trialInfo").html(
         "<b>Freeze Selector: </b>" + _freeze + "<br>" +
-        "<b>Trail Type: </b>" + _trail + "<br>" +
-        "<b>Speed: </b>" + _speed + "<br>" +
-        "<b>Density: </b>" + _density + "<br>"
+        "<b>Trail Type: </b>" + _trail + "<br>"// +
+        // "<b>Speed: </b>" + _speed + "<br>" +
+        // "<b>Density: </b>" + _density + "<br>"
         );
     }
 
