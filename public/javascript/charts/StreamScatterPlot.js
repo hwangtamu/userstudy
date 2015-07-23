@@ -61,6 +61,7 @@ function StreamScatterPlot() {
 		dots_clicked = 0;
 		dots_missed = 0;
 		click_period = Math.floor((Math.random() * 5) + 5) * 1000;
+		click_period = 1000000
 		drift_timer = +new Date();
 
 		trailClock = +new Date();
@@ -204,7 +205,7 @@ function StreamScatterPlot() {
 					var uniqueID = target.datum();
 					var targetTrail = d3.select(".i" + uniqueID + ".trail");
 				}
-				if (target != null && !d3.event.shiftKey && !end) {
+				if (target != null && !end) {
 
 					//Start Experiment Stuff
 					if (target.attr("class").includes("target") && target.attr("class").includes("primary")) {

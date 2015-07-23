@@ -62,6 +62,9 @@ function FreezeTrajectory(selection, manualFreeze) {
 	if (manualFrz) {
 		d3.select("body")
 			.on("keydown.freezeSelector", function() {
+				if (pts.length < 2) {
+					return;
+				}
 				mousePt = d3.mouse(this);
 				if (d3.event.shiftKey) {
 					//Update location of manual freeze region
@@ -163,6 +166,7 @@ function FreezeTrajectory(selection, manualFreeze) {
 
 		//Scale points to extend 'flashlight'
 		var dist = distance([x1, y1], [x2, y2]);
+		// dist *= -1
 		var width = +selection.style("width").slice(0, -2);
 		var height = +selection.style("height").slice(0, -2);
 		var length = Math.sqrt(Math.pow(width, 2) + Math.pow(height, 2));
