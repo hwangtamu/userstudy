@@ -267,7 +267,7 @@ function createGo() {
 }
 
 //Loads up secondary task question
-function createQuestion(err, time, dis, click_period, dots_c, dots_m) {
+function createQuestion(err, time, dis, click_period, dots_c, dots_m, nums_freezed, nums_cleared) {
     var svg = d3.select("#trialsChart").append("svg")
         .attr("id", "question")
         .attr("width", width)
@@ -306,7 +306,7 @@ function createQuestion(err, time, dis, click_period, dots_c, dots_m) {
         .style("text-anchor", "middle");
 
     var question = g.append("text")
-        .text("How many blue dots were on the screen?")
+        .text("How many blue dots were on the screen at the end?")
         .attr("x", width/2)
         .attr("y", height/2 - 35)
         .style("fill", "#0F0F0F")
@@ -327,18 +327,18 @@ function createQuestion(err, time, dis, click_period, dots_c, dots_m) {
         d3.select("#trialsChart").html("");
 
         if (practice) {
-            d3.select("#question_info").html(
-                "<b>Distractors that were on screen: </b>" + dis +
-                "<b><br>Your answer: </b>" + ans[0] +
-                "<b><br>Number of dots you clicked: </b>" + dots_c
-            );
+            // d3.select("#question_info").html(
+            //     "<b>Distractors that were on screen: </b>" + dis +
+            //     "<b><br>Your answer: </b>" + ans[0] +
+            //     "<b><br>Number of dots you clicked: </b>" + dots_c
+            // );
         }
 
         if (experiment_number + 1 == experiment_length && trialNumber + 1 >= numTrials) {
-            addTrialData(err, time, dis, ans[0], click_period, dots_c, dots_m);
+            addTrialData(err, time, dis, ans[0], click_period, dots_c, dots_m, nums_freezed, nums_cleared);
             goToNext();
         } else {
-            addTrialData(err, time, dis, ans[0], click_period, dots_c, dots_m);
+            addTrialData(err, time, dis, ans[0], click_period, dots_c, dots_m, nums_freezed, nums_cleared);
             createGo();
         }
     }
@@ -367,7 +367,7 @@ function startPractice(callback) {
        .attr("ry", 100)
        .attr("width", width/2)
        .attr("height", height/2)
-       .style("fill", "#8BC34A");
+       .style("fill", "#2196F3");
 
    var practiceBtn = g.append("text")
        .attr("x", width/2)
@@ -393,7 +393,7 @@ function createPractice() {
     var instructions = d3.select("#instructions");
     var instructionsText;
     if (_freeze === "FreezeWholeScreen") {
-        instructionsText = "<h3>Freeze Whole Screen</h3><p> The freeze region for this technique is the whole screen and therefore no highlighted region will be displayed.</p><img src='images/freeze_whole.png'><p><b>'Shift'</b> to freeze the dots inside the highlighted region.</p><p><b>'C'</b> to clear the dots you froze previously.</p>";
+        instructionsText = "<h3>Freeze Whole Screen</h3><p> The freeze region for this technique is the whole screen and therefore no highlighted region will be displayed.</p><img src='images/freeze_whole.png'><p><b>'Shift'</b> to freeze the all the dots on the screen.</p><p><b>'C'</b> to clear the dots you froze previously.</p>";
     } else if (_freeze === "FreezeTrajectory") {
         instructionsText = "<h3>Freeze Trajectory</h3><p> The highlighted region for this technique is a cone/flashlight like region drawn in the direction of your cursors movement.</p><img src='images/freeze_trajectory.png'><p><b>'Shift'</b> to freeze the dots inside the highlighted region.</p><p><b>'C'</b> to clear the dots you froze previously.</p>"
     } else if (_freeze === "FreezeAroundClosest") {
@@ -415,7 +415,7 @@ function createPractice() {
         .attr("class", "train_text");
 
     text.html(
-        "<b>Freeze Selector: </b>" + _freeze + "<br>" +
+        "<b>Freeze Technique: </b>" + _freeze + "<br>" +
         "<b>Trail Type: </b>" + _trail + "<br>"
     )
 
@@ -429,6 +429,7 @@ function createPractice() {
     d3.select("#trialInfo").html("");
 
     button.on("click.train", function() {
+        experimentr.endTimer(worker_id + '_practice_' + _freeze + "_" + _trail);
         chart.destroy();
         button.on("click.train", null);
         d3.select("#trialsChart").html("");
@@ -450,10 +451,8 @@ function loadNextTrial() {
         d3.select("#trainInfo").html("");
 
         d3.select("#trialInfo").html(
-        "<b>Freeze Selector: </b>" + _freeze + "<br>" +
-        "<b>Trail Type: </b>" + _trail + "<br>"// +
-        // "<b>Speed: </b>" + _speed + "<br>" +
-        // "<b>Density: </b>" + _density + "<br>"
+            "<b>Freeze Selector: </b>" + _freeze + "<br>" +
+            "<b>Trail Type: </b>" + _trail + "<br>"
         );
     }
 
@@ -461,6 +460,7 @@ function loadNextTrial() {
         previousFrz = _freeze;
         previousTrail = _trail;
         practice = true;
+        experimentr.startTimer(worker_id + '_practice_' + _freeze + "_" + _trail);
         first_practice = true;
         practice_number = Math.floor((Math.random() * 3))
         createPractice()
@@ -472,7 +472,7 @@ function loadNextTrial() {
         startPractice(function() {
             load("practice_" + _practice_density + "_density.json", function() {
                 createChart(_practice_speed, _trail);
-                setSelectors("bubble", _freeze);
+                setSelectors("normal", _freeze);
             });
         });
         practice_number += 1;
@@ -486,12 +486,12 @@ function loadNextTrial() {
         stream_file = "stream_" + _density + "_density_" + setNumber + ".json";
         load(stream_file, function() {
             createChart(_speed, _trail);
-            setSelectors("bubble", _freeze);
+            setSelectors("normal", _freeze);
         });
     }
 }
 
-function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m) {
+function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m, nums_freezed, nums_cleared) {
     if (!practice) {
 
         var _freeze = experiment_sequence[experiment_number].freezeType;
@@ -510,6 +510,8 @@ function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m) {
         var id_dots_c = worker_id + "_dots_clicked_" + t_id;
         var id_dots_m = worker_id + "_dots_missed_" + t_id;
         var id_click_period = worker_id + "_click_time_period_" + t_id;
+        var id_nums_freeze = worker_id + "_freezes_usesd_" + t_id;
+        var id_nums_cleared = worker_id + "_clears_usesd_" + t_id;
 
         data[id_glob] = global_trial_id;
         data[id_file] = stream_file;
@@ -520,6 +522,8 @@ function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m) {
         data[id_dots_c] = dots_c;
         data[id_dots_m] = dots_m;
         data[id_click_period] = click_period;
+        data[id_nums_freeze] = nums_freezed;
+        data[id_nums_cleared] = nums_cleared;
 
         global_trial_id += 1;
         trialNumber += 1;
