@@ -11,9 +11,9 @@ def valueFunction(*args):
 #Define function that generates data.flag
 def flagFunction(*args):
 	flag = "point"
-	if (args[0] + 1 == args[1]):
+	if (args[0] == args[1]):
 		flag = "primary point"
-	if (args[0] + 1 % args[2] == 0):
+	if (args[0] % args[2] == 0):
 		flag = "secondary point"
 	return flag
 
@@ -41,10 +41,9 @@ def createSet(repeat, timeoffset):
 
 	print 'First primary goal at', r1, '\n'
 
-	if r1 == r2:
-		r1 += 1
-
 	while i < repeat:
+		if (i == r1 and i % r2 == 0):
+			r1 += 1
 		datum = {'id': i, 'timeoffset': round(j, 3), 'value': valueFunction(j), 'flag': flagFunction(i, r1, r2) }
 		subset.append(datum)
 		i += 1

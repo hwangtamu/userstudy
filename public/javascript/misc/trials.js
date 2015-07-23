@@ -10,6 +10,8 @@ var numTrials = 0;
 //Holds entire dataset used
 var dataset;
 
+var setNumber = 0;
+
 //Holds combination number
 var experiment_number = 0;
 var experiment_length = 0;
@@ -111,9 +113,15 @@ function load(file, callback) {
 
 //Create chart
 function createChart(_speed, _trail) {
+  var num_load = trialNumber;
+  if (practice) {
+      num_load =  Math.floor((Math.random() * 14));
+      console.log(num_load);
+  }
+
   //Add offset to current time to simulate real time data
   var now = +new Date() + 1000;
-  dataset[trialNumber].forEach(function (d) {
+  dataset[num_load].forEach(function (d) {
     d.timeoffset = (now - (20 * 1000)) + d.timeoffset * 1000;
     d.timeoffset = +d.timeoffset;
     d.value = +d.value;
@@ -121,9 +129,10 @@ function createChart(_speed, _trail) {
     d.secondary = d3.secondary;
   });
 
+
   //Create chart with specified data
   var stream = d3.select("#trialsChart")
-    .datum(dataset[trialNumber])
+    .datum(dataset[num_load])
     .call(chart);
 
   if(first_practice) {
@@ -429,13 +438,14 @@ function createPractice() {
     d3.select("#trialInfo").html("");
 
     button.on("click.train", function() {
+        if (!first_practice) chart.destroy();
+        practice = false;
+        first_practice = false;
         experimentr.endTimer(worker_id + '_practice_' + _freeze + "_" + _trail);
-        chart.destroy();
         button.on("click.train", null);
         d3.select("#trialsChart").html("");
         d3.select("#trainInfo").html("");
         d3.select("#instructions").html("");
-        practice = false;
         createGo();
     });
 };
@@ -480,14 +490,20 @@ function loadNextTrial() {
             practice_number = 0;
     } else {
         //Do some checking to load new file only when density changes or trial number is too high
-        var setNumber = Math.floor((Math.random() * 10) + 1)
-        console.log(setNumber);
-        setNumber = 1;
+        if (trialNumber == 0) {
+            setNumber = Math.floor((Math.random() * 10) + 1)
+        }
         stream_file = "stream_" + _density + "_density_" + setNumber + ".json";
-        load(stream_file, function() {
+
+        if (trialNumber == 0) {
+            load(stream_file, function() {
+                createChart(_speed, _trail);
+                setSelectors("normal", _freeze);
+            });
+        } else {
             createChart(_speed, _trail);
             setSelectors("normal", _freeze);
-        });
+        }
     }
 }
 
@@ -527,7 +543,7 @@ function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m, num
 
         global_trial_id += 1;
         trialNumber += 1;
-        console.log(JSON.stringify(data, null, "\t"));
+        // console.log(JSON.stringify(data, null, "\t"));
         if (trialNumber >= numTrials) {
             trialNumber = 0;
             experiment_number += 1;
