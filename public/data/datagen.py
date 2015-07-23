@@ -11,9 +11,9 @@ def valueFunction(*args):
 #Define function that generates data.flag
 def flagFunction(*args):
 	flag = "point"
-	if (args[0] == args[1]):
+	if (args[0] + 1 == args[1]):
 		flag = "primary point"
-	if (args[0] % args[2] == 0):
+	if (args[0] + 1 % args[2] == 0):
 		flag = "secondary point"
 	return flag
 
