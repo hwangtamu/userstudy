@@ -61,7 +61,6 @@ function StreamScatterPlot() {
 		dots_clicked = 0;
 		dots_missed = 0;
 		click_period = Math.floor((Math.random() * 5) + 5) * 1000;
-		click_period = 1000000
 		drift_timer = +new Date();
 
 		trailClock = +new Date();
@@ -639,6 +638,10 @@ function StreamScatterPlot() {
 			}
 			return early_terminate;
 		})
+	}
+
+	StreamScatterPlot.practicePeriod = function() {
+		click_period = 60 * 1000;
 	}
 
 	return chart;

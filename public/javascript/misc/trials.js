@@ -39,6 +39,7 @@ var previousFrz = "";
 var previousTrail = "";
 
 var practice = false;
+var first_practice = false;
 
 var experiment_sequence = [];
 var trail = ["none", "ghost", "trail"];
@@ -124,6 +125,11 @@ function createChart(_speed, _trail) {
   var stream = d3.select("#trialsChart")
     .datum(dataset[trialNumber])
     .call(chart);
+
+  if(first_practice) {
+      StreamScatterPlot.practicePeriod();
+      first_practice = false;
+  }
 
   //Set speed modifier
   if (_speed === "high") {
@@ -455,6 +461,7 @@ function loadNextTrial() {
         previousFrz = _freeze;
         previousTrail = _trail;
         practice = true;
+        first_practice = true;
         practice_number = Math.floor((Math.random() * 3))
         createPractice()
     }
