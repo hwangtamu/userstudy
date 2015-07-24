@@ -31,7 +31,7 @@ var chart = StreamScatterPlot()
     .width(width)
     .height(height)
     .allowZoom(false)
-    .allowPause(true)
+    .allowPause(false)
     .allowTrails(false);
 
 var cursorFunc = null;
