@@ -1,10 +1,10 @@
 {
     "sequence": [
-        "none", 
-        "FreezeWholeScreen", 
-        "FreezeAroundCursor", 
-        "FreezeAroundClosest", 
+        "none",
+        "FreezeWholeScreen",
+        "FreezeAroundCursor",
+        "FreezeAroundClosest",
         "FreezeTrajectory"
-    ], 
-    "worker_id": "aa"
+    ],
+    "worker_id": "a0"
 }
