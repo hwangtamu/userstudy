@@ -27,11 +27,4 @@ Helper scripts are in the `analysis` directory.
 
 * To get results data from server, use `pull.sh`
 * To convert results to csv, use `convert.sh`
-* To flush redis database, use 'flushdb.sh'
-
-### Testing experiments
-
-You can use `debug` as your workerId when testing live experiments to help make sure your data doesn't end up the experiment data.
-See [convert.js](https://github.com/codementum/experimentr/blob/master/analysis/src/convert.js#L24) for details.
-
-Another useful trick is to empty the redis database. To do so, run `redis-cli` to get the redis command line prompt, then type `FLUSHDB` to delete all current keys.
+* To flush redis database, use `flushdb.sh`
