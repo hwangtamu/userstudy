@@ -17,8 +17,10 @@ var experiment_number = 0;
 var experiment_length = 0;
 
 var global_trial_id = 0;
+var unique_id = 0;
 
 var practice_number = 0;
+var times_practiced = 0;
 
 var width = 900,
     height = 360;
@@ -116,7 +118,6 @@ function createChart(_speed, _trail) {
   var num_load = trialNumber;
   if (practice) {
       num_load =  Math.floor((Math.random() * 14));
-      console.log(num_load);
   }
 
   //Add offset to current time to simulate real time data
@@ -276,7 +277,7 @@ function createGo() {
 }
 
 //Loads up secondary task question
-function createQuestion(err, time, dis, click_period, dots_c, dots_m, nums_freezed, nums_cleared) {
+function createQuestion(err, time, dis, click_period, dots_c, dots_m, nums_freezed, nums_cleared, errors_air) {
     var svg = d3.select("#trialsChart").append("svg")
         .attr("id", "question")
         .attr("width", width)
@@ -344,10 +345,10 @@ function createQuestion(err, time, dis, click_period, dots_c, dots_m, nums_freez
         }
 
         if (experiment_number + 1 == experiment_length && trialNumber + 1 >= numTrials) {
-            addTrialData(err, time, dis, ans[0], click_period, dots_c, dots_m, nums_freezed, nums_cleared);
+            addTrialData(err, time, dis, ans[0], click_period, dots_c, dots_m, nums_freezed, nums_cleared, errors_air);
             goToNext();
         } else {
-            addTrialData(err, time, dis, ans[0], click_period, dots_c, dots_m, nums_freezed, nums_cleared);
+            addTrialData(err, time, dis, ans[0], click_period, dots_c, dots_m, nums_freezed, nums_cleared, errors_air);
             createGo();
         }
     }
@@ -429,11 +430,13 @@ function createPractice() {
     )
 
     var button = trainInfoBox.append("div")
-        .attr("id", "train_button");
+        .attr("id", "train_div");
 
     button
         .append("button")
-            .text("DONE TRAINING");
+            .attr("id", "train_button")
+            .text("DONE TRAINING")
+            .attr("disabled", "disabled");
 
     d3.select("#trialInfo").html("");
 
@@ -453,14 +456,15 @@ function createPractice() {
 function loadNextTrial() {
     //load and display trial information
     var _freeze = experiment_sequence[experiment_number].freezeType;
-    var _trail= experiment_sequence[experiment_number].trailType;
+    var _trail = experiment_sequence[experiment_number].trailType;
     var _speed = experiment_sequence[experiment_number].speed;
     var _density = experiment_sequence[experiment_number].density;
 
     if(!practice) {
         d3.select("#trainInfo").html("");
-
+        unique_id = (Math.floor(Math.random()*90000) + 10000).toString(36)
         d3.select("#trialInfo").html(
+            "<b>Trial ID: </b>" + unique_id + "<br>" +
             "<b>Freeze Selector: </b>" + _freeze + "<br>" +
             "<b>Trail Type: </b>" + _trail + "<br>"
         );
@@ -470,6 +474,7 @@ function loadNextTrial() {
         previousFrz = _freeze;
         previousTrail = _trail;
         practice = true;
+        times_practiced = 0;
         experimentr.startTimer(worker_id + '_practice_' + _freeze + "_" + _trail);
         first_practice = true;
         practice_number = Math.floor((Math.random() * 3))
@@ -486,6 +491,11 @@ function loadNextTrial() {
             });
         });
         practice_number += 1;
+        times_practiced += 1;
+
+        if (times_practiced > 5 || true) {
+            d3.select("#train_button").attr("disabled", null);
+        }
         if (practice_number > 3)
             practice_number = 0;
     } else {
@@ -507,7 +517,7 @@ function loadNextTrial() {
     }
 }
 
-function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m, nums_freezed, nums_cleared) {
+function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m, nums_freezed, nums_cleared, errors_air) {
     if (!practice) {
 
         var _freeze = experiment_sequence[experiment_number].freezeType;
@@ -518,8 +528,10 @@ function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m, num
         var t_id = _freeze + "_" + _trail + "_" + _speed + "_" + _density + "_" + trialNumber;
 
         var id_glob = worker_id + "_global_id_" + t_id;
+        var id_uniq = worker_id + "_unique_id_" + t_id;
         var id_file = worker_id + "_file_" + t_id;
         var id_err = worker_id + "_errors_" + t_id;
+        var id_err_air = worker_id + "_errors_clicked_nothing_" + t_id;
         var id_time = worker_id + "_time_" + t_id;
         var id_dis = worker_id + "_num_distractors_" + t_id;
         var id_dis_ans = worker_id + "_distractors_answer_" + t_id;
@@ -530,8 +542,11 @@ function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m, num
         var id_nums_cleared = worker_id + "_clears_usesd_" + t_id;
 
         data[id_glob] = global_trial_id;
+        data[id_uniq] = unique_id;
+        console.log(data[id_uniq]);
         data[id_file] = stream_file;
         data[id_err] = err;
+        data[id_err_air] = errors_air;
         data[id_time] = time;
         data[id_dis] = dis;
         data[id_dis_ans] = dis_ans;

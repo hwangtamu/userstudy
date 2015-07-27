@@ -57,6 +57,8 @@
 <h2>What else do I need to know?</h2>
 <p>You will not be paid or compensated for your participation in this study. No charge code will be provided for use of your time.</p>
 
+<div id="p_id">
+</div>
 <button id="consentYes" type="button" class="start-button" disabled>I agree to participate</button>
 
 <br>
@@ -69,12 +71,6 @@
 <style>
     #validateMessage {
         color: #FF5555;
-    }
-
-    #consentYes {
-        position: relative;
-        left: 50%;
-        transform: translate(-50%, 0%);
     }
 </style>
 
@@ -90,6 +86,8 @@
 
     d3.json('data/sequence.json', function(err, d) {
       data.workerId = d.worker_id + "_" + Math.random().toString(36).substring(2, 7);
+      d3.select("#p_id").append("h3")
+        .text("Participant ID: " + d.worker_id);
     });
 
     var browser = get_browser_info();

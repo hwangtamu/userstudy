@@ -2,6 +2,7 @@ function StreamScatterPlot() {
 
 	//FOR EXPERIMENTAL REASONS
 	var errors;
+	var errors_air;
 	var time_start;
 	var dots_clicked;
 	var dots_missed;
@@ -10,6 +11,12 @@ function StreamScatterPlot() {
 	var offscreen_primary;
 	var nums_freezed;
 	var nums_cleared;
+
+	d3.selection.prototype.moveToFront = function() {
+	  return this.each(function(){
+	    this.parentNode.appendChild(this);
+	  });
+	};
 
 	//Controls experimental clockdrift
 	var clockdrift = 0;
@@ -60,6 +67,7 @@ function StreamScatterPlot() {
 		//Init experimental things
 		time_start = +new Date();
 		errors = 0;
+		errors_air = 0;
 		dots_clicked = 0;
 		dots_missed = 0;
 		nums_freezed = 0;
@@ -254,6 +262,8 @@ function StreamScatterPlot() {
 							.transition().duration(100).ease("exp")
 								.style("stroke-opacity", 1.0);
 					}
+				} else {
+					errors_air += 1;
 				}
 			});
 
@@ -428,6 +438,9 @@ function StreamScatterPlot() {
 				}
 			});
 
+		d3.select("[class~=secondary]").moveToFront()
+		d3.select("[class~=primary]").moveToFront()
+
 		//Enter
 		points
 			.enter()
@@ -469,7 +482,7 @@ function StreamScatterPlot() {
 			if(trial_time >= click_period) {
 				var dis = chart.getDistractors();
 				chart.destroy();
-				createQuestion(errors, trial_time, dis, click_period, dots_clicked, dots_missed, nums_freezed, nums_cleared);
+				createQuestion(errors, trial_time, dis, click_period, dots_clicked, dots_missed, nums_freezed, nums_cleared, errors_air);
 			}
 			if(!paused) {
 				chart.step();

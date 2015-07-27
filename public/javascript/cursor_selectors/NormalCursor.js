@@ -1,4 +1,5 @@
 function NormalCursor(selection) {
+
 	//Variable to hold previous mouse points for dynamic data
 	var prevMousePt = [0,0];
 
@@ -63,7 +64,6 @@ function NormalCursor(selection) {
 		if (target != null) {
 			target
 				.attr("class", target.attr("class") + " target");
-
 		}
 		return target;
 	};
