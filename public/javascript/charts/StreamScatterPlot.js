@@ -173,8 +173,6 @@ function StreamScatterPlot() {
 			d3.select("body")
 				.on("keydown.StreamScatterPlot", function() {
 					if (d3.event.keyCode == 32) {
-						console.log(d3.selectAll(".point")[0].length)
-						console.log(d3.selectAll(".secondary.point")[0].length)
 						chart.pause();
 					}
 					if (d3.event.shiftKey) {

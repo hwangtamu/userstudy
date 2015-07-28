@@ -444,6 +444,8 @@ function createPractice() {
         if (!first_practice) chart.destroy();
         practice = false;
         first_practice = false;
+        var t_id = worker_id + "_number_of_practice_trials_" + _freeze + "_" + _trail + "_";
+        data[t_id] = times_practiced;
         experimentr.endTimer(worker_id + '_practice_' + _freeze + "_" + _trail);
         button.on("click.train", null);
         d3.select("#trialsChart").html("");
@@ -464,7 +466,8 @@ function loadNextTrial() {
         d3.select("#trainInfo").html("");
         unique_id = (Math.floor(Math.random()*90000) + 10000).toString(36)
         d3.select("#trialInfo").html(
-            "<b>Trial ID: </b>" + unique_id + "<br>" +
+            // "<b>Trial ID: </b>" + unique_id + "<br>" +
+            "<div style='float: right;'><b>ID: </b>" + unique_id + "<br></div>" +
             "<b>Freeze Selector: </b>" + _freeze + "<br>" +
             "<b>Trail Type: </b>" + _trail + "<br>"
         );
@@ -493,7 +496,7 @@ function loadNextTrial() {
         practice_number += 1;
         times_practiced += 1;
 
-        if (times_practiced > 5 || true) {
+        if (times_practiced > 5) {
             d3.select("#train_button").attr("disabled", null);
         }
         if (practice_number > 3)
@@ -543,7 +546,6 @@ function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m, num
 
         data[id_glob] = global_trial_id;
         data[id_uniq] = unique_id;
-        console.log(data[id_uniq]);
         data[id_file] = stream_file;
         data[id_err] = err;
         data[id_err_air] = errors_air;
@@ -563,6 +565,9 @@ function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m, num
             trialNumber = 0;
             experiment_number += 1;
         }
+
+        // experimentr.addData(data);
+        // data = {};
     }
 }
 

@@ -26,11 +26,10 @@ def createSet(repeat, timeoffset):
 	interval_size = 1000
 
 	dots_per_window = (window_size/timeoffset/interval_size)
-	print 'Dots per window of time', dots_per_window
+	# print 'Dots per window of time', dots_per_window
 
 	r2 = random.randrange(5, 16) #Approximate number of secondary goal per window
 	_r2 = r2
-	print 'Number of secondary goals', r2
 	r2 = math.floor(dots_per_window / r2)
 
 	r1 = random.randrange(math.floor(dots_per_window / 3), math.floor(dots_per_window * 2 / 3)) #Primary Goal
@@ -39,9 +38,12 @@ def createSet(repeat, timeoffset):
 	while r1 % _r2 == 0:
 		r1 = random.randrange(math.floor(dots_per_window / 3), math.floor(dots_per_window * 2 / 3)) #Primary Goal
 
-	print 'First primary goal at', r1, '\n'
+	# print 'First primary goal at', r1, '\n'
 
 	while i < repeat:
+		if (i % (dots_per_window/20) == 0):
+			r2 = random.randrange(5, 16) #Approximate number of secondary goal per window
+			r2 = math.floor(dots_per_window / r2)
 		if (i == r1 and i % r2 == 0):
 			r1 += 1
 		datum = {'id': i, 'timeoffset': round(j, 3), 'value': valueFunction(j), 'flag': flagFunction(i, r1, r2) }
