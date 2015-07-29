@@ -68,7 +68,7 @@ d3.json("data/sequence.json", function(error, data) {
     sequence = data.sequence;
 
     var n = 0;
-    //5X Technique
+    //4X Technique
     for (i = 0; i < sequence.length; i++) {
         var freezeType = sequence[i];
         //3X Trail
@@ -436,7 +436,8 @@ function createPractice() {
         .append("button")
             .attr("id", "train_button")
             .text("DONE TRAINING")
-            .attr("disabled", "disabled");
+            .attr("disabled", "disabled")
+            .style("display", "none");
 
     d3.select("#trialInfo").html("");
 
@@ -497,7 +498,9 @@ function loadNextTrial() {
         times_practiced += 1;
 
         if (times_practiced > 5) {
-            d3.select("#train_button").attr("disabled", null);
+            d3.select("#train_button")
+                .attr("disabled", null)
+                .style("display", "");
         }
         if (practice_number > 3)
             practice_number = 0;
@@ -566,8 +569,8 @@ function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m, num
             experiment_number += 1;
         }
 
-        // experimentr.addData(data);
-        // data = {};
+        experimentr.addData(data);
+        data = {};
     }
 }
 

@@ -71,7 +71,7 @@
         <input type="text" class="textfield" value="" id="acurText9" size="3" maxlength="1" name="acurText9" onkeypress="return is1to7(event)" /><br>
 
       </div>
-      <br>
+      <!-- <br>
       <div id="aclo">
         <text id="acolLabel" fill="red"><strong> Freeze Around Closest </strong></text>
         <br><img src='images/freeze_closest.png'>
@@ -104,7 +104,7 @@
         <text id="acloLabel9" fill="red">9. I would want to use this technique to select moving targets:</text>
         <input type="text" class="textfield" value="" id="acloText9" size="3" maxlength="1" name="acloText9" onkeypress="return is1to7(event)" /><br>
 
-      </div>
+      </div> -->
       <br>
       <div id="traj">
         <text id="trajLabel" fill="red"><strong> Freeze Trajectory </strong></text>
@@ -148,8 +148,8 @@
       <ul class="technique">
         <li>Whole Screen Freeze</li>
         <li>Freeze Around Cursor</li>
-        <li>Freeze Around Closest</li>
         <li>Freeze Trajectory</li>
+        <!-- <li>Freeze Around Closest</li> -->
       </ul>
 
       <style>
@@ -212,7 +212,7 @@
       <div id="favRadio">
           <input type="radio" id="f1" name="fav" value="Whole Screen Freeze"> Whole Screen Freeze <br>
           <input type="radio" id="f2" name="fav" value="Freeze Around Cursor"> Freeze Around Cursor <br>
-          <input type="radio" id="f3" name="fav" value="Freeze Around Closest"> Freeze Around Closest <br>
+          <!-- <input type="radio" id="f3" name="fav" value="Freeze Around Closest"> Freeze Around Closest <br> -->
           <input type="radio" id="f4" name="fav" value="Trajectory Freeze"> Trajectory Freeze <br>
       </div><br>
       <text id="favWhyLabel" fill="red">Please explain your why you chose this one. </text><br>
@@ -229,7 +229,7 @@
       <div id="leastRadio">
           <input type="radio" id="l1" name="least" value="Whole Screen Freeze"> Whole Screen Freeze <br>
           <input type="radio" id="l2" name="least" value="Freeze Around Cursor"> Freeze Around Cursor <br>
-          <input type="radio" id="l3" name="least" value="Freeze Around Closest"> Freeze Around Closest <br>
+          <!-- <input type="radio" id="l3" name="least" value="Freeze Around Closest"> Freeze Around Closest <br> -->
           <input type="radio" id="l4" name="least" value="Trajectory Freeze"> Trajectory Freeze <br>
       </div><br>
       <text id="leastWhyLabel" fill="red">Please explain your why you chose this one. </text><br>
@@ -297,10 +297,10 @@
       acurText[i - 1] = d3.select('#acurText' + i);
     }
 
-    var acloText = [];
-    for (i = 1; i < 10; i++) {
-      acloText[i - 1] = d3.select('#acloText' + i);
-    }
+    // var acloText = [];
+    // for (i = 1; i < 10; i++) {
+    //   acloText[i - 1] = d3.select('#acloText' + i);
+    // }
 
     var trajText = [];
     for (i = 1; i < 10; i++) {
@@ -344,10 +344,10 @@
         acur[i - 1] = acurText[i - 1].property('value');
       }
 
-      aclo = [];
-      for (i = 1; i < 10; i++) {
-        aclo[i - 1] = acloText[i - 1].property('value');
-      }
+    //   aclo = [];
+    //   for (i = 1; i < 10; i++) {
+    //     aclo[i - 1] = acloText[i - 1].property('value');
+    //   }
 
       traj = [];
       for (i = 1; i < 10; i++) {
@@ -392,12 +392,12 @@
         messageText += "<p>* Missing answers in Freeze Around Cursor section.</p>"
       }
 
-      if (!arrayHasNull(aclo)) {
-        d3.select('#acloValidate').text("");
-      } else {
-        d3.select('#acloValidate').text("* ");
-        messageText += "<p>* Missing answers in Freeze Around Closest section.</p>"
-      }
+    //   if (!arrayHasNull(aclo)) {
+    //     d3.select('#acloValidate').text("");
+    //   } else {
+    //     d3.select('#acloValidate').text("* ");
+    //     messageText += "<p>* Missing answers in Freeze Around Closest section.</p>"
+    //   }
 
       if (!arrayHasNull(traj)) {
         d3.select('#trajValidate').text("");
@@ -449,12 +449,12 @@
         messageText += "<p>* Please provide a response to question F.</p>"
       }
 
-      if(whol && acur && aclo && traj && data.favWhy && data.fav && data.leastWhy && data.least && data.feedback1 && data.feedback2) {
+      if(whol && acur && traj && data.favWhy && data.fav && data.leastWhy && data.least && data.feedback1 && data.feedback2) {
         //d3.select('#submitComments').attr('disabled', null);
         for (i = 1; i < 10; i++) {
           data["whol" + i] = whol[i - 1];
           data["acur" + i] = acur[i - 1];
-          data["aclo" + i] = aclo[i - 1];
+        //   data["aclo" + i] = aclo[i - 1];
           data["traj" + i] = traj[i - 1];
         }
         goToNext();
