@@ -301,7 +301,7 @@ function createQuestion(err, time, dis, click_period, dots_c, dots_m, nums_freez
     numpad.enter().append("rect")
         .attr("class", "numpad")
         .attr("x", function(d, i) { return width/2 - numbers.length/2 * 40 + i*40; })
-        .attr("y", height - 35*2)
+        .attr("y", height/2)
         .attr("width", 35)
         .attr("height", 35)
         .style("fill", "#E57373");
@@ -310,7 +310,7 @@ function createQuestion(err, time, dis, click_period, dots_c, dots_m, nums_freez
         .attr("class", "numpadText")
         .text(function(d, i) { return d; } )
         .attr("x", function(d, i) { return width/2 - numbers.length/2 * 40 + i*40 + 35/2; })
-        .attr("y", height - 35 - 35/4)
+        .attr("y", height/2 + 35/2 + 12/2)
         .style("fill", "#F4F4F4")
         .style("cursor", "default")
         .style("text-anchor", "middle");
@@ -324,9 +324,13 @@ function createQuestion(err, time, dis, click_period, dots_c, dots_m, nums_freez
         .style("font-size", "25")
         .style("text-anchor", "middle");
 
-    numpad.on("click.numpad", click_handler)
-
-    numpadText.on("click.numpadText", click_handler);
+    setTimeout(function() {
+        numpad
+            .style("fill", "#8BC34A")
+            .on("click.numpad", click_handler);
+        numpadText
+            .on("click.numpadText", click_handler);
+    }, 1000);
 
     function click_handler() {
         var ans = d3.select(this).data();
@@ -426,7 +430,7 @@ function createPractice() {
 
     text.html(
         "<b>Freeze Technique: </b>" + _freeze + "<br>" +
-        "<b>Trail Type: </b>" + _trail + "<br>"
+        "<b>Visual Cue: </b>" + _trail + "<br>"
     )
 
     var button = trainInfoBox.append("div")
@@ -470,7 +474,7 @@ function loadNextTrial() {
             // "<b>Trial ID: </b>" + unique_id + "<br>" +
             "<div style='float: right;'><b>ID: </b>" + unique_id + "<br></div>" +
             "<b>Freeze Selector: </b>" + _freeze + "<br>" +
-            "<b>Trail Type: </b>" + _trail + "<br>"
+            "<b>Visual Cue: </b>" + _trail + "<br>"
         );
     }
 

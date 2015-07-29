@@ -620,6 +620,7 @@ function StreamScatterPlot() {
 				.transition().duration(100).ease("exp")
 					.style("fill-opacity", 1.0)
 					.style("stroke-width", "");
+			snap.moveToFront();
 		} else {
 			pt
 				.transition().duration(0)
