@@ -301,7 +301,7 @@ function createQuestion(err, time, dis, click_period, dots_c, dots_m, nums_freez
     numpad.enter().append("rect")
         .attr("class", "numpad")
         .attr("x", function(d, i) { return width/2 - numbers.length/2 * 40 + i*40; })
-        .attr("y", height/2)
+        .attr("y", height - 35*2)
         .attr("width", 35)
         .attr("height", 35)
         .style("fill", "#E57373");
@@ -310,7 +310,7 @@ function createQuestion(err, time, dis, click_period, dots_c, dots_m, nums_freez
         .attr("class", "numpadText")
         .text(function(d, i) { return d; } )
         .attr("x", function(d, i) { return width/2 - numbers.length/2 * 40 + i*40 + 35/2; })
-        .attr("y", height/2 + 35/2 + 12/2)
+        .attr("y", height - 35 - 35/4)
         .style("fill", "#F4F4F4")
         .style("cursor", "default")
         .style("text-anchor", "middle");
