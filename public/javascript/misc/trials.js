@@ -54,9 +54,6 @@ var speed_density = [
     {"speed": "high", "density": "high"},
 ];
 
-//Shuffle trail and speed_density arrays
-shuffle(trail);
-shuffle(speed_density);
 function shuffle(o){
     for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
     return o;
@@ -72,6 +69,7 @@ d3.json("data/sequence.json", function(error, data) {
     for (i = 0; i < sequence.length; i++) {
         var freezeType = sequence[i];
         //3X Trail
+        shuffle(trail);
         for (j = 0; j < 3; j++) {
             var trailType = trail[j];
             if (freezeType == "none") {
@@ -79,6 +77,7 @@ d3.json("data/sequence.json", function(error, data) {
                 j = 4;
             }
             //2X Speed by 2X Density
+            shuffle(speed_density);
             for (k = 0; k < 4; k++) {
                 var speed = speed_density[k].speed;
                 var density = speed_density[k].density;
@@ -91,6 +90,7 @@ d3.json("data/sequence.json", function(error, data) {
             }
         }
     }
+    console.log(experiment_sequence);
     experiment_length = experiment_sequence.length;
     loadNextTrial();
 });
