@@ -449,9 +449,9 @@ function createPractice() {
         if (!first_practice) chart.destroy();
         practice = false;
         first_practice = false;
-        var t_id = worker_id + "_number_of_practice_trials_" + _freeze + "_" + _trail + "_";
+        var t_id = "number_of_practice_trials_" + _freeze + "_" + _trail + "_";
         data[t_id] = times_practiced;
-        experimentr.endTimer(worker_id + '_practice_' + _freeze + "_" + _trail);
+        experimentr.endTimer('practice_' + _freeze + "_" + _trail);
         button.on("click.train", null);
         d3.select("#trialsChart").html("");
         d3.select("#trainInfo").html("");
@@ -483,7 +483,7 @@ function loadNextTrial() {
         previousTrail = _trail;
         practice = true;
         times_practiced = 0;
-        experimentr.startTimer(worker_id + '_practice_' + _freeze + "_" + _trail);
+        experimentr.startTimer('practice_' + _freeze + "_" + _trail);
         first_practice = true;
         practice_number = Math.floor((Math.random() * 3))
         createPractice()
@@ -537,19 +537,19 @@ function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m, num
 
         var t_id = _freeze + "_" + _trail + "_" + _speed + "_" + _density + "_" + trialNumber;
 
-        var id_glob = worker_id + "_global_id_" + t_id;
-        var id_uniq = worker_id + "_unique_id_" + t_id;
-        var id_file = worker_id + "_file_" + t_id;
-        var id_err = worker_id + "_errors_" + t_id;
-        var id_err_air = worker_id + "_errors_clicked_nothing_" + t_id;
-        var id_time = worker_id + "_time_" + t_id;
-        var id_dis = worker_id + "_num_distractors_" + t_id;
-        var id_dis_ans = worker_id + "_distractors_answer_" + t_id;
-        var id_dots_c = worker_id + "_dots_clicked_" + t_id;
-        var id_dots_m = worker_id + "_dots_missed_" + t_id;
-        var id_click_period = worker_id + "_click_time_period_" + t_id;
-        var id_nums_freeze = worker_id + "_freezes_usesd_" + t_id;
-        var id_nums_cleared = worker_id + "_clears_usesd_" + t_id;
+        var id_glob = "_global_id_" + t_id;
+        var id_uniq = "_unique_id_" + t_id;
+        var id_file = "_file_" + t_id;
+        var id_err = "_errors_" + t_id;
+        var id_err_air = "_errors_clicked_nothing_" + t_id;
+        var id_time = "_time_" + t_id;
+        var id_dis = "_num_distractors_" + t_id;
+        var id_dis_ans = "_distractors_answer_" + t_id;
+        var id_dots_c = "_dots_clicked_" + t_id;
+        var id_dots_m = "_dots_missed_" + t_id;
+        var id_click_period = "_click_time_period_" + t_id;
+        var id_nums_freeze = "_freezes_usesd_" + t_id;
+        var id_nums_cleared = "_clears_usesd_" + t_id;
 
         data[id_glob] = global_trial_id;
         data[id_uniq] = unique_id;
