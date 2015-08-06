@@ -537,19 +537,19 @@ function addTrialData(err, time, dis, dis_ans, click_period, dots_c, dots_m, num
 
         var t_id = _freeze + "_" + _trail + "_" + _speed + "_" + _density + "_" + trialNumber;
 
-        var id_glob = "_global_id_" + t_id;
-        var id_uniq = "_unique_id_" + t_id;
-        var id_file = "_file_" + t_id;
-        var id_err = "_errors_" + t_id;
-        var id_err_air = "_errors_clicked_nothing_" + t_id;
-        var id_time = "_time_" + t_id;
-        var id_dis = "_num_distractors_" + t_id;
-        var id_dis_ans = "_distractors_answer_" + t_id;
-        var id_dots_c = "_dots_clicked_" + t_id;
-        var id_dots_m = "_dots_missed_" + t_id;
-        var id_click_period = "_click_time_period_" + t_id;
-        var id_nums_freeze = "_freezes_usesd_" + t_id;
-        var id_nums_cleared = "_clears_usesd_" + t_id;
+        var id_glob = "global_id_" + t_id;
+        var id_uniq = "unique_id_" + t_id;
+        var id_file = "file_" + t_id;
+        var id_err = "errors_" + t_id;
+        var id_err_air = "errors_clicked_nothing_" + t_id;
+        var id_time = "time_" + t_id;
+        var id_dis = "num_distractors_" + t_id;
+        var id_dis_ans = "distractors_answer_" + t_id;
+        var id_dots_c = "dots_clicked_" + t_id;
+        var id_dots_m = "dots_missed_" + t_id;
+        var id_click_period = "click_time_period_" + t_id;
+        var id_nums_freeze = "freezes_usesd_" + t_id;
+        var id_nums_cleared = "clears_usesd_" + t_id;
 
         data[id_glob] = global_trial_id;
         data[id_uniq] = unique_id;
