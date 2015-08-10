@@ -9,11 +9,11 @@ def main(argv):
     try:
         opts, args = getopt.getopt(argv,"h:f:",["load_file="])
     except getopt.GetoptError:
-        print 'post-process.py -f <file>'
+        print 'process.py -f <file>'
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-h':
-            print 'post-process.py -f <file>'
+            print 'process.py -f <file>'
             sys.exit()
         elif opt in ("-f", "--file"):
             load_file = arg
@@ -23,7 +23,7 @@ def main(argv):
             dataset = json.load(f)
     except:
         print 'error loading file {0}'.format(load_file)
-        print 'post-process.py -f <file>'
+        print 'process.py -f <file>'
         sys.exit(2)
 
     sequence = ["none", "FreezeTrajectory", "FreezeAroundCursor", "FreezeWholeScreen"]
@@ -101,7 +101,7 @@ def main(argv):
                 json.dump(newdata, f, indent=4, sort_keys=True)
     except:
         print 'error creating file {0}'.format(load_file)
-        print 'post-process.py -f <file>'
+        print 'process.py -f <file>'
         sys.exit(2)
 
 if __name__ == "__main__":
