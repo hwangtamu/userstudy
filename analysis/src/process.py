@@ -2,28 +2,31 @@
 import sys, getopt, json
 
 def main(argv):
-    load_file = ''
+    input_file = ''
+    output_file = ''
     # dataset = list()
 
 	#Get command line args
     try:
-        opts, args = getopt.getopt(argv,"h:f:",["load_file="])
+        opts, args = getopt.getopt(argv,"h:i:o:",["input_file=", "output_file="])
     except getopt.GetoptError:
-        print 'process.py -f <file>'
+        print 'process.py -i <input_file> -o <output_file>'
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-h':
-            print 'process.py -f <file>'
+            print 'process.py -i <input_file> -o <output_file>'
             sys.exit()
-        elif opt in ("-f", "--file"):
-            load_file = arg
+        elif opt in ("-i", "--input_file"):
+            input_file = arg
+        elif opt in ("-o", "--output_file"):
+            output_file = arg
 
     try:
-        with open(load_file, 'r') as f:
+        with open(input_file, 'r') as f:
             dataset = json.load(f)
     except:
-        print 'error loading file {0}'.format(load_file)
-        print 'process.py -f <file>'
+        print 'error loading file {0}'.format(input_file)
+        print 'process.py -i <input_file> -o <output_file>'
         sys.exit(2)
 
     sequence = ["none", "FreezeTrajectory", "FreezeAroundCursor", "FreezeWholeScreen"]
@@ -49,6 +52,11 @@ def main(argv):
                 total_times_hit_shift_key = []
                 total_times_hit_c_key = []
                 total_blue_dot_answer_distances = []
+
+                rates_clicked_red_dots = []
+                rates_clicked_anything = []
+                rates_freezed = []
+                rates_cleared = []
                 for num in nums:
                     id_string = '_' + seq + '_' + vis + '_' + sd + '_' + num
                     total_red_dots_clicked.append(int(dataset[0]['dots_clicked' + id_string]))
@@ -60,20 +68,11 @@ def main(argv):
                     total_times_hit_c_key.append(int(dataset[0]['clears_usesd' + id_string]))
                     total_blue_dot_answer_distances.append(abs(int(dataset[0]['distractors_answer' + id_string]) - int(dataset[0]['num_distractors' + id_string])))
 
-                # total_red_dots_clicked.remove(max(total_red_dots_clicked))
-                # total_red_dots_clicked.remove(min(total_red_dots_clicked))
-                # total_red_dots_gone_offscreen.remove(max(total_red_dots_gone_offscreen))
-                # total_red_dots_gone_offscreen.remove(min(total_red_dots_gone_offscreen))
-                # total_wrong_thing_clicked.remove(max(total_wrong_thing_clicked))
-                # total_wrong_thing_clicked.remove(min(total_wrong_thing_clicked))
-                # total_nothing_clicked.remove(max(total_nothing_clicked))
-                # total_nothing_clicked.remove(min(total_nothing_clicked))
-                # total_trial_time.remove(max(total_trial_time))
-                # total_trial_time.remove(min(total_trial_time))
-                # total_times_hit_shift_key.remove(max(total_times_hit_shift_key))
-                # total_times_hit_shift_key.remove(min(total_times_hit_shift_key))
-                # total_times_hit_c_key.remove(max(total_times_hit_c_key))
-                # total_times_hit_c_key.remove(min(total_times_hit_c_key))
+                    rates_clicked_red_dots.append(int(dataset[0]['dots_clicked' + id_string]) / (float(dataset[0]['time' + id_string])/1000) )
+                    rates_clicked_anything.append( (int(dataset[0]['dots_clicked' + id_string]) + int(dataset[0]['errors_clicked_nothing' + id_string]) + int(dataset[0]['errors' + id_string]) ) / (float(dataset[0]['time' + id_string])/1000) )
+                    rates_freezed.append(int(dataset[0]['freezes_usesd' + id_string]) / (float(dataset[0]['time' + id_string])/1000) )
+                    rates_cleared.append(int(dataset[0]['clears_usesd' + id_string]) / (float(dataset[0]['time' + id_string])/1000) )
+
                 total_blue_dot_answer_distances.remove(max(total_blue_dot_answer_distances))
                 total_blue_dot_answer_distances.remove(min(total_blue_dot_answer_distances))
 
@@ -86,6 +85,11 @@ def main(argv):
                 avg_times_hit_c_key = sum(total_times_hit_c_key) / len(total_times_hit_c_key)
                 avg_blue_dot_answer_distances = sum(total_blue_dot_answer_distances) / len(total_blue_dot_answer_distances)
 
+                avg_rate_clicked_red_dots = sum(rates_clicked_red_dots) / len(rates_clicked_red_dots)
+                avg_rate_clicked_anything = sum(rates_clicked_anything) / len(rates_clicked_anything)
+                avg_rate_freeze_used = sum(rates_freezed) / len(rates_freezed)
+                avg_rate_clear_used = sum(rates_cleared) / len(rates_cleared)
+
                 id_string = '_' + seq + '_' + vis + '_' + sd
                 newdata["avg_red_dots_clicked" + id_string] = avg_red_dots_clicked
                 newdata["avg_red_dots_gone_offscreen" + id_string] = avg_red_dots_gone_offscreen
@@ -96,12 +100,17 @@ def main(argv):
                 newdata["avg_times_hit_c_key" + id_string] = avg_times_hit_c_key
                 newdata["avg_blue_dot_answer_distances" + id_string] = avg_blue_dot_answer_distances
 
+                newdata["avg_rate_clicked_red_dots" + id_string] = avg_rate_clicked_red_dots
+                newdata["avg_rate_clicked_anything" + id_string] = avg_rate_clicked_anything
+                newdata["avg_rate_freeze_used" + id_string] = avg_rate_freeze_used
+                newdata["avg_rate_clear_used" + id_string] = avg_rate_clear_used
+
     try:
-        with open('processed_' + load_file, 'w') as f:
-                json.dump(newdata, f, indent=4, sort_keys=True)
+        with open(output_file, 'w') as f:
+                json.dump([newdata], f, indent=4, sort_keys=True)
     except:
-        print 'error creating file {0}'.format(load_file)
-        print 'process.py -f <file>'
+        print 'error creating file {0}'.format(output_file)
+        print 'process.py -i <input_file> -o <output_file>'
         sys.exit(2)
 
 if __name__ == "__main__":
