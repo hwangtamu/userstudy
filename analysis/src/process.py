@@ -1,10 +1,10 @@
 #!/usr/bin/python
+from __future__ import division
 import sys, getopt, json
 
 def main(argv):
     input_file = ''
     output_file = ''
-    # dataset = list()
 
 	#Get command line args
     try:
@@ -37,17 +37,17 @@ def main(argv):
     newdata = dict()
 
     #  + seq + '_' + vis + '_' + sd + '_' + num
-    # print len(dataset)
     newdata["workerId"] = dataset[0]['workerId']
     for seq in sequence:
         for vis in visual_cue:
-            if vis != "none":
-                break
             for sd in speed_density:
+                if seq == "none" and vis != "none":
+                    break
                 total_red_dots_clicked = []
                 total_red_dots_gone_offscreen = []
                 total_wrong_thing_clicked = []
                 total_nothing_clicked = []
+                total_clicks = []
                 total_trial_time = []
                 total_times_hit_shift_key = []
                 total_times_hit_c_key = []
@@ -67,6 +67,7 @@ def main(argv):
                     total_times_hit_shift_key.append(int(dataset[0]['freezes_usesd' + id_string]))
                     total_times_hit_c_key.append(int(dataset[0]['clears_usesd' + id_string]))
                     total_blue_dot_answer_distances.append(abs(int(dataset[0]['distractors_answer' + id_string]) - int(dataset[0]['num_distractors' + id_string])))
+                    total_clicks.append((int(dataset[0]['dots_clicked' + id_string]) + int(dataset[0]['errors_clicked_nothing' + id_string]) + int(dataset[0]['errors' + id_string]) ))
 
                     rates_clicked_red_dots.append(int(dataset[0]['dots_clicked' + id_string]) / (float(dataset[0]['time' + id_string])/1000) )
                     rates_clicked_anything.append( (int(dataset[0]['dots_clicked' + id_string]) + int(dataset[0]['errors_clicked_nothing' + id_string]) + int(dataset[0]['errors' + id_string]) ) / (float(dataset[0]['time' + id_string])/1000) )
@@ -80,6 +81,7 @@ def main(argv):
                 avg_red_dots_gone_offscreen = sum(total_red_dots_gone_offscreen) / len(total_red_dots_gone_offscreen)
                 avg_wrong_thing_clicked = sum(total_wrong_thing_clicked) / len(total_wrong_thing_clicked)
                 avg_nothing_clicked = sum(total_nothing_clicked) / len(total_nothing_clicked)
+                avg_total_clicks = sum(total_clicks) / len(total_clicks)
                 avg_trial_time = sum(total_trial_time) / len(total_trial_time)
                 avg_times_hit_shift_key = sum(total_times_hit_shift_key) / len(total_times_hit_shift_key)
                 avg_times_hit_c_key = sum(total_times_hit_c_key) / len(total_times_hit_c_key)
@@ -90,20 +92,36 @@ def main(argv):
                 avg_rate_freeze_used = sum(rates_freezed) / len(rates_freezed)
                 avg_rate_clear_used = sum(rates_cleared) / len(rates_cleared)
 
-                id_string = '_' + seq + '_' + vis + '_' + sd
-                newdata["avg_red_dots_clicked" + id_string] = avg_red_dots_clicked
-                newdata["avg_red_dots_gone_offscreen" + id_string] = avg_red_dots_gone_offscreen
-                newdata["avg_wrong_thing_clicked" + id_string] = avg_wrong_thing_clicked
-                newdata["avg_nothing_clicked" + id_string] = avg_nothing_clicked
-                newdata["avg_trial_time" + id_string] = avg_trial_time
-                newdata["avg_times_hit_shift_key" + id_string] = avg_times_hit_shift_key
-                newdata["avg_times_hit_c_key" + id_string] = avg_times_hit_c_key
-                newdata["avg_blue_dot_answer_distances" + id_string] = avg_blue_dot_answer_distances
+                speed_ = ''
+                density_ = ''
+                if sd == "low_low":
+                    speed_ = "slowSpeed"
+                    density_ = "lowDensity"
+                elif sd == "low_high":
+                    speed_ = "slowSpeed"
+                    density_ = "highDensity"
+                elif sd == "high_low":
+                    speed_ = "fastSpeed"
+                    density_ = "lowDensity"
+                elif sd == "high_high":
+                    speed_ = "fastSpeed"
+                    density_ = "highDensity"
 
-                newdata["avg_rate_clicked_red_dots" + id_string] = avg_rate_clicked_red_dots
-                newdata["avg_rate_clicked_anything" + id_string] = avg_rate_clicked_anything
-                newdata["avg_rate_freeze_used" + id_string] = avg_rate_freeze_used
-                newdata["avg_rate_clear_used" + id_string] = avg_rate_clear_used
+                id_string = '_' + seq + '_' + vis + '_' + speed_ + '_' + density_
+                newdata["avgRedDotsClicked" + id_string] = avg_red_dots_clicked
+                newdata["avgRedDotsGoneOffscreen" + id_string] = avg_red_dots_gone_offscreen
+                newdata["avgClickedTheWrongThing" + id_string] = avg_wrong_thing_clicked
+                newdata["avgClickedNothing" + id_string] = avg_nothing_clicked
+                newdata["avgTotalClicks" + id_string] = avg_total_clicks
+                newdata["avgTrialTimeMiliseconds" + id_string] = avg_trial_time
+                newdata["avgTimesHitShiftKey" + id_string] = avg_times_hit_shift_key
+                newdata["avgTimeHitCKey" + id_string] = avg_times_hit_c_key
+                newdata["avgBlueCountError" + id_string] = avg_blue_dot_answer_distances
+
+                newdata["avgRateInSecondsOfRedDotsClicked" + id_string] = avg_rate_clicked_red_dots
+                newdata["avgRateInSecondsOfClicking" + id_string] = avg_rate_clicked_anything
+                newdata["avgRateInSecondsOfFreezing" + id_string] = avg_rate_freeze_used
+                newdata["avgRateInSecondsOfClearing" + id_string] = avg_rate_clear_used
 
     try:
         with open(output_file, 'w') as f:
