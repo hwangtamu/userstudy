@@ -27,6 +27,8 @@ var save = function save(d) {
 var app = express()
 app.use(express.bodyParser())
 app.use(express.static(__dirname + '/public'))
+app.set('port', (process.env.PORT || 5000));
+
 
 // If the study has finished, write the data to file
 app.post('/finish', function(req, res) {
@@ -58,7 +60,6 @@ app.post('/', function handlePost(req, res) {
 })
 
 // Create the server and tell which port to listen to
-http.createServer(app).listen(app.get('port'),
-  function(){
-    console.log("Express server listening on port " + app.get('port'));
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
 });
