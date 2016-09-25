@@ -4,7 +4,6 @@
 // Example run command: `node app.js 9000 6380 true`; listen on port 9000, connect to redis on 6380, debug printing on.
 
 var express     = require('express')
-  , http        = require('http')
 
 if (process.env.REDISTOGO_URL) {
     // TODO: redistogo connection
@@ -58,6 +57,6 @@ app.post('/', function handlePost(req, res) {
 })
 
 // Create the server and tell which port to listen to
-http.createServer(app).listen(port, function (err) {
-  if (!err) console.log('Listening on port ' + port)
-})
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
+});
