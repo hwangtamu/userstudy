@@ -5,22 +5,20 @@
 
 var express     = require('express')
   , http        = require('http')
-  , redis       = require('redis')
-  , redisClient
-  , port        = process.argv[2] || 8000
-  , rport       = process.argv[3] || 6379
-  , debug       = process.argv[4] || null
 
-// Database setup
-redisClient = redis.createClient(rport)
+if (process.env.REDISTOGO_URL) {
+    // TODO: redistogo connection
+  var rtg   = require("url").parse(process.env.REDISTOGO_URL);
+  var redis = require("redis").createClient(rtg.port, rtg.hostname);
 
-redisClient.on('connect', function() {
-  console.log('Connected to redis.')
-})
+  redis.auth(rtg.auth.split(":")[1]);
+} else {
+    var redis = require("redis").createClient();
+}
 
 // Data handling
 var save = function save(d) {
-  redisClient.hmset(d.postId, d)
+  redis.hmset(d.postId, d)
   if( debug )
     console.log('saved to redis: ' + d.postId +', at: '+ (new Date()).toString())
 }
