@@ -3,10 +3,6 @@
 
 <h2>What are these trials?</h2>
 <p> Once you begin you will see dots moving across the display.  Your goal is to accurately click as many <mark id="red">red</mark> dots as possible, once a <mark id="red">red</mark> dot is clicked a new one will pop up somewhere on the screen.  You must click as many dots as you can within 5-10 seconds.  After time is up you will be prompted with a screen where you will click the number representing how many <mark id="blue">blue</mark> dots you saw on the screen right before time was up. </p>
-
-<br>
-<button id="ready_button" class="next-button" type="button">I'm Ready</button>
-
 <style>
     #red {
         color: red;
@@ -17,13 +13,68 @@
         color: blue;
         background-color: transparent;
     }
+    table {
+        border-collapse: collapse;
+        border: 2px black solid;
+        font: 12px sans-serif;
+    }
+
+    td {
+        border: 1px black solid;
+        padding: 5px;
+    }
+            
 </style>
+<body>
+<table>
+</table>
+<button id="ready_button" class="next-button" type="button">Next</button>  
+</body>
+
+
 
 <script>
 (function() {
   experimentr.hideNext();
 
   experimentr.startTimer('instructions');
+  var label = 0;
+  var table = d3.select('table')
+              .append("table")
+              .attr("class","table");
+
+  function showNext(label){
+    d3.text("data.csv", function(csvdata) {
+      var parsedCSV = d3.csv.parseRows(csvdata);
+      var filter = [parsedCSV[0]]
+      filter[0].push("match");
+      for(i=1;i<parsedCSV.length;i++){
+        if (+parsedCSV[i][1]==label){
+          parsedCSV[i].push("");
+          filter = filter.concat([parsedCSV[i]])
+        }
+      }
+          
+
+          var rows = table.selectAll("tr").data(filter);
+          console.log(rows);
+          rows.enter().append("tr")
+                .selectAll("td")
+                .data(function(d) { return d; })
+              .enter()
+                .append("td");
+
+          rows.selectAll("td")
+            .data(function(d) { return d; })
+            .text(function(d) { return d; });
+
+          rows.exit()
+            .remove();
+
+    });
+  }
+  
+
 
   function goToNext() {
     experimentr.endTimer('instructions');
@@ -32,7 +83,12 @@
 
   d3.select('#ready_button')
     .on('click', function () {
-      goToNext();
+      if (label<7){
+        showNext(label+1);
+        label = label+1;
+      }else{
+        goToNext();
+      }
     });
 }());
 </script>

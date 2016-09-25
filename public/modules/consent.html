@@ -1,65 +1,10 @@
-<h2>Selection of Streaming Data</h2>
-
-<h2>Why am I being invited to take part in a research study?</h2>
-<p>We invite you to take part in a research study because we need participants at ORNL who are willing to volunteer to help us study ways to interact with moving data as part of information visualization research.</p>
-
-<h2>What should I know about a research study?</h2>
-<p>
-    <ul>
-        <li>Someone will explain this research study to you.</li>
-        <li>Whether or not you take part is up to you.</li>
-        <li>You can choose not to take part.</li>
-        <li>You can agree to take part and later change your mind.</li>
-        <li>Your decision will not be held against you.</li>
-        <li>You can ask all the questions you want before you decide.</li>
-    </ul>
-</p>
-
-<h2>Who can I talk to?</h2>
-<p>If you have questions, concerns, or complaints, or think the research has hurt you, talk to the research team at jgoodall@ornl.gov</p>
-<p>This research has been reviewed and approved by the Oak Ridge Site-Wide Institutional Review Board (an Institutional Review Board, or “IRB”). You may talk to them at (865) 574-4359 or ORSIRB@orau.org if:</p>
-<p>
-    <ul>
-        <li>Your questions, concerns, or complaints are not being answered by the research team.</li>
-        <li>You cannot reach the research team.</li>
-        <li>You want to talk to someone besides the research team.</li>
-        <li>You have questions about your rights as a research subject.</li>
-        <li>You want to get information or provide input about this research.</li>
-    </ul>
-</p>
-
-<h2>Why is this research being done?</h2>
-<p>For information visualization applications to help people to monitor data that is constantly updating in real time, it is sometimes necessary to select moving and changing targets on the computer interface. In this research, we are designing methods that make it easier to select moving targets with the mouse cursor. We are conducting a user study to compare the effectiveness of several selection techniques.</p>
-
-<h2>How long will the research last?</h2>
-<p>You will be in this research study for no more than one hour.</p>
-
-<h2>How many people will be studied?</h2>
-<p>We expect about 100 people here will be in this research study. This will be everyone in the entire study.</p>
-
-<h2>What happens if I say yes, I want to be in this research?</h2>
-<p>We will ask you to complete a brief background questionnaire to provide some basic information about yourself. Next, we will explain a computer application and instructions for clicking on graphical objects. The study will include a series of trials that involve using the mouse to different selection methods to select target objects as they move across the screen. After these trials, we will ask you to complete a closing questionnaire and ask some final questions for your feedback. The entire session will take at most one hour.</p>
-
-<h2>What happens if I do not want to be in this research?</h2>
-<p>You can leave the research at any time and it will not be held against you.
-</p>
-
-<h2>What happens if I say yes, but I change my mind later?</h2>
-<p>You can leave the research at any time. It will not be held against you.</p>
-
-<h2>Is there any way being in this study could be bad for me?</h2>
-<p>The study involves watching moving graphics on a computer screen, moving a computer mouse, and answering questions. As a result, there are minor risks of fatigue or motion sickness. Possible symptoms may include eyestrain, headache, or nausea. If you feel any illness or discomfort during this study, please notify the experimenter. You can stop at any time. The experiment will also include break periods throughout the study to minimize risk of discomfort.</p>
-
-<h2>What happens to the information collected for the research?</h2>
-<p>Efforts will be made to limit the use and disclosure of your personal information, including research study and medical records, to people who have a need to review this information. We cannot promise complete secrecy. Organizations that may inspect and copy your information include the IRB and other representatives of this organization.</p>
-<p>We are not collecting any personally identifiable information (PII) that could potentially identify you.</p>
-
-<h2>What else do I need to know?</h2>
-<p>You will not be paid or compensated for your participation in this study. No charge code will be provided for use of your time.</p>
+<h2>Privacy Preserved Interactive Record Linkage</h2>
 
 <div id="p_id">
 </div>
-<button id="consentYes" type="button" class="start-button" disabled>I agree to participate</button>
+<input type="checkbox" id="cbox1" value=-1 > I understand and agree to participate.<br>
+
+<button id="consentYes" type="button" class="start-button" disabled>Next</button>
 
 <br>
 <p>
@@ -77,54 +22,48 @@
 <script>
 (function() {
   var data    = {}
-    , workers = null;
-
+    , workers = null
+    ,   cbox1 = d3.select('input');
   init();
+
+  cbox1.on('change',function(d){ 
+    console.log(cbox1.property("value"));
+    cbox1.property("value",-cbox1.property("value")); 
+    validate();
+  })
+  
 
   function init() {
     experimentr.hideNext();
 
-    d3.json('data/sequence.json', function(err, d) {
-      data.workerId = d.worker_id + "_" + Math.random().toString(36).substring(2, 7);
-      d3.select("#p_id").append("h3")
-        .text("Participant ID: " + d.worker_id);
-    });
+    //d3.json('data/sequence.json', function(err, d) {
+      //data.workerId = d.worker_id + "_" + Math.random().toString(36).substring(2, 7);
+      //d3.select("#p_id").append("h3")
+        //.text("Participant ID: " + d.worker_id);
+    //});
 
     var browser = get_browser_info();
+
 
     data.browserName = browser.name;
     data.browserVersion = browser.version;
 
     data.userDate = Date();
 
-    // load previous workers file
-
-    if (browser.name === "Firefox" || browser.name === "Chrome") {
-
-        d3.json('modules/blocked-workers.json', function(err, d) {
-          workers = d;
-          validate();
-        });
-
-    } else {
-        badBrowser();
-    }
+       // load previous workers file
   }
 
   function validate() {
-    if(data.workerId) {
-      if( workers.indexOf(data.workerId) == -1 ) {
-        d3.select('#consentYes').on('click', function() {
-            experimentr.addData(data);
-            experimentr.next();
-        });
-        d3.select('#consentYes').attr('disabled', null);
-      } else {
-        var messageThing = d3.select('#validateMessage');
-        messageThing.html("Uh oh. Our records show that you already attempted this study, so we cannot allow you to participate again. If you think this is an error, try the link again, or you can contact " + contactPerson + " to ask for a new code.");
-        d3.select('#consentYes').attr('disabled', 'disabled');
-      }
+    if (cbox1.property("value")==1){
+      d3.select('#consentYes').attr('disabled', null);
+      d3.select('#consentYes').on('click', function() {
+        //experimentr.addData(data);
+        experimentr.next();
+      });
+    }else{
+      d3.select('#consentYes').attr('disabled', 'disabled');
     }
+
   }
 
   function badBrowser() {
@@ -153,6 +92,5 @@
  }
 
 }());
-
 
 </script>
