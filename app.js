@@ -4,15 +4,18 @@
 // Example run command: `node app.js 9000 6380 true`; listen on port 9000, connect to redis on 6380, debug printing on.
 
 var express     = require('express')
+  , url         = require('url')
   , http        = require('http')
   , redis       = require('redis')
-  , redisClient
   , port        = process.argv[2] || 8000
   , rport       = process.argv[3] || 6379
   , debug       = process.argv[4] || null
 
+var redisURL = url.parse(process.env.REDISCLOUD_URL);
+
 // Database setup
-redisClient = redis.createClient(rport)
+var redisClient = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
+redisClient.auth(redisURL.auth.split(":")[1]);
 
 redisClient.on('connect', function() {
   console.log('Connected to redis.')
