@@ -1,19 +1,19 @@
 car_name,group,cylinders,displacement,horsepower,weight,acceleration,model_year,origin
-"chevrolet chevelle malibu",1,8,307,130,3504,12,70,1
-"buick skylark 320",1,8,350,165,3693,11.5,70,1
-"plymouth satellite",2,8,318,150,3436,11,70,1
-"chevrolet chevelle malibu",2,8,307,130,3504,12,70,1
-"buick skylark 320",3,8,350,165,3693,11.5,70,1
-"plymouth satellite",3,8,318,150,3436,11,70,1
-"chevrolet chevelle malibu",4,8,307,130,3504,12,70,1
-"buick skylark 320",4,8,350,165,3693,11.5,70,1
-"plymouth satellite",5,8,318,150,3436,11,70,1
-"chevrolet chevelle malibu",5,8,307,130,3504,12,70,1
-"buick skylark 320",5,8,350,165,3693,11.5,70,1
-"plymouth satellite",6,8,318,150,3436,11,70,1
-"chevrolet chevelle malibu",6,8,307,130,3504,12,70,1
-"buick skylark 320",6,8,350,165,3693,11.5,70,1
-"plymouth satellite",7,8,318,150,3436,11,70,1
-"chevrolet chevelle malibu",7,8,307,130,3504,12,70,1
-"buick skylark 320",7,8,350,165,3693,11.5,70,1
-"plymouth satellite",7,8,318,150,3436,11,70,1
+"chevrolet",1,8,307,130,3504,12,70,1
+"buick",1,8,350,165,3693,11.5,70,1
+"plymouth",2,8,318,150,3436,11,70,1
+"chevrolet",2,8,307,130,3504,12,70,1
+"buick",3,8,350,165,3693,11.5,70,1
+"plymouth",3,8,318,150,3436,11,70,1
+"chevrolet",4,8,307,130,3504,12,70,1
+"buick",4,8,350,165,3693,11.5,70,1
+"plymouth",5,8,318,150,3436,11,70,1
+"chevrolet",5,8,307,130,3504,12,70,1
+"buick",5,8,350,165,3693,11.5,70,1
+"plymouth",6,8,318,150,3436,11,70,1
+"chevrolet",6,8,307,130,3504,12,70,1
+"buick",6,8,350,165,3693,11.5,70,1
+"plymouth",7,8,318,150,3436,11,70,1
+"chevrolet",7,8,307,130,3504,12,70,1
+"buick",7,8,350,165,3693,11.5,70,1
+"plymouth",7,8,318,150,3436,11,70,1
