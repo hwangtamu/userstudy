@@ -2,6 +2,7 @@
 <p>Hello, for the next while you will be completing some trials.</p>
 
 <h2>What are these trials?</h2>
+
 <style>
     #red {
         color: red;
@@ -13,13 +14,13 @@
         background-color: transparent;
     }
     table {
-        border-collapse: collapse;
-        border: 2px black solid;
+        border: 0;
         font: 12px sans-serif;
+        border-collapse:collapse; 
     }
 
     td {
-        border: 1px black solid;
+        border: 0;
         padding: 5px;
     }
             
@@ -41,27 +42,52 @@
   var table = d3.select('table')
               .append("table")
               .attr("class","table");
-
+  var group = [];
+  parsing();
+  function parsing(){
+    d3.text("data.csv",function(csvdata){
+      var groups = {};
+        var parsedCSV = d3.csv.parseRows(csvdata);
+        for(i=1;i<parsedCSV.length;i++){
+          if (!(parsedCSV[i][1] in groups)){
+            groups[parsedCSV[i][1]] = [parsedCSV[i]];
+          }else{
+            groups[parsedCSV[i][1]] = groups[parsedCSV[i][1]].concat([parsedCSV[i]]);
+          }
+        }
+        var values = Object.keys(groups).map(function(key){return groups[key];}); 
+        var binary = values.filter(function(d){return d.length==2;});
+        var other = values.filter(function(d){return d.length>2;});
+        group = [binary].concat(other);
+      });
+  }
   function showNext(label){
     d3.text("data.csv", function(csvdata) {
       var parsedCSV = d3.csv.parseRows(csvdata);
-      var filter = [parsedCSV[0]]
+      var filter = [parsedCSV[0]];
+      var tmp = [];
       filter[0].push("match");
-      for(i=1;i<parsedCSV.length;i++){
-        if (+parsedCSV[i][1]==label){
-          parsedCSV[i].push("");
-          filter = filter.concat([parsedCSV[i]])
+      if (label==0){
+        for (i=0;i<group[label].length;i++){
+          filter = filter.concat(group[label][i]);
+          filter = filter.concat([[""],[""]]);
+        }
+      }else{
+        for (i=0;i<group[label].length-1;i++){
+          filter = filter.concat([group[label][0],group[label][i+1]]);
+          filter = filter.concat([[""],[""]]);
         }
       }
           
 
           var rows = table.selectAll("tr").data(filter);
-          console.log(rows);
           rows.enter().append("tr")
                 .selectAll("td")
                 .data(function(d) { return d; })
               .enter()
-                .append("td");
+                .append("td")
+                .on('mouseover', function(){if (this.innerHTML != ""){d3.select(this).style('background-color', 'gray');}})
+                .on('mouseout', function(){if (this.innerHTML !=""){d3.select(this).style('background-color', 'white');}})
 
           rows.selectAll("td")
             .data(function(d) { return d; })
@@ -82,8 +108,8 @@
 
   d3.select('#ready_button')
     .on('click', function () {
-      if (label<7){
-        showNext(label+1);
+      if (label<group.length){
+        showNext(label);
         label = label+1;
       }else{
         goToNext();
