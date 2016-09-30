@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 Group,First name,Last name,Race,Gender,Reg No.,Date_of_birth,
-=======
-Group,First name,Last name,Race,Gender,Reg No.,Date of birth,
->>>>>>> origin/master
 1,AALITA,BROWN,A,F,99980278,23-01-74,
 1,ADALITA,BROWN,A,,99980278,23-01-74,
 2,AARO,FORESTER,W,M,99964378,29-11-73,
@@ -143,8 +139,4 @@ Group,First name,Last name,Race,Gender,Reg No.,Date of birth,
 63,AZAM,KHAN,A,M,100175108,04-11-89,
 63,AZAM,KHAN,A,M,100175108,04-11-88,
 64,ANGELA,BIALIS,W,M,1000252308,31-07-75,
-<<<<<<< HEAD
 64,ANGEO,BIALIS,W,F,100252308,31-07-75,
-=======
-64,ANGEO,BIALIS,W,F,100252308,31-07-75,
->>>>>>> origin/master

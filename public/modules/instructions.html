@@ -15,11 +15,7 @@
     }
     table {
         border: 0;
-<<<<<<< HEAD
         font: 14px sans-serif;
-=======
-        font: 12px sans-serif;
->>>>>>> origin/master
         border-collapse:collapse; 
     }
 
@@ -51,7 +47,6 @@
 
   
   function parsing(){
-<<<<<<< HEAD
     d3.text("data_.csv",function(csvdata){
       var groups = {};
         var parsedCSV = d3.csv.parseRows(csvdata);
@@ -60,16 +55,6 @@
             groups[parsedCSV[i][0]] = [parsedCSV[i]];
           }else{
             groups[parsedCSV[i][0]] = groups[parsedCSV[i][0]].concat([parsedCSV[i]]);
-=======
-    d3.text("data.csv",function(csvdata){
-      var groups = {};
-        var parsedCSV = d3.csv.parseRows(csvdata);
-        for(i=1;i<parsedCSV.length;i++){
-          if (!(parsedCSV[i][1] in groups)){
-            groups[parsedCSV[i][1]] = [parsedCSV[i]];
-          }else{
-            groups[parsedCSV[i][1]] = groups[parsedCSV[i][1]].concat([parsedCSV[i]]);
->>>>>>> origin/master
           }
         }
         var values = Object.keys(groups).map(function(key){return groups[key];}); 
@@ -83,28 +68,16 @@
       var parsedCSV = d3.csv.parseRows(csvdata);
       var raw = [parsedCSV[0]];
       var tmp = [];
-<<<<<<< HEAD
       raw[0].push('Match');
       if (label==0){
         for (i=0;i<group[label].length;i++){
           raw = raw.concat(group[label][i]);
           raw = raw.concat([[" "],[" "]]);
-=======
-      raw[0].push('match');
-      if (label==0){
-        for (i=0;i<group[label].length;i++){
-          raw = raw.concat(group[label][i]);
-          raw = raw.concat([[""],[""]]);
->>>>>>> origin/master
         }
       }else{
         for (i=0;i<group[label].length-1;i++){
           raw = raw.concat([group[label][0],group[label][i+1]]);
-<<<<<<< HEAD
           raw = raw.concat([[" "],[" "]]);
-=======
-          raw = raw.concat([[""],[""]]);
->>>>>>> origin/master
         }
       }
 
@@ -142,8 +115,6 @@
             .on("click", function(d){ console.log(d);}); 
 
           var level = ["Very Confident", "Moderate", "Not Sure"], 
-
-<<<<<<< HEAD
           var buttons = rows.selectAll("td.button");
           //console.log(buttons[1].parentNode.nextSibling); 
 
@@ -197,22 +168,6 @@
           //console.log(even);
           rows.exit()
               .remove();
-=======
-             labels = rows.selectAll("label")
-            .data(level)
-            .enter()
-            .append("label")
-            .filter(function(d){if(this.parentNode.nextSibling){ return !this.parentNode.nextSibling.firstChild.innerHTML && this.parentNode.firstChild.innerHTML;}})
-            .text(function(d) {return d;})
-            .insert("input")
-            .attr({
-                type: "radio",
-                class: "shape",
-                name: "mode",
-                value: function(d, i) {return i;}
-            });
->>>>>>> origin/master
-
     });
   }
   
