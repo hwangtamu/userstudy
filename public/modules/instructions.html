@@ -107,7 +107,7 @@
             .attr("class", "button")
             .append("button")
             .text(function(d){return d;})            
-            .on("click", function(d){ console.log(this.parentNode);});
+            .on("click", function(d){ console.log(this.parentNode.parentNode.innerHTML, Date.now());});
 
           buttons.data(level)
             .enter()
@@ -116,35 +116,12 @@
             .attr("class", "button")
             .append("button")
             .text(function(d){return d;})            
-            .on("click", function(d){ console.log(this.parentNode);});
-          //console.log(table.selectAll("td"));
+            .on("click", function(d){ console.log(this.parentNode.parentNode.innerHTML, Date.now());});
           table.selectAll("td").filter(function(d){return this.cellIndex>7 && this.innerHTML==""}).remove();
-          //table.selectAll("tr")
-            //.filter(function(d){ return d.length===8;})
-            //.append("form");
+          table.selectAll("td").filter(function(d){return this.cellIndex<7 && this.parentNode.firstChild.innerHTML!=" "})
+               .style("border","1px solid #000");
 
-          //var upper = d3.selectAll("tr").filter(function(d, i) { return i % 4 ===1 ;})
-          //upper.data(function(d){return [d];})
-               //.enter()
-                 //.append("form")
-                 //.selectAll("input")
-                 //.data(choice)
-                 //.attr("class","button")
-                 //.append("button")
-                 //.text(function(d){return d;})
-                 //.on("click",function(d){console.log(d);});
-          //console.log(upper);
-          //var lower = d3.selectAll("tr").filter(function(d, i) { return i % 4 ===2 ;});
-          //lower.data(level)
-               //.enter()
-                 //.append("td")
-                 //.enter()
-                 //.attr("class","button")
-                 //.append("button")
-                 //.text(function(d){return d;})
-                 //.on("click",function(d){console.log(d);});
           console.log(table.selectAll("tr"));
-          //console.log(even);
           rows.exit()
               .remove();
 
