@@ -87,8 +87,8 @@
                 .data(function(d) { return d; })
               .enter()
                 .append("td")
-                .on('mouseover', function(){if (this.innerHTML != ""){d3.select(this).style('background-color', 'gray');}})
-                .on('mouseout', function(){if (this.innerHTML !=""){d3.select(this).style('background-color', 'white');}})
+                .on('mouseover', function(){if (this.innerHTML != "" && this.innerHTML !=" "){d3.select(this).style('background-color', 'gray');}})
+                .on('mouseout', function(){if (this.innerHTML !="" && this.innerHTML !=" "){d3.select(this).style('background-color', 'white');}})
           
           rows.selectAll("td")
             .data(function(d) { return d; })
@@ -143,7 +143,7 @@
                  //.append("button")
                  //.text(function(d){return d;})
                  //.on("click",function(d){console.log(d);});
-          //console.log(table);
+          console.log(table.selectAll("tr"));
           //console.log(even);
           rows.exit()
               .remove();
