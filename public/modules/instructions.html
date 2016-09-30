@@ -93,28 +93,7 @@
           rows.selectAll("td")
             .data(function(d) { return d; })
             .text(function(d) { return d; });
-          var buttons = rows.selectAll("td.button");
-          //console.log(buttons[1].parentNode.nextSibling); 
-          console.log(raw);
-          buttons.data(function(d) {return [d];})
-            .enter()
-            .append("td")
-            .filter(function(d){ if(this.parentNode.nextSibling){ return this.parentNode.nextSibling.firstChild.innerHTML && d.length===9;}})
-            .attr("class", "button")
-            .append("button")
-            .text("Yes")            
-            .on("click", function(d){ console.log(d);});
-          buttons.data(function(d) {return [d];})
-            .enter()
-            .append("td")
-            .filter(function(d){ if(this.parentNode.nextSibling){ return this.parentNode.nextSibling.firstChild.innerHTML && d.length===9;}})
-            .append("td")
-            .attr("class", "button")
-            .append("button")
-            .text("No")            
-            .on("click", function(d){ console.log(d);}); 
 
-          var level = ["Very Confident", "Moderate", "Not Sure"], 
           var buttons = rows.selectAll("td.button");
           //console.log(buttons[1].parentNode.nextSibling); 
 
@@ -168,6 +147,7 @@
           //console.log(even);
           rows.exit()
               .remove();
+
     });
   }
   
