@@ -146,8 +146,8 @@
 
     //Confidence
     buttons.append("svg:image").attr("xlink:href","/resources/small.png").attr("class","xs").attr("x",90).attr("y",40).attr("width",30).attr("height",30)
-      .on("mouseover",function(d){d3.select(this).attr("x",85).attr("y",40).attr("width",40).attr("height",40);})
-      .on("mouseout",function(d){d3.select(this).attr("x",90).attr("y",45).attr("width",30).attr("height",30);})
+      .on("mouseover",function(d){d3.select(this).attr("x",85).attr("y",35).attr("width",40).attr("height",40);})
+      .on("mouseout",function(d){d3.select(this).attr("x",90).attr("y",40).attr("width",30).attr("height",30);})
       .on("click",function(d){
         buttons.select(".m").attr("opacity",0.2);        
         buttons.select(".xl").attr("opacity",0.2);
@@ -155,8 +155,8 @@
         console.log(k,"S",Date.now());
       });
     buttons.append("svg:image").attr("xlink:href","/resources/medium.png").attr("class","m").attr("x",125).attr("y",40).attr("width",30).attr("height",30)
-      .on("mouseover",function(d){d3.select(this).attr("x",120).attr("y",40).attr("width",40).attr("height",40);})
-      .on("mouseout",function(d){d3.select(this).attr("x",125).attr("y",45).attr("width",30).attr("height",30);})
+      .on("mouseover",function(d){d3.select(this).attr("x",120).attr("y",35).attr("width",40).attr("height",40);})
+      .on("mouseout",function(d){d3.select(this).attr("x",125).attr("y",40).attr("width",30).attr("height",30);})
       .on("click",function(d){
         buttons.select(".xs").attr("opacity",0.2);
         buttons.select(".xl").attr("opacity",0.2);
@@ -164,8 +164,8 @@
         console.log(k,"M",Date.now());
       });
     buttons.append("svg:image").attr("xlink:href","/resources/large.png").attr("class","xl").attr("x",160).attr("y",40).attr("width",30).attr("height",30)
-      .on("mouseover",function(d){d3.select(this).attr("x",155).attr("y",40).attr("width",40).attr("height",40);})
-      .on("mouseout",function(d){d3.select(this).attr("x",160).attr("y",45).attr("width",30).attr("height",30);})
+      .on("mouseover",function(d){d3.select(this).attr("x",155).attr("y",35).attr("width",40).attr("height",40);})
+      .on("mouseout",function(d){d3.select(this).attr("x",160).attr("y",40).attr("width",30).attr("height",30);})
       .on("click",function(d){
         buttons.select(".xs").attr("opacity",0.2);
         buttons.select(".m").attr("opacity",0.2);
