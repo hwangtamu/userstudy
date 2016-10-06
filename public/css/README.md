@@ -1,42 +1,49 @@
-## CSS References.
+Privacy Preserved Interactive Record Linkage
+================
 
-### Charts
+This is based on [experimentr](https://github.com/codementum/experimentr), a hosting/data-collection backend and module-based frontend for web-based visualization studies.
 
-```
-.point //Data point on chart
-//NOTE primary and secondary class are defined by JSON flag
-.primary.point //Primary target
-.secondary.point //Secondary target
-.point.target //Targeted point
-#StreamScatterPlotClip //clip used by scatter plot
-```
+## Installation
 
-### Cursor Selectors
+* Install [nodejs](http://nodejs.org/download/)
+* Install [redis](http://redis.io/download)
+* Install [python 2.7](https://www.python.org/download/releases/2.7)
+* Install node modules:  `npm install`
 
-```
-.bubble cursor //Bubble cursor region
-.bubble cursrMorph //Bubble cursor's morph region that envelopes targets
-?.target //Target obtained by cursor selector
-```
+## Usage
 
-### Freeze Selectors
+Start redis:
 
-```
-.freezeRegion //The continous freeze region overlay
-.click.freezeRegion //The freeze region overlay set by clicking
+    redis-server redis.conf
 
-.snapshot //'Frozen' copy of data captured by freeze region
-.snapshot.target //Targeted snapshot
-#untagged //Data that's been untagged by freeze region
-#tagged //Data that's been tagged by freeze region
+Run the server:
 
-#freezeClip //clip used by freeze regions
-```
+    node app.js
 
-### Misc
+Then access the page at [localhost:8000](http://localhost:8000).
 
-```
-.trail //Optional trails on snapshots
-.trail.target //Targeted trail
-#targettrail //target trail
-```
+## Task List
+* get ruby code to link two datasets
+*
+
+## Analysis
+
+Read README.md in analysis and public/data for further usage.
+
+## Subject Testing
+Before Study
+
+Consent Page
+
+Background Questionnaire Page
+
+
+Trials
+
+Post Survey
+
+
+After Testing
+1. Consult analysis/readme.md and public/data/readme.md
+
+# userstudy
