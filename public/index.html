@@ -1,171 +1,52 @@
-<h1>Instructions</h1>
-<p>Hello, for the next while you will be completing some trials.</p>
+<meta charset="utf-8">
+<title>Privacy Preserverd Interactive Record Linkage</title>
 
-<h2>What are these trials?</h2>
+<!-- Load CSS -->
+<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+
+<!-- Load Source Scripts -->
+<script src="components/d3js/d3.v3.min.js"></script>
+<script src="javascript/misc/jquery.min.js"></script>
+<script src="javascript/misc/jquery-ui.js"></script>
+<script src="javascript/misc/experimentr.js"></script>
 
 <style>
-    #red {
-        color: red;
-        background-color: transparent;
+    * {
+        color: #333;
+        font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
     }
 
-    #blue {
-        color: blue;
-        background-color: transparent;
-    }
-    table {
-        border: 0;
-        font: 14px sans-serif;
-        border-collapse:collapse; 
+    body {
+        /*margin: 1em auto auto 1em;*/
+        margin: 0 auto;
+        width: 80%;
     }
 
-    td {
-        border: 0;
-        padding: 5px;
+    #experimentr {
+        margin: 1em auto auto 1em;
+        /*width: 720px;*/
     }
-            
+    #control {
+        margin-top: 1em;
+    }
+    #next-button {
+        float: left;
+    }
+
+    /*.placeholder {
+        color: #7A378B;
+        font-weight: bold;
+        text-decoration: underline;
+    }*/
 </style>
-<body>
-<table>
-</table>
-<button id="ready_button" class="next-button" type="button">Next</button>  
-</body>
 
-
+<body></body>
 
 <script>
-(function() {
-  experimentr.hideNext();
-
-  experimentr.startTimer('instructions');
-  var label = 0;
-  var table = d3.select('table')
-              .append("table")
-              .attr("class","table");
-  var group = [];
-  parsing();
-
-  
-  function parsing(){
-    d3.text("data_.csv",function(csvdata){
-      var groups = {};
-        var parsedCSV = d3.csv.parseRows(csvdata);
-        for(i=1;i<parsedCSV.length;i++){
-          if (!(parsedCSV[i][0] in groups)){
-            groups[parsedCSV[i][0]] = [parsedCSV[i]];
-          }else{
-            groups[parsedCSV[i][0]] = groups[parsedCSV[i][0]].concat([parsedCSV[i]]);
-          }
-        }
-        var values = Object.keys(groups).map(function(key){return groups[key];}); 
-        var binary = values.filter(function(d){return d.length==2;});
-        var other = values.filter(function(d){return d.length>2;});
-        group = [binary].concat(other);
-      });
-  }
-  function showNext(label){
-    d3.text("data_.csv", function(csvdata) {
-      var parsedCSV = d3.csv.parseRows(csvdata);
-      var raw = [parsedCSV[0]];
-      var tmp = [];
-      raw[0].push('Match');
-      if (label==0){
-        for (i=0;i<group[label].length;i++){
-          raw = raw.concat(group[label][i]);
-          raw = raw.concat([[" "],[" "]]);
-        }
-      }else{
-        for (i=0;i<group[label].length-1;i++){
-          raw = raw.concat([group[label][0],group[label][i+1]]);
-          raw = raw.concat([[" "],[" "]]);
-        }
-      }
-
-          var rows = table.selectAll("tr").data(raw);
-          rows.enter().append("tr")
-                .selectAll("td")
-                .data(function(d) { return d; })
-              .enter()
-                .append("td")
-                .on('mouseover', function(){if (this.innerHTML != ""){d3.select(this).style('background-color', 'gray');}})
-                .on('mouseout', function(){if (this.innerHTML !=""){d3.select(this).style('background-color', 'white');}})
-          
-          rows.selectAll("td")
-            .data(function(d) { return d; })
-            .text(function(d) { return d; });
-
-          var buttons = rows.selectAll("td.button");
-          //console.log(buttons[1].parentNode.nextSibling); 
-
-          var choice = ["Yes", "No"];
-          var level = ["Very Confident", "Moderate", "Not Sure"]; 
-
-          buttons.data(choice)
-            .enter()
-            .append("td")
-            .filter(function(d){if(this.parentNode.nextSibling){return +(this.parentNode.firstChild.innerHTML) && +(this.parentNode.nextSibling.firstChild.innerHTML); }})
-            .attr("class", "button")
-            .append("button")
-            .text(function(d){return d;})            
-            .on("click", function(d){ console.log(this.parentNode);});
-
-          buttons.data(level)
-            .enter()
-            .append("td")
-            .filter(function(d){if(this.parentNode.nextSibling){return +(this.parentNode.firstChild.innerHTML) && !+(this.parentNode.nextSibling.firstChild.innerHTML); }})            
-            .attr("class", "button")
-            .append("button")
-            .text(function(d){return d;})            
-            .on("click", function(d){ console.log(this.parentNode);});
-          //console.log(table.selectAll("td"));
-          table.selectAll("td").filter(function(d){return this.cellIndex>6 && this.innerHTML==""}).remove();
-          //table.selectAll("tr")
-            //.filter(function(d){ return d.length===8;})
-            //.append("form");
-
-          //var upper = d3.selectAll("tr").filter(function(d, i) { return i % 4 ===1 ;})
-          //upper.data(function(d){return [d];})
-               //.enter()
-                 //.append("form")
-                 //.selectAll("input")
-                 //.data(choice)
-                 //.attr("class","button")
-                 //.append("button")
-                 //.text(function(d){return d;})
-                 //.on("click",function(d){console.log(d);});
-          //console.log(upper);
-          //var lower = d3.selectAll("tr").filter(function(d, i) { return i % 4 ===2 ;});
-          //lower.data(level)
-               //.enter()
-                 //.append("td")
-                 //.enter()
-                 //.attr("class","button")
-                 //.append("button")
-                 //.text(function(d){return d;})
-                 //.on("click",function(d){console.log(d);});
-          //console.log(table);
-          //console.log(even);
-          rows.exit()
-              .remove();
-
-    });
-  }
-  
-
-
-  function goToNext() {
-    experimentr.endTimer('instructions');
-    experimentr.next();
-  }
-
-  d3.select('#ready_button')
-    .on('click', function () {
-      if (label<group.length){
-        showNext(label);
-        label = label+1;
-      }else{
-        goToNext();
-      }
-    });
-}());
+experimentr.sequence([
+  'modules/consent.html',
+  'modules/background.html',
+  'modules/demo.html',
+  'modules/end.html'
+]).start();
 </script>

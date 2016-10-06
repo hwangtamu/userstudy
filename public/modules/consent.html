@@ -23,7 +23,9 @@
 (function() {
   var data    = {}
     , workers = null
-    ,   cbox1 = d3.select('input');
+    ,   cbox1 = d3.select('input')
+    ,       w = 0
+    ,       h = 0;
   init();
 
   cbox1.on('change',function(d){ 
@@ -32,6 +34,11 @@
     validate();
   })
   
+  function load(){
+    w = $(window).width();
+    h = $(window).height();
+    console.log(w,h);
+  }
 
   function init() {
     experimentr.hideNext();
@@ -44,12 +51,12 @@
 
     var browser = get_browser_info();
 
-
+    console.log(browser);
     data.browserName = browser.name;
     data.browserVersion = browser.version;
 
     data.userDate = Date();
-
+    load();
        // load previous workers file
   }
 

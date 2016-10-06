@@ -1,0 +1,294 @@
+<h1>Instructions</h1>
+<p>Hello, for the next while you will be completing some trials.</p>
+
+<h2>What are these trials?</h2>
+
+<style>
+    #red {
+        color: red;
+        background-color: transparent;
+    }
+
+    #blue {
+        color: blue;
+        background-color: transparent;
+    }
+    table {
+        border: 0;
+        font: 14px sans-serif;
+        border-collapse:collapse; 
+    }
+
+    td {
+        border: 0;
+        padding: 5px;
+    }
+    
+</style>
+<body>
+<button id="ready_button" class="next-button" type="button">Next</button>
+</body>
+
+
+
+<script>
+(function() {
+  experimentr.hideNext();
+
+  experimentr.startTimer('instructions');
+  var label = 0;
+  var table = d3.select('table')
+              .append("table")
+              .attr("class","table");
+  var group = [];
+  var svg = d3.select("body").append("svg")
+            .attr("width", 960)
+            .attr("height", 2000);
+  var cwidth = [60,90,140,50,60,90,90]; //580
+  parsing();
+
+  
+  function parsing(){
+    d3.text("data_.csv",function(csvdata){
+      var groups = {};
+        var parsedCSV = d3.csv.parseRows(csvdata);
+        for(i=1;i<parsedCSV.length;i++){
+          if (!(parsedCSV[i][0] in groups)){
+            groups[parsedCSV[i][0]] = [parsedCSV[i]];
+          }else{
+            groups[parsedCSV[i][0]] = groups[parsedCSV[i][0]].concat([parsedCSV[i]]);
+          }
+        }
+        var values = Object.keys(groups).map(function(key){return groups[key];}); 
+        var raw_binary = values.filter(function(d){return d.length==2;});
+        var binary = [];
+        var other = [];
+        var tmp = [];
+        for(i=0;i<raw_binary.length;i++){
+          if(tmp.length===5 || i===raw_binary.length-1){
+            binary.push(tmp);
+            tmp = [];
+          }else{
+            tmp.push(raw_binary[i]);
+          }
+        }
+        var tmp = values.filter(function(d){return d.length>2;});
+        for(i=0;i<tmp.length;i++){
+          var t = [];
+          for(j=0;j<tmp[i].length/2;j++){
+            t.push([tmp[i][j],tmp[i][j+1]]);
+          }
+          other.push(t);
+        }
+        group = binary.concat(other);
+        console.log(group);
+      });
+  }
+
+  function block(k,data){
+    var g = svg.append("g")
+      .attr("transform","translate(0,"+100*k+")");
+    for(j=0;j<21;j++){
+      var cell = g.append("g")
+        .attr("transform","translate("+cwidth.slice(0,j%7).reduce(function(a, b){return a+b;},0)+","+30*Math.floor(j/7)+")");
+      cell.append("rect")
+      .attr("x",1)
+      .attr("y",0)
+      .attr("width",cwidth[j%7]-2)
+      .attr("height",25)
+      .style("fill",function(d){return j<7 ? "blue" : "green";})
+      .style("opacity",function(d){return j<7 ? 0.5 : 0.75;});
+      cell.append("text")
+      .attr("x",cwidth[j%7]/2)
+      .attr("y",18)
+      .attr("text-anchor","middle")
+      .style("font","14px sans-serif")
+      .style("font-weight", function(d) { return j<7 ? "bold" : ""; })
+      .text(data[j])
+      .on('mouseover', function(d){if(data.indexOf(this.textContent)>6){
+        var indice = $(this.parentNode).parent().children().index(this.parentNode)%7;
+        var rect = d3.select(this.parentNode).select("rect");
+        rect.attr("x",1-0.1*(cwidth[indice]-2)).attr("y",-5).attr("width",(cwidth[indice]-2)*1.2).attr("height",35).style("opacity",1.0);
+        d3.select(this).style('font-size', '18px');
+        }})
+      .on('mouseout', function(d){if(data.indexOf(this.textContent)>6){
+        var indice = $(this.parentNode).parent().children().index(this.parentNode)%7;
+        var rect = d3.select(this.parentNode).select("rect");
+        rect.attr("x",1).attr("y",0).attr("width",cwidth[indice]-2).attr("height",25).style("opacity",0.75);
+        d3.select(this).style('font-size', '14px');
+        }})
+      .on('click',function(d){if(data.indexOf(this.textContent)>6){console.log(d3.select(this)[0][0].innerHTML,Date.now());}});
+    }
+    // add buttons
+    var buttons = g.append("g")
+    .attr("transform","translate(600,0)");
+    buttons.append("rect").attr("x",0).attr("y",0).attr("width",200).attr("height",85).style("fill","purple").style("opacity",0.5);
+    buttons.append("text").attr("x",40).attr("y",18).attr("text-anchor","middle").style("font","14px sans-serif").style("font-weight", "bold").text("Match?");
+    buttons.append("text").attr("x",140).attr("y",18).attr("text-anchor","middle").style("font","14px sans-serif").style("font-weight", "bold").text("Confidence");
+    //Yes
+    buttons.append("svg:image").attr("xlink:href","/resources/yes.png").attr("class","yes").attr("x",10).attr("y",40).attr("width",30).attr("height",30)
+      .on("mouseover",function(d){d3.select(this).attr("x",5).attr("y",35).attr("width",40).attr("height",40);})
+      .on("mouseout",function(d){d3.select(this).attr("x",10).attr("y",40).attr("width",30).attr("height",30);})
+      .on("click",function(d){
+        buttons.select(".no").attr("opacity",0.2);
+        d3.select(this).attr("opacity",1);
+        console.log(k,"Yes",Date.now());
+      });
+    //No
+    buttons.append("svg:image").attr("xlink:href","/resources/no.png").attr("class","no").attr("x",45).attr("y",40).attr("width",30).attr("height",30)
+      .on("mouseover",function(d){d3.select(this).attr("x",40).attr("y",35).attr("width",40).attr("height",40);})
+      .on("mouseout",function(d){d3.select(this).attr("x",45).attr("y",40).attr("width",30).attr("height",30);})
+      .on("click",function(d){
+        buttons.select(".yes").attr("opacity",0.2);
+        d3.select(this).attr("opacity",1);
+        console.log(k,"No",Date.now());
+      });
+
+    //Confidence
+    buttons.append("svg:image").attr("xlink:href","/resources/small.png").attr("class","xs").attr("x",90).attr("y",40).attr("width",30).attr("height",30)
+      .on("mouseover",function(d){d3.select(this).attr("x",85).attr("y",40).attr("width",40).attr("height",40);})
+      .on("mouseout",function(d){d3.select(this).attr("x",90).attr("y",45).attr("width",30).attr("height",30);})
+      .on("click",function(d){
+        buttons.select(".m").attr("opacity",0.2);        
+        buttons.select(".xl").attr("opacity",0.2);
+        d3.select(this).attr("opacity",1);
+        console.log(k,"S",Date.now());
+      });
+    buttons.append("svg:image").attr("xlink:href","/resources/medium.png").attr("class","m").attr("x",125).attr("y",40).attr("width",30).attr("height",30)
+      .on("mouseover",function(d){d3.select(this).attr("x",120).attr("y",40).attr("width",40).attr("height",40);})
+      .on("mouseout",function(d){d3.select(this).attr("x",125).attr("y",45).attr("width",30).attr("height",30);})
+      .on("click",function(d){
+        buttons.select(".xs").attr("opacity",0.2);
+        buttons.select(".xl").attr("opacity",0.2);
+        d3.select(this).attr("opacity",1);
+        console.log(k,"M",Date.now());
+      });
+    buttons.append("svg:image").attr("xlink:href","/resources/large.png").attr("class","xl").attr("x",160).attr("y",40).attr("width",30).attr("height",30)
+      .on("mouseover",function(d){d3.select(this).attr("x",155).attr("y",40).attr("width",40).attr("height",40);})
+      .on("mouseout",function(d){d3.select(this).attr("x",160).attr("y",45).attr("width",30).attr("height",30);})
+      .on("click",function(d){
+        buttons.select(".xs").attr("opacity",0.2);
+        buttons.select(".m").attr("opacity",0.2);
+        d3.select(this).attr("opacity",1);
+        console.log(k,"L",Date.now());
+      });
+
+
+  }
+  function showNext(label){
+    d3.text("data_.csv", function(csvdata) {
+      var parsedCSV = d3.csv.parseRows(csvdata);
+      var title = parsedCSV[0];
+      for (i=0;i<group[label].length;i++){
+        block(i,(title.slice(0,7).concat(group[label][i][0].slice(0,7))).concat(group[label][i][1].slice(0,7)));
+      }
+/*    
+      raw[0].push('Match');
+      for (i=0;i<group[label].length;i++){
+        raw = raw.concat(group[label][i]);
+        raw = raw.concat([[" "],[" "]]);
+      }
+
+      var rows = table.selectAll("tr").data(raw);
+      rows.enter().append("tr")
+            .selectAll("td")
+            .data(function(d) { return d; })
+          .enter()
+            .append("td")
+            .on('mouseover', function(){if (this.innerHTML != "" && this.innerHTML !=" "){d3.select(this).style('background-color', 'gray');}})
+            .on('mouseout', function(){if (this.innerHTML !="" && this.innerHTML !=" "){d3.select(this).style('background-color', 'white');}})
+      
+      rows.selectAll("td")
+        .data(function(d) { return d; })
+        .text(function(d) { return d; });
+
+      var buttons = rows.selectAll("td.button");
+      //console.log(buttons[1].parentNode.nextSibling); 
+
+      var choice = ["Yes", "No"];
+      var level = ["Very Confident", "Moderate", "Not Sure"]; 
+
+      buttons.data(choice)
+        .enter()
+        .append("td")
+        .filter(function(d){if(this.parentNode.nextSibling){return +(this.parentNode.firstChild.innerHTML) && +(this.parentNode.nextSibling.firstChild.innerHTML); }})
+        .attr("class", "button")
+        .append("button")
+        .text(function(d){return d;})            
+        .on("click", function(d){ console.log(this.parentNode.parentNode.innerHTML, Date.now());});
+
+      buttons.data(level)
+        .enter()
+        .append("td")
+        .filter(function(d){if(this.parentNode.nextSibling){return +(this.parentNode.firstChild.innerHTML) && !+(this.parentNode.nextSibling.firstChild.innerHTML); }})            
+        .attr("class", "button")
+        .append("button")
+        .text(function(d){return d;})            
+        .on("click", function(d){ console.log(this.parentNode.parentNode.innerHTML, Date.now());});
+      table.selectAll("td").filter(function(d){return this.cellIndex>7 && this.innerHTML==""}).remove();
+//----add border
+      //table.selectAll("td").filter(function(d){
+        //return this.cellIndex<7 && this.parentNode.firstChild.innerHTML!=" "})
+           //.style("border","1px solid #000");
+      //for (i=0;i<table.selectAll("td")[0].length;i++){
+        //console.log(table.selectAll("td")[0][i]);
+      //}
+      //console.log(table.selectAll("tr").filter(function(d){return this.firstChild.innerHTML!=" "}));
+
+      var t = table.selectAll("tr").filter(function(d){return this.firstChild.innerHTML!=" "});
+      //console.log(t);
+      for(i=0;i<t[0].length;i++){
+        var g =svg.append("g")
+          .attr("transform","translate("+0+","+t[0][i].offsetTop+")");
+          //console.log(t[0][i]);
+          var cells = t[0][i].childNodes;
+          
+          for(j=0;j<7;j++){
+            g.append("rect")
+            .attr("x",cells[j].offsetLeft)
+            .attr("y",0)
+            .attr("width",cells[j].clientWidth-2)
+            .attr("height",cells[j].clientHeight-2)
+            .style("fill",function(d){return i===0?"green":"blue"})
+            .style("opacity",0.5)
+            g.append("text")
+            .attr("x",cells[j].offsetLeft+0.5*cells[j].clientWidth-1)
+            .attr("y",0.5*cells[j].clientHeight+1)
+            .attr("text-anchor","middle")
+            .style("font","14px sans-serif")
+            .text(cells[j].innerHTML)
+            .on('mouseover', function(d){d3.select(this).style('font-size', '18px');})
+            .on('mouseout', function(d){d3.select(this).style('font-size', '14px');})
+            .on('click',function(d){console.log(d3.select(this)[0][0].innerHTML,Date.now());});
+
+          }
+          if (cells[8].textContent=="Yes"){
+            //console.log(cells);
+
+          }
+        }
+        svg.selectAll("g").each(function(d){console.log(this.transform);});*/
+        //rows.exit()
+            //.remove();
+        //table.selectAll("tr").remove();
+
+    });
+  }
+  
+  function goToNext() {
+    experimentr.endTimer('instructions');
+    experimentr.next();
+  }
+
+  d3.select('#ready_button')
+    .on('click', function () {
+      d3.select("svg").selectAll("g").remove();
+      if (label<group.length){
+        showNext(label);
+        label = label+1;
+      }else{
+        goToNext();
+      }
+    });
+}());
+</script>

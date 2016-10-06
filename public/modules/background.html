@@ -127,15 +127,13 @@
       messageText += "<p>* Please enter your occupation.</p>"
     }
 
-  
-
-
-    if(data.age && data.degree && data.major && data.occupation) {
+    goToNext();
+    //if(data.age && data.degree && data.major && data.occupation) {
       //d3.select('#submitComments').attr('disabled', null);
-      goToNext();
-    } else {
-      messageThing.html(messageText);
-    }
+      //goToNext();
+    //} else {
+      //messageThing.html(messageText);
+    //}
   }//end validate
 
   d3.select('#submitComments')

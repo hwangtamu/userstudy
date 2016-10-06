@@ -15,7 +15,7 @@
     }
     table {
         border: 0;
-        font: 12px sans-serif;
+        font: 14px sans-serif;
         border-collapse:collapse; 
     }
 
@@ -47,14 +47,14 @@
 
   
   function parsing(){
-    d3.text("data.csv",function(csvdata){
+    d3.text("data_.csv",function(csvdata){
       var groups = {};
         var parsedCSV = d3.csv.parseRows(csvdata);
         for(i=1;i<parsedCSV.length;i++){
-          if (!(parsedCSV[i][1] in groups)){
-            groups[parsedCSV[i][1]] = [parsedCSV[i]];
+          if (!(parsedCSV[i][0] in groups)){
+            groups[parsedCSV[i][0]] = [parsedCSV[i]];
           }else{
-            groups[parsedCSV[i][1]] = groups[parsedCSV[i][1]].concat([parsedCSV[i]]);
+            groups[parsedCSV[i][0]] = groups[parsedCSV[i][0]].concat([parsedCSV[i]]);
           }
         }
         var values = Object.keys(groups).map(function(key){return groups[key];}); 
@@ -64,20 +64,20 @@
       });
   }
   function showNext(label){
-    d3.text("data.csv", function(csvdata) {
+    d3.text("data_.csv", function(csvdata) {
       var parsedCSV = d3.csv.parseRows(csvdata);
       var raw = [parsedCSV[0]];
       var tmp = [];
-      raw[0].push('match');
+      raw[0].push('Match');
       if (label==0){
         for (i=0;i<group[label].length;i++){
           raw = raw.concat(group[label][i]);
-          raw = raw.concat([[""],[""]]);
+          raw = raw.concat([[" "],[" "]]);
         }
       }else{
         for (i=0;i<group[label].length-1;i++){
           raw = raw.concat([group[label][0],group[label][i+1]]);
-          raw = raw.concat([[""],[""]]);
+          raw = raw.concat([[" "],[" "]]);
         }
       }
 
@@ -87,54 +87,47 @@
                 .data(function(d) { return d; })
               .enter()
                 .append("td")
-                .on('mouseover', function(){if (this.innerHTML != ""){d3.select(this).style('background-color', 'gray');}})
-                .on('mouseout', function(){if (this.innerHTML !=""){d3.select(this).style('background-color', 'white');}})
+                .on('mouseover', function(){if (this.innerHTML != "" && this.innerHTML !=" "){d3.select(this).style('background-color', 'gray');}})
+                .on('mouseout', function(){if (this.innerHTML !="" && this.innerHTML !=" "){d3.select(this).style('background-color', 'white');}})
           
           rows.selectAll("td")
             .data(function(d) { return d; })
             .text(function(d) { return d; });
+
           var buttons = rows.selectAll("td.button");
           //console.log(buttons[1].parentNode.nextSibling); 
-          console.log(raw);
-          buttons.data(function(d) {return [d];})
+
+          var choice = ["Yes", "No"];
+          var level = ["Very Confident", "Moderate", "Not Sure"]; 
+
+          buttons.data(choice)
             .enter()
             .append("td")
-            .filter(function(d){ if(this.parentNode.nextSibling){ return this.parentNode.nextSibling.firstChild.innerHTML && d.length===9;}})
+            .filter(function(d){if(this.parentNode.nextSibling){return +(this.parentNode.firstChild.innerHTML) && +(this.parentNode.nextSibling.firstChild.innerHTML); }})
             .attr("class", "button")
             .append("button")
-            .text("Yes")            
-            .on("click", function(d){ console.log(d);});
-          buttons.data(function(d) {return [d];})
+            .text(function(d){return d;})            
+            .on("click", function(d){ console.log(this.parentNode.parentNode.innerHTML, Date.now());});
+
+          buttons.data(level)
             .enter()
             .append("td")
-            .filter(function(d){ if(this.parentNode.nextSibling){ return this.parentNode.nextSibling.firstChild.innerHTML && d.length===9;}})
-            .append("td")
+            .filter(function(d){if(this.parentNode.nextSibling){return +(this.parentNode.firstChild.innerHTML) && !+(this.parentNode.nextSibling.firstChild.innerHTML); }})            
             .attr("class", "button")
             .append("button")
-            .text("No")            
-            .on("click", function(d){ console.log(d);}); 
-
-          var level = ["Very Confident", "Moderate", "Not Sure"], 
-
-             labels = rows.selectAll("label")
-            .data(level)
-            .enter()
-            .append("label")
-            .filter(function(d){if(this.parentNode.nextSibling){ return !this.parentNode.nextSibling.firstChild.innerHTML && this.parentNode.firstChild.innerHTML;}})
-            .text(function(d) {return d;})
-            .insert("input")
-            .attr({
-                type: "radio",
-                class: "shape",
-                name: "mode",
-                value: function(d, i) {return i;}
-            });
+            .text(function(d){return d;})            
+            .on("click", function(d){ console.log(this.parentNode.parentNode.innerHTML, Date.now());});
+          table.selectAll("td").filter(function(d){return this.cellIndex>7 && this.innerHTML==""}).remove();
+          table.selectAll("td").filter(function(d){
+            return this.cellIndex<7 && this.parentNode.firstChild.innerHTML!=" "})
+               .style("border","1px solid #000");
+          
+          rows.exit()
+              .remove();
 
     });
   }
   
-
-
   function goToNext() {
     experimentr.endTimer('instructions');
     experimentr.next();
