@@ -95,27 +95,29 @@
       .attr("x",1)
       .attr("y",0)
       .attr("width",cwidth[j%7]-2)
-      .attr("height",25)
-      .style("fill",function(d){return j<7 ? "blue" : "green";})
-      .style("opacity",function(d){return j<7 ? 0.5 : 0.75;});
+      .attr("height",function(d){if (j==14){return 0;}return j==7 ? 55 : 25;})
+      .style("fill",function(d){return (j<7 || j%7==0) ? "blue" : "green";})
+      .style("opacity",function(d){return (j<7 || j%7==0)? 0.5 : 0.75;});
       cell.append("text")
       .attr("x",cwidth[j%7]/2)
-      .attr("y",18)
+      .attr("y",function(d){return (j>6 && j%7==0) ? 33 : 18;})
       .attr("text-anchor","middle")
       .style("font","14px sans-serif")
       .style("font-weight", function(d) { return j<7 ? "bold" : ""; })
-      .text(data[j])
-      .on('mouseover', function(d){if(data.indexOf(this.textContent)>6){
-        var indice = $(this.parentNode).parent().children().index(this.parentNode)%7;
+      .text(function(d){return j==14 ? "" : data[j];})
+      .on('mouseover', function(d){
+        var indice = $(this.parentNode).parent().children().index(this.parentNode);
         var rect = d3.select(this.parentNode).select("rect");
-        rect.attr("x",1-0.1*(cwidth[indice]-2)).attr("y",-5).attr("width",(cwidth[indice]-2)*1.2).attr("height",35).style("opacity",1.0);
-        d3.select(this).style('font-size', '18px');
+        if(indice>6 && indice%7!=0){     
+          rect.attr("x",1-0.1*(cwidth[indice%7]-2)).attr("y",-5).attr("width",(cwidth[indice%7]-2)*1.2).attr("height",35).style("opacity",1.0);
+          d3.select(this).style('font-size', '18px');
         }})
-      .on('mouseout', function(d){if(data.indexOf(this.textContent)>6){
-        var indice = $(this.parentNode).parent().children().index(this.parentNode)%7;
+      .on('mouseout', function(d){
+        var indice = $(this.parentNode).parent().children().index(this.parentNode);
         var rect = d3.select(this.parentNode).select("rect");
-        rect.attr("x",1).attr("y",0).attr("width",cwidth[indice]-2).attr("height",25).style("opacity",0.75);
-        d3.select(this).style('font-size', '14px');
+        if(indice>6 && indice%7!=0){      
+          rect.attr("x",1).attr("y",0).attr("width",cwidth[indice%7]-2).attr("height",25).style("opacity",0.75);
+          d3.select(this).style('font-size', '14px');
         }})
       .on('click',function(d){if(data.indexOf(this.textContent)>6){console.log(d3.select(this)[0][0].innerHTML,Date.now());}});
     }
