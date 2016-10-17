@@ -127,7 +127,7 @@
             rect.transition().duration(500)
             .attr("x",1).attr("y",0).attr("width",cwidth[indice%7]-2).attr("height",function(d){
               return d3.select(this.parentNode).select("text").attr("y")==33 ? 55 : 25;
-            }).style("opacity",0.75);
+            }).style("opacity",1.0);
             d3.select(this).transition().duration(500).style('font-size', '14px');
           }})
         .on('click',function(d){if(data.indexOf(this.textContent)>6){
@@ -166,7 +166,7 @@
             d3.select(this).transition().duration(500)
             .attr("x",1).attr("y",0).attr("width",cwidth[indice%7]-2).attr("height",function(d){
               return text.attr("y")==33 ? 55 : 25;
-            }).style("opacity",0.75);
+            }).style("opacity",1.0);
             text.transition().duration(500).style('font-size', '14px');
           }})
         .on('click',function(d){if(data.indexOf(this.textContent)>6){
@@ -208,7 +208,7 @@
           var rect = d3.select(this.parentNode).select("rect");
           if(indice>6 && indice%7!=0){      
             rect.transition().duration(500)
-            .attr("x",1).attr("y",0).attr("width",cwidth[indice%7]-2).attr("height",25).style("opacity",0.75);
+            .attr("x",1).attr("y",0).attr("width",cwidth[indice%7]-2).attr("height",25).style("opacity",1.0);
             d3.select(this).transition().duration(500).style('font-size', '14px');
           }})
         .on('click',function(d){if(data.indexOf(this.textContent)>6){
@@ -236,7 +236,7 @@
           var text = d3.select(this.parentNode).select("text");
           if(indice>6 && indice%7!=0){      
             d3.select(this).transition().duration(500)
-            .attr("x",1).attr("y",0).attr("width",cwidth[indice%7]-2).attr("height",25).style("opacity",0.75);
+            .attr("x",1).attr("y",0).attr("width",cwidth[indice%7]-2).attr("height",25).style("opacity",1.0);
             text.transition().duration(500).style('font-size', '14px');
           }})
         .on('click',function(d){if(data.indexOf(this.textContent)>6){
