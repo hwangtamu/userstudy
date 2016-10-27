@@ -55,9 +55,7 @@ You need to choose one and only one answer for each pair and you are free to cha
   var dat = {};
   dat.clicks = [];
   var label = 0;
-  var table = d3.select('table')
-              .append("table")
-              .attr("class","table");
+  
   var group = [];
   var svg = d3.select("body").append("svg").attr("class","blocks")
             .attr("width", 1200)
@@ -73,13 +71,12 @@ You need to choose one and only one answer for each pair and you are free to cha
   d3.select("#mode4").style("display",function(d){return experimentr.data()["mode"]=="Partial_Row" ? "block":"none";});
   d3.select("#mode5").style("display",function(d){return experimentr.data()["mode"]=="Partial" ? "block":"none";});
   
-
-  parsing();
+  parsing("data_.csv");
   introduce();
   console.log(experimentr.data()["mode"]);
   
-  function parsing(){
-    d3.text("data_alt.csv",function(csvdata){
+  function parsing(route){
+    d3.text(route,function(csvdata){
       var groups = {};
         var parsedCSV = d3.csv.parseRows(csvdata);
         for(i=1;i<parsedCSV.length;i++){
@@ -120,12 +117,15 @@ You need to choose one and only one answer for each pair and you are free to cha
         }
         group = binary.concat(other);
         //console.log(group);
+        if(route=="data_.csv"){introduce();}
       });
   }
+
   function introduce(){
     showNext(0,binary_svg);
-    showNext(15,other_svg);
+    showNext(0,other_svg);
   }
+
   function block(svg,k,data,data_,mode){
     var g = svg.append("g").attr("class","block")
       .attr("transform","translate(0,"+100*k+")");
@@ -205,7 +205,10 @@ You need to choose one and only one answer for each pair and you are free to cha
               d3.text("data_alt.csv", function(csvdata) {
                 var parsedCSV = d3.csv.parseRows(csvdata);
                 var title = parsedCSV[0];
-                label=label-1;
+                console.log(group);
+                if(label>0){
+                  label=label-1;
+                }
                 d3.select(".blocks").selectAll(".block").remove();
                 for (i=0;i<group[label].length;i++){
                     var raw_string = title.slice(0,7)
@@ -297,7 +300,9 @@ You need to choose one and only one answer for each pair and you are free to cha
                 var parsedCSV = d3.csv.parseRows(csvdata);
                 var title = parsedCSV[0];
                 d3.select(".blocks").selectAll(".block").remove();
-                label=label-1;
+                if(label>0){
+                  label=label-1;
+                }
                 for (i=0;i<group[label].length;i++){
                     var raw_string = title.slice(0,7)
                         .concat([group[label][i][0][0]])
@@ -398,7 +403,7 @@ You need to choose one and only one answer for each pair and you are free to cha
 
 
   function showNext(label,svg){
-    d3.text("data_alt.csv", function(csvdata) {
+    d3.text("data_.csv", function(csvdata) {
       var parsedCSV = d3.csv.parseRows(csvdata);
       var title = parsedCSV[0];
       for (i=0;i<group[label].length;i++){
@@ -423,19 +428,25 @@ You need to choose one and only one answer for each pair and you are free to cha
   }
   d3.select('#ready_button')
     .on('click', function () {
-      d3.select("#instruction").style("display","none");
-      d3.select("#example").style("display","none");
-      d3.select("#title1").style("display",function(d){return experimentr.data()["mode"]=="Full" ? "block":"none";})
-      d3.select("#title2").style("display",function(d){return experimentr.data()["mode"]=="Full_Partial" ? "block":"none";})
-      d3.select("#title3").style("display",function(d){return experimentr.data()["mode"]=="Partial_Cell" ? "block":"none";})
-      d3.select("#title4").style("display",function(d){return experimentr.data()["mode"]=="Partial_Row" ? "block":"none";})
-      d3.select("#title5").style("display",function(d){return experimentr.data()["mode"]=="Partial" ? "block":"none";})
-      if (label<group.length){
-        showNext(label,svg);
-        d3.select(".blocks").selectAll("g").remove();
-        label = label+1;
-      }else{
-        goToNext();
+      if(d3.select("#instruction").style("display")=="block"){
+        d3.select("#instruction").style("display","none");
+        d3.select("#example").style("display","none");
+        label=0;
+        parsing("data_alt.csv");
+        d3.select("#title1").style("display",function(d){return experimentr.data()["mode"]=="Full" ? "block":"none";})
+        d3.select("#title2").style("display",function(d){return experimentr.data()["mode"]=="Full_Partial" ? "block":"none";})
+        d3.select("#title3").style("display",function(d){return experimentr.data()["mode"]=="Partial_Cell" ? "block":"none";})
+        d3.select("#title4").style("display",function(d){return experimentr.data()["mode"]=="Partial_Row" ? "block":"none";})
+        d3.select("#title5").style("display",function(d){return experimentr.data()["mode"]=="Partial" ? "block":"none";})
+      }
+      else{
+        if (label<group.length){
+          showNext(label,svg);
+          d3.select(".blocks").selectAll("g").remove();
+          label = label+1;
+        }else{
+          goToNext();
+        }
       }
     });
 }());
