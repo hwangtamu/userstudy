@@ -445,6 +445,7 @@ You need to choose one and only one answer for each pair and you are free to cha
           d3.select(".blocks").selectAll("g").remove();
           label = label+1;
         }else{
+          d3.select(".blocks").selectAll("g").remove();
           goToNext();
         }
       }
