@@ -3,13 +3,21 @@
 
 <!-- Load CSS -->
 <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="css/build.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
+
+
+
 
 <!-- Load Source Scripts -->
 <script src="components/d3js/d3.v3.min.js"></script>
 <script src="javascript/misc/jquery.min.js"></script>
 <script src="javascript/misc/jquery-ui.js"></script>
 <script src="javascript/misc/experimentr.js"></script>
-
+<script src="javascript/misc/jspatch.js"></script>
 
 <style>
     * {
@@ -19,6 +27,7 @@
 
     body {
         /*margin: 1em auto auto 1em;*/
+        background-color: powderblue;
         margin: 0 auto;
         width: 80%;
     }
@@ -44,6 +53,7 @@
 <body></body>
 
 <script>
+
 experimentr.sequence([
   'modules/consent.html',
   'modules/background.html',
