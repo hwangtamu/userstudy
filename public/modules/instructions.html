@@ -118,17 +118,10 @@
             .text(function(d){return d;})            
             .on("click", function(d){ console.log(this.parentNode.parentNode.innerHTML, Date.now());});
           table.selectAll("td").filter(function(d){return this.cellIndex>7 && this.innerHTML==""}).remove();
-<<<<<<< HEAD
           table.selectAll("td").filter(function(d){
             return this.cellIndex<7 && this.parentNode.firstChild.innerHTML!=" "})
                .style("border","1px solid #000");
           
-=======
-          table.selectAll("td").filter(function(d){return this.cellIndex<7 && this.parentNode.firstChild.innerHTML!=" "})
-               .style("border","1px solid #000");
-
-          console.log(table.selectAll("tr"));
->>>>>>> origin/master
           rows.exit()
               .remove();
 

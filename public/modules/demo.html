@@ -1,30 +1,46 @@
+<div id="instruction">
 <h1>Instructions</h1>
-<p>Hello, for the next while you will be completing some trials.</p>
 
-<h2>What are these trials?</h2>
+<p style="font-weight:bold">[Warning: do not refresh your web browser before the end of the user study. ]</p>
 
-<style>
-    #red {
-        color: red;
-        background-color: transparent;
-    }
+<p>Thank you for participating in our user study, and for the next while you will be completing some trials.<br> <br>
 
-    #blue {
-        color: blue;
-        background-color: transparent;
-    }
-    table {
-        border: 0;
-        font: 14px sans-serif;
-        border-collapse:collapse; 
-    }
+In this study, you are going to give answers to 30 questions. For each question, you need to decide the likelihood between a pair of records based on the information provided.<br><br>
+</p></div>
+<div id="title1" style="display:none"><h1>Full Disclosure</h1></div>
+<div id="mode1" style="display:none">In the [Full Disclosure] mode, all the cells are visible.</div>
+<div id="title2" style="display:none"><h1>Full Disclosure For Different Cells</h1></div>
 
-    td {
-        border: 0;
-        padding: 5px;
-    }
-    
-</style>
+<div id="mode2" style="display:none">In the [Full Disclosure For Different Cells] mode, only different cells in a pair are visible. Dash lines represents the identical text in a pair.</div>
+<div id="title3" style="display:none"><h1>Partial Disclosure Reveal Cell On Click</h1></div>
+
+<div id="mode3" style="display:none">In the [Paritial Disclosure Reveal Cell On Click] mode, only the minimum differences are visible at start. However, you can click the cells which are partial visible, then the cells pair will be shown.</div>
+<div id="title4" style="display:none"><h1>Partial Disclosure Reveal Row On Click</h1></div>
+
+<div id="mode4" style="display:none">In the [Paritial Disclosure Reveal Row On Click] mode, only the minimum differences are visible at start. However, you can click the cells which are partial visible, then all the cells with differences in the pait will be shown.</div>
+<div id="title5" style="display:none"><h1>Minimum Disclosure Non-clickable</h1></div>
+
+<div id="mode5" style="display:none">In the [Minimum Disclosure Non-clickable] mode, only the minimum differences are shown.</div>
+<div id="example">
+Here are some sample questions:<br>
+
+<div id="binary_div">A pair example:</div>
+
+<div id="other_div">Multiple pairs example:</div>
+
+The likelihood is scaled into 6 levels: <br>
+1. Highly likely same<br>
+2. Moderately likely same<br>
+3. Slightly likely same<br>
+4. Highly likely different<br>
+5. Moderately likely different<br>
+6. Slightly likely different<br><br>
+
+You need to choose one and only one answer for each pair and you are free to change your answers before clicking “Next” button.<br></p>
+</div>
+
+
+
 <body>
 <button id="ready_button" class="next-button" type="button">Next</button>
 </body>
@@ -43,11 +59,23 @@
               .append("table")
               .attr("class","table");
   var group = [];
-  var svg = d3.select("body").append("svg")
-            .attr("width", 960)
-            .attr("height", 800);
-  var cwidth = [60,90,140,50,60,90,90]; //580
+  var svg = d3.select("body").append("svg").attr("class","blocks")
+            .attr("width", 1200)
+            .attr("height", 600);
+  var binary_svg = d3.select("#binary_div").append("svg").attr("width",1200).attr("height",100)
+  var other_svg = d3.select("#other_div").append("svg").attr("width",1200).attr("height",200)
+
+  var cwidth = [60,120,140,50,60,90,90]; //610
+
+  d3.select("#mode1").style("display",function(d){return experimentr.data()["mode"]=="Full" ? "block":"none";});
+  d3.select("#mode2").style("display",function(d){return experimentr.data()["mode"]=="Full_Partial" ? "block":"none";});
+  d3.select("#mode3").style("display",function(d){return experimentr.data()["mode"]=="Partial_Cell" ? "block":"none";});
+  d3.select("#mode4").style("display",function(d){return experimentr.data()["mode"]=="Partial_Row" ? "block":"none";});
+  d3.select("#mode5").style("display",function(d){return experimentr.data()["mode"]=="Partial" ? "block":"none";});
+  
+
   parsing();
+  introduce();
   console.log(experimentr.data()["mode"]);
   
   function parsing(){
@@ -78,7 +106,7 @@
         for(i=0;i<tmp.length;i++){
           var t = [];
           for(j=0;j<tmp[i].length/2;j++){
-            t.push([tmp[i][j],tmp[i][j+1]]);
+            t.push([tmp[i][2*j],tmp[i][2*j+1]]);
           }
           other.push(t);
         }
@@ -86,7 +114,7 @@
         for(i=0;i<tmp.length;i++){
           var t = [];
           for(j=0;j<tmp[i].length/2;j++){
-            t.push([tmp[i][j],tmp[i][j+1]]);
+            t.push([tmp[i][2*j],tmp[i][2*j+1]]);
           }
           other.push(t);
         }
@@ -94,95 +122,232 @@
         //console.log(group);
       });
   }
-
-  function block(k,data,data_){
-    var g = svg.append("g")
+  function introduce(){
+    showNext(0,binary_svg);
+    showNext(15,other_svg);
+  }
+  function block(svg,k,data,data_,mode){
+    var g = svg.append("g").attr("class","block")
       .attr("transform","translate(0,"+100*k+")");
-    if(experimentr.data()["mode"]=="Partial"){
+    if(mode=="Partial_Cell"|| mode=="Partial_Row"|| mode=="Partial" || mode=="Full_Partial"){
       for(j=0;j<21;j++){
         var cell = g.append("g")
           .attr("transform","translate("+cwidth.slice(0,j%7).reduce(function(a, b){return a+b;},0)+","+30*Math.floor(j/7)+")");
         var rectangle = cell.append("rect");
         var textbox = cell.append("text");
         textbox.attr("x",cwidth[j%7]/2)
-        .attr("y",function(d){return (j<14 && data[j]==data[j+7])||(j>6 && j%7==0) ? 33 : 18;})
+        .attr("y",function(d){return (j<14 && data[j]==data[j+7])||(j>6 && j%7==0)||(j>14 && data[j]==data[j-7]) ? 33 : 18;})
         .attr("text-anchor","middle")
         .style("font","14px sans-serif")
         .style("font-weight", function(d) { return j<7 ? "bold" : ""; })
-        .text(function(d){return (j>14 && data[j]==data[j-7])||j==14 ? "" : data[j];})
-        .on('mouseover', function(d){
-          var indice = $(this.parentNode).parent().children().index(this.parentNode);
-          var rect = d3.select(this.parentNode).select("rect");
-          if(indice>6 && indice%7!=0){     
-            rect.transition().duration(500)
-            .attr("x",1-0.1*(cwidth[indice%7]-2)).attr("y",-5).attr("width",(cwidth[indice%7]-2)*1.2).attr("height",function(d){
-              return d3.select(this.parentNode).select("text").attr("y")==33 ? 65 : 35;
-            }).style("opacity",1.0);
-            d3.select(this).transition().duration(500).style('font-size', '18px');
-          }})
-        .on('mouseout', function(d){
-          var indice = $(this.parentNode).parent().children().index(this.parentNode);
-          var rect = d3.select(this.parentNode).select("rect");
-          if(indice>6 && indice%7!=0){      
-            rect.transition().duration(500)
-            .attr("x",1).attr("y",0).attr("width",cwidth[indice%7]-2).attr("height",function(d){
-              return d3.select(this.parentNode).select("text").attr("y")==33 ? 55 : 25;
-            }).style("opacity",1.0);
-            d3.select(this).transition().duration(500).style('font-size', '14px');
-          }})
-        .on('click',function(d){if(data.indexOf(this.textContent)>6){
-          var indice = $(this.parentNode).parent().children().index(this.parentNode);
-          console.log(d3.select(this)[0][0].innerHTML,Date.now());
-          dat.clicks.push([k,indice,d3.select(this)[0][0].innerHTML, Date.now()]);
-          if(d3.select(this)[0][0].innerHTML == data[indice]){
-            d3.select(this).text(data_[indice]);
-            //if(d3.select(this).attr("y")==33){
-              //d3.select(this).attr("y",18);
+        .text(function(d){
+          if(mode=="Full_Partial"){
+            if(j>=14 && data[j]==data[j-7]){return ""}else{
+                return j>6 && j%7!=0 && d3.select(this).attr("y")==18 ? data_[j] : data[j];
+            }
+          }else{
+            return (j>14 && data[j]==data[j-7])||j==14 ? "" : data[j];}});
 
-            //}
-          }
-        }});
-        
         rectangle.attr("x",1)
         .attr("y",0)
         .attr("width",cwidth[j%7]-2)
         .attr("height",function(d){if ((j>14 && data[j]==data[j-7])||j==14){return 0;}return (j<14 && data[j]==data[j+7])||j==7 ? 55 : 25;})
         .style("fill",function(d){return (j<7 || j%7==0) ? "#68a7ca" : "#b2d3e6";})
-        .style("opacity",function(d){return (j<7 || j%7==0)? 1 : 1;})
-        .on('mouseover', function(d){
-          var indice = $(this.parentNode).parent().children().index(this.parentNode);
-          var text = d3.select(this.parentNode).select("text");
-          if(indice>6 && indice%7!=0){     
-            d3.select(this).transition().duration(500)
-            .attr("x",1-0.1*(cwidth[indice%7]-2)).attr("y",-5).attr("width",(cwidth[indice%7]-2)*1.2).attr("height",function(d){
-              return text.attr("y")==33 ? 65 : 35;
-            }).style("opacity",1.0);
-            text.transition().duration(500).style('font-size', '18px');
-          }})
-        .on('mouseout', function(d){
-          var indice = $(this.parentNode).parent().children().index(this.parentNode);
-          var text = d3.select(this.parentNode).select("text");
-          if(indice>6 && indice%7!=0){      
-            d3.select(this).transition().duration(500)
-            .attr("x",1).attr("y",0).attr("width",cwidth[indice%7]-2).attr("height",function(d){
-              return text.attr("y")==33 ? 55 : 25;
-            }).style("opacity",1.0);
-            text.transition().duration(500).style('font-size', '14px');
-          }})
-        .on('click',function(d){if(data.indexOf(this.textContent)>6){
-          var indice = $(this.parentNode).parent().children().index(this.parentNode);
-          var text = d3.select(this.parentNode).select("text");
-          console.log(text.innerHTML,Date.now());
-          dat.clicks.push([k,indice,text.innerHTML, Date.now()]);
-          if(text.innerHTML == data[indice]){
-            text.text(data_[indice]);
-            if(text.attr("y")==33){
+        .style("opacity",1);
 
-            }
+        //Actions only for clickable modes
+        if(mode=="Partial_Row"||mode=="Partial_Cell"){
+          textbox.on('mouseover', function(d){
+          var indice = $(this.parentNode).parent().children().index(this.parentNode);
+          var rect = d3.select(this.parentNode).select("rect");
+
+          if(indice>13 && indice%7!=0 && d3.select(this).attr("y")==18 && data[indice]!="" && data[indice]!="Miss" && data[indice]!=data_[indice]) {     
+            rect.transition().duration(500)
+            .style("fill","#379037");
+            d3.select(this).transition().duration(500).style('font-weight', 'bold');
+            d3.select($(this.parentNode.parentNode).children()[indice-7]).select("text").transition().duration(500).style('font-weight', 'bold');
+            d3.select($(this.parentNode.parentNode).children()[indice-7]).select("rect").transition().duration(500).style("fill","#379037");
           }
-        }});
+          if(indice>6 && indice<14 && d3.select(this).attr("y")==18 && data[indice]!="" && data[indice]!="Miss" && data[indice]!=data_[indice]){
+            rect.transition().duration(500)
+            .style("fill","#379037");
+            d3.select(this).transition().duration(500).style('font-weight', 'bold');
+            d3.select($(this.parentNode.parentNode).children()[indice+7]).select("text").transition().duration(500).style('font-weight', 'bold');
+            d3.select($(this.parentNode.parentNode).children()[indice+7]).select("rect").transition().duration(500).style("fill","#379037");
+          }
+
+        })
+          .on('mouseout', function(d){
+            var indice = $(this.parentNode).parent().children().index(this.parentNode);
+            var rect = d3.select(this.parentNode).select("rect");
+            if(indice>13 && indice%7!=0 && d3.select(this).attr("y")==18 && data[indice]!="" && data[indice]!="Miss" && data[indice]!=data_[indice]){      
+              rect.transition()//.duration(500)
+              .style("fill","#b2d3e6");
+              d3.select(this).transition().duration(500).style('font-weight', 'normal');
+              d3.select($(this.parentNode.parentNode).children()[indice-7]).select("text").transition().duration(500).style('font-weight', 'normal');
+              d3.select($(this.parentNode.parentNode).children()[indice-7]).select("rect").transition().duration(500).style("fill","#b2d3e6");
+            }
+            if(indice>6 && indice<14 && indice%7!=0 && d3.select(this).attr("y")==18 && data[indice]!="" && data[indice]!="Miss" && data[indice]!=data_[indice]){
+              rect.transition()//.duration(500)
+              .style("fill","#b2d3e6");
+              d3.select(this).transition().duration(500).style('font-weight', 'normal');
+              d3.select($(this.parentNode.parentNode).children()[indice+7]).select("text").transition().duration(500).style('font-weight', 'normal');
+              d3.select($(this.parentNode.parentNode).children()[indice+7]).select("rect").transition().duration(500).style("fill","#b2d3e6");
+            }
+          })
+          .on('click',function(d){if(data.indexOf(this.textContent)>6){
+            var indice = $(this.parentNode).parent().children().index(this.parentNode);
+            console.log(d3.select(this)[0][0].innerHTML,Date.now());
+            dat.clicks.push([k,indice,d3.select(this)[0][0].innerHTML, Date.now()]);
+            var siblings = d3.select(".blocks").selectAll(".block")[0].length;
+            //console.log(d3.select(".blocks").selectAll(".block"));
+            if(siblings<5){
+              d3.text("data_alt.csv", function(csvdata) {
+                var parsedCSV = d3.csv.parseRows(csvdata);
+                var title = parsedCSV[0];
+                label=label-1;
+                d3.select(".blocks").selectAll(".block").remove();
+                for (i=0;i<group[label].length;i++){
+                    var raw_string = title.slice(0,7)
+                        .concat([group[label][i][0][0]])
+                        .concat(group[label][i][0].slice(8,14))
+                        .concat([group[label][i][1][0]])
+                        .concat(group[label][i][1].slice(8,14));
+                    var alt_string = title.slice(0,7).concat(group[label][i][0].slice(0,7)).concat(group[label][i][1].slice(0,7));
+                    console.log(raw_string,alt_string);
+                    if(mode=="Partial_Row"){block(svg,i,raw_string,alt_string,"Full_Partial");}
+                    else{
+                      raw_string[indice]=alt_string[indice];
+                      if(indice>13){
+                        raw_string[indice-7]=alt_string[indice-7];
+                        group[label][i][1][indice-7]=raw_string[indice];
+                        group[label][i][0][indice-7]=raw_string[indice-7];
+                      }else{
+                        raw_string[indice+7]=alt_string[indice+7];
+                        group[label][i][0][indice-7]=raw_string[indice];
+                        group[label][i][1][indice-7]=raw_string[indice+7];
+                      }
+                      block(svg,i,raw_string,alt_string,"Partial_Cell")
+                    }
+                  }
+                  label+=1;
+              });
+            }else{
+              if(d3.select(this)[0][0].innerHTML == data[indice] && data[indice]!="" && data[indice]!="Miss" && data[indice]!=data_[indice]){
+                d3.select(this).text(data_[indice]);
+                if(mode=="Partial_Cell"){
+                  if(indice>13){
+                    d3.select($(this.parentNode.parentNode).children()[indice-7]).select("text").text(data_[indice-7]);
+                  }else{
+                    d3.select($(this.parentNode.parentNode).children()[indice+7]).select("text").text(data_[indice+7]);
+                  }  
+                }else{
+                  for(i=7;i<21;i++){
+                    if(i%7!=0 && d3.select($(this.parentNode.parentNode).children()[i]).select("text").attr("y")==18 && d3.select($(this.parentNode.parentNode).children()[i]).select("text").innerHTML!=""){
+                      d3.select($(this.parentNode.parentNode).children()[i]).select("text").text(data_[i]);
+                    }
+                  }
+                }
+              }
+          }}});
+        
+          rectangle.on('mouseover', function(d){
+            var indice = $(this.parentNode).parent().children().index(this.parentNode);
+            var text = d3.select(this.parentNode).select("text");
+            if(indice>13 && indice%7!=0 && text.attr("y")==18 && data[indice]!="" && data[indice]!="Miss" && data[indice]!=data_[indice]){     
+              d3.select(this).transition().duration(500)
+              .style("fill","#379037");
+              text.transition().duration(500).style('font-weight', 'bold');
+              d3.select($(this.parentNode.parentNode).children()[indice-7]).select("text").transition().duration(500).style('font-weight', 'bold');
+              d3.select($(this.parentNode.parentNode).children()[indice-7]).select("rect").transition().duration(500).style("fill","#379037");
+            }
+            if(indice>6 && indice<14 && indice%7!=0 && text.attr("y")==18 && data[indice]!="" && data[indice]!="Miss" && data[indice]!=data_[indice]){     
+              d3.select(this).transition().duration(500)
+              .style("fill","#379037");
+              text.transition().duration(500).style('font-weight', 'bold');
+              d3.select($(this.parentNode.parentNode).children()[indice+7]).select("text").transition().duration(500).style('font-weight', 'bold');
+              d3.select($(this.parentNode.parentNode).children()[indice+7]).select("rect").transition().duration(500).style("fill","#379037");
+            }
+          })
+          .on('mouseout', function(d){
+            var indice = $(this.parentNode).parent().children().index(this.parentNode);
+            var text = d3.select(this.parentNode).select("text");
+            if(indice>13 && indice%7!=0 && text.attr("y") && data[indice]!="" && data[indice]!="Miss" && data[indice]!=data_[indice]){      
+              d3.select(this).transition()//.duration(500)
+              .style("fill","#b2d3e6");
+              text.transition().duration(500).style('font-weight', 'normal');
+              d3.select($(this.parentNode.parentNode).children()[indice-7]).select("text").transition().duration(500).style('font-weight', 'normal');
+              d3.select($(this.parentNode.parentNode).children()[indice-7]).select("rect").transition().duration(500).style("fill","#b2d3e6");
+            }
+            if(indice>6 && indice<14 && indice%7!=0 && text.attr("y")==18 && data[indice]!="" && data[indice]!="Miss" && data[indice]!=data_[indice]){     
+              d3.select(this).transition().duration(500)
+              .style("fill","#b2d3e6");
+              text.transition().duration(500).style('font-weight', 'normal');
+              d3.select($(this.parentNode.parentNode).children()[indice+7]).select("text").transition().duration(500).style('font-weight', 'normal');
+              d3.select($(this.parentNode.parentNode).children()[indice+7]).select("rect").transition().duration(500).style("fill","#b2d3e6");
+
+            }})
+          .on('click',function(d){
+            var indice = $(this.parentNode).parent().children().index(this.parentNode);
+            var text = d3.select(this.parentNode).select("text");
+            console.log(data[indice],Date.now());
+            var siblings = d3.select(".blocks").selectAll(".block")[0].length;
+            if(siblings<5){
+              d3.text("data_alt.csv", function(csvdata) {
+                var parsedCSV = d3.csv.parseRows(csvdata);
+                var title = parsedCSV[0];
+                d3.select(".blocks").selectAll(".block").remove();
+                label=label-1;
+                for (i=0;i<group[label].length;i++){
+                    var raw_string = title.slice(0,7)
+                        .concat([group[label][i][0][0]])
+                        .concat(group[label][i][0].slice(8,14))
+                        .concat([group[label][i][1][0]])
+                        .concat(group[label][i][1].slice(8,14));
+                    var alt_string = title.slice(0,7).concat(group[label][i][0].slice(0,7)).concat(group[label][i][1].slice(0,7));
+                    if(mode=="Partial_Row"){block(svg,i,raw_string,alt_string,"Full_Partial");}
+                    else{
+                      raw_string[indice]=alt_string[indice];
+                      if(indice>13){
+                        raw_string[indice-7]=alt_string[indice-7];
+                        group[label][i][1][indice-7]=raw_string[indice];
+                        group[label][i][0][indice-7]=raw_string[indice-7];
+                      }else{
+                        raw_string[indice+7]=alt_string[indice+7];
+                        group[label][i][0][indice-7]=raw_string[indice];
+                        group[label][i][1][indice-7]=raw_string[indice+7];
+                      }
+                      block(svg,i,raw_string,alt_string,"Partial_Cell")
+                    }
+                  }
+                  label+=1;
+              });
+            }else{
+            if(data.indexOf(text[0][0].innerHTML)>6 && text.attr("y")==18 && data[indice]!="" && data[indice]!="Miss" && data[indice]!=data_[indice]){
+              console.log(text[0][0].innerHTML,Date.now());
+              dat.clicks.push([k,indice,text[0][0].innerHTML, Date.now()]);
+              if(text[0][0].innerHTML == data[indice]){
+                text.text(data_[indice]);
+                if(mode=="Partial_Cell"){
+                  if(indice>13){
+                    d3.select($(this.parentNode.parentNode).children()[indice-7]).select("text").text(data_[indice-7]);
+                  }else{
+                    d3.select($(this.parentNode.parentNode).children()[indice+7]).select("text").text(data_[indice+7]);
+                  }  
+                }else{
+                  for(i=7;i<21;i++){
+                    if(i%7!=0 && d3.select($(this.parentNode.parentNode).children()[i]).select("text").textContent!="" && d3.select($(this.parentNode.parentNode).children()[i]).select("text").attr("y")==18){
+                      d3.select($(this.parentNode.parentNode).children()[i]).select("text").text(data_[i]);
+                    }
+                  }
+                }            
+            }
+          }}});
+        }
+        
       }
-    }else{
+    }
+    if(experimentr.data()["mode"]=="Full"){
       for(j=0;j<21;j++){
         var cell = g.append("g")
           .attr("transform","translate("+cwidth.slice(0,j%7).reduce(function(a, b){return a+b;},0)+","+30*Math.floor(j/7)+")");
@@ -194,168 +359,59 @@
         .attr("text-anchor","middle")
         .style("font","14px sans-serif")
         .style("font-weight", function(d) { return j<7 ? "bold" : ""; })
-        .text(function(d){return j==14 ? "" : data[j];})
-        .on('mouseover', function(d){
-          var indice = $(this.parentNode).parent().children().index(this.parentNode);
-          var rect = d3.select(this.parentNode).select("rect");
-          if(indice>6 && indice%7!=0){     
-            rect.transition().duration(500)
-            .attr("x",1-0.1*(cwidth[indice%7]-2)).attr("y",-5).attr("width",(cwidth[indice%7]-2)*1.2).attr("height",35).style("opacity",1.0);
-            d3.select(this).transition().duration(500).style('font-size', '18px');
-          }})
-        .on('mouseout', function(d){
-          var indice = $(this.parentNode).parent().children().index(this.parentNode);
-          var rect = d3.select(this.parentNode).select("rect");
-          if(indice>6 && indice%7!=0){      
-            rect.transition().duration(500)
-            .attr("x",1).attr("y",0).attr("width",cwidth[indice%7]-2).attr("height",25).style("opacity",1.0);
-            d3.select(this).transition().duration(500).style('font-size', '14px');
-          }})
-        .on('click',function(d){if(data.indexOf(this.textContent)>6){
-          var indice = $(this.parentNode).parent().children().index(this.parentNode);
-          console.log(d3.select(this)[0][0].innerHTML,Date.now());
-          dat.clicks.push([k,indice,d3.select(this)[0][0].innerHTML, Date.now()]);
-        }});
+        .text(function(d){return j==14 ? "" : data[j];});
         
         rectangle.attr("x",1)
         .attr("y",0)
         .attr("width",cwidth[j%7]-2)
         .attr("height",function(d){if (j==14){return 0;}return j==7 ? 55 : 25;})
         .style("fill",function(d){return (j<7 || j%7==0) ? "#68a7ca" : "#b2d3e6";})
-        .style("opacity",function(d){return (j<7 || j%7==0)? 1 : 1;})
-        .on('mouseover', function(d){
-          var indice = $(this.parentNode).parent().children().index(this.parentNode);
-          var text = d3.select(this.parentNode).select("text");
-          if(indice>6 && indice%7!=0){     
-            d3.select(this).transition().duration(500)
-            .attr("x",1-0.1*(cwidth[indice%7]-2)).attr("y",-5).attr("width",(cwidth[indice%7]-2)*1.2).attr("height",35).style("opacity",1.0);
-            text.transition().duration(500).style('font-size', '18px');
-          }})
-        .on('mouseout', function(d){
-          var indice = $(this.parentNode).parent().children().index(this.parentNode);
-          var text = d3.select(this.parentNode).select("text");
-          if(indice>6 && indice%7!=0){      
-            d3.select(this).transition().duration(500)
-            .attr("x",1).attr("y",0).attr("width",cwidth[indice%7]-2).attr("height",25).style("opacity",1.0);
-            text.transition().duration(500).style('font-size', '14px');
-          }})
-        .on('click',function(d){if(data.indexOf(this.textContent)>6){
-          var indice = $(this.parentNode).parent().children().index(this.parentNode);
-          var text = d3.select(this.parentNode).select("text");
-          console.log(text.innerHTML,Date.now());
-          dat.clicks.push([k,indice,text.innerHTML, Date.now()]);
-        }});
+        .style("opacity",1);
     }}
 
-
+    var options = ["Highly Likely Same",
+                   "Highly Likely Different",
+                   "Moderately Likely Same",
+                   "Moderately Likely Different",
+                   "Slightly Likely Same",
+                   "Slightly Likely Different"];
+    var x = [10,200,10,200,10,200];
+    var y = [10,10,40,40,70,70];
     // add buttons
-    var buttons = g.append("g")
-    .attr("transform","translate(600,0)");
-    buttons.append("rect").attr("x",0).attr("y",0).attr("width",270).attr("height",85).style("fill","#68a7ca").style("opacity",1);
-    buttons.append("text").attr("x",40).attr("y",18).attr("text-anchor","middle").style("font","14px sans-serif").style("font-weight", "bold").text("Match?");
-    buttons.append("text").attr("x",175).attr("y",18).attr("text-anchor","middle").style("font","14px sans-serif").style("font-weight", "bold").text("Confidence");
-    //Yes
-    buttons.append("svg:image").attr("xlink:href","/resources/yes.png").attr("class","yes").attr("x",10).attr("y",40).attr("width",30).attr("height",30)
-      .on("mouseover",function(d){d3.select(this).transition().duration(500).attr("x",5).attr("y",35).attr("width",40).attr("height",40);})
-      .on("mouseout",function(d){d3.select(this).transition().duration(500).attr("x",10).attr("y",40).attr("width",30).attr("height",30);})
-      .on("click",function(d){
-        buttons.select(".no").attr("opacity",0.2);
-        d3.select(this).attr("opacity",1);
-        console.log(k,"Yes",Date.now());
-        dat.clicks.push([k,"Yes", Date.now()]);
-      });
-    //No
-    buttons.append("svg:image").attr("xlink:href","/resources/no.png").attr("class","no").attr("x",45).attr("y",40).attr("width",30).attr("height",30)
-      .on("mouseover",function(d){d3.select(this).transition().duration(500).attr("x",40).attr("y",35).attr("width",40).attr("height",40);})
-      .on("mouseout",function(d){d3.select(this).transition().duration(500).attr("x",45).attr("y",40).attr("width",30).attr("height",30);})
-      .on("click",function(d){
-        buttons.select(".yes").attr("opacity",0.2);
-        d3.select(this).attr("opacity",1);
-        console.log(k,"No",Date.now());
-        dat.clicks.push([k,"No", Date.now()]);
-      });
-
-    //Confidence
-    buttons.append("svg:image").attr("xlink:href","/resources/small.png").attr("class","xs").attr("x",90).attr("y",40).attr("width",30).attr("height",30)
-      .on("mouseover",function(d){d3.select(this).transition().duration(500).attr("x",85).attr("y",35).attr("width",40).attr("height",40);})
-      .on("mouseout",function(d){d3.select(this).transition().duration(500).attr("x",90).attr("y",40).attr("width",30).attr("height",30);})
-      .on("click",function(d){
-        buttons.select(".s").attr("opacity",0.2);        
-        buttons.select(".m").attr("opacity",0.2);
-        buttons.select(".l").attr("opacity",0.2);
-        buttons.select(".xl").attr("opacity",0.2);
-        d3.select(this).attr("opacity",1);
-        console.log(k,"XS",Date.now());
-        dat.clicks.push([k,"level 1", Date.now()]);
-      });
-    buttons.append("svg:image").attr("xlink:href","/resources/small_medium.png").attr("class","s").attr("x",125).attr("y",40).attr("width",30).attr("height",30)
-      .on("mouseover",function(d){d3.select(this).transition().duration(500).attr("x",120).attr("y",35).attr("width",40).attr("height",40);})
-      .on("mouseout",function(d){d3.select(this).transition().duration(500).attr("x",125).attr("y",40).attr("width",30).attr("height",30);})
-      .on("click",function(d){
-        buttons.select(".xs").attr("opacity",0.2);
-        buttons.select(".m").attr("opacity",0.2);
-        buttons.select(".l").attr("opacity",0.2);
-        buttons.select(".xl").attr("opacity",0.2);
-        d3.select(this).attr("opacity",1);
-        console.log(k,"S",Date.now());
-        dat.clicks.push([k,"level 2", Date.now()]);
-      });
-    buttons.append("svg:image").attr("xlink:href","/resources/medium.png").attr("class","m").attr("x",160).attr("y",40).attr("width",30).attr("height",30)
-      .on("mouseover",function(d){d3.select(this).transition().duration(500).attr("x",155).attr("y",35).attr("width",40).attr("height",40);})
-      .on("mouseout",function(d){d3.select(this).transition().duration(500).attr("x",160).attr("y",40).attr("width",30).attr("height",30);})
-      .on("click",function(d){
-        buttons.select(".xs").attr("opacity",0.2);
-        buttons.select(".s").attr("opacity",0.2);
-        buttons.select(".l").attr("opacity",0.2);
-        buttons.select(".xl").attr("opacity",0.2);
-        d3.select(this).attr("opacity",1);
-        console.log(k,"M",Date.now());
-        dat.clicks.push([k,"level 3", Date.now()]);
-      });
-      buttons.append("svg:image").attr("xlink:href","/resources/large_medium.png").attr("class","l").attr("x",195).attr("y",40).attr("width",30).attr("height",30)
-      .on("mouseover",function(d){d3.select(this).transition().duration(500).attr("x",190).attr("y",35).attr("width",40).attr("height",40);})
-      .on("mouseout",function(d){d3.select(this).transition().duration(500).attr("x",195).attr("y",40).attr("width",30).attr("height",30);})
-      .on("click",function(d){
-        buttons.select(".xs").attr("opacity",0.2);
-        buttons.select(".s").attr("opacity",0.2);
-        buttons.select(".m").attr("opacity",0.2);
-        buttons.select(".xl").attr("opacity",0.2);
-        d3.select(this).attr("opacity",1);
-        console.log(k,"L",Date.now());
-        dat.clicks.push([k,"level 4", Date.now()]);
-      });
-      buttons.append("svg:image").attr("xlink:href","/resources/large.png").attr("class","xl").attr("x",230).attr("y",40).attr("width",30).attr("height",30)
-      .on("mouseover",function(d){d3.select(this).transition().duration(500).attr("x",225).attr("y",35).attr("width",40).attr("height",40);})
-      .on("mouseout",function(d){d3.select(this).transition().duration(500).attr("x",230).attr("y",40).attr("width",30).attr("height",30);})
-      .on("click",function(d){
-        buttons.select(".xs").attr("opacity",0.2);
-        buttons.select(".s").attr("opacity",0.2);
-        buttons.select(".m").attr("opacity",0.2);
-        buttons.select(".l").attr("opacity",0.2);
-        d3.select(this).attr("opacity",1);
-        console.log(k,"XL",Date.now());
-        dat.clicks.push([k,"level 5", Date.now()]);
-      });
+    var buttons = g.append("g").attr("transform","translate(620,0)");
+    buttons.append("rect").attr("x",0).attr("y",0).attr("width",400).attr("height",85).style("fill","#68a7ca").style("opacity",1);
+    for(m=0;m<6;m++){
+      var radioButton = buttons.append("g").attr("transform","translate("+x[m]+","+y[m]+")");
+      radioButton.append("text").attr("x",25).attr("y",10).attr("text-anchor","left").style("font","14px sans-serif").text(options[m]);
+      radioButton.append("svg:image").attr("xlink:href","/resources/0.png").attr("class","choice").attr("x",0).attr("y",-5).attr("width",18).attr("height",18);
+      radioButton.on({"mouseover": function(d) {d3.select(this).style("cursor", "pointer")},
+             "mouseout": function(d) {d3.select(this).style("cursor", "default")}})
+        .on("click",function(d){
+          buttons.select(".no").attr("opacity",0.2);
+          buttons.selectAll("image").attr("xlink:href","/resources/0.png");
+          d3.select(this).select("image").attr("xlink:href","/resources/1.png");
+          console.log(k,d3.select(this).select("text").text(),Date.now());
+          dat.clicks.push([k, Date.now()]);
+        });
+    }
   }
 
 
-
-
-  function showNext(label){
+  function showNext(label,svg){
     d3.text("data_alt.csv", function(csvdata) {
       var parsedCSV = d3.csv.parseRows(csvdata);
       var title = parsedCSV[0];
       for (i=0;i<group[label].length;i++){
-        if(experimentr.data()["mode"]=="Partial"){
+        if(experimentr.data()["mode"]!="Full"){
             block(i,(title.slice(0,7)
               .concat([group[label][i][0][0]])
               .concat(group[label][i][0].slice(8,14))
               .concat([group[label][i][1][0]])
               .concat(group[label][i][1].slice(8,14))),
-            title.slice(0,7).concat(group[label][i][0].slice(0,7)).concat(group[label][i][1].slice(0,7))
-            );
+            title.slice(0,7).concat(group[label][i][0].slice(0,7)).concat(group[label][i][1].slice(0,7)),
+            experimentr.data()["mode"]);
         }else{
-            block(i,title.slice(0,7).concat(group[label][i][0].slice(0,7)).concat(group[label][i][1].slice(0,7)),[]);
+            block(svg,i,title.slice(0,7).concat(group[label][i][0].slice(0,7)).concat(group[label][i][1].slice(0,7)),[],experimentr.data()["mode"]);
         }
       }});
   }
@@ -367,9 +423,16 @@
   }
   d3.select('#ready_button')
     .on('click', function () {
-      d3.select("svg").selectAll("g").remove();
+      d3.select("#instruction").style("display","none");
+      d3.select("#example").style("display","none");
+      d3.select("#title1").style("display",function(d){return experimentr.data()["mode"]=="Full" ? "block":"none";})
+      d3.select("#title2").style("display",function(d){return experimentr.data()["mode"]=="Full_Partial" ? "block":"none";})
+      d3.select("#title3").style("display",function(d){return experimentr.data()["mode"]=="Partial_Cell" ? "block":"none";})
+      d3.select("#title4").style("display",function(d){return experimentr.data()["mode"]=="Partial_Row" ? "block":"none";})
+      d3.select("#title5").style("display",function(d){return experimentr.data()["mode"]=="Partial" ? "block":"none";})
       if (label<group.length){
-        showNext(label);
+        showNext(label,svg);
+        d3.select(".blocks").selectAll("g").remove();
         label = label+1;
       }else{
         goToNext();

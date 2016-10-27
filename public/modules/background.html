@@ -16,14 +16,14 @@
   </div>
   <br>
   <div id="degree">
-    <text id="degreeLabel" fill="red">Highest Degree Obtained: </text>
+    <text id="degreeLabel" fill="red">Highest Degree Obtained: </text><br>
     <div id="degreeValidate" class="validate" style="font-size: 150%; left: 10px; float: left;"></div>
-      <div id="degreeRadio">
-          <input type="radio" id="d1" name="degree" value="High School"> High School
-          <input type="radio" id="d2" name="degree" value="Bachelors"> Bachelors
-          <input type="radio" id="d3" name="degree" value="Masters"> Masters
-          <input type="radio" id="d4" name="degree" value="PhD"> PhD
-          <input type="radio" id="d5" name="degree" value="Other"> Other
+      <div id="degreeRadio" class="radio">
+          <input type="radio" id="d1" name="degree" value="High School"><label for="d1">High School</label><br>
+          <input type="radio" id="d2" name="degree" value="Bachelors"><label for="d2">Bachelors</label><br>
+          <input type="radio" id="d3" name="degree" value="Masters"><label for="d3">Masters</label><br>
+          <input type="radio" id="d4" name="degree" value="PhD"><label for="d4">PhD</label><br>
+          <input type="radio" id="d5" name="degree" value="Other"><label for="d5">Other</label>
       </div>
   </div>
   <br>
@@ -38,10 +38,19 @@
  <div id="mode">
     <text id="taskMode" fill="red">Select a task mode: </text>
     <div id="modeValidate" class="validate" style="font-size: 150%; left: 10px; float: left;"></div>
-      <div id="modeRadio">
-          <input type="radio" id="d1" name="mode" value="Full"> Full Disclosure
-          <input type="radio" id="d2" name="mode" value="Partial"> Paritial Disclosure
-      </div>
+      <g id="modeRadio" class="radio">
+          <input type="radio" id="d6" name="mode" value="Full" aria-label="Single radio One">
+          <label for="d6">Full Disclosure</label><br>
+          <input type="radio" id="d7" name="mode" value="Full_Partial" aria-label="Single radio One">
+          <label for="d7">Full Disclosure For Different Cells</label><br>
+          <input type="radio" id="d8" name="mode" value="Partial_Cell" aria-label="Single radio One">
+          <label for="d8">Paritial Disclosure Reveal Cell On Click</label><br>
+          <input type="radio" id="d9" name="mode" value="Partial_Row" aria-label="Single radio One">
+          <label for="d9">Paritial Disclosure Reveal Row On Click</label><br>
+          <input type="radio" id="d10" name="mode" value="Partial" aria-label="Single radio One">
+          <label for="d10">Minimum Disclosure Non-clickable</label>
+
+      </g>
   </div>
 
 
