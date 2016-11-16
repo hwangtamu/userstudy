@@ -1,5 +1,6 @@
-<h1>Background Questionnaire</h1>
+<h1>Disclosure Mode</h1>
 <div id="demographics">
+<!--
   <br>
   <div id="age">
     <text id="ageLabel" fill="red">Age:</text>
@@ -35,9 +36,12 @@
     <input type="text" class="textfield" value="" id="majorText" size="50" maxlength="50" name="majorText" />
   </div>
   <br>
+  -->
  <div id="mode">
-    <text id="taskMode" fill="red">Select a task mode: </text>
-    <div id="modeValidate" class="validate" style="font-size: 150%; left: 10px; float: left;"></div>
+ <p style="font-weight:bold">[Warning: do not refresh your web browser before the end of the user study. ]</p>
+
+    <text id="taskMode" fill="red">Select a disclosure mode: </text>
+    <div id="modeValidate" class="validate" style="font-size: 150%; left: 10px; float: left; color:red;"></div>
       <g id="modeRadio" class="radio">
           <input type="radio" id="d6" name="mode" value="Full" aria-label="Single radio One">
           <label for="d6">Full Disclosure</label><br>
@@ -54,10 +58,14 @@
   </div>
 
 
-  <button id="submitComments" class="next-button" type="button">Next</button>
-  <div id="validateMessage" class="validate"></div>
+  <button id="submitComments" class="next-button" type="button">Next</button><br>
+  <div id="validateMessage" class="validate" style="color:red;"></div>
 
-  
+<div id="mode1" style="display:none">In <text style="font-weight: bold">Full Disclosure</text> mode, all the cells are visible.</div>
+<div id="mode2" style="display:none">In <text style="font-weight: bold">Full Disclosure For Different Cells</text> mode, only different cells in a pair are visible. Dash lines represent the identical text in the pair.</div>
+<div id="mode3" style="display:none">In <text style="font-weight: bold">Paritial Disclosure Reveal Cell On Click</text> mode, only the minimum differences are visible at start. However, you can click on the cells which are partially visible, then the cells pair will be shown.</div>
+<div id="mode4" style="display:none">In <text style="font-weight: bold">Paritial Disclosure Reveal Row On Click</text> mode, only the minimum differences are visible at start. However, you can click on the cells which are partially visible, then all the cells with differences in the pair will be shown.</div>
+<div id="mode5" style="display:none">In <text style="font-weight: bold">Minimum Disclosure Non-clickable</text> mode, only the minimum differences in the pairs are shown.<br></div>
 
 
 <br>
@@ -85,26 +93,33 @@
 
 (function() {
   var data = {};
-
+  data.mode = "";
   experimentr.hideNext();
 
   experimentr.startTimer('background_info');
-
+  /*
   var ageText = d3.select('#ageText');
   var occupationText = d3.select('#occupationText');
   var majorText = d3.select('#majorText');
 
   var degreeRadio = d3.select('#degreeRadio');
 
-
-
   d3.selectAll('input')
     .filter(function(d) { return this.name === 'degree' ? this : null; })
     .on('change', function() { data.degree = this.value; });
-
+  */
   d3.selectAll('input')
     .filter(function(d) { return this.name === 'mode' ? this : null; })
-    .on('change', function() { data.mode = this.value; });
+    .on('change', function() { data.mode = this.value;
+      d3.select('#modeValidate').text("");
+      d3.select('#validateMessage').text("");     
+      d3.select("#mode1").style("display",function(d){return data.mode=="Full" ? "block":"none";});
+      d3.select("#mode2").style("display",function(d){return data.mode=="Full_Partial" ? "block":"none";});
+      d3.select("#mode3").style("display",function(d){return data.mode=="Partial_Cell" ? "block":"none";});
+      d3.select("#mode4").style("display",function(d){return data.mode=="Partial_Row" ? "block":"none";});
+      d3.select("#mode5").style("display",function(d){return data.mode=="Partial" ? "block":"none";});
+    //d3.select('#submitComments').attr('disabled', null);
+  });
 
   function goToNext() {
     experimentr.endTimer('background_info');
@@ -114,16 +129,16 @@
   }
 
   function validate() {
-
+    /*
     data.age = ageText.property('value');
     data.major = majorText.property('value');
     data.occupation = occupationText.property('value');
-
+    */
 
     var messageThing = d3.select('#validateMessage');
     var messageText = "";
     messageThing.html("");
-
+    /*
     if (data.age) {
       d3.select('#ageValidate').text("");
     } else {
@@ -151,22 +166,21 @@
       d3.select('#occupationValidate').text("* ");
       messageText += "<p>* Please enter your occupation.</p>"
     }
+    */
 
-
-    if (data.mode) {
+    if (data.mode!="") {
       d3.select('#modeValidate').text("");
     } else {
       d3.select('#modeValidate').text("* ");
-      messageText += "<p>* Please select a task mode.</p>"
+      messageText += '<p style="color:red">* Please select a task mode.</p>';
     }
 
-    goToNext();
-    //if(data.age && data.degree && data.major && data.occupation) {
-      //d3.select('#submitComments').attr('disabled', null);
-      //goToNext();
-    //} else {
-      //messageThing.html(messageText);
-    //}
+    //goToNext();
+    if(data.mode!="") {
+      goToNext();
+    } else {
+      messageThing.html(messageText);
+    }
   }//end validate
 
   d3.select('#submitComments')
