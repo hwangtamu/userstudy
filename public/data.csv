@@ -1,19 +1,5 @@
-car_name,group,cylinders,displacement,horsepower,weight,acceleration,model_year,origin
-"chevrolet",1,8,307,130,3504,12,70,1
-"buick",1,8,350,165,3693,11.5,70,1
-"plymouth",2,8,318,150,3436,11,70,1
-"chevrolet",2,8,307,130,3504,12,70,1
-"buick",3,8,350,165,3693,11.5,70,1
-"plymouth",3,8,318,150,3436,11,70,1
-"chevrolet",4,8,307,130,3504,12,70,1
-"buick",4,8,350,165,3693,11.5,70,1
-"plymouth",5,8,318,150,3436,11,70,1
-"chevrolet",5,8,307,130,3504,12,70,1
-"buick",5,8,350,165,3693,11.5,70,1
-"plymouth",6,8,318,150,3436,11,70,1
-"chevrolet",6,8,307,130,3504,12,70,1
-"buick",6,8,350,165,3693,11.5,70,1
-"plymouth",7,8,318,150,3436,11,70,1
-"chevrolet",7,8,307,130,3504,12,70,1
-"buick",7,8,350,165,3693,11.5,70,1
-"plymouth",7,8,318,150,3436,11,70,1
+Group ID,First name,Last name,Race,Gender,Reg No.,Date of birth,Record ID,Group,First name,Last name,Race,Gender,Reg No.,Date of birth,
+1,AALITA,BROWN,A,F,99980278,23-01-74,1-1,- -----,-----,-,-,--------,--/--/--,
+1,ADALITA,BROWN,A,,99980278,23-01-74,2-14,-D-----,-----,-,,--------,--/--/--,
+3,AARON,PREBLES,W,M,31223707,16-01-83,1-5,-----,-------,-,-,--------,--/--/-3,
+3,AARON,PREBLES,W,M,31223707,16-01-82,2-4,-----,-------,-,-,--------,--/--/-2,
