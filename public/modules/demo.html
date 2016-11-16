@@ -1,52 +1,84 @@
 <div id="instruction">
 <h1>Instructions</h1>
 
-<p style="font-weight:bold">[Warning: do not refresh your web browser before the end of the user study. ]</p>
 
 <p>Thank you for participating in our user study, and for the next while you will be completing some trials.<br> <br>
 
-In this study, you are going to give answers to 30 questions. For each question, you need to decide the likelihood between a pair of records based on the information provided. The pair can be independent to other pairs<br><br>
+In this study, you are going to give answers to 30 questions. For each question, you need to decide the likelihood between a pair of records based on the information provided. Each record has an unique <text style="font-weight: bold">Record ID</text>, and each pair/group has an unique <text style="font-weight: bold">Group ID</text>. A group here means a set which has more than two records.<br><br><h3>Examples:</h3><br>
 </p></div>
+
+<div id="title" style="display:none"><h3>Study of Record Linkage and Information Disclosure</h3></div>
+<div id="question" style="display:none"><h1>In each pair, are the two records likely to be the same person?<text id="group-size"></text><h1></div>
+
+
 <div id="title1" style="display:none"><h1>Full Disclosure</h1></div>
 <div id="mode1" style="display:none">In the <text style="font-weight: bold">Full Disclosure</text> mode, all the cells are visible.</div>
 <div id="title2" style="display:none"><h1>Full Disclosure For Different Cells</h1></div>
 
-<div id="mode2" style="display:none">In the <text style="font-weight: bold">Full Disclosure For Different Cells</text> mode, only different cells in a pair are visible. Dash lines represents the identical text in a pair.</div>
+<div id="mode2" style="display:none">In the <text style="font-weight: bold">Full Disclosure For Different Cells</text> mode, only different cells in a pair are visible. Dash lines represent the identical text in the pair.</div>
 <div id="title3" style="display:none"><h1>Partial Disclosure Reveal Cell On Click</h1></div>
 
-<div id="mode3" style="display:none">In the <text style="font-weight: bold">Paritial Disclosure Reveal Cell On Click</text> mode, only the minimum differences are visible at start. However, you can click the cells which are partial visible, then the cells pair will be shown.</div>
+<div id="mode3" style="display:none">In the <text style="font-weight: bold">Paritial Disclosure Reveal Cell On Click</text> mode, only the minimum differences are visible at start. However, you can click on the cells which are partially visible, then the cells pair will be shown.</div>
 <div id="title4" style="display:none"><h1>Partial Disclosure Reveal Row On Click</h1></div>
 
-<div id="mode4" style="display:none">In the <text style="font-weight: bold">Paritial Disclosure Reveal Row On Click</text> mode, only the minimum differences are visible at start. However, you can click the cells which are partial visible, then all the cells with differences in the pait will be shown.</div>
+<div id="mode4" style="display:none">In the <text style="font-weight: bold">Paritial Disclosure Reveal Row On Click</text> mode, only the minimum differences are visible at start. However, you can click on the cells which are partially visible, then all the cells with differences in the pair will be shown.</div>
 <div id="title5" style="display:none"><h1>Minimum Disclosure Non-clickable</h1></div>
 
-<div id="mode5" style="display:none">In the <text style="font-weight: bold">Minimum Disclosure Non-clickable</text> mode, only the minimum differences are shown.<br></div>
+<div id="mode5" style="display:none">In the <text style="font-weight: bold">Minimum Disclosure Non-clickable</text> mode, only the minimum differences in the pairs are shown.<br></div>
+
 <div id="example">
-Here are some sample questions:<br>
 
-<div id="binary_div">A pair example:</div>
+<div id="binary_div"></div>
+<br><br>
+<div id="other_div"></div>
+<br><br>
+<div id="choice_div"></div>
 
-<div id="other_div">Multiple pairs example:</div>
+The answers should be made by clicking the circle buttons on the choice panels.<br>Corresponding to the indices in the choice panel, the likelihood is scaled into 6 levels: <br>
+1. Highly likely different<br>
+2. Moderately likely different<br>
+3. Slightly likely different<br>
+4. Slightly likely same<br>
+5. Moderately likely same<br>
+6. Highly likely same<br>
 
-The likelihood is scaled into 6 levels: <br>
-1. Highly likely same<br>
-2. Moderately likely same<br>
-3. Slightly likely same<br>
-4. Highly likely different<br>
-5. Moderately likely different<br>
-6. Slightly likely different<br><br>
+<div class = "helper" id=helper_div><h3>Icons and Labels:</h3><span style="background:#68a7ca;padding-left:40px""></span>&nbsp The title rows and IDs of the records. <br><span style="background:#0059b3;padding-left:40px""></span>&nbsp The IDs of the same record across multiple pairs in a group. <br><span style="background:#b2d3e6;padding-left:40px""></span>&nbsp Cells contain full or partial record information and some of these cells are clickable which turn to light green &nbsp<span style="background:#C5E3BF;padding-left:40px""></span>&nbsp when pointed with mouse cursor.&nbsp<span style="padding-left:13px; padding-right:9px; padding-top: 3px; display:block;">
+  <img src="/resources/missing.png"></img>&nbsp &nbsp The empty cells.
+  </span><br>
+</div>
+The study has two sections: pairwise record linkage and groupwise record linkage. You need to choose one and only one answer for each pair and you are free to change your answers before clicking <text style="font-weight: bold">Next</text> button.<br><br>  
 
-You need to choose one and only one answer for each pair and you are free to change your answers before clicking <text style="font-weight: bold">Next</text> button.<br></p>
 </div>
 
-<div id="ready" style="display:none">Click Next button, and the study will begin. The study has two parts: first you are going to answeer questions to single pairs, then questions tp multiple pairs.</div>
+<div id="ready" style="display:none"><h1>Section 1: Pairwise Record Linkage</h1><br><text style="font-weight:bold">Click Start button when you are ready to start. Click Help button if you need help with the meanings of labels and icons.</text></div>
+<div id="ready2" style="display:none"><h1>Section 2: Groupwise Record Linkage</h1><br><text style="font-weight:bold">Click Start button when you are ready to start. Click Help button if you need help with the meanings of labels and icons.</text></div>
 
 
+<div id="end" style="display:none"><h2>The End</h2>
+
+<p>Thank you for your participation in the study. This is the end. You're done.</p></div>
 <body>
-<button id="ready_button" class="next-button" type="button">Next</button>
+<div id="readyButton"><button style="float: right; float: bottom;" id="ready_button" class="next-button" type="button">Next</button></div>
+<div id="help_div"><div id="helpButton" style="display:none"><button style="float: left; float: bottom;" id="help_button" class="next-button" type="button">Help</button></div><br><br>
+<div class="helper" id="help_panel" style="display:none">
+The answers should be made by clicking the circle buttons on the choice panels.<br>From left to right, the likelihood is scaled into 6 levels: <br>
+1. Highly likely different<br>
+2. Moderately likely different<br>
+3. Slightly likely different<br>
+4. Slightly likely same<br>
+5. Moderately likely same<br>
+6. Highly likely same<br>
+<h3>Icons and Labels:</h3><span style="background:#68a7ca;padding-left:40px""></span>&nbsp The title rows and IDs of the records. <br><span style="background:#0059b3;padding-left:40px""></span>&nbsp The IDs of the same record across multiple pairs in a group. <br><span style="background:#b2d3e6;padding-left:40px""></span>&nbsp Cells contain full or partial record information and some of these cells are clickable which turn to light green &nbsp<span style="background:#C5E3BF;padding-left:40px""></span>&nbsp when pointed with mouse cursor.&nbsp<span style="padding-left:13px; padding-right:9px; padding-top: 3px; display:block;">
+  <img src="/resources/missing.png"></img>&nbsp &nbsp The empty cells.
+  </span>
+</div></div>
 </body>
-
-
+<style>
+    .helper img{
+      width:18px;
+      height:18px;
+    }
+</style>
 
 <script>
 (function() {
@@ -61,18 +93,12 @@ You need to choose one and only one answer for each pair and you are free to cha
   var svg = d3.select("body").append("svg").attr("class","blocks")
             .attr("width", 1200)
             .attr("height", 600);
-  var binary_svg = d3.select("#binary_div").append("svg").attr("width",1200).attr("height",100)
-  var other_svg = d3.select("#other_div").append("svg").attr("width",1200).attr("height",200)
-
-  var cwidth = [60,80,120,140,50,60,90,90]; //690
-
-  d3.select("#mode1").style("display",function(d){return experimentr.data()["mode"]=="Full" ? "block":"none";});
-  d3.select("#mode2").style("display",function(d){return experimentr.data()["mode"]=="Full_Partial" ? "block":"none";});
-  d3.select("#mode3").style("display",function(d){return experimentr.data()["mode"]=="Partial_Cell" ? "block":"none";});
-  d3.select("#mode4").style("display",function(d){return experimentr.data()["mode"]=="Partial_Row" ? "block":"none";});
-  d3.select("#mode5").style("display",function(d){return experimentr.data()["mode"]=="Partial" ? "block":"none";});
+  var binary_svg = d3.select("#binary_div").append("svg").attr("width",1200).attr("height",120);
+  var other_svg = d3.select("#other_div").append("svg").attr("width",1200).attr("height",220);
+  var choice_svg = d3.select("#choice_div").append("svg").attr("id","choices").attr("width",1200).attr("height",190);
+  var help_svg = d3.select("#help_panel").append("svg").attr("id","help").attr("x",-500).attr("width",400).attr("height",100);
+  var cwidth = [70,80,120,140,50,60,90,90]; //710
   
-  parsing("data_.csv");
   introduce();
   console.log(experimentr.data()["mode"]);
   
@@ -80,11 +106,11 @@ You need to choose one and only one answer for each pair and you are free to cha
     d3.text(route,function(csvdata){
       var groups = {};
         var parsedCSV = d3.csv.parseRows(csvdata);
-        for(i=1;i<parsedCSV.length;i++){
-          if (!(parsedCSV[i][0] in groups)){
-            groups[parsedCSV[i][0]] = [parsedCSV[i]];
+        for(j=1;j<parsedCSV.length;j++){
+          if (!(parsedCSV[j][0] in groups)){
+            groups[parsedCSV[j][0]] = [parsedCSV[j]];
           }else{
-            groups[parsedCSV[i][0]] = groups[parsedCSV[i][0]].concat([parsedCSV[i]]);
+            groups[parsedCSV[j][0]] = groups[parsedCSV[j][0]].concat([parsedCSV[j]]);
           }
         }
         var values = Object.keys(groups).map(function(key){return groups[key];}); 
@@ -100,7 +126,11 @@ You need to choose one and only one answer for each pair and you are free to cha
             tmp.push(raw_binary[i]);
           }
         }
-        var tmp = values.filter(function(d){return d.length==4;});
+        
+        if(tmp!=[]){
+          binary.push(tmp);
+        }
+        tmp = values.filter(function(d){return d.length==4;});
         for(i=0;i<tmp.length;i++){
           var t = [];
           for(j=0;j<tmp[i].length/2;j++){
@@ -118,44 +148,65 @@ You need to choose one and only one answer for each pair and you are free to cha
         }
         group = binary.concat(other);
         //console.log(group);
-        if(route=="data_.csv"){introduce();}
+        //if(route=="data_.csv"){introduce();}
       });
   }
-
+  
   function introduce(){
+    parsing("data.csv");
     showNext(0,binary_svg);
-    showNext(0,other_svg);
-  }
+    parsing("data_.csv");
+    showNext(1,other_svg);
+    //examples:
+    binary_svg.append("text").attr("x",500).attr("y",110).text("Pair Example").attr("text-anchor","middle").style("font","24px sans-serif");
+    other_svg.append("text").attr("x",500).attr("y",200).text("Triplet Example").attr("text-anchor","middle").style("font","24px sans-serif");
+    //choice panel:
+    choices(choice_svg,"test",300,1.5);
+    var leg = [1,2,3,4,5,6];
+    var x_leg = [360,420,480,540,600,660];
+    for(i=0;i<leg.length;i++){
+      choice_svg.append("text").attr("x",x_leg[i]).attr("y",20).text(leg[i]).attr("text-anchor","middle").style("font","12px sans-serif");
+    }
+    choice_svg.append("text").attr("x",500).attr("y",160).text("Choice Panel").attr("text-anchor","middle").style("font","24px sans-serif");
 
-  function block(svg,k,data,data_,mode){
+  }
+  
+  function block(svg,k,data,data_,mode,flag){
     var l = data.length; //data length
     var r = l/3; //column number (3 rows)
-    var g = svg.append("g").attr("class","block")
+    var g = svg.append("g").attr("class","block").attr("id",k)
       .attr("transform","translate(0,"+100*k+")");
     if(mode=="Partial_Cell"|| mode=="Partial_Row"|| mode=="Partial" || mode=="Full_Partial"){
       for(j=0;j<l;j++){
-        var cell = g.append("g")
-          .attr("transform","translate("+cwidth.slice(0,j%r).reduce(function(a, b){return a+b;},0)+","+30*Math.floor(j/r)+")");
+        var cell = g.append("g").attr("id",j);
+        var sub_y = flag==1 && k>0 ? 30*Math.floor(j/r)-15 : 30*Math.floor(j/r);
+        cell.attr("transform","translate("+cwidth.slice(0,j%r).reduce(function(a, b){return a+b;},0)+","+ sub_y+")");
         var rectangle = cell.append("rect");
-        var textbox = cell.append("text");
+        var textbox = cell.append("text").attr("id",j);
         textbox.attr("x",cwidth[j%r]/2)
-        .attr("y",function(d){return (j<2*r && data[j]==data[j+r])||(j>r-1 && j%r < 1)||(j>2*r && data[j]==data[j-r]) ? 33 : 18;})
+        .attr("y",function(d){return (j<2*r && data[j]==data[j+r] && data[j]!="")||(j>r-1 && j%r < 1)||(j>2*r && data[j]==data[j-r] && data[j]!="") ? 33 : 18;})
         .attr("text-anchor","middle")
         .style("font","14px sans-serif")
         .style("font-weight", function(d) { return j<r ? "bold" : ""; })
         .text(function(d){
+          if(flag==1 && +d3.select(this).attr("id")<r && +d3.select(this.parentNode.parentNode).attr("id")>0){return "";}
+          if(data[j]==""){d3.select(this.parentNode).append("svg:image").attr("xlink:href","/resources/missing.png").attr("class","icon").attr("x",cwidth[j%r]/2-9).attr("y",5).attr("width",18).attr("height",18);return "";}
           if(mode=="Full_Partial"){
-            if(j>=2*r && data[j]==data[j-r]){return ""}else{
-                return j>=r && j%r>1 && d3.select(this).attr("y")==18 ? data_[j] : data[j];
+            if(j>=2*r && data[j]==data[j-r]){
+              return "";
+            }else{
+              return j>=r && j%r>1 && d3.select(this).attr("y")==18 ? data_[j] : data[j];
             }
           }else{
             return (j>2*r && data[j]==data[j-r])||j==2*r ? "" : data[j];}});
 
         rectangle.attr("x",1)
         .attr("y",0)
+        .attr("id",j)
         .attr("width",cwidth[j%r]-2)
-        .attr("height",function(d){if ((j>2*r && data[j]==data[j-r])||j==2*r){return 0;}return (j<2*r && data[j]==data[j+r])||j==r ? 55 : 25;})
-        .style("fill",function(d){return (j<r || j%r<2) ? "#68a7ca" : "#b2d3e6";})
+        .attr("height",function(d){if ((j>2*r && data[j]==data[j-r] && data[j]!="")||j==2*r){return 0;}return (j<2*r && data[j]!="" && data[j]==data[j+r])||j==r ? 55 : 25;})
+        .style("fill",function(d){if(flag==1 && +d3.select(this).attr("id")<r && +d3.select(this.parentNode.parentNode).attr("id")>0){return "none";}if(flag==1 && (+d3.select(this).attr("id")==r ||+d3.select(this).attr("id")==r+1)){return "#0059b3";}
+          return (j<r || j%r<2) ? "#68a7ca" : "#b2d3e6";})
         .style("opacity",1);
 
         //Actions only for clickable modes
@@ -164,41 +215,48 @@ You need to choose one and only one answer for each pair and you are free to cha
           var indice = $(this.parentNode).parent().children().index(this.parentNode);
           var rect = d3.select(this.parentNode).select("rect");
 
-          if(indice>=2*r && indice%r>1 && d3.select(this).attr("y")==18 && data[indice]!="" && data[indice]!="Miss" && data[indice]!=data_[indice]) {     
+          if(indice>=2*r && indice%r>1 && d3.select(this).attr("y")==18 && data[indice]!="" && data[indice-r]!="" && data[indice]!=data_[indice]) {     
             rect.transition().duration(500)
-            .style("fill","#379037");
+            .style("fill","#C5E3BF");
+            d3.select(this.parentNode).attr("clickable","yes");
+            d3.select(this).style("cursor", "pointer");
             d3.select(this).transition().duration(500).style('font-weight', 'bold');
             d3.select($(this.parentNode.parentNode).children()[indice-r]).select("text").transition().duration(500).style('font-weight', 'bold');
-            d3.select($(this.parentNode.parentNode).children()[indice-r]).select("rect").transition().duration(500).style("fill","#379037");
+            d3.select($(this.parentNode.parentNode).children()[indice-r]).select("rect").transition().duration(500).style("fill","#C5E3BF");
           }
-          if(indice>=r && indice<2*r && d3.select(this).attr("y")==18 && data[indice]!="" && data[indice]!="Miss" && data[indice]!=data_[indice]){
+          if(indice>=r && indice<2*r && d3.select(this).attr("y")==18 && data[indice]!="" && data[indice+r]!="" && data[indice]!=data_[indice]){
             rect.transition().duration(500)
-            .style("fill","#379037");
+            .style("fill","#C5E3BF");
+            d3.select(this).style("cursor", "pointer");
             d3.select(this).transition().duration(500).style('font-weight', 'bold');
             d3.select($(this.parentNode.parentNode).children()[indice+r]).select("text").transition().duration(500).style('font-weight', 'bold');
-            d3.select($(this.parentNode.parentNode).children()[indice+r]).select("rect").transition().duration(500).style("fill","#379037");
+            d3.select($(this.parentNode.parentNode).children()[indice+r]).select("rect").transition().duration(500).style("fill","#C5E3BF");
           }
 
         })
           .on('mouseout', function(d){
             var indice = $(this.parentNode).parent().children().index(this.parentNode);
             var rect = d3.select(this.parentNode).select("rect");
-            if(indice>=2*r && indice%r>1 && d3.select(this).attr("y")==18 && data[indice]!="" && data[indice]!="Miss" && data[indice]!=data_[indice]){      
+            if(indice>=2*r && indice%r>1 && d3.select(this).attr("y")==18 && data[indice]!="" && data[indice]!=data_[indice] && data[indice-r]!=""){      
               rect.transition()//.duration(500)
               .style("fill","#b2d3e6");
+              d3.select(this).style("cursor", "default");
               d3.select(this).transition().duration(500).style('font-weight', 'normal');
               d3.select($(this.parentNode.parentNode).children()[indice-r]).select("text").transition().duration(500).style('font-weight', 'normal');
               d3.select($(this.parentNode.parentNode).children()[indice-r]).select("rect").transition().duration(500).style("fill","#b2d3e6");
             }
-            if(indice>=r && indice<2*r && indice%r>1 && d3.select(this).attr("y")==18 && data[indice]!="" && data[indice]!="Miss" && data[indice]!=data_[indice]){
+            if(indice>=r && indice<2*r && indice%r>1 && d3.select(this).attr("y")==18 && data[indice]!="" && data[indice]!=data_[indice] && data[indice+r]!=""){
               rect.transition()//.duration(500)
               .style("fill","#b2d3e6");
+              d3.select(this).style("cursor", "default");
               d3.select(this).transition().duration(500).style('font-weight', 'normal');
               d3.select($(this.parentNode.parentNode).children()[indice+r]).select("text").transition().duration(500).style('font-weight', 'normal');
               d3.select($(this.parentNode.parentNode).children()[indice+r]).select("rect").transition().duration(500).style("fill","#b2d3e6");
             }
           })
-          .on('click',function(d){if(data.indexOf(this.textContent)>=r && data.indexOf(this.textContent)%r>1){
+          .on('click',function(d){
+            var text = d3.select(this.parentNode).select("text");
+            if(d3.select(this).style("cursor")=="pointer" &&text.attr("y")==18 && data.indexOf(this.textContent)>=r && data.indexOf(this.textContent)%r>1){
             var indice = $(this.parentNode).parent().children().index(this.parentNode);
             console.log(d3.select(this)[0][0].innerHTML,Date.now());
             dat.clicks.push([k,indice,d3.select(this)[0][0].innerHTML, Date.now()]);
@@ -208,7 +266,7 @@ You need to choose one and only one answer for each pair and you are free to cha
               d3.text("data_alt.csv", function(csvdata) {
                 var parsedCSV = d3.csv.parseRows(csvdata);
                 var title = parsedCSV[0];
-                console.log(group);
+                //console.log(group);
                 if(label>0){
                   label=label-1;
                 }
@@ -224,72 +282,84 @@ You need to choose one and only one answer for each pair and you are free to cha
                                       .concat(group[label][i][0].slice(1,r-1))
                                       .concat([group[label][i][1][0]]).concat([group[label][i][1][r-1]])
                                       .concat(group[label][i][1].slice(1,r-1));
-                    console.log(raw_string,alt_string);
-                    if(mode=="Partial_Row"){block(svg,i,raw_string,alt_string,"Full_Partial");}
+                    //console.log(raw_string,alt_string);
+                    if(mode=="Partial_Row"){block(svg,i,raw_string,alt_string,"Full_Partial", flag);}
                     else{
                       raw_string[indice]=alt_string[indice];
                       if(indice>2*r){
                         raw_string[indice-r]=alt_string[indice-r];
-                        group[label][i][1][indice-r]=raw_string[indice];
-                        group[label][i][0][indice-r]=raw_string[indice-r];
+                        group[label][i][1][indice-r-2]=raw_string[indice];
+                        group[label][i][0][indice-r-2]=raw_string[indice-r];
                       }else{
                         raw_string[indice+r]=alt_string[indice+r];
-                        group[label][i][0][indice-r]=raw_string[indice];
-                        group[label][i][1][indice-r]=raw_string[indice+r];
+                        group[label][i][0][indice-2]=raw_string[indice];
+                        group[label][i][1][indice-2]=raw_string[indice+r];
                       }
-                      block(svg,i,raw_string,alt_string,"Partial_Cell")
+                      console.log(indice,raw_string,alt_string);
+                      console.log(group[label][i]);
+                      block(svg,i,raw_string,alt_string,"Partial_Cell",flag)
                     }
                   }
                   label+=1;
               });
             }else{
-              if(d3.select(this)[0][0].innerHTML == data[indice] && data[indice]!="" && data[indice]!="Miss" && data[indice]!=data_[indice]){
-                d3.select(this).text(data_[indice]);
+              if(d3.select(this)[0][0].innerHTML == data[indice] && data[indice]!="" && data[indice]!=data_[indice]){
+                d3.select(this).text(data_[indice]).on("mouseover","null").on("mouseout","null").on("click","null");
+                d3.select($(this.parentNode.parentNode).children()[indice]).select("rect").on("mouseover","null").on("mouseout","null").on("click","null"); 
                 if(mode=="Partial_Cell"){
                   if(indice>2*r){
-                    d3.select($(this.parentNode.parentNode).children()[indice-r]).select("text").text(data_[indice-r]);
-                  }else{
-                    d3.select($(this.parentNode.parentNode).children()[indice+r]).select("text").text(data_[indice+r]);
+                      d3.select($(this.parentNode.parentNode).children()[indice-r]).select("text").text(data_[indice-r]).on("mouseover","null").on("mouseout","null").on("click","null");
+                      d3.select($(this.parentNode.parentNode).children()[indice-r]).select("rect").on("mouseover","null").on("mouseout","null").on("click","null");                     
+                    }else{
+                    d3.select($(this.parentNode.parentNode).children()[indice+r]).select("text").text(data_[indice+r]).on("mouseover","null").on("mouseout","null").on("click","null");
+                    d3.select($(this.parentNode.parentNode).children()[indice+r]).select("rect").on("mouseover","null").on("mouseout","null").on("click","null");   
                   }  
                 }else{
                   for(i=r;i<l;i++){
                     if(i%r>1 && d3.select($(this.parentNode.parentNode).children()[i]).select("text").attr("y")==18 && d3.select($(this.parentNode.parentNode).children()[i]).select("text").innerHTML!=""){
-                      d3.select($(this.parentNode.parentNode).children()[i]).select("text").text(data_[i]);
+                      d3.select($(this.parentNode.parentNode).children()[i]).select("text").text(data_[i]).on("mouseover","null").on("mouseout","null").on("click","null");
+                      d3.select($(this.parentNode.parentNode).children()[i]).select("rect").on("mouseover","null").on("mouseout","null").on("click","null"); 
                     }
                   }
                 }
               }
-          }}});
+            }
+          }
+        });
         
           rectangle.on('mouseover', function(d){
             var indice = $(this.parentNode).parent().children().index(this.parentNode);
             var text = d3.select(this.parentNode).select("text");
-            if(indice>2*r && indice%r>1 && text.attr("y")==18 && data[indice]!="" && data[indice]!="Miss" && data[indice]!=data_[indice]){     
+            if(indice>2*r && indice%r>1 && text.attr("y")==18 && data[indice]!="" && data[indice-r]!="" && data[indice]!=data_[indice]){
+              d3.select(this).style("cursor", "pointer");     
               d3.select(this).transition().duration(500)
-              .style("fill","#379037");
+              .style("fill","#C5E3BF");
               text.transition().duration(500).style('font-weight', 'bold');
               d3.select($(this.parentNode.parentNode).children()[indice-r]).select("text").transition().duration(500).style('font-weight', 'bold');
-              d3.select($(this.parentNode.parentNode).children()[indice-r]).select("rect").transition().duration(500).style("fill","#379037");
+              d3.select($(this.parentNode.parentNode).children()[indice-r]).select("rect").transition().duration(500).style("fill","#C5E3BF");
             }
-            if(indice>r && indice<2*r && indice%r>1 && text.attr("y")==18 && data[indice]!="" && data[indice]!="Miss" && data[indice]!=data_[indice]){     
+            if(indice>r && indice<2*r && indice%r>1 && text.attr("y")==18 && data[indice]!="" && data[indice+r]!="" && data[indice]!=data_[indice]){     
+              d3.select(this).style("cursor", "pointer");
               d3.select(this).transition().duration(500)
-              .style("fill","#379037");
+              .style("fill","#C5E3BF");
               text.transition().duration(500).style('font-weight', 'bold');
               d3.select($(this.parentNode.parentNode).children()[indice+r]).select("text").transition().duration(500).style('font-weight', 'bold');
-              d3.select($(this.parentNode.parentNode).children()[indice+r]).select("rect").transition().duration(500).style("fill","#379037");
+              d3.select($(this.parentNode.parentNode).children()[indice+r]).select("rect").transition().duration(500).style("fill","#C5E3BF");
             }
           })
           .on('mouseout', function(d){
             var indice = $(this.parentNode).parent().children().index(this.parentNode);
             var text = d3.select(this.parentNode).select("text");
-            if(indice>=2*r && indice%r>1 && text.attr("y") && data[indice]!="" && data[indice]!="Miss" && data[indice]!=data_[indice]){      
+            if(indice>=2*r && indice%r>1 && text.attr("y")==18 && data[indice]!="" && data[indice-r]!="" && data[indice]!=data_[indice]){      
+              d3.select(this).style("cursor", "default");
               d3.select(this).transition()//.duration(500)
               .style("fill","#b2d3e6");
               text.transition().duration(500).style('font-weight', 'normal');
               d3.select($(this.parentNode.parentNode).children()[indice-r]).select("text").transition().duration(500).style('font-weight', 'normal');
               d3.select($(this.parentNode.parentNode).children()[indice-r]).select("rect").transition().duration(500).style("fill","#b2d3e6");
             }
-            if(indice>=r && indice<2*r && indice%r>1 && text.attr("y")==18 && data[indice]!="" && data[indice]!="Miss" && data[indice]!=data_[indice]){     
+            if(indice>=r && indice<2*r && indice%r>1 && text.attr("y")==18 && data[indice]!="" && data[indice+r]!="" && data[indice]!=data_[indice]){     
+              d3.select(this).style("cursor", "default");
               d3.select(this).transition().duration(500)
               .style("fill","#b2d3e6");
               text.transition().duration(500).style('font-weight', 'normal');
@@ -302,8 +372,7 @@ You need to choose one and only one answer for each pair and you are free to cha
             var text = d3.select(this.parentNode).select("text");
             console.log(data[indice],Date.now());
             var siblings = d3.select(".blocks").selectAll(".block")[0].length;
-
-              if(siblings<5 && indice%r>1){
+              if(siblings<5 &&indice%r>1 && d3.select(this).style("cursor")=="pointer"){
                 d3.text("data_alt.csv", function(csvdata) {
                   var parsedCSV = d3.csv.parseRows(csvdata);
                   var title = parsedCSV[0];
@@ -314,114 +383,164 @@ You need to choose one and only one answer for each pair and you are free to cha
                   for (i=0;i<group[label].length;i++){
                       var raw_string = [title[0]].concat([title[r-1]]).concat(title.slice(1,r-1))
                                         .concat([group[label][i][0][0]]).concat([group[label][i][0][r-1]])
-                                        .concat(group[label][i][0].slice(r,r+6))
+                                        .concat(group[label][i][0].slice(r,2*r-2))
                                         .concat([group[label][i][1][0]]).concat([group[label][i][1][r-1]])
-                                        .concat(group[label][i][1].slice(r,r+6));
+                                        .concat(group[label][i][1].slice(r,2*r-2));
                       var alt_string = [title[0]].concat([title[r-1]]).concat(title.slice(1,r-1))
                                         .concat([group[label][i][0][0]]).concat([group[label][i][0][r-1]])
                                         .concat(group[label][i][0].slice(1,r-1))
                                         .concat([group[label][i][1][0]]).concat([group[label][i][1][r-1]])
                                         .concat(group[label][i][1].slice(1,r-1));
-                      console.log(raw_string,alt_string);
-                      if(mode=="Partial_Row"){block(svg,i,raw_string,alt_string,"Full_Partial");}
+                      //console.log(raw_string,alt_string);
+                      if(mode=="Partial_Row"){block(svg,i,raw_string,alt_string,"Full_Partial",flag);}
                       else{
                         raw_string[indice]=alt_string[indice];
                         if(indice>2*r){
                           raw_string[indice-r]=alt_string[indice-r];
-                          group[label][i][1][indice-r]=raw_string[indice];
-                          group[label][i][0][indice-r]=raw_string[indice-r];
+                          group[label][i][1][indice-r-2]=raw_string[indice];
+                          group[label][i][0][indice-r-2]=raw_string[indice-r];
                         }else{
                           raw_string[indice+r]=alt_string[indice+r];
-                          group[label][i][0][indice-r]=raw_string[indice];
-                          group[label][i][1][indice-r]=raw_string[indice+r];
+                          group[label][i][0][indice-2]=raw_string[indice];
+                          group[label][i][1][indice-2]=raw_string[indice+r];
                         }
-                        block(svg,i,raw_string,alt_string,"Partial_Cell")
+                        console.log(indice,raw_string,alt_string);
+                        console.log(group[label][i]);
+                        block(svg,i,raw_string,alt_string,"Partial_Cell",flag)
                       }
                     }
                     label+=1;
                 });
               }
-              if(siblings==5 && indice%r>1){
-              if(data.indexOf(text[0][0].innerHTML)>=r && text.attr("y")==18 && data[indice]!="" && data[indice]!="Miss" && data[indice]!=data_[indice]){
+              if(siblings==5 && indice%r>1 && d3.select(this).style("cursor")=="pointer"){
+              if(data.indexOf(text[0][0].innerHTML)>=r && text.attr("y")==18 && data[indice]!="" && data[indice]!=data_[indice]){
                 console.log(text[0][0].innerHTML,Date.now());
                 dat.clicks.push([k,indice,text[0][0].innerHTML, Date.now()]);
                 if(text[0][0].innerHTML == data[indice]){
-                  text.text(data_[indice]);
+                  text.text(data_[indice]).on("mouseover","null").on("mouseout","null").on("click","null");
+                  d3.select($(this.parentNode.parentNode).children()[indice]).select("rect").on("mouseover","null").on("mouseout","null").on("click","null"); 
                   if(mode=="Partial_Cell"){
                     if(indice>=2*r){
-                      d3.select($(this.parentNode.parentNode).children()[indice-r]).select("text").text(data_[indice-r]);
+                      d3.select($(this.parentNode.parentNode).children()[indice-r]).select("text").text(data_[indice-r]).on("mouseover","null").on("mouseout","null").on("click","null");
+                      d3.select($(this.parentNode.parentNode).children()[indice-r]).select("rect").on("mouseover","null").on("mouseout","null").on("click","null");  
                     }else{
-                      d3.select($(this.parentNode.parentNode).children()[indice+r]).select("text").text(data_[indice+r]);
-                    }  
+                      d3.select($(this.parentNode.parentNode).children()[indice+r]).select("text").text(data_[indice+r]).on("mouseover","null").on("mouseout","null").on("click","null");
+                      d3.select($(this.parentNode.parentNode).children()[indice+r]).select("rect").on("mouseover","null").on("mouseout","null").on("click","null");  
+                    }
                   }else{
                     for(i=r;i<l;i++){
                       if(i%r>1 && d3.select($(this.parentNode.parentNode).children()[i]).select("text").textContent!="" && d3.select($(this.parentNode.parentNode).children()[i]).select("text").attr("y")==18){
-                        d3.select($(this.parentNode.parentNode).children()[i]).select("text").text(data_[i]);
+                        d3.select($(this.parentNode.parentNode).children()[i]).select("text").text(data_[i]).on("mouseover","null").on("mouseout","null").on("click","null");
+                        d3.select($(this.parentNode.parentNode).children()[i]).select("rect").on("mouseover","null").on("mouseout","null").on("click","null"); 
                       }
                     }
-                  }            
+                  }
+
+                }
               }
             }
-
-          }});
+          });
         }
-        
       }
     }
     if(experimentr.data()["mode"]=="Full"){
       for(j=0;j<l;j++){
-        var cell = g.append("g")
-          .attr("transform","translate("+cwidth.slice(0,j%r).reduce(function(a, b){return a+b;},0)+","+30*Math.floor(j/r)+")");
+        var cell = g.append("g").attr("id",k)
+        var sub_y = flag==1 && k>0 ? 30*Math.floor(j/r)-15 : 30*Math.floor(j/r);
+        cell.attr("transform","translate("+cwidth.slice(0,j%r).reduce(function(a, b){return a+b;},0)+","+sub_y+")");
         var rectangle = cell.append("rect");
         var textbox = cell.append("text");
         
-        textbox.attr("x",cwidth[j%r]/2)
+        textbox.attr("x",cwidth[j%r]/2).attr("id",j)
         .attr("y",function(d){return (j>=r && j%r==0) ? 33 : 18;})
         .attr("text-anchor","middle")
         .style("font","14px sans-serif")
         .style("font-weight", function(d) { return j<r ? "bold" : ""; })
-        .text(function(d){return j==2*r ? "" : data[j];});
+        .text(function(d){if(flag==1 && +d3.select(this).attr("id")<r && +d3.select(this.parentNode.parentNode).attr("id")>0){return "";}if(data[j]==""){d3.select(this.parentNode).append("svg:image").attr("xlink:href","/resources/missing.png").attr("class","icon").attr("x",cwidth[j%r]/2-9).attr("y",5).attr("width",18).attr("height",18); return "";} return j==2*r ? "" : data[j];});
         
-        rectangle.attr("x",1)
+        rectangle.attr("x",1).attr("id",j)
         .attr("y",0)
         .attr("width",cwidth[j%r]-2)
         .attr("height",function(d){if (j==2*r){return 0;}return j==r ? 55 : 25;})
-        .style("fill",function(d){return (j<r || j%r<2) ? "#68a7ca" : "#b2d3e6";})
+        .style("fill",function(d){if(flag==1 && +d3.select(this).attr("id")<r && +d3.select(this.parentNode.parentNode).attr("id")>0){return "none";}if(flag==1 && (+d3.select(this).attr("id")==r ||+d3.select(this).attr("id")==r+1)){return "#0059b3";}return (j<r || j%r<2) ? "#68a7ca" : "#b2d3e6";})
         .style("opacity",1);
-    }}
-
-    var options = ["Highly Likely Same",
-                   "Highly Likely Different",
-                   "Moderately Likely Same",
+      }
+    }
+    choices(g,k,720);
+    
+  }
+  function choices(svg, k, lBound, scale=1){
+    var options = ["Highly Likely Different",
                    "Moderately Likely Different",
+                   "Slightly Likely Different",
                    "Slightly Likely Same",
-                   "Slightly Likely Different"];
-    var x = [10,200,10,200,10,200];
-    var y = [10,10,40,40,70,70];
+                   "Moderately Likely Same",
+                   "Highly Likely Same"];
+    var x = [20,60,100,140,180,220];
+    var lx = [10,20,38,60,78,100,118,140,158,180,198,220,238,250];
+    var y = 40;
     // add buttons
-    var buttons = g.append("g").attr("transform","translate(700,0)");
-    buttons.append("rect").attr("x",0).attr("y",0).attr("width",400).attr("height",85).style("fill","#68a7ca").style("opacity",1);
+    var buttons = svg.append("g").attr("transform","translate("+lBound+",0)");
+    buttons.append("rect").attr("x",-10*scale).attr("y",0).attr("width",280*scale).attr("height",85*scale).style("fill","#68a7ca").style("opacity",1);
+    buttons.append("text").attr("x",220*scale).attr("y",78*scale).text("Same").attr("text-anchor","middle").style("font",24*scale+"px sans-serif");
+    buttons.append("text").attr("x",50*scale).attr("y",78*scale).text("Different").attr("text-anchor","middle").style("font",24*scale+"px sans-serif");
+    for(p=0;p<options.length;p++){
+      buttons.append("text").attr("x",(x[p]+8)*scale).attr("y",30*scale).text(options[p][0]).attr("text-anchor","middle").style("font",24*scale+"px sans-serif");
+    }
+
+
+
+    //arrows
+    for(pos=0;pos<7;pos++){
+      var lineData = [ { "x": lx[2*pos]*scale,   "y": 44*scale+4*(scale-1)},  { "x": lx[2*pos+1]*scale,  "y": 44*scale+4*(scale-1)}];
+      var lineFunction = d3.svg.line()
+                          .x(function(d) { return d.x; })
+                          .y(function(d) { return d.y; })
+                          .interpolate("linear");
+      buttons.append("path").attr("d", lineFunction(lineData))
+                            .attr("stroke", "black")
+                            .attr("stroke-width", 5)
+                            .style("fill","none");
+    }
+    var xScale = d3.scale.linear();
+    var yScale = d3.scale.linear();
+    var leftTrianglePoints = xScale(0) + ' ' + yScale(48*scale-4) + ', ' + xScale(10*scale) + ' ' + yScale(42*scale-4) + ', ' + xScale(10*scale) + ' ' + yScale(54*scale-4) + ' ' + xScale(10*scale) + ', ' + yScale(54*scale-4) + ' ' + xScale(0) + ' ' + yScale(48*scale-4);
+    var rightTrianglePoints = xScale(260*scale) + ' ' + yScale(48*scale-4) + ', ' + xScale(250*scale) + ' ' + yScale(42*scale-4) + ', ' + xScale(250*scale) + ' ' + yScale(54*scale-4) + ' ' + xScale(250*scale) + ', ' + yScale(54*scale-4) + ' ' + xScale(260*scale) + ' ' + yScale(48*scale-4);
+    buttons.append('polyline')
+      .attr('points', leftTrianglePoints)
+      .attr("stroke","none")
+      .style('fill', 'black');
+    buttons.append('polyline')
+      .attr('points', rightTrianglePoints)
+      .attr("stroke","none")
+      .style('fill', 'black');
+
+
     for(m=0;m<6;m++){
-      var radioButton = buttons.append("g").attr("transform","translate("+x[m]+","+y[m]+")");
-      radioButton.append("text").attr("x",25).attr("y",10).attr("text-anchor","left").style("font","14px sans-serif").text(options[m]);
-      radioButton.append("svg:image").attr("xlink:href","/resources/0.png").attr("class","choice").attr("x",0).attr("y",-5).attr("width",18).attr("height",18);
+      var radioButton = buttons.append("g").attr("transform","translate("+x[m]*scale+","+y*scale+")");
+      //radioButton.append("text").attr("x",25).attr("y",10).attr("text-anchor","left").style("font","14px sans-serif").text(options[m]);
+      radioButton.append("svg:image").attr("xlink:href","/resources/0.png").attr("class","choice").attr("id",m).attr("x",0).attr("y",-5).attr("width",18*scale).attr("height",18*scale);
       radioButton.on({"mouseover": function(d) {d3.select(this).style("cursor", "pointer")},
              "mouseout": function(d) {d3.select(this).style("cursor", "default")}})
         .on("click",function(d){
           buttons.select(".no").attr("opacity",0.2);
-          buttons.selectAll("image").attr("xlink:href","/resources/0.png");
+          buttons.selectAll(".choice").attr("xlink:href","/resources/0.png");
           d3.select(this).select("image").attr("xlink:href","/resources/1.png");
-          console.log(k,d3.select(this).select("text").text(),Date.now());
+          console.log(k,d3.select(this).select(".choice").attr("id"),Date.now());
           dat.clicks.push([k, Date.now()]);
         });
     }
   }
 
-
   function showNext(label,svg){
     d3.text("data_.csv", function(csvdata) {
       var parsedCSV = d3.csv.parseRows(csvdata);
       var title = parsedCSV[0];
+      var flag = group[label].length>1 && group[label].length<5 ? 1 : 0;
+      //console.log(group[label].length);
+      if(flag==1 && d3.select("#question").style("display")=="block"){
+        d3.select("#group-size").text("This group has "+(group[label].length+1)+" records.");
+      }
       for (i=0;i<group[label].length;i++){
         if(experimentr.data()["mode"]!="Full"){
             block(svg,i,([title[0]].concat([title[7]]).concat(title.slice(1,7))
@@ -432,12 +551,12 @@ You need to choose one and only one answer for each pair and you are free to cha
             [title[0]].concat([title[7]]).concat(title.slice(1,7))
               .concat([group[label][i][0][0]]).concat([group[label][i][0][7]]).concat(group[label][i][0].slice(1,7))
               .concat([group[label][i][1][0]]).concat([group[label][i][1][7]]).concat(group[label][i][1].slice(1,7)),
-            experimentr.data()["mode"]);
+            experimentr.data()["mode"],flag);
         }else{
             block(svg,i,[title[0]].concat([title[7]]).concat(title.slice(1,7))
               .concat([group[label][i][0][0]]).concat([group[label][i][0][7]]).concat(group[label][i][0].slice(1,7))
               .concat([group[label][i][1][0]]).concat([group[label][i][1][7]]).concat(group[label][i][1].slice(1,7))
-              ,[],experimentr.data()["mode"]);
+              ,[],experimentr.data()["mode"],flag);
         }
       }});
   }
@@ -447,31 +566,76 @@ You need to choose one and only one answer for each pair and you are free to cha
     experimentr.addData(dat);
     experimentr.next();
   }
+  d3.select('#help_button').on('click',function(){
+    if(d3.select("#help_panel").style("display")=="none"){
+      d3.select("#help_panel").style("display","block");
+      if(label>0){
+        d3.select("#readyButton").style("position","absolute").style("top",606+100*group[label-1].length).style("left",$(window).width()*0.1+950);
+      }
+    }else{
+      d3.select("#help_panel").style("display","none");
+      if(label>0){
+        d3.select("#readyButton").style("position","absolute").style("top",200+100*group[label-1].length).style("left",$(window).width()*0.1+950);
+      }
+    }
+  });
   d3.select('#ready_button')
     .on('click', function () {
+      d3.select("#help_panel").style("display","none");
       if(d3.select("#instruction").style("display")=="block"){
         d3.select("#instruction").style("display","none");
         d3.select("#example").style("display","none");
         label=0;
         parsing("data_alt.csv");
+        /*
         d3.select("#title1").style("display",function(d){return experimentr.data()["mode"]=="Full" ? "block":"none";})
         d3.select("#title2").style("display",function(d){return experimentr.data()["mode"]=="Full_Partial" ? "block":"none";})
         d3.select("#title3").style("display",function(d){return experimentr.data()["mode"]=="Partial_Cell" ? "block":"none";})
         d3.select("#title4").style("display",function(d){return experimentr.data()["mode"]=="Partial_Row" ? "block":"none";})
         d3.select("#title5").style("display",function(d){return experimentr.data()["mode"]=="Partial" ? "block":"none";})
+        */
+        d3.select("#title").style("display",function(d){return experimentr.data()["mode"] ? "block":"none";})
+
         d3.select("#ready").style("display",function(d){return "block";})
+        d3.select("#ready_button").text("Start");
+        d3.select("#helpButton").style("display",function(d){return "block";})
+
       }
       else{
         if (label<group.length){
-          d3.select("#ready").style("display",function(d){return "none";})
+          if(group[label].length>0){
+            d3.select("#ready").style("display",function(d){return "none";})
+            d3.select("#ready2").style("display",function(d){return "none";})
+            d3.select("#ready_button").text("Next");
+            d3.select("#question").style("display",function(d){return "block";})
+          }
+          if(group[label].length==0){
+            d3.select("#question").style("display",function(d){return "none";})
+            d3.select("#ready2").style("display",function(d){return "block";})
+            d3.select("#ready_button").text("Start");
+          }
           showNext(label,svg);
+          console.log(group[label].length);
+          d3.select("#readyButton").style("position","absolute").style("top",200+100*group[label].length).style("left",$(window).width()*0.1+950);
+          //var siblings = d3.select(".blocks").selectAll(".block")[0].length;
+          
           d3.select(".blocks").selectAll("g").remove();
+
           label = label+1;
         }else{
           d3.select(".blocks").selectAll("g").remove();
-          goToNext();
+          //goToNext();
+          d3.select("#title").remove();
+          d3.select("#question").remove();
+          d3.select("#end").style("display",function(d){return "block";})
+          d3.select("#helpButton").remove();
+          d3.select("#ready_button").remove();
+
         }
       }
+      $("html, body").animate({
+            scrollTop: 0
+        }, 600);
     });
 }());
 </script>
