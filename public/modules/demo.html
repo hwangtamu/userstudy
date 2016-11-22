@@ -2,13 +2,13 @@
 <h1>Instructions</h1>
 
 
-<p>Thank you for participating in our user study, and for the next while you will be completing some trials.<br> <br>
+<p>Thank you for participating in our user study.<br> <br>
 
-In this study, you are going to give answers to 30 questions. For each question, you need to decide the likelihood between a pair of records based on the information provided. Each record has an unique <text style="font-weight: bold">Record ID</text>, and each pair/group has an unique <text style="font-weight: bold">Group ID</text>. A group here means a set which has more than two records.<br><br><h3>Examples:</h3><br>
+In this study, you are going to answer 30 questions. <br>For each question, based on the information provided, you need to determine the likelihood of a pair of records belonging to the same real world person. Each record has an unique <text style="font-weight: bold">Record ID</text>, and each pair/group has an unique <text style="font-weight: bold">Group ID</text>. A group maybe have two or more records. For groups with more than two records, you will compare each record with a base record for the group.<br><br><h3>Examples:</h3><br>
 </p></div>
 
 <div id="title" style="display:none"><h3>Study of Record Linkage and Information Disclosure</h3></div>
-<div id="question" style="display:none"><h1>In each pair, are the two records likely to be the same person?<text id="group-size"></text><h1></div>
+<div id="question" style="display:none"><h1>In each pair, how likely are the two records to be  the same person?<text id="group-size"></text><h1></div>
 
 
 <div id="title1" style="display:none"><h1>Full Disclosure</h1></div>
@@ -41,8 +41,11 @@ The answers should be made by clicking the circle buttons on the choice panels.<
 4. Slightly likely same<br>
 5. Moderately likely same<br>
 6. Highly likely same<br>
-
-<div class = "helper" id=helper_div><h3>Icons and Labels:</h3><span style="background:#68a7ca;padding-left:40px""></span>&nbsp The title rows and IDs of the records. <br><span style="background:#0059b3;padding-left:40px""></span>&nbsp The IDs of the same record across multiple pairs in a group. <br><span style="background:#b2d3e6;padding-left:40px""></span>&nbsp Cells contain full or partial record information and some of these cells are clickable which turn to light green &nbsp<span style="background:#C5E3BF;padding-left:40px""></span>&nbsp when pointed with mouse cursor.&nbsp<span style="padding-left:13px; padding-right:9px; padding-top: 3px; display:block;">
+<div class = "helper" id=helper_nonclick_div style="display: none"><h3>Icons and Labels:</h3><span style="background:#68a7ca;padding-left:40px""></span>&nbsp The title rows and IDs of the records. <br><span style="background:#0059b3;padding-left:40px""></span>&nbsp The IDs of the same record across multiple pairs in a group. <br><span style="background:#b2d3e6;padding-left:40px""></span>&nbsp Cells contain full or partial record information.&nbsp<span style="padding-left:13px; padding-right:9px; padding-top: 3px; display:block;">
+  <img src="/resources/missing.png"></img>&nbsp &nbsp The empty cells.
+  </span><br>
+</div>
+<div class = "helper" id=helper_div style="display: none"><h3>Icons and Labels:</h3><span style="background:#68a7ca;padding-left:40px""></span>&nbsp The title rows and IDs of the records. <br><span style="background:#0059b3;padding-left:40px""></span>&nbsp The IDs of the same record across multiple pairs in a group. <br><span style="background:#b2d3e6;padding-left:40px""></span>&nbsp Cells contain full or partial record information.<br><span style="background:#C5E3BF;padding-left:40px""></span>&nbsp Clickable cells which reveal full information of the cell/record on click with mouse cursor.&nbsp<span style="padding-left:13px; padding-right:9px; padding-top: 3px; display:block;">
   <img src="/resources/missing.png"></img>&nbsp &nbsp The empty cells.
   </span><br>
 </div>
@@ -68,10 +71,23 @@ The answers should be made by clicking the circle buttons on the choice panels.<
 4. Slightly likely same<br>
 5. Moderately likely same<br>
 6. Highly likely same<br>
+<h3>Icons and Labels:</h3><span style="background:#68a7ca;padding-left:40px""></span>&nbsp The title rows and IDs of the records. <br><span style="background:#0059b3;padding-left:40px""></span>&nbsp The IDs of the same record across multiple pairs in a group. <br><span style="background:#b2d3e6;padding-left:40px""></span>&nbsp Cells contain full or partial record information <br><span style="background:#C5E3BF;padding-left:40px""></span>&nbsp Clickable cells which reveal full information of the cell/record on click with mouse cursor.&nbsp<span style="padding-left:13px; padding-right:9px; padding-top: 3px; display:block;">
+  <img src="/resources/missing.png"></img>&nbsp &nbsp The empty cells.
+  </span>
+</div>
+<div class="helper" id="help_nonclick_panel" style="display:none">
+The answers should be made by clicking the circle buttons on the choice panels.<br>From left to right, the likelihood is scaled into 6 levels: <br>
+1. Highly likely different<br>
+2. Moderately likely different<br>
+3. Slightly likely different<br>
+4. Slightly likely same<br>
+5. Moderately likely same<br>
+6. Highly likely same<br>
 <h3>Icons and Labels:</h3><span style="background:#68a7ca;padding-left:40px""></span>&nbsp The title rows and IDs of the records. <br><span style="background:#0059b3;padding-left:40px""></span>&nbsp The IDs of the same record across multiple pairs in a group. <br><span style="background:#b2d3e6;padding-left:40px""></span>&nbsp Cells contain full or partial record information and some of these cells are clickable which turn to light green &nbsp<span style="background:#C5E3BF;padding-left:40px""></span>&nbsp when pointed with mouse cursor.&nbsp<span style="padding-left:13px; padding-right:9px; padding-top: 3px; display:block;">
   <img src="/resources/missing.png"></img>&nbsp &nbsp The empty cells.
   </span>
-</div></div>
+</div>
+</div>
 </body>
 <style>
     .helper img{
@@ -158,6 +174,8 @@ The answers should be made by clicking the circle buttons on the choice panels.<
     parsing("data_.csv");
     showNext(1,other_svg);
     //examples:
+    if(experimentr.data()["mode"]=="Partial_Cell" || experimentr.data()["mode"]=="Partial_Row"){d3.select("#helper_div").style("display","block");}
+    else{d3.select("#helper_nonclick_div").style("display","block");}
     binary_svg.append("text").attr("x",500).attr("y",110).text("Pair Example").attr("text-anchor","middle").style("font","24px sans-serif");
     other_svg.append("text").attr("x",500).attr("y",200).text("Triplet Example").attr("text-anchor","middle").style("font","24px sans-serif");
     //choice panel:
@@ -168,7 +186,6 @@ The answers should be made by clicking the circle buttons on the choice panels.<
       choice_svg.append("text").attr("x",x_leg[i]).attr("y",20).text(leg[i]).attr("text-anchor","middle").style("font","12px sans-serif");
     }
     choice_svg.append("text").attr("x",500).attr("y",160).text("Choice Panel").attr("text-anchor","middle").style("font","24px sans-serif");
-
   }
   
   function block(svg,k,data,data_,mode,flag){
@@ -206,11 +223,23 @@ The answers should be made by clicking the circle buttons on the choice panels.<
         .attr("width",cwidth[j%r]-2)
         .attr("height",function(d){if ((j>2*r && data[j]==data[j-r] && data[j]!="")||j==2*r){return 0;}return (j<2*r && data[j]!="" && data[j]==data[j+r])||j==r ? 55 : 25;})
         .style("fill",function(d){if(flag==1 && +d3.select(this).attr("id")<r && +d3.select(this.parentNode.parentNode).attr("id")>0){return "none";}if(flag==1 && (+d3.select(this).attr("id")==r ||+d3.select(this).attr("id")==r+1)){return "#0059b3";}
-          return (j<r || j%r<2) ? "#68a7ca" : "#b2d3e6";})
+          //return (j<r || j%r<2) ? "#68a7ca" : "#b2d3e6";
+          //modified:
+          if(mode=="Partial_Row"||mode=="Partial_Cell"){
+            if(j>=2*r && j%r>1 && data[j]!="" && data[j-r]!="" && data[j]!=data_[j] && d3.select(this).attr("height")==25){return "#C5E3BF";}
+            if(j>=r && j<2*r && data[j]!="" && data[j+r]!="" && data[j]!=data_[j] && d3.select(this).attr("height")==25){return "#C5E3BF";}
+          }
+          if(j<r||j%r<2){
+            return "#68a7ca"; 
+          }else{
+            return "#b2d3e6";
+          }
+        })
         .style("opacity",1);
 
         //Actions only for clickable modes
         if(mode=="Partial_Row"||mode=="Partial_Cell"){
+          //modified:
           textbox.on('mouseover', function(d){
           var indice = $(this.parentNode).parent().children().index(this.parentNode);
           var rect = d3.select(this.parentNode).select("rect");
@@ -239,19 +268,19 @@ The answers should be made by clicking the circle buttons on the choice panels.<
             var rect = d3.select(this.parentNode).select("rect");
             if(indice>=2*r && indice%r>1 && d3.select(this).attr("y")==18 && data[indice]!="" && data[indice]!=data_[indice] && data[indice-r]!=""){      
               rect.transition()//.duration(500)
-              .style("fill","#b2d3e6");
+              .style("fill","#C5E3BF");
               d3.select(this).style("cursor", "default");
               d3.select(this).transition().duration(500).style('font-weight', 'normal');
               d3.select($(this.parentNode.parentNode).children()[indice-r]).select("text").transition().duration(500).style('font-weight', 'normal');
-              d3.select($(this.parentNode.parentNode).children()[indice-r]).select("rect").transition().duration(500).style("fill","#b2d3e6");
+              d3.select($(this.parentNode.parentNode).children()[indice-r]).select("rect").transition().duration(500).style("fill","#C5E3BF");
             }
             if(indice>=r && indice<2*r && indice%r>1 && d3.select(this).attr("y")==18 && data[indice]!="" && data[indice]!=data_[indice] && data[indice+r]!=""){
               rect.transition()//.duration(500)
-              .style("fill","#b2d3e6");
+              .style("fill","#V5E3BF");
               d3.select(this).style("cursor", "default");
               d3.select(this).transition().duration(500).style('font-weight', 'normal');
               d3.select($(this.parentNode.parentNode).children()[indice+r]).select("text").transition().duration(500).style('font-weight', 'normal');
-              d3.select($(this.parentNode.parentNode).children()[indice+r]).select("rect").transition().duration(500).style("fill","#b2d3e6");
+              d3.select($(this.parentNode.parentNode).children()[indice+r]).select("rect").transition().duration(500).style("fill","#C5E3BF");
             }
           })
           .on('click',function(d){
@@ -353,18 +382,18 @@ The answers should be made by clicking the circle buttons on the choice panels.<
             if(indice>=2*r && indice%r>1 && text.attr("y")==18 && data[indice]!="" && data[indice-r]!="" && data[indice]!=data_[indice]){      
               d3.select(this).style("cursor", "default");
               d3.select(this).transition()//.duration(500)
-              .style("fill","#b2d3e6");
+              .style("fill","#C5E3BF");
               text.transition().duration(500).style('font-weight', 'normal');
               d3.select($(this.parentNode.parentNode).children()[indice-r]).select("text").transition().duration(500).style('font-weight', 'normal');
-              d3.select($(this.parentNode.parentNode).children()[indice-r]).select("rect").transition().duration(500).style("fill","#b2d3e6");
+              d3.select($(this.parentNode.parentNode).children()[indice-r]).select("rect").transition().duration(500).style("fill","#C5E3BF");
             }
             if(indice>=r && indice<2*r && indice%r>1 && text.attr("y")==18 && data[indice]!="" && data[indice+r]!="" && data[indice]!=data_[indice]){     
               d3.select(this).style("cursor", "default");
               d3.select(this).transition().duration(500)
-              .style("fill","#b2d3e6");
+              .style("fill","#C5E3BF");
               text.transition().duration(500).style('font-weight', 'normal');
               d3.select($(this.parentNode.parentNode).children()[indice+r]).select("text").transition().duration(500).style('font-weight', 'normal');
-              d3.select($(this.parentNode.parentNode).children()[indice+r]).select("rect").transition().duration(500).style("fill","#b2d3e6");
+              d3.select($(this.parentNode.parentNode).children()[indice+r]).select("rect").transition().duration(500).style("fill","#C5E3BF");
 
             }})
           .on('click',function(d){
@@ -472,8 +501,8 @@ The answers should be made by clicking the circle buttons on the choice panels.<
   function choices(svg, k, lBound, scale=1){
     var options = ["Highly Likely Different",
                    "Moderately Likely Different",
-                   "Slightly Likely Different",
-                   "Slightly Likely Same",
+                   "Less Likely Different",
+                   "Less Likely Same",
                    "Moderately Likely Same",
                    "Highly Likely Same"];
     var x = [20,60,100,140,180,220];
@@ -568,12 +597,15 @@ The answers should be made by clicking the circle buttons on the choice panels.<
   }
   d3.select('#help_button').on('click',function(){
     if(d3.select("#help_panel").style("display")=="none"){
-      d3.select("#help_panel").style("display","block");
+      
+      if(experimentr.data()["mode"]=="Partial_Cell"|| experimentr.data()["mode"]=="Partial_Row"){d3.select("#help_panel").style("display","block");}
+      else{d3.select("#help_nonclick_panel").style("display","block");}
       if(label>0){
         d3.select("#readyButton").style("position","absolute").style("top",606+100*group[label-1].length).style("left",$(window).width()*0.1+950);
       }
     }else{
-      d3.select("#help_panel").style("display","none");
+      if(experimentr.data()["mode"]=="Partial_Cell"|| experimentr.data()["mode"]=="Partial_Row"){d3.select("#help_panel").style("display","none");}
+      else{d3.select("#help_nonclick_panel").style("display","none");}      
       if(label>0){
         d3.select("#readyButton").style("position","absolute").style("top",200+100*group[label-1].length).style("left",$(window).width()*0.1+950);
       }
@@ -582,6 +614,8 @@ The answers should be made by clicking the circle buttons on the choice panels.<
   d3.select('#ready_button')
     .on('click', function () {
       d3.select("#help_panel").style("display","none");
+      if(experimentr.data()["mode"]=="Partial_Cell"|| experimentr.data()["mode"]=="Partial_Row"){d3.select("#help_panel").style("display","none");}
+      else{d3.select("#help_nonclick_panel").style("display","none");}  
       if(d3.select("#instruction").style("display")=="block"){
         d3.select("#instruction").style("display","none");
         d3.select("#example").style("display","none");
