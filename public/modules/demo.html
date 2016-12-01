@@ -94,6 +94,9 @@ The answers should be made by clicking the circle buttons on the choice panels.<
       width:18px;
       height:18px;
     }
+    .cell {
+    font-family:'DejaVu Sans Mono', monospace;
+    }
 </style>
 
 <script>
@@ -113,7 +116,7 @@ The answers should be made by clicking the circle buttons on the choice panels.<
   var other_svg = d3.select("#other_div").append("svg").attr("width",1200).attr("height",220);
   var choice_svg = d3.select("#choice_div").append("svg").attr("id","choices").attr("width",1200).attr("height",190);
   var help_svg = d3.select("#help_panel").append("svg").attr("id","help").attr("x",-500).attr("width",400).attr("height",100);
-  var cwidth = [70,80,120,140,50,60,90,90]; //710
+  var cwidth = [70,80,120,140,50,60,90,120]; //740
   
   introduce();
   console.log(experimentr.data()["mode"]);
@@ -199,11 +202,10 @@ The answers should be made by clicking the circle buttons on the choice panels.<
         var sub_y = flag==1 && k>0 ? 30*Math.floor(j/r)-15 : 30*Math.floor(j/r);
         cell.attr("transform","translate("+cwidth.slice(0,j%r).reduce(function(a, b){return a+b;},0)+","+ sub_y+")");
         var rectangle = cell.append("rect");
-        var textbox = cell.append("text").attr("id",j);
+        var textbox = cell.append("text").attr("id",j).attr("class","cell");
         textbox.attr("x",cwidth[j%r]/2)
         .attr("y",function(d){return (j<2*r && data[j]==data[j+r] && data[j]!="")||(j>r-1 && j%r < 1)||(j>2*r && data[j]==data[j-r] && data[j]!="") ? 33 : 18;})
         .attr("text-anchor","middle")
-        .style("font","14px sans-serif")
         .style("font-weight", function(d) { return j<r ? "bold" : ""; })
         .text(function(d){
           if(flag==1 && +d3.select(this).attr("id")<r && +d3.select(this.parentNode.parentNode).attr("id")>0){return "";}
@@ -480,10 +482,9 @@ The answers should be made by clicking the circle buttons on the choice panels.<
         var rectangle = cell.append("rect");
         var textbox = cell.append("text");
         
-        textbox.attr("x",cwidth[j%r]/2).attr("id",j)
+        textbox.attr("x",cwidth[j%r]/2).attr("id",j).attr("class","cell")
         .attr("y",function(d){return (j>=r && j%r==0) ? 33 : 18;})
         .attr("text-anchor","middle")
-        .style("font","14px sans-serif")
         .style("font-weight", function(d) { return j<r ? "bold" : ""; })
         .text(function(d){if(flag==1 && +d3.select(this).attr("id")<r && +d3.select(this.parentNode.parentNode).attr("id")>0){return "";}if(data[j]==""){d3.select(this.parentNode).append("svg:image").attr("xlink:href","/resources/missing.png").attr("class","icon").attr("x",cwidth[j%r]/2-9).attr("y",5).attr("width",18).attr("height",18); return "";} return j==2*r ? "" : data[j];});
         
@@ -495,7 +496,7 @@ The answers should be made by clicking the circle buttons on the choice panels.<
         .style("opacity",1);
       }
     }
-    choices(g,k,720);
+    choices(g,k,750);
     
   }
   function choices(svg, k, lBound, scale=1){
@@ -510,7 +511,7 @@ The answers should be made by clicking the circle buttons on the choice panels.<
     var y = 40;
     // add buttons
     var buttons = svg.append("g").attr("transform","translate("+lBound+",0)");
-    buttons.append("rect").attr("x",-10*scale).attr("y",0).attr("width",280*scale).attr("height",85*scale).style("fill","#68a7ca").style("opacity",1);
+    //buttons.append("rect").attr("x",-10*scale).attr("y",0).attr("width",280*scale).attr("height",85*scale).style("fill","#68a7ca").style("opacity",1);
     buttons.append("text").attr("x",220*scale).attr("y",78*scale).text("Same").attr("text-anchor","middle").style("font",24*scale+"px sans-serif");
     buttons.append("text").attr("x",50*scale).attr("y",78*scale).text("Different").attr("text-anchor","middle").style("font",24*scale+"px sans-serif");
     for(p=0;p<options.length;p++){
