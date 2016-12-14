@@ -480,8 +480,10 @@ The answers should be made by clicking the circle buttons on the choice panels.<
         .attr("y",function(d){return (j>=r && j%r==0) ? 33 : 18;})
         .attr("text-anchor","middle")
         .style("font-weight", function(d) { return j<r ? "bold" : ""; })
-        .text(function(d){if(j%r>1 && j%r<4){return +data[j]>2 ? "over 2" : data[j];}
-          if(flag==1 && +d3.select(this).attr("id")<r && +d3.select(this.parentNode.parentNode).attr("id")>0){return "";}if(data[j]==""){d3.select(this.parentNode).append("svg:image").attr("xlink:href","/resources/missing.png").attr("class","icon").attr("x",cwidth[j%r]/2-9).attr("y",5).attr("width",18).attr("height",18); return "";} return j==2*r ? "" : data[j];});
+        .text(function(d){
+          if(flag==1 && +d3.select(this).attr("id")<r && +d3.select(this.parentNode.parentNode).attr("id")>0){return "";}
+          if(j%r>1 && j%r<4){return +data[j]>2 ? "over 2" : data[j];}
+          if(data[j]==""){d3.select(this.parentNode).append("svg:image").attr("xlink:href","/resources/missing.png").attr("class","icon").attr("x",cwidth[j%r]/2-9).attr("y",5).attr("width",18).attr("height",18); return "";} return j==2*r ? "" : data[j];});
         
         rectangle.attr("x",1).attr("id",j)
         .attr("y",0)
