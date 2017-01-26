@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    #submitComments {
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, 0%);
+    }
+    body{
+        color:#000;
+        background-color:#fff;
+    }
+
+    #container{
+        /*Styling for any element with the id="container" */
+        width:1000px; /* The width is fixed by pixels */
+        height:800px; /* The height is fixed by pixels*/
+        color:black;
+        background-color:white;
+    }
+</style>
+<body>
+<div id="container">
+<div id="instruction" style="text-align:center;">
+    <h1>Instructions: Choice Panel</h1>
+    <div id="notation" style="text-align:left;">
+    </div>
+</div>
+<button id="submitComments" class="next-button" type="button">Next</button><br>
+</div>
+</body>
+</html>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+    (function(){
+        experimentr.hideNext();
+        $.getScript("javascript/misc/util.js");
+        let step = 0;
+        let notes = ["You can choose the answers with the choice panels by clicking on a radio button.",
+            "A choice panel provides 6 possible choices -- a combination of same/different and 3 levels of uncertainty.",
+            "To be brief, 6 Letters are used to represent the choices."
+        ];
+        //let svg = d3.select("#instruction").append("svg").attr("class","blocks").attr("width", 900).attr("height", 100);
+        let choice = d3.select("#instruction").append("svg").attr("class","choicePanel").attr("width", 900).attr("height", 280);
+        d3.select("#notation").text(notes[step]);
+        choices(choice,0,3,2);
+        function goToNext() {
+            experimentr.next();
+        }
+        d3.select('#submitComments')
+            .on('click', function () {
+                if(step==notes.length-1){
+                    goToNext();
+                }
+                else{
+                    step+=1;
+                    d3.select("#notation").text(notes[step]);
+                    if(step==1){
+                        for(i=0;i<6;i++){
+                            let btn = d3.select("#labelText"+i.toString());
+                            let bbox = btn.node().getBBox();
+                            let rect = choice.append("rect").attr("id","bbox")
+                                .attr("x", bbox.x).attr("y", bbox.y)
+                                .attr("width", bbox.width).attr("height", bbox.height)
+                                .style("fill", "#ccc").style("fill-opacity", ".0")
+                                .style("stroke", "#7FFF00").style("stroke-width", "3px");
+                        }
+                    }
+                    if(step==2){
+                        d3.selectAll("#bbox").remove();
+                        for(i=0;i<6;i++){
+                            d3.select("#labelText"+i.toString()).remove();
+                        }
+                        choices(choice,0,3,1);
+                    }
+                }
+            });
+    }());
+</script>
