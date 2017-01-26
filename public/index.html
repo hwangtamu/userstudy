@@ -8,16 +8,14 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
-
-
-
-
 <!-- Load Source Scripts -->
 <script src="components/d3js/d3.v3.min.js"></script>
 <script src="javascript/misc/jquery.min.js"></script>
 <script src="javascript/misc/jquery-ui.js"></script>
 <script src="javascript/misc/experimentr.js"></script>
 <script src="javascript/misc/jspatch.js"></script>
+<script src="javascript/misc/util.js"></script>
+
 
 <style>
     * {
@@ -54,8 +52,11 @@
 <script>
 
 experimentr.sequence([
-  'modules/consent.html',
-  'modules/background.html',
-  'modules/demo.html'
+    'modules/consent.html',
+    'modules/background.html',
+    'modules/0.html',
+    'modules/1.html',
+    'modules/2.html',
+    'modules/demo.html'
   ]).start();
 </script>

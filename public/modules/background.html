@@ -1,5 +1,6 @@
+<body>
+<div id="container" style="text-align:center;">
 <h1>Disclosure Mode</h1>
-<div id="demographics">
 <!--
   <br>
   <div id="age">
@@ -39,7 +40,7 @@
   -->
  <div id="mode">
  <p style="font-weight:bold">[Warning: do not refresh your web browser before the end of the user study. ]</p>
-
+    <div style="text-align:left;">
     <text id="taskMode" fill="red">Select a disclosure mode: </text>
     <div id="modeValidate" class="validate" style="font-size: 150%; left: 10px; float: left; color:red;"></div>
       <g id="modeRadio" class="radio">
@@ -53,29 +54,33 @@
           <label for="d9">Paritial Disclosure Reveal Row On Click</label><br>
           <input type="radio" id="d10" name="mode" value="Partial" aria-label="Single radio One">
           <label for="d10">Minimum Disclosure Non-clickable</label>
-
       </g>
-  </div>
-
-
-  <button id="submitComments" class="next-button" type="button">Next</button><br>
-  <div id="validateMessage" class="validate" style="color:red;"></div>
-
 <div id="mode1" style="display:none">In <text style="font-weight: bold">Full Disclosure</text> mode, all the cells are visible.</div>
 <div id="mode2" style="display:none">In <text style="font-weight: bold">Full Disclosure For Different Cells</text> mode, only different cells in a pair are visible. Dash lines represent the identical text in the pair.</div>
 <div id="mode3" style="display:none">In <text style="font-weight: bold">Paritial Disclosure Reveal Cell On Click</text> mode, only the minimum differences are visible at start. However, you can click on the cells which are partially visible, then the cells pair will be shown.</div>
 <div id="mode4" style="display:none">In <text style="font-weight: bold">Paritial Disclosure Reveal Row On Click</text> mode, only the minimum differences are visible at start. However, you can click on the cells which are partially visible, then all the cells with differences in the pair will be shown.</div>
 <div id="mode5" style="display:none">In <text style="font-weight: bold">Minimum Disclosure Non-clickable</text> mode, only the minimum differences in the pairs are shown.<br></div>
+ </div>
+ </div>
 
-
-<br>
+    <br>
+    <button id="submitComments" class="start-button" type="button">Next</button>
+        <br>
+<div id="validateMessage" class="validate" style="color:red;"></div>
 </div>
-
+</body>
 <style>
-    #submitComments {
-        position: relative;
-        left: 50%;
-        transform: translate(-50%, 0%);
+    body{
+        color:#000;
+        background-color:#fff;
+    }
+
+    #container{
+        /*Styling for any element with the id="container" */
+        width:1000px; /* The width is fixed by pixels */
+        height:800px; /* The height is fixed by pixels*/
+        color:black;
+        background-color:white;
     }
 </style>
 
