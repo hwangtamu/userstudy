@@ -1,5 +1,7 @@
-<h1>Background Questionnaire</h1>
-<div id="demographics">
+<body>
+<div id="container" style="text-align:center;">
+<h1>Disclosure Mode</h1>
+<!--
   <br>
   <div id="age">
     <text id="ageLabel" fill="red">Age:</text>
@@ -16,14 +18,14 @@
   </div>
   <br>
   <div id="degree">
-    <text id="degreeLabel" fill="red">Highest Degree Obtained: </text>
+    <text id="degreeLabel" fill="red">Highest Degree Obtained: </text><br>
     <div id="degreeValidate" class="validate" style="font-size: 150%; left: 10px; float: left;"></div>
-      <div id="degreeRadio">
-          <input type="radio" id="d1" name="degree" value="High School"> High School
-          <input type="radio" id="d2" name="degree" value="Bachelors"> Bachelors
-          <input type="radio" id="d3" name="degree" value="Masters"> Masters
-          <input type="radio" id="d4" name="degree" value="PhD"> PhD
-          <input type="radio" id="d5" name="degree" value="Other"> Other
+      <div id="degreeRadio" class="radio">
+          <input type="radio" id="d1" name="degree" value="High School"><label for="d1">High School</label><br>
+          <input type="radio" id="d2" name="degree" value="Bachelors"><label for="d2">Bachelors</label><br>
+          <input type="radio" id="d3" name="degree" value="Masters"><label for="d3">Masters</label><br>
+          <input type="radio" id="d4" name="degree" value="PhD"><label for="d4">PhD</label><br>
+          <input type="radio" id="d5" name="degree" value="Other"><label for="d5">Other</label>
       </div>
   </div>
   <br>
@@ -35,30 +37,50 @@
     <input type="text" class="textfield" value="" id="majorText" size="50" maxlength="50" name="majorText" />
   </div>
   <br>
+  -->
  <div id="mode">
-    <text id="taskMode" fill="red">Select a task mode: </text>
-    <div id="modeValidate" class="validate" style="font-size: 150%; left: 10px; float: left;"></div>
-      <div id="modeRadio">
-          <input type="radio" id="d1" name="mode" value="Full"> Full Disclosure
-          <input type="radio" id="d2" name="mode" value="Partial"> Paritial Disclosure
-      </div>
-  </div>
+ <p style="font-weight:bold">[Warning: do not refresh your web browser before the end of the user study. ]</p>
+    <div style="text-align:left;">
+    <text id="taskMode" fill="red">Select a disclosure mode: </text>
+    <div id="modeValidate" class="validate" style="font-size: 150%; left: 10px; float: left; color:red;"></div>
+      <g id="modeRadio" class="radio">
+          <input type="radio" id="d6" name="mode" value="Full" aria-label="Single radio One">
+          <label for="d6">Full Disclosure</label><br>
+          <input type="radio" id="d7" name="mode" value="Full_Partial" aria-label="Single radio One">
+          <label for="d7">Full Disclosure For Different Cells</label><br>
+          <input type="radio" id="d8" name="mode" value="Partial_Cell" aria-label="Single radio One">
+          <label for="d8">Paritial Disclosure Reveal Cell On Click</label><br>
+          <input type="radio" id="d9" name="mode" value="Partial_Row" aria-label="Single radio One">
+          <label for="d9">Paritial Disclosure Reveal Row On Click</label><br>
+          <input type="radio" id="d10" name="mode" value="Partial" aria-label="Single radio One">
+          <label for="d10">Minimum Disclosure Non-clickable</label>
+      </g>
+<div id="mode1" style="display:none">In <text style="font-weight: bold">Full Disclosure</text> mode, all the cells are visible.</div>
+<div id="mode2" style="display:none">In <text style="font-weight: bold">Full Disclosure For Different Cells</text> mode, only different cells in a pair are visible. Dash lines represent the identical text in the pair.</div>
+<div id="mode3" style="display:none">In <text style="font-weight: bold">Paritial Disclosure Reveal Cell On Click</text> mode, only the minimum differences are visible at start. However, you can click on the cells which are partially visible, then the cells pair will be shown.</div>
+<div id="mode4" style="display:none">In <text style="font-weight: bold">Paritial Disclosure Reveal Row On Click</text> mode, only the minimum differences are visible at start. However, you can click on the cells which are partially visible, then all the cells with differences in the pair will be shown.</div>
+<div id="mode5" style="display:none">In <text style="font-weight: bold">Minimum Disclosure Non-clickable</text> mode, only the minimum differences in the pairs are shown.<br></div>
+ </div>
+ </div>
 
-
-  <button id="submitComments" class="next-button" type="button">Next</button>
-  <div id="validateMessage" class="validate"></div>
-
-  
-
-
-<br>
+    <br>
+    <button id="submitComments" class="start-button" type="button">Next</button>
+        <br>
+<div id="validateMessage" class="validate" style="color:red;"></div>
 </div>
-
+</body>
 <style>
-    #submitComments {
-        position: relative;
-        left: 50%;
-        transform: translate(-50%, 0%);
+    body{
+        color:#000;
+        background-color:#fff;
+    }
+
+    #container{
+        /*Styling for any element with the id="container" */
+        width:1000px; /* The width is fixed by pixels */
+        height:800px; /* The height is fixed by pixels*/
+        color:black;
+        background-color:white;
     }
 </style>
 
@@ -76,26 +98,33 @@
 
 (function() {
   var data = {};
-
+  data.mode = "";
   experimentr.hideNext();
 
   experimentr.startTimer('background_info');
-
+  /*
   var ageText = d3.select('#ageText');
   var occupationText = d3.select('#occupationText');
   var majorText = d3.select('#majorText');
 
   var degreeRadio = d3.select('#degreeRadio');
 
-
-
   d3.selectAll('input')
     .filter(function(d) { return this.name === 'degree' ? this : null; })
     .on('change', function() { data.degree = this.value; });
-
+  */
   d3.selectAll('input')
     .filter(function(d) { return this.name === 'mode' ? this : null; })
-    .on('change', function() { data.mode = this.value; });
+    .on('change', function() { data.mode = this.value;
+      d3.select('#modeValidate').text("");
+      d3.select('#validateMessage').text("");     
+      d3.select("#mode1").style("display",function(d){return data.mode=="Full" ? "block":"none";});
+      d3.select("#mode2").style("display",function(d){return data.mode=="Full_Partial" ? "block":"none";});
+      d3.select("#mode3").style("display",function(d){return data.mode=="Partial_Cell" ? "block":"none";});
+      d3.select("#mode4").style("display",function(d){return data.mode=="Partial_Row" ? "block":"none";});
+      d3.select("#mode5").style("display",function(d){return data.mode=="Partial" ? "block":"none";});
+    //d3.select('#submitComments').attr('disabled', null);
+  });
 
   function goToNext() {
     experimentr.endTimer('background_info');
@@ -105,16 +134,16 @@
   }
 
   function validate() {
-
+    /*
     data.age = ageText.property('value');
     data.major = majorText.property('value');
     data.occupation = occupationText.property('value');
-
+    */
 
     var messageThing = d3.select('#validateMessage');
     var messageText = "";
     messageThing.html("");
-
+    /*
     if (data.age) {
       d3.select('#ageValidate').text("");
     } else {
@@ -142,22 +171,21 @@
       d3.select('#occupationValidate').text("* ");
       messageText += "<p>* Please enter your occupation.</p>"
     }
+    */
 
-
-    if (data.mode) {
+    if (data.mode!="") {
       d3.select('#modeValidate').text("");
     } else {
       d3.select('#modeValidate').text("* ");
-      messageText += "<p>* Please select a task mode.</p>"
+      messageText += '<p style="color:red">* Please select a task mode.</p>';
     }
 
-    goToNext();
-    //if(data.age && data.degree && data.major && data.occupation) {
-      //d3.select('#submitComments').attr('disabled', null);
-      //goToNext();
-    //} else {
-      //messageThing.html(messageText);
-    //}
+    //goToNext();
+    if(data.mode!="") {
+      goToNext();
+    } else {
+      messageThing.html(messageText);
+    }
   }//end validate
 
   d3.select('#submitComments')

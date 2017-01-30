@@ -1,14 +1,20 @@
 <meta charset="utf-8">
-<title>Privacy Preserverd Interactive Record Linkage</title>
+<title>Study of Record Linkage and Information Disclosure</title>
 
 <!-- Load CSS -->
-<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="css/build.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
 
 <!-- Load Source Scripts -->
 <script src="components/d3js/d3.v3.min.js"></script>
 <script src="javascript/misc/jquery.min.js"></script>
 <script src="javascript/misc/jquery-ui.js"></script>
 <script src="javascript/misc/experimentr.js"></script>
+<script src="javascript/misc/jspatch.js"></script>
+<script src="javascript/misc/util.js"></script>
+
 
 <style>
     * {
@@ -43,11 +49,15 @@
 <body></body>
 
 <script>
-experimentr.sequence([
-  'modules/consent.html',
-  'modules/background.html',
-  'modules/demo.html',
-  'modules/end.html'
-]).start();
-</script>
 
+experimentr.sequence([
+    'modules/consent.html',
+    'modules/background.html',
+    'modules/0.html',
+    'modules/1.html',
+    'modules/2.html',
+    'modules/3.html',
+    'modules/4.html',
+    'modules/demo.html'
+  ]).start();
+</script>

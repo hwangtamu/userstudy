@@ -19,8 +19,8 @@ if (process.env.REDISTOGO_URL) {
 // Data handling
 var save = function save(d) {
   redis.hmset(d.postId, d)
-  if( debug )
-    console.log('saved to redis: ' + d.postId +', at: '+ (new Date()).toString())
+  //if( debug )
+  console.log('saved to redis: ' + d.postId +', at: '+ (new Date()).toString())
 }
 
 // Server setup

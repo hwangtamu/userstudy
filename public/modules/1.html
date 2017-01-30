@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    #submitComments {
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, 0%);
+    }
+    body{
+        color:#000;
+        background-color:#fff;
+    }
+
+    #container{
+        /*Styling for any element with the id="container" */
+        width:1000px; /* The width is fixed by pixels */
+        height:800px; /* The height is fixed by pixels*/
+        color:black;
+        background-color:white;
+    }
+</style>
+<body>
+<div id="container">
+<div id="instruction" style="text-align:center;">
+    <h1>Instructions: Pair of Records</h1>
+    <div id="notation" style="text-align:left;">
+    </div>
+    <br> <br>
+</div>
+<button id="submitComments" class="next-button" type="button">Next</button><br>
+</div>
+</body>
+</html>
+<script>
+    $.getScript("javascript/misc/util.js");
+    (function(){
+        experimentr.hideNext();
+
+
+        var step = 0;
+        var notes = ["The task of the record linkage is to determine whether the two records are from the same person or not.",
+            "Group ID identifies the group which the pair of the records belong to. A group may contain one pair or pairs that have record in common.",
+            "Record ID identifies the source of the record with the ID of the source dataset, and the Record ID in the source dataset.",
+            "First Name represents the person's first name",
+            "FF represents the number of first name occurrences in the record's source dataset. 2+ means it occurs more than 2 times.",
+            "Last Name represents the person's last name",
+            "LF represents the number of last name occurrences in the record's source dataset. 2+ means it occurs more than 2 times.",
+            "Race represents the person's race with one letter. (e.g. W=White, A=Asian, B=Black.)",
+            "Gender represents the person's gender with one letter, F for Female and M for Male.",
+            "Reg No. represents the registration number of the person.",
+            "DoB represents the person's data of birth in the format MM-DD-YY."
+        ];
+        //var svg = d3.select("#instruction").append("svg").attr("class","blocks")
+            //.attr("width", 900).attr("height", 100);
+        d3.select("#notation").text(notes[step]);
+        parsing("data.csv");
+        setTimeout(function (){
+            pairs(experimentr.data()["mat"][0],1,"Full");
+            //console.log(experimentr.data()["mat"][0]);
+        }, 200);
+
+
+        function goToNext() {
+            experimentr.next();
+        }
+
+        d3.select('#submitComments')
+            .on('click', function () {
+                if(step==notes.length-1){
+                    goToNext();
+                }
+                else{
+                    d3.select("#r"+step.toString()).style("fill","#7FFF00");
+                    if(step>0){d3.select("#r"+(step-1).toString()).style("fill","#68a7ca");}
+                    step+=1;
+                    d3.select("#notation").text(notes[step]);
+                }
+            });
+    }());
+</script>

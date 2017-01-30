@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body{
+        color:#000;
+        background-color:#fff;
+    }
+
+    #container{
+        /*Styling for any element with the id="container" */
+        width:1000px; /* The width is fixed by pixels */
+        height:800px; /* The height is fixed by pixels*/
+        color:black;
+        background-color:white;
+    }
+</style>
+<body>
+<div id="container" style="text-align:center;">
+<div id="welcome">
+    <h1>Welcome</h1>
+    <p>Thank you for participating in our user study. Next, let's go through the instructions of the record linkage interface.<br> <br>
+</div>
+<button id="submitComments" class="next-button" type="button">Next</button><br>
+</div>
+</body>
+</html>
+<script>
+    experimentr.hideNext();
+    function goToNext() {
+        experimentr.next();
+    }
+    d3.select('#submitComments')
+        .on('click', function () {
+            goToNext();
+        });
+</script>

@@ -1,8 +1,11 @@
-<h1>Privacy Preserved Interactive Record Linkage</h1>
+<body>
+<div id="container" style="text-align:center;">
+<h1>Study of Record Linkage and Information Disclosure</h1>
 
 <div id="p_id">
 </div>
-<input type="checkbox" id="cbox1" value=-1 > I understand and agree to participate.<br>
+
+<input type="checkbox" id="cbox1" value=-1 ><label for="cbox1">  I understand and agree to participate.</label><br>
 
 <button id="consentYes" type="button" class="start-button" disabled>Next</button>
 
@@ -11,11 +14,24 @@
 <div id="validateMessage" class="validate"></div>
 </p>
 
-<br />
-
+<br/>
+</div>
+</body>>
 <style>
     #validateMessage {
         color: #FF5555;
+    }
+    body{
+        color:#000;
+        background-color:#fff;
+    }
+
+    #container{
+        /*Styling for any element with the id="container" */
+        width:1000px; /* The width is fixed by pixels */
+        height:800px; /* The height is fixed by pixels*/
+        color:black;
+        background-color:white;
     }
 </style>
 
