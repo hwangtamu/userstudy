@@ -1,6 +1,7 @@
 /**
  * Created by hanwang on 1/23/17.
  */
+
 var title = ["Group ID","Record ID","First name","FF","Last name","LF","Race","Gender","Reg No.","DoB"];
 var cwidth = [90,100,120,40,140,40,50,60,90,100]; //880
 var height = 24; //height per row 0 30 57
