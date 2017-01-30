@@ -2,9 +2,9 @@
  * Created by hanwang on 1/23/17.
  */
 var title = ["Group ID","Record ID","First name","FF","Last name","LF","Race","Gender","Reg No.","DoB"];
-var cwidth = [90,100,120,40,140,40,50,60,90,100]; //880
+var cwidth = [90,100,120,40,140,40,50,60,100,100]; //880
 var height = 24; //height per row 0 30 57
-var ys = [0,30,57];
+var ys = [0,30,77];
 var mapping = [0,1,10,3,11,5,12,13,14,15,2,4,6,7,8,9,16]; //index mapping from hidden data to visible data per row
 var data = {}; // experimentr data
 /**
@@ -36,13 +36,64 @@ function cell(t,g,j,k){
         .attr("transform","translate("+x+","+y+")");
     var rectangle = cel.append("rect").attr("id",j);
     rectangle.attr("x",0).attr("y",0).attr("width",cx).attr("id","r"+j.toString())
-        .attr("height",function(){if(k==2||k==4){return cy*2+3;}if(k==0||k==5){return 0;}return cy;})
+        .attr("height",function(){if(k==2||k==4){return cy*2+23;}if(k==0||k==5){return 0;}return cy;})
         .style("fill",function(){if(k==1||k==2){return "#68a7ca";}if(k==3||k==4){return "#b2d3e6";}if(k==6){return "#C5E3BF"}})
         .style("opacity",1);
     var textbox = cel.append("text").attr("id",j).attr("id","t"+j.toString());
-    textbox.attr("x",cx/2).attr("y",function(){if(k==2||k==4){return cy/2+18;}if(k==1||k==3||k==6){return cy/2+5;}})
-        .attr("text-anchor","middle").style("font","16px consolas").style("font-weight","bold")
-        .text(function(){if(k==0||k==5){return "";}return t;});
+    textbox.attr("x",function(){if(k==1||k==2){return cx/2;}if(t.length>0){return cx*(0.02+0.48/t.length);}})
+        .attr("y",function(){if(k==2||k==4){return cy/2+28;}if(k==1||k==3||k==6){return cy/2+5;}})
+        .attr("text-anchor",function(){if(k==1 || k==2){return "middle";}return "left";})
+        .style("font","16px monaco").style("font-weight","bold")
+        .text(function(){
+            if(k==0||k==5){return " ";}
+            if(k==3 && (title[j%10]=="FF"||title[j%10]=="LF")){
+                if(d3.select(this.parentNode.previousSibling).select("text").text()==""){return "";}
+                if(+t>2){return "2+";}
+            }
+            return t;
+        });
+    // icons
+    if(j>cwidth.length){
+        if(textbox.text()==""){
+            // missing
+            cel.append("svg:image").attr("xlink:href","/resources/missing.png").attr("class","icon")
+                .attr("x",cx/2-9).attr("y",cy/2-9).attr("width",18).attr("height",18);
+        }else{
+            if(j<cwidth.length*2 && title[j%cwidth.length]!="Record ID" && title[j%cwidth.length]!="FF" && title[j%cwidth.length]!="LF"){
+                var m = j+cwidth.length,
+                    p = g.attr("id").slice(1),
+                    dat = experimentr.data()['mat'][Math.floor(p/5)],
+                    t_j = j<2*cwidth.length ? dat[p%5][0][mapping[j%10]] : dat[p%5][1][mapping[j%10]],
+                    t_m = m<2*cwidth.length ? dat[p%5][0][mapping[m%10]] : dat[p%5][1][mapping[m%10]],
+                    bin = [];
+                if(t_j!="" && t_m!=""){
+                    for(var i=0;i<t_j.length;i++){
+                        //indel
+                        if((t_j[i]==" "&&t_m[i]!=" ")||(t_j[i]!=" "&&t_m[i]==" ")){
+                            bin.push(i);
+                            g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/indel.png")
+                                .attr("class","icon").attr("x",8*i+cx*(0.02+0.48/t.length)).attr("y",cy/2+13).attr("width",18).attr("height",18);
+                        }
+                        //transpose
+                        if(bin.indexOf(i)==-1 && t_j[i]==t_m[i-1] && t_j[i-1]==t_m[i] && t_j[i]!="-" && t_m[i]!="-" && t_j[i-1]!="-" && t_m[i-1]!="-"){
+                            bin.push(i,i-1);
+                            g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/transpose.png")
+                                .attr("class","icon").attr("x",-t.length/2+9*i+cx*(0.02+0.48/t.length)).attr("y",cy/2+13).attr("width",18).attr("height",18);
+                        }else {
+                            //replace
+                            if (bin.indexOf(i)==-1 && t_j[i] != t_m[i] && t_j[i] != " " && t_m[i] != " ") {
+                                bin.push(i);
+                                g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/replace.png")
+                                    .attr("class", "icon").attr("x", -t.length/2+9*i+cx*(0.02+0.48/t.length)).attr("y", cy/2+13).attr("width", 18).attr("height", 18);
+                            }
+                        }
+                    }
+                    console.log(bin);
+                }
+            }
+        }
+    }
+
     // click event
     if(k==6){
         rectangle.on("mouseover",function(){d3.select(this).style("cursor", "pointer");});
@@ -50,15 +101,14 @@ function cell(t,g,j,k){
         rectangle.on("mouseout",function(){d3.select(this).style("cursor", "default");});
         textbox.on("mouseout",function(){d3.select(this).style("cursor", "default");});
 
-        var m = j>=2*cwidth.length ? j-cwidth.length:j+cwidth.length;
-        var dat = experimentr.data()['mat'][0];
+        var m = j>=2*cwidth.length ? j-cwidth.length : j+cwidth.length;
         rectangle.on("click",function(){
-            var p = this.parentNode.parentNode.id.slice(1);
-            console.log(experimentr.data()['mat'][0][p]);
-            console.log(j);
+            var p = this.parentNode.parentNode.id.slice(1); //pair id
+            var dat = experimentr.data()['mat'][Math.floor(p/5)];
+            console.log(p);
             if(experimentr.data()['mode']=="Partial_Cell"){
-                var t_j = j<2*cwidth.length ? dat[p][0][j%10]: dat[p][1][j%10];
-                var t_m = m<2*cwidth.length ? dat[p][0][m%10]: dat[p][1][m%10];
+                var t_j = j<2*cwidth.length ? dat[p%5][0][j%10] : dat[p%5][1][j%10];
+                var t_m = m<2*cwidth.length ? dat[p%5][0][m%10] : dat[p%5][1][m%10];
                 d3.select(this.parentNode).remove();
                 d3.select(this.parentNode.parentNode).select("#c"+j.toString()).remove();
                 cell(t_j,g,j,3);
@@ -66,16 +116,16 @@ function cell(t,g,j,k){
             }
             if(experimentr.data()['mode']=="Partial_Row"){
                 d3.select(this.parentNode.parentNode).selectAll(".cell").remove();
-                pair(title.concat(dat[p][0]).concat(dat[p][1]),g,"Full_Partial");
+                pair(title.concat(dat[p%5][0]).concat(dat[p%5][1]),g,"Full_Partial");
             }
         });
         textbox.on("click",function(){
-            var p = this.parentNode.parentNode.id.slice(1);
-            console.log(experimentr.data()['mat'][0][p]);
-            console.log(j);
+            var p = this.parentNode.parentNode.id.slice(1); //pair id
+            var dat = experimentr.data()['mat'][Math.floor(p/5)];
+            console.log(p);
             if(experimentr.data()['mode']=="Partial_Cell"){
-                var t_j = j<2*cwidth.length ? dat[p][0][j%10]: dat[p][1][j%10];
-                var t_m = m<2*cwidth.length ? dat[p][0][m%10]: dat[p][1][m%10];
+                var t_j = j<2*cwidth.length ? dat[p%5][0][j%10] : dat[p%5][1][j%10];
+                var t_m = m<2*cwidth.length ? dat[p%5][0][m%10] : dat[p%5][1][m%10];
                 d3.select(this.parentNode).remove();
                 d3.select(this.parentNode.parentNode).select("#c"+j.toString()).remove();
                 cell(t_j,g,j,3);
@@ -83,7 +133,7 @@ function cell(t,g,j,k){
             }
             if(experimentr.data()['mode']=="Partial_Row"){
                 d3.select(this.parentNode.parentNode).selectAll(".cell").remove();
-                pair(title.concat(dat[p][0]).concat(dat[p][1]),g,"Full_Partial");
+                pair(title.concat(dat[p%5][0]).concat(dat[p%5][1]),g,"Full_Partial");
             }
         });
     }
@@ -172,15 +222,16 @@ function pair(t,g,m){
 }
 /**
  * draw multiple pairs
- * @param t
- * @param n
- * @param m
+ * @param t : data
+ * @param s : step
+ * @param n : number of pairs
+ * @param m : mode
  */
-function pairs(t,n,m) {
+function pairs(t,s,n,m) {
     var num = n;
     for(var i=0;i<n;i++){
-        var g = d3.select("#instruction").append("svg").attr("class","blocks").attr("id","g"+i.toString())
-            .attr("width", num>1 ? 1200:900).attr("height", 100);
+        var g = d3.select("#table").append("svg").attr("class","blocks").attr("id","g"+(s*5+i).toString())
+            .attr("width", num>1 ? 1200:900).attr("height", 120);
         pair(title.concat(t[i][0]).concat(t[i][1]),g,m);
         if(num>1){
             choices(g,900,1,1);
@@ -239,7 +290,6 @@ function choices(svg,lBound, scale,mode) {
 
     for(var m=0;m<6;m++){
         var radioButton = buttons.append("g").attr("transform","translate("+x[m]*scale+","+y*scale+")");
-        //radioButton.append("text").attr("x",25).attr("y",10).attr("text-anchor","left").style("font","14px sans-serif").text(options[m]);
         radioButton.append("svg:image").attr("xlink:href","/resources/0.png").attr("class","choice").attr("id",m)
             .attr("x",0).attr("y",-5).attr("width",18*scale).attr("height",18*scale);
         radioButton.on({"mouseover": function(d) {d3.select(this).style("cursor", "pointer")},
@@ -248,8 +298,6 @@ function choices(svg,lBound, scale,mode) {
                 buttons.select(".no").attr("opacity",0.2);
                 buttons.selectAll(".choice").attr("xlink:href","/resources/0.png");
                 d3.select(this).select("image").attr("xlink:href","/resources/1.png");
-                //console.log(k,d3.select(this).select(".choice").attr("id"),Date.now());
-                //dat.clicks.push([k, Date.now()]);
             });
     }
 }
@@ -308,6 +356,5 @@ function parsing(route){
         }
         data.mat = binary.concat(other);
         experimentr.addData(data);
-        //if(route=="data_.csv"){introduce();}
     });
 }

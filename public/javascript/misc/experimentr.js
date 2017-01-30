@@ -86,7 +86,7 @@ experimentr = function() {
     d3.xhr('/')
       .header("Content-Type", "application/json")
       .post(JSON.stringify(data), function(err, res) {
-        if(err) console.log(err);
+        //if(err) console.log(err);
         //else console.log(JSON.stringify(data, null, '\t'));
       });
   }

@@ -12,7 +12,6 @@
     }
     body{
         color:#000;
-        background-color:#fff;
     }
 
     #container{
@@ -20,16 +19,16 @@
         width:1000px; /* The width is fixed by pixels */
         height:800px; /* The height is fixed by pixels*/
         color:black;
-        background-color:white;
     }
 </style>
 <body>
 <div id="container">
     <div id="instruction" style="text-align:center;">
-        <h1>Instructions: Pair of Records</h1>
+        <h1>Instructions: Page of Records</h1>
         <div id="notation" style="text-align:left;">
         </div>
         <br> <br>
+        <div id="table"></div>
     </div>
     <button id="submitComments" class="next-button" type="button">Next</button><br>
 </div>
@@ -47,7 +46,7 @@
         d3.select("#notation").text(notes[step]);
         parsing("data.csv");
         setTimeout(function (){
-            pairs(experimentr.data()["mat"][0],5,experimentr.data()["mode"]);
+            pairs(experimentr.data()["mat"][0],0,5,experimentr.data()["mode"]);
             //console.log(experimentr.data()["mat"][0]);
         }, 200);
 

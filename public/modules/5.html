@@ -12,24 +12,24 @@
     }
     body{
         color:#000;
-        background-color:#fff;
     }
+
 
     #container{
         /*Styling for any element with the id="container" */
         width:1000px; /* The width is fixed by pixels */
         height:800px; /* The height is fixed by pixels*/
         color:black;
-        background-color:white;
     }
 </style>
 <body>
 <div id="container">
     <div id="instruction" style="text-align:center;">
-        <h1>Instructions: Pair of Records</h1>
+        <h1>Section 1: Pairwise Test</h1>
         <div id="notation" style="text-align:left;">
         </div>
         <br> <br>
+        <div id="table"></div>
     </div>
     <button id="submitComments" class="next-button" type="button">Next</button><br>
 </div>
@@ -40,28 +40,28 @@
         experimentr.hideNext();
         $.getScript("javascript/misc/util.js");
         var step = 0;
-        var notes = ["This page shows 5 pairs of records, and each pair has a corresponding choice panel.",
-        ];
-        //var svg = d3.select("#instruction").append("svg").attr("class","blocks")
-        //.attr("width", 900).attr("height", 500);
-        d3.select("#notation").text(notes[step]);
+        var notes = ["Next, you are going to complete the first section of the test: pairwise test."];
         parsing("data_f.csv");
-        setTimeout(function (){
-            pairs(experimentr.data()["mat"][0],5,experimentr.data()["mode"]);
-            //console.log(experimentr.data()["mat"][0]);
-        }, 200);
+        pairs(experimentr.data()["mat"][step],step,experimentr.data()["mat"][step].length,experimentr.data()["mode"]);
+
 
         function goToNext() {
             experimentr.next();
         }
         d3.select('#submitComments')
             .on('click', function () {
-                if(step==notes.length-1){
+                if(experimentr.data()["mat"][step].length==0){
                     goToNext();
                 }
                 else{
+                    if(step==1){
+                        d3.select("#notation").remove();
+                    }
+                    setTimeout(function (){
+                        d3.selectAll(".blocks").remove();
+                        pairs(experimentr.data()["mat"][step],step,experimentr.data()["mat"][step].length,experimentr.data()["mode"]);
+                    }, 200);
                     step+=1;
-                    d3.select("#notation").text(notes[step]);
                 }
             });
     }());
