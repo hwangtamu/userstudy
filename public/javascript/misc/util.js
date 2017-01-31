@@ -40,10 +40,10 @@ function cell(t,g,j,k){
         .style("fill",function(){if(k==1||k==2){return "#68a7ca";}if(k==3||k==4){return "#b2d3e6";}if(k==6){return "#C5E3BF"}})
         .style("opacity",1);
     var textbox = cel.append("text").attr("id",j).attr("id","t"+j.toString());
-    textbox.attr("x",function(){if(k==1||k==2){return cx/2;}if(t.length>0){return cx*(0.02+0.48/t.length);}})
+    textbox.attr("x",function(){if(k==1||k==2){return cx/2;}if(t.length>0){return cx*(0.02+0.48/t.length)-4;}})
         .attr("y",function(){if(k==2||k==4){return cy/2+28;}if(k==1||k==3||k==6){return cy/2+5;}})
         .attr("text-anchor",function(){if(k==1 || k==2){return "middle";}return "left";})
-        .style("font","16px monaco").style("font-weight","bold")
+        .style("font","16px Verdana")//.style("font-weight","bold")
         .text(function(){
             if(k==0||k==5){return " ";}
             if(k==3 && (title[j%10]=="FF"||title[j%10]=="LF")){
@@ -72,20 +72,30 @@ function cell(t,g,j,k){
                         if((t_j[i]==" "&&t_m[i]!=" ")||(t_j[i]!=" "&&t_m[i]==" ")){
                             bin.push(i);
                             g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/indel.png")
-                                .attr("class","icon").attr("x",8*i+cx*(0.02+0.48/t.length)).attr("y",cy/2+13).attr("width",18).attr("height",18);
+                                .attr("class","icon").attr("x",7*i+cx*(0.02+0.48/t.length)-4)
+                                .attr("y",cy/2+13).attr("width",18).attr("height",18);
                         }
                         //transpose
-                        if(bin.indexOf(i)==-1 && t_j[i]==t_m[i-1] && t_j[i-1]==t_m[i] && t_j[i]!="-" && t_m[i]!="-" && t_j[i-1]!="-" && t_m[i-1]!="-"){
-                            bin.push(i,i-1);
+                        else if(bin.indexOf(i)==-1 && t_j[i]==t_m[i+1] && t_j[i+1]==t_m[i] && t_j[i]!="-" && t_m[i]!="-" && t_j[i+1]!="-" && t_m[i+1]!="-"){
+                            bin.push(i,i+1);
                             g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/transpose.png")
-                                .attr("class","icon").attr("x",-t.length/2+9*i+cx*(0.02+0.48/t.length)).attr("y",cy/2+13).attr("width",18).attr("height",18);
-                        }else {
-                            //replace
-                            if (bin.indexOf(i)==-1 && t_j[i] != t_m[i] && t_j[i] != " " && t_m[i] != " ") {
-                                bin.push(i);
-                                g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/replace.png")
-                                    .attr("class", "icon").attr("x", -t.length/2+9*i+cx*(0.02+0.48/t.length)).attr("y", cy/2+13).attr("width", 18).attr("height", 18);
-                            }
+                                .attr("class","icon").attr("x",7*i+cx*(0.02+0.48/t.length))
+                                .attr("y",cy/2+13).attr("width",18).attr("height",18);
+                        }
+                        //transpose two
+                        else if(bin.indexOf(i)==-1 && t_j[i]==t_m[i+3] && t_j[i+1]==t_m[i+4] && t_j[i+3]==t_m[i] && t_j[i+4]==t_m[i+1]
+                            && t_j[i]!="-" && t_j[i+1]!="-" && t_j[i+2]!="-" && t_j[i+3]!="-"){
+                            bin.push(i,i+1,i+2,i+3,i+4);
+                            g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/transpose.png")
+                                .attr("class","icon").attr("x",7*i+cx*(0.02+0.48/t.length)+7)
+                                .attr("y",cy/2+13).attr("width",18).attr("height",18);
+                        }
+                        //replace
+                        else if (bin.indexOf(i)==-1 && t_j[i] != t_m[i] && t_j[i] != " " && t_m[i] != " ") {
+                            bin.push(i);
+                            g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/replace.png")
+                                .attr("class", "icon").attr("x", 7*i+cx*(0.02+0.48/t.length)-4)
+                                .attr("y", cy/2+13).attr("width", 18).attr("height", 18);
                         }
                     }
                     if(bin.length>0){
