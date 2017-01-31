@@ -49,7 +49,7 @@ function cell(t,g,j,k){
             if(k==3 && (title[j%10]=="FF"||title[j%10]=="LF")){return "middle";}
             if(k==1 || k==2){return "middle";}
             return "left";})
-        .style("font","16px Verdana")//.style("font-weight","bold")
+        .style("font","16px Monaco")//.style("font-weight","bold")
         .text(function(){
             if(k==0||k==5){return " ";}
             if(k==3 && (title[j%10]=="FF"||title[j%10]=="LF")){
