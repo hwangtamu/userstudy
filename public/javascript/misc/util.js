@@ -88,7 +88,9 @@ function cell(t,g,j,k){
                             }
                         }
                     }
-                    console.log(bin);
+                    if(bin.length>0){
+                        console.log(bin,j);
+                    }
                 }
             }
         }
