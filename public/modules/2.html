@@ -47,7 +47,7 @@
         //let svg = d3.select("#instruction").append("svg").attr("class","blocks").attr("width", 900).attr("height", 100);
         let choice = d3.select("#instruction").append("svg").attr("class","choicePanel").attr("width", 900).attr("height", 280);
         d3.select("#notation").text(notes[step]);
-        choices(choice,0,3,2);
+        alt_choices(choice,0,2);
         function goToNext() {
             experimentr.next();
         }
@@ -75,7 +75,7 @@
                         for(i=0;i<6;i++){
                             d3.select("#labelText"+i.toString()).remove();
                         }
-                        choices(choice,0,3,1);
+                        alt_choices(choice,0,1);
                     }
                 }
             });

@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <style>
-    #submitComments {
+    .next-button {
         position: relative;
         left: 50%;
         transform: translate(-50%, 0%);
@@ -26,11 +26,12 @@
 <body>
 <div id="container">
     <div id="instruction" style="text-align:center;">
-        <h1>Instructions: Operations</h1>
+        <h1 id="title">Instructions: Operations</h1>
         <div id="notation" style="text-align:left;">
         </div>
     </div>
-    <button id="submitComments" class="next-button" type="button">Next</button><br>
+    <button id="prev" class="next-button" type="button">Prev</button>
+    <button id="next" class="next-button" type="button">Next</button>
 </div>
 </body>
 </html>
@@ -39,94 +40,111 @@
     (function(){
         experimentr.hideNext();
         $.getScript("javascript/misc/util.js");
-        let step = 0;
-        let notes = ["There are four operations in the modification of editing distance: indel, replace, transpose and missing."
+        var step = 0;
+        var notes = ["There are four operations in the modification of editing distance: indel, replace, transpose and missing."
         ];
         d3.select("#notation").text(notes[step]);
-        let svg = d3.select("#instruction").append("svg").attr("class","blocks").attr("width", 900).attr("height", 300);
-        svg.append("svg:image").attr("xlink:href","/resources/indel.png")
-            .attr("class","icon").attr("x",20).attr("y",50).attr("width",50).attr("height",50);
-        svg.append("svg:image").attr("xlink:href","/resources/replace.png")
-            .attr("class","icon").attr("x",20).attr("y",150).attr("width",50).attr("height",50);
-        svg.append("svg:image").attr("xlink:href","/resources/transpose.png")
-            .attr("class","icon").attr("x",420).attr("y",50).attr("width",50).attr("height",50);
-        svg.append("svg:image").attr("xlink:href","/resources/missing.png")
-            .attr("class","icon").attr("x",420).attr("y",150).attr("width",50).attr("height",50);
-        // small
-        svg.append("svg:image").attr("xlink:href","/resources/indel.png")
-            .attr("class","icon").attr("x",310).attr("y",66).attr("width",18).attr("height",18);
-        svg.append("svg:image").attr("xlink:href","/resources/replace.png")
-            .attr("class","icon").attr("x",273).attr("y",166).attr("width",18).attr("height",18);
-        svg.append("svg:image").attr("xlink:href","/resources/transpose.png")
-            .attr("class","icon").attr("x",760).attr("y",66).attr("width",18).attr("height",18);
-        svg.append("svg:image").attr("xlink:href","/resources/missing.png")
-            .attr("class","icon").attr("x",720).attr("y",185).attr("width",18).attr("height",18);
+        var svg = d3.select("#instruction").append("svg").attr("class","blocks").attr("width", 900).attr("height", 200);
 
-        svg.append("text").attr("x",80).attr("y",80).attr("text-anchor","left").text("Indel");
-        svg.append("text").attr("x",80).attr("y",180).attr("text-anchor","left").text("Replace");
-        svg.append("text").attr("x",480).attr("y",80).attr("text-anchor","left").text("Transpose");
-        svg.append("text").attr("x",480).attr("y",180).attr("text-anchor","left").text("Missing");
-        //indel example
-        svg.append("text").attr("x",160).attr("y",55).attr("text-anchor","left").style("font","16px Verdana").text("Smith");
-        svg.append("text").attr("x",160).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("Smith Jr");
-        svg.append("text").attr("x",270).attr("y",55).attr("text-anchor","left").style("font","16px Verdana").text("-----");
-        svg.append("text").attr("x",270).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("----- Jr");
-        //replace example
-        svg.append("text").attr("x",160).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("Hanks");
-        svg.append("text").attr("x",160).attr("y",205).attr("text-anchor","left").style("font","16px Verdana").text("Henks");
-        svg.append("text").attr("x",270).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("-a---");
-        svg.append("text").attr("x",270).attr("y",205).attr("text-anchor","left").style("font","16px Verdana").text("-e---");
-        //transpose example
-        svg.append("text").attr("x",570).attr("y",55).attr("text-anchor","left").style("font","16px Verdana").text("05/20/1932");
-        svg.append("text").attr("x",570).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("05/20/1923");
-        svg.append("text").attr("x",700).attr("y",55).attr("text-anchor","left").style("font","16px Verdana").text("--/--/--32");
-        svg.append("text").attr("x",700).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("--/--/--23");
-        //missing example
-        svg.append("text").attr("x",600).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("Hanks");
-        svg.append("text").attr("x",565).attr("y",205).attr("text-anchor","left").style("font","16px Verdana").text("Missing Record").style("fill", "red");
-        svg.append("text").attr("x",710).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("-----");
+        function indel(){
+            d3.select("#title").text("Instructions: Indel");
+            svg.append("svg:image").attr("xlink:href","/resources/indel.png")
+                .attr("class","icon").attr("x",250).attr("y",100).attr("width",50).attr("height",50);
+            svg.append("svg:image").attr("xlink:href","/resources/indel.png")
+                .attr("class","icon").attr("x",635).attr("y",116).attr("width",18).attr("height",18);
+            svg.append("text").attr("x",310).attr("y",130).attr("text-anchor","left").text("Indel").style("font","16px Verdana");
+            svg.append("svg:image").attr("xlink:href","/resources/right-arrow.png")
+                .attr("class","icon").attr("x",530).attr("y",97).attr("width",50).attr("height",50);
+            //indel example
+            svg.append("text").attr("x",440).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("Smith");
+            svg.append("text").attr("x",440).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("Smith Jr");
+            svg.append("text").attr("x",580).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("*****");
+            svg.append("text").attr("x",580).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("***** Jr");
+        }
+
+        function replace(){
+            d3.select("#title").text("Instructions: Replace");
+            svg.append("svg:image").attr("xlink:href","/resources/replace.png")
+                .attr("class","icon").attr("x",250).attr("y",100).attr("width",50).attr("height",50);
+            svg.append("svg:image").attr("xlink:href","/resources/replace.png")
+                .attr("class","icon").attr("x",585).attr("y",116).attr("width",18).attr("height",18);
+            svg.append("text").attr("x",310).attr("y",130).attr("text-anchor","left").text("Replace").style("font","16px Verdana");
+            svg.append("svg:image").attr("xlink:href","/resources/right-arrow.png")
+                .attr("class","icon").attr("x",530).attr("y",97).attr("width",50).attr("height",50);
+            //replace example
+            svg.append("text").attr("x",440).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("Hanks");
+            svg.append("text").attr("x",440).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("Henks");
+            svg.append("text").attr("x",580).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("*a***");
+            svg.append("text").attr("x",580).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("*e***");
+        }
+
+        function transpose(){
+            d3.select("#title").text("Instructions: Transpose");
+            svg.append("svg:image").attr("xlink:href","/resources/transpose.png")
+                .attr("class","icon").attr("x",250).attr("y",100).attr("width",50).attr("height",50);
+            svg.append("svg:image").attr("xlink:href","/resources/transpose.png")
+                .attr("class","icon").attr("x",658).attr("y",116).attr("width",18).attr("height",18);
+            svg.append("text").attr("x",310).attr("y",130).attr("text-anchor","left").text("Transpose").style("font","16px Verdana");
+            svg.append("svg:image").attr("xlink:href","/resources/right-arrow.png")
+                .attr("class","icon").attr("x",530).attr("y",97).attr("width",50).attr("height",50);
+            //transpose example
+            svg.append("text").attr("x",440).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("05/20/1932");
+            svg.append("text").attr("x",440).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("05/20/1923");
+            svg.append("text").attr("x",580).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("**/**/**32");
+            svg.append("text").attr("x",580).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("**/**/**23");
+        }
+
+        function missing(){
+            d3.select("#title").text("Instructions: Missing");
+            svg.append("svg:image").attr("xlink:href","/resources/missing.png")
+                .attr("class","icon").attr("x",250).attr("y",100).attr("width",50).attr("height",50);
+            svg.append("svg:image").attr("xlink:href","/resources/missing.png")
+                .attr("class","icon").attr("x",600).attr("y",135).attr("width",18).attr("height",18);
+            svg.append("text").attr("x",310).attr("y",130).attr("text-anchor","left").text("Missing").style("font","16px Verdana");
+            svg.append("svg:image").attr("xlink:href","/resources/right-arrow.png")
+                .attr("class","icon").attr("x",530).attr("y",97).attr("width",50).attr("height",50);
+            //missing example
+            svg.append("text").attr("x",460).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("Hanks");
+            svg.append("text").attr("x",425).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("Missing Record").style("fill", "red");
+            svg.append("text").attr("x",590).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("-----");
+        }
+
         // boxes
-        svg.append("rect").attr("x", 20).attr("y", 25).attr("height", 95).attr("width", 130)
+        svg.append("rect").attr("x", 420).attr("y", 75).attr("height", 95).attr("width", 130).attr("rx",6).attr("ry",6)
             .style("stroke", "blue").style("fill", "none").style("stroke-width", 1);
-        svg.append("rect").attr("x", 155).attr("y", 25).attr("height", 95).attr("width", 100)
-            .style("stroke", "blue").style("fill", "none").style("stroke-width", 1);
-        svg.append("rect").attr("x", 260).attr("y", 25).attr("height", 95).attr("width", 100)
-            .style("stroke", "blue").style("fill", "none").style("stroke-width", 1);
-
-        svg.append("rect").attr("x", 20).attr("y", 125).attr("height", 95).attr("width", 130)
-            .style("stroke", "blue").style("fill", "none").style("stroke-width", 1);
-        svg.append("rect").attr("x", 155).attr("y", 125).attr("height", 95).attr("width", 100)
-            .style("stroke", "blue").style("fill", "none").style("stroke-width", 1);
-        svg.append("rect").attr("x", 260).attr("y", 125).attr("height", 95).attr("width", 100)
-            .style("stroke", "blue").style("fill", "none").style("stroke-width", 1);
-
-        svg.append("rect").attr("x", 420).attr("y", 25).attr("height", 95).attr("width", 130)
-            .style("stroke", "blue").style("fill", "none").style("stroke-width", 1);
-        svg.append("rect").attr("x", 555).attr("y", 25).attr("height", 95).attr("width", 135)
-            .style("stroke", "blue").style("fill", "none").style("stroke-width", 1);
-        svg.append("rect").attr("x", 695).attr("y", 25).attr("height", 95).attr("width", 130)
-            .style("stroke", "blue").style("fill", "none").style("stroke-width", 1);
-
-        svg.append("rect").attr("x", 420).attr("y", 125).attr("height", 95).attr("width", 130)
-            .style("stroke", "blue").style("fill", "none").style("stroke-width", 1);
-        svg.append("rect").attr("x", 555).attr("y", 125).attr("height", 95).attr("width", 135)
-            .style("stroke", "blue").style("fill", "none").style("stroke-width", 1);
-        svg.append("rect").attr("x", 695).attr("y", 125).attr("height", 95).attr("width", 130)
+        svg.append("rect").attr("x", 560).attr("y", 75).attr("height", 95).attr("width", 135).attr("rx",6).attr("ry",6)
             .style("stroke", "blue").style("fill", "none").style("stroke-width", 1);
 
 
 
+        if(step==0){indel();}
 
 
         function goToNext() {
             experimentr.next();
         }
-        d3.select('#submitComments')
+        d3.select('#prev')
             .on('click', function () {
-                if(step==notes.length-1){
+                if(step>0){
+                    d3.select(".blocks").selectAll("text").remove();
+                    d3.select(".blocks").selectAll(".icon").remove();
+                    if(step==1){indel();}
+                    if(step==2){replace();}
+                    if(step==3){transpose();}
+                    step = Math.max(step-1,0);
+                }
+            });
+        d3.select('#next')
+            .on('click', function () {
+                if(step==3){
                     goToNext();
                 }
                 else{
+                    d3.select(".blocks").selectAll("text").remove();
+                    d3.select(".blocks").selectAll(".icon").remove();
+                    if(step==0){replace();}
+                    if(step==1){transpose();}
+                    if(step==2){missing();}
                     step+=1;
                 }
             });
