@@ -57,7 +57,7 @@ function cell(t,g,j,k){
             if(k==0||k==5||(index_r>0 && k==1)){return " ";}
             if(k==3 && (title[j%10]=="FF"||title[j%10]=="LF")){
                 if(d3.select(this.parentNode.previousSibling).select("text").text()==""){return "";}
-                if(+t>2){return "2+";}
+                if(+t>2){return "3+";}
             }
             return t;
         });
