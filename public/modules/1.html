@@ -41,7 +41,7 @@
     $.getScript("javascript/misc/util.js");
     (function(){
         experimentr.hideNext();
-
+        var mode = experimentr.data()["mode"];
 
         var step = 0;
         var notes = ["The task of the record linkage is to determine whether the two records are from the same person or not.",
@@ -61,6 +61,7 @@
         d3.select("#notation").text(notes[step]);
         parsing("data.csv");
         setTimeout(function (){
+            experimentr.data()["mode"] = "Full";
             pairs(experimentr.data()["mat"][0],0,1,"Full");
             //console.log(experimentr.data()["mat"][0]);
         }, 200);
@@ -82,6 +83,7 @@
         d3.select('#next')
             .on('click', function () {
                 if(step==notes.length-1){
+                    experimentr.data()["mode"] = mode;
                     goToNext();
                 }
                 else{

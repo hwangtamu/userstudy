@@ -16,6 +16,10 @@ var data = {}; // experimentr data
  * g : div in HTML
  * j : id
  * k : cell type
+ * sch : coloring scheme flag :{
+ *      0:normal
+ *      1:colored
+ * }
  * cell type = {
  *      0:group id hidden
  *      1:title
@@ -30,7 +34,6 @@ var data = {}; // experimentr data
 function cell(t,g,j,k){
     // erase title columns
     var index_r = g.attr("id").slice(1)%5;
-
     var x = 5*(j%cwidth.length)+cwidth.slice(0,j%cwidth.length).reduce((a, b) => a + b, 0),
         y = ys[Math.floor(j/cwidth.length)],
         cx = cwidth[j%cwidth.length],
@@ -169,6 +172,38 @@ function cell(t,g,j,k){
                 pair(title.concat(dat[p%5][0]).concat(dat[p%5][1]),g,"Full_Partial");
             }
         });
+    }
+    // coloring text
+    if(experimentr.data()['mode']!="Full"
+        &&(k==6||k==3)&&title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
+        textbox.attr("opacity",0);
+        console.log(experimentr.data()['mode']);
+        var p = g.attr("id").slice(1), //pair id
+            dat = experimentr.data()['mat'][Math.floor(p/5)],
+            m = j>=2*cwidth.length ? j-cwidth.length : j+cwidth.length,
+            len = textbox.text().length,
+            $cel = g.select("#c"+j.toString()),
+            $tb = $cel.append("text"),
+            t_j = j<2*cwidth.length ? dat[p%5][0][mapping[j%10]] : dat[p%5][1][mapping[j%10]],
+            t_m = m<2*cwidth.length ? dat[p%5][0][mapping[m%10]] : dat[p%5][1][mapping[m%10]],
+            scheme = [];
+        for(f=0;f<len;f++){
+            if(t_j[f]==t_m[f]){scheme.push(0);}
+            else{scheme.push(1);}
+        }
+        for(l=0;l<len;l++){
+            var $tspan = $tb.append('tspan');
+            $tspan.attr("x",0.6*l+"em").attr("y",cy/2+5)
+                .attr("text-anchor","left")
+                .style("font","16px Monaco")
+                .attr("fill",function(){if(scheme[l]==1 && textbox.text()[l]!="*"){return"orange";}return "black";})
+                .text(t[l]);
+            /*
+            $tspan.on("mouseover",function(){d3.select(this).style("cursor", "pointer");});
+            $tspan.on("mouseout",function(){d3.select(this).style("cursor", "default");});
+            */
+            //click function not implemented yet.
+        }
     }
 }
 /**
