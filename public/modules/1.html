@@ -73,8 +73,8 @@
             .on('click', function () {
                 if(step>0){
                     step = Math.max(step-1,0);
-                    d3.select("#r"+(step-1).toString()).style("fill","#7FFF00");
-                    d3.select("#r"+(step).toString()).style("fill","#68a7ca");
+                    d3.select("#t"+(step-1).toString()).style("fill","red");
+                    d3.select("#t"+(step).toString()).style("fill","black");
                     //step+=1;
                     d3.select("#notation").text(notes[step]);
                 }
@@ -85,8 +85,8 @@
                     goToNext();
                 }
                 else{
-                    d3.select("#r"+step.toString()).style("fill","#7FFF00");
-                    if(step>0){d3.select("#r"+(step-1).toString()).style("fill","#68a7ca");}
+                    d3.select("#t"+step.toString()).style("fill","red");
+                    if(step>0){d3.select("#t"+(step-1).toString()).style("fill","black");}
                     step+=1;
                     d3.select("#notation").text(notes[step]);
                 }

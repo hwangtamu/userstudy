@@ -1,8 +1,8 @@
 /**
  * Created by hanwang on 1/23/17.
  */
-var title = ["Group","ID","First name","FF","Last name","LF","Race","Sex","Reg No.","DoB"];
-var cwidth = [60,60,120,40,140,40,50,40,100,100]; //750
+var title = ["Group","ID","First name","FFreq","Last name","LFreq","Race","Sex","Reg No.","DoB"];
+var cwidth = [60,60,120,60,140,60,50,40,100,100]; //790
 var height = 24; //height per row 0 30 57
 var ys = [0,30,77];
 var mapping = [0,1,10,3,11,5,12,13,14,15,2,4,6,7,8,9,16]; //index mapping from hidden data to visible data per row
@@ -38,24 +38,33 @@ function cell(t,g,j,k){
     var cel = g.append("g").attr("id","c"+j.toString()).attr("class","cell")
         .attr("transform","translate("+x+","+y+")");
     var rectangle = cel.append("rect").attr("id",j);
-    rectangle.attr("x",0).attr("y",0).attr("width",cx).attr("id","r"+j.toString())
+    //only show rect on clickable cells
+    if(k==6 && j<20){
+        rectangle.attr("x",-5).attr("y",-5).attr("width",cx).attr("id","r"+j.toString())
+            .attr("height",80).style("fill","#C5E3BF").attr("rx",5).attr("ry",5);
+    }
+    /*rectangle.attr("x",0).attr("y",0).attr("width",cx).attr("id","r"+j.toString())
         .attr("height",function(){if(k==2||k==4){return cy*2+23;}if(k==0||k==5||(index_r>0 && k==1)){return 0;}return cy;})
+        .style("fill","none")
         .style("fill",function(){if(k==1||k==2){return "#68a7ca";}if(k==3||k==4){return "#b2d3e6";}if(k==6){return "#C5E3BF"}})
-        .style("opacity",1);
-    var textbox = cel.append("text").attr("id",j).attr("id","t"+j.toString());
+        .style("opacity",1);*/
+    var textbox = cel.append("text").attr("class","tbox").attr("id","t"+j.toString());
     textbox.attr("x",function(){
-        if(k==3 && (title[j%10]=="FF"||title[j%10]=="LF")){return cx/2;}
-        if(k==1||k==2){return cx/2;}
-        if(t.length>0){return cx*(0.02+0.48/t.length)-4;}})
-        .attr("y",function(){if(k==2||k==4){return cy/2+28;}if(k==1||k==3||k==6){return cy/2+5;}})
+        //if(k==3 && (title[j%10]=="FFreq"||title[j%10]=="LFreq"||
+            //title[j%10]=="ID")){return cx/2;}
+        if(k==2){return cx/2;}
+    return 0;})
+    //if(t.length>0){return cx*(0.02+0.48/t.length)-4;}})
+        .attr("y",function(){if(k==2){return cy/2+28;}if(k==1||k==3||k==4||k==5||k==6){return cy/2+5;}})
         .attr("text-anchor",function(){
-            if(k==3 && (title[j%10]=="FF"||title[j%10]=="LF")){return "middle";}
-            if(k==1 || k==2){return "middle";}
+            //if(k==3 && (title[j%10]=="FFreq"||title[j%10]=="LFreq"||j%10==0||
+                //title[j%10]=="ID")){return "middle";}
+            if(k==2){return "middle";}
             return "left";})
         .style("font","16px Monaco")//.style("font-weight","bold")
         .text(function(){
-            if(k==0||k==5||(index_r>0 && k==1)){return " ";}
-            if(k==3 && (title[j%10]=="FF"||title[j%10]=="LF")){
+            if(k==0||(index_r>0 && k==1)){return " ";}
+            if(k==3 && (title[j%10]=="FFreq"||title[j%10]=="LFreq")){
                 if(d3.select(this.parentNode.previousSibling).select("text").text()==""){return "";}
                 if(+t>2){return "3+";}
             }
@@ -66,9 +75,9 @@ function cell(t,g,j,k){
         if(textbox.text()==""){
             // missing
             cel.append("svg:image").attr("xlink:href","/resources/missing.png").attr("class","icon")
-                .attr("x",cx/2-9).attr("y",cy/2-9).attr("width",18).attr("height",18);
+                .attr("x",0).attr("y",cy/2-9).attr("width",18).attr("height",18);
         }else{
-            if(j<cwidth.length*2 && title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="FF" && title[j%cwidth.length]!="LF"){
+            if(j<cwidth.length*2 && title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="FFreq" && title[j%cwidth.length]!="LFreq"){
                 var m = j+cwidth.length,
                     p = g.attr("id").slice(1),
                     dat = experimentr.data()['mat'][Math.floor(p/5)],
@@ -81,14 +90,14 @@ function cell(t,g,j,k){
                         if((t_j[i]==" "&&t_m[i]!=" ")||(t_j[i]!=" "&&t_m[i]==" ")){
                             bin.push(i);
                             g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/indel.png")
-                                .attr("class","icon").attr("x",8*i+cx*(0.02+0.48/t.length)-7)
-                                .attr("y",cy/2+13).attr("width",18).attr("height",18);
+                                .attr("class","icon").attr("x",9*i)
+                                .attr("y",cy/2+15).attr("width",16).attr("height",16);
                         }
                         //transpose
                         else if(bin.indexOf(i)==-1 && t_j[i]==t_m[i+1] && t_j[i+1]==t_m[i] && t_j[i]!="*" && t_m[i]!="*" && t_j[i+1]!="*" && t_m[i+1]!="*"){
                             bin.push(i,i+1);
                             g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/transpose.png")
-                                .attr("class","icon").attr("x",8*i+cx*(0.02+0.48/t.length)+4)
+                                .attr("class","icon").attr("x",9*i+4)
                                 .attr("y",cy/2+13).attr("width",18).attr("height",18);
                         }
                         //transpose two
@@ -96,7 +105,7 @@ function cell(t,g,j,k){
                             && t_j[i]!="*" && t_j[i+1]!="*" && t_j[i+2]!="*" && t_j[i+3]!="*"){
                             bin.push(i,i+1,i+2,i+3,i+4);
                             g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/transpose.png")
-                                .attr("class","icon").attr("x",8*i+cx*(0.02+0.48/t.length)+10)
+                                .attr("class","icon").attr("x",9*i+12)
                                 .attr("y",cy/2+13).attr("width",18).attr("height",18);
                         }
                         //replace
@@ -104,10 +113,10 @@ function cell(t,g,j,k){
                             bin.push(i);
                             g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/replace.png")
                                 .attr("class", "icon").attr("x", function(){
-                                    if (d3.select(this.parentNode).text().length==1){
+                                    /*if (d3.select(this.parentNode).text().length==1){
                                         return cx/2-9;
-                                    }
-                                return 8*i+cx*(0.02+0.48/t.length);
+                                    }*/
+                                return 9*i;
                             })
                                 .attr("y", cy/2+13).attr("width", 18).attr("height", 18);
                         }
@@ -165,7 +174,6 @@ function cell(t,g,j,k){
 /**
  * draw a row
  * @param t : text list
- * @param y : y position
  * @param g : svg
  * @param j : row number 0/1/2
  * @param k : cell type list
@@ -258,7 +266,7 @@ function pairs(t,s,n,m) {
             .attr("width", num>1 ? 1200:900).attr("height", 120);
         pair(title.concat(t[i][0]).concat(t[i][1]),g,m);
         if(num>1){
-            choices(g,800,1,1);
+            choices(g,850,1,1);
         }
     }
 }
@@ -336,7 +344,6 @@ function alt_choices(svg,lBound,mode) {
         "Less Likely Same",
         "Moderately Likely Same",
         "Highly Likely Same"];
-    var scale = 3;
     var x = [60, 180, 300, 420, 540, 660];
     var lx = [30, 60, 96, 180, 216, 300, 336, 420, 456, 540, 576, 660, 696, 750];
     var y = 140;
