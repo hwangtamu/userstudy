@@ -186,6 +186,7 @@ function cell(t,g,j,k){
             $tb = $cel.append("text"),
             t_j = j<2*cwidth.length ? dat[p%5][0][mapping[j%10]] : dat[p%5][1][mapping[j%10]],
             t_m = m<2*cwidth.length ? dat[p%5][0][mapping[m%10]] : dat[p%5][1][mapping[m%10]],
+            t_jj = j<2*cwidth.length ? dat[p%5][0][j%10] : dat[p%5][1][j%10],
             scheme = [];
         for(f=0;f<len;f++){
             if(t_j[f]==t_m[f]){scheme.push(0);}
@@ -196,7 +197,9 @@ function cell(t,g,j,k){
             $tspan.attr("x",0.6*l+"em").attr("y",cy/2+5)
                 .attr("text-anchor","left")
                 .style("font","16px Monaco")
-                .attr("fill",function(){if(scheme[l]==1 && textbox.text()[l]!="*"){return"orange";}return "black";})
+                .attr("fill",function(){
+                    if(t_j.length!=t_jj.length){return "black";}
+                    if(scheme[l]==1 && textbox.text()[l]!="*"){return"orange";}return "black";})
                 .text(t[l]);
             /*
             $tspan.on("mouseover",function(){d3.select(this).style("cursor", "pointer");});
