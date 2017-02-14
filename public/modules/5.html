@@ -13,8 +13,6 @@
     body{
         color:#000;
     }
-
-
     #container{
         /*Styling for any element with the id="container" */
         width:1000px; /* The width is fixed by pixels */
@@ -25,7 +23,7 @@
 <body>
 <div id="container">
     <div id="instruction" style="text-align:center;">
-        <h1>Section 1: Pairwise Test</h1>
+        <h1 id="title">Section 1: Pairwise Test</h1>
         <div id="notation" style="text-align:left;">
         </div>
         <br> <br>
@@ -50,10 +48,16 @@
         }
         d3.select('#submitComments')
             .on('click', function () {
-                if(experimentr.data()["mat"][step].length==0){
+                if(step==experimentr.data()["mat"].length-1){
                     goToNext();
-                }
-                else{
+                }else{
+                    if(experimentr.data()["mat"][step].length==1){
+                        d3.select("#title").text("This is the end of Section 1");
+                    }
+                    if(experimentr.data()["mat"][step].length==0){
+                        d3.select("#title").text("Section 2: Groupwise Test");
+                    }
+
                     if(step==1){
                         d3.select("#notation").remove();
                     }

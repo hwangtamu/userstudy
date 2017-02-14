@@ -1,49 +1,46 @@
-Privacy Preserved Interactive Record Linkage
+Study of Record Linkage and Information Disclosure
 ================
+# Howto
+## Environment Requirements
 
-This is based on [experimentr](https://github.com/codementum/experimentr), a hosting/data-collection backend and module-based frontend for web-based visualization studies.
+  Node.js (>=4.5.0)
 
-## Installation
+  Express (>=4.14.0)
 
-* Install [nodejs](http://nodejs.org/download/)
-* Install [redis](http://redis.io/download)
-* Install [python 2.7](https://www.python.org/download/releases/2.7)
-* Install node modules:  `npm install`
+  Redis-server (>=0.0.3)
 
-## Usage
+## Start
+Open a cmd or terminal window (depends on you operating system), go to the project directory.
 
-Start redis:
+Before starting the app, first start a local redis server:
+```sh
+redis-server local.conf
+```
+or use an online redis server:
+```sh
+redis-server redis.conf
+```
+To start this app:
+```sh
+node app.js
+```
+# About
+Powered by experimentr (https://github.com/codementum/experimentr), the project is aiming to provide a web-based, light-weighted user interface for interactive record linkage study.
 
-    redis-server redis.conf
+# Change Log
+Feb.14:
+* Fixed bug#1.
+* Implemented Section 2: Groupwise Test.
+* Implemented a new end.html.
 
-Run the server:
+Feb.13:
+* Expanded clickable area to larger rectangles.
+* Added font color feature to characters with differences.
+* Resized icons and re-aligned text and icons.
+* Fixed bug#2.
 
-    node app.js
+# Bug Report
+Bug#1: When length of word changes, the position of orange colored letter doesn't change.
 
-Then access the page at [localhost:8000](http://localhost:8000).
+Bug#2: The right arrow on instructions pages doesn't show up on Heroku.
 
-## Task List
-* get ruby code to link two datasets
-*
-
-## Analysis
-
-Read README.md in analysis and public/data for further usage.
-
-## Subject Testing
-Before Study
-
-Consent Page
-
-Background Questionnaire Page
-
-
-Trials
-
-Post Survey
-
-
-After Testing
-1. Consult analysis/readme.md and public/data/readme.md
-
-# userstudy

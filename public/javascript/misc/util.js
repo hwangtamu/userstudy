@@ -16,10 +16,6 @@ var data = {}; // experimentr data
  * g : div in HTML
  * j : id
  * k : cell type
- * sch : coloring scheme flag :{
- *      0:normal
- *      1:colored
- * }
  * cell type = {
  *      0:group id hidden
  *      1:title
@@ -177,7 +173,6 @@ function cell(t,g,j,k){
     if(experimentr.data()['mode']!="Full"
         &&(k==6||k==3)&&title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
         textbox.attr("opacity",0);
-        console.log(experimentr.data()['mode']);
         var p = g.attr("id").slice(1), //pair id
             dat = experimentr.data()['mat'][Math.floor(p/5)],
             m = j>=2*cwidth.length ? j-cwidth.length : j+cwidth.length,
@@ -308,6 +303,7 @@ function pairs(t,s,n,m) {
         }
     }
 }
+
 // draw choice panel
 // mode: 1=default 2=introduce
 function choices(svg,lBound, scale,mode) {
@@ -372,7 +368,6 @@ function choices(svg,lBound, scale,mode) {
     }
 }
 
-
 // draw choice panel
 // mode: 1=default 2=introduce
 function alt_choices(svg,lBound,mode) {
@@ -389,14 +384,14 @@ function alt_choices(svg,lBound,mode) {
     var buttons = svg.append("g").attr("transform", "translate(" + lBound + ",0)");
     //buttons.append("rect").attr("x",-10*scale).attr("y",0).attr("width",280*scale).attr("height",85*scale).style("fill","#68a7ca").style("opacity",1);
     if(mode!=2){
-        buttons.append("text").attr("x", 660).attr("y", 220).text("Same").attr("text-anchor", "middle").style("font", 48 + "px sans-serif");
-        buttons.append("text").attr("x", 150).attr("y", 220).text("Different").attr("text-anchor", "middle").style("font", 48 + "px sans-serif");
+        buttons.append("text").attr("x", 660).attr("y", 220).text("Same").attr("text-anchor", "middle").style("font", 36 + "px sans-serif");
+        buttons.append("text").attr("x", 150).attr("y", 220).text("Different").attr("text-anchor", "middle").style("font", 36 + "px sans-serif");
     }
     for (var p = 0; p < options.length; p++) {
         buttons.append("text").attr("id","labelText"+p.toString())
-            .attr("x", x[p] + 12).attr("y", function(){if(mode==2 && p%2==1){return 180;}return 110;})
+            .attr("x", x[p] + 18).attr("y", function(){if(mode==2 && p%2==1){return 180;}return 110;})
             .text(function(){if(mode==2){return options[p];}return options[p][0];})
-            .attr("text-anchor", "middle").style("font", function(){if(mode==2){return 14+"px sans-serif";}return 48 + "px sans-serif";});
+            .attr("text-anchor", "middle").style("font", function(){if(mode==2){return 14+"px sans-serif";}return 40 + "px sans-serif";});
     }
     //arrows
     for(var pos=0;pos<7;pos++){
@@ -436,7 +431,6 @@ function alt_choices(svg,lBound,mode) {
             });
     }
 }
-
 
 function parsing(route){
     d3.text(route, function (csvdata) {

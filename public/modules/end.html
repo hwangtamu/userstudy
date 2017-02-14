@@ -1,49 +1,37 @@
-<h2>The End</h2>
-
-<p>Thank you for your participation in the study. This is the end. You're done.</p>
-<p>
-<div id="doneMessage"></div>
-</p>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    #submitComments {
+        position: relative;
+        left: 50%;
+        transform: translate(-50%, 0%);
+    }
+    body{
+        color:#000;
+    }
+    #container{
+        /*Styling for any element with the id="container" */
+        width:1000px; /* The width is fixed by pixels */
+        height:800px; /* The height is fixed by pixels*/
+        color:black;
+    }
+</style>
+<body>
+<div id="container">
+    <div id="instruction" style="text-align:center;">
+        <h1 id="title">The End</h1>
+        <div id="notation" style="text-align:left;">
+            You are done! Thank you for participating in this study!
+        </div>
+        <br> <br>
+    </div>
+</div>
+</body>
+</html>
 <script>
-
-(function() {
-  //   var messageThing = d3.select('#doneMessage');
-  //   var pid = getParameterByName('pid');
-  //   var codePart1 = "X";
-  //   var num = Math.random();
-  //   if (num < 0.3){
-  //       codePart1 = 'Y';
-  //   }
-  //   else if (num < 0.6){
-  //       codePart1 = 'Z';
-  //   }
-  //   var codePart2 = "T";
-  //   var num = Math.random();
-  //   if (num < 0.3){
-  //       codePart2 = 'G';
-  //   }
-  //   else if (num < 0.7){
-  //       codePart2 = 'P';
-  //   }
-  //
-  //   var remainder = pid.substring(3);
-  //
-  //   if (remainder !== undefined && remainder.length > 0) {
-  //     var endCode = Math.floor(Math.random()*11) + codePart2 + remainder + codePart1 + Math.floor(Math.random()*11);
-  //     messageThing.html("<strong> Your Completion Confirmation: " + endCode + "</strong>");
-  //     //console.log('endCode ',endCode);
-  //   }
-  //
-  // // get query string value by name
-  // function getParameterByName(varname) {
-  //     varname = varname.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-  //     var regex = new RegExp("[\\?&]" + varname + "=([^&#]*)");
-  //     var results = regex.exec(location.search);
-  //     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-  // }
-
-  experimentr.save();
-
-}());
+    experimentr.save();
 </script>
