@@ -61,7 +61,7 @@ function cell(t,g,j,k){
                 //title[j%10]=="ID")){return "middle";}
             if(k==2){return "middle";}
             return "left";})
-        .style("font","16px Lucida")//.style("font-weight","bold")
+        .style("font","16px Monaco")//.style("font-weight","bold")
         .text(function(){
             if(k==0||(index_r>0 && k==1)){return " ";}
             if(k==3 && (title[j%10]=="FFreq"||title[j%10]=="LFreq")){
@@ -194,7 +194,7 @@ function cell(t,g,j,k){
             var $tspan = $tb.append('tspan');
             $tspan.attr("x",0.6*l+"em").attr("y",cy/2+5)
                 .attr("text-anchor","left")
-                .style("font","16px Lucida")
+                .style("font","16px Monaco")
                 .attr("fill",function(){
                     if(t_j.length!=t_jj.length){return "black";}
                     if(k==3 && scheme[l]==1 && textbox.text()[l]!="*" && textbox.text()[l]!="/"){return"orange";}return "black";})
