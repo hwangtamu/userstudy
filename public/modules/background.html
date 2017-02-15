@@ -1,43 +1,7 @@
 <body>
 <div id="container" style="text-align:center;">
 <h1>Disclosure Mode</h1>
-<!--
-  <br>
-  <div id="age">
-    <text id="ageLabel" fill="red">Age:</text>
-    <input type="text" class="textfield" value="" id="ageText" size="3" maxlength="2" name="ageText" onkeypress="return isNumber(event)" />
-    <div id="ageValidate" class="validate" style="font-size: 150%; left: 10px; float: left;"></div>
-  </div>
-  <br>
-  <br>
-  <div id="occupation">
-    <text id="occupationLabel" fill="red">Occupation:</text>
-    <div id="occupationValidate" class="validate" style="font-size: 150%; left: 10px; float: left;"></div>
-    <br>
-    <input type="text" class="textfield" value="" id="occupationText" size="50" maxlength="50" name="occupationText" />
-  </div>
-  <br>
-  <div id="degree">
-    <text id="degreeLabel" fill="red">Highest Degree Obtained: </text><br>
-    <div id="degreeValidate" class="validate" style="font-size: 150%; left: 10px; float: left;"></div>
-      <div id="degreeRadio" class="radio">
-          <input type="radio" id="d1" name="degree" value="High School"><label for="d1">High School</label><br>
-          <input type="radio" id="d2" name="degree" value="Bachelors"><label for="d2">Bachelors</label><br>
-          <input type="radio" id="d3" name="degree" value="Masters"><label for="d3">Masters</label><br>
-          <input type="radio" id="d4" name="degree" value="PhD"><label for="d4">PhD</label><br>
-          <input type="radio" id="d5" name="degree" value="Other"><label for="d5">Other</label>
-      </div>
-  </div>
-  <br>
-  
-  <div id="major">
-    <text id="majorLabel" fill="red">Major/Degree specialization:</text>
-    <div id="majorValidate" class="validate" style="font-size: 150%; left: 10px; float: left;"></div>
-    <br>
-    <input type="text" class="textfield" value="" id="majorText" size="50" maxlength="50" name="majorText" />
-  </div>
-  <br>
-  -->
+
  <div id="mode">
  <p style="font-weight:bold">[Warning: do not refresh your web browser before the end of the user study. ]</p>
     <div style="text-align:left;">
@@ -65,7 +29,9 @@
 
     <br>
     <button id="submitComments" class="start-button" type="button">Next</button>
-        <br>
+    <button id="skipComments" class="start-button" type="button">Skip</button>
+
+    <br>
 <div id="validateMessage" class="validate" style="color:red;"></div>
 </div>
 </body>
@@ -102,17 +68,7 @@
   experimentr.hideNext();
 
   experimentr.startTimer('background_info');
-  /*
-  var ageText = d3.select('#ageText');
-  var occupationText = d3.select('#occupationText');
-  var majorText = d3.select('#majorText');
 
-  var degreeRadio = d3.select('#degreeRadio');
-
-  d3.selectAll('input')
-    .filter(function(d) { return this.name === 'degree' ? this : null; })
-    .on('change', function() { data.degree = this.value; });
-  */
   d3.selectAll('input')
     .filter(function(d) { return this.name === 'mode' ? this : null; })
     .on('change', function() { data.mode = this.value;
@@ -134,44 +90,10 @@
   }
 
   function validate() {
-    /*
-    data.age = ageText.property('value');
-    data.major = majorText.property('value');
-    data.occupation = occupationText.property('value');
-    */
 
     var messageThing = d3.select('#validateMessage');
     var messageText = "";
     messageThing.html("");
-    /*
-    if (data.age) {
-      d3.select('#ageValidate').text("");
-    } else {
-      d3.select('#ageValidate').text("* ");
-      messageText += "<p>* Please provide your age.</p>"
-    }
-
-    if (data.major) {
-      d3.select('#majorValidate').text("");
-    } else {
-      d3.select('#majorValidate').text("* ");
-      messageText += "<p>* Please provide your major/degree specialization.</p>"
-    }
-
-    if (data.degree) {
-      d3.select('#degreeValidate').text("");
-    } else {
-      d3.select('#degreeValidate').text("* ");
-      messageText += "<p>* Please select your highest degree obtained.</p>"
-    }
-
-    if (data.occupation) {
-      d3.select('#occupationValidate').text("");
-    } else {
-      d3.select('#occupationValidate').text("* ");
-      messageText += "<p>* Please enter your occupation.</p>"
-    }
-    */
 
     if (data.mode!="") {
       d3.select('#modeValidate').text("");
@@ -192,5 +114,17 @@
     .on('click', function () {
       validate();
     });
+  d3.select("#skipComments")
+      .on('click',function(){
+          if(data.mode!=""){
+              experimentr.endTimer('background_info');
+              experimentr.addData(data);
+              experimentr.sequence([
+                  'modules/4.html',
+                  'modules/5.html',
+                  'modules/end.html'
+              ]).start();
+          }
+      })
 }());
 </script>

@@ -64,7 +64,7 @@ function cell(t,g,j,k){
         .text(function(){
             if(k==0||(index_r>0 && k==1)){return " ";}
             if(k==3 && (title[j%10]=="FFreq"||title[j%10]=="LFreq")){
-                if(d3.select(this.parentNode.previousSibling).select("text").text()==""){return "";}
+                if(d3.select(this.parentNode.previousSibling).select("text").text()==""){return "NA";}
                 if(+t>2){return "3+";}
             }
             return t;
@@ -72,9 +72,11 @@ function cell(t,g,j,k){
     // icons
     if(j>cwidth.length){
         if(textbox.text()==""){
-            // missing
-            cel.append("svg:image").attr("xlink:href","/resources/missing.png").attr("class","icon")
-                .attr("x",0).attr("y",cy/2-9).attr("width",18).attr("height",18);
+            if(title[j%cwidth.length]!="FFreq" && title[j%cwidth.length]!="LFreq"){
+                // missing
+                cel.append("svg:image").attr("xlink:href","/resources/missing.png").attr("class","icon")
+                    .attr("x",0).attr("y",cy/2-9).attr("width",18).attr("height",18);
+            }
         }else{
             if(j<cwidth.length*2 && title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="FFreq" && title[j%cwidth.length]!="LFreq"){
                 var m = j+cwidth.length,
