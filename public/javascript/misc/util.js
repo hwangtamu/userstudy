@@ -7,6 +7,7 @@ var height = 24; //height per row 0 30 57
 var ys = [0,30,77];
 var mapping = [0,1,10,3,11,5,12,13,14,15,2,4,6,7,8,9,16]; //index mapping from hidden data to visible data per row
 var data = {}; // experimentr data
+
 /**
  * draw a cell
  * x,y : position
@@ -196,7 +197,7 @@ function cell(t,g,j,k){
                 .style("font","16px Monaco")
                 .attr("fill",function(){
                     if(t_j.length!=t_jj.length){return "black";}
-                    if(scheme[l]==1 && textbox.text()[l]!="*"){return"orange";}return "black";})
+                    if(k==3 && scheme[l]==1 && textbox.text()[l]!="*"){return"orange";}return "black";})
                 .text(t[l]);
             /*
             $tspan.on("mouseover",function(){d3.select(this).style("cursor", "pointer");});
