@@ -61,7 +61,7 @@ function cell(t,g,j,k){
                 //title[j%10]=="ID")){return "middle";}
             if(k==2){return "middle";}
             return "left";})
-        .style("font","16px Monaco")//.style("font-weight","bold")
+        .style("font",function(){if(data.os=="MacOS"){return "16px Monaco";}return "16px Lucida Console";})//.style("font-weight","bold")
         .text(function(){
             if(k==0||(index_r>0 && k==1)){return " ";}
             if(k==3 && (title[j%10]=="FFreq"||title[j%10]=="LFreq")){
