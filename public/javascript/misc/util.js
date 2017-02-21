@@ -175,13 +175,14 @@ function cell(t,g,j,k){
     // coloring text
     if(experimentr.data()['mode']!="Full"
         &&(k==6||k==3)&&title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
-        if(k==3){textbox.attr("fill","#00ffff");}
+        textbox.attr("opacity",0);
+        g.select("#c"+j.toString()).select(".span").remove();
         var p = g.attr("id").slice(1), //pair id
             dat = experimentr.data()['mat'][Math.floor(p/5)],
             m = j>=2*cwidth.length ? j-cwidth.length : j+cwidth.length,
             len = textbox.text().length,
             $cel = g.select("#c"+j.toString()),
-            $tb = $cel.append("text"),
+            $tb = $cel.append("text").attr("class","span"),
             t_j = j<2*cwidth.length ? dat[p%5][0][mapping[j%10]] : dat[p%5][1][mapping[j%10]],
             t_m = m<2*cwidth.length ? dat[p%5][0][mapping[m%10]] : dat[p%5][1][mapping[m%10]],
             t_jj = j<2*cwidth.length ? dat[p%5][0][j%10] : dat[p%5][1][j%10],
