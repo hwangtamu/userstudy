@@ -40,7 +40,5 @@ Feb.13:
 * Fixed bug#2.
 
 # Bug Report
-Bug#1: When length of word changes, the position of orange colored letter doesn't change.
-
-Bug#2: The right arrow on instructions pages doesn't show up on Heroku.
+See Issues.
 
