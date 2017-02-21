@@ -175,7 +175,7 @@ function cell(t,g,j,k){
     // coloring text
     if(experimentr.data()['mode']!="Full"
         &&(k==6||k==3)&&title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
-        textbox.attr("opacity",0);
+        if(k==3){textbox.attr("fill","#00ffff");}
         var p = g.attr("id").slice(1), //pair id
             dat = experimentr.data()['mat'][Math.floor(p/5)],
             m = j>=2*cwidth.length ? j-cwidth.length : j+cwidth.length,
