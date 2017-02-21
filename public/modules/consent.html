@@ -66,11 +66,12 @@
     //});
 
     var browser = get_browser_info();
-
+    var os = get_os_info();
     console.log(browser);
+    console.log(os);
     data.browserName = browser.name;
     data.browserVersion = browser.version;
-
+    data.os = os;
     data.userDate = Date();
     load();
        // load previous workers file
@@ -95,7 +96,14 @@
 
     d3.select('#consentYes').attr('disabled', 'disabled');
   }
-
+  function get_os_info(){
+    var OSName="Unknown OS";
+    if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
+    if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
+    if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
+    if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux";
+    return OSName;
+  }
   function get_browser_info(){
     var ua=navigator.userAgent,tem,M=ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
     if(/trident/i.test(M[1])){
