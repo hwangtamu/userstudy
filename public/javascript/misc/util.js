@@ -1,7 +1,7 @@
 /**
  * Created by hanwang on 1/23/17.
  */
-var title = ["Group","ID","First name","FFreq","Last name","LFreq","Race","Sex","Reg No.","DoB"];
+var title = ["Group","ID","First name","FFreq","Last name","LFreq","Race","Sex","Reg No.","DoB(MM/DD/YY)"];
 var cwidth = [60,60,120,60,140,60,50,40,100,100]; //790
 var height = 24; //height per row 0 30 57
 var ys = [0,30,77];
