@@ -197,7 +197,7 @@ average is:
     18.5% substitution,
     13.5% transposition.
 
-    Suppose there are 80% errors are typos and 20% errors are 
+    Suppose there are 80% errors that are typos and 20% errors are 
 misspellings, the overall distribution should be:
     
     29.6% omission, 
