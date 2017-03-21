@@ -1,10 +1,10 @@
-#Design of the Synthetic Data Geneator
+# Design of the Synthetic Data Geneator
 
-##Background
+## Background
 
-##Related Work
+## Related Work
 
-##Data Source
+## Data Source
 
 The raw data we use is from the North Carolina 
 Voter Registration Database:
@@ -46,9 +46,9 @@ The datasets are updated very often, so we simply use data
 downloaded from different time periods as the base datasets
 for the synthetic data generation.
 
-##Data Preprocessing
+## Data Preprocessing
 
-###Field Filter
+### Field Filter
 There are 71 columns that exist in a North Carolina Voter Registration 
 dataset, which is too many for a human inspector to focus on. See 
 Appendix for the full list of the field names. 
@@ -74,7 +74,7 @@ one capital letter to denote the race and gender of a person. `birth_age`
 is an integer that denotes the age of a person. `birth_age` can be
 extended to date of birth if needed.
 
-###Conversion from Age to DoB (Optional)
+### Conversion from Age to DoB (Optional)
 Since the data is used in pairwise comparisons across datasets, if two
 records are similar and are likely to be from the same person, the 
 Dob in the pair of records should also be similar.
@@ -98,9 +98,9 @@ def dob(voter_reg_num, last_name, first_name,race_code,gender_code, birth_age):
     # then the date of birth can be generated
     return str(2017-int(b))+ymd[5:]
 ```
-##Appendix
+## Appendix
 
-####1. Full List of the field names:
+#### 1. Full List of the field names:
 ```
 1. county_id
 2. county_desc
