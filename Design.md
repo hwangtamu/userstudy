@@ -9,6 +9,7 @@
 6. [Appendix](#appendix)
 
 
+
 ## Background
 
 ## Related Work
@@ -20,7 +21,7 @@ Voter Registration Database:
 https://dl.ncsbe.gov/data/
 
 A Python downloader script is used to collect the 
-data in the link:
+data from the link:
 
 ```python
 import sys, requests
@@ -57,7 +58,7 @@ for the synthetic data generation.
 
 ## Data Preprocessing
 
-### Field Filter
+#### Field Filter
 There are 71 columns that exist in a North Carolina Voter Registration 
 dataset, which is too many for a human inspector to focus on. See 
 Appendix for the full list of the field names. 
@@ -83,7 +84,7 @@ one capital letter to denote the race and gender of a person. `birth_age`
 is an integer that denotes the age of a person. `birth_age` can be
 extended to date of birth if needed.
 
-### Conversion from Age to DoB (Optional)
+#### Conversion from Age to DoB (Optional)
 Since the data is used in pairwise comparisons across datasets, if two
 records are similar and are likely to be from the same person, the 
 Dob in the pair of records should also be similar.
@@ -116,7 +117,7 @@ Now we can replace `birth_age` with `dob` freshly generated.
 
 ## Error Generation
 Inspired by [Febrl](https://github.com/hwangtamu/febrl/blob/master/dsgen/generate.py),
-the errors can be classifies into typos and misspellings. A typo is a
+according to the mechanisms, the errors can be classifies into typos and misspellings. A typo is a
 random error caused by the mistyping on keyboard. A misspelling is a
 systematic error that often happens repetitively. The causes of
 misspellings can be the poor quality of data source, the migration from
@@ -130,13 +131,21 @@ the -> teh  orange -> irange  apple -> appple
 Mispellings:
 sea -> see  New York -> Newyork  weight -> wait
 ```
-### Typos Generation
-In typo generation, we take the keyboard layout into consideration:
+Based on the actual operations of error generation, typo can be 
+classified as:
+
+1. insertion
+2. omission
+3. transposition
+4. substitution
+
+Next I'll discuss how to generate errors.
+#### Typos Generation
+In typo generation, we take the keyboard layout into 
+consideration. Keyboard substitutions gives two dictionaries with the 
+neigbouring keys for all letters both for rows and columns (based on 
+ideas implemented by Mauricio A. Hernandez in his dbgen):
 ```python
-# Keyboard substitutions gives two dictionaries with the neigbouring keys for
-# all letters both for rows and columns (based on ideas implemented by
-# Mauricio A. Hernandez in his dbgen).
-#
 rows = {'a':'s',  'b':'vn', 'c':'xv', 'd':'sf', 'e':'wr', 'f':'dg', 'g':'fh',
         'h':'gj', 'i':'uo', 'j':'hk', 'k':'jl', 'l':'k',  'm':'n',  'n':'bm',
         'o':'ip', 'p':'o',  'q':'w',  'r':'et', 's':'ad', 't':'ry', 'u':'yi',
@@ -150,7 +159,75 @@ cols = {'a':'qzw','b':'gh', 'c':'df', 'd':'erc','e':'d', 'f':'rvc','g':'tbv',
         'v':'fg', 'w':'s',  'x':'sd', 'y':'h',  'z':'as'}
 ```
 
-### Misspellings Generation
+#### Misspellings Generation
+Misspellings are a little more complicated than typos since they are not
+generated randomly. A lookup table is needed to determine how a
+misspelling error should occur.
+Part of the lookup table used in Febrl:
+```
+         aaliyah : alaiyah
+         abigail : abbey, abbie, abby, abii
+        adelaide : addie, addy, adel, adela, adele, adeline, adelle
+         adriana : adrienne
+           agnes : aggie
+          aileen : eileen, ileen
+      aikaterina : akaterina
+           aimee : aime
+         ainsley : ainsly
+           alana : allana, alanna, allanah, alannah
+         aleesha : aleisha, alessia, alysha, alyssa
+          alexis : alexys
+       alexandra : alexa, alexia, alexanda, alexanderia,
+                   alexandria, sandie, sandra, sandy, alessandra,
+                   alessandria, lexie
+```
+#### Steps of Error Generation
+
+1. Construct the lookup tables. (I'm not sure how much effort is 
+sufficient to build up new lookup tables, at least we can borrow 
+them from Febrl or some other data providers). 
+
+2. Set up distribution for all kinds of errors (insertion, omission,
+transposition, substitution, and misspellings). 
+Based on some previous research, the distribution of typo errors on
+average is: 
+
+    37% omission,
+    31% insertion,
+    18.5% substitution,
+    13.5% transposition.
+
+    Suppose there are 80% errors are typos and 20% errors are 
+misspellings, the overall distribution should be:
+    
+    29.6% omission, 
+    24.8% insertion, 
+    14.8% substitution, 
+    10.8% transposition,
+    20.0% misspelling
+
+3. Set up an overall error rate and determine the error type whenever
+an error should occur. 
+
+    Example: if the error rate is 5%, each record
+has 5% change for an error to occur. If a random number falls into 
+the 5% domain, then an error occurs in the selected record (there's
+0.25% chance for a record to contain multiple errors).
+   
+   First determine if the misspelling error can occur using the same 
+random number strategy. We examine the misspelling error first because
+only the first and last names here can contain misspelling errors. 
+   
+   If a misspelling is going to occur, the first name and last name
+have equal chance to contain it, so does each misspelled name in the
+lookup table. A misspelled name is selected to replace the corresponding
+name in the dataset.
+
+    If a misspelling is not going to occur, similar strategy of typo
+selection is used, and the keyboard layout dictionary is used if
+there's a substitution or insertion error.
+
+
 
 ## Appendix
 
