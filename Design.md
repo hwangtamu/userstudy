@@ -1,5 +1,14 @@
 # Design of the Synthetic Data Geneator
 
+## Contents
+1. [Background](#Backgound)
+2. [Related Work](#Related Work)
+3. [Data Source](#Data Source)
+4. [Error Generation](#Error Generation)
+5. [Appendix](#Appendix)
+
+
+
 ## Background
 
 ## Related Work
@@ -92,12 +101,57 @@ def dob(voter_reg_num, last_name, first_name,race_code,gender_code, birth_age):
     # (e.g. convert to ascii values)
     # Here I show a simple hash methods:
     from datetime import date
+    import calendar
     # This line returns a string in the format of YYYY-MM-DD
     ymd = date.fromordinal(sum([ord(x) for x in info])).isoformat()
     # The year of birth can be predicted by the birth_age,
     # then the date of birth can be generated
-    return str(2017-int(b))+ymd[5:]
+    year = 2017-int(b)
+    # leap year 02-29 validation
+    while '02-29' in ymd and not calendar.isleap(year):
+        year -= 1
+    return str(year)+ymd[5:]
 ```
+Now we can replace `birth_age` with `dob` freshly generated.
+
+## Error Generation
+Inspired by [Febrl](https://github.com/hwangtamu/febrl/blob/master/dsgen/generate.py),
+the errors can be classifies into typos and misspellings. A typo is a
+random error caused by the mistyping on keyboard. A misspelling is a
+systematic error that often happens repetitively. The causes of
+misspellings can be the poor quality of data source, the migration from
+another language, or even homophones. Most of the errors are typos.
+
+Example:
+```
+Typos:
+the -> teh  orange -> irange  apple -> appple
+
+Mispellings:
+sea -> see  New York -> Newyork  weight -> wait
+```
+### Typos Generation
+In typo generation, we take the keyboard layout into consideration:
+```python
+# Keyboard substitutions gives two dictionaries with the neigbouring keys for
+# all letters both for rows and columns (based on ideas implemented by
+# Mauricio A. Hernandez in his dbgen).
+#
+rows = {'a':'s',  'b':'vn', 'c':'xv', 'd':'sf', 'e':'wr', 'f':'dg', 'g':'fh',
+        'h':'gj', 'i':'uo', 'j':'hk', 'k':'jl', 'l':'k',  'm':'n',  'n':'bm',
+        'o':'ip', 'p':'o',  'q':'w',  'r':'et', 's':'ad', 't':'ry', 'u':'yi',
+        'v':'cb', 'w':'qe', 'x':'zc', 'y':'tu', 'z':'x',
+        '1':'2',  '2':'13', '3':'24', '4':'35', '5':'46', '6':'57', '7':'68',
+        '8':'79', '9':'80', '0':'9'}
+
+cols = {'a':'qzw','b':'gh', 'c':'df', 'd':'erc','e':'d', 'f':'rvc','g':'tbv',
+        'h':'ybn','i':'k',  'j':'umn','k':'im', 'l':'o',  'm':'jk', 'n':'hj',
+        'o':'l',  'p':'p',  'q':'a',  'r':'f',  's':'wxz','t':'gf',  'u':'j',
+        'v':'fg', 'w':'s',  'x':'sd', 'y':'h',  'z':'as'}
+```
+
+### Misspellings Generation
+
 ## Appendix
 
 #### 1. Full List of the field names:
