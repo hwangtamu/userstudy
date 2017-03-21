@@ -1,11 +1,11 @@
 # Design of the Synthetic Data Geneator
 
 ## Contents
-1. [Background](#Backgound)
-2. [Related Work](#Related Work)
-3. [Data Source](#Data Source)
-4. [Error Generation](#Error Generation)
-5. [Appendix](#Appendix)
+1. [Background](#backgound)
+2. [Related Work](#related-Work)
+3. [Data Source](#data-Source)
+4. [Error Generation](#error-generation)
+5. [Appendix](#appendix)
 
 
 
