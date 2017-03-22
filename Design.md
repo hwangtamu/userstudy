@@ -211,7 +211,7 @@ misspellings, the overall distribution should be:
 an error should occur. 
 
     Example: if the error rate is 5%, each record
-has 5% change for an error to occur. If a random number falls into 
+has 5% chance for an error to occur. If a random number falls into 
 the 5% domain, then an error occurs in the selected record (there's
 0.25% chance for a record to contain multiple errors).
    
