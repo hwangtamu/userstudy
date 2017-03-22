@@ -6,7 +6,8 @@
 3. [Data Source](#data-source)
 4. [Data Preprocessing](#data-preprocessing)
 5. [Error Generation](#error-generation)
-6. [Appendix](#appendix)
+6. [Expected Outcome](#expected-outcome)
+7. [Appendix](#appendix)
 
 
 
@@ -197,7 +198,7 @@ average is:
     18.5% substitution,
     13.5% transposition.
 
-    Suppose there are 80% errors that are typos and 20% errors are 
+    Suppose there are 80% errors are typos and 20% errors are 
 misspellings, the overall distribution should be:
     
     29.6% omission, 
@@ -205,7 +206,7 @@ misspellings, the overall distribution should be:
     14.8% substitution, 
     10.8% transposition,
     20.0% misspelling
-
+    
 3. Set up an overall error rate and determine the error type whenever
 an error should occur. 
 
@@ -227,7 +228,34 @@ name in the dataset.
 selection is used, and the keyboard layout dictionary is used if
 there's a substitution or insertion error.
 
+## Expected Outcome
 
+We are going to build a software that can generate synthetic data 
+based on the clean data in real world. 
+
+#### Input
+
+1. North Carolina Voter Registration data with two different time 
+stamps. Different time stamps can make the base data sets slightly
+different with each other.
+2. A lookup table that maps first and last names to their common
+misspellings.
+3. An error rate.
+
+#### Operations
+
+1. __Error generation__. Each of the two base data sets is processed 
+independently. Errors are generated based on the methods discussed in 
+the previous chapter.
+2. __Ground truth formation__. Ground truth is essential for analyzing
+the performance of record linkage. We set the ground truth of 
+record linkage pairs based on the `voter_reg_num` in the base data sets.
+Records with the same `voter_reg_num` are considered as the records 
+from the same person.
+
+#### Output
+1. Two sets of synthetic data.
+2. Ground truth for record linkage.
 
 ## Appendix
 
