@@ -62,7 +62,7 @@ for the synthetic data generation.
 #### Field Filter
 There are 71 columns that exist in a North Carolina Voter Registration 
 dataset, which is too many for a human inspector to focus on. See 
-Appendix for the full list of the field names. 
+[Appendix](#appendix) for the full list of the field names. 
 
 
 Since most of the fields are optional, and many of them are usually 
@@ -88,7 +88,7 @@ extended to date of birth if needed.
 #### Conversion from Age to DoB (Optional)
 Since the data is used in pairwise comparisons across datasets, if two
 records are similar and are likely to be from the same person, the 
-DoB in the pair of records should also be similar.
+Dob in the pair of records should also be similar.
 
 Strategy: Use a hash function that maps the other information to a date:
 ```python
@@ -101,7 +101,7 @@ def dob(voter_reg_num, last_name, first_name,race_code,gender_code, birth_age):
     # There are infinitely many hash functions that can map an arbitrary 
     # string to a number within a given range and thus a date. 
     # (e.g. convert to ascii values)
-    # Here I show a simple hash method:
+    # Here I show a simple hash methods:
     from datetime import date
     import calendar
     # This line returns a string in the format of YYYY-MM-DD
