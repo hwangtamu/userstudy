@@ -335,6 +335,13 @@ from the same person.
 ```
 
 #### 2. Differences Between North Carolina Voter Registration Data in Apr. 2013 and Mar. 2017
+The table shows the populations in Apr. 2013 `Old_Pop` and in Mar. 2017
+`New_Pop`. `Diff` is __not__ the change of population, but the number
+of record pairs which have same `voter_reg_num` but different `first_name`,
+`last_name`, `race_code`or `gender_code` (number of unmatched pairs).
+`Percent` is the average percentage of the unmatched pairs in population
+`Diff/(Old_Pop+New_Pop)`.
+
 
 ```
 County  Old_Pop New_Pop Diff    Percent
