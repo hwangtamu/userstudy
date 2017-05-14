@@ -1,11 +1,11 @@
 /**
  * Created by hanwang on 1/23/17.
  */
-var title = ["Group","ID","First name","FFreq","Last name","LFreq","Race","Sex","Reg No.","DoB(MM/DD/YY)"];
-var cwidth = [60,60,120,60,140,60,50,40,100,100]; //790
+var title = ["Group","ID","First name","FFreq","Last name","LFreq","Reg No.","DoB(MM/DD/YY)"];
+var cwidth = [60,80,140,60,140,60,140,80]; //720
 var height = 24; //height per row 0 30 57
 var ys = [0,30,77];
-var mapping = [0,1,10,3,11,5,12,13,14,15,2,4,6,7,8,9,16]; //index mapping from hidden data to visible data per row
+var mapping = [0,1,8,3,9,5,10,11,2,4,6,7]; //index mapping from hidden data to visible data per row
 var data = {}; // experimentr data
 
 /**
@@ -64,7 +64,7 @@ function cell(t,g,j,k){
         .style("font",function(){if(data.os=="MacOS"){return "16px Monaco";}return "16px Lucida Console";})//.style("font-weight","bold")
         .text(function(){
             if(k==0||(index_r>0 && k==1)){return " ";}
-            if(k==3 && (title[j%10]=="FFreq"||title[j%10]=="LFreq")){
+            if(k==3 && (title[j%cwidth.length]=="FFreq"||title[j%cwidth.length]=="LFreq")){
                 if(d3.select(this.parentNode.previousSibling).select("text").text()==""){return "NA";}
                 if(+t>2){return "3+";}
             }
@@ -83,9 +83,10 @@ function cell(t,g,j,k){
                 var m = j+cwidth.length,
                     p = g.attr("id").slice(1),
                     dat = experimentr.data()['mat'][Math.floor(p/5)],
-                    t_j = j<2*cwidth.length ? dat[p%5][0][mapping[j%10]] : dat[p%5][1][mapping[j%10]],
-                    t_m = m<2*cwidth.length ? dat[p%5][0][mapping[m%10]] : dat[p%5][1][mapping[m%10]],
+                    t_j = j<2*cwidth.length ? dat[p%5][0][mapping[j%cwidth.length]] : dat[p%5][1][mapping[j%cwidth.length]],
+                    t_m = m<2*cwidth.length ? dat[p%5][0][mapping[m%cwidth.length]] : dat[p%5][1][mapping[m%cwidth.length]],
                     bin = [];
+                //console.log(t_j, t_m);
                 if(t_j!="" && t_m!=""){
                     for(var i=0;i<t_j.length;i++){
                         //indel

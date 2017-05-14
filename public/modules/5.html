@@ -39,12 +39,13 @@
         $.getScript("javascript/misc/util.js");
         var step = 0;
         var notes = ["Next, you are going to complete the first section of the test: pairwise test."];
-        parsing("data_f.csv");
+        parsing("output.csv");
         pairs(experimentr.data()["mat"][step],step,experimentr.data()["mat"][step].length,experimentr.data()["mode"]);
 
         function goToNext() {
             experimentr.next();
         }
+        console.log(experimentr.data()["mat"]);
         d3.select('#submitComments')
             .on('click', function () {
                 if(step==experimentr.data()["mat"].length-1){
