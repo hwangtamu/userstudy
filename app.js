@@ -100,6 +100,44 @@ app.post('/upload',function(req,res) {
 });
 
 
+
+
+var path = require('path')
+var formidable = require('express-formidable');
+var fs = require('fs');
+var mv = require('mv');
+var bodyParser = require('body-parser');
+
+//bodyparser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+
+app.use(formidable({
+    uploadDir: '/public/'
+}));
+
+app.get('/upload',function(req,res){
+    console.log("code for uploading");
+    res.sendfile(path.join(__dirname+'/public/modules'+'/upload.html'));
+
+});
+
+app.post('/upload',function(req,res) {
+    console.log("moving code");
+    var files = req.files;
+    var oldpath = files.filetoupload.path;
+    //var newpath = "./public/" + files.filetoupload.name;
+    var newpath = "./public/data/" + "groups.csv";
+    mv(oldpath, newpath, function (err) {
+            if (err) {
+                throw err;
+            };
+    });
+    console.log('File uploaded');
+    res.write('<p>File uploaded</p> </br>');
+    res.end();
+});
+
 // Create the server and tell which port to listen to
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
