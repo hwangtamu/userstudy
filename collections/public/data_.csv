@@ -1,0 +1,5 @@
+Group ID,Record ID,Lfreq,Ffreq,First name,Last name,Race,Gender,Reg No.,Date of birth,First name,Last name,Race,Gender,Reg No.,Date of birth,
+2,1-2,3,1,AARO,FORESTER,W,M,99964378,29-11-73,----,--------,-,M,--------,--/--/--,
+2,2-3,2,6,AARON,FORESTER,W,F,99964378,29-11-73,----N,--------,-,F,--------,--/--/--,
+2,1-2,3,1,AARO,FORESTER,W,M,99964378,29-11-73,----,--------,-,-,--------,--/--/--,
+2,1-4,3,5,AARON,FORESTER,W,M,,29-11-73,----N,--------,-,-,,--/--/--,
