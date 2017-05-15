@@ -6,6 +6,7 @@
 var express     = require('express')
 var http        = require('http')
 
+
 if (process.env.REDISTOGO_URL) {
     // TODO: redistogo connection
   var rtg   = require("url").parse(process.env.REDISTOGO_URL);
@@ -58,6 +59,46 @@ app.post('/', function handlePost(req, res) {
   // Send a 'success' response to the frontend
   res.send(200)
 })
+
+
+
+//var apiRouter = express.Router();
+var path = require('path')
+var formidable = require('express-formidable');
+var fs = require('fs');
+var mv = require('mv');
+var bodyParser = require('body-parser');
+
+//bodyparser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+
+app.use(formidable({
+    uploadDir: '/public/'
+}));
+
+app.get('/upload',function(req,res){
+    console.log("code for uploading");
+    res.sendfile(path.join(__dirname+'/public/modules'+'/upload.html'));
+
+});
+
+app.post('/upload',function(req,res) {
+    console.log("moving code");
+    var files = req.files;
+    var oldpath = files.filetoupload.path;
+    //var newpath = "./public/" + files.filetoupload.name;
+    var newpath = "./public/" + "data_f2.csv";
+    mv(oldpath, newpath, function (err) {
+            if (err) {
+                throw err;
+            };
+    });
+    console.log('File uploaded');
+    res.write('<p>File uploaded</p> </br>');
+    res.end();
+});
+
 
 // Create the server and tell which port to listen to
 app.listen(app.get('port'), function() {
