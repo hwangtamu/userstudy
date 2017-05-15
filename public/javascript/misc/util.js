@@ -2,7 +2,7 @@
  * Created by hanwang on 1/23/17.
  */
 var title = ["Group","ID","First name","FFreq","Last name","LFreq","Reg No.","DoB(MM/DD/YY)"];
-var cwidth = [60,80,140,60,140,60,140,80]; //760
+var cwidth = [60,80,140,60,140,60,140,100]; //780
 var height = 24; //height per row 0 30 57
 var ys = [0,30,77];
 var mapping = [0,1,8,3,9,5,10,11,2,4,6,7]; //index mapping from hidden data to visible data per row
@@ -199,7 +199,7 @@ function cell(t,g,j,k){
                 .style("font","16px Monaco")
                 .attr("fill",function(){
                     if(t_j.length!=t_jj.length){return "black";}
-                    if(k==3 && scheme[l]==1 && textbox.text()[l]!="*" && textbox.text()[l]!="/"){return"orange";}return "black";})
+                    if(k==3 && scheme[l]==1 && textbox.text()[l]!="*" && textbox.text()[l]!="/"){return"black";}return "black";})
                 .text(t[l]);
             /*
             $tspan.on("mouseover",function(){d3.select(this).style("cursor", "pointer");});

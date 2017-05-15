@@ -8,7 +8,10 @@
     "csv": "0.2.x",
     "json2csv": "2.x",
     "redis": "0.8.x",
-    "underscore": "~1.5.1"
+    "underscore": "~1.5.1",
+    "express-formidable": "~1.0.0",
+    "mv": "~2.1.1",
+    "path": "~0.12.x"
   },
   "scripts": {
     "start": "node app.js"
