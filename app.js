@@ -86,7 +86,7 @@ app.post('/upload',function(req,res) {
     var files = req.files;
     var oldpath = files.filetoupload.path;
     //var newpath = "./public/" + files.filetoupload.name;
-    var newpath = "./public/data/" + "groups.csv";
+    var newpath = "./public/data/" + "output.csv";
     mv(oldpath, newpath, function (err) {
             if (err) {
                 throw err;
