@@ -18,6 +18,11 @@ As for now, it serves as a library of functions for `rdiff.py`. All non-function
 
 By default, it takes `groups.csv` as input file, and no extra parameters are needed.
 
+In case the scripts are being run on HPRC, include the following command:
+```
+module load Python/2.7.10-goolf-1.7.20
+```
+
 To run it:
 ```
 $python rdiff.py
