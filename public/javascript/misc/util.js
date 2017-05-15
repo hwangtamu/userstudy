@@ -196,7 +196,7 @@ function cell(t,g,j,k){
             var $tspan = $tb.append('tspan');
             $tspan.attr("x",0.6*l+"em").attr("y",cy/2+5)
                 .attr("text-anchor","left")
-                .style("font","16px Monaco")
+                .style("font",function(){if(data.os=="MacOS"){return "16px Monaco";}return "16px Lucida Console";})
                 .attr("fill",function(){
                     if(t_j.length!=t_jj.length){return "black";}
                     if(k==3 && scheme[l]==1 && textbox.text()[l]!="*" && textbox.text()[l]!="/"){return"black";}return "black";})
