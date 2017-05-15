@@ -39,7 +39,7 @@
         $.getScript("javascript/misc/util.js");
         var step = 0;
         var notes = ["Next, you are going to complete the first section of the test: pairwise test."];
-        parsing("output.csv");
+        parsing("data/output.csv");
         pairs(experimentr.data()["mat"][step],step,experimentr.data()["mat"][step].length,experimentr.data()["mode"]);
 
         function goToNext() {

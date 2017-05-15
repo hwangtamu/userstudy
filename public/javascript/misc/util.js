@@ -2,7 +2,7 @@
  * Created by hanwang on 1/23/17.
  */
 var title = ["Group","ID","First name","FFreq","Last name","LFreq","Reg No.","DoB(MM/DD/YY)"];
-var cwidth = [60,80,140,60,140,60,140,80]; //720
+var cwidth = [60,80,140,60,140,60,140,80]; //760
 var height = 24; //height per row 0 30 57
 var ys = [0,30,77];
 var mapping = [0,1,8,3,9,5,10,11,2,4,6,7]; //index mapping from hidden data to visible data per row
