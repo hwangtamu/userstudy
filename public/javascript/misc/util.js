@@ -136,49 +136,50 @@ function cell(t,g,j,k){
     }
 
     // click event
-    if(k==6){
-        
-        rectangle.on("mouseover",function(){d3.select(this).style("cursor", "pointer");});
-        textbox.on("mouseover",function(){d3.select(this).style("cursor", "pointer");});
-        rectangle.on("mouseout",function(){d3.select(this).style("cursor", "default");});
-        textbox.on("mouseout",function(){d3.select(this).style("cursor", "default");});
+    // if(k==6){
+    //
+    //     rectangle.on("mouseover",function(){d3.select(this).style("cursor", "pointer");});
+    //     textbox.on("mouseover",function(){d3.select(this).style("cursor", "pointer");});
+    //     rectangle.on("mouseout",function(){d3.select(this).style("cursor", "default");});
+    //     textbox.on("mouseout",function(){d3.select(this).style("cursor", "default");});
+    //
+    //     var m = j>=2*cwidth.length ? j-cwidth.length : j+cwidth.length;
+    //
+    //     rectangle.on("click",function(){
+    //         var p = this.parentNode.parentNode.id.slice(1); //pair id
+    //         var dat = experimentr.data()['mat'][Math.floor(p/5)];
+    //         if(experimentr.data()['mode']=="Partial_Cell"){
+    //             var t_j = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length] : dat[p%5][1][j%cwidth.length];
+    //             var t_m = m<2*cwidth.length ? dat[p%5][0][m%cwidth.length] : dat[p%5][1][m%cwidth.length];
+    //             d3.select(this.parentNode).remove();
+    //             d3.select(this.parentNode.parentNode).select("#c"+j.toString()).remove();
+    //             cell(t_j,g,j,3);
+    //             cell(t_m,g,m,3);
+    //         }
+    //         if(experimentr.data()['mode']=="Partial_Row"){
+    //             d3.select(this.parentNode.parentNode).selectAll(".cell").remove();
+    //             pair(title.concat(dat[p%5][0]).concat(dat[p%5][1]),g,"Full_Partial");
+    //         }
+    //     });
+    //     textbox.on("click",function(){
+    //         var p = this.parentNode.parentNode.id.slice(1); //pair id
+    //         var dat = experimentr.data()['mat'][Math.floor(p/5)];
+    //         if(experimentr.data()['mode']=="Partial_Cell"){
+    //             var t_j = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length] : dat[p%5][1][j%cwidth.length];
+    //             var t_m = m<2*cwidth.length ? dat[p%5][0][m%cwidth.length] : dat[p%5][1][m%cwidth.length];
+    //             d3.select(this.parentNode).remove();
+    //             d3.select(this.parentNode.parentNode).select("#c"+j.toString()).remove();
+    //             cell(t_j,g,j,3);
+    //             cell(t_m,g,m,3);
+    //         }
+    //         if(experimentr.data()['mode']=="Partial_Row"){
+    //             d3.select(this.parentNode.parentNode).selectAll(".cell").remove();
+    //             pair(title.concat(dat[p%5][0]).concat(dat[p%5][1]),g,"Full_Partial");
+    //         }
+    //
+    //     });
+    // }
 
-        var m = j>=2*cwidth.length ? j-cwidth.length : j+cwidth.length;
-        
-        rectangle.on("click",function(){
-            var p = this.parentNode.parentNode.id.slice(1); //pair id
-            var dat = experimentr.data()['mat'][Math.floor(p/5)];
-            if(experimentr.data()['mode']=="Partial_Cell"){
-                var t_j = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length] : dat[p%5][1][j%cwidth.length];
-                var t_m = m<2*cwidth.length ? dat[p%5][0][m%cwidth.length] : dat[p%5][1][m%cwidth.length];
-                d3.select(this.parentNode).remove();
-                d3.select(this.parentNode.parentNode).select("#c"+j.toString()).remove();
-                cell(t_j,g,j,3);
-                cell(t_m,g,m,3);
-            }
-            if(experimentr.data()['mode']=="Partial_Row"){
-                d3.select(this.parentNode.parentNode).selectAll(".cell").remove();
-                pair(title.concat(dat[p%5][0]).concat(dat[p%5][1]),g,"Full_Partial");
-            }
-        });
-        textbox.on("click",function(){
-            var p = this.parentNode.parentNode.id.slice(1); //pair id
-            var dat = experimentr.data()['mat'][Math.floor(p/5)];
-            if(experimentr.data()['mode']=="Partial_Cell"){
-                var t_j = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length] : dat[p%5][1][j%cwidth.length];
-                var t_m = m<2*cwidth.length ? dat[p%5][0][m%cwidth.length] : dat[p%5][1][m%cwidth.length];
-                d3.select(this.parentNode).remove();
-                d3.select(this.parentNode.parentNode).select("#c"+j.toString()).remove();
-                cell(t_j,g,j,3);
-                cell(t_m,g,m,3);
-            }
-            if(experimentr.data()['mode']=="Partial_Row"){
-                d3.select(this.parentNode.parentNode).selectAll(".cell").remove();
-                pair(title.concat(dat[p%5][0]).concat(dat[p%5][1]),g,"Full_Partial");
-            }
-
-        });
-    }
     // coloring text
     if(experimentr.data()['mode']!="Full"
         &&(k==6||k==3)&&title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
