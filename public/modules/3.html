@@ -41,6 +41,11 @@
         $.getScript("javascript/misc/util.js");
         var step = 0;
         var notes = [];
+        if(experimentr.data()["mode"]=="Vanilla"){
+            notes = notes.concat([
+                'In the mode "Vanilla", there is no intervention, no icon or freq. This is the baseline for reference.'
+            ]);
+        }
         if(experimentr.data()["mode"]=="Full"){
             notes = notes.concat([
                 'In the mode "Full Disclosure", all the cells are visible.'
@@ -77,6 +82,9 @@
         setTimeout(function (){
             pairs(experimentr.data()["mat"][0],0,1,experimentr.data()["mode"]);
             //console.log(experimentr.data()["mat"][0]);
+            if (experimentr.data()["mode"]=="Vanilla"){
+                d3.selectAll(".icon").remove();
+            }
         }, 200);
         function goToNext() {
             experimentr.next();

@@ -8,6 +8,8 @@
     <text id="taskMode" fill="red">Select a disclosure mode: </text>
     <div id="modeValidate" class="validate" style="font-size: 150%; left: 10px; float: left; color:red;"></div>
       <g id="modeRadio" class="radio">
+          <input type="radio" id="d5" name="mode" value="Vanilla" aria-label="Single radio One">
+          <label for="d5">Vanilla</label><br>
           <input type="radio" id="d6" name="mode" value="Full" aria-label="Single radio One">
           <label for="d6">Full Disclosure</label><br>
           <input type="radio" id="d7" name="mode" value="Full_Partial" aria-label="Single radio One">
@@ -19,6 +21,7 @@
           <input type="radio" id="d10" name="mode" value="Partial" aria-label="Single radio One">
           <label for="d10">Minimum Disclosure Non-clickable</label>
       </g>
+<div id="mode0" style="display:none">In <text style="font-weight: bold">Vanilla</text> mode, there's no intervention, no icon or freq. This is the baseline for reference.</div>
 <div id="mode1" style="display:none">In <text style="font-weight: bold">Full Disclosure</text> mode, all the cells are visible.</div>
 <div id="mode2" style="display:none">In <text style="font-weight: bold">Full Disclosure For Different Cells</text> mode, only different cells in a pair are visible. Dash lines represent the identical text in the pair.</div>
 <div id="mode3" style="display:none">In <text style="font-weight: bold">Paritial Disclosure Reveal Cell On Click</text> mode, only the minimum differences are visible at start. However, you can click on the cells which are partially visible, then the cells pair will be shown.</div>
@@ -66,14 +69,15 @@
   var data = {};
   data.mode = "";
   experimentr.hideNext();
-
+  //console.log(data.os);
   experimentr.startTimer('background_info');
 
   d3.selectAll('input')
     .filter(function(d) { return this.name === 'mode' ? this : null; })
     .on('change', function() { data.mode = this.value;
       d3.select('#modeValidate').text("");
-      d3.select('#validateMessage').text("");     
+      d3.select('#validateMessage').text("");
+      d3.select("#mode0").style("display",function(d){return data.mode=="Vanilla" ? "block":"none";});
       d3.select("#mode1").style("display",function(d){return data.mode=="Full" ? "block":"none";});
       d3.select("#mode2").style("display",function(d){return data.mode=="Full_Partial" ? "block":"none";});
       d3.select("#mode3").style("display",function(d){return data.mode=="Partial_Cell" ? "block":"none";});
@@ -85,6 +89,10 @@
   function goToNext() {
     experimentr.endTimer('background_info');
     experimentr.addData(data);
+    if (experimentr.data()["mode"]=="Vanilla"){
+      // remove icon instructions
+      experimentr.sequence().splice(3,1);
+    }
     //experimentr.release();
     experimentr.next();
   }
@@ -94,6 +102,7 @@
     var messageThing = d3.select('#validateMessage');
     var messageText = "";
     messageThing.html("");
+
 
     if (data.mode!="") {
       d3.select('#modeValidate').text("");
@@ -109,7 +118,6 @@
       messageThing.html(messageText);
     }
   }//end validate
-
   d3.select('#submitComments')
     .on('click', function () {
       validate();

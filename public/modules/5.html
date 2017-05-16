@@ -41,11 +41,13 @@
         var notes = ["Next, you are going to complete the first section of the test: pairwise test."];
         parsing("data/output.csv");
         pairs(experimentr.data()["mat"][step],step,experimentr.data()["mat"][step].length,experimentr.data()["mode"]);
-
+        if (experimentr.data()["mode"]=="Vanilla"){
+            d3.selectAll(".icon").remove();
+        }
         function goToNext() {
             experimentr.next();
         }
-        console.log(experimentr.data()["mat"]);
+        console.log(d3.selectAll(".icon"));
         d3.select('#submitComments')
             .on('click', function () {
                 if(step==experimentr.data()["mat"].length-1){
@@ -64,6 +66,9 @@
                     setTimeout(function (){
                         d3.selectAll(".blocks").remove();
                         pairs(experimentr.data()["mat"][step],step,experimentr.data()["mat"][step].length,experimentr.data()["mode"]);
+                        if (experimentr.data()["mode"]=="Vanilla"){
+                            d3.selectAll(".icon").remove();
+                        }
                     }, 200);
                     step+=1;
                 }

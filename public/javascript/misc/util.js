@@ -2,7 +2,7 @@
  * Created by hanwang on 1/23/17.
  */
 var title = ["Group","ID","First name","FFreq","Last name","LFreq","Reg No.","DoB(MM/DD/YY)"];
-var cwidth = [60,80,140,60,140,60,140,100]; //780
+var cwidth = [60,80,160,60,180,60,140,100]; //820
 var height = 24; //height per row 0 30 57
 var ys = [0,30,77];
 var mapping = [0,1,8,3,9,5,10,11,2,4,6,7]; //index mapping from hidden data to visible data per row
@@ -61,7 +61,10 @@ function cell(t,g,j,k){
                 //title[j%10]=="ID")){return "middle";}
             if(k==2){return "middle";}
             return "left";})
-        .style("font",function(){if(data.os=="MacOS"){return "16px Monaco";}return "16px Lucida Console";})//.style("font-weight","bold")
+        .style("font",function(){
+        if(experimentr.data()['os']=="MacOS"){return "16px Monaco";}
+        if(experimentr.data()['os']=="Linux"){return "16px Lucida Sans Typewriter";}
+        return "16px Lucida Console";})//.style("font-weight","bold")
         .text(function(){
             if(k==0||(index_r>0 && k==1)){return " ";}
             if(k==3 && (title[j%cwidth.length]=="FFreq"||title[j%cwidth.length]=="LFreq")){
@@ -134,18 +137,20 @@ function cell(t,g,j,k){
 
     // click event
     if(k==6){
+        
         rectangle.on("mouseover",function(){d3.select(this).style("cursor", "pointer");});
         textbox.on("mouseover",function(){d3.select(this).style("cursor", "pointer");});
         rectangle.on("mouseout",function(){d3.select(this).style("cursor", "default");});
         textbox.on("mouseout",function(){d3.select(this).style("cursor", "default");});
 
         var m = j>=2*cwidth.length ? j-cwidth.length : j+cwidth.length;
+        
         rectangle.on("click",function(){
             var p = this.parentNode.parentNode.id.slice(1); //pair id
             var dat = experimentr.data()['mat'][Math.floor(p/5)];
             if(experimentr.data()['mode']=="Partial_Cell"){
-                var t_j = j<2*cwidth.length ? dat[p%5][0][j%10] : dat[p%5][1][j%10];
-                var t_m = m<2*cwidth.length ? dat[p%5][0][m%10] : dat[p%5][1][m%10];
+                var t_j = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length] : dat[p%5][1][j%cwidth.length];
+                var t_m = m<2*cwidth.length ? dat[p%5][0][m%cwidth.length] : dat[p%5][1][m%cwidth.length];
                 d3.select(this.parentNode).remove();
                 d3.select(this.parentNode.parentNode).select("#c"+j.toString()).remove();
                 cell(t_j,g,j,3);
@@ -160,8 +165,8 @@ function cell(t,g,j,k){
             var p = this.parentNode.parentNode.id.slice(1); //pair id
             var dat = experimentr.data()['mat'][Math.floor(p/5)];
             if(experimentr.data()['mode']=="Partial_Cell"){
-                var t_j = j<2*cwidth.length ? dat[p%5][0][j%10] : dat[p%5][1][j%10];
-                var t_m = m<2*cwidth.length ? dat[p%5][0][m%10] : dat[p%5][1][m%10];
+                var t_j = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length] : dat[p%5][1][j%cwidth.length];
+                var t_m = m<2*cwidth.length ? dat[p%5][0][m%cwidth.length] : dat[p%5][1][m%cwidth.length];
                 d3.select(this.parentNode).remove();
                 d3.select(this.parentNode.parentNode).select("#c"+j.toString()).remove();
                 cell(t_j,g,j,3);
@@ -171,6 +176,7 @@ function cell(t,g,j,k){
                 d3.select(this.parentNode.parentNode).selectAll(".cell").remove();
                 pair(title.concat(dat[p%5][0]).concat(dat[p%5][1]),g,"Full_Partial");
             }
+
         });
     }
     // coloring text
@@ -196,7 +202,7 @@ function cell(t,g,j,k){
             var $tspan = $tb.append('tspan');
             $tspan.attr("x",0.6*l+"em").attr("y",cy/2+5)
                 .attr("text-anchor","left")
-                .style("font",function(){if(data.os=="MacOS"){return "16px Monaco";}return "16px Lucida Console";})
+                .style("font",function(){if(experimentr.data()['os']=="MacOS"){return "16px Monaco";}if(experimentr.data()['os']=="Linux"){return "16px Lucida Sans Typewriter";}return "16px Lucida Console";})
                 .attr("fill",function(){
                     if(t_j.length!=t_jj.length){return "black";}
                     if(k==3 && scheme[l]==1 && textbox.text()[l]!="*" && textbox.text()[l]!="/"){return"black";}return "black";})
@@ -237,14 +243,25 @@ function pair(t,g,m){
         b = cwidth.length+mapping.length,
         c = cwidth.length+2*mapping.length;
     var k = new Array(c).fill(1);
-    row(t.slice(0,a),g,0,k.slice(0,a));
     k[a] = 2;
     k[b] = 0;
     var row1 = t.slice(a,b),
         row2 = t.slice(b,c),
         k1 = k.slice(a,b),
         k2 = k.slice(b,c);
-    if(m=="Full"){
+    if(m=="Vanilla"){
+        for(var j=1;j<mapping.length;j++){
+            k[a+j] = j<a ? 3:9; k[b+j] = j<a ? 3:9;
+        }
+        row1 = t.slice(a,b);row2 = t.slice(b,c);
+        k1 = k.slice(a,b);k2 = k.slice(b,c);
+        for(var j=1;j<a;j++){
+            if(j==3 || j==5){
+                t[j] = ' '; row1[j] = ' '; row2[j] = ' ';
+            }
+        }
+    }
+    else if(m=="Full"){
         for(var j=1;j<mapping.length;j++){
             k[a+j] = j<a ? 3:9;k[b+j] = j<a ? 3:9;
         }
@@ -287,6 +304,7 @@ function pair(t,g,m){
             }
         }
     }
+    row(t.slice(0,a),g,0,k.slice(0,a));
     row(row1,g,1,k1);
     row(row2,g,2,k2);
 }
@@ -304,7 +322,7 @@ function pairs(t,s,n,m) {
             .attr("width", num>1 ? 1200:900).attr("height", 120);
         pair(title.concat(t[i][0]).concat(t[i][1]),g,m);
         if(num>1){
-            choices(g,850,1,1);
+            choices(g,900,1,1);
         }
     }
 }

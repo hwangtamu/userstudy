@@ -17,7 +17,7 @@
 
     #container{
         /*Styling for any element with the id="container" */
-        width:1000px; /* The width is fixed by pixels */
+        width:1200px; /* The width is fixed by pixels */
         height:800px; /* The height is fixed by pixels*/
         color:black;
     }
@@ -51,18 +51,19 @@
             "FF represents the number of first name occurrences in the record's source dataset. 2+ means it occurs more than 2 times.",
             "Last Name represents the person's last name",
             "LF represents the number of last name occurrences in the record's source dataset. 2+ means it occurs more than 2 times.",
-            "Race represents the person's race with one letter. (e.g. W=White, A=Asian, B=Black.)",
-            "Gender represents the person's gender with one letter, F for Female and M for Male.",
             "Reg No. represents the registration number of the person.",
-            "DoB represents the person's data of birth in the format MM-DD-YY."
+            "DoB represents the person's data of birth in the format MM/DD/YYYY."
         ];
         //var svg = d3.select("#instruction").append("svg").attr("class","blocks")
             //.attr("width", 900).attr("height", 100);
         d3.select("#notation").text(notes[step]);
-        parsing("data.csv");
+        parsing("data/output_.csv");
         setTimeout(function (){
             experimentr.data()["mode"] = "Full";
             pairs(experimentr.data()["mat"][0],0,1,"Full");
+            if (mode=="Vanilla"){
+                d3.selectAll(".icon").remove();
+            }
             //console.log(experimentr.data()["mat"][0]);
         }, 200);
 
