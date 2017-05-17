@@ -1,7 +1,7 @@
 /**
  * Created by hanwang on 1/23/17.
  */
-var title = ["Group","ID","First name","FFreq","Last name","LFreq","Reg No.","DoB(MM/DD/YY)"];
+var title = ["Group","ID","First name","FFreq","Last name","LFreq","Reg No.","DoB(MM/DD/YYYY)"];
 var cwidth = [60,80,160,60,180,60,140,100]; //820
 var height = 24; //height per row 0 30 57
 var ys = [0,30,77];
@@ -196,7 +196,7 @@ function cell(t,g,j,k){
             if(t_j[f]==t_m[f]){scheme.push(0);}
             else{scheme.push(1);}
         }
-        console.log(scheme);
+        //console.log(scheme);
         for(l=0;l<len;l++){
             var $tspan = $tb.append('tspan');
             $tspan.attr("x",0.6*l+"em").attr("y",cy/2+5)
