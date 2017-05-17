@@ -179,8 +179,41 @@ function cell(t,g,j,k){
     //
     //     });
     // }
+    // coloring '@' and '#'
+    if(experimentr.data()['mode']=="Partial" && k==3 && title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
+        g.select("#c"+j.toString()).select(".span").remove();
+        var p = g.attr("id").slice(1), //pair id
+            dat = experimentr.data()['mat'][Math.floor(p/5)],
+            m = j>=2*cwidth.length ? j-cwidth.length : j+cwidth.length,
+            len = textbox.text().length,
+            $cel = g.select("#c"+j.toString()),
+            $tb = $cel.append("text").attr("class","span"),
+            t_j = j<2*cwidth.length ? dat[p%5][0][mapping[j%cwidth.length]] : dat[p%5][1][mapping[j%cwidth.length]],
+            t_m = m<2*cwidth.length ? dat[p%5][0][mapping[m%cwidth.length]] : dat[p%5][1][mapping[m%cwidth.length]],
+            t_jj = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length] : dat[p%5][1][j%cwidth.length],
+            scheme = [];
+        for(f=0;f<len;f++){
+            if(t_j[f]==t_m[f]){scheme.push(0);}
+            else{scheme.push(1);}
+        }
+        console.log(scheme);
+        for(l=0;l<len;l++){
+            var $tspan = $tb.append('tspan');
+            $tspan.attr("x",0.6*l+"em").attr("y",cy/2+5)
+                .attr("text-anchor","left")
+                .style("font",function(){if(experimentr.data()['os']=="MacOS"){return "16px Monaco";}if(experimentr.data()['os']=="Linux"){return "16px Lucida Sans Typewriter";}return "16px Lucida Console";})
+                .attr("fill",function(){
+                    //if(t_j.length!=t_jj.length){return "black";}
+                    if(scheme[l]==1 && j<2*cwidth.length){return"red";}
+                    if(scheme[l]==1 && j>2*cwidth.length){return "green";}
+                    return "black";})
+                .text(t[l]);
+        }
+        g.select("#t"+j.toString()).remove();
 
+    }
     // coloring text
+    /*
     if(experimentr.data()['mode']!="Full"
         &&(k==6||k==3)&&title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
         textbox.attr("opacity",0);
@@ -191,9 +224,9 @@ function cell(t,g,j,k){
             len = textbox.text().length,
             $cel = g.select("#c"+j.toString()),
             $tb = $cel.append("text").attr("class","span"),
-            t_j = j<2*cwidth.length ? dat[p%5][0][mapping[j%10]] : dat[p%5][1][mapping[j%10]],
-            t_m = m<2*cwidth.length ? dat[p%5][0][mapping[m%10]] : dat[p%5][1][mapping[m%10]],
-            t_jj = j<2*cwidth.length ? dat[p%5][0][j%10] : dat[p%5][1][j%10],
+            t_j = j<2*cwidth.length ? dat[p%5][0][mapping[j%cwidth.length]] : dat[p%5][1][mapping[j%cwidth.length]],
+            t_m = m<2*cwidth.length ? dat[p%5][0][mapping[m%cwidth.length]] : dat[p%5][1][mapping[m%cwidth.length]],
+            t_jj = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length] : dat[p%5][1][j%cwidth.length],
             scheme = [];
         for(f=0;f<len;f++){
             if(t_j[f]==t_m[f]){scheme.push(0);}
@@ -208,13 +241,13 @@ function cell(t,g,j,k){
                     if(t_j.length!=t_jj.length){return "black";}
                     if(k==3 && scheme[l]==1 && textbox.text()[l]!="*" && textbox.text()[l]!="/"){return"black";}return "black";})
                 .text(t[l]);
-            /*
+
             $tspan.on("mouseover",function(){d3.select(this).style("cursor", "pointer");});
             $tspan.on("mouseout",function(){d3.select(this).style("cursor", "default");});
-            */
+
             //click function not implemented yet.
         }
-    }
+    }*/
 }
 /**
  * draw a row
@@ -250,13 +283,33 @@ function pair(t,g,m){
         row2 = t.slice(b,c),
         k1 = k.slice(a,b),
         k2 = k.slice(b,c);
-    if(m=="Vanilla"){
+    if(m=="Partial"){
         for(var j=1;j<mapping.length;j++){
             k[a+j] = j<a ? 3:9; k[b+j] = j<a ? 3:9;
         }
         row1 = t.slice(a,b);row2 = t.slice(b,c);
         k1 = k.slice(a,b);k2 = k.slice(b,c);
-        for(var j=1;j<a;j++){
+        for(var j=2;j<a;j++){
+            if(j==3 || j==5) {
+                t[j] = ' ';
+                row1[j] = ' ';
+                row2[j] = ' ';
+            }
+        }
+        for(var j=a;j<b-a;j++){
+            row1[j] = row1[j].replace(/[A-Z0-9]/g, '@');
+            row2[j] = row2[j].replace(/[A-Z0-9]/g, '#');
+            row1[mapping[j]] = row1[j];
+            row2[mapping[j]] = row2[j];
+        }
+    }
+    else if(m=="Vanilla"){
+        for(var j=1;j<mapping.length;j++){
+            k[a+j] = j<a ? 3:9; k[b+j] = j<a ? 3:9;
+        }
+        row1 = t.slice(a,b);row2 = t.slice(b,c);
+        k1 = k.slice(a,b);k2 = k.slice(b,c);
+        for(var j=2;j<a;j++){
             if(j==3 || j==5){
                 t[j] = ' '; row1[j] = ' '; row2[j] = ' ';
             }
@@ -273,7 +326,7 @@ function pair(t,g,m){
             row1[j] = t[a+mapping[j]];row2[j] = t[b+mapping[j]];
         }
         k1[0] = 2;k2[0] = 0;
-        if(m=="Partial"){
+        if(m=="Hidden"){
             for(var j=1;j<mapping.length;j++){
                 k1[j] = j<a ? 3:9;k2[j] = j<a ? 3:9;
                 if(j>0 && j<a && j!=3 && j!=5 && row1[j]==row2[j] && row1[j]!=""){

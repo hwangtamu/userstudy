@@ -9,7 +9,7 @@
     <div id="modeValidate" class="validate" style="font-size: 150%; left: 10px; float: left; color:red;"></div>
       <g id="modeRadio" class="radio">
           <input type="radio" id="d5" name="mode" value="Vanilla" aria-label="Single radio One">
-          <label for="d5">Vanilla</label><br>
+          <label for="d5">Full Disclosure No Intervention</label><br>
           <input type="radio" id="d6" name="mode" value="Full" aria-label="Single radio One">
           <label for="d6">Full Disclosure</label><br>
           <input type="radio" id="d7" name="mode" value="Full_Partial" aria-label="Single radio One">
@@ -19,15 +19,19 @@
           <!--<input type="radio" id="d9" name="mode" value="Partial_Row" aria-label="Single radio One">-->
           <!--<label for="d9">Paritial Disclosure Reveal Row On Click</label><br>-->
           <input type="radio" id="d10" name="mode" value="Partial" aria-label="Single radio One">
-          <label for="d10">Minimum Disclosure Non-clickable</label>
+          <label for="d10">Minimum Disclosure Non-clickable</label><br>
+          <!--<input type="radio" id="d11" name="mode" value="Hidden" aria-label="Single radio One">
+          <label for="d11">Hidden</label>-->
       </g>
-<div id="mode0" style="display:none">In <text style="font-weight: bold">Vanilla</text> mode, there's no intervention, no icon or freq. This is the baseline for reference.</div>
+<div id="mode0" style="display:none">In <text style="font-weight: bold">Full Disclosure No Intervention</text> mode, there's no intervention, no icon or frequency. This is the baseline for reference.</div>
 <div id="mode1" style="display:none">In <text style="font-weight: bold">Full Disclosure</text> mode, all the cells are visible.</div>
 <div id="mode2" style="display:none">In <text style="font-weight: bold">Full Disclosure For Different Cells</text> mode, only different cells in a pair are visible. Dash lines represent the identical text in the pair.</div>
 <div id="mode3" style="display:none">In <text style="font-weight: bold">Paritial Disclosure</text> mode, only the minimum differences are visible at start. However, you can click on the cells which are partially visible, then the cells pair will be shown.</div>
 <!--<div id="mode4" style="display:none">In <text style="font-weight: bold">Paritial Disclosure Reveal Row On Click</text> mode, only the minimum differences are visible at start. However, you can click on the cells which are partially visible, then all the cells with differences in the pair will be shown.</div>-->
-<div id="mode5" style="display:none">In <text style="font-weight: bold">Minimum Disclosure Non-clickable</text> mode, only the minimum differences in the pairs are shown.<br></div>
- </div>
+<div id="mode5" style="display:none">In <text style="font-weight: bold">Minimum Disclosure Non-clickable</text> mode, only positions of differences are shown.<br></div>
+<!--<div id="mode6" style="display:none">In <text style="font-weight: bold">Hidden</text> mode, only positions of differences are shown.<br></div>-->
+
+    </div>
  </div>
 
     <br>
@@ -83,7 +87,9 @@
       d3.select("#mode3").style("display",function(d){return data.mode=="Partial_Cell" ? "block":"none";});
       d3.select("#mode4").style("display",function(d){return data.mode=="Partial_Row" ? "block":"none";});
       d3.select("#mode5").style("display",function(d){return data.mode=="Partial" ? "block":"none";});
-    //d3.select('#submitComments').attr('disabled', null);
+      d3.select("#mode6").style("display",function(d){return data.mode=="Hidden" ? "block":"none";});
+
+        //d3.select('#submitComments').attr('disabled', null);
   });
 
   function goToNext() {

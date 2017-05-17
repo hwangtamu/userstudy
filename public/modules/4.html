@@ -47,7 +47,7 @@
         parsing("data/output_.csv");
         setTimeout(function (){
             pairs(experimentr.data()["mat"][0],0,5,experimentr.data()["mode"]);
-            if (experimentr.data()["mode"]=="Vanilla"){
+            if (experimentr.data()["mode"]=="Vanilla" ||experimentr.data()["mode"]=="Partial"){
                 d3.selectAll(".icon").remove();
             }
             //console.log(experimentr.data()["mat"][0]);

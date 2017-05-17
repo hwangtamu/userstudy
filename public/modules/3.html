@@ -75,6 +75,13 @@
                 'partially visible, then all the cells with differences in the pair will be shown.'
             ]);
         }
+        if(experimentr.data()["mode"]=="Hidden"){
+            notes = notes.concat([
+                'In the mode "Hidden", ' +
+                'only the positions with differences in each pair are visible.'
+            ]);
+        }
+
 
         d3.select("#notation").text(notes[step]);
 
@@ -82,7 +89,7 @@
         setTimeout(function (){
             pairs(experimentr.data()["mat"][0],0,1,experimentr.data()["mode"]);
             //console.log(experimentr.data()["mat"][0]);
-            if (experimentr.data()["mode"]=="Vanilla"){
+            if (experimentr.data()["mode"]=="Vanilla" ||experimentr.data()["mode"]=="Partial"){
                 d3.selectAll(".icon").remove();
             }
         }, 200);
