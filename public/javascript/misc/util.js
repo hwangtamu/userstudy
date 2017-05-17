@@ -193,10 +193,10 @@ function cell(t,g,j,k){
             t_jj = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length] : dat[p%5][1][j%cwidth.length],
             scheme = [];
         for(f=0;f<len;f++){
-            if(t_j[f]==t_m[f]){scheme.push(0);}
+            if(t_j[f]==t_m[f] && t_j[f]!='T' && t_j[f]!='X'){scheme.push(0);}
             else{scheme.push(1);}
         }
-        //console.log(scheme);
+        //console.log(t_j, t_m);
         for(l=0;l<len;l++){
             var $tspan = $tb.append('tspan');
             $tspan.attr("x",0.6*l+"em").attr("y",cy/2+5)
@@ -289,13 +289,15 @@ function pair(t,g,m){
         }
         row1 = t.slice(a,b);row2 = t.slice(b,c);
         k1 = k.slice(a,b);k2 = k.slice(b,c);
-        for(var j=2;j<a;j++){
-            if(j==3 || j==5) {
-                t[j] = ' ';
-                row1[j] = ' ';
-                row2[j] = ' ';
-            }
-        }
+
+        //for(var j=2;j<a;j++){
+        //    if(j==3 || j==5) {
+        //        t[j] = ' ';
+        //        row1[j] = ' ';
+        //        row2[j] = ' ';
+        //    }
+        //}
+
         for(var j=a;j<b-a;j++){
             row1[j] = row1[j].replace(/[A-Z0-9]/g, '@');
             row2[j] = row2[j].replace(/[A-Z0-9]/g, '#');
