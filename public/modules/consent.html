@@ -67,12 +67,18 @@
 
     var browser = get_browser_info();
     var os = get_os_info();
+    var ip = $.ajax({type: "GET", url: "http://freegeoip.net/json/", async: false}).responseText;
+
     console.log(browser);
     console.log(os);
+    console.log(ip);
+
     data.browserName = browser.name;
     data.browserVersion = browser.version;
     data.os = os;
     data.userDate = Date();
+    data.ip = JSON.parse(ip);
+    data.clicks = {};
     load();
        // load previous workers file
   }

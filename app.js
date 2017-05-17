@@ -5,6 +5,11 @@
 
 var express     = require('express')
 var http        = require('http')
+var path = require('path')
+var formidable = require('express-formidable')
+var fs = require('fs')
+var mv = require('mv')
+var bodyParser = require('body-parser')
 
 
 if (process.env.REDISTOGO_URL) {
@@ -22,6 +27,9 @@ var save = function save(d) {
   redis.hmset(d.postId, d)
   //if( debug )
   console.log('saved to redis: ' + d.postId +', at: '+ (new Date()).toString())
+  //console.log(d)
+  var n = 'output/' + Date.now() + '.json'
+  fs.writeFile(n, JSON.stringify(d), 'utf8')
 }
 
 // Server setup
@@ -32,19 +40,19 @@ app.set('port', (process.env.PORT || 5000));
 
 
 // If the study has finished, write the data to file
-app.post('/finish', function(req, res) {
-  fs.readFile('public/modules/blocked-workers.json', 'utf8', function(err,data) {
-    if (err) console.log(err);
-    var data = JSON.parse(data);
-    data.push(req.body.workerId);
-    data = JSON.stringify(data);
-    fs.writeFile('public/modules/blocked-workers.json', data, function(err) {
-      if(err) console.log(err);
-    });
-  });
+//app.post('/finish', function(req, res) {
+//  fs.readFile('public/modules/blocked-workers.json', 'utf8', function(err,data) {
+//    if (err) console.log(err);
+//    var data = JSON.parse(data);
+//    data.push(req.body.workerId);
+//    data = JSON.stringify(data);
+//    fs.writeFile('public/modules/blocked-workers.json', data, function(err) {
+//      if(err) console.log(err);
+//    });
+//  });
 
-  res.send(200)
-})
+//  res.send(200)
+//})
 
 // Handle POSTs from frontend
 app.post('/', function handlePost(req, res) {
@@ -61,11 +69,7 @@ app.post('/', function handlePost(req, res) {
 })
 
 
-var path = require('path')
-var formidable = require('express-formidable');
-var fs = require('fs');
-var mv = require('mv');
-var bodyParser = require('body-parser');
+
 
 //bodyparser
 app.use(bodyParser.json());

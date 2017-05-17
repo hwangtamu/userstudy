@@ -1,3 +1,5 @@
+/* global require:true, console:true, process:true, __dirname:true */
+'use strict'
 /**
  * Created by hanwang on 1/23/17.
  */
@@ -192,12 +194,12 @@ function cell(t,g,j,k){
             t_m = m<2*cwidth.length ? dat[p%5][0][mapping[m%cwidth.length]] : dat[p%5][1][mapping[m%cwidth.length]],
             t_jj = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length] : dat[p%5][1][j%cwidth.length],
             scheme = [];
-        for(f=0;f<len;f++){
-            if(t_j[f]==t_m[f] && t_j[f]!='T' && t_j[f]!='X'){scheme.push(0);}
+        for(var l=0;l<len;l++){
+            if(t_j[l]==t_m[l] && t_j[l]!='T' && t_j[l]!='X'){scheme.push(0);}
             else{scheme.push(1);}
         }
         //console.log(t_j, t_m);
-        for(l=0;l<len;l++){
+        for(var l=0;l<len;l++){
             var $tspan = $tb.append('tspan');
             $tspan.attr("x",0.6*l+"em").attr("y",cy/2+5)
                 .attr("text-anchor","left")
@@ -258,7 +260,7 @@ function cell(t,g,j,k){
  */
 function row(t,g,j,k){
     var l = 0;
-    for(i=0;i<cwidth.length;i++){
+    for(var i=0;i<cwidth.length;i++){
         if(k[i]!=9){
             cell(t[i],g,j*cwidth.length+l,k[i],t[mapping[i]]);
             l+=1;
@@ -443,6 +445,10 @@ function choices(svg,lBound, scale,mode) {
                 buttons.select(".no").attr("opacity",0.2);
                 buttons.selectAll(".choice").attr("xlink:href","/resources/0.png");
                 d3.select(this).select("image").attr("xlink:href","/resources/1.png");
+                //console.log(experimentr.data()["clicks"]);
+                var t = Date.now().toString();
+                experimentr.data()["clicks"][t] = [d3.select(this.parentNode.parentNode).select("#c8").text(), d3.select(this).select(".choice").attr("id")];
+
             });
     }
 }
@@ -515,7 +521,7 @@ function parsing(route){
     d3.text(route, function (csvdata) {
         var groups = {};
         var parsedCSV = d3.csv.parseRows(csvdata);
-        for (j = 1; j < parsedCSV.length; j++) {
+        for (var j = 1; j < parsedCSV.length; j++) {
             if (!(parsedCSV[j][0] in groups)) {
                 groups[parsedCSV[j][0]] = [parsedCSV[j]];
             } else {
@@ -531,7 +537,7 @@ function parsing(route){
         var binary = [];
         var other = [];
         var tmp = [];
-        for (i = 0; i < raw_binary.length; i++) {
+        for (var i = 0; i < raw_binary.length; i++) {
             if (tmp.length === 5 || i === raw_binary.length - 1) {
                 binary.push(tmp);
                 tmp = [];
@@ -546,9 +552,9 @@ function parsing(route){
         tmp = values.filter(function (d) {
             return d.length == 4;
         });
-        for (i = 0; i < tmp.length; i++) {
+        for (var i = 0; i < tmp.length; i++) {
             var t = [];
-            for (j = 0; j < tmp[i].length / 2; j++) {
+            for (var j = 0; j < tmp[i].length / 2; j++) {
                 t.push([tmp[i][2 * j], tmp[i][2 * j + 1]]);
             }
             other.push(t);
@@ -556,9 +562,9 @@ function parsing(route){
         tmp = values.filter(function (d) {
             return d.length == 6;
         });
-        for (i = 0; i < tmp.length; i++) {
+        for (var i = 0; i < tmp.length; i++) {
             var t = [];
-            for (j = 0; j < tmp[i].length / 2; j++) {
+            for (var j = 0; j < tmp[i].length / 2; j++) {
                 t.push([tmp[i][2 * j], tmp[i][2 * j + 1]]);
             }
             other.push(t);
