@@ -205,7 +205,7 @@ function cell(t,g,j,k){
                 .attr("fill",function(){
                     //if(t_j.length!=t_jj.length){return "black";}
                     if(scheme[l]==1 && j<2*cwidth.length){return"red";}
-                    if(scheme[l]==1 && j>2*cwidth.length){return "green";}
+                    if(scheme[l]==1 && j>2*cwidth.length){return "blue";}
                     return "black";})
                 .text(t[l]);
         }
