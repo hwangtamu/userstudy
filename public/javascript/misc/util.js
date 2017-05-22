@@ -39,12 +39,12 @@ function cell(t,g,j,k){
         cy = height;
     var cel = g.append("g").attr("id","c"+j.toString()).attr("class","cell")
         .attr("transform","translate("+x+","+y+")");
-    var rectangle = cel.append("rect").attr("id",j);
+    //var rectangle = cel.append("rect").attr("id",j);
     //only show rect on clickable cells
-    if(k==6 && j<20){
-        rectangle.attr("x",-5).attr("y",-5).attr("width",cx).attr("id","r"+j.toString())
-            .attr("height",80).style("fill","#C5E3BF").attr("rx",5).attr("ry",5);
-    }
+    //if(k==6 && j<2*cwidth.length){
+    //    rectangle.attr("x",-5).attr("y",-5).attr("width",cx).attr("id","r"+j.toString())
+    //        .attr("height",80).style("fill","#C5E3BF").attr("rx",5).attr("ry",5);
+    //}
     /*rectangle.attr("x",0).attr("y",0).attr("width",cx).attr("id","r"+j.toString())
         .attr("height",function(){if(k==2||k==4){return cy*2+23;}if(k==0||k==5||(index_r>0 && k==1)){return 0;}return cy;})
         .style("fill","none")
@@ -81,8 +81,11 @@ function cell(t,g,j,k){
             if(title[j%cwidth.length]!="FFreq" && title[j%cwidth.length]!="LFreq"){
                 // missing
                 cel.append("svg:image").attr("xlink:href","/resources/missing.png").attr("class","icon")
-                    .attr("x",0).attr("y",cy/2-9).attr("width",18).attr("height",18);
+                    .attr("x",cwidth[j%cwidth.length]/3).attr("y",cy/2-9).attr("width",18).attr("height",18);
             }
+        }else if(textbox.text()==" " && j<cwidth.length*2){
+            cel.append("svg:image").attr("xlink:href","/resources/checkmark.png").attr("class","icon")
+                .attr("x",cwidth[j%cwidth.length]/3).attr("y",cy/2+15).attr("width",18).attr("height",18);
         }else{
             if(j<cwidth.length*2 && title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="FFreq" && title[j%cwidth.length]!="LFreq"){
                 var m = j+cwidth.length,
@@ -90,16 +93,20 @@ function cell(t,g,j,k){
                     dat = experimentr.data()['mat'][Math.floor(p/5)],
                     t_j = j<2*cwidth.length ? dat[p%5][0][mapping[j%cwidth.length]] : dat[p%5][1][mapping[j%cwidth.length]],
                     t_m = m<2*cwidth.length ? dat[p%5][0][mapping[m%cwidth.length]] : dat[p%5][1][mapping[m%cwidth.length]],
-                    bin = [];
+                    bin = [],
+                    indel = [],
+                    replace = [];
+
                 //console.log(t_j, t_m);
                 if(t_j!="" && t_m!=""){
                     for(var i=0;i<t_j.length;i++){
                         //indel
                         if((t_j[i]==" "&&t_m[i]!=" ")||(t_j[i]!=" "&&t_m[i]==" ")){
                             bin.push(i);
-                            g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/indel.png")
-                                .attr("class","icon").attr("x",9*i)
-                                .attr("y",cy/2+15).attr("width",16).attr("height",16);
+                            indel.push(i);
+                            //g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/indel.png")
+                            //    .attr("class","icon").attr("x",9*i)
+                            //    .attr("y",cy/2+15).attr("width",16).attr("height",16);
                         }
                         //transpose
                         else if(bin.indexOf(i)==-1 && t_j[i]==t_m[i+1] && t_j[i+1]==t_m[i] && t_j[i]!="*" && t_m[i]!="*" && t_j[i+1]!="*" && t_m[i+1]!="*"){
@@ -119,19 +126,66 @@ function cell(t,g,j,k){
                         //replace
                         else if (bin.indexOf(i)==-1 && t_j[i] != t_m[i] && t_j[i] != " " && t_m[i] != " ") {
                             bin.push(i);
-                            g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/replace.png")
-                                .attr("class", "icon").attr("x", function(){
+                            replace.push(i);
+                            //g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/replace.png")
+                            //    .attr("class", "icon").attr("x", function(){
                                     /*if (d3.select(this.parentNode).text().length==1){
                                         return cx/2-9;
                                     }*/
-                                return 9*i;
-                            })
-                                .attr("y", cy/2+13).attr("width", 18).attr("height", 18);
+                            //    return 9*i;
+                            //})
+                            //    .attr("y", cy/2+13).attr("width", 18).attr("height", 18);
                         }
                     }
-                    /*if(bin.length>0){
-                        console.log(bin,j);
-                    }*/
+
+                    // reduce duplicate icons
+                    var _indel = [],
+                        _replace = [],
+                        __indel = [],
+                        __replace = [];
+
+                    for(var i=0;i<indel.length;i++) {
+                        //console.log(indel.indexOf(indel[i]-1));
+                        if (indel.indexOf(indel[i] - 1) == -1) {
+                            _indel.push([indel[i]]);
+                        } else {
+                            _indel[_indel.length-1].push(indel[i]);
+                        }
+                    }
+
+                    for(var i=0;i<_indel.length;i++){
+                        __indel.push(_indel[i].reduce((previous, current) => current += previous)/_indel[i].length);
+                    }
+
+                    for(var i=0;i<replace.length;i++){
+                        //console.log(replace.indexOf(replace[i]-1));
+                        if(replace.indexOf(replace[i]-1)==-1){
+                            _replace.push([replace[i]]);
+                        }else{
+                            _replace[_replace.length-1].push(replace[i]);
+                        }
+                    }
+
+                    for(var i=0;i<_replace.length;i++){
+                        __replace.push(_replace[i].reduce((previous, current) => current += previous)/_replace[i].length);
+                    }
+
+                    for(var i=0;i<__indel.length;i++){
+                        g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/indel.png")
+                            .attr("class","icon").attr("x",9*__indel[i])
+                            .attr("y",cy/2+15).attr("width",16).attr("height",16);
+                    }
+
+                    for(var i=0;i<__replace.length;i++){
+                        g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/replace.png")
+                            .attr("class", "icon").attr("x", function(){
+                            return 9*__replace[i];
+                        })
+                            .attr("y", cy/2+13).attr("width", 18).attr("height", 18);
+                    }
+                    //if(bin.length>0){
+                    //    console.log(indel, replace);
+                    //}
                 }
             }
         }
@@ -305,6 +359,10 @@ function pair(t,g,m){
             row2[j] = row2[j].replace(/[A-Z0-9]/g, '#');
             row1[mapping[j]] = row1[j];
             row2[mapping[j]] = row2[j];
+            if(row1[mapping[j]]==row2[mapping[j]]){
+                row1[mapping[j]] = ' ';
+                row2[mapping[j]] = ' ';
+            }
         }
     }
     else if(m=="Vanilla"){
@@ -349,6 +407,13 @@ function pair(t,g,m){
                     row1[j] = t[a+j];row2[j] = t[b+j];
                 }
             }
+
+            for(var j=a;j<b-a;j++){
+                if(row1[mapping[j]]==row2[mapping[j]]){
+                    row1[mapping[j]] = ' ';
+                    row2[mapping[j]] = ' ';
+                }
+            }
         }
         if(m=="Partial_Row"||m=="Partial_Cell"){
             for(var j=1;j<mapping.length;j++){
@@ -360,7 +425,18 @@ function pair(t,g,m){
                     k1[j] = 6;k2[j] = 6;
                 }
             }
+
+            for(var j=a;j<b-a;j++){
+                if(row1[mapping[j]]==row2[mapping[j]]){
+                    row1[mapping[j]] = ' ';
+                    row2[mapping[j]] = ' ';
+                }
+            }
         }
+    }
+    var id = g.attr("id").slice(1)%5;
+    if(id%2==1){
+        var bg = g.append("rect").attr("id",j).attr("height", 110).attr("width", 900).attr("y", 10).style("fill", "#b2d3e6");
     }
     row(t.slice(0,a),g,0,k.slice(0,a));
     row(row1,g,1,k1);
@@ -387,7 +463,7 @@ function pairs(t,s,n,m) {
 
 // draw choice panel
 // mode: 1=default 2=introduce
-function choices(svg,lBound, scale,mode) {
+function choices(svg, lBound, scale, mode) {
     var options = ["Highly Likely Different",
         "Moderately Likely Different",
         "Less Likely Different",
