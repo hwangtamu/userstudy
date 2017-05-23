@@ -86,6 +86,7 @@ function cell(t,g,j,k){
                     .attr("x",cwidth[j%cwidth.length]/3).attr("y",cy/2-9).attr("width",18).attr("height",18);
             }
         }else if(textbox.text()==" " && j<cwidth.length*2){
+            // check mark
             cel.append("svg:image").attr("xlink:href","/resources/checkmark.png").attr("class","icon")
                 .attr("x",cwidth[j%cwidth.length]/3).attr("y",cy/2+15).attr("width",18).attr("height",18);
         }else{
@@ -175,7 +176,7 @@ function cell(t,g,j,k){
                     for(var i=0;i<__indel.length;i++){
                         g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/indel.png")
                             .attr("class","icon").attr("x",9*__indel[i])
-                            .attr("y",cy/2+15).attr("width",16).attr("height",16);
+                            .attr("y",cy/2+16).attr("width",14).attr("height",14);
                     }
 
                     for(var i=0;i<__replace.length;i++){
@@ -439,7 +440,7 @@ function pair(t,g,m){
     }
     var id = g.attr("id").slice(1)%5;
     if(id%2==1){
-        var bg = g.append("rect").attr("id",j).attr("height", 110).attr("width", 900).attr("y", 10).style("fill", "#b2d3e6");
+        var bg = g.append("rect").attr("id",j).attr("height", 110).attr("width", 1200).attr("y", 10).style("fill", "#C5E3BF");
     }
     row(t.slice(0,a),g,0,k.slice(0,a));
     row(row1,g,1,k1);
