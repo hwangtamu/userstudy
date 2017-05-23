@@ -440,7 +440,7 @@ function pair(t,g,m){
     }
     var id = g.attr("id").slice(1)%5;
     if(id%2==1){
-        var bg = g.append("rect").attr("id",j).attr("height", 110).attr("width", 1200).attr("y", 10).style("fill", "#eaf5f9");
+        var bg = g.append("rect").attr("id",j).attr("height", 110).attr("width", 1200).attr("y", 10).style("fill", "#eaf2ff");
     }
     row(t.slice(0,a),g,0,k.slice(0,a));
     row(row1,g,1,k1);
