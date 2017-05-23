@@ -4,7 +4,7 @@
  * Created by hanwang on 1/23/17.
  */
 var title = ["Group","ID","First name","FFreq","Last name","LFreq","Reg No.","DoB(MM/DD/YYYY)"];
-var cwidth = [60,80,160,60,180,60,140,100]; //820
+var cwidth = [60,80,160,60,180,60,140,150]; //820
 var height = 24; //height per row 0 30 57
 var ys = [0,30,77];
 var mapping = [0,1,8,3,9,5,10,11,2,4,6,7]; //index mapping from hidden data to visible data per row
@@ -40,18 +40,20 @@ function cell(t,g,j,k){
     var cel = g.append("g").attr("id","c"+j.toString()).attr("class","cell")
         .attr("transform","translate("+x+","+y+")");
 
-    //var rectangle = cel.append("rect").attr("id",j);
+    var rectangle = cel.append("rect").attr("id",j);
     //only show rect on clickable cells
     //if(k==6 && j<2*cwidth.length){
     //    rectangle.attr("x",-5).attr("y",-5).attr("width",cx).attr("id","r"+j.toString())
     //        .attr("height",80).style("fill","#C5E3BF").attr("rx",5).attr("ry",5);
     //}
-  
-    /*rectangle.attr("x",0).attr("y",0).attr("width",cx).attr("id","r"+j.toString())
-        .attr("height",function(){if(k==2||k==4){return cy*2+23;}if(k==0||k==5||(index_r>0 && k==1)){return 0;}return cy;})
-        .style("fill","none")
-        .style("fill",function(){if(k==1||k==2){return "#68a7ca";}if(k==3||k==4){return "#b2d3e6";}if(k==6){return "#C5E3BF"}})
-        .style("opacity",1);*/
+    if(index_r==0 && j<cwidth.length){
+        rectangle.attr("x",0).attr("y",0).attr("width",cx+6).attr("id","r"+j.toString())
+            .attr("height",function(){if(k==2||k==4){return cy*2+23;}if(k==0||k==5||(index_r>0 && k==1)){return 0;}return cy;})
+            .style("fill","none")
+            .style("fill",function(){if(k==1||k==2){return "#68a7ca";}if(k==3||k==4){return "#b2d3e6";}if(k==6){return "#add8e6 "}})
+            .style("opacity",1);
+    }
+
     var textbox = cel.append("text").attr("class","tbox").attr("id","t"+j.toString());
     textbox.attr("x",function(){
         //if(k==3 && (title[j%10]=="FFreq"||title[j%10]=="LFreq"||
@@ -460,7 +462,7 @@ function pairs(t,s,n,m) {
             .attr("width", num>1 ? 1200:900).attr("height", 120);
         pair(title.concat(t[i][0]).concat(t[i][1]),g,m);
         if(num>1){
-            choices(g,900,1,1);
+            choices(g,950,1,1);
         }
     }
 }
