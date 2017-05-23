@@ -264,8 +264,8 @@ function cell(t,g,j,k){
                 .style("font",function(){if(experimentr.data()['os']=="MacOS"){return "16px Monaco";}if(experimentr.data()['os']=="Linux"){return "16px Lucida Sans Typewriter";}return "16px Lucida Console";})
                 .attr("fill",function(){
                     //if(t_j.length!=t_jj.length){return "black";}
-                    if(scheme[l]==1 && j<2*cwidth.length){return"red";}
-                    if(scheme[l]==1 && j>2*cwidth.length){return "blue";}
+                    if(scheme[l]==1 && j<2*cwidth.length){return "#9b3d18";}
+                    if(scheme[l]==1 && j>2*cwidth.length){return "#0945a5";}
                     return "black";})
                 .text(t[l]);
         }
