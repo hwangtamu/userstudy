@@ -96,8 +96,9 @@ set.seed(1)
 (xs_matches_mar <-
   xs_matches %>%
     mutate(file = "mar17", 
-         name_sufx_cd = ifelse(is.na(name_sufx_cd),"",name_sufx_cd),
-         dob = format(mdy(dob), format="%m-%d-%Y")) %>%
+           name_sufx_cd = ifelse(is.na(name_sufx_cd),"",name_sufx_cd),
+           dob = format(mdy(dob), format="%m-%d-%Y"),
+           dob = ifelse(is.na(dob),"", dob)) %>%
       select(ID, voter_reg_num, last_name, first_name, dob, name_sufx_cd) %>%
         ungroup() %>%
            sample_n(1000) %T>%

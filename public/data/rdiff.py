@@ -125,6 +125,7 @@ def make_list_dict(file_path,id_name):
     index_fname = find_index(title, "first_name")
     index_lname = find_index(title, "last_name")
     index_dob = find_index(title, "dob")
+    index_file_id = find_index(title,"file_id") -1
     star_calc_indexes = {"voter_reg_num":index_vot_reg-1, "last_name":index_lname-1,"first_name":index_fname-1,"dob":index_dob-1}
 
     data = {}
@@ -150,25 +151,31 @@ def make_list_dict(file_path,id_name):
         else:
             rec = data[id].append(rec)
 
-    return data, title, star_calc_indexes, ff,lf
+    return data, title, star_calc_indexes, ff,lf, index_file_id
 
 
-def star_similarities(d, star_indices):
+def star_similarities(d, star_indices,index_file_id):
     data = []
     id = 1
     star_val = star_indices.values()
     for p in d:
-        for i in range(1, len(d[p])):
-            x, y = pair([d[p][0], d[p][i]], star_val)
-            if x[star_indices["dob"]]:
-                x[-1] = x[-1][:2] + '/' + x[-1][3:5] + '/' + x[-1][6:]
-            if y[star_indices["dob"]]:
-                y[-1] = y[-1][:2] + '/' + y[-1][3:5] + '/' + y[-1][6:]
 
-            data += [[id, p] + x]
-            data += [[id, p] + y]
+        for i in range(1, len(d[p])):
+            file_id_1 = d[p][0][index_file_id]
+            file_id_2 = d[p][i][index_file_id]
+            x, y = pair([d[p][0], d[p][i]], star_val)
+            #print x
+            if x[14]:
+                x[14] = x[14][:2] + '/' + x[14][3:5] + '/' + x[14][6:]
+            if y[-1]:
+                y[14] = y[14][:2] + '/' + y[14][3:5] + '/' + y[14][6:]
+
+            data += [[id, file_id_1] + x]
+            data += [[id, file_id_2] + y]
         id += 1
     return data
+
+
 
 
 def data_filter(data_as_list,item):
@@ -211,9 +218,10 @@ def write_data(data_list,file_name):
     f.close()
 
 
-d ,title, star_indices , ff, lf = make_list_dict("groups_without_modif.csv","ID")
-print d
-data = star_similarities(d, star_indices)
+d ,title, star_indices , ff, lf, index_file_id = make_list_dict("groups_without_modif.csv","ID")
+print star_indices["dob"]
+
+data = star_similarities(d, star_indices,index_file_id)
 print data
 data_egen = data_filter(data, "egen")
 data_twins = data_filter(data,"twins")
