@@ -19,3 +19,14 @@ After all tests
 
 Important Note
 After each single tests you may want to backup each one to an external drive.
+
+
+
+### Notes
+
+Answers to questions.
+
+Create output file to each page.
+Think about how to capture data for each user.
+
+Data: time spent on each page, clicks on the whole browser,
