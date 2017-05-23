@@ -40,10 +40,11 @@
         var step = 0;
         var notes = ["Next, you are going to complete the first section of the test: pairwise test."];
         parsing("data/output.csv");
-        pairs(experimentr.data()["mat"][step],step,experimentr.data()["mat"][step].length,experimentr.data()["mode"]);
-        if (experimentr.data()["mode"]=="Vanilla"){
-            d3.selectAll(".icon").remove();
-        }
+        //pairs(experimentr.data()["mat"][step],step,experimentr.data()["mat"][step].length,experimentr.data()["mode"]);
+        //if (experimentr.data()["mode"]=="Vanilla"){
+        //    d3.selectAll(".icon").remove();
+        //}
+        d3.select("#notation").text(notes[step]);
         function goToNext() {
             experimentr.next();
         }
@@ -59,7 +60,7 @@
                         d3.select("#title").text("Section 2: Groupwise Test");
                     }
 
-                    if(step==1){
+                    if(step==0){
                         d3.select("#notation").remove();
                     }
                     setTimeout(function (){
@@ -70,6 +71,7 @@
                         }
                     }, 200);
                     step+=1;
+                    console.log(step, experimentr.data()['mat'].length-1);
                 }
             });
     }());
