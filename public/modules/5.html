@@ -53,16 +53,15 @@
                 if(step==experimentr.data()["mat"].length-1){
                     goToNext();
                 }else{
-                    if(experimentr.data()["mat"][step].length==1){
+                    if(experimentr.data()["mat"][step+1].length==0){
                         d3.select("#title").text("This is the end of Section 1");
                     }
                     if(experimentr.data()["mat"][step].length==0){
                         d3.select("#title").text("Section 2: Groupwise Test");
                     }
 
-                    if(step==0){
-                        d3.select("#notation").remove();
-                    }
+                    d3.select("#notation").text("Page "+(step+1).toString()+"/"+experimentr.data()['mat'].length.toString());
+
                     setTimeout(function (){
                         d3.selectAll(".blocks").remove();
                         pairs(experimentr.data()["mat"][step],step,experimentr.data()["mat"][step].length,experimentr.data()["mode"]);
@@ -71,7 +70,7 @@
                         }
                     }, 200);
                     step+=1;
-                    console.log(step, experimentr.data()['mat'].length-1);
+                    //console.log(step, experimentr.data()['mat'].length-1);
                 }
             });
     }());

@@ -24,15 +24,16 @@
 <div id="container">
     <div id="instruction" style="text-align:center;">
         <h1 id="title">The End</h1>
-        <div id="notation" style="text-align:left;">
-            You are done! Thank you for participating in this study!
-        </div>
+        <div id="notation" style="text-align:left;"></div><br>
+        <div id="end" style="text-align:left;"></div>
         <br> <br>
     </div>
 </div>
 </body>
 </html>
 <script>
+    d3.select("#notation").text("Page "+experimentr.data()['mat'].length.toString()+"/"+experimentr.data()['mat'].length.toString());
+    d3.select("#end").text('You are done! Thank you for participating in this study!');
     delete experimentr.data()['mat'];
     experimentr.save();
 </script>
