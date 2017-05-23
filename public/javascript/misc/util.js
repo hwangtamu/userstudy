@@ -37,12 +37,12 @@ function cell(t,g,j,k){
         cy = height;
     var cel = g.append("g").attr("id","c"+j.toString()).attr("class","cell")
         .attr("transform","translate("+x+","+y+")");
-    var rectangle = cel.append("rect").attr("id",j);
-    //only show rect on clickable cells
-    if(k==6 && j<20){
-        rectangle.attr("x",-5).attr("y",-5).attr("width",cx).attr("id","r"+j.toString())
-            .attr("height",80).style("fill","#C5E3BF").attr("rx",5).attr("ry",5);
-    }
+    // var rectangle = cel.append("rect").attr("id",j);
+    // //only show rect on clickable cells
+    // if(k==6 && j<20){
+    //     rectangle.attr("x",-5).attr("y",-5).attr("width",cx).attr("id","r"+j.toString())
+    //         .attr("height",80).style("fill","#C5E3BF").attr("rx",5).attr("ry",5);
+    // }
     /*rectangle.attr("x",0).attr("y",0).attr("width",cx).attr("id","r"+j.toString())
         .attr("height",function(){if(k==2||k==4){return cy*2+23;}if(k==0||k==5||(index_r>0 && k==1)){return 0;}return cy;})
         .style("fill","none")
@@ -179,6 +179,7 @@ function cell(t,g,j,k){
     //
     //     });
     // }
+
     // coloring '@' and '#'
     if(experimentr.data()['mode']=="Partial" && k==3 && title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
         g.select("#c"+j.toString()).select(".span").remove();
@@ -205,7 +206,7 @@ function cell(t,g,j,k){
                 .attr("fill",function(){
                     //if(t_j.length!=t_jj.length){return "black";}
                     if(scheme[l]==1 && j<2*cwidth.length){return"red";}
-                    if(scheme[l]==1 && j>2*cwidth.length){return "green";}
+                    if(scheme[l]==1 && j>2*cwidth.length){return "blue";}
                     return "black";})
                 .text(t[l]);
         }
@@ -298,7 +299,7 @@ function pair(t,g,m){
         }
         for(var j=a;j<b-a;j++){
             row1[j] = row1[j].replace(/[A-Z0-9]/g, '@');
-            row2[j] = row2[j].replace(/[A-Z0-9]/g, '#');
+            row2[j] = row2[j].replace(/[A-Z0-9]/g, '&');
             row1[mapping[j]] = row1[j];
             row2[mapping[j]] = row2[j];
         }
