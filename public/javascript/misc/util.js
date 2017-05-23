@@ -462,7 +462,7 @@ function pairs(t,s,n,m) {
             .attr("width", num>1 ? 1200:900).attr("height", 120);
         pair(title.concat(t[i][0]).concat(t[i][1]),g,m);
         if(num>1){
-            choices(g,950,1,1);
+            choices(g,920,1,1);
         }
     }
 }
