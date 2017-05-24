@@ -36,6 +36,8 @@
 <script>
     (function(){
         experimentr.hideNext();
+        // pages
+        experimentr.data()['switch'] = {};
         $.getScript("javascript/misc/util.js");
         var step = 0;
         var notes = ["Next, you are going to complete the first section of the test: pairwise test."];
@@ -72,6 +74,9 @@
                     step+=1;
                     //console.log(step, experimentr.data()['mat'].length-1);
                 }
+                // time elapse
+                experimentr.data()['switch'][step] = Date.now();
+
             });
     }());
 </script>

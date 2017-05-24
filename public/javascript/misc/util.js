@@ -4,7 +4,7 @@
  * Created by hanwang on 1/23/17.
  */
 var title = ["Group","ID","First name","FFreq","Last name","LFreq","Reg No.","DoB(MM/DD/YYYY)"];
-var cwidth = [60,80,160,60,180,60,140,150]; //820
+var cwidth = [60,80,160,60,200,60,140,150]; //910
 var height = 24; //height per row 0 30 57
 var ys = [0,30,77];
 var mapping = [0,1,8,3,9,5,10,11,2,4,6,7]; //index mapping from hidden data to visible data per row
@@ -263,7 +263,10 @@ function cell(t,g,j,k){
             var $tspan = $tb.append('tspan');
             $tspan.attr("x",0.6*l+"em").attr("y",cy/2+5)
                 .attr("text-anchor","left")
-                .style("font",function(){if(experimentr.data()['os']=="MacOS"){return "16px Monaco";}if(experimentr.data()['os']=="Linux"){return "16px Lucida Sans Typewriter";}return "16px Lucida Console";})
+                .style("font",function(){
+                    if(experimentr.data()['os']=="MacOS"){return "16px Monaco";}
+                    if(experimentr.data()['os']=="Linux"){return "16px Lucida Sans Typewriter";}
+                    return "16px Lucida Console";})
                 .attr("fill",function(){
                     //if(t_j.length!=t_jj.length){return "black";}
                     if(scheme[l]==1 && j<2*cwidth.length){return "#9b3d18";}
@@ -433,11 +436,19 @@ function pair(t,g,m){
             }
 
             for(var j=a;j<b-a;j++){
-                if(row1[mapping[j]]==row2[mapping[j]]){
+                if(row1[j]==row2[j]){
                     row1[mapping[j]] = ' ';
                     row2[mapping[j]] = ' ';
+                }else if(row1[mapping[j]].match(/\*/g)){
+                    // set up threshold
+                    var same = row1[mapping[j]].match(/\*/g).length;
+                    if(same<((row1[mapping[j]]+row2[mapping[j]]).length-same)*0.5){
+                        row1[mapping[j]] = row1[j];
+                        row2[mapping[j]] = row2[j];
+                    }
                 }
             }
+
         }
     }
     var id = g.attr("id").slice(1)%5;
@@ -483,14 +494,14 @@ function choices(svg, lBound, scale, mode) {
     var buttons = svg.append("g").attr("transform", "translate(" + lBound + ",20)");
     //buttons.append("rect").attr("x",-10*scale).attr("y",0).attr("width",280*scale).attr("height",85*scale).style("fill","#68a7ca").style("opacity",1);
     if(mode!=2){
-        buttons.append("text").attr("x", 220 * scale).attr("y", 78 * scale).text("Same").attr("text-anchor", "middle").style("font", 24 * scale + "px sans-serif");
-        buttons.append("text").attr("x", 50 * scale).attr("y", 78 * scale).text("Different").attr("text-anchor", "middle").style("font", 24 * scale + "px sans-serif");
+        buttons.append("text").attr("x", 220 * scale).attr("y", 78 * scale).text("Same").attr("text-anchor", "middle").style("font", 16 * scale + "px sans-serif");
+        buttons.append("text").attr("x", 50 * scale).attr("y", 78 * scale).text("Different").attr("text-anchor", "middle").style("font", 16 * scale + "px sans-serif");
     }
     for (var p = 0; p < options.length; p++) {
         buttons.append("text").attr("id","labelText"+p.toString())
             .attr("x", (x[p] + 8) * scale).attr("y", function(){if(mode==2 && p%2==1){return 66*scale;}return 30 * scale;})
             .text(function(){if(mode==2){return options[p];}return options[p][0];})
-            .attr("text-anchor", "middle").style("font", function(){if(mode==2){return 14+"px sans-serif";}return 24 * scale + "px sans-serif";});
+            .attr("text-anchor", "middle").style("font", function(){if(mode==2){return 14+"px sans-serif";}return 16 * scale + "px sans-serif";});
     }
     //arrows
     for(var pos=0;pos<7;pos++){
@@ -528,8 +539,8 @@ function choices(svg, lBound, scale, mode) {
                 buttons.selectAll(".choice").attr("xlink:href","/resources/0.png");
                 d3.select(this).select("image").attr("xlink:href","/resources/1.png");
                 //console.log(experimentr.data()["clicks"]);
-                var t = Date.now().toString();
-                experimentr.data()["clicks"][t] = [d3.select(this.parentNode.parentNode).select("#c8").text(), d3.select(this).select(".choice").attr("id")];
+                var t = Date.now();
+                experimentr.data()["clicks"][t] = [svg.attr("id").slice(1),d3.select(this.parentNode.parentNode).select("#c8").text(), d3.select(this).select(".choice").attr("id")];
 
             });
     }
