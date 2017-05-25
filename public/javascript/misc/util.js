@@ -54,6 +54,7 @@ function cell(t,g,j,k){
             .style("opacity",1);
     }
 
+
     var textbox = cel.append("text").attr("class","tbox").attr("id","t"+j.toString());
     textbox.attr("x",function(){
         //if(k==3 && (title[j%10]=="FFreq"||title[j%10]=="LFreq"||

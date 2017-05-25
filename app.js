@@ -64,11 +64,25 @@ app.use(formidable({
     uploadDir: '/public/'
 }));
 
+
+var url = require('url');
+
 app.get('/upload',function(req,res){
     console.log("code for uploading");
+    var url_parts = url.parse(req.url, true);
+    var query = url_parts.query;
+    console.log(query)
     res.sendfile(path.join(__dirname+'/public/modules'+'/upload.html'));
-
 });
+
+
+//
+// app.get('/', function(req,res) {
+//     console.log("HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII")
+//     var url_parts = url.parse(req.url, true);
+//     var query = url_parts.query;
+//     console.log(query)
+// })
 
 app.post('/upload',function(req,res) {
     console.log("moving code");
