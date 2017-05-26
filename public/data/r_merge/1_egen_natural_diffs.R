@@ -109,7 +109,8 @@ set.seed(1)
     filter(ID %in% xs_matches_mar$ID) %>%
       mutate(file = "apr13",
              twinid = NA,
-             dob = format(mdy(dob), format="%m-%d-%Y")) %T>%
+             dob = format(mdy(dob), format="%m-%d-%Y"),
+             dob = ifelse(is.na(dob),"", dob)) %T>%
         write_csv("data/egen_original.csv") %T>%
           View())
 
