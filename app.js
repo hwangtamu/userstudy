@@ -29,7 +29,7 @@ var save = function save(d) {
   console.log('saved to redis: ' + d.postId +', at: '+ (new Date()).toString())
   //console.log(d)
   var n = 'output/' + Date.now() + '.json'
-  fs.writeFile(n, JSON.stringify(d), 'utf8')
+  fs.writeFile(n, JSON.stringify(d), 'utf8','\t')
 }
 
 // Server setup
