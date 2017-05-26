@@ -112,6 +112,7 @@
   }
   function get_browser_info(){
     var ua=navigator.userAgent,tem,M=ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+    console.log(ua);
     if(/trident/i.test(M[1])){
         tem=/\brv[ :]+(\d+)/g.exec(ua) || [];
         return 'IE '+(tem[1]||'');
