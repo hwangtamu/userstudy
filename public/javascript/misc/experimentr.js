@@ -83,9 +83,14 @@ experimentr = function() {
 
   // The HTTP POST code for saving experiment data.
   experimentr.save = function(d) {
+    var tmp = {};
+    for (var attr in data) { tmp[attr] = data[attr]; }
+    if('mat' in tmp){
+      delete tmp['mat'];
+    }
     d3.xhr('/')
       .header("Content-Type", "application/json")
-      .post(JSON.stringify(data), function(err, res) {
+      .post(JSON.stringify(tmp), function(err, res) {
         //if(err) console.log(err);
         //else console.log(JSON.stringify(data, null, '\t'));
       });
