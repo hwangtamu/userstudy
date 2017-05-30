@@ -76,7 +76,8 @@ function cell(t,g,j,k){
             if(k==0||(index_r>0 && k==1)){return " ";}
             if(k==3 && (title[j%cwidth.length]=="FFreq"||title[j%cwidth.length]=="LFreq")){
                 if(d3.select(this.parentNode.previousSibling).select("text").text()==""){return "NA";}
-                if(+t>2){return "3+";}
+                //if(+t>2){return "3+";}
+                return ""
             }
             return t;
         });
@@ -85,6 +86,27 @@ function cell(t,g,j,k){
     }
     // icons
     if(j>cwidth.length){
+        if(k==3 && (title[j%cwidth.length]=="FFreq"||title[j%cwidth.length]=="LFreq")) {
+            if(t==1){
+                cel.append("svg:image").attr("xlink:href","/resources/unique.png").attr("class","icon")
+                    .attr("x",cwidth[j%cwidth.length]/3).attr("y",cy/2-9).attr("width",20).attr("height",20);
+            } else {
+                    if(t<=3) {
+                        cel.append("svg:image").attr("xlink:href","/resources/rare.svg").attr("class","icon")
+                            .attr("x",cwidth[j%cwidth.length]/3).attr("y",cy/2-9).attr("width",20).attr("height",20);
+                } else {
+                        if(t<=10) {
+                            cel.append("svg:image").attr("xlink:href", "/resources/3_dots.svg").attr("class", "icon")
+                                .attr("x", cwidth[j % cwidth.length] / 3).attr("y", cy / 2 - 9).attr("width", 20).attr("height", 20);
+                        } else {
+                            cel.append("svg:image").attr("xlink:href", "/resources/infinity.png").attr("class", "icon")
+                                .attr("x", cwidth[j % cwidth.length] / 3).attr("y", cy / 2 - 9).attr("width", 20).attr("height", 20);
+                        }
+                }
+            }
+
+        }
+
         if(textbox.text()==""){
             if(title[j%cwidth.length]!="FFreq" && title[j%cwidth.length]!="LFreq"){
                 // missing

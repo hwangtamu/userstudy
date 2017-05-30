@@ -1,23 +1,25 @@
 source("0_header.R")
 
 
-mar17 <- read_csv("data/yancey1703.csv", 
-                  col_types = cols(.default = "c"))
+(mar17 <- read_csv("data/yancey1703.csv", 
+                  col_types = cols(.default = "c")))
 
-apr13 <- read_csv("data/yancey1304.csv", 
-                  col_types = cols(.default = "c"))
+(apr13 <- read_csv("data/yancey1304.csv", 
+                  col_types = cols(.default = "c")))
 
 (mar17_xs <-
    mar17 %>%
      filter(type == "XS") %>%
-       mutate(file = "mar17") %>%
-         select(ID = id, everything()))
+       mutate(file = "mar17",
+              ID = as.integer(voter_reg_num)) %>%
+         select(ID, everything(),-id))
 
 (apr13_xs <-
     apr13 %>%
     filter(type == "XS") %>%
-      mutate(file = "apr13") %>%
-        select(ID = id, everything()))
+      mutate(file = "apr13",
+             ID = as.integer(voter_reg_num)) %>%
+        select(ID = id, everything(),-id))
 
 (mar17_common_reg_xs <-
   mar17_xs %>%
@@ -32,11 +34,11 @@ apr13 <- read_csv("data/yancey1304.csv",
   mar17_common_reg_xs %>%
     select(ID,voter_reg_num))
 
-apr13_common_reg_xs <- 
+(apr13_common_reg_xs <- 
   apr13_common_reg_xs %>%
    select(-ID) %>%
      left_join(mar17_id_lookup, by = "voter_reg_num") %>%
-       select(ID, everything())
+       select(ID, everything()))
 
 
 xs_matches_diffs <- 
@@ -121,7 +123,8 @@ system("C:/Python27/python.exe call_egen.py")
   mutate(file = "mar17",
          dupid = NA,
          twinid = NA,
-         type = "XS"
+         type = "XS",
+         ID = as.integer(ID)
          ))
 
 equal_recs <- function(voter_reg_num, first_name, last_name, dob) {

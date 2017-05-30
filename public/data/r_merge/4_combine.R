@@ -33,15 +33,97 @@ unique_ID <-
 all_data <-
   all_data %>%
   group_by(file) %>% 
-  mutate(n = 1:n(), ID_u = paste0(file,"-",n)) %>%
+  mutate(n = 1:n(), 
+         ID_u = paste0(file,"-",n),
+         dob = ifelse(is.na(dob),"", dob)) %>%
   ungroup() %>% 
   select(ID, everything(), -file,-n, file_id = ID_u) %T>% 
   View()
 
 
+all_data %>%
+  filter(ID == 406)
+
 
 all_data %>%
   write_csv("data/groups_without_modif.csv")
+
+##########################################################################################
+# dl_dist_mat = function(str_1, str_2) {
+#   sp_str_1 = strsplit(str_1,"")[[1]]; sp_str_2 = strsplit(str_2,"")[[1]] #form the string
+#   len_1 = length(sp_str_1); len_2 = length(sp_str_2) #length of strings
+#   D <- matrix(nrow = len_2 + 1, ncol = len_1 + 1) #make a distance matrix
+#   
+#   D[1,] = 0:len_1 #the value for the 1st row
+#   D[,1] = 0:len_2 #the value for the 1st column
+#   
+#   for (i in (1:len_2)+1) { #string starts at 2nd row
+#     for (j in (1:len_1)+1) { #string starts at 2nd column
+#       frpi = D[i-1,j] + 1
+#       frpj = D[i,j-1] + 1
+#       frpij = D[i-1,j-1] + ifelse(sp_str_1[j-1] != sp_str_2[i-1],1,0)
+#       D[i,j] = min(frpi,frpj,frpij) #get the minimum value of three:frpi, frpj, frpij
+#       
+#       if (i>2 && j>2 && sp_str_1[j-1] == sp_str_2[i-2] && sp_str_1[j-2]==sp_str_2[i-1]) {
+#         fr2pij = D[i-2,j-2] + 1
+#         D[i,j] = min(D[i,j], fr2pij) #transposition
+#       }
+#       
+#     }
+#   }
+#   return(D) #get damerau-levenshtein distance: i from str2, j from str1
+# }
+# 
+# 
+# geneate_stars <- function(val_1, val_2){
+#   
+#   val_1 = "hello"
+#   val_2 = "henry"
+#   
+#   
+#   final_1 = ""
+#   final_2 = ""
+#   
+#   spl_val_1 = str_split(val_1, pattern = "")[[1]]
+#   spl_val_2 = str_split(val_2, pattern = "")[[1]]
+#   
+#   len_1 = length(spl_val_1)
+#   len_2 = length(spl_val_2)
+#   
+#   if (len_1 == 0) return(c("", val_2))
+#   if (len_1 == 0) return(c(val_1, ""))
+#   
+#   stringdistmatrix(spl_val_1,spl_val_2, method = "dl")
+#     
+# }
+# 
+# 
+# 
+# all_data %>%
+#   group_by(ID) %>% 
+#     
+# 
+# 
+# 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##########################################################################################
 
 name_diff <- function(name_1, name_2) {
   len_1 <- str_length(name_1)

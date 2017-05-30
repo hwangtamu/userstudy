@@ -1,12 +1,15 @@
 #from helper import *
 import csv
 
+
 def get_edit_distance(s1, s2):
     finalStr1 = ""
     finalStr2 = ""
 
-    if len(s1)*len(s2)==0:
-        return "Miss", ""
+    if len(s1)==0:
+        return "", s2
+    if len(s2)==0:
+        return s1, ""
 
     len1 = len(s1)
     len2 = len(s2)
@@ -86,7 +89,79 @@ def get_edit_distance(s1, s2):
 
     return finalStr1, finalStr2
 
-def pair(s,star_diff_index):
+
+def damerau_levenshtein_distance(s1, s2):
+    d = {}
+    lenstr1 = len(s1)
+    lenstr2 = len(s2)
+    for i in xrange(-1, lenstr1 + 1):
+        d[(i, -1)] = i + 1
+    for j in xrange(-1, lenstr2 + 1):
+        d[(-1, j)] = j + 1
+
+    for i in xrange(lenstr1):
+        for j in xrange(lenstr2):
+            if s1[i] == s2[j]:
+                cost = 0
+            else:
+                cost = 1
+            d[(i, j)] = min(
+                d[(i - 1, j)] + 1,  # deletion
+                d[(i, j - 1)] + 1,  # insertion
+                d[(i - 1, j - 1)] + cost,  # substitution
+            )
+            if i and j and s1[i] == s2[j - 1] and s1[i - 1] == s2[j]:
+                d[(i, j)] = min(d[(i, j)], d[i - 2, j - 2] + cost)  # transposition
+
+    return d[lenstr1 - 1, lenstr2 - 1]
+
+
+def check_starring(s1, s2):
+    len_1 = len(s1)
+    len_2 = len(s2)
+    if(len_1 >= len_2):
+        if s1[:len_2] == s2:
+            return True
+        elif s1[len(s1)-len(s2):] == s2:
+            return True
+        b_len = len_1
+    else:
+        if s2[:len_1] == s1:
+            return True
+        elif s2[len(s2)-len(s1):] == s1:
+            return True
+        b_len = len_2
+    edit_distance = damerau_levenshtein_distance(s1, s2)
+    # if s1 in ["BOSSARD","MCCLUSKEY"]:
+    #     print s1, s2, edit_distance, edit_distance/b_len
+    if float(edit_distance)/b_len > 0.5:
+        return False
+    return True
+
+
+def get_star_date(date_1, date_2):
+    #print date_1, date_2
+    if (len(date_1) < 10) & (len(date_2) < 10):
+        return "", ""
+    if len(date_1) < 10:
+        return "", date_2[:2] + date_2[3:5] + date_2[6:]
+    if len(date_2) < 10:
+        return date_1[:2] + date_1[3:5] + date_1[6:], ""
+    final_1 = ""
+    final_2 = ""
+    ind = [0,1,3,4,6,7,8,9]
+
+    for i in ind:
+        if date_1[i] == date_2[i]:
+            final_1 = final_1 + "*"
+            final_2 = final_2 + "*"
+        else:
+            final_1 = final_1 + date_1[i]
+            final_2 = final_2 + date_2[i]
+    return final_1,final_2
+
+
+def pair(s,star_indices):
     """
 
     :param s: a pair of records 
@@ -94,10 +169,16 @@ def pair(s,star_diff_index):
     """
     tmp1 = list(s[0])
     tmp2 = list(s[1])
-
+    star_index_values = star_indices.values()
     for i in range(len(tmp1)):
-        if i in star_diff_index:
-            x, y = get_edit_distance(tmp1[i], tmp2[i])
+        if i in star_index_values:
+            if i == star_indices["dob"]:
+                x, y = get_star_date(tmp1[i], tmp2[i])
+            else:
+                if check_starring(tmp1[i], tmp2[i]):
+                    x, y = get_edit_distance(tmp1[i], tmp2[i])
+                else:
+                    x, y = tmp1[i], tmp2[i]
         else:
             x,y = tmp1[i], tmp2[i]
         tmp1 += [x]
@@ -157,25 +238,22 @@ def make_list_dict(file_path,id_name):
 def star_similarities(d, star_indices,index_file_id):
     data = []
     id = 1
-    star_val = star_indices.values()
+    #star_val = star_indices.values()
     for p in d:
-
         for i in range(1, len(d[p])):
             file_id_1 = d[p][0][index_file_id]
             file_id_2 = d[p][i][index_file_id]
-            x, y = pair([d[p][0], d[p][i]], star_val)
-            #print x
-            if x[14]:
-                x[14] = x[14][:2] + '/' + x[14][3:5] + '/' + x[14][6:]
-            if y[-1]:
-                y[14] = y[14][:2] + '/' + y[14][3:5] + '/' + y[14][6:]
+            if not file_id_1 == file_id_2:
+                x, y = pair([d[p][0], d[p][i]], star_indices)
+                if not len(x[14]) < 8:
+                    x[14] = x[14][:2] + '/' + x[14][2:4] + '/' + x[14][4:]
+                if not len(y[14]) < 8:
+                    y[14] = y[14][:2] + '/' + y[14][2:4] + '/' + y[14][4:]
 
-            data += [[id, file_id_1] + x]
-            data += [[id, file_id_2] + y]
-        id += 1
+                data += [[id, file_id_1] + x]
+                data += [[id, file_id_2] + y]
+                id += 1
     return data
-
-
 
 
 def data_filter(data_as_list,item):
@@ -219,10 +297,9 @@ def write_data(data_list,file_name):
 
 
 d ,title, star_indices , ff, lf, index_file_id = make_list_dict("groups_without_modif.csv","ID")
-print star_indices["dob"]
 
 data = star_similarities(d, star_indices,index_file_id)
-print data
+
 data_egen = data_filter(data, "egen")
 data_twins = data_filter(data,"twins")
 data_duplicates = data_filter(data,"duplicate")
@@ -239,79 +316,3 @@ write_data(data_duplicates, "data_duplicates.csv")
 write_data(data_natural, "data_natural.csv")
 
 
-
-
-
-
-
-
-
-#
-# f = open('output.csv','wb')
-# w = csv.writer(f)
-# w.writerow(['Group ID', 'Record ID', 'First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB', 'First Name', 'Last Name', 'Reg No.', 'DoB'])
-# mapping = [0, 1, 4, 11, 3, 10, 2, 5, 8, 7, 6, 9]
-# for i in data:
-#     i+=[lf[i[3]], ff[i[4]]]
-#     w.writerow([i[m] for m in mapping])
-#
-
-#
-# f = open('groups.csv', 'r')
-# reader = csv.reader(f)
-# d = {}
-# title = []
-# # name frequency
-# ff = {}
-# lf = {}
-#
-# for i in reader:
-#     if i[0].isalpha():
-#         title = i
-#     if i[0].isdigit():
-#         if i[0] not in d:
-#             d[i[0]] = [i[1:]]
-#         else:
-#             d[i[0]] += [i[1:]]
-#
-#         #freq
-#         if i[2] not in lf:
-#             lf[i[2]] = 1
-#         else:
-#             lf[i[2]] += 1
-#         if i[3] not in ff:
-#             ff[i[3]] = 1
-#         else:
-#             ff[i[3]] += 1
-#
-# print lf
-# print ff
-# print d
-
-
-# id = 1
-#
-# for p in d:
-#     if len(d[p]) == 2:
-#         x, y = pair([d[p][0], d[p][1]])
-#         if x[-1]:
-#             x[-1] = x[-1][:2] + '/' + x[-1][3:5] + '/' + x[-1][6:]
-#         if y[-1]:
-#             y[-1] = y[-1][:2] + '/' + y[-1][3:5] + '/' + y[-1][6:]
-#
-#         data_ += [[id, p] + x]
-#         data_ += [[id, p] + y]
-#     if counter == 5:
-#         break
-#     id += 1
-#     counter += 1
-
-
-# f = open('output_.csv','wb')
-# w = csv.writer(f)
-# w.writerow(['Group ID', 'Record ID', 'First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB', 'First Name', 'Last Name', 'Reg No.', 'DoB'])
-# mapping = [0, 1, 4, 11, 3, 10, 2, 5, 8, 7, 6, 9]
-# for i in data_:
-#     i+=[lf[i[3]], ff[i[4]]]
-#     w.writerow([i[m] for m in mapping])
-#
