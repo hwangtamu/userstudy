@@ -95,7 +95,8 @@
   function goToNext() {
     experimentr.endTimer('background_info');
     experimentr.addData(data);
-    if (experimentr.data()["mode"]=="Vanilla"){
+
+      if (experimentr.data()["mode"]=="Vanilla"){
       // remove icon instructions
       experimentr.sequence().splice(3,1);
     }
@@ -133,6 +134,7 @@
           if(data.mode!=""){
               experimentr.endTimer('background_info');
               experimentr.addData(data);
+              console.log(experimentr.data()["mode"]);
               experimentr.sequence([
                   'modules/5.html',
                   'modules/end.html'

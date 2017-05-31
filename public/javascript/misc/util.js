@@ -54,7 +54,6 @@ function cell(t,g,j,k){
             .style("opacity",1);
     }
 
-
     var textbox = cel.append("text").attr("class","tbox").attr("id","t"+j.toString());
     textbox.attr("x",function(){
         //if(k==3 && (title[j%10]=="FFreq"||title[j%10]=="LFreq"||
@@ -74,17 +73,25 @@ function cell(t,g,j,k){
         return "16px Lucida Console";})//.style("font-weight","bold")
         .text(function(){
             if(k==0||(index_r>0 && k==1)){return " ";}
-            if(k==3 && (title[j%cwidth.length]=="FFreq"||title[j%cwidth.length]=="LFreq")){
+            else if(k==3 && (title[j%cwidth.length]=="FFreq"||title[j%cwidth.length]=="LFreq")){
                 if(d3.select(this.parentNode.previousSibling).select("text").text()==""){return "NA";}
                 //if(+t>2){return "3+";}
-                return ""
+                return "";
             }
             return t;
         });
     if(k==1){
         textbox.style("font-weight","bold");
     }
+
     // icons
+    var indel = [],
+        replace = [],
+        transpose = [],
+        indel_ = [],
+        replace_ = [],
+        transpose_ = [];
+
     if(j>cwidth.length){
         if(k==3 && (title[j%cwidth.length]=="FFreq"||title[j%cwidth.length]=="LFreq")) {
             if(t==1){
@@ -125,11 +132,10 @@ function cell(t,g,j,k){
                 var m = j+cwidth.length,
                     p = g.attr("id").slice(1),
                     dat = experimentr.data()['mat'][Math.floor(p/5)],
-                    t_j = j<2*cwidth.length ? dat[p%5][0][mapping[j%cwidth.length]] : dat[p%5][1][mapping[j%cwidth.length]],
-                    t_m = m<2*cwidth.length ? dat[p%5][0][mapping[m%cwidth.length]] : dat[p%5][1][mapping[m%cwidth.length]],
-                    bin = [],
-                    indel = [],
-                    replace = [];
+                    t_j = dat[p%5][0][mapping[j%cwidth.length]],
+                    t_m = dat[p%5][1][mapping[m%cwidth.length]],
+                    bin = [];
+
 
                 //console.log(t_j, t_m);
                 if(t_j!="" && t_m!=""){
@@ -137,7 +143,8 @@ function cell(t,g,j,k){
                         //indel
                         if((t_j[i]==" "&&t_m[i]!=" ")||(t_j[i]!=" "&&t_m[i]==" ")){
                             bin.push(i);
-                            indel.push(i);
+                            if(t_j[i]==" "&&t_m[i]!=" "){indel_.push(i);}
+                            if(t_j[i]!=" "&&t_m[i]==" "){indel.push(i);}
                             //g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/indel.png")
                             //    .attr("class","icon").attr("x",9*i)
                             //    .attr("y",cy/2+15).attr("width",16).attr("height",16);
@@ -148,6 +155,8 @@ function cell(t,g,j,k){
                             g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/transpose.png")
                                 .attr("class","icon").attr("x",9*i+4)
                                 .attr("y",cy/2+13).attr("width",18).attr("height",18);
+                            transpose.push(i, i+1);
+                            transpose_.push(i,i+1);
                             num+=1;
                         }
                         //transpose two
@@ -157,12 +166,15 @@ function cell(t,g,j,k){
                             g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/transpose.png")
                                 .attr("class","icon").attr("x",9*i+12)
                                 .attr("y",cy/2+13).attr("width",18).attr("height",18);
+                            transpose.push(i,i+1,i+3,i+4);
+                            transpose_.push(i,i+1,i+3,i+4);
                             num+=1
                         }
                         //replace
                         else if (bin.indexOf(i)==-1 && t_j[i] != t_m[i] && t_j[i] != " " && t_m[i] != " ") {
                             bin.push(i);
                             replace.push(i);
+                            replace_.push(i);
                             //g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/replace.png")
                             //    .attr("class", "icon").attr("x", function(){
                                     /*if (d3.select(this.parentNode).text().length==1){
@@ -224,11 +236,19 @@ function cell(t,g,j,k){
                     //if(bin.length>0){
                     //    console.log(indel, replace);
                     //}
-                    console.log(num);
+                    //console.log(num);
                 }
             }
         }
     }
+    if(indel.length+indel_.length+replace.length+replace_.length>0){
+        console.log(g.select("#t"+j.toString()).text(), g.select("#t"+m.toString()).text());
+    }
+
+    if(j<2*cwidth.length && textbox.text()=="  "){
+        g.select("#c"+j.toString()).selectAll(".icon").remove();
+        cel.append("svg:image").attr("xlink:href","/resources/replace.png").attr("class","icon")
+            .attr("x",cwidth[j%cwidth.length]/5).attr("y",cy/2).attr("width",48).attr("height",48);    }
 
     // click event
     // if(k==6){
@@ -274,6 +294,9 @@ function cell(t,g,j,k){
     //
     //     });
     // }
+
+    // coloring letters based on operations
+    // indel, indel_, replace, replace_, transpose, transpose_
 
     // coloring '@' and '#'
     if(experimentr.data()['mode']=="Partial" && k==3 && title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
@@ -389,6 +412,7 @@ function pair(t,g,m){
         row1 = t.slice(a,b);row2 = t.slice(b,c);
         k1 = k.slice(a,b);k2 = k.slice(b,c);
 
+
         //for(var j=2;j<a;j++){
         //    if(j==3 || j==5) {
         //        t[j] = ' ';
@@ -406,6 +430,14 @@ function pair(t,g,m){
                 row1[mapping[j]] = ' ';
                 row2[mapping[j]] = ' ';
             }
+        }
+        // last name
+        if(row1[4].length>1 && row1[4].indexOf("*")==-1 && row2[4].length>1 && row2[4].indexOf("*")==-1){
+            row1[4] = "  "; row2[4] = "  ";
+        }
+        // first name
+        if(row1[2].length>1 && row1[2].indexOf("*")==-1 && row2[2].length && row2[2].indexOf("*")==-1){
+            row1[2] = "  "; row2[2] = "  ";
         }
     }
     else if(m=="Vanilla"){
@@ -426,6 +458,16 @@ function pair(t,g,m){
         }
         row1 = t.slice(a,b);row2 = t.slice(b,c);
         k1 = k.slice(a,b);k2 = k.slice(b,c);
+
+        // last name
+        if(row1[9].length>1 && row1[9].indexOf("*")==-1 && row2[9].length>1 && row2[9].indexOf("*")==-1){
+            row1[4] = "  "; row2[4] = "  ";
+        }
+        // first name
+        if(row1[8].length>1 && row1[8].indexOf("*")==-1 && row2[8].length && row2[8].indexOf("*")==-1){
+            row1[2] = "  "; row2[2] = "  ";
+        }
+
     }else{
         for(var j=0;j<mapping.length;j++){
             row1[j] = t[a+mapping[j]];row2[j] = t[b+mapping[j]];
@@ -452,13 +494,32 @@ function pair(t,g,m){
             }
 
             for(var j=a;j<b-a;j++){
-                if(row1[mapping[j]]==row2[mapping[j]]){
+               if(row1[mapping[j]]==row2[mapping[j]] && row1[j]!="  "){
                     row1[mapping[j]] = ' ';
                     row2[mapping[j]] = ' ';
                 }
             }
+
+            // last name
+            if(row1[9].length>1 && row1[9].indexOf("*")==-1 && row2[9].length>1 && row2[9].indexOf("*")==-1 && row1[9]!=row2[9]){
+                row1[4] = "  "; row2[4] = "  ";
+            }
+            // first name
+            if(row1[8].length>1 && row1[8].indexOf("*")==-1 && row2[8].length && row2[8].indexOf("*")==-1 && row1[8]!=row2[8]){
+                row1[2] = "  "; row2[2] = "  ";
+            }
         }
         if(m=="Partial_Row"||m=="Partial_Cell"){
+
+            // last name
+            if(row1[4].indexOf("*")==-1 && row2[4].indexOf("*")==-1){
+                row1[4] = "  "; row2[4] = "  ";
+            }
+            // first name
+            if(row1[2].indexOf("*")==-1 && row2[2].indexOf("*")==-1){
+                row1[2] = "  "; row2[2] = "  ";
+            }
+
             for(var j=1;j<mapping.length;j++){
                 k1[j] = j<a ? 3:9;k2[j] = j<a ? 3:9;
                 if(j>0 && j<a && j!=3 && j!=5 && row1[j]==row2[j] && row1[j]!=""){
@@ -482,6 +543,7 @@ function pair(t,g,m){
             //        }
             //    }
             //}
+
 
         }
     }
