@@ -241,9 +241,9 @@ function cell(t,g,j,k){
             }
         }
     }
-    if(indel.length+indel_.length+replace.length+replace_.length>0){
-        console.log(g.select("#t"+j.toString()).text(), g.select("#t"+m.toString()).text());
-    }
+    //if(indel.length+indel_.length+replace.length+replace_.length>0){
+    //    console.log(g.select("#t"+j.toString()).text(), g.select("#t"+m.toString()).text());
+    //}
 
     if(j<2*cwidth.length && textbox.text()=="  "){
         g.select("#c"+j.toString()).selectAll(".icon").remove();
