@@ -242,13 +242,13 @@ function cell(t,g,j,k){
         }
     }
     //if(indel.length+indel_.length+replace.length+replace_.length>0){
-    //    console.log(g.select("#t"+j.toString()).text(), g.select("#t"+m.toString()).text());
+    //    console.log(g.select("#c"+j.toString()).select("text").text(),j,m);
     //}
 
-    if(j<2*cwidth.length && textbox.text()=="  "){
-        g.select("#c"+j.toString()).selectAll(".icon").remove();
-        cel.append("svg:image").attr("xlink:href","/resources/replace.png").attr("class","icon")
-            .attr("x",cwidth[j%cwidth.length]/5).attr("y",cy/2).attr("width",48).attr("height",48);    }
+    //if(j<2*cwidth.length && textbox.text()=="  "){
+    //    g.select("#c"+j.toString()).selectAll(".icon").remove();
+    //    cel.append("svg:image").attr("xlink:href","/resources/replace.png").attr("class","icon")
+    //        .attr("x",cwidth[j%cwidth.length]/5).attr("y",cy/2).attr("width",48).attr("height",48);    }
 
     // click event
     // if(k==6){
