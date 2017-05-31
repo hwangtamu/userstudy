@@ -50,6 +50,38 @@ duplicates %>%
         select(n, everything()) %>%
           View()
 
+extract_unique_elements <- function(non_unique_data) {
+  
+  unique_data <- 
+    non_unique_data %>%
+    group_by(voter_reg_num,first_name,last_name,dob) %>%
+    mutate(n = n(),
+           file = ifelse(n == 2, 
+                         "both", 
+                         file)) %>%
+    ungroup() %>%
+    select(-n) %>%
+    unique()
+  
+  unique_data <- 
+    unique_data %>%
+    mutate(file = ifelse(file == "both", 
+                         sample(c("mar17","apr13"),1),
+                         file))
+  
+  return(unique_data)
+}
+
+
+set.seed(1)
+duplicates <-
+  duplicates %>%
+  group_by(ID) %>% 
+  mutate(n = n()) %>%
+  arrange(desc(n)) %>%
+  do(extract_unique_elements(.))
+
+
 
 write_csv(duplicates, "data/duplicates_r.csv")
 
