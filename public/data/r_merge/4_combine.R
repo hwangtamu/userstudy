@@ -48,6 +48,13 @@ all_data %>%
 all_data %>%
   write_csv("data/groups_without_modif.csv")
 
+
+# all_data %>%
+#   mutate(str = str_length(voter_reg_num)) %$%
+#     str %>%
+#       unique()
+
+
 ##########################################################################################
 # dl_dist_mat = function(str_1, str_2) {
 #   sp_str_1 = strsplit(str_1,"")[[1]]; sp_str_2 = strsplit(str_2,"")[[1]] #form the string

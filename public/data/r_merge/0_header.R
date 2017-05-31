@@ -30,3 +30,5 @@
   choices <- c(core_workflow, visualisation)
   
   load_all_packages(choices)
+  
+rm(load_all_packages, choices, visualisation, core_workflow, load_package)

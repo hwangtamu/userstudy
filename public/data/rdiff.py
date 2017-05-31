@@ -115,6 +115,34 @@ def damerau_levenshtein_distance(s1, s2):
 
     return d[lenstr1 - 1, lenstr2 - 1]
 
+def hamming_with_transpose(s1, s2):
+    s1 = str(s1)
+    s2 = str(s2)
+    d = {}
+    lenstr1 = len(s1)
+    lenstr2 = len(s2)
+    for i in xrange(-1, lenstr1 + 1):
+        d[(i, -1)] = i + 1
+    for j in xrange(-1, lenstr2 + 1):
+        d[(-1, j)] = j + 1
+
+    for i in xrange(lenstr1):
+        for j in xrange(lenstr2):
+            if s1[i] == s2[j]:
+                cost = 0
+            else:
+                cost = 1
+            d[(i, j)] = min(500,d[(i - 1, j - 1)] + cost,) # substitution
+
+            if i and j and s1[i] == s2[j - 1] and s1[i - 1] == s2[j]:
+                d[(i, j)] = min(d[(i, j)], d[i - 2, j - 2] + cost)  # transposition
+
+    return d[lenstr1 - 1, lenstr2 - 1]
+
+
+#print damerau_levenshtein_distance("0012","0013")
+#print hamming_with_transpose("2012","0221")
+
 
 def check_starring(s1, s2):
     len_1 = len(s1)
@@ -147,6 +175,21 @@ def get_star_date(date_1, date_2):
         return "", date_2[:2] + date_2[3:5] + date_2[6:]
     if len(date_2) < 10:
         return date_1[:2] + date_1[3:5] + date_1[6:], ""
+
+    day_1 = date_1[:2]
+    day_2 = date_2[:2]
+
+    month_1 = date_1[3:5]
+    month_2 = date_2[3:5]
+
+    year_1 = date_1[6:]
+    year_2 = date_2[6:]
+
+    if not day_1 == day_2:
+        if not month_1 == month_2:
+            if not year_1 == year_2:
+                return date_1[:2] + date_1[3:5] + date_1[6:], date_2[:2] + date_2[3:5] + date_2[6:]
+
     final_1 = ""
     final_2 = ""
     ind = [0,1,3,4,6,7,8,9]
@@ -159,6 +202,33 @@ def get_star_date(date_1, date_2):
             final_1 = final_1 + date_1[i]
             final_2 = final_2 + date_2[i]
     return final_1,final_2
+
+def get_star_vot_reg(n1, n2):
+    n1 = str(n1)
+    n2 = str(n2)
+    final_1 = ""
+    final_2 = ""
+
+    len_1 = len(n1)
+    len_2 = len(n2)
+
+    if not len_1 == len_2:
+        return n1, n2
+
+    hamm_trans = hamming_with_transpose(n1,n2)
+
+    if hamm_trans > 4:
+        return n1, n2
+    else:
+        for i in range(len_1):
+            if n1[i] == n2[i]:
+                final_1 = final_1 + "*"
+                final_2 = final_2 + "*"
+            else:
+                final_1 = final_1 + n1[i]
+                final_2 = final_2 + n2[i]
+
+    return final_1, final_2
 
 
 def pair(s,star_indices):
@@ -174,6 +244,8 @@ def pair(s,star_indices):
         if i in star_index_values:
             if i == star_indices["dob"]:
                 x, y = get_star_date(tmp1[i], tmp2[i])
+            elif i == star_indices["voter_reg_num"]:
+                x, y = get_star_vot_reg(tmp1[i], tmp2[i])
             else:
                 if check_starring(tmp1[i], tmp2[i]):
                     x, y = get_edit_distance(tmp1[i], tmp2[i])
