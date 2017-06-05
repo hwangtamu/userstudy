@@ -133,7 +133,7 @@ function cell(t,g,j,k){
                 .attr("x",cwidth[j%cwidth.length]/3).attr("y",cy/2+15).attr("width",18).attr("height",18);
         }else{
             var num = 0;
-            if(j<cwidth.length*2 && title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="FFreq" && title[j%cwidth.length]!="LFreq"){
+            if(title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="FFreq" && title[j%cwidth.length]!="LFreq"){
                 var m = j+cwidth.length,
                     p = g.attr("id").slice(1),
                     dat = experimentr.data()['mat'][Math.floor(p/5)],
@@ -144,29 +144,32 @@ function cell(t,g,j,k){
 
                 //console.log(t_j, t_m);
                 if(t_j!="" && t_m!=""){
-                    for(var i=0;i<t_j.length;i++){
+                    for(var i=0;i<Math.max(t_j.length, t_m.length);i++){
                         //indel
                         if((t_j[i]==" "&&t_m[i]!=" ")||(t_j[i]!=" "&&t_m[i]==" ")){
                             bin.push(i);
-                            if(t_j[i]==" "&&t_m[i]!=" "){indel_.push(i);}
-                            if(t_j[i]!=" "&&t_m[i]==" "){indel.push(i);}
+                            if((t_j[i]==" "&&t_m[i]!=" ") || i>t_j.length){indel_.push(i);}
+                            if((t_j[i]!=" "&&t_m[i]==" ") || i>t_m.length){indel.push(i);}
                             //g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/indel.png")
                             //    .attr("class","icon").attr("x",9*i)
                             //    .attr("y",cy/2+15).attr("width",16).attr("height",16);
                         }
                         //transpose
-                        else if(bin.indexOf(i)==-1 && t_j[i]==t_m[i+1] && t_j[i+1]==t_m[i] && t_j[i]!="*" && t_m[i]!="*" && t_j[i+1]!="*" && t_m[i+1]!="*"){
+                        else if(bin.indexOf(i)==-1 && t_j[i]==t_m[i+1] && t_j[i+1]==t_m[i] && t_j[i]!="*" && t_m[i]!="*"
+                            && t_j[i+1]!="*" && t_m[i+1]!="*" && t_j[i]==t_j[i+1] && t_j[i]!=t_j[i+1]){
+                            //console.log(t_m, t_j);
                             bin.push(i,i+1);
                             g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/transpose.png")
                                 .attr("class","icon").attr("x",9*i+4)
                                 .attr("y",cy/2+13).attr("width",18).attr("height",18);
-                            transpose.push(i, i+1);
+                            transpose.push(i,i+1);
                             transpose_.push(i,i+1);
                             num+=1;
                         }
-                        //transpose two
+                        //swap
                         else if(bin.indexOf(i)==-1 && t_j[i]==t_m[i+3] && t_j[i+1]==t_m[i+4] && t_j[i+3]==t_m[i] && t_j[i+4]==t_m[i+1]
-                            && t_j[i]!="*" && t_j[i+1]!="*" && t_j[i+2]!="*" && t_j[i+3]!="*"){
+                            && t_j[i]!="*" && t_j[i+1]!="*" && t_j[i+2]!="*" && t_j[i+3]!="*" && t_j[i]!=t_j[i+3] && t_j[i+1]!=t_j[i+4]){
+                            //console.log(t_m, t_j);
                             bin.push(i,i+1,i+2,i+3,i+4);
                             g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/transpose.png")
                                 .attr("class","icon").attr("x",9*i+12)
@@ -182,9 +185,9 @@ function cell(t,g,j,k){
                             replace_.push(i);
                             //g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/replace.png")
                             //    .attr("class", "icon").attr("x", function(){
-                                    /*if (d3.select(this.parentNode).text().length==1){
-                                        return cx/2-9;
-                                    }*/
+                            /*if (d3.select(this.parentNode).text().length==1){
+                             return cx/2-9;
+                             }*/
                             //    return 9*i;
                             //})
                             //    .attr("y", cy/2+13).attr("width", 18).attr("height", 18);
@@ -206,6 +209,15 @@ function cell(t,g,j,k){
                         }
                     }
 
+                    for(var i=0;i<indel_.length;i++) {
+                        //console.log(indel.indexOf(indel[i]-1));
+                        if (indel_.indexOf(indel_[i] - 1) == -1) {
+                            _indel.push([indel_[i]]);
+                        } else {
+                            _indel[_indel.length-1].push(indel_[i]);
+                        }
+                    }
+
                     for(var i=0;i<_indel.length;i++){
                         __indel.push(_indel[i].reduce((previous, current) => current += previous)/_indel[i].length);
                     }
@@ -222,21 +234,22 @@ function cell(t,g,j,k){
                     for(var i=0;i<_replace.length;i++){
                         __replace.push(_replace[i].reduce((previous, current) => current += previous)/_replace[i].length);
                     }
+                    if(j<2*cwidth.length){
+                        for(var i=0;i<__indel.length;i++){
+                            g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/indel.png")
+                                .attr("class","icon").attr("x",9*__indel[i])
+                                .attr("y",cy/2+16).attr("width",14).attr("height",14);
+                            num+=1;
+                        }
 
-                    for(var i=0;i<__indel.length;i++){
-                        g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/indel.png")
-                            .attr("class","icon").attr("x",9*__indel[i])
-                            .attr("y",cy/2+16).attr("width",14).attr("height",14);
-                        num+=1;
-                    }
-
-                    for(var i=0;i<__replace.length;i++){
-                        g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/replace.png")
-                            .attr("class", "icon").attr("x", function(){
-                            return 9*__replace[i];
-                        })
-                            .attr("y", cy/2+13).attr("width", 18).attr("height", 18);
-                        num+=1;
+                        for(var i=0;i<__replace.length;i++){
+                            g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/replace.png")
+                                .attr("class", "icon").attr("x", function(){
+                                return 9*__replace[i];
+                            })
+                                .attr("y", cy/2+13).attr("width", 18).attr("height", 18);
+                            num+=1;
+                        }
                     }
                     //if(bin.length>0){
                     //    console.log(indel, replace);
@@ -247,7 +260,7 @@ function cell(t,g,j,k){
         }
     }
     //if(indel.length+indel_.length+replace.length+replace_.length>0){
-    //    console.log(g.select("#c"+j.toString()).select("text").text(),j,m);
+    //    console.log(indel, indel_, replace, replace_);
     //}
 
     if(j<2*cwidth.length && textbox.text()=="  "){
@@ -305,7 +318,8 @@ function cell(t,g,j,k){
     // indel, indel_, replace, replace_, transpose, transpose_
 
     // coloring '@' and '#'
-    if(experimentr.data()['mode']=="Partial" && k==3 && title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
+    if(experimentr.data()['mode']=="Partial" || experimentr.data()['mode']=="Partial_Cell" && k>=3 && k<=6 &&
+        title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
         g.select("#c"+j.toString()).select(".span").remove();
         var p = g.attr("id").slice(1), //pair id
             dat = experimentr.data()['mat'][Math.floor(p/5)],
@@ -321,21 +335,26 @@ function cell(t,g,j,k){
             if(t_j[l]==t_m[l] && t_j[l]!='T' && t_j[l]!='X'){scheme.push(0);}
             else{scheme.push(1);}
         }
-        //console.log(t_j, t_m);
+        var t_count = 0;
         for(var l=0;l<len;l++){
-            var $tspan = $tb.append('tspan');
-            $tspan.attr("x",0.6*l+"em").attr("y",cy/2+5)
-                .attr("text-anchor","left")
-                .style("font",function(){
-                    if(experimentr.data()['os']=="MacOS"){return "16px Monaco";}
-                    if(experimentr.data()['os']=="Linux"){return "16px Lucida Sans Typewriter";}
-                    return "16px Lucida Console";})
-                .attr("fill",function(){
-                    //if(t_j.length!=t_jj.length){return "black";}
-                    //if(scheme[l]==1 && j<2*cwidth.length){return "#9b3d18";}
-                    //if(scheme[l]==1 && j>2*cwidth.length){return "#0945a5";}
-                    return "black";})
-                .text(t[l]);
+            if(t[l]!="_"){
+                var $tspan = $tb.append('tspan');
+                $tspan.attr("x",0.6*t_count+"em").attr("y",cy/2+5)
+                    .attr("text-anchor","left")
+                    .style("font",function(){
+                        if(experimentr.data()['os']=="MacOS"){return "16px Monaco";}
+                        if(experimentr.data()['os']=="Linux"){return "16px Lucida Sans Typewriter";}
+                        return "16px Lucida Console";})
+                    .attr("fill",function(){
+                        if((j<2*cwidth.length && indel.indexOf(l)>-1)||(j>2*cwidth.length && indel_.indexOf(l)>-1)){return "green";}
+                        else if((j<2*cwidth.length && replace.indexOf(l)>-1)||(j>2*cwidth.length && replace_.indexOf(l)>-1)){return "#9b3d18";}
+                        //if(t_j.length!=t_jj.length){return "black";}
+                        //if(scheme[l]==1 && j<2*cwidth.length){return "#9b3d18";}
+                        //if(scheme[l]==1 && j>2*cwidth.length){return "#0945a5";}
+                        return "black";})
+                    .text(t[l]);
+            t_count+=1;
+            }
         }
         g.select("#t"+j.toString()).remove();
 
