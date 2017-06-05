@@ -661,12 +661,14 @@ function pairs(t,s,n,m) {
             choices(g,920,1,1);
         }
         if(i==0){
-            var panel = g.append("g").attr("id","panel").attr("transform","translate(920,0)");
+            // var panel = g.append("g").attr("id","panel").attr("transform","translate(920,0)");
+            var panel = g.append("g").attr("id","panel").attr("transform","translate(890,0)");
 
-            var re = panel.append("rect").attr("x",30).attr("height",24).attr("width",320).style("fill","add8e6");
+            // var re = panel.append("rect").attr("x",30).attr("height",24).attr("width",320).style("fill","add8e6");
+            var re = panel.append("rect").attr("x",0).attr("height",24).attr("width",350).style("fill","add8e6");
 
             var te = panel.append("text")
-                .attr("x",80)
+                .attr("x",100)
                 .attr("y",17)
                 .text("Choice Panel")
                 .style("font",function(){

@@ -1,0 +1,512 @@
+group_by(ID) %>%
+mutate(n = n()) %>%
+arrange(desc(n)) %T>%
+View
+twins_combined_2 %>%
+group_by(ID) %>%
+mutate(n = n()) %>%
+arrange(desc(n)) %T>%
+View %>%
+do(function(.) {
+data = .
+data %>%
+select(-file) %>%
+unique()
+})
+extract_unique_elements <- function(non_unique_data) {
+non_unique_data %>%
+select(-file) %>%
+unique()
+}
+twins_combined_2 %>%
+group_by(ID) %>%
+mutate(n = n()) %>%
+arrange(desc(n)) %T>%
+View %>%
+do(extract_unique_elements(.))
+twins_combined_2 %>%
+group_by(ID) %>%
+mutate(n = n()) %>%
+arrange(desc(n)) %T>%
+View() %>%
+do(extract_unique_elements(.)) %>%
+View()
+twins_combined_2
+twins_combined_2 %>%
+group_by(ID) %>%
+mutate(n = n()) %>%
+arrange(desc(n))
+extract_unique_elements <- function(non_unique_data) {
+lookup <- as_tibble(non_unique_data$ID, non_unique_data$file)
+set.seed(1)
+lookup <- sample_n(lookup, size = nrow(lookup))
+lookup %>%
+group_by(ID) %>%
+top_n(1)
+unique_data <- non_unique_data %>%
+select(-file) %>%
+unique() %>%
+left_join(lookup)
+unique_data
+}
+twins_combined_2 %>%
+group_by(ID) %>%
+mutate(n = n()) %>%
+arrange(desc(n)) %>%
+do(extract_unique_elements(.)) %>%
+View()
+extract_unique_elements <- function(non_unique_data) {
+lookup <- as_tibble(non_unique_data$ID, non_unique_data$file)
+set.seed(1)
+lookup <- sample_n(lookup, size = nrow(lookup))
+lookup %>%
+group_by(ID) %>%
+top_n(1)
+unique_data <- non_unique_data %>%
+select(-file) %>%
+unique() %>%
+left_join(lookup)
+return(unique_data)
+}
+extract_unique_elements <- function(non_unique_data) {
+lookup <- as_tibble(non_unique_data$ID, non_unique_data$file)
+set.seed(1)
+lookup <- sample_n(lookup, size = nrow(lookup))
+lookup %>%
+group_by(ID) %>%
+top_n(1)
+unique_data <- non_unique_data %>%
+select(-file) %>%
+unique() %>%
+left_join(lookup)
+return(unique_data)
+}
+twins_combined_2 %>%
+group_by(ID) %>%
+mutate(n = n()) %>%
+arrange(desc(n)) %>%
+do(extract_unique_elements(.)) %>%
+View()
+extract_unique_elements <- function(non_unique_data) {
+lookup <- as_tibble(ID = non_unique_data$ID, file = non_unique_data$file)
+set.seed(1)
+lookup <- sample_n(lookup, size = nrow(lookup))
+lookup %>%
+group_by(ID) %>%
+top_n(1)
+unique_data <- non_unique_data %>%
+select(-file) %>%
+unique() %>%
+left_join(lookup)
+return(unique_data)
+}
+twins_combined_2 %>%
+group_by(ID) %>%
+mutate(n = n()) %>%
+arrange(desc(n)) %>%
+do(extract_unique_elements(.)) %>%
+View()
+extract_unique_elements <- function(non_unique_data) {
+lookup <- as_tibble(ID = non_unique_data$ID, file = non_unique_data$file)
+set.seed(1)
+lookup <- sample_n(lookup, size = nrow(lookup))
+lookup %>%
+group_by(ID) %>%
+top_n(1)
+unique_data <- non_unique_data %>%
+select(-file) %>%
+unique() %>%
+left_join(lookup)
+return(unique_data)
+}
+twins_combined_2 %>%
+group_by(ID) %>%
+mutate(n = n()) %>%
+arrange(desc(n)) %>%
+do(extract_unique_elements(.)) %>%
+View()
+extract_unique_elements <- function(non_unique_data) {
+lookup <-
+non_unique_data %>%
+select(ID, file)
+set.seed(1)
+lookup <- sample_n(lookup, size = nrow(lookup))
+lookup %>%
+group_by(ID) %>%
+top_n(1)
+unique_data <- non_unique_data %>%
+select(-file) %>%
+unique() %>%
+left_join(lookup)
+return(unique_data)
+}
+twins_combined_2 %>%
+group_by(ID) %>%
+mutate(n = n()) %>%
+arrange(desc(n)) %>%
+do(extract_unique_elements(.)) %>%
+View()
+debug(extract_unique_elements)
+twins_combined_2 %>%
+group_by(ID) %>%
+mutate(n = n()) %>%
+arrange(desc(n)) %>%
+do(extract_unique_elements(.)) %>%
+View()
+View(non_unique_data)
+View(lookup)
+extract_unique_elements <- function(non_unique_data) {
+lookup <-
+non_unique_data %>%
+select(ID, file)
+set.seed(1)
+lookup <- sample_n(lookup, size = nrow(lookup))
+lookup %>%
+group_by(ID) %>%
+slice(1)
+unique_data <- non_unique_data %>%
+select(-file) %>%
+unique() %>%
+left_join(lookup)
+return(unique_data)
+}
+twins_combined_2 %>%
+group_by(ID) %>%
+mutate(n = n()) %>%
+arrange(desc(n)) %>%
+do(extract_unique_elements(.)) %>%
+View()
+debug(extract_unique_elements)
+twins_combined_2 %>%
+group_by(ID) %>%
+mutate(n = n()) %>%
+arrange(desc(n)) %>%
+do(extract_unique_elements(.)) %>%
+View()
+View(lookup)
+extract_unique_elements <- function(non_unique_data) {
+lookup <-
+non_unique_data %>%
+select(voter_reg_num, file)
+set.seed(1)
+lookup <- sample_n(lookup, size = nrow(lookup))
+lookup %>%
+group_by(voter_reg_num) %>%
+slice(1)
+unique_data <- non_unique_data %>%
+select(-file) %>%
+unique() %>%
+left_join(lookup)
+return(unique_data)
+}
+debug(extract_unique_elements)
+extract_unique_elements <- function(non_unique_data) {
+lookup <-
+non_unique_data %>%
+select(voter_reg_num, file)
+set.seed(1)
+lookup <- sample_n(lookup, size = nrow(lookup))
+lookup %>%
+group_by(voter_reg_num) %>%
+slice(1)
+unique_data <- non_unique_data %>%
+select(-file) %>%
+unique() %>%
+left_join(lookup)
+return(unique_data)
+}
+debug(extract_unique_elements)
+twins_combined_2 %>%
+group_by(ID) %>%
+mutate(n = n()) %>%
+arrange(desc(n)) %>%
+do(extract_unique_elements(.)) %>%
+View()
+twins_combined_2 %>%
+group_by(ID) %>%
+mutate(n = n()) %>%
+arrange(desc(n)) %>%
+do(extract_unique_elements(.)) %>%
+View()
+non_unique_data %>%
+select(-file) %>%
+unique()
+lookup %>%
+group_by(voter_reg_num) %>%
+slice(1)
+lookup
+extract_unique_elements <- function(non_unique_data) {
+non_unique_data %>%
+group_by(voter_reg_num,first_name,last_name,dob) %>%
+mutate(n = n(),
+file = ifelse(n == 2,
+"both",
+file)) %>%
+ungroup() %>%
+select(-n) %>%
+unique()
+# lookup <-
+#   non_unique_data %>%
+#     select(voter_reg_num, file)
+# set.seed(1)
+# lookup <- sample_n(lookup, size = nrow(lookup))
+# lookup <-
+#   lookup %>%
+#   group_by(voter_reg_num) %>%
+#     slice(1)
+#
+# unique_data <- non_unique_data %>%
+#   select(-file) %>%
+#     unique() %>%
+#       left_join(lookup)
+return(unique_data)
+}
+debug(extract_unique_elements)
+twins_combined_2 %>%
+group_by(ID) %>%
+mutate(n = n()) %>%
+arrange(desc(n)) %>%
+do(extract_unique_elements(.)) %>%
+View()
+non_unique_data %>%
+group_by(voter_reg_num,first_name,last_name,dob)
+non_unique_data %>%
+group_by(voter_reg_num,first_name,last_name,dob) %>%
+mutate(n = n()
+non_unique_data %>%
+group_by(voter_reg_num,first_name,last_name,dob) %>%
+mutate(n = n(),
+file = ifelse(n == 2,
+"both",
+file))
+non_unique_data %>%
+group_by(voter_reg_num,first_name,last_name,dob) %>%
+mutate(n = n(),
+file = ifelse(n == 2,
+"both",
+file)) %>%
+ungroup() %>%
+select(-n) %>%
+unique() %>% View()
+extract_unique_elements <- function(non_unique_data) {
+unique_data <-
+non_unique_data %>%
+group_by(voter_reg_num,first_name,last_name,dob) %>%
+mutate(n = n(),
+file = ifelse(n == 2,
+"both",
+file)) %>%
+ungroup() %>%
+select(-n) %>%
+unique()
+unique_data <-
+unique_data %>%
+mutate(file = ifelse(file == "both",
+sample(c("mar17","apr13"),1),
+file))
+# lookup <-
+#   non_unique_data %>%
+#     select(voter_reg_num, file)
+# set.seed(1)
+# lookup <- sample_n(lookup, size = nrow(lookup))
+# lookup <-
+#   lookup %>%
+#   group_by(voter_reg_num) %>%
+#     slice(1)
+#
+# unique_data <- non_unique_data %>%
+#   select(-file) %>%
+#     unique() %>%
+#       left_join(lookup)
+return(unique_data)
+}
+set.seed(1)
+twins_combined_2 %>%
+group_by(ID) %>%
+mutate(n = n()) %>%
+arrange(desc(n)) %>%
+do(extract_unique_elements(.)) %>%
+View()
+source("0_header.R")
+mar17 <- read_csv("data/yancey1703.csv", col_types = cols(.default = "c"))
+apr13 <- read_csv("data/yancey1304.csv", col_types = cols(.default = "c"))
+(mar17_twins <- mar17 %>%
+filter(type == "XT") %>%
+mutate(file = "mar17") %>%
+select(ID = id,voter_reg_num,dupid,everything()))
+(apr13_twins <- apr13 %>%
+filter(type == "XT") %>%
+mutate(file = "apr13") %>%
+select(ID = id,voter_reg_num,dupid,everything()))
+mar17_twins %>%
+group_by(twinid) %>%
+mutate(n = 1:n(), n = max(n)) %>%
+arrange(desc(n)) %>%
+select(n, everything())
+create_groups <- function(data_twin) {
+data_twin %>%
+group_by(twinid) %>%
+mutate(ID = min(as.numeric(voter_reg_num))) %>%
+select(ID, everything()) %>%
+arrange(ID)
+}
+apr13_twins_grouped <- create_groups(apr13_twins)
+mar17_twins_grouped <- create_groups(mar17_twins)
+(twins_combined <-
+bind_rows(apr13_twins_grouped,mar17_twins_grouped) %>%
+arrange(ID))
+twins_combined %>%
+group_by(ID) %>%
+mutate(n = 1:n(), n = max(n)) %>%
+filter(n == 1) %>%
+select(n, everything()) %>%
+View()
+one_twin <- bind_rows(apr13_twins,mar17_twins) %>%
+create_groups() %>%
+arrange(ID) %>%
+group_by(ID) %>%
+mutate(n = 1:n(), n = max(n)) %>%
+filter(n == 1) %>%
+select(n, everything()) %T>%
+View() %$%
+ID
+twins_combined_2 <-
+bind_rows(apr13_twins,mar17_twins) %>%
+create_groups() %>%
+filter(!(ID %in% one_twin))
+twins_combined_2 %>% group_by(ID) %>% mutate(n = n()) %>% filter(n == 1)
+twins_combined_2<-
+twins_combined_2 %>%
+mutate(modif = NA,
+error_nature = "twins",
+pos = NA)
+extract_unique_elements <- function(non_unique_data) {
+unique_data <-
+non_unique_data %>%
+group_by(voter_reg_num,first_name,last_name,dob) %>%
+mutate(n = n(),
+file = ifelse(n == 2,
+"both",
+file)) %>%
+ungroup() %>%
+select(-n) %>%
+unique()
+unique_data <-
+unique_data %>%
+mutate(file = ifelse(file == "both",
+sample(c("mar17","apr13"),1),
+file))
+return(unique_data)
+}
+set.seed(1)
+twins_combined_2 <-
+twins_combined_2 %>%
+group_by(ID) %>%
+mutate(n = n()) %>%
+arrange(desc(n)) %>%
+do(extract_unique_elements(.))
+twins_combined_2 %>% write_csv("data/twins_r.csv")
+mar17 <- read_csv("data/yancey1703.csv",
+col_types = cols(.default = "c"))
+apr13 <- read_csv("data/yancey1304.csv",
+col_types = cols(.default = "c"))
+(mar17_duplicates <-
+mar17 %>%
+filter(type == "DS") %>%
+mutate(file = "mar17") %>%
+select(ID = id,voter_reg_num,dupid,everything()))
+(apr13_duplicates <-
+apr13 %>%
+filter(type == "DS") %>%
+mutate(file = "apr13") %>%
+select(ID = id,voter_reg_num,dupid,everything()))
+create_groups <- function(data_dup) {
+data_dup %>%
+rowwise() %>%
+mutate(grp_id =
+min(as.numeric(voter_reg_num),
+as.numeric(dupid)),
+ID = grp_id) %>%
+select(-grp_id,ID, everything())
+}
+(mar17_duplicates_grouped <- create_groups(mar17_duplicates))
+(apr13_duplicates_grouped <- create_groups(apr13_duplicates))
+common_dob_errors <- intersect(mar17_duplicates$voter_reg_num,apr13_duplicates$voter_reg_num)
+duplicates  <- bind_rows(mar17_duplicates_grouped, apr13_duplicates_grouped) %>%
+arrange(ID) %>%
+mutate(modif = NA,
+pos = NA,
+error_nature = "duplicate") %>%
+select(-grp_id)
+duplicates %>%
+group_by(ID) %>%
+mutate(n = 1:n(), n = max(n)) %>%
+arrange(desc(n)) %>%
+select(n, everything()) %>%
+View()
+extract_unique_elements <- function(non_unique_data) {
+unique_data <-
+non_unique_data %>%
+group_by(voter_reg_num,first_name,last_name,dob) %>%
+mutate(n = n(),
+file = ifelse(n == 2,
+"both",
+file)) %>%
+ungroup() %>%
+select(-n) %>%
+unique()
+unique_data <-
+unique_data %>%
+mutate(file = ifelse(file == "both",
+sample(c("mar17","apr13"),1),
+file))
+return(unique_data)
+}
+set.seed(1)
+duplicates <-
+duplicates %>%
+group_by(ID) %>%
+mutate(n = n()) %>%
+arrange(desc(n)) %>%
+do(extract_unique_elements(.))
+View(duplicates)
+write_csv(duplicates, "data/duplicates_r.csv")
+egen <- read_csv("data/egen_pairs.csv", col_types = cols(.default = "c"))
+natural <- read_csv("data/natural_differences.csv", col_types = cols(.default = "c"))
+twins <- read_csv("data/twins_r.csv", col_types = cols(.default = "c"))
+duplicates <- read_csv("data/duplicates_r.csv", col_types = cols(.default = "c"))
+all_data <-
+bind_rows(egen,natural,twins,duplicates) %>%
+mutate(last_name = ifelse(error_nature != "egen" & !is.na(name_sufx_cd),
+paste(last_name,name_sufx_cd),
+last_name),
+file = ifelse(file == "mar17",
+"B",
+"A")) %>%
+select(-name_sufx_cd)
+unique_ID <-
+all_data %$%
+ID %>%
+unique()
+(ID_table <-
+tibble(ID = unique_ID,
+new_ID = 1:length(unique_ID)))
+(all_data <-
+all_data %>%
+left_join(ID_table) %>%
+mutate(ID = new_ID) %>%
+select(-new_ID) %T>%
+View())
+all_data <-
+all_data %>%
+group_by(file) %>%
+mutate(n = 1:n(),
+ID_u = paste0(file,"-",n),
+dob = ifelse(is.na(dob),"", dob)) %>%
+ungroup() %>%
+select(ID, everything(), -file,-n, file_id = ID_u) %T>%
+View()
+all_data %>%
+filter(ID == 406)
+all_data %>%
+write_csv("data/groups_without_modif.csv")
