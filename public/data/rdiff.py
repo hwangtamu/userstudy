@@ -364,7 +364,7 @@ def reorganize_cols(data, star_indices, order):
 def write_data(data_list,file_name):
     f = open(file_name,'wb')
     w = csv.writer(f)
-    w.writerow(['Group ID', 'Record ID', 'First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB', 'First Name', 'Last Name', 'Reg No.', 'DoB'])
+    w.writerow(['Group ID', 'Record ID','First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB', 'First Name', 'Last Name', 'Reg No.', 'DoB'])
     #mapping = [0, 1, 4, 11, 3, 10, 2, 5, 8, 7, 6, 9]
     for i in range(len(data_list)):
         rec = data_list[i]
