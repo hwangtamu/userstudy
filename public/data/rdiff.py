@@ -61,11 +61,11 @@ def get_edit_distance(s1, s2):
     while stI > 0 or stJ > 0:
         if direction[stI][stJ] == 'i':
             finalStr1 = s1[stI - 1] + finalStr1
-            finalStr2 = " " + finalStr2
+            finalStr2 = "_" + finalStr2
             stI = stI - 1
 
         elif direction[stI][stJ] == 'd':
-            finalStr1 = " " + finalStr1
+            finalStr1 = "_" + finalStr1
             finalStr2 = s2[stJ - 1] + finalStr2
             stJ = stJ - 1
 
