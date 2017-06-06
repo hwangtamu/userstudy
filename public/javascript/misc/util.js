@@ -152,7 +152,7 @@ function cell(t,g,j,k){
                         .attr("x",cwidth[j%cwidth.length]-96).attr("y",cy/2-18).attr("width",96).attr("height",96);
                 }
             }
-            console.log(swap);
+            //console.log(swap);
         }
 
 
@@ -220,9 +220,11 @@ function cell(t,g,j,k){
                             && t_j[i] != "*" && t_j[i + 1] != "*" && t_j[i + 2] != "*" && t_j[i + 3] != "*" && t_j[i] != t_j[i + 3] && t_j[i + 1] != t_j[i + 4]) {
                             //console.log(t_m, t_j);
                             bin.push(i, i + 1, i + 2, i + 3, i + 4);
-                            g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/transpose.png")
-                                .attr("class", "icon").attr("x", 9 * i + 12)
-                                .attr("y", cy / 2 + 13).attr("width", 18).attr("height", 18);
+                            if(j<2*cwidth.length){
+                                g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/swap_date.svg")
+                                    .attr("class", "icon").attr("x", 9 * i + 12)
+                                    .attr("y", cy / 2 + 13).attr("width", 18).attr("height", 18);
+                            }
                             transpose.push(i, i + 1, i + 3, i + 4);
                             transpose_.push(i, i + 1, i + 3, i + 4);
                             num += 1
