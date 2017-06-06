@@ -145,8 +145,8 @@ function cell(t,g,j,k){
                     //console.log(t_j, t_m);
                     var len = (t_j.length<=t_m.length?t_j.length:t_m.length)/2;
                     g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/diff.svg")
-                        .attr("class", "icon").attr("x", 5 * len + 4)
-                        .attr("y", cy / 2 + 13).attr("width", 30).attr("height", 30);
+                        .attr("class", "icon").attr("x", 4 * len + 4)
+                        .attr("y", cy / 2 + 10).attr("width", 35).attr("height", 35);
 
 
                 } else {
