@@ -93,11 +93,11 @@ function cell(t,g,j,k){
         indel_ = [],
         replace_ = [],
         transpose_ = [],
-        diff = 0;
+        diff = 0,
+        swap = 0;
 
 
     if(j>cwidth.length){
-
         //icons for frequency
         if(k==3 && (title[j%cwidth.length]=="FFreq"||title[j%cwidth.length]=="LFreq")) {
 
@@ -120,14 +120,47 @@ function cell(t,g,j,k){
                         }
                 }
             }
-
         }
+
+        // check if it's a name swap
+        if(title[j%cwidth.length]=="First name"||title[j%cwidth.length]=="Last name"){
+            var m = j+cwidth.length,
+                p = g.attr("id").slice(1),
+                dat = experimentr.data()['mat'][Math.floor(p/5)],
+                fnj = "",
+                fnm = "",
+                lnj = "",
+                lnm = "";
+
+            if(title[j%cwidth.length]=="First name"){
+                fnj = dat[p%5][0][mapping[mapping[j%cwidth.length]]];
+                fnm = dat[p%5][1][mapping[mapping[m%cwidth.length]]];
+                lnj = dat[p%5][0][mapping[mapping[j%cwidth.length+1]]];
+                lnm = dat[p%5][1][mapping[mapping[m%cwidth.length+1]]];
+            }
+            if(title[j%cwidth.length]=="Last name"){
+                fnj = dat[p%5][0][mapping[mapping[j%cwidth.length-1]]];
+                fnm = dat[p%5][1][mapping[mapping[m%cwidth.length-1]]];
+                lnj = dat[p%5][0][mapping[mapping[j%cwidth.length]]];
+                lnm = dat[p%5][1][mapping[mapping[m%cwidth.length]]];
+            }
+
+            if(fnj==lnm && fnm==lnj){
+                swap = 1;
+                if(j<2*cwidth.length && title[j%cwidth.length]=="First name"){
+                    cel.append("svg:image").attr("xlink:href","/resources/name_swap.svg").attr("class","icon")
+                        .attr("x",cwidth[j%cwidth.length]-96).attr("y",cy/2-18).attr("width",96).attr("height",96);
+                }
+            }
+            console.log(swap);
+        }
+
 
         if(textbox.text()==""){
             if(title[j%cwidth.length]!="FFreq" && title[j%cwidth.length]!="LFreq"){
                 // missing
                 cel.append("svg:image").attr("xlink:href","/resources/missing.png").attr("class","icon")
-                    .attr("x",cwidth[j%cwidth.length]/3).attr("y",cy/2-9).attr("width",18).attr("height",18);
+                    .attr("x",cwidth[j%cwidth.length]/4).attr("y",cy/2-9).attr("width",18).attr("height",18);
             }
         }else if(textbox.text()==" " && j<cwidth.length*2){
             // check mark
@@ -170,12 +203,14 @@ function cell(t,g,j,k){
                         }
                         //transpose
                         else if (bin.indexOf(i) == -1 && t_j[i] == t_m[i + 1] && t_j[i + 1] == t_m[i] && t_j[i] != "*" && t_m[i] != "*"
-                            && t_j[i + 1] != "*" && t_m[i + 1] != "*" && t_j[i] == t_j[i + 1] && t_j[i] != t_j[i + 1]) {
+                            && t_j[i + 1] != "*" && t_m[i + 1] != "*" && t_j[i] == t_m[i + 1] && t_j[i] != t_j[i + 1]) {
                             //console.log(t_m, t_j);
                             bin.push(i, i + 1);
-                            g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/transpose.png")
-                                .attr("class", "icon").attr("x", 9 * i + 4)
-                                .attr("y", cy / 2 + 13).attr("width", 18).attr("height", 18);
+                            if(j<2*cwidth.length){
+                                g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/transpose.png")
+                                    .attr("class", "icon").attr("x", 9 * i + 4)
+                                    .attr("y", cy / 2 + 13).attr("width", 18).attr("height", 18);
+                            }
                             transpose.push(i, i + 1);
                             transpose_.push(i, i + 1);
                             num += 1;
