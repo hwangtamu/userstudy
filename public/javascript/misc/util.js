@@ -4,7 +4,7 @@
  * Created by hanwang on 1/23/17.
  */
 var title = ["Group","ID","FFreq","First name","Last name","LFreq","Reg No.","DoB(MM/DD/YYYY)"];
-var cwidth = [60,80,60,160,200,60,140,150]; //910
+var cwidth = [60,80,60,160,200,60,140,120]; //910
 var height = 24; //height per row 0 30 57
 var ys = [0,30,77];
 var mapping = [0,1,3,8,9,5,10,11,2,4,6,7];
@@ -148,8 +148,8 @@ function cell(t,g,j,k){
                         //indel
                         if((t_j[i]==" "&&t_m[i]!=" ")||(t_j[i]!=" "&&t_m[i]==" ")){
                             bin.push(i);
-                            if((t_j[i]==" "&&t_m[i]!=" ") || i>t_j.length){indel_.push(i);}
-                            if((t_j[i]!=" "&&t_m[i]==" ") || i>t_m.length){indel.push(i);}
+                            if((t_j[i]==" "&&t_m[i]!=" ") || (t_m[i]!=" ")){indel_.push(i);}
+                            if((t_j[i]!=" "&&t_m[i]==" ") || (t_j[i]!=" ")){indel.push(i);}
                             //g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/indel.png")
                             //    .attr("class","icon").attr("x",9*i)
                             //    .attr("y",cy/2+15).attr("width",16).attr("height",16);
@@ -259,9 +259,9 @@ function cell(t,g,j,k){
             }
         }
     }
-    //if(indel.length+indel_.length+replace.length+replace_.length>0){
-    //    console.log(indel, indel_, replace, replace_);
-    //}
+    if(indel.length+indel_.length+replace.length+replace_.length>0){
+        console.log(indel, indel_, replace, replace_);
+    }
 
     if(j<2*cwidth.length && textbox.text()=="  "){
         g.select("#c"+j.toString()).selectAll(".icon").remove();
@@ -318,7 +318,7 @@ function cell(t,g,j,k){
     // indel, indel_, replace, replace_, transpose, transpose_
 
     // coloring '@' and '#'
-    if(experimentr.data()['mode']=="Partial" || experimentr.data()['mode']=="Partial_Cell" && k>=3 && k<=6 &&
+    if((experimentr.data()['mode']=="Partial" || experimentr.data()['mode']=="Partial_Cell") && k>=3 && k<=6 &&
         title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
         g.select("#c"+j.toString()).select(".span").remove();
         var p = g.attr("id").slice(1), //pair id
@@ -448,16 +448,14 @@ function pair(t,g,m){
         for(var j = 0;j<a;j++){
             if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Group" && title[j] != "ID"){
                 if(row1[j] == row2[j]){
-                    row1[j] = ' ';
-                    row2[j] = ' ';
+                    row1[j] = '  ';
+                    row2[j] = '  ';
                 } else {
                     row1[j] = row1[j].replace(/[A-Z0-9]/g, '@');
                     row2[j] = row2[j].replace(/[A-Z0-9]/g, '&');
                 }
             }
         }
-
-
         //for(var j=2;j<a;j++){
         //    if(j==3 || j==5) {
         //        t[j] = ' ';
