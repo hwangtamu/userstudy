@@ -147,21 +147,16 @@ function cell(t,g,j,k){
                     g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/diff.svg")
                         .attr("class", "icon").attr("x", 4 * len + 4)
                         .attr("y", cy / 2 + 10).attr("width", 35).attr("height", 35);
-
-
                 } else {
-
-
-                //console.log(t_j, t_m);
                 if(t_j!="" && t_m!="") {
                     for (var i = 0; i < Math.max(t_j.length, t_m.length); i++) {
                         //indel
-                        if ((t_j[i] == " " && t_m[i] != " ") || (t_j[i] != " " && t_m[i] == " ")) {
+                        if ((t_j[i] == "_" && t_m[i] != "_") || (t_j[i] != "_" && t_m[i] == "_")) {
                             bin.push(i);
-                            if ((t_j[i] == " " && t_m[i] != " ") || i > t_j.length) {
+                            if ((t_j[i] == "_" && t_m[i] != "_") || i > t_j.length) {
                                 indel_.push(i);
                             }
-                            if ((t_j[i] != " " && t_m[i] == " ") || i > t_m.length) {
+                            if ((t_j[i] != "_" && t_m[i] == "_") || i > t_m.length) {
                                 indel.push(i);
                             }
                             //g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/indel.png")
@@ -333,7 +328,7 @@ function cell(t,g,j,k){
     // indel, indel_, replace, replace_, transpose, transpose_
 
     // coloring '@' and '#'
-    if(experimentr.data()['mode']=="Partial" || experimentr.data()['mode']=="Partial_Cell" && k>=3 && k<=6 &&
+    if((experimentr.data()['mode']=="Partial" || experimentr.data()['mode']=="Partial_Cell") && k>=3 && k<=6 &&
         title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
         g.select("#c"+j.toString()).select(".span").remove();
         var p = g.attr("id").slice(1), //pair id

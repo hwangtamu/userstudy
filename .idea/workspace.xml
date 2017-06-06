@@ -24,8 +24,8 @@
       <file leaf-file-name="util.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/javascript/misc/util.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="487">
-              <caret line="151" column="42" lean-forward="false" selection-start-line="151" selection-start-column="42" selection-end-line="151" selection-end-column="42" />
+            <state relative-caret-position="418">
+              <caret line="148" column="85" lean-forward="false" selection-start-line="148" selection-start-column="85" selection-end-line="148" selection-end-column="85" />
               <folding />
             </state>
           </provider>
@@ -39,6 +39,16 @@
               <folding>
                 <element signature="e#40#109#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data_egen.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/data/data_egen.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="15" column="63" lean-forward="false" selection-start-line="15" selection-start-column="63" selection-end-line="15" selection-end-column="63" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -224,15 +234,8 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/data_duplicates.csv</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/data_egen.csv</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/data_natural.csv</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/data_twins.csv</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/rdiff.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/output.csv</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/public/javascript/misc/util.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/resources/3_dots.svg</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/resources/rare.svg</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/resources/rare_2.svg</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -240,9 +243,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/resources/3_dots.png</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/resources/3_dots_inside_circle.svg</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/resources/rare_2_rect.svg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/resources/diff.svg</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -455,7 +456,7 @@
       <workItem from="1496347018812" duration="31277000" />
       <workItem from="1496683109978" duration="1814000" />
       <workItem from="1496688861558" duration="1708000" />
-      <workItem from="1496690901738" duration="7042000" />
+      <workItem from="1496690901738" duration="9882000" />
     </task>
     <task id="LOCAL-00001" summary="Added 1. icons&#10;2. rdiff_threshold">
       <created>1496176471487</created>
@@ -506,11 +507,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496696852207</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="text coloring">
+      <created>1496713308566</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1496713308566</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60953000" />
+    <option name="totallyTimeSpent" value="63793000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -880,24 +888,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/data/data_egen.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="90" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="90" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/data/data_natural.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1301">
-          <caret line="276" column="90" lean-forward="false" selection-start-line="276" selection-start-column="90" selection-end-line="276" selection-end-column="90" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -911,10 +903,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/data/data_natural.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="773">
+          <caret line="276" column="90" lean-forward="false" selection-start-line="276" selection-start-column="90" selection-end-line="276" selection-end-column="90" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/data/data_egen.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="63" lean-forward="false" selection-start-line="15" selection-start-column="63" selection-end-line="15" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/javascript/misc/util.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="151" column="42" lean-forward="false" selection-start-line="151" selection-start-column="42" selection-end-line="151" selection-end-column="42" />
+        <state relative-caret-position="418">
+          <caret line="148" column="85" lean-forward="false" selection-start-line="148" selection-start-column="85" selection-end-line="148" selection-end-column="85" />
           <folding />
         </state>
       </provider>
