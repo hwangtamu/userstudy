@@ -143,13 +143,15 @@ function cell(t,g,j,k){
                     t_m = dat[p%5][1][mapping[m%cwidth.length]],
                     bin = [];
 
-                if(j<2*cwidth.length && title[j%cwidth.length]!="Group" && !t_j.includes("*") && !t_m.includes("*") && t_j.trim()!="" && t_m.trim()!=""){
+                if(title[j%cwidth.length]!="Group" && !t_j.includes("*") && !t_m.includes("*") && t_j.trim()!="" && t_m.trim()!=""){
                     //console.log(t_j, t_m);
                     var len = (t_j.length<=t_m.length?t_j.length:t_m.length)/2;
                     diff = 1;
-                    g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/diff.svg")
-                        .attr("class", "icon").attr("x", 4 * len + 4)
-                        .attr("y", cy / 2 + 10).attr("width", 35).attr("height", 35);
+                    if(j<2*cwidth.length){
+                        g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/diff.svg")
+                            .attr("class", "icon").attr("x", 4 * len + 4)
+                            .attr("y", cy / 2 + 10).attr("width", 35).attr("height", 35);
+                    }
                 } else {
                 if(t_j!="" && t_m!="") {
                     for (var i = 0; i < Math.max(t_j.length, t_m.length); i++) {
@@ -332,7 +334,10 @@ function cell(t,g,j,k){
 
     // coloring '@' and '#'
     if(diff==1){
-        indel=[], indel_=[],replace=[],replace_=[];
+        indel=[];
+        indel_=[];
+        replace=[];
+        replace_=[];
     }
     if((experimentr.data()['mode']=="Partial" || experimentr.data()['mode']=="Partial_Cell") && k>=3 && k<=6 &&
         title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
@@ -362,7 +367,8 @@ function cell(t,g,j,k){
                         if(experimentr.data()['os']=="Linux"){return "16px Lucida Sans Typewriter";}
                         return "16px Lucida Console";})
                     .attr("fill",function(){
-                        if((j<2*cwidth.length && indel.indexOf(l)>-1)||(j>2*cwidth.length && indel_.indexOf(l)>-1)){return "green";}
+                        if(diff==1){return "black";}
+                        else if((j<2*cwidth.length && indel.indexOf(l)>-1)||(j>2*cwidth.length && indel_.indexOf(l)>-1)){return "green";}
                         else if((j<2*cwidth.length && replace.indexOf(l)>-1)||(j>2*cwidth.length && replace_.indexOf(l)>-1)){return "#9b3d18";}
                         //if(t_j.length!=t_jj.length){return "black";}
                         //if(scheme[l]==1 && j<2*cwidth.length){return "#9b3d18";}

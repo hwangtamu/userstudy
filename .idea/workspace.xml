@@ -24,8 +24,8 @@
       <file leaf-file-name="util.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/javascript/misc/util.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="334" column="51" lean-forward="false" selection-start-line="334" selection-start-column="51" selection-end-line="334" selection-end-column="51" />
+            <state relative-caret-position="274">
+              <caret line="362" column="24" lean-forward="false" selection-start-line="362" selection-start-column="24" selection-end-line="362" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -456,7 +456,7 @@
       <workItem from="1496347018812" duration="31277000" />
       <workItem from="1496683109978" duration="1814000" />
       <workItem from="1496688861558" duration="1708000" />
-      <workItem from="1496690901738" duration="11026000" />
+      <workItem from="1496690901738" duration="11802000" />
     </task>
     <task id="LOCAL-00001" summary="Added 1. icons&#10;2. rdiff_threshold">
       <created>1496176471487</created>
@@ -521,11 +521,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496778943963</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="update">
+      <created>1496780081304</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1496780081304</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64937000" />
+    <option name="totallyTimeSpent" value="65713000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -929,8 +936,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/javascript/misc/util.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="334" column="51" lean-forward="false" selection-start-line="334" selection-start-column="51" selection-end-line="334" selection-end-column="51" />
+        <state relative-caret-position="274">
+          <caret line="362" column="24" lean-forward="false" selection-start-line="362" selection-start-column="24" selection-end-line="362" selection-end-column="24" />
           <folding />
         </state>
       </provider>
