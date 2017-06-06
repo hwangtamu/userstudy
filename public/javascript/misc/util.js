@@ -4,7 +4,7 @@
  * Created by hanwang on 1/23/17.
  */
 var title = ["Group","ID","FFreq","First name","Last name","LFreq","Reg No.","DoB(MM/DD/YYYY)"];
-var cwidth = [60,80,60,160,200,60,140,150]; //910
+var cwidth = [60,80,60,160,200,60,140,120]; //910
 var height = 24; //height per row 0 30 57
 var ys = [0,30,77];
 var mapping = [0,1,3,8,9,5,10,11,2,4,6,7];
@@ -92,7 +92,9 @@ function cell(t,g,j,k){
         transpose = [],
         indel_ = [],
         replace_ = [],
-        transpose_ = [];
+        transpose_ = [],
+        diff = 0;
+
 
     if(j>cwidth.length){
 
@@ -144,6 +146,7 @@ function cell(t,g,j,k){
                 if(j<2*cwidth.length && title[j%cwidth.length]!="Group" && !t_j.includes("*") && !t_m.includes("*") && t_j.trim()!="" && t_m.trim()!=""){
                     //console.log(t_j, t_m);
                     var len = (t_j.length<=t_m.length?t_j.length:t_m.length)/2;
+                    diff = 1;
                     g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/diff.svg")
                         .attr("class", "icon").attr("x", 4 * len + 4)
                         .attr("y", cy / 2 + 10).attr("width", 35).attr("height", 35);
@@ -328,6 +331,9 @@ function cell(t,g,j,k){
     // indel, indel_, replace, replace_, transpose, transpose_
 
     // coloring '@' and '#'
+    if(diff==1){
+        indel=[], indel_=[],replace=[],replace_=[];
+    }
     if((experimentr.data()['mode']=="Partial" || experimentr.data()['mode']=="Partial_Cell") && k>=3 && k<=6 &&
         title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
         g.select("#c"+j.toString()).select(".span").remove();
