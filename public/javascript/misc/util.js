@@ -160,12 +160,14 @@ function cell(t,g,j,k){
             if(title[j%cwidth.length]!="FFreq" && title[j%cwidth.length]!="LFreq"){
                 // missing
                 cel.append("svg:image").attr("xlink:href","/resources/missing.png").attr("class","icon")
-                    .attr("x",cwidth[j%cwidth.length]/4).attr("y",cy/2-9).attr("width",18).attr("height",18);
+                    .attr("x",function(){if(title[j%cwidth.length]!="DoB(MM/DD/YYYY)"){return cwidth[j%cwidth.length]/3;}return 40;})
+                    .attr("y",cy/2-9).attr("width",18).attr("height",18);
             }
         }else if(textbox.text()==" " && j<cwidth.length*2){
             // check mark
             cel.append("svg:image").attr("xlink:href","/resources/checkmark.png").attr("class","icon")
-                .attr("x",cwidth[j%cwidth.length]/3).attr("y",cy/2+15).attr("width",18).attr("height",18);
+                .attr("x",function(){if(title[j%cwidth.length]!="DoB(MM/DD/YYYY)"){return cwidth[j%cwidth.length]/3;}return 40;})
+                .attr("y",cy/2+15).attr("width",18).attr("height",18);
         }else{
             var num = 0;
             if(swap==0 && title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="FFreq" && title[j%cwidth.length]!="LFreq"){
@@ -189,8 +191,22 @@ function cell(t,g,j,k){
                 } else {
                 if(t_j!="" && t_m!="") {
                     for (var i = 0; i < Math.max(t_j.length, t_m.length); i++) {
+                        // date swap
+                        if (bin.indexOf(i) == -1 && t_j[i] == t_m[i + 3] && t_j[i + 1] == t_m[i + 4] && t_j[i + 3] == t_m[i] && t_j[i + 4] == t_m[i + 1]
+                            && t_j[i] != "*" && t_j[i + 1] != "*" && t_j[i + 2] != "*" && t_j[i + 3] != "*") {
+                            console.log(t_m, t_j);
+                            bin.push(i, i + 1, i + 2, i + 3, i + 4);
+                            if(j<2*cwidth.length){
+                                g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/swap_date.svg")
+                                    .attr("class", "icon").attr("x", 9 * i + 12)
+                                    .attr("y", cy / 2 + 13).attr("width", 18).attr("height", 18);
+                            }
+                            transpose.push(i, i + 1, i + 3, i + 4);
+                            transpose_.push(i, i + 1, i + 3, i + 4);
+                            num += 1
+                        }
                         //indel
-                        if ((t_j[i] == "_" && t_m[i] != "_") || (t_j[i] != "_" && t_m[i] == "_")) {
+                        else if ((t_j[i] == "_" && t_m[i] != "_") || (t_j[i] != "_" && t_m[i] == "_")) {
                             bin.push(i);
                             if ((t_j[i] == "_" && t_m[i] != "_") || i > t_j.length) {
                                 indel_.push(i);
@@ -216,20 +232,7 @@ function cell(t,g,j,k){
                             transpose_.push(i, i + 1);
                             num += 1;
                         }
-                        //swap
-                        else if (bin.indexOf(i) == -1 && t_j[i] == t_m[i + 3] && t_j[i + 1] == t_m[i + 4] && t_j[i + 3] == t_m[i] && t_j[i + 4] == t_m[i + 1]
-                            && t_j[i] != "*" && t_j[i + 1] != "*" && t_j[i + 2] != "*" && t_j[i + 3] != "*" && t_j[i] != t_j[i + 3] && t_j[i + 1] != t_j[i + 4]) {
-                            console.log(t_m, t_j);
-                            bin.push(i, i + 1, i + 2, i + 3, i + 4);
-                            if(j<2*cwidth.length){
-                                g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/swap_date.svg")
-                                    .attr("class", "icon").attr("x", 9 * i + 12)
-                                    .attr("y", cy / 2 + 13).attr("width", 18).attr("height", 18);
-                            }
-                            transpose.push(i, i + 1, i + 3, i + 4);
-                            transpose_.push(i, i + 1, i + 3, i + 4);
-                            num += 1
-                        }
+
                         //replace
                         else if (bin.indexOf(i) == -1 && t_j[i] != t_m[i] && t_j[i] != " " && t_m[i] != " ") {
                             bin.push(i);
@@ -377,7 +380,8 @@ function cell(t,g,j,k){
         replace=[];
         replace_=[];
     }
-    if((experimentr.data()['mode']=="Partial" || experimentr.data()['mode']=="Partial_Cell") && k>=3 && k<=6 &&
+    if((experimentr.data()['mode']=="Full" || experimentr.data()['mode']=="Full_Partial" || experimentr.data()['mode']=="Partial" ||
+        experimentr.data()['mode']=="Partial_Cell") && k>=3 && k<=6 &&
         title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
         g.select("#c"+j.toString()).select(".span").remove();
         var p = g.attr("id").slice(1), //pair id
@@ -771,17 +775,24 @@ function choices(svg, lBound, scale, mode) {
             .attr("text-anchor", "middle").style("font", function(){if(mode==2){return 14+"px sans-serif";}return 16 * scale + "px sans-serif";});
     }
     //arrows
+    var lineFunction = d3.svg.line()
+        .x(function(d) { return d.x; })
+        .y(function(d) { return d.y; })
+        .interpolate("linear");
     for(var pos=0;pos<7;pos++){
         var lineData = [{"x": lx[2*pos]*scale, "y": 44*scale+4*(scale-1)}, {"x": lx[2*pos+1]*scale, "y": 44*scale+4*(scale-1)}];
-        var lineFunction = d3.svg.line()
-            .x(function(d) { return d.x; })
-            .y(function(d) { return d.y; })
-            .interpolate("linear");
+
         buttons.append("path").attr("d", lineFunction(lineData))
             .attr("stroke", "black")
             .attr("stroke-width", 5)
             .style("fill","none");
     }
+    // separator
+    if(mode==1){
+        var separator = [{"x":130, "y":20},{"x":130,"y":60}];
+        buttons.append("path").attr("d",lineFunction(separator)).attr("stroke", "black").attr("stroke-width", 3).style("fill","none");
+    }
+
     var xScale = d3.scale.linear();
     var yScale = d3.scale.linear();
     var leftTrianglePoints = xScale(0) + ' ' + yScale(48*scale-4) + ', ' + xScale(10*scale) + ' ' + yScale(42*scale-4) +
