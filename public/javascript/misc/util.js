@@ -163,11 +163,18 @@ function cell(t,g,j,k){
                     .attr("x",function(){if(title[j%cwidth.length]!="DoB(MM/DD/YYYY)"){return cwidth[j%cwidth.length]/3;}return 40;})
                     .attr("y",cy/2-9).attr("width",18).attr("height",18);
             }
-        }else if(textbox.text()==" " && j<cwidth.length*2){
+        }
+        //else if(textbox.text()==" " && j<cwidth.length*2){
             // check mark
-            cel.append("svg:image").attr("xlink:href","/resources/checkmark.png").attr("class","icon")
-                .attr("x",function(){if(title[j%cwidth.length]!="DoB(MM/DD/YYYY)"){return cwidth[j%cwidth.length]/3;}return 40;})
-                .attr("y",cy/2+15).attr("width",18).attr("height",18);
+        //    cel.append("svg:image").attr("xlink:href","/resources/checkmark.png").attr("class","icon")
+        //        .attr("x",function(){if(title[j%cwidth.length]!="DoB(MM/DD/YYYY)"){return cwidth[j%cwidth.length]/3;}return 40;})
+        //        .attr("y",cy/2+15).attr("width",18).attr("height",18);
+        else if(textbox.text()==" " && j%cwidth.length>0){
+                // double check mark
+                cel.append("svg:image").attr("xlink:href","/resources/checkmark.png").attr("class","icon")
+                    .attr("x",function(){if(title[j%cwidth.length]!="DoB(MM/DD/YYYY)"){return cwidth[j%cwidth.length]/3;}return 40;})
+                    .attr("y",cy/2-5).attr("width",18).attr("height",18);
+
         }else{
             var num = 0;
             if(swap==0 && title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="FFreq" && title[j%cwidth.length]!="LFreq"){
