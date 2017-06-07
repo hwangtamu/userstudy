@@ -175,15 +175,27 @@ function cell(t,g,j,k){
                     t_j = dat[p%5][0][mapping[j%cwidth.length]],
                     t_m = dat[p%5][1][mapping[m%cwidth.length]],
                     bin = [];
+                // console.log(t_j.substring(6,10),t_j.substring(0,2),t_j.substring(3,5));
+                //
+                // if(title[j%cwidth.length]!="DoB(MM/DD/YYYY)" && t_j.substring(6,10) == t_m.substring(6,10) && t_j.substring(0,2) == t_m.substring(3,5) && t_j.substring(3,5) == t_m.substring(0,2)){
+                //     if(j<2*cwidth.length){
+                //         g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/swap_date.svg")
+                //             .attr("class", "icon").attr("x", 9 * i + 12)
+                //             .attr("y", cy / 2 + 13).attr("width", 18).attr("height", 18);
+                //     }
+                // }else
 
                 if(title[j%cwidth.length]!="Group" && !t_j.includes("*") && !t_m.includes("*") && t_j.trim()!="" && t_m.trim()!=""){
-                    //console.log(t_j, t_m);
-                    var len = (t_j.length<=t_m.length?t_j.length:t_m.length)/2;
+                    //var len = (t_j.length<=t_m.length?t_j.length:t_m.length)/2;
                     diff = 1;
                     if(j<2*cwidth.length){
                         g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/diff.svg")
-                            .attr("class", "icon").attr("x", 4 * len + 4)
-                            .attr("y", cy / 2 + 10).attr("width", 35).attr("height", 35);
+                            .attr("class", "icon").attr("x", 20)
+                            .attr("y", cy / 2 + 5).attr("width", 35).attr("height", 35);
+                    // .attr("x",cwidth[j%cwidth.length]/3).attr("y",cy/2+15).attr("width",18).attr("height",18);
+                        // g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/swap_date.svg")
+                        //     .attr("class", "icon").attr("x", 9 * i + 4)
+                        //     .attr("y", cy / 2 + 13).attr("width", 18).attr("height", 18);
                     }
                 } else {
                 if(t_j!="" && t_m!="") {
@@ -218,7 +230,7 @@ function cell(t,g,j,k){
                         //swap
                         else if (bin.indexOf(i) == -1 && t_j[i] == t_m[i + 3] && t_j[i + 1] == t_m[i + 4] && t_j[i + 3] == t_m[i] && t_j[i + 4] == t_m[i + 1]
                             && t_j[i] != "*" && t_j[i + 1] != "*" && t_j[i + 2] != "*" && t_j[i + 3] != "*" && t_j[i] != t_j[i + 3] && t_j[i + 1] != t_j[i + 4]) {
-                            //console.log(t_m, t_j);
+                            console.log(t_m, t_j);
                             bin.push(i, i + 1, i + 2, i + 3, i + 4);
                             if(j<2*cwidth.length){
                                 g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/swap_date.svg")
