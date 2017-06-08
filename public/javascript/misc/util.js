@@ -799,7 +799,7 @@ function choices(svg, lBound, scale, mode) {
     }
     // separator
     if(mode==1){
-        var separator = [{"x":130, "y":20},{"x":130,"y":60}];
+        var separator = [{"x":130, "y":32},{"x":130,"y":55}];
         buttons.append("path").attr("d",lineFunction(separator)).attr("stroke", "black").attr("stroke-width", 3).style("fill","none");
     }
 
