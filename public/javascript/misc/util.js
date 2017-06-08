@@ -918,8 +918,10 @@ function parsing(route){
         var binary = [];
         var other = [];
         var tmp = [];
+        console.log(raw_binary.length);
         for (var i = 0; i < raw_binary.length; i++) {
-            if (tmp.length === 5 || i === raw_binary.length - 1) {
+            if (tmp.length == 5 || i == raw_binary.length-1) {
+                if(i==raw_binary.length-1 && tmp.length<5){tmp.push(raw_binary[i]);}
                 binary.push(tmp);
                 tmp = [];
             } else {
