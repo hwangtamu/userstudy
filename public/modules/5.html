@@ -61,18 +61,18 @@
                     if(experimentr.data()["mat"][step].length==0){
                         d3.select("#title").text("Section 2: Groupwise Test");
                     }
-
+                    // page number
                     d3.select("#notation").text("Page "+(step+1).toString()+"/"+experimentr.data()['mat'].length.toString());
 
                     setTimeout(function (){
                         d3.selectAll(".blocks").remove();
-                        pairs(experimentr.data()["mat"][step],step,experimentr.data()["mat"][step].length,experimentr.data()["mode"]);
+                        pairs(experimentr.data()["mat"][step-1],step-1,experimentr.data()["mat"][step-1].length,experimentr.data()["mode"]);
                         if (experimentr.data()["mode"]=="Vanilla"){
                             d3.selectAll(".icon").remove();
                         }
                     }, 200);
                     step+=1;
-                    //console.log(step, experimentr.data()['mat'].length-1);
+                    //console.log(step, experimentr.data()['mat'][step-1]);
                 }
                 // time elapse
                 experimentr.data()['switch'][step] = Date.now();
