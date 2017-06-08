@@ -149,7 +149,7 @@ function cell(t,g,j,k){
                 swap = 1;
                 if(j<2*cwidth.length && title[j%cwidth.length]=="First name"){
                     cel.append("svg:image").attr("xlink:href","/resources/name_swap.svg").attr("class","icon")
-                        .attr("x",cwidth[j%cwidth.length]-96).attr("y",cy/2-18).attr("width",96).attr("height",96);
+                        .attr("x",cwidth[j%cwidth.length]-75).attr("y",cy/2-8).attr("width",60).attr("height",60);
                 }
             }
             //console.log(swap);
@@ -206,7 +206,7 @@ function cell(t,g,j,k){
                             if(j<2*cwidth.length){
                                 g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/swap_date.svg")
                                     .attr("class", "icon").attr("x", 9 * i + 12)
-                                    .attr("y", cy / 2 + 13).attr("width", 18).attr("height", 18);
+                                    .attr("y", cy / 2 + 13).attr("width", 23).attr("height", 23);
                             }
                             //transpose.push(i, i + 1, i + 3, i + 4);
                             //transpose_.push(i, i + 1, i + 3, i + 4);
