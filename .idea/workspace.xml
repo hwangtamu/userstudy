@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0e29c6df-9fc3-4c4c-ab4e-18561c52b86a" name="Default" comment="bug fix">
+    <list default="true" id="0e29c6df-9fc3-4c4c-ab4e-18561c52b86a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/output.csv" afterPath="$PROJECT_DIR$/public/data/output.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascript/misc/util.js" afterPath="$PROJECT_DIR$/public/javascript/misc/util.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/modules/5.html" afterPath="$PROJECT_DIR$/public/modules/5.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/modules/end.html" afterPath="$PROJECT_DIR$/public/modules/end.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/resources/rare_2_rect.svg" afterPath="$PROJECT_DIR$/public/resources/rare_2_rect.svg" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,11 +23,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="util.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="util.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/javascript/misc/util.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-132">
-              <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+            <state relative-caret-position="335">
+              <caret line="508" column="6" lean-forward="false" selection-start-line="508" selection-start-column="6" selection-end-line="508" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="data_natural.csv" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/data/data_natural.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="276" column="90" lean-forward="false" selection-start-line="276" selection-start-column="90" selection-end-line="276" selection-end-column="90" />
               <folding />
             </state>
           </provider>
@@ -39,7 +46,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="653">
+            <state relative-caret-position="1672">
               <caret line="76" column="42" lean-forward="false" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="42" />
               <folding />
             </state>
@@ -59,7 +66,7 @@
       <file leaf-file-name="5.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/modules/5.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
+            <state relative-caret-position="1496">
               <caret line="68" column="81" lean-forward="true" selection-start-line="68" selection-start-column="81" selection-end-line="68" selection-end-column="81" />
               <folding />
             </state>
@@ -80,7 +87,7 @@
         <entry file="file://$PROJECT_DIR$/public/data/output.csv">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="726">
-              <caret line="33" column="83" lean-forward="true" selection-start-line="33" selection-start-column="83" selection-end-line="33" selection-end-column="83" />
+              <caret line="33" column="83" lean-forward="false" selection-start-line="33" selection-start-column="83" selection-end-line="33" selection-end-column="83" />
               <folding />
             </state>
           </provider>
@@ -99,7 +106,7 @@
       <file leaf-file-name="data_twins.csv" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/data/data_twins.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
+            <state relative-caret-position="8140">
               <caret line="370" column="43" lean-forward="false" selection-start-line="370" selection-start-column="0" selection-end-line="371" selection-end-column="0" />
               <folding />
             </state>
@@ -154,7 +161,7 @@
     <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <push-targets>
-      <push-target-info repo="$PROJECT_DIR$" source="master" target-remote="origin" target-branch="new" />
+      <push-target-info repo="$PROJECT_DIR$" source="master" target-remote="origin" target-branch="master" />
     </push-targets>
   </component>
   <component name="IdeDocumentHistory">
@@ -208,6 +215,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -326,8 +335,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -430,7 +437,8 @@
       <workItem from="1496690901738" duration="17156000" />
       <workItem from="1496854133240" duration="12000000" />
       <workItem from="1497282375003" duration="1059000" />
-      <workItem from="1497284190493" duration="7047000" />
+      <workItem from="1497284190493" duration="7299000" />
+      <workItem from="1497299249336" duration="1005000" />
     </task>
     <task id="LOCAL-00001" summary="Added 1. icons&#10;2. rdiff_threshold">
       <created>1496176471487</created>
@@ -600,11 +608,18 @@
       <option name="project" value="LOCAL" />
       <updated>1496943309475</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="checkpoint">
+      <created>1497293004732</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1497293004732</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91173000" />
+    <option name="totallyTimeSpent" value="92430000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -656,7 +671,8 @@
     <MESSAGE value="color fix" />
     <MESSAGE value="grey" />
     <MESSAGE value="bug fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="bug fix" />
+    <MESSAGE value="checkpoint" />
+    <option name="LAST_COMMIT_MESSAGE" value="checkpoint" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -665,27 +681,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="29" lean-forward="false" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/start.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascript/misc/util.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3777">
-          <caret line="421" column="22" lean-forward="false" selection-start-line="421" selection-start-column="19" selection-end-line="421" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1911">
@@ -875,13 +870,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/data/data_duplicates.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="9" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/data/rdiff.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3014">
@@ -919,7 +907,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/modules/5.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
+        <state relative-caret-position="1496">
           <caret line="68" column="81" lean-forward="true" selection-start-line="68" selection-start-column="81" selection-end-line="68" selection-end-column="81" />
           <folding />
         </state>
@@ -937,15 +925,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="69">
           <caret line="12" column="48" lean-forward="true" selection-start-line="12" selection-start-column="48" selection-end-line="12" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/data/data_natural.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6336">
-          <caret line="276" column="90" lean-forward="false" selection-start-line="276" selection-start-column="90" selection-end-line="276" selection-end-column="90" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -959,7 +938,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/data/data_twins.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
+        <state relative-caret-position="8140">
           <caret line="370" column="43" lean-forward="false" selection-start-line="370" selection-start-column="0" selection-end-line="371" selection-end-column="0" />
           <folding />
         </state>
@@ -968,7 +947,7 @@
     <entry file="file://$PROJECT_DIR$/public/data/output.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="726">
-          <caret line="33" column="83" lean-forward="true" selection-start-line="33" selection-start-column="83" selection-end-line="33" selection-end-column="83" />
+          <caret line="33" column="83" lean-forward="false" selection-start-line="33" selection-start-column="83" selection-end-line="33" selection-end-column="83" />
           <folding />
         </state>
       </provider>
@@ -991,16 +970,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="653">
+        <state relative-caret-position="1672">
           <caret line="76" column="42" lean-forward="false" selection-start-line="76" selection-start-column="31" selection-end-line="76" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/j3uhe3ih.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/data/data_duplicates.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="9" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/data/groups.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/data/groups_without_modif.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/javascript/misc/util.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-132">
-          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        <state relative-caret-position="335">
+          <caret line="508" column="6" lean-forward="false" selection-start-line="508" selection-start-column="6" selection-end-line="508" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/data/data_natural.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="276" column="90" lean-forward="false" selection-start-line="276" selection-start-column="90" selection-end-line="276" selection-end-column="90" />
           <folding />
         </state>
       </provider>

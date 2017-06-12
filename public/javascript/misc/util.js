@@ -502,10 +502,11 @@ function pair(t,g,m){
         c = cwidth.length+2*mapping.length;
     var k = new Array(c).fill(1);
     for(var i=0;i<t.length;i++){
-        if(i!=9 && i!=21){
+        if([15, 27].indexOf(i)>-1){
             t[i] = t[i].replace(/-/g,"/");
         }
     }
+    //console.log(t);
     k[a] = 2;
     k[b] = 0;
     var row1 = t.slice(a,b),
