@@ -62,7 +62,7 @@
                         d3.select("#title").text("Section 2: Groupwise Test");
                     }
                     // page number
-                    d3.select("#notation").text("Page "+(step+1).toString()+"/"+experimentr.data()['mat'].length.toString());
+                    d3.select("#notation").text("Page "+(step+1).toString()+"/"+(experimentr.data()['mat'].length-1).toString());
 
                     setTimeout(function (){
                         d3.selectAll(".blocks").remove();

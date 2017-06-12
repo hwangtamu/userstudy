@@ -3,11 +3,11 @@
 /**
  * Created by hanwang on 1/23/17.
  */
-var title = ["Group","ID","FFreq","First name","Last name","LFreq","Reg No.","DoB(MM/DD/YYYY)"];
-var cwidth = [60,80,60,160,200,60,140,120]; //910
+var title = ["Group","ID","FFreq","First name","Last name","LFreq","DoB(MM/DD/YYYY)","Reg No."];
+var cwidth = [60,80,60,160,200,60,140,100]; //910
 var height = 24; //height per row 0 30 57
 var ys = [0,30,77];
-var mapping = [0,1,3,8,9,5,10,11,2,4,6,7];
+var mapping = [0,1,3,8,9,5,11,10,2,4,7,6];
 //index mapping from hidden data to visible data per row
 var data = {}; // experimentr data
 
@@ -108,7 +108,7 @@ function cell(t,g,j,k){
                     if(t<=3) {
                         // cel.append("svg:image").attr("xlink:href","/resources/rare.svg").attr("class","icon")
                         //     .attr("x",cwidth[j%cwidth.length]/3).attr("y",cy/2-9).attr("width",20).attr("height",20);
-                        cel.append("svg:image").attr("xlink:href","/resources/rare_2_rect.png").attr("class","icon")
+                        cel.append("svg:image").attr("xlink:href","/resources/rare_2_rect.svg").attr("class","icon")
                             .attr("x",cwidth[j%cwidth.length]/3).attr("y",cy/2-9).attr("width",22).attr("height",22);
                 } else {
                         if(t<=10) {
@@ -164,16 +164,16 @@ function cell(t,g,j,k){
                     .attr("y",cy/2-9).attr("width",18).attr("height",18);
             }
         }
-        else if(textbox.text()==" " && j<cwidth.length*2){
-            // check mark
-            cel.append("svg:image").attr("xlink:href","/resources/checkmark.png").attr("class","icon")
-                .attr("x",function(){if(title[j%cwidth.length]!="DoB(MM/DD/YYYY)"){return cwidth[j%cwidth.length]/3;}return 40;})
-                .attr("y",cy/2+15).attr("width",18).attr("height",18);
-        //else if(textbox.text()==" " && j%cwidth.length>0){
-        //        // double check mark
-        //        cel.append("svg:image").attr("xlink:href","/resources/checkmark.png").attr("class","icon")
-        //            .attr("x",function(){if(title[j%cwidth.length]!="DoB(MM/DD/YYYY)"){return cwidth[j%cwidth.length]/3;}return 40;})
-        //            .attr("y",cy/2-5).attr("width",18).attr("height",18);
+        //else if(textbox.text()==" " && j<cwidth.length*2){
+        //    // check mark
+        //    cel.append("svg:image").attr("xlink:href","/resources/checkmark.png").attr("class","icon")
+        //        .attr("x",function(){if(title[j%cwidth.length]!="DoB(MM/DD/YYYY)"){return cwidth[j%cwidth.length]/3;}return 40;})
+        //        .attr("y",cy/2+15).attr("width",18).attr("height",18);
+        else if(textbox.text()==" " && j%cwidth.length>0){
+                // double check mark
+                cel.append("svg:image").attr("xlink:href","/resources/checkmark.png").attr("class","icon")
+                    .attr("x",function(){if(title[j%cwidth.length]!="DoB(MM/DD/YYYY)"){return cwidth[j%cwidth.length]/3;}return 40;})
+                    .attr("y",cy/2-5).attr("width",18).attr("height",18);
 
         }else{
             var num = 0;
@@ -191,7 +191,7 @@ function cell(t,g,j,k){
                     diff = 1;
                     if(j<2*cwidth.length){
                         g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/diff.svg")
-                            .attr("class", "icon").attr("x", 20)
+                            .attr("class", "icon").attr("x", function(){if(title[j%cwidth.length]=="Reg No."){return 50;}return 20;})
                             .attr("y", cy / 2 + 5).attr("width", 35).attr("height", 35);
 
                     }
@@ -322,9 +322,9 @@ function cell(t,g,j,k){
             }
         }
     }
-    if(transpose.length+transpose_.length){
-        console.log(transpose, transpose_);
-    }
+    //if(transpose.length+transpose_.length){
+    //    console.log(transpose, transpose_);
+    //}
 
     if(j<2*cwidth.length && textbox.text()=="  "){
         g.select("#c"+j.toString()).selectAll(".icon").remove();
@@ -418,7 +418,7 @@ function cell(t,g,j,k){
                         if(experimentr.data()['os']=="Linux"){return "16px Lucida Sans Typewriter";}
                         return "16px Lucida Console";})
                     .attr("fill",function(){
-                        if(diff==1){return "black";}
+                        if(diff==1){if(title[j%cwidth.length]=="Reg No."){return "none";}return "black";}
                         else if((j<2*cwidth.length && indel.indexOf(l)>-1)||(j>2*cwidth.length && indel_.indexOf(l)>-1)){return "green";}
                         else if((j<2*cwidth.length && replace.indexOf(l)>-1)||(j>2*cwidth.length && replace_.indexOf(l)>-1)){return "#9b3d18";}
                         else if((j<2*cwidth.length && transpose.indexOf(l)>-1)||(j>2*cwidth.length && transpose_.indexOf(l)>-1)){return "#009fff";}
@@ -501,12 +501,24 @@ function pair(t,g,m){
         b = cwidth.length+mapping.length,
         c = cwidth.length+2*mapping.length;
     var k = new Array(c).fill(1);
+    for(var i=0;i<t.length;i++){
+        if(i!=9 && i!=21){
+            t[i] = t[i].replace(/-/g,"/");
+        }
+    }
     k[a] = 2;
     k[b] = 0;
     var row1 = t.slice(a,b),
         row2 = t.slice(b,c),
         k1 = k.slice(a,b),
-        k2 = k.slice(b,c);
+        k2 = k.slice(b,c),
+        f_name = row1[2],
+        freq = row1[3],
+        reg = row1[6],
+        dob = row1[7];
+    row1[3] = f_name;row1[2] = freq;row1[6] = dob;row1[7] = reg;
+    f_name = row2[2];freq = row2[3];reg = row2[6]; dob = row2[7];
+    row2[3] = f_name;row2[2] = freq;row2[6] = dob; row2[7] = reg;
 
     if(m=="Partial"){
         for(var j=1;j<mapping.length;j++){
@@ -514,8 +526,7 @@ function pair(t,g,m){
         }
         row1 = t.slice(a,b);row2 = t.slice(b,c);
         k1 = k.slice(a,b);k2 = k.slice(b,c);
-        var f_name = row1[2]; var freq = row1[3]; row1[3] = f_name; row1[2] = freq;
-        var f_name = row2[2]; var freq = row2[3]; row2[3] = f_name; row2[2] = freq;
+
 
         for(var j=0;j<mapping.length;j++){
             row1[j] = t[a+mapping[j]];row2[j] = t[b+mapping[j]];
@@ -565,9 +576,9 @@ function pair(t,g,m){
         for(var j=1;j<mapping.length;j++){
             k[a+j] = j<a ? 3:9; k[b+j] = j<a ? 3:9;
         }
-        row1 = t.slice(a,b);row2 = t.slice(b,c);
-        var f_name = row1[2]; var freq = row1[3]; row1[3] = f_name; row1[2] = freq;
-        var f_name = row2[2]; var freq = row2[3]; row2[3] = f_name; row2[2] = freq;
+        //row1 = t.slice(a,b);row2 = t.slice(b,c);
+        //var f_name = row1[2]; var freq = row1[3]; row1[3] = f_name; row1[2] = freq;
+        //var f_name = row2[2]; var freq = row2[3]; row2[3] = f_name; row2[2] = freq;
         k1 = k.slice(a,b);k2 = k.slice(b,c);
         for(var j=2;j<a;j++){
             if(title[j] == "FFreq" || title[j] == "LFreq"){
@@ -579,9 +590,9 @@ function pair(t,g,m){
         for(var j=1;j<mapping.length;j++){
             k[a+j] = j<a ? 3:9;k[b+j] = j<a ? 3:9;
         }
-        row1 = t.slice(a,b);row2 = t.slice(b,c);
-        var f_name = row1[2]; var freq = row1[3]; row1[3] = f_name; row1[2] = freq;
-        var f_name = row2[2]; var freq = row2[3]; row2[3] = f_name; row2[2] = freq;
+        //row1 = t.slice(a,b);row2 = t.slice(b,c);
+        //var f_name = row1[2]; var freq = row1[3]; row1[3] = f_name; row1[2] = freq;
+        //var f_name = row2[2]; var freq = row2[3]; row2[3] = f_name; row2[2] = freq;
         k1 = k.slice(a,b);k2 = k.slice(b,c);
 
         // last name
@@ -598,7 +609,6 @@ function pair(t,g,m){
         for(var j=0;j<mapping.length;j++){
             row1[j] = t[a+mapping[j]];row2[j] = t[b+mapping[j]];
         }
-
 
         k1[0] = 2;k2[0] = 0;
         if(m=="Hidden"){
@@ -636,9 +646,6 @@ function pair(t,g,m){
                     }
                 }
             }
-
-
-
 
             // last name
             // if(row1[9].length>1 && row1[9].indexOf("*")==-1 && row2[9].length>1 && row2[9].indexOf("*")==-1 && row1[9]!=row2[9]){
