@@ -1,4 +1,3 @@
-#from helper import *
 import csv
 
 
@@ -89,7 +88,6 @@ def get_edit_distance(s1, s2):
 
     return finalStr1, finalStr2
 
-
 def damerau_levenshtein_distance(s1, s2):
     d = {}
     lenstr1 = len(s1)
@@ -139,11 +137,6 @@ def hamming_with_transpose(s1, s2):
 
     return d[lenstr1 - 1, lenstr2 - 1]
 
-
-#print damerau_levenshtein_distance("0012","0013")
-#print hamming_with_transpose("2012","0221")
-
-
 def check_starring(s1, s2):
     len_1 = len(s1)
     len_2 = len(s2)
@@ -166,7 +159,6 @@ def check_starring(s1, s2):
         return False
     return True
 
-
 def get_star_date(date_1, date_2):
     #print date_1, date_2
     if (len(date_1) < 10) & (len(date_2) < 10):
@@ -187,7 +179,7 @@ def get_star_date(date_1, date_2):
 
     if year_1 == year_2 and not day_1 == month_1 and not day_2 == month_2:
         if month_1 == day_2 and month_2 == day_1:
-            return date_1[:2] + date_1[3:5] + date_1[6:], date_2[:2] + date_2[3:5] + date_2[6:]
+            return date_1[:2] + date_1[3:5] + "****", date_2[:2] + date_2[3:5] + "****"
 
     if not day_1 == day_2:
         if not month_1 == month_2:
@@ -234,7 +226,6 @@ def get_star_vot_reg(n1, n2):
 
     return final_1, final_2
 
-
 def pair(s,star_indices):
     """
 
@@ -250,7 +241,7 @@ def pair(s,star_indices):
                 x, y = get_star_date(tmp1[i], tmp2[i])
             elif i == star_indices["voter_reg_num"]:
                 x, y = get_star_vot_reg(tmp1[i], tmp2[i])
-            elif i == star_indices["last_name"] or i == star_indices["first_name"]:
+            elif i == star_indices["last_name"] or i == star_indices["first_name"] or i == star_indices["race"]:
                 if tmp1[star_indices["last_name"]] == tmp2[star_indices["first_name"]] and tmp2[star_indices["last_name"]] == tmp1[star_indices["first_name"]]:
                     x, y = tmp1[i], tmp2[i]
                     # name_swap = True
@@ -287,7 +278,7 @@ def make_list_dict(file_path,id_name):
     index_dob = find_index(title, "dob")
     index_file_id = find_index(title,"file_id") -1
     star_calc_indexes = {"voter_reg_num":index_vot_reg-1, "last_name":index_lname-1,"first_name":index_fname-1,"dob":index_dob-1}
-
+    star_calc_indexes["race"] = find_index(title,"race") -1
     data = {}
     ff = {}
     lf = {}
@@ -324,10 +315,11 @@ def star_similarities(d, star_indices,index_file_id):
             file_id_2 = d[p][i][index_file_id]
             if not file_id_1 == file_id_2:
                 x, y = pair([d[p][0], d[p][i]], star_indices)
-                if not len(x[14]) < 8:
-                    x[14] = x[14][:2] + '/' + x[14][2:4] + '/' + x[14][4:]
-                if not len(y[14]) < 8:
-                    y[14] = y[14][:2] + '/' + y[14][2:4] + '/' + y[14][4:]
+                date_star_index = len(title) - 1 + star_indices["dob"]
+                if not len(x[date_star_index]) < 8:
+                    x[date_star_index] = x[date_star_index][:2] + '/' + x[date_star_index][2:4] + '/' + x[date_star_index][4:]
+                if not len(y[date_star_index]) < 8:
+                    y[date_star_index] = y[date_star_index][:2] + '/' + y[date_star_index][2:4] + '/' + y[date_star_index][4:]
 
                 data += [[id, file_id_1] + x]
                 data += [[id, file_id_2] + y]
@@ -350,7 +342,6 @@ def get_col_indices(data, star_indices, order):
     all_indices = id_grp + org + star
     return all_indices
 
-
 def reorganize_cols(data, star_indices, order):
     col_indices = get_col_indices(data, star_indices, order)
     new_data = []
@@ -361,10 +352,10 @@ def reorganize_cols(data, star_indices, order):
         new_data.append(rec)
     return new_data
 
-def write_data(data_list,file_name):
+def write_data(data_list,file_name, title_array):
     f = open(file_name,'wb')
     w = csv.writer(f)
-    w.writerow(['Group ID', 'Record ID','First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB', 'First Name', 'Last Name', 'Reg No.', 'DoB'])
+    w.writerow(title_array)
     #mapping = [0, 1, 4, 11, 3, 10, 2, 5, 8, 7, 6, 9]
     for i in range(len(data_list)):
         rec = data_list[i]
@@ -375,24 +366,32 @@ def write_data(data_list,file_name):
     f.close()
 
 
-d ,title, star_indices , ff, lf, index_file_id = make_list_dict("groups_without_modif.csv","ID")
-
+d ,title, star_indices , ff, lf, index_file_id = make_list_dict("./data_crafted/data/pairs.csv","ID")
 data = star_similarities(d, star_indices,index_file_id)
-
-data_egen = data_filter(data, "egen")
-data_twins = data_filter(data,"twins")
-data_duplicates = data_filter(data,"duplicate")
-data_natural = data_filter(data,"natural")
-
-data_egen = reorganize_cols(data_egen, star_indices, ["first_name", "last_name", "voter_reg_num", "dob"])
-data_twins = reorganize_cols(data_twins, star_indices, ["first_name", "last_name", "voter_reg_num", "dob"])
-data_duplicates = reorganize_cols(data_duplicates, star_indices, ["first_name", "last_name", "voter_reg_num", "dob"])
-data_natural = reorganize_cols(data_natural, star_indices, ["first_name", "last_name", "voter_reg_num", "dob"])
-
-write_data(data_egen, "data_egen.csv")
-write_data(data_twins, "data_twins.csv")
-write_data(data_duplicates, "data_duplicates.csv")
-write_data(data_natural, "data_natural.csv")
-
 print(d)
 print(data)
+print(star_indices)
+data_starred = reorganize_cols(data, star_indices, ["first_name", "last_name", "voter_reg_num", "dob"])
+title_array = ['Group ID', 'Record ID','First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB', 'First Name', 'Last Name', 'Reg No.', 'DoB']
+write_data(data_starred, "data_crafted_starred.csv",title_array)
+
+data_starred = reorganize_cols(data, star_indices, ["first_name", "last_name", "voter_reg_num", "dob","race"])
+title_array = ['Group ID', 'Record ID','First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB', "Race", 'First Name', 'Last Name', 'Reg No.', 'DoB',"Race"]
+write_data(data_starred, "data_crafted_starred_race.csv",title_array)
+
+# data_egen = data_filter(data, "egen")
+# data_twins = data_filter(data,"twins")
+# data_duplicates = data_filter(data,"duplicate")
+# data_natural = data_filter(data,"natural")
+#
+# data_egen = reorganize_cols(data_egen, star_indices, ["first_name", "last_name", "voter_reg_num", "dob"])
+# data_twins = reorganize_cols(data_twins, star_indices, ["first_name", "last_name", "voter_reg_num", "dob"])
+# data_duplicates = reorganize_cols(data_duplicates, star_indices, ["first_name", "last_name", "voter_reg_num", "dob"])
+# data_natural = reorganize_cols(data_natural, star_indices, ["first_name", "last_name", "voter_reg_num", "dob"])
+#
+# write_data(data_egen, "data_egen.csv")
+# write_data(data_twins, "data_twins.csv")
+# write_data(data_duplicates, "data_duplicates.csv")
+# write_data(data_natural, "data_natural.csv")
+
+
