@@ -544,7 +544,7 @@ function pair(t,g,m){
                 }
             }
         }
-
+        //console.log(row1, row2);
 
         //for(var j=2;j<a;j++){
         //    if(j==3 || j==5) {
@@ -621,22 +621,19 @@ function pair(t,g,m){
             }
         }
         if(m=="Full_Partial"){
-
-
             for(var j=1;j<mapping.length;j++){
                 k1[j] = j<a ? 3:9;k2[j] = j<a ? 3:9;
                 if(j>0 && j<a && title[j] != "FFreq" && title[j] != "LFreq" && row1[j]==row2[j] && row1[j]!=""){
                     k1[j] = 4;k2[j] = 5;
-
                 }
-                if(title[j] != "FFreq" && title[j] != "LFreq" && row1[j]!=row2[j]){
-                    if(title[j] == "First name"){
-                        row1[j] = t[a+j-1];row2[j] = t[b+j-1];
-                    }else {
-                        row1[j] = t[a+j];row2[j] = t[b+j];
-                    }
-
-                }
+                //if(title[j] != "FFreq" && title[j] != "LFreq" && row1[j]!=row2[j]){
+                //    if(title[j] == "First name"){
+                //        row1[j] = t[a+j-1];row2[j] = t[b+j-1];
+                //    }else {
+                //        row1[j] = t[a+j];row2[j] = t[b+j];
+                //    }
+                //}
+                //console.log(row1, row2);
             }
 
             for(var j = 0;j<a;j++){
@@ -688,7 +685,7 @@ function pair(t,g,m){
                     }
                 }
             }
-
+            //console.log(row1, row2);
             //for(var j=a;j<b-a;j++){
             //    if(row1[j]==row2[j]){
             //        row1[mapping[j]] = ' ';
