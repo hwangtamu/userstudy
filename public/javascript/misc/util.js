@@ -3,7 +3,7 @@
 /**
  * Created by hanwang on 1/23/17.
  */
-var title = ["Group","ID","FFreq","First name","Last name","LFreq","DoB(MM/DD/YYYY)","Reg No."];
+var title = ["Group","ID","FFreq","First name","Last name","LFreq","DoB(M/D/Y)","Reg No."];
 var cwidth = [60,80,60,160,200,60,140,100]; //910
 var height = 24; //height per row 0 30 57
 var ys = [0,30,77];
@@ -160,19 +160,19 @@ function cell(t,g,j,k){
             if(title[j%cwidth.length]!="FFreq" && title[j%cwidth.length]!="LFreq"){
                 // missing
                 cel.append("svg:image").attr("xlink:href","/resources/missing.png").attr("class","icon")
-                    .attr("x",function(){if(title[j%cwidth.length]!="DoB(MM/DD/YYYY)"){return cwidth[j%cwidth.length]/3;}return 40;})
+                    .attr("x",function(){if(title[j%cwidth.length]!="DoB(M/D/Y)"){return cwidth[j%cwidth.length]/3;}return 40;})
                     .attr("y",cy/2-9).attr("width",18).attr("height",18);
             }
         }
         //else if(textbox.text()==" " && j<cwidth.length*2){
         //    // check mark
         //    cel.append("svg:image").attr("xlink:href","/resources/checkmark.png").attr("class","icon")
-        //        .attr("x",function(){if(title[j%cwidth.length]!="DoB(MM/DD/YYYY)"){return cwidth[j%cwidth.length]/3;}return 40;})
+        //        .attr("x",function(){if(title[j%cwidth.length]!="DoB(M/D/Y)"){return cwidth[j%cwidth.length]/3;}return 40;})
         //        .attr("y",cy/2+15).attr("width",18).attr("height",18);
         else if(textbox.text()==" " && j%cwidth.length>0){
             // double check mark
             cel.append("svg:image").attr("xlink:href","/resources/checkmark.png").attr("class","icon")
-                .attr("x",function(){if(title[j%cwidth.length]!="DoB(MM/DD/YYYY)"){return cwidth[j%cwidth.length]/3;}return 40;})
+                .attr("x",function(){if(title[j%cwidth.length]!="DoB(M/D/Y)"){return cwidth[j%cwidth.length]/3;}return 40;})
                 .attr("y",cy/2-5).attr("width",18).attr("height",18);
 
         }else{
