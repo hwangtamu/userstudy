@@ -4,7 +4,7 @@
  * Created by hanwang on 1/23/17.
  */
 var title = ["Group","ID","FFreq","First name","Last name","LFreq","DoB(M/D/Y)","Reg No."];
-var cwidth = [60,80,60,160,200,60,140,100]; //910
+var cwidth = [60,80,60,160,200,60,100,100]; //820
 var height = 24; //height per row 0 30 57
 var ys = [0,30,77];
 var mapping = [0,1,3,8,9,5,11,10,2,4,7,6];
@@ -480,7 +480,6 @@ function cell(t,g,j,k){
  * @param k : cell type list
  */
 function row(t,g,j,k){
-    console.log(t);
     var l = 0;
     for(var i=0;i<cwidth.length;i++){
         if(k[i]!=9){
@@ -734,7 +733,7 @@ function pairs(t,s,n,m) {
     var lwidth = 100 + (len-5) * 5;
     var extra_width = (200-lwidth)/2;
     //console.log(len,lwidth);
-    cwidth = [60,80,60,160,lwidth,60,140+extra_width,150+extra_width]; //910
+    cwidth = [60,80,60,160,lwidth,60,100+extra_width,150+extra_width]; //910
     for(var i=0;i<n;i++){
         var g = d3.select("#table").append("svg").attr("class","blocks").attr("id","g"+(s*5+i).toString())
             .attr("width", num>1 ? 1200:900).attr("height", 120);
