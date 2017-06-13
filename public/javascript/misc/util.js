@@ -59,20 +59,20 @@ function cell(t,g,j,k){
     var textbox = cel.append("text").attr("class","tbox").attr("id","t"+j.toString());
     textbox.attr("x",function(){
         //if(k==3 && (title[j%10]=="FFreq"||title[j%10]=="LFreq"||
-            //title[j%10]=="ID")){return cx/2;}
+        //title[j%10]=="ID")){return cx/2;}
         if(k==2){return cx/2;}
-    return 0;})
+        return 0;})
     //if(t.length>0){return cx*(0.02+0.48/t.length)-4;}})
         .attr("y",function(){if(k==2){return cy/2+28;}if(k==1||k==3||k==4||k==5||k==6){return cy/2+5;}})
         .attr("text-anchor",function(){
             //if(k==3 && (title[j%10]=="FFreq"||title[j%10]=="LFreq"||j%10==0||
-                //title[j%10]=="ID")){return "middle";}
+            //title[j%10]=="ID")){return "middle";}
             if(k==2){return "middle";}
             return "left";})
         .style("font",function(){
-        if(experimentr.data()['os']=="MacOS"){return "16px Monaco";}
-        if(experimentr.data()['os']=="Linux"){return "16px Lucida Sans Typewriter";}
-        return "16px Lucida Console";})//.style("font-weight","bold")
+            if(experimentr.data()['os']=="MacOS"){return "16px Monaco";}
+            if(experimentr.data()['os']=="Linux"){return "16px Lucida Sans Typewriter";}
+            return "16px Lucida Console";})//.style("font-weight","bold")
         .text(function(){
             if(k==0||(index_r>0 && k==1)){return " ";}
             else if(k==3 && (title[j%cwidth.length]=="FFreq"||title[j%cwidth.length]=="LFreq")){
@@ -105,19 +105,19 @@ function cell(t,g,j,k){
                 cel.append("svg:image").attr("xlink:href","/resources/unique.png").attr("class","icon")
                     .attr("x",cwidth[j%cwidth.length]/3).attr("y",cy/2-9).attr("width",20).attr("height",20);
             } else {
-                    if(t<=3) {
-                        // cel.append("svg:image").attr("xlink:href","/resources/rare.svg").attr("class","icon")
-                        //     .attr("x",cwidth[j%cwidth.length]/3).attr("y",cy/2-9).attr("width",20).attr("height",20);
-                        cel.append("svg:image").attr("xlink:href","/resources/rare_2_rect.svg").attr("class","icon")
-                            .attr("x",cwidth[j%cwidth.length]/3).attr("y",cy/2-9).attr("width",22).attr("height",22);
+                if(t<=3) {
+                    // cel.append("svg:image").attr("xlink:href","/resources/rare.svg").attr("class","icon")
+                    //     .attr("x",cwidth[j%cwidth.length]/3).attr("y",cy/2-9).attr("width",20).attr("height",20);
+                    cel.append("svg:image").attr("xlink:href","/resources/rare_2_rect.svg").attr("class","icon")
+                        .attr("x",cwidth[j%cwidth.length]/3).attr("y",cy/2-9).attr("width",22).attr("height",22);
                 } else {
-                        if(t<=10) {
-                            cel.append("svg:image").attr("xlink:href", "/resources/3_dots.png").attr("class", "icon")
-                                .attr("x", cwidth[j % cwidth.length] / 3).attr("y", cy / 2 - 9).attr("width", 20).attr("height", 20);
-                        } else {
-                            cel.append("svg:image").attr("xlink:href", "/resources/infinity.png").attr("class", "icon")
-                                .attr("x", cwidth[j % cwidth.length] / 3).attr("y", cy / 2 - 9).attr("width", 20).attr("height", 20);
-                        }
+                    if(t<=10) {
+                        cel.append("svg:image").attr("xlink:href", "/resources/3_dots.png").attr("class", "icon")
+                            .attr("x", cwidth[j % cwidth.length] / 3).attr("y", cy / 2 - 9).attr("width", 20).attr("height", 20);
+                    } else {
+                        cel.append("svg:image").attr("xlink:href", "/resources/infinity.png").attr("class", "icon")
+                            .attr("x", cwidth[j % cwidth.length] / 3).attr("y", cy / 2 - 9).attr("width", 20).attr("height", 20);
+                    }
                 }
             }
         }
@@ -170,10 +170,10 @@ function cell(t,g,j,k){
         //        .attr("x",function(){if(title[j%cwidth.length]!="DoB(MM/DD/YYYY)"){return cwidth[j%cwidth.length]/3;}return 40;})
         //        .attr("y",cy/2+15).attr("width",18).attr("height",18);
         else if(textbox.text()==" " && j%cwidth.length>0){
-                // double check mark
-                cel.append("svg:image").attr("xlink:href","/resources/checkmark.png").attr("class","icon")
-                    .attr("x",function(){if(title[j%cwidth.length]!="DoB(MM/DD/YYYY)"){return cwidth[j%cwidth.length]/3;}return 40;})
-                    .attr("y",cy/2-5).attr("width",18).attr("height",18);
+            // double check mark
+            cel.append("svg:image").attr("xlink:href","/resources/checkmark.png").attr("class","icon")
+                .attr("x",function(){if(title[j%cwidth.length]!="DoB(MM/DD/YYYY)"){return cwidth[j%cwidth.length]/3;}return 40;})
+                .attr("y",cy/2-5).attr("width",18).attr("height",18);
 
         }else{
             var num = 0;
@@ -196,66 +196,66 @@ function cell(t,g,j,k){
 
                     }
                 } else {
-                if(t_j!="" && t_m!="") {
-                    for (var i = 0; i < Math.max(t_j.length, t_m.length); i++) {
-                        // date swap
-                        if (bin.indexOf(i) == -1 && t_j[i] == t_m[i + 3] && t_j[i + 1] == t_m[i + 4] && t_j[i + 3] == t_m[i] && t_j[i + 4] == t_m[i + 1]
-                            && t_j[i] != "*" && t_j[i + 1] != "*" && t_j[i + 2] != "*" && t_j[i + 3] != "*") {
-                            //console.log(t_m, t_j);
-                            bin.push(i, i + 1, i + 2, i + 3, i + 4);
-                            if(j<2*cwidth.length){
-                                g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/swap_date.svg")
-                                    .attr("class", "icon").attr("x", 9 * i + 12)
-                                    .attr("y", cy / 2 + 13).attr("width", 23).attr("height", 23);
+                    if(t_j!="" && t_m!="") {
+                        for (var i = 0; i < Math.max(t_j.length, t_m.length); i++) {
+                            // date swap
+                            if (bin.indexOf(i) == -1 && t_j[i] == t_m[i + 3] && t_j[i + 1] == t_m[i + 4] && t_j[i + 3] == t_m[i] && t_j[i + 4] == t_m[i + 1]
+                                && t_j[i] != "*" && t_j[i + 1] != "*" && t_j[i + 2] != "*" && t_j[i + 3] != "*") {
+                                //console.log(t_m, t_j);
+                                bin.push(i, i + 1, i + 2, i + 3, i + 4);
+                                if(j<2*cwidth.length){
+                                    g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/swap_date.svg")
+                                        .attr("class", "icon").attr("x", 9 * i + 12)
+                                        .attr("y", cy / 2 + 13).attr("width", 23).attr("height", 23);
+                                }
+                                //transpose.push(i, i + 1, i + 3, i + 4);
+                                //transpose_.push(i, i + 1, i + 3, i + 4);
+                                num += 1
                             }
-                            //transpose.push(i, i + 1, i + 3, i + 4);
-                            //transpose_.push(i, i + 1, i + 3, i + 4);
-                            num += 1
-                        }
-                        //indel
-                        else if ((t_j[i] == "_" && t_m[i] != "_") || (t_j[i] != "_" && t_m[i] == "_")) {
-                            bin.push(i);
-                            if ((t_j[i] == "_" && t_m[i] != "_") || i > t_j.length) {
-                                indel_.push(i);
+                            //indel
+                            else if ((t_j[i] == "_" && t_m[i] != "_") || (t_j[i] != "_" && t_m[i] == "_")) {
+                                bin.push(i);
+                                if ((t_j[i] == "_" && t_m[i] != "_") || i > t_j.length) {
+                                    indel_.push(i);
+                                }
+                                if ((t_j[i] != "_" && t_m[i] == "_") || i > t_m.length) {
+                                    indel.push(i);
+                                }
+                                //g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/indel.png")
+                                //    .attr("class","icon").attr("x",9*i)
+                                //    .attr("y",cy/2+15).attr("width",16).attr("height",16);
                             }
-                            if ((t_j[i] != "_" && t_m[i] == "_") || i > t_m.length) {
-                                indel.push(i);
+                            //transpose
+                            else if (bin.indexOf(i) == -1 && t_j[i] == t_m[i + 1] && t_j[i + 1] == t_m[i] && t_j[i] != "*" && t_m[i] != "*"
+                                && t_j[i + 1] != "*" && t_m[i + 1] != "*" && t_j[i] == t_m[i + 1] && t_j[i] != t_j[i + 1]) {
+                                //console.log(t_m, t_j);
+                                bin.push(i, i + 1);
+                                if(j<2*cwidth.length){
+                                    g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/transpose.png")
+                                        .attr("class", "icon").attr("x", 9 * i + 4)
+                                        .attr("y", cy / 2 + 13).attr("width", 18).attr("height", 18);
+                                }
+                                transpose.push(i, i + 1);
+                                transpose_.push(i, i + 1);
+                                num += 1;
                             }
-                            //g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/indel.png")
-                            //    .attr("class","icon").attr("x",9*i)
-                            //    .attr("y",cy/2+15).attr("width",16).attr("height",16);
-                        }
-                        //transpose
-                        else if (bin.indexOf(i) == -1 && t_j[i] == t_m[i + 1] && t_j[i + 1] == t_m[i] && t_j[i] != "*" && t_m[i] != "*"
-                            && t_j[i + 1] != "*" && t_m[i + 1] != "*" && t_j[i] == t_m[i + 1] && t_j[i] != t_j[i + 1]) {
-                            //console.log(t_m, t_j);
-                            bin.push(i, i + 1);
-                            if(j<2*cwidth.length){
-                                g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/transpose.png")
-                                    .attr("class", "icon").attr("x", 9 * i + 4)
-                                    .attr("y", cy / 2 + 13).attr("width", 18).attr("height", 18);
-                            }
-                            transpose.push(i, i + 1);
-                            transpose_.push(i, i + 1);
-                            num += 1;
-                        }
 
-                        //replace
-                        else if (bin.indexOf(i) == -1 && t_j[i] != t_m[i] && t_j[i] != " " && t_m[i] != " ") {
-                            bin.push(i);
-                            replace.push(i);
-                            replace_.push(i);
-                            //g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/replace.png")
-                            //    .attr("class", "icon").attr("x", function(){
-                            /*if (d3.select(this.parentNode).text().length==1){
-                             return cx/2-9;
-                             }*/
-                            //    return 9*i;
-                            //})
-                            //    .attr("y", cy/2+13).attr("width", 18).attr("height", 18);
+                            //replace
+                            else if (bin.indexOf(i) == -1 && t_j[i] != t_m[i] && t_j[i] != " " && t_m[i] != " ") {
+                                bin.push(i);
+                                replace.push(i);
+                                replace_.push(i);
+                                //g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/replace.png")
+                                //    .attr("class", "icon").attr("x", function(){
+                                /*if (d3.select(this.parentNode).text().length==1){
+                                 return cx/2-9;
+                                 }*/
+                                //    return 9*i;
+                                //})
+                                //    .attr("y", cy/2+13).attr("width", 18).attr("height", 18);
+                            }
                         }
                     }
-                }
 
                     // reduce duplicate icons
                     var _indel = [],
@@ -328,8 +328,8 @@ function cell(t,g,j,k){
 
     if(j<2*cwidth.length && textbox.text()=="  "){
         g.select("#c"+j.toString()).selectAll(".icon").remove();
-    //    cel.append("svg:image").attr("xlink:href","/resources/replace.png").attr("class","icon")
-    //        .attr("x",cwidth[j%cwidth.length]/5).attr("y",cy/2).attr("width",48).attr("height",48);
+        //    cel.append("svg:image").attr("xlink:href","/resources/replace.png").attr("class","icon")
+        //        .attr("x",cwidth[j%cwidth.length]/5).attr("y",cy/2).attr("width",48).attr("height",48);
     }
 
     // click event
@@ -427,7 +427,7 @@ function cell(t,g,j,k){
                         //if(scheme[l]==1 && j>2*cwidth.length){return "#0945a5";}
                         return "black";})
                     .text(t[l]);
-            t_count+=1;
+                t_count+=1;
             }
         }
         g.select("#t"+j.toString()).remove();
@@ -435,40 +435,40 @@ function cell(t,g,j,k){
     }
     // coloring text
     /*
-    if(experimentr.data()['mode']!="Full"
-        &&(k==6||k==3)&&title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
-        textbox.attr("opacity",0);
-        g.select("#c"+j.toString()).select(".span").remove();
-        var p = g.attr("id").slice(1), //pair id
-            dat = experimentr.data()['mat'][Math.floor(p/5)],
-            m = j>=2*cwidth.length ? j-cwidth.length : j+cwidth.length,
-            len = textbox.text().length,
-            $cel = g.select("#c"+j.toString()),
-            $tb = $cel.append("text").attr("class","span"),
-            t_j = j<2*cwidth.length ? dat[p%5][0][mapping[j%cwidth.length]] : dat[p%5][1][mapping[j%cwidth.length]],
-            t_m = m<2*cwidth.length ? dat[p%5][0][mapping[m%cwidth.length]] : dat[p%5][1][mapping[m%cwidth.length]],
-            t_jj = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length] : dat[p%5][1][j%cwidth.length],
-            scheme = [];
-        for(f=0;f<len;f++){
-            if(t_j[f]==t_m[f]){scheme.push(0);}
-            else{scheme.push(1);}
-        }
-        for(l=0;l<len;l++){
-            var $tspan = $tb.append('tspan');
-            $tspan.attr("x",0.6*l+"em").attr("y",cy/2+5)
-                .attr("text-anchor","left")
-                .style("font",function(){if(experimentr.data()['os']=="MacOS"){return "16px Monaco";}if(experimentr.data()['os']=="Linux"){return "16px Lucida Sans Typewriter";}return "16px Lucida Console";})
-                .attr("fill",function(){
-                    if(t_j.length!=t_jj.length){return "black";}
-                    if(k==3 && scheme[l]==1 && textbox.text()[l]!="*" && textbox.text()[l]!="/"){return"black";}return "black";})
-                .text(t[l]);
+     if(experimentr.data()['mode']!="Full"
+     &&(k==6||k==3)&&title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
+     textbox.attr("opacity",0);
+     g.select("#c"+j.toString()).select(".span").remove();
+     var p = g.attr("id").slice(1), //pair id
+     dat = experimentr.data()['mat'][Math.floor(p/5)],
+     m = j>=2*cwidth.length ? j-cwidth.length : j+cwidth.length,
+     len = textbox.text().length,
+     $cel = g.select("#c"+j.toString()),
+     $tb = $cel.append("text").attr("class","span"),
+     t_j = j<2*cwidth.length ? dat[p%5][0][mapping[j%cwidth.length]] : dat[p%5][1][mapping[j%cwidth.length]],
+     t_m = m<2*cwidth.length ? dat[p%5][0][mapping[m%cwidth.length]] : dat[p%5][1][mapping[m%cwidth.length]],
+     t_jj = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length] : dat[p%5][1][j%cwidth.length],
+     scheme = [];
+     for(f=0;f<len;f++){
+     if(t_j[f]==t_m[f]){scheme.push(0);}
+     else{scheme.push(1);}
+     }
+     for(l=0;l<len;l++){
+     var $tspan = $tb.append('tspan');
+     $tspan.attr("x",0.6*l+"em").attr("y",cy/2+5)
+     .attr("text-anchor","left")
+     .style("font",function(){if(experimentr.data()['os']=="MacOS"){return "16px Monaco";}if(experimentr.data()['os']=="Linux"){return "16px Lucida Sans Typewriter";}return "16px Lucida Console";})
+     .attr("fill",function(){
+     if(t_j.length!=t_jj.length){return "black";}
+     if(k==3 && scheme[l]==1 && textbox.text()[l]!="*" && textbox.text()[l]!="/"){return"black";}return "black";})
+     .text(t[l]);
 
-            $tspan.on("mouseover",function(){d3.select(this).style("cursor", "pointer");});
-            $tspan.on("mouseout",function(){d3.select(this).style("cursor", "default");});
+     $tspan.on("mouseover",function(){d3.select(this).style("cursor", "pointer");});
+     $tspan.on("mouseout",function(){d3.select(this).style("cursor", "default");});
 
-            //click function not implemented yet.
-        }
-    }*/
+     //click function not implemented yet.
+     }
+     }*/
 
 
 }
@@ -480,6 +480,7 @@ function cell(t,g,j,k){
  * @param k : cell type list
  */
 function row(t,g,j,k){
+    console.log(t);
     var l = 0;
     for(var i=0;i<cwidth.length;i++){
         if(k[i]!=9){

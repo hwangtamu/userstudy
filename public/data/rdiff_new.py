@@ -304,7 +304,6 @@ def make_list_dict(file_path,id_name):
 
     return data, title, star_calc_indexes, ff,lf, index_file_id
 
-
 def star_similarities(d, star_indices,index_file_id):
     data = []
     id = 1
@@ -313,6 +312,10 @@ def star_similarities(d, star_indices,index_file_id):
         for i in range(1, len(d[p])):
             file_id_1 = d[p][0][index_file_id]
             file_id_2 = d[p][i][index_file_id]
+            type_1 = d[p][0][title.index("race")]
+            type_2 = d[p][1][title.index("race")]
+            # print(file_id_1,file_id_2)
+            # print(type_1,type_2)
             if not file_id_1 == file_id_2:
                 x, y = pair([d[p][0], d[p][i]], star_indices)
                 date_star_index = len(title) - 1 + star_indices["dob"]
@@ -321,11 +324,10 @@ def star_similarities(d, star_indices,index_file_id):
                 if not len(y[date_star_index]) < 8:
                     y[date_star_index] = y[date_star_index][:2] + '/' + y[date_star_index][2:4] + '/' + y[date_star_index][4:]
 
-                data += [[id, file_id_1] + x]
-                data += [[id, file_id_2] + y]
+                data += [[id, file_id_1] + x + [type_1]]
+                data += [[id, file_id_2] + y + [type_2]]
                 id += 1
     return data
-
 
 def data_filter(data_as_list,item):
     new_data = []
@@ -336,10 +338,11 @@ def data_filter(data_as_list,item):
 
 def get_col_indices(data, star_indices, order):
     id_grp = [0,1]
+    race = [7]
     org = [star_indices[item] + 2 for item in order]
     offset = (len(data[0]) - 2) / 2
     star =  [a + offset for a in org]
-    all_indices = id_grp + org + star
+    all_indices = id_grp + org + star + race
     return all_indices
 
 def reorganize_cols(data, star_indices, order):
@@ -366,32 +369,17 @@ def write_data(data_list,file_name, title_array):
     f.close()
 
 
-d ,title, star_indices , ff, lf, index_file_id = make_list_dict("./data_crafted/data/pairs.csv","ID")
+d ,title, star_indices , ff, lf, index_file_id = make_list_dict("./data_crafted/data/all_no_stars.csv","ID")
 data = star_similarities(d, star_indices,index_file_id)
-print(d)
-print(data)
-print(star_indices)
+# print(d)
+#print(data)
+# print(star_indices)
 data_starred = reorganize_cols(data, star_indices, ["first_name", "last_name", "voter_reg_num", "dob"])
-title_array = ['Group ID', 'Record ID','First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB', 'First Name', 'Last Name', 'Reg No.', 'DoB']
-write_data(data_starred, "data_crafted_starred.csv",title_array)
+title_array = ['Group ID', 'Record ID' ,'First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB', 'First Name', 'Last Name', 'Reg No.', 'DoB', 'type']
+write_data(data_starred, "all_starred.csv",title_array)
 
 data_starred = reorganize_cols(data, star_indices, ["first_name", "last_name", "voter_reg_num", "dob","race"])
-title_array = ['Group ID', 'Record ID','First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB', "Race", 'First Name', 'Last Name', 'Reg No.', 'DoB',"Race"]
-write_data(data_starred, "data_crafted_starred_race.csv",title_array)
-
-# data_egen = data_filter(data, "egen")
-# data_twins = data_filter(data,"twins")
-# data_duplicates = data_filter(data,"duplicate")
-# data_natural = data_filter(data,"natural")
-#
-# data_egen = reorganize_cols(data_egen, star_indices, ["first_name", "last_name", "voter_reg_num", "dob"])
-# data_twins = reorganize_cols(data_twins, star_indices, ["first_name", "last_name", "voter_reg_num", "dob"])
-# data_duplicates = reorganize_cols(data_duplicates, star_indices, ["first_name", "last_name", "voter_reg_num", "dob"])
-# data_natural = reorganize_cols(data_natural, star_indices, ["first_name", "last_name", "voter_reg_num", "dob"])
-#
-# write_data(data_egen, "data_egen.csv")
-# write_data(data_twins, "data_twins.csv")
-# write_data(data_duplicates, "data_duplicates.csv")
-# write_data(data_natural, "data_natural.csv")
+title_array = ['Group ID', 'Record ID','First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB', "Race", 'First Name', 'Last Name', 'Reg No.', 'DoB','Race','type']
+write_data(data_starred, "all_starred_race.csv",title_array)
 
 
