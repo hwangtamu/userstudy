@@ -74,7 +74,7 @@
   data.mode = "";
   experimentr.hideNext();
   //console.log(data.os);
-  experimentr.startTimer('background_info');
+  experimentr.startTimer('mode_info');
 
   d3.selectAll('input')
     .filter(function(d) { return this.name === 'mode' ? this : null; })
@@ -93,7 +93,7 @@
   });
 
   function goToNext() {
-    experimentr.endTimer('background_info');
+    experimentr.endTimer('mode_info');
     experimentr.addData(data);
 
       if (experimentr.data()["mode"]=="Vanilla"){
@@ -132,7 +132,7 @@
   d3.select("#skipComments")
       .on('click',function(){
           if(data.mode!=""){
-              experimentr.endTimer('background_info');
+              experimentr.endTimer('mode_info');
               experimentr.addData(data);
               console.log(experimentr.data()["mode"]);
               experimentr.sequence([

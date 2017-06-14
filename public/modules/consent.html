@@ -76,8 +76,9 @@
     data.browserName = browser.name;
     data.browserVersion = browser.version;
     data.os = os;
+    //data.ip = ip;
     data.userDate = Date();
-    //data.ip = JSON.parse(ip);
+    data.ip = JSON.parse(ip);
     data.clicks = {};
     load();
        // load previous workers file
