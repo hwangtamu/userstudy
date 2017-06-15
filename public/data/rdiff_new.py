@@ -159,14 +159,17 @@ def check_starring(s1, s2):
         return False
     return True
 
+def format_date(x):
+    return(x[:2] + '/' + x[2:4] + '/' + x[4:])
+
 def get_star_date(date_1, date_2):
     #print date_1, date_2
     if (len(date_1) < 10) & (len(date_2) < 10):
         return "", ""
     if len(date_1) < 10:
-        return "", date_2[:2] + date_2[3:5] + date_2[6:]
+        return "", format_date(date_2[:2] + date_2[3:5] + date_2[6:])
     if len(date_2) < 10:
-        return date_1[:2] + date_1[3:5] + date_1[6:], ""
+        return format_date(date_1[:2] + date_1[3:5] + date_1[6:]), ""
 
     day_1 = date_1[:2]
     day_2 = date_2[:2]
@@ -179,12 +182,12 @@ def get_star_date(date_1, date_2):
 
     if year_1 == year_2 and not day_1 == month_1 and not day_2 == month_2:
         if month_1 == day_2 and month_2 == day_1:
-            return date_1[:2] + date_1[3:5] + "****", date_2[:2] + date_2[3:5] + "****"
+            return format_date(date_1[:2] + date_1[3:5] + "****"), format_date(date_2[:2] + date_2[3:5] + "****")
 
     if not day_1 == day_2:
         if not month_1 == month_2:
             if not year_1 == year_2:
-                return date_1[:2] + date_1[3:5] + date_1[6:], date_2[:2] + date_2[3:5] + date_2[6:]
+                return format_date(date_1[:2] + date_1[3:5] + date_1[6:]), format_date(date_2[:2] + date_2[3:5] + date_2[6:])
 
     final_1 = ""
     final_2 = ""
@@ -197,7 +200,7 @@ def get_star_date(date_1, date_2):
         else:
             final_1 = final_1 + date_1[i]
             final_2 = final_2 + date_2[i]
-    return final_1,final_2
+    return format_date(final_1),format_date(final_2)
 
 def get_star_vot_reg(n1, n2):
     n1 = str(n1)
@@ -234,6 +237,10 @@ def pair(s,star_indices):
     """
     tmp1 = list(s[0])
     tmp2 = list(s[1])
+    rec_1 = []
+    rec_2 = []
+    star_1 = []
+    star_2 = []
     star_index_values = star_indices.values()
     for i in range(len(tmp1)):
         if i in star_index_values:
@@ -241,7 +248,7 @@ def pair(s,star_indices):
                 x, y = get_star_date(tmp1[i], tmp2[i])
             elif i == star_indices["voter_reg_num"]:
                 x, y = get_star_vot_reg(tmp1[i], tmp2[i])
-            elif i == star_indices["last_name"] or i == star_indices["first_name"] or i == star_indices["race"]:
+            elif i == star_indices["last_name"] or i == star_indices["first_name"]:
                 if tmp1[star_indices["last_name"]] == tmp2[star_indices["first_name"]] and tmp2[star_indices["last_name"]] == tmp1[star_indices["first_name"]]:
                     x, y = tmp1[i], tmp2[i]
                     # name_swap = True
@@ -249,11 +256,21 @@ def pair(s,star_indices):
                     x, y = get_edit_distance(tmp1[i], tmp2[i])
                 else:
                     x, y = tmp1[i], tmp2[i]
-        else:
-            x,y = tmp1[i], tmp2[i]
-        tmp1 += [x]
-        tmp2 += [y]
-    return tmp1, tmp2
+            elif i == star_indices["race"]:
+                if tmp1[i] == tmp2[i]:
+                    x, y = "*", "*"
+                else:
+                    x, y = tmp1[i], tmp2[i]
+            else:
+                x,y = tmp1[i], tmp2[i]
+            rec_1 += [tmp1[i]]
+            rec_2 += [tmp2[i]]
+            star_1 += [x]
+            star_2 += [y]
+            # print(tmp1[i],rec_1,star_1)
+
+    # print(rec_1 + star_1, rec_2 + star_2)
+    return (rec_1 + star_1, rec_2 + star_2)
 
 def find_index(name_list, prop_name):
     for i in range(len(name_list)):
@@ -312,20 +329,16 @@ def star_similarities(d, star_indices,index_file_id):
         for i in range(1, len(d[p])):
             file_id_1 = d[p][0][index_file_id]
             file_id_2 = d[p][i][index_file_id]
-            type_1 = d[p][0][title.index("race")]
-            type_2 = d[p][1][title.index("race")]
-            # print(file_id_1,file_id_2)
-            # print(type_1,type_2)
+            type_1 = d[p][0][title.index("type")-1]
+            type_2 = d[p][1][title.index("type")-1]
+            answer_1 = d[p][0][title.index("answer")-1]
+            answer_2 = d[p][1][title.index("answer")-1]
             if not file_id_1 == file_id_2:
+                if(file_id_1 == "B-3009") or (file_id_1 == "A-3010"):
+                    print("hi")
                 x, y = pair([d[p][0], d[p][i]], star_indices)
-                date_star_index = len(title) - 1 + star_indices["dob"]
-                if not len(x[date_star_index]) < 8:
-                    x[date_star_index] = x[date_star_index][:2] + '/' + x[date_star_index][2:4] + '/' + x[date_star_index][4:]
-                if not len(y[date_star_index]) < 8:
-                    y[date_star_index] = y[date_star_index][:2] + '/' + y[date_star_index][2:4] + '/' + y[date_star_index][4:]
-
-                data += [[id, file_id_1] + x + [type_1]]
-                data += [[id, file_id_2] + y + [type_2]]
+                data += [[id, file_id_1] + x + [type_1,answer_1]]
+                data += [[id, file_id_2] + y + [type_2,answer_2]]
                 id += 1
     return data
 
@@ -338,11 +351,13 @@ def data_filter(data_as_list,item):
 
 def get_col_indices(data, star_indices, order):
     id_grp = [0,1]
-    race = [7]
+    type_answer = [12,13]
     org = [star_indices[item] + 2 for item in order]
-    offset = (len(data[0]) - 2) / 2
-    star =  [a + offset for a in org]
-    all_indices = id_grp + org + star + race
+    offset = (len(data[0]) - 2) / 2 - 1
+    star =  [i + offset for i in org]
+    all_indices = id_grp + org + star + type_answer
+    print(all_indices)
+    print(offset)
     return all_indices
 
 def reorganize_cols(data, star_indices, order):
@@ -352,6 +367,8 @@ def reorganize_cols(data, star_indices, order):
         rec = []
         for j in col_indices:
             rec.append(data[i][j])
+        print(data[i])
+        print(rec)
         new_data.append(rec)
     return new_data
 
@@ -359,7 +376,6 @@ def write_data(data_list,file_name, title_array):
     f = open(file_name,'wb')
     w = csv.writer(f)
     w.writerow(title_array)
-    #mapping = [0, 1, 4, 11, 3, 10, 2, 5, 8, 7, 6, 9]
     for i in range(len(data_list)):
         rec = data_list[i]
         rec.insert(3, ff[rec[2]])
@@ -370,16 +386,19 @@ def write_data(data_list,file_name, title_array):
 
 
 d ,title, star_indices , ff, lf, index_file_id = make_list_dict("./data_crafted/data/all_no_stars.csv","ID")
+print(title)
+print(star_indices)
 data = star_similarities(d, star_indices,index_file_id)
-# print(d)
-#print(data)
-# print(star_indices)
-data_starred = reorganize_cols(data, star_indices, ["first_name", "last_name", "voter_reg_num", "dob"])
-title_array = ['Group ID', 'Record ID' ,'First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB', 'First Name', 'Last Name', 'Reg No.', 'DoB', 'type']
-write_data(data_starred, "all_starred.csv",title_array)
-
 data_starred = reorganize_cols(data, star_indices, ["first_name", "last_name", "voter_reg_num", "dob","race"])
-title_array = ['Group ID', 'Record ID','First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB', "Race", 'First Name', 'Last Name', 'Reg No.', 'DoB','Race','type']
+title_array = ['Group ID', 'Record ID','First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB', "Race", 'First Name', 'Last Name', 'Reg No.', 'DoB','Race','type','answer']
 write_data(data_starred, "all_starred_race.csv",title_array)
 
+# print(title)
+# print(star_indices)
+# print(d)
+# print(data)
+# print(data_starred)
 
+# data_starred = reorganize_cols(data, star_indices, ["first_name", "last_name", "voter_reg_num", "dob"])
+# title_array = ['Group ID', 'Record ID' ,'First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB', 'First Name', 'Last Name', 'Reg No.', 'DoB', 'type']
+# write_data(data_starred, "all_starred.csv",title_array)

@@ -10,17 +10,100 @@ is_not_empty <- function(string) {
 
 is_not_empty = Vectorize(is_not_empty)
 
-(source_data <- read_csv("data/ysame.csv", 
-                       col_types = cols(.default = "c")))
+(source_data <- read_csv("data/all.csv", 
+                         col_types = cols(.default = "c")))
 
 same_data <-
   source_data %>%
-    mutate_each(funs(ifelse(is_not_empty(.),.,""))) %>% 
-      mutate(last_name = str_c(last_name, name_sufx_cd, sep = " "),
-             file_id = str_c(src, file_id, sep = "-")) %>%
-        mutate_each(funs(str_trim(.))) %>% 
-            select(ID, voter_reg_num, last_name, first_name, dob, everything(), -name_sufx_cd,-src, file_id) %T>%
-              View()
+  mutate_each(funs(ifelse(is_not_empty(.),.,""))) %>% 
+  mutate(last_name = str_c(last_name, name_sufx_cd, sep = " "),
+         file_id = str_c(src, file_id, sep = "-")) %>%
+  mutate_each(funs(str_trim(.))) %>% 
+  select(ID, voter_reg_num, last_name, first_name, dob, race, type, 
+         everything(), -name_sufx_cd,-src) %T>%
+  View()
+
+#placeholder for answer
+four_grp <- 
+  same_data %>%
+    count(ID) %>%
+      arrange(desc(n)) %>%
+        filter(n>2) %$%
+        ID
+same_data <- 
+  same_data %>%
+    filter(!(ID %in% four_grp)) %>%
+      group_by(ID) %>% 
+        mutate(answer = 
+                 rep(sample(c(0,1),1),2)) %T>%
+                   View()
 
 
-write_csv(same_data, "./data/pairs.csv")
+
+
+write_csv(same_data, "./data/all_no_stars.csv")
+
+#system("C:/Python27/python.exe ../rdiff_new.py")
+
+(starred_data <- read_csv("../all_starred_race.csv", col_types = cols(.default = "c")) %>%
+    mutate_each(funs(ifelse(is_not_empty(.),.,""))))
+
+starred_data %>%
+  filter(Race_1 != "*") %>%
+    arrange(`Group ID`) %>%
+      View()
+
+
+(lookup <- starred_data %>%
+  select(type,`Group ID`) %>% 
+    unique() %>%
+      arrange(type,`Group ID`))
+
+n_samples <- 10
+n_group_observations <- 1
+n_error_types <- length(unique(lookup$type))
+
+sampling_matrix <- matrix(ncol = n_samples, nrow = n_error_types*n_group_observations)
+colnames(sampling_matrix) <- paste0("sample_",as.character(1:n_samples))
+rownames(sampling_matrix) <- paste0("type_",(rep(as.character(1:n_error_types),n_group_observations)))
+
+set.seed(1)
+for(i in 1:n_samples) {
+  gids  <- 
+    lookup %>%
+      group_by(type) %>%
+        sample_n(n_group_observations) %$%
+          `Group ID`
+  sampling_matrix[,i] <- gids
+  sampled_data <- 
+    starred_data %>%
+      filter(`Group ID` %in% gids) %>%
+        select(-type)
+  
+  #randomize the order
+  `Group ID` <- sample(gids,length(gids),replace = F)
+  qnum <- 1:length(gids)
+  qnum_lookup <- tibble(`Group ID`,qnum)
+  
+  
+  sampled_data <- 
+    sampled_data %>% 
+      left_join(qnum_lookup, by = "Group ID") %>%
+        mutate(`Group ID` = qnum) %>%
+          select(-qnum) %>%
+            arrange(`Group ID`)
+        
+
+  #make the names standard
+  names(sampled_data) <- c("Group ID", "Record ID", 
+                           "First Name", "FF", 
+                           "Last Name", "LF",
+                           "Reg No.", "DoB", "Race",
+                           "First Name", "Last Name",
+                           "Reg No.", "DoB", "Race",
+                           "Answer")
+  sampled_data %>%
+    write_csv(paste0(sprintf("../samples/sample_%02d",i),".csv"))
+}
+
+
