@@ -98,8 +98,9 @@
     <br>
 
 
-    <div id="div_data" style="display: inline-block" style="white-space: nowrap">Please rate your experience working with data or doing any kind of data analysis, including numerical inspection or descriptive statistics, on a scale of 1 to 10:
-        <input id="data_ana" name="data_analysis" type="range" min="1" max="10" step="1"  size="5"> <label id="lbl_data_ana" style="display: inline-block"></label>
+    <div id="div_data">Please rate your experience working with data or doing any kind of data analysis, including numerical inspection or descriptive statistics, on a scale of 1 to 10:
+        <input id="data_ana" name="data_analysis" type="range" min="1" max="10" step="1"  size="5"> <label id="lbl_data_ana" style="display: inline-block"></label><br>
+        Please briefly expain:<br><textarea name="data_ana_text" rows="4" cols="50"></textarea>
     </div>
     <br>
 
@@ -242,6 +243,10 @@
             .filter(function(d) { return this.name === 'country' ? this : null; })
             .on('change', function() { data.country = this.value;})
 
+        d3.selectAll('textarea')
+            .filter(function(d) { return this.name === 'data_ana_text' ? this : null; })
+            .on('change', function() { data.data_experience_explanation = this.value;})
+
 
         d3.select("#data_ana").style("width","100px");
         d3.selectAll('input')
@@ -269,47 +274,5 @@
 
 
 </script>
-
-    <!--<script>-->
-        <!--var pre_survey = document.getElementById("pre_survey");-->
-        <!--var pre_survey_form = document.createElement('form');-->
-        <!--pre_survey.appendChild(pre_survey_form);-->
-
-        <!--//page heading-->
-        <!--var heading = document.createElement('h2'); // Heading of Form-->
-        <!--heading.innerHTML = "Pre Study Questionnaire";-->
-        <!--pre_survey_form.appendChild(heading);-->
-
-<!--//        var line = document.createElement('hr'); // Giving Horizontal Row After Heading-->
-<!--//        pre_survey_form.appendChild(line);-->
-        <!--var linebreak = document.createElement('br');-->
-        <!--pre_survey_form.appendChild(linebreak);-->
-
-        <!--//text label-->
-        <!--var namelabel = document.createElement('label'); // Create Label for Name Field-->
-        <!--namelabel.innerHTML = "Gender : "; // Set Field Labels-->
-        <!--pre_survey_form.appendChild(namelabel);-->
-
-        <!--//text field-->
-        <!--var inputelement = document.createElement('input'); // Create Input Field for Name-->
-        <!--inputelement.setAttribute("type", "radio    ");-->
-        <!--inputelement.setAttribute("name", "dname");-->
-        <!--pre_survey_form.appendChild(inputelement);-->
-
-<!--//        break-->
-        <!--var name_linebreak = document.createElement('br')-->
-        <!--pre_survey_form.appendChild(name_linebreak);-->
-
-
-
-        <!--var messagebreak = document.createElement('br');-->
-        <!--pre_survey_form.appendChild(messagebreak);-->
-
-        <!--var end = document.createElement('p');-->
-        <!--pre_survey_form.appendChild(end);-->
-        <!--end.innerHTML = "End of page";-->
-
-    <!--</script>-->
-    <!--&lt;!&ndash;<script src="javascript/misc/survey.js"> </script>&ndash;&gt;-->
 </body>
 </html>

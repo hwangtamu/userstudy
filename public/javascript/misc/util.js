@@ -42,6 +42,7 @@ function cell(t,g,j,k){
     var cel = g.append("g").attr("id","c"+j.toString()).attr("class","cell")
         .attr("transform","translate("+x+","+y+")");
 
+    console.log(title[j%cwidth.length],t);
     var rectangle = cel.append("rect").attr("id",j);
     //only show rect on clickable cells
     //if(k==6 && j<2*cwidth.length){
@@ -68,6 +69,7 @@ function cell(t,g,j,k){
             //if(k==3 && (title[j%10]=="FFreq"||title[j%10]=="LFreq"||j%10==0||
             //title[j%10]=="ID")){return "middle";}
             if(k==2){return "middle";}
+            // || title[j%cwidth.length]=="Race"
             return "left";})
         .style("font",function(){
             if(experimentr.data()['os']=="MacOS"){return "16px Monaco";}
@@ -185,7 +187,7 @@ function cell(t,g,j,k){
                     t_j = dat[p%5][0][mapping[j%cwidth.length]],
                     t_m = dat[p%5][1][mapping[m%cwidth.length]],
                     bin = [];
-                console.log(t_j, t_m);
+                //console.log(t_j, t_m);
                 if(title[j%cwidth.length]!="Group" && t_j.indexOf("*")==-1 && t_m.indexOf("*")==-1 && t_j.trim()!="" && t_m.trim()!=""){
                     //var len = (t_j.length<=t_m.length?t_j.length:t_m.length)/2;
                     diff = 1;
@@ -484,7 +486,7 @@ function cell(t,g,j,k){
  * @param k : cell type list
  */
 function row(t,g,j,k){
-    console.log(t);
+    //console.log(t);
     var l = 0;
     for(var i=0;i<cwidth.length;i++){
         if(k[i]!=9){
@@ -537,7 +539,7 @@ function pair(t,g,m){
         for(var j=0;j<mapping.length;j++){
             row1[j] = t[a+mapping[j]];row2[j] = t[b+mapping[j]];
         }
-        console.log(row1, row2);
+        //console.log(row1, row2);
 
         for(var j = 0;j<a;j++){
 
@@ -932,7 +934,7 @@ function parsing(route){
         var binary = [];
         var other = [];
         var tmp = [];
-        console.log(raw_binary.length);
+        //console.log(raw_binary.length);
         for (var i = 0; i < raw_binary.length; i++) {
             if (tmp.length == 5 || i == raw_binary.length-1) {
                 if(i==raw_binary.length-1 && tmp.length<5){tmp.push(raw_binary[i]);}

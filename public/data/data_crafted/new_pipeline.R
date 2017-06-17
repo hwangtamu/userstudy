@@ -30,13 +30,13 @@ four_grp <-
       arrange(desc(n)) %>%
         filter(n>2) %$%
         ID
-same_data <- 
-  same_data %>%
-    filter(!(ID %in% four_grp)) %>%
-      group_by(ID) %>% 
-        mutate(answer = 
-                 rep(sample(c(0,1),1),2)) %T>%
-                   View()
+# same_data <- 
+#   same_data %>%
+#     filter(!(ID %in% four_grp)) %>%
+#       group_by(ID) %>% 
+#         mutate(answer = 
+#                  rep(sample(c(0,1),1),2)) %T>%
+#                    View()
 
 
 
@@ -77,8 +77,7 @@ for(i in 1:n_samples) {
   sampling_matrix[,i] <- gids
   sampled_data <- 
     starred_data %>%
-      filter(`Group ID` %in% gids) %>%
-        select(-type)
+      filter(`Group ID` %in% gids) 
   
   #randomize the order
   `Group ID` <- sample(gids,length(gids),replace = F)
@@ -101,7 +100,7 @@ for(i in 1:n_samples) {
                            "Reg No.", "DoB", "Race",
                            "First Name", "Last Name",
                            "Reg No.", "DoB", "Race",
-                           "Answer")
+                           "type","Answer")
   sampled_data %>%
     write_csv(paste0(sprintf("../samples/sample_%02d",i),".csv"))
 }
