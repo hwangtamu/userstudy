@@ -484,6 +484,7 @@ function cell(t,g,j,k){
  * @param k : cell type list
  */
 function row(t,g,j,k){
+    console.log(t);
     var l = 0;
     for(var i=0;i<cwidth.length;i++){
         if(k[i]!=9){
