@@ -733,7 +733,7 @@ function pairs(t,s,n,m) {
         var cur_len = ls_1 >= ls_2 ? ls_1:ls_2;
         len = len >= cur_len ? len:cur_len;
     }
-    console.log(t);
+    //console.log(t);
     //var cwidth = [60,80,60,160,200,60,140,150]; //910
     //var lwidth = len* 13;
     var lwidth = 100 + (len-5) * 5;
@@ -743,8 +743,8 @@ function pairs(t,s,n,m) {
     for(var i=0;i<n;i++){
         var g = d3.select("#table").append("svg").attr("class","blocks").attr("id","g"+(s*5+i).toString())
             .attr("width", num>1 ? 1400:900).attr("height", 120);
-        t[i][0] = t[i][0].slice(0,t[i][0].length-1);
-        t[i][1] = t[i][1].slice(0,t[i][1].length-1);
+        t[i][0] = t[i][0].slice(0,t[i][0].length-2);
+        t[i][1] = t[i][1].slice(0,t[i][1].length-2);
         pair(title.concat(t[i][0]).concat(t[i][1]),g,m);
         if(num>1){
             choices(g,1050,1,1);
