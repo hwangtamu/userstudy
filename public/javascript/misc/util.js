@@ -185,8 +185,8 @@ function cell(t,g,j,k){
                     t_j = dat[p%5][0][mapping[j%cwidth.length]],
                     t_m = dat[p%5][1][mapping[m%cwidth.length]],
                     bin = [];
-                //console.log(t_j, t_m);
-                if(title[j%cwidth.length]!="Group" && !t_j.includes("*") && !t_m.includes("*") && t_j.trim()!="" && t_m.trim()!=""){
+                console.log(t_j, t_m);
+                if(title[j%cwidth.length]!="Group" && t_j.indexOf("*")==-1 && t_m.indexOf("*")==-1 && t_j.trim()!="" && t_m.trim()!=""){
                     //var len = (t_j.length<=t_m.length?t_j.length:t_m.length)/2;
                     diff = 1;
                     if(j<2*cwidth.length){
@@ -733,6 +733,7 @@ function pairs(t,s,n,m) {
         var cur_len = ls_1 >= ls_2 ? ls_1:ls_2;
         len = len >= cur_len ? len:cur_len;
     }
+    console.log(t);
     //var cwidth = [60,80,60,160,200,60,140,150]; //910
     //var lwidth = len* 13;
     var lwidth = 100 + (len-5) * 5;
