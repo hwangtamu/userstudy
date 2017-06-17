@@ -502,6 +502,7 @@ function row(t,g,j,k){
  * @param m:mode
  */
 function pair(t,g,m){
+    //console.log(t);
     var a = cwidth.length,
         b = cwidth.length+mapping.length,
         c = cwidth.length+2*mapping.length;
