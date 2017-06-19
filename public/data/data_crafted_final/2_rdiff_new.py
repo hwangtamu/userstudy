@@ -180,9 +180,18 @@ def get_star_date(date_1, date_2):
     year_1 = date_1[6:]
     year_2 = date_2[6:]
 
-    if year_1 == year_2 and not day_1 == month_1 and not day_2 == month_2:
+    year_1_star= ""
+    year_2_star= ""
+    if not day_1 == month_1 and not day_2 == month_2:
         if month_1 == day_2 and month_2 == day_1:
-            return format_date(date_1[:2] + date_1[3:5] + "****"), format_date(date_2[:2] + date_2[3:5] + "****")
+            for i in range(4):
+                if year_1[i] == year_2[i]:
+                    year_1_star = year_1_star + "*"
+                    year_2_star = year_2_star + "*"
+                else:
+                    year_1_star = year_1_star + year_1[i]
+                    year_2_star = year_2_star + year_2[i]
+            return format_date(date_1[:2] + date_1[3:5] + year_1_star), format_date(date_2[:2] + date_2[3:5] + year_2_star)
 
     if not day_1 == day_2:
         if not month_1 == month_2:
