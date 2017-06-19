@@ -8,7 +8,7 @@
 <body>
 <div id="demographics">
     <div  style="left: 0px; width: 750px;"  >
-    <h3 style="text-align: center">Pre-Study Survey</h3>
+    <h3 style="text-align: center">Survey</h3>
 
     <p id="demoinstr" style="text-align: center">
         Please fill out the short survey. The study will begin after you do. No personal information is being collected.
@@ -47,8 +47,12 @@
         </div>
     <br>
 
-        <!--style="position: absolute; left:0px; width: 1000px; top: 250px"-->
-    <div id="div_student" style="background-color: rgba(101,101,101,0.15)">
+        <!--style="position: absolute; left:0px; width: 1000px; top: 250px" rgba(101,101,101,0.15)-->
+    <svg id="grey_div" height="100px" width="600px" style="position: absolute; left:125px; top: 235px">
+       <rect height="100px" width="750px" fill="#F8F8F8"></rect>
+    </svg>
+
+    <div id="div_student">
         <div id="current_degree" style="position: absolute; left:0px; width: 340px;  text-align: right;  top: 250px">4. Current Degree (If student):
         </div>
         <div id="degrees" style="position: absolute; left: 350px; top: 250px">
@@ -62,6 +66,10 @@
         <!--<br>-->
 
         <div id="department"  style="position: absolute; left: 0px;width: 340px;  text-align: right; top: 300px">5. Department (If student):
+        </div>
+
+        <div>
+            <input type="text" id="dpt" name="dpt" style="position: absolute; left: 350px; top: 300px" disabled="true">
         </div>
 
 
@@ -95,7 +103,10 @@
     <div id="div_country"  style="position: absolute; left: 0px;width: 340px;  text-align: right;  top: 450px">
         8. Country you lived the majority of your life:
     </div>
-    <div id="country_choices"></div>
+    <div>
+        <input type="text" id="country_txt" name="country" style="position: absolute; left: 350px; top: 450px">
+    </div>
+    <!--<div id="country_choices"></div>-->
     <br>
 
     <div id="div_english" style="position: absolute; left: 0px;width: 340px;  text-align: right;  top: 500px">
@@ -178,7 +189,8 @@
                 for(i=1;i<7;i++) {
                     d3.select('#d'+i).attr("disabled","true");
                 }
-                d3.select("#dept").attr("disabled","true");
+                d3.select("#grey_div").attr("visibility","visible");
+                d3.select("#dpt").attr("disabled","true");
                 if(d3.select("#o4").property("checked")) {
                     d3.select("#o5")
                         .style("visibility","visible");
@@ -190,7 +202,8 @@
                     d3.select("#o5")
                         .style("visibility","hidden");
                     if(d3.select("#o1").property("checked")) {
-                        d3.select("#dept").attr("disabled",null);
+                        d3.select("#grey_div").attr("visibility","hidden");
+                        d3.select("#dpt").attr("disabled",null);
                         for(i=1;i<7;i++) {
                             console.log(i);
                             d3.select('#d'+i).attr("disabled",null);
@@ -231,51 +244,51 @@
             })
 
 
-        d3.csv("../resources/other_data/dept_list.csv", function(error, dt) {
-            var select = d3.select("#div_student")
-                .append("select")
-                .attr("name","dpt")
-                .attr("id","dept")
-                .attr("disabled","true")
-                .style("position","absolute")
-                .style("left", "350px")
-                .style("top", "300px");
+//        d3.csv("../resources/other_data/dept_list.csv", function(error, dt) {
+//            var select = d3.select("#div_student")
+//                .append("select")
+//                .attr("name","dpt")
+//                .attr("id","dept")
+//                .attr("disabled","true")
+//                .style("position","absolute")
+//                .style("left", "350px")
+//                .style("top", "300px");
+//
+//            select
+//                .on("change", function(d) {
+//                    data.department = d3.select(this).property("value");
+//                    console.log(data.department);
+//                });
+//
+//            select.selectAll("option")
+//                .data(dt)
+//                .enter()
+//                .append("option")
+//                .attr("value", function (d) { return d.four_code; })
+//                .text(function (d) { return d.four_code; });
+//        });
 
-            select
-                .on("change", function(d) {
-                    data.department = d3.select(this).property("value");
-                    console.log(data.department);
-                });
-
-            select.selectAll("option")
-                .data(dt)
-                .enter()
-                .append("option")
-                .attr("value", function (d) { return d.four_code; })
-                .text(function (d) { return d.four_code; });
-        });
-
-        d3.csv("../resources/other_data/countries.csv", function(error, dt) {
-            var select = d3.select("#country_choices")
-                .append("select")
-                .attr("name","country")
-                .style("position","absolute")
-                .style("left", "350px")
-                .style("top", "450px");
-
-            select
-                .on("change", function(d) {
-                    data.country = d3.select(this).property("value");
-                    console.log(data.country);
-                });
-
-            select.selectAll("option")
-                .data(dt)
-                .enter()
-                .append("option")
-                .attr("value", function (d) { return d.countries; })
-                .text(function (d) { return d.countries; });
-        });
+//        d3.csv("../resources/other_data/countries.csv", function(error, dt) {
+//            var select = d3.select("#country_choices")
+//                .append("select")
+//                .attr("name","country")
+//                .style("position","absolute")
+//                .style("left", "350px")
+//                .style("top", "450px");
+//
+//            select
+//                .on("change", function(d) {
+//                    data.country = d3.select(this).property("value");
+//                    console.log(data.country);
+//                });
+//
+//            select.selectAll("option")
+//                .data(dt)
+//                .enter()
+//                .append("option")
+//                .attr("value", function (d) { return d.countries; })
+//                .text(function (d) { return d.countries; });
+//        });
 
         d3.selectAll('input')
             .filter(function(d) { return this.name === 'us_years' ? this : null; })
@@ -292,6 +305,10 @@
         d3.selectAll('input')
             .filter(function(d) { return this.name === 'country' ? this : null; })
             .on('change', function() { data.country = this.value;})
+
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'dpt' ? this : null; })
+            .on('change', function() { data.department = this.value;})
 
         d3.selectAll('textarea')
             .filter(function(d) { return this.name === 'data_ana_text' ? this : null; })
