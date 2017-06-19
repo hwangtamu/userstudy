@@ -3,6 +3,16 @@ library(readr)
 library(magrittr)
 library(stringr)
 
+is_not_empty <- function(string) {
+  if(is.na(string) | string == "" | string == ".") {
+    return(FALSE)
+  } else {
+    return(TRUE)
+  }
+}
+
+is_not_empty = Vectorize(is_not_empty)
+
 
 (starred_data <- read_csv("./data_output/all_starred_race.csv", col_types = cols(.default = "c")) %>%
   mutate_each(funs(ifelse(is_not_empty(.),.,""))))

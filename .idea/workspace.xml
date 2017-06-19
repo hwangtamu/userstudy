@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0e29c6df-9fc3-4c4c-ab4e-18561c52b86a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/modules/pre_study_questionnaire.html" afterPath="$PROJECT_DIR$/public/modules/pre_study_questionnaire.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/data_crafted_final/.Rhistory" afterPath="$PROJECT_DIR$/public/data/data_crafted_final/.Rhistory" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/data_crafted_final/3_postprocessing.R" afterPath="$PROJECT_DIR$/public/data/data_crafted_final/3_postprocessing.R" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -470,7 +470,7 @@
       <workItem from="1497480597357" duration="807000" />
       <workItem from="1497464626076" duration="13271000" />
       <workItem from="1497659733161" duration="569000" />
-      <workItem from="1497692728929" duration="13743000" />
+      <workItem from="1497692728929" duration="14392000" />
     </task>
     <task id="LOCAL-00001" summary="Added 1. icons&#10;2. rdiff_threshold">
       <created>1496176471487</created>
@@ -766,11 +766,18 @@
       <option name="project" value="LOCAL" />
       <updated>1497898402491</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="full_pipeline workflow">
+      <created>1497901826680</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1497901826696</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="138684000" />
+    <option name="totallyTimeSpent" value="139333000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
@@ -839,7 +846,8 @@
     <MESSAGE value="sample files have type now." />
     <MESSAGE value="Explanation field added" />
     <MESSAGE value="modified pre-study survey" />
-    <option name="LAST_COMMIT_MESSAGE" value="modified pre-study survey" />
+    <MESSAGE value="full_pipeline workflow" />
+    <option name="LAST_COMMIT_MESSAGE" value="full_pipeline workflow" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1123,6 +1131,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="557">
           <caret line="391" column="74" lean-forward="true" selection-start-line="391" selection-start-column="74" selection-end-line="391" selection-end-column="74" />
+          <folding />
         </state>
       </provider>
     </entry>
