@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0e29c6df-9fc3-4c4c-ab4e-18561c52b86a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/output.csv" afterPath="$PROJECT_DIR$/public/data/output.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/modules/consent.html" afterPath="$PROJECT_DIR$/public/modules/consent.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/modules/pre_study_questionnaire.html" afterPath="$PROJECT_DIR$/public/modules/pre_study_questionnaire.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -24,15 +24,39 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="util.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/javascript/misc/util.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1974">
+              <caret line="168" column="13" lean-forward="true" selection-start-line="168" selection-start-column="13" selection-end-line="168" selection-end-column="13" />
+              <folding>
+                <marker date="1497901770812" expanded="true" signature="36912:36984" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="consent.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/modules/consent.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="85" column="52" lean-forward="false" selection-start-line="85" selection-start-column="52" selection-end-line="85" selection-end-column="52" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="pre_study_questionnaire.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/modules/pre_study_questionnaire.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="10" column="35" lean-forward="false" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+            <state relative-caret-position="-1932">
+              <caret line="184" column="28" lean-forward="false" selection-start-line="184" selection-start-column="11" selection-end-line="184" selection-end-column="28" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#2;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -41,7 +65,6 @@
                 <element signature="n#style#0;n#line#0;n#svg#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#4;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#5;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#svg#1;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#6;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#6;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#2;n#div#6;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -49,8 +72,8 @@
                 <element signature="n#style#0;n#div#7;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#8;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#5;n#div#8;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#svg#2;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#line#0;n#svg#2;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#svg#1;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#line#0;n#svg#1;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#9;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#10;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#11;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -59,8 +82,8 @@
                 <element signature="n#style#0;n#div#14;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#15;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#16;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#svg#3;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#line#0;n#svg#3;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#svg#2;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#line#0;n#svg#2;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#17;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#18;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#19;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -74,8 +97,8 @@
       <file leaf-file-name="post_study_questionnaire.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/modules/post_study_questionnaire.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="22" column="64" lean-forward="false" selection-start-line="22" selection-start-column="64" selection-end-line="22" selection-end-column="64" />
+            <state relative-caret-position="-840">
+              <caret line="8" column="29" lean-forward="true" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="29" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -83,11 +106,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="121">
-              <caret line="80" column="27" lean-forward="true" selection-start-line="80" selection-start-column="27" selection-end-line="80" selection-end-column="27" />
+            <state relative-caret-position="1701">
+              <caret line="81" column="4" lean-forward="true" selection-start-line="81" selection-start-column="4" selection-end-line="81" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -105,8 +128,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>mode</find>
-      <find>32</find>
       <find>12</find>
       <find>console</find>
       <find>star_da</find>
@@ -135,6 +156,8 @@
       <find>dpt</find>
       <find>dept</find>
       <find>countr</find>
+      <find>grey_di</find>
+      <find>css</find>
     </findStrings>
     <replaceStrings>
       <replace>current_degree</replace>
@@ -167,7 +190,6 @@
         <option value="$PROJECT_DIR$/output/j3ugoveu.json" />
         <option value="$PROJECT_DIR$/public/javascript/misc/_util.js" />
         <option value="$PROJECT_DIR$/public/modules/5.html" />
-        <option value="$PROJECT_DIR$/public/modules/consent.html" />
         <option value="$PROJECT_DIR$/public/modules/background.html" />
         <option value="$PROJECT_DIR$/public/modules/end.html" />
         <option value="$PROJECT_DIR$/public/data/output.csv" />
@@ -177,6 +199,7 @@
         <option value="$PROJECT_DIR$/public/data/data_crafted_final/2_rdiff_new.py" />
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/public/modules/pre_study_questionnaire.html" />
+        <option value="$PROJECT_DIR$/public/modules/consent.html" />
       </list>
     </option>
   </component>
@@ -253,7 +276,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
+              <option name="myItemId" value="modules" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -271,63 +294,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
+              <option name="myItemId" value="javascript" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="data_crafted_final" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="userstudy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="userstudy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data_crafted_final" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data_output" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="userstudy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="userstudy" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data_crafted_final" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data_intermediate" />
+              <option name="myItemId" value="misc" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -399,7 +370,64 @@
     <configuration default="false" name="util.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="util.js" working-dir="$PROJECT_DIR$/public/javascript/misc">
       <method />
     </configuration>
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartTestRunConfigurationType" factoryName="Dart Test">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
+      <node-interpreter value="project" />
+      <working-dir value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
     <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" value="" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
       <method />
     </configuration>
     <list size="1">
@@ -755,11 +783,18 @@
       <option name="project" value="LOCAL" />
       <updated>1497906349634</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="dropdowns changed to textboxes">
+      <created>1497909262058</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1497909262058</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143338000" />
+    <option name="totallyTimeSpent" value="149035000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
@@ -772,7 +807,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23085847" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24960339" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32402235" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32849163" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39907193" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -832,7 +867,8 @@
     <MESSAGE value="full_pipeline workflow" />
     <MESSAGE value="full_pipeline workflow - function added" />
     <MESSAGE value="transposes with different year handled such that there is a star in the date" />
-    <option name="LAST_COMMIT_MESSAGE" value="transposes with different year handled such that there is a star in the date" />
+    <MESSAGE value="dropdowns changed to textboxes" />
+    <option name="LAST_COMMIT_MESSAGE" value="dropdowns changed to textboxes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1018,13 +1054,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/output/j3xiyv02.json" />
     <entry file="file://$PROJECT_DIR$/output/j3xj2ilc.json" />
-    <entry file="file://$PROJECT_DIR$/public/modules/consent.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="78" column="4" lean-forward="false" selection-start-line="78" selection-start-column="4" selection-end-line="78" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/modules/background.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
@@ -1074,27 +1103,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascript/misc/util.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="168" column="22" lean-forward="false" selection-start-line="168" selection-start-column="17" selection-end-line="168" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/data/data_crafted_final/data_input/all.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/post_study_questionnaire.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="22" column="64" lean-forward="false" selection-start-line="22" selection-start-column="64" selection-end-line="22" selection-end-column="64" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1122,14 +1134,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/modules/post_study_questionnaire.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-840">
+          <caret line="8" column="29" lean-forward="true" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="29" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascript/misc/util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1974">
+          <caret line="168" column="13" lean-forward="true" selection-start-line="168" selection-start-column="13" selection-end-line="168" selection-end-column="13" />
+          <folding>
+            <marker date="1497901770812" expanded="true" signature="36912:36984" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1701">
+          <caret line="81" column="4" lean-forward="true" selection-start-line="81" selection-start-column="4" selection-end-line="81" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/modules/pre_study_questionnaire.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="35" lean-forward="false" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+        <state relative-caret-position="-1932">
+          <caret line="184" column="28" lean-forward="false" selection-start-line="184" selection-start-column="11" selection-end-line="184" selection-end-column="28" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h3#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h4#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1138,7 +1177,6 @@
             <element signature="n#style#0;n#line#0;n#svg#0;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#4;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#5;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#svg#1;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#6;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#6;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#div#6;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1146,8 +1184,8 @@
             <element signature="n#style#0;n#div#7;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#8;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#5;n#div#8;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#svg#2;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#line#0;n#svg#2;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#svg#1;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#line#0;n#svg#1;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#9;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#10;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#11;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1156,8 +1194,8 @@
             <element signature="n#style#0;n#div#14;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#15;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#16;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#svg#3;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#line#0;n#svg#3;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#svg#2;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#line#0;n#svg#2;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#17;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#18;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#19;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1167,11 +1205,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
+    <entry file="file://$PROJECT_DIR$/public/modules/consent.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="121">
-          <caret line="80" column="27" lean-forward="true" selection-start-line="80" selection-start-column="27" selection-end-line="80" selection-end-column="27" />
-          <folding />
+        <state relative-caret-position="210">
+          <caret line="85" column="52" lean-forward="false" selection-start-line="85" selection-start-column="52" selection-end-line="85" selection-end-column="52" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

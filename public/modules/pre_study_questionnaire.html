@@ -7,12 +7,13 @@
 </head>
 <body>
 <div id="demographics">
-    <div  style="left: 0px; width: 750px;"  >
-    <h3 style="text-align: center">Survey</h3>
+    <div  style="width: 750px; position: absolute; top: 25px;">
+    <!--<h3 style="text-align: center">Survey</h3>-->
 
-    <p id="demoinstr" style="text-align: center">
-        Please fill out the short survey. The study will begin after you do. No personal information is being collected.
-    </p>
+    <h4 id="demoinstr" style="text-align: center" >
+        Please fill out this short questionnaire before you proceed to the study.
+    </h4>
+        <hr>
     </div>
 
     <form>
@@ -48,12 +49,12 @@
     <br>
 
         <!--style="position: absolute; left:0px; width: 1000px; top: 250px" rgba(101,101,101,0.15)-->
-    <svg id="grey_div" height="100px" width="600px" style="position: absolute; left:125px; top: 235px">
-       <rect height="100px" width="750px" fill="#F8F8F8"></rect>
-    </svg>
+    <!--<svg id="grey_div" height="100px" width="600px" style="position: absolute; left:125px; top: 235px">-->
+       <!--<rect height="100px" width="750px" fill="#F8F8F8"></rect>-->
+    <!--</svg>-->
 
-    <div id="div_student">
-        <div id="current_degree" style="position: absolute; left:0px; width: 340px;  text-align: right;  top: 250px">4. Current Degree (If student):
+    <div id="div_student" name="div_stud">
+        <div id="current_degree" style="position: absolute; left:0px; width: 340px;  text-align: right;  top: 250px">3.1. Current Degree (If student):
         </div>
         <div id="degrees" style="position: absolute; left: 350px; top: 250px">
             <input type="radio" id="d1" name="current_degree" value="High School"> High School
@@ -65,7 +66,7 @@
         </div>
         <!--<br>-->
 
-        <div id="department"  style="position: absolute; left: 0px;width: 340px;  text-align: right; top: 300px">5. Department (If student):
+        <div id="department"  style="position: absolute; left: 0px;width: 340px;  text-align: right; top: 300px">3.2. Department (If student):
         </div>
 
         <div>
@@ -76,7 +77,7 @@
     </div>
     <br>
 
-    <div id="div_highest_degree" style="position: absolute; left: 0px;width: 340px;  text-align: right;  top: 350px">6. Highest Degree obtained:
+    <div id="div_highest_degree" style="position: absolute; left: 0px;width: 340px;  text-align: right;  top: 350px">4. Highest Degree obtained:
     </div>
         <div id="degrees_2" style="position: absolute; left: 350px; top: 350px">
         <input type="radio" id="h1" name="highest_degree" value="High School"> High School
@@ -92,7 +93,7 @@
         <line x1="0" y1="5" x2="750" y2="5" style="stroke:grey;stroke-width:1"></line>
     </svg>
 
-    <div id="div_us_age" style="position: absolute; left: 0px;width: 340px;  text-align: right;  top: 400px">7. Length of stay in the US:
+    <div id="div_us_age" style="position: absolute; left: 0px;width: 340px;  text-align: right;  top: 400px">5. Length of stay in the US:
     </div>
         <div style="position: absolute; left: 350px; top: 400px">
         <input type="number" name="us_age" id="us_years" min="0" max="100"> Years
@@ -101,7 +102,7 @@
     <br>
 
     <div id="div_country"  style="position: absolute; left: 0px;width: 340px;  text-align: right;  top: 450px">
-        8. Country you lived the majority of your life:
+        6. Country you lived the majority of your life:
     </div>
     <div>
         <input type="text" id="country_txt" name="country" style="position: absolute; left: 350px; top: 450px">
@@ -110,7 +111,7 @@
     <br>
 
     <div id="div_english" style="position: absolute; left: 0px;width: 340px;  text-align: right;  top: 500px">
-        9. Is English your first language?
+        7. Is English your first language?
     </div>
     <div style="position: absolute; left: 350px; top: 500px">
         <input type="radio" id="e1" name="english" value="Yes"> Yes
@@ -119,7 +120,7 @@
     <br>
 
     <div id="div_color" style="position: absolute; left: 0px;width: 340px;  text-align: right;  top: 550px">
-        10. Do you have any known color blindness?
+        8. Do you have any known color blindness?
     </div>
     <div style="position: absolute; left: 350px; top: 550px">
         <input type="radio" id="c1" name="color" value="Yes"> Yes
@@ -132,7 +133,7 @@
     </svg>
 
     <div id="div_data" style="position: absolute; left: 0px;width: 340px;  text-align: right;  top: 600px">
-        11. Rate your experience working with data or doing data analysis, including numerical inspection or descriptive statistics on a scale of 1 to 10:
+        9. Rate your experience working with data or doing data analysis, including numerical inspection or descriptive statistics on a scale of 1 to 10:
     </div>
     <div style="position: absolute; left: 350px; top: 610px">
         <input type="number" id="data_ana" name="data_ana" min="1" max="10">
@@ -181,6 +182,10 @@
             d3.select('#d'+i).attr("disabled","true");
         }
 
+        d3.selectAllChildren('div_stud').style("color","white");
+//        d3.selectAll('div_stud').style("font-color","white");
+//        d3.selectAll('div_stud').style("fill","white");
+//        d3.selectAll('div_stud').style("stroke","white");
 
 //      If student
         d3.selectAll('input')
@@ -189,20 +194,21 @@
                 for(i=1;i<7;i++) {
                     d3.select('#d'+i).attr("disabled","true");
                 }
-                d3.select("#grey_div").attr("visibility","visible");
+//                d3.select('div_stud').style("color","white");
+
+//                d3.select("#grey_div").attr("visibility","visible");
                 d3.select("#dpt").attr("disabled","true");
                 if(d3.select("#o4").property("checked")) {
                     d3.select("#o5")
                         .style("visibility","visible");
-//                    d3.select("#div_student")
-//                        .style("display","none");
                     d3.select("#d6")
                         .style("visibility","hidden");
                 } else {
                     d3.select("#o5")
                         .style("visibility","hidden");
                     if(d3.select("#o1").property("checked")) {
-                        d3.select("#grey_div").attr("visibility","hidden");
+//                        d3.select("#grey_div").attr("visibility","hidden");
+//                        d3.select('div_stud').style("color","black");
                         d3.select("#dpt").attr("disabled",null);
                         for(i=1;i<7;i++) {
                             console.log(i);
