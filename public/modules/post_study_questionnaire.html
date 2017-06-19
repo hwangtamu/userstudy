@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post Study Survey</title>
+</head>
+<body>
+<div id="survey">
+    <h1>Post-Study Survey</h1>
+
+    <p id="demoinstr">
+        Please fill out the short survey. The study will begin after you do. No personal information is being collected.
+    </p>
+    <br>
+
+    <div id="div_difficulty">
+        Please explain any issues that made it harder or easier to make linkage decisions:<br>
+        <textarea id="text_area_difficulty" rows="4" cols="50">
+        </textarea>
+    </div>
+
+    <br>
+    <div id="div_column_difficulty" style="display: inline-block">
+        Please rate how easy or difficult it was to make decisions when there was a difference in each column:
+        <ol>
+            <li>First Name:
+                <input name="fname_diff" type="range" min="1" max="7" step="1"  size="5"> <label id="lbl_fname_diff" name="lbl_data_ana" style="display: inline-block"></label>
+            </li>
+            <li>Last Name:
+                <input  name="fname_diff" type="range" min="1" max="7" step="1"  size="5"> <label name="lbl_data_ana" style="display: inline-block"></label>
+            </li>
+            <li>DoB:
+                <input  name="fname_diff" type="range" min="1" max="7" step="1"  size="5"> <label name="lbl_data_ana" style="display: inline-block"></label>
+            </li>
+            <li>Reg No.:
+                <input  name="fname_diff" type="range" min="1" max="7" step="1"  size="5"> <label name="lbl_data_ana" style="display: inline-block"></label>
+            </li>
+            <li>Race:
+                <input  name="fname_diff" type="range" min="1" max="7" step="1"  size="5"> <label name="lbl_data_ana" style="display: inline-block"></label>
+            </li>
+        </ol>
+    </div>
+    <br>
+
+
+</div>
+</body>
+<script>
+    (function() {
+        experimentr.startTimer('post_survey_timer');
+        experimentr.hideNext();
+
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'fname_diff' ? this : null; })
+            .style("width","100px")
+            .on('change', function() {
+                var fname_diff = this.value
+                console.log(fname_diff );
+                d3.select('#lbl_fname_diff').text(fname_diff);
+            })
+
+
+
+
+    }());
+
+
+</script>
+</html>
