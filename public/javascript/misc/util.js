@@ -42,7 +42,7 @@ function cell(t,g,j,k){
     var cel = g.append("g").attr("id","c"+j.toString()).attr("class","cell")
         .attr("transform","translate("+x+","+y+")");
 
-    console.log(title[j%cwidth.length],t);
+    //console.log(title[j%cwidth.length],t);
     var rectangle = cel.append("rect").attr("id",j);
     //only show rect on clickable cells
     //if(k==6 && j<2*cwidth.length){
@@ -152,6 +152,9 @@ function cell(t,g,j,k){
                 if(j<2*cwidth.length && title[j%cwidth.length]=="First name"){
                     cel.append("svg:image").attr("xlink:href","/resources/name_swap.svg").attr("class","icon")
                         .attr("x",cwidth[j%cwidth.length]-75).attr("y",cy/2-8).attr("width",60).attr("height",60);
+                }
+                if(experimentr.data()["mode"]!="Full"){
+                    t = t.replace(/[A-Z0-9]/g, function(){if(j%2){return "&"}return "@"});
                 }
             }
             //console.log(swap);
@@ -390,9 +393,23 @@ function cell(t,g,j,k){
         replace_=[];
         transpose = [];
         transpose_ = [];
+
+        // replace display content to spacial symbols '@', '&'
+        if(experimentr.data()['mode']!="Full" && title[j%cwidth.length]=="Race"){
+            if(j>2*cwidth.length){t = '&';}
+            else if(j>cwidth.length){t = '@';}
+        }
+        if(["Full", "Opti2"].indexOf(experimentr.data()['mode'])<0 && title[j%cwidth.length]=="Reg No."){
+            if(j>2*cwidth.length){t = t.replace(/[A-Z0-9]/g, '&');}
+            else if(j>cwidth.length){t = t.replace(/[A-Z0-9]/g, '@');}
+        }
+        if(["Full", "Opti1", "Opti2"].indexOf(experimentr.data()['mode'])<0 &&
+            ["First name", "Last name", "DoB(M/D/Y)"].indexOf(title[j%cwidth.length])>-1){
+            if(j>2*cwidth.length){t = t.replace(/[A-Z0-9]/g, '&');}
+            else if(j>cwidth.length){t = t.replace(/[A-Z0-9]/g, '@');}
+        }
     }
-    if((experimentr.data()['mode']=="Full" || experimentr.data()['mode']=="Full_Partial" || experimentr.data()['mode']=="Partial" ||
-        experimentr.data()['mode']=="Partial_Cell") && k>=3 && k<=6 &&
+    if((experimentr.data()['mode']!="Vanilla") && k>=3 && k<=6 &&
         title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
         g.select("#c"+j.toString()).select(".span").remove();
         var p = g.attr("id").slice(1), //pair id
@@ -413,7 +430,7 @@ function cell(t,g,j,k){
         for(var l=0;l<len;l++){
             if(t[l]!="_"){
                 var $tspan = $tb.append('tspan');
-                $tspan.attr("x",0.6*t_count+"em").attr("y",cy/2+5)
+                $tspan.attr("x",function(){if(title[j%cwidth.length]=="Race"){return "2em";}return 0.6*t_count+"em";}).attr("y",cy/2+5)
                     .attr("text-anchor","left")
                     .style("font",function(){
                         if(experimentr.data()['os']=="MacOS"){return "16px Monaco";}
@@ -424,13 +441,9 @@ function cell(t,g,j,k){
                         (j<2*cwidth.length && replace.indexOf(l)>-1)||(j>2*cwidth.length && replace_.indexOf(l)>-1)||
                         (j<2*cwidth.length && transpose.indexOf(l)>-1)||(j>2*cwidth.length && transpose_.indexOf(l)>-1))){return "bold";}})
                     .attr("fill",function(){
-                        if(diff==1){if(title[j%cwidth.length]=="Reg No."){return "none";}return "black";}
-                        else if((j<2*cwidth.length && indel.indexOf(l)>-1)||(j>2*cwidth.length && indel_.indexOf(l)>-1)){return "#33ce45";}
+                        if((j<2*cwidth.length && indel.indexOf(l)>-1)||(j>2*cwidth.length && indel_.indexOf(l)>-1)){return "#33ce45";}
                         else if((j<2*cwidth.length && replace.indexOf(l)>-1)||(j>2*cwidth.length && replace_.indexOf(l)>-1)){return "#9b3d18";}
                         else if((j<2*cwidth.length && transpose.indexOf(l)>-1)||(j>2*cwidth.length && transpose_.indexOf(l)>-1)){return "#009fff";}
-                        //if(t_j.length!=t_jj.length){return "black";}
-                        //if(scheme[l]==1 && j<2*cwidth.length){return "#9b3d18";}
-                        //if(scheme[l]==1 && j>2*cwidth.length){return "#0945a5";}
                         return "black";})
                     .text(t[l]);
                 t_count+=1;
@@ -544,54 +557,24 @@ function pair(t,g,m){
         for(var j = 0;j<a;j++){
 
             if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Group" && title[j] != "ID"){
-                if(row1[j] == row2[j]){
-                    row1[j] = ' ';
-                    row2[j] = ' ';
+                if(row1[j] == row2[j] && row1[j]!=""){
+                    row1[j] = " ";
+                    row2[j] = " ";
                 } else {
                     row1[j] = row1[j].replace(/[A-Z0-9]/g, '@');
                     row2[j] = row2[j].replace(/[A-Z0-9]/g, '&');
                 }
             }
         }
-
-        //for(var j=2;j<a;j++){
-        //    if(j==3 || j==5) {
-        //        t[j] = ' ';
-        //        row1[j] = ' ';
-        //        row2[j] = ' ';
-        //    }
-        //}
-
-        // for(var j=a;j<b-a;j++){
-        //     row1[j] = row1[j].replace(/[A-Z0-9]/g, '@');
-        //     row2[j] = row2[j].replace(/[A-Z0-9]/g, '&');
-        //     row1[mapping[j]] = row1[j];
-        //     row2[mapping[j]] = row2[j];
-        //     if(row1[mapping[j]]==row2[mapping[j]]){
-        //         row1[mapping[j]] = ' ';
-        //         row2[mapping[j]] = ' ';
-        //     }
-        // }
-        // last name
-        // if(row1[4].length>1 && row1[4].indexOf("*")==-1 && row2[4].length>1 && row2[4].indexOf("*")==-1){
-        //     row1[4] = "  "; row2[4] = "  ";
-        // }
-        // first name
-        // if(row1[2].length>1 && row1[2].indexOf("*")==-1 && row2[2].length && row2[2].indexOf("*")==-1){
-        //     row1[2] = "  "; row2[2] = "  ";
-        // }
     }
     else if(m=="Vanilla"){
         for(var j=1;j<mapping.length;j++){
             k[a+j] = j<a ? 3:9; k[b+j] = j<a ? 3:9;
         }
-        //row1 = t.slice(a,b);row2 = t.slice(b,c);
-        //var f_name = row1[2]; var freq = row1[3]; row1[3] = f_name; row1[2] = freq;
-        //var f_name = row2[2]; var freq = row2[3]; row2[3] = f_name; row2[2] = freq;
         k1 = k.slice(a,b);k2 = k.slice(b,c);
         for(var j=2;j<a;j++){
             if(title[j] == "FFreq" || title[j] == "LFreq"){
-                t[j] = ' '; row1[j] = ' '; row2[j] = ' ';
+                t[j] = " "; row1[j] = " "; row2[j] = " ";
             }
         }
     }
@@ -599,20 +582,7 @@ function pair(t,g,m){
         for(var j=1;j<mapping.length;j++){
             k[a+j] = j<a ? 3:9;k[b+j] = j<a ? 3:9;
         }
-        //row1 = t.slice(a,b);row2 = t.slice(b,c);
-        //var f_name = row1[2]; var freq = row1[3]; row1[3] = f_name; row1[2] = freq;
-        //var f_name = row2[2]; var freq = row2[3]; row2[3] = f_name; row2[2] = freq;
         k1 = k.slice(a,b);k2 = k.slice(b,c);
-
-        // last name
-        // if(row1[9].length>1 && row1[9].indexOf("*")==-1 && row2[9].length>1 && row2[9].indexOf("*")==-1){
-        //     row1[4] = "  "; row2[4] = "  ";
-        // }
-        // first name
-        // if(row1[8].length>1 && row1[8].indexOf("*")==-1 && row2[8].length && row2[8].indexOf("*")==-1){
-        //     row1[2] = "  "; row2[2] = "  ";
-        // }
-
     }else{
         // var mapping = [0,1,3,8,9,5,10,11,2,4,6,7];
         for(var j=0;j<mapping.length;j++){
@@ -628,51 +598,28 @@ function pair(t,g,m){
                 }
             }
         }
-        if(m=="Full_Partial"){
+        if(m=="Opti1" || m=="Opti2"){
             for(var j=1;j<mapping.length;j++){
                 k1[j] = j<a ? 3:9;k2[j] = j<a ? 3:9;
                 if(j>0 && j<a && title[j] != "FFreq" && title[j] != "LFreq" && row1[j]==row2[j] && row1[j]!=""){
                     k1[j] = 4;k2[j] = 5;
                 }
-                //if(title[j] != "FFreq" && title[j] != "LFreq" && row1[j]!=row2[j]){
-                //    if(title[j] == "First name"){
-                //        row1[j] = t[a+j-1];row2[j] = t[b+j-1];
-                //    }else {
-                //        row1[j] = t[a+j];row2[j] = t[b+j];
-                //    }
-                //}
-                //console.log(row1, row2);
             }
 
             for(var j = 0;j<a;j++){
                 if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Group" && title[j] != "ID"){
-                    if(row1[j] == row2[j]){
-                        row1[j] = ' ';
-                        row2[j] = ' ';
+                    if(row1[j] == row2[j] && row1[j]!=""){
+                        row1[j] = " ";
+                        row2[j] = " ";
+                    }else if(row1[j]==""){
+                        row2[j] = row2[j].replace(/[A-Z0-9]/g, "*");
+                    }else if(row2[j]==""){
+                        row1[j] = row1[j].replace(/[A-Z0-9]/g, "*");
                     }
                 }
             }
-
-            // last name
-            // if(row1[9].length>1 && row1[9].indexOf("*")==-1 && row2[9].length>1 && row2[9].indexOf("*")==-1 && row1[9]!=row2[9]){
-            //     row1[4] = "  "; row2[4] = "  ";
-            // }
-            // first name
-            // if(row1[8].length>1 && row1[8].indexOf("*")==-1 && row2[8].length && row2[8].indexOf("*")==-1 && row1[8]!=row2[8]){
-            //     row1[2] = "  "; row2[2] = "  ";
-            // }
         }
         if(m=="Partial_Row"||m=="Partial_Cell"){
-
-            // //last name
-            // if(row1[4].indexOf("*")==-1 && row2[4].indexOf("*")==-1){
-            //     row1[4] = "  "; row2[4] = "  ";
-            // }
-            // //first name
-            // if(row1[2].indexOf("*")==-1 && row2[2].indexOf("*")==-1){
-            //     row1[2] = "  "; row2[2] = "  ";
-            // }
-
             for(var j=1;j<mapping.length;j++){
                 k1[j] = j<a ? 3:9;k2[j] = j<a ? 3:9;
                 if(j>0 && j<a && title[j] != "FFreq" && title[j] != "LFreq" && row1[j]==row2[j] && row1[j]!=""){
@@ -686,28 +633,16 @@ function pair(t,g,m){
             //for check mark
             for(var j = 0;j<a;j++){
                 if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Group" && title[j] != "ID"){
-                    if(row1[j] == row2[j]){
-                        row1[j] = ' ';
-                        row2[j] = ' ';
+                    if(row1[j] == row2[j] && row1[j]!=""){
+                        row1[j] = " ";
+                        row2[j] = " ";
+                    }else if(row1[j]==""){
+                        row2[j] = row2[j].replace(/[A-Z0-9]/g, "*");
+                    }else if(row2[j]==""){
+                        row1[j] = row1[j].replace(/[A-Z0-9]/g, "*");
                     }
                 }
             }
-            //console.log(row1, row2);
-            //for(var j=a;j<b-a;j++){
-            //    if(row1[j]==row2[j]){
-            //        row1[mapping[j]] = ' ';
-            //        row2[mapping[j]] = ' ';
-            //    }else if(row1[mapping[j]].match(/\*/g)){
-            //        // set up threshold
-            //        var same = row1[mapping[j]].match(/\*/g).length;
-            //        if(same<((row1[mapping[j]]+row2[mapping[j]]).length-same)*0.5){
-            //            row1[mapping[j]] = row1[j];
-            //            row2[mapping[j]] = row2[j];
-            //        }
-            //    }
-            //}
-
-
         }
     }
     var id = g.attr("id").slice(1)%5;
