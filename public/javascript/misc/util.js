@@ -10,7 +10,7 @@ var ys = [0,30,77];
 //index mapping from hidden data to visible data per row
 var mapping = [0,1,3,9,10,5,12,11,13,2,4,7,6,8];
 var data = {}; // experimentr data
-
+var n_pair = 0;
 /**
  * draw a cell
  * x,y : position
@@ -455,9 +455,8 @@ function cell(t,g,j,k){
         var t_count = 0;
         for(var l=0;l<len;l++){
             if(t[l]!="_"){
-                var $tspan = $tb.append('tspan');
+                var $tspan = $tb.append('tspan').attr("class","char");
                 $tspan.attr("x",function(){if(title[j%cwidth.length]=="Race"){return "2em";}return 9*t_count+"px";}).attr("y",cy/2+5)
-                    .attr("text-anchor","left")
                     .style("font",function(){
                         if(experimentr.data()['os']=="MacOS"){return "16px Monaco";}
                         if(experimentr.data()['os']=="Linux"){return "16px Lucida Sans Typewriter";}
@@ -894,6 +893,7 @@ function parsing(route){
         var raw_binary = values.filter(function (d) {
             return d.length == 2;
         });
+        n_pair = raw_binary.length;
         var binary = [];
         var other = [];
         var tmp = [];
@@ -932,6 +932,47 @@ function parsing(route){
             other.push(t);
         }
         data.mat = binary.concat(other);
+        // answer keys
+
+        var answer = [];
+        for(var i=0;i<raw_binary.length;i++){
+            answer.push(raw_binary[i][0][raw_binary[i][0].length-1]);
+        }
+        data.answer = answer;
+
         experimentr.addData(data);
     });
+}
+
+function grading(){
+    //init
+    var grades = {},
+        answers = [];
+    for(var i=0;i<n_pair;i++){
+        grades[i] = 0;
+    }
+    //retrieve answers
+    for(var k in experimentr.data()['clicks']){
+        answers.push(experimentr.data()['clicks'][k]);
+    }
+    for(var i=0;i<answers.length;i++){
+        if(+answers[i][2]>2 && experimentr.data()['answer'][+answers[i][0]]==1){
+            grades[+answers[i][0]] = 1;
+        }
+        else if(+answers[i][2]<3 && experimentr.data()['answer'][+answers[i][0]]==0){
+            grades[+answers[i][0]] = 1;
+        }
+        else{
+            grades[+answers[i][0]] = 0;
+        }
+    }
+    var total = 0;
+    for(var i=0;i<n_pair;i++){
+        if(grades[i]==1){
+            total+=1;
+        }
+    }
+    data.grades = grades;
+    data.total_score = total;
+    experimentr.addData(data);
 }
