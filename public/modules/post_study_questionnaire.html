@@ -14,33 +14,152 @@
     <br>
 
     <div id="div_difficulty">
-        Please explain any issues that made it harder or easier to make linkage decisions:<br>
+        1. Please explain any issues that made it harder to make linkage decisions:<br>
         <textarea id="text_area_difficulty" rows="4" cols="50">
         </textarea>
     </div>
 
     <br>
+
+    <div id="div_easiness">
+        2. Please explain any issues that made it easier to make linkage decisions:<br>
+        <textarea id="text_area_easiness" rows="4" cols="50">
+        </textarea>
+    </div>
+
+    <br>
     <div id="div_column_difficulty" style="display: inline-block">
-        Please rate how easy or difficult it was to make decisions when there was a difference in each column:
+        3. Please rate how easy or difficult it was to make decisions when there was a difference in each column:
         <ol>
             <li>First Name:
-                <input name="fname_diff" type="range" min="1" max="7" step="1"  size="5"> <label id="lbl_fname_diff" name="lbl_data_ana" style="display: inline-block"></label>
+                <select name="fname_diff">
+                    <option value="1">1 - Very Difficult</option>
+                    <option value="2">2 - Somewhat Difficult</option>
+                    <option value="3">3 - Slightly Difficult</option>
+                    <option value="4">4 - Not particularly easy or difficult</option>
+                    <option value="5">5 - Slightly Easy</option>
+                    <option value="6">6 - Somewhat Easy</option>
+                    <option value="7">7 - Very Easy</option>
+                </select>
             </li>
             <li>Last Name:
-                <input  name="fname_diff" type="range" min="1" max="7" step="1"  size="5"> <label name="lbl_data_ana" style="display: inline-block"></label>
+                <select name="lname_diff">
+                    <option value="1">1 - Very Difficult</option>
+                    <option value="2">2 - Somewhat Difficult</option>
+                    <option value="3">3 - Slightly Difficult</option>
+                    <option value="4">4 - Not particularly easy or difficult</option>
+                    <option value="5">5 - Slightly Easy</option>
+                    <option value="6">6 - Somewhat Easy</option>
+                    <option value="7">7 - Very Easy</option>
+                </select>
             </li>
-            <li>DoB:
-                <input  name="fname_diff" type="range" min="1" max="7" step="1"  size="5"> <label name="lbl_data_ana" style="display: inline-block"></label>
+            <li>DoB:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <select name="dob_diff">
+                    <option value="1">1 - Very Difficult</option>
+                    <option value="2">2 - Somewhat Difficult</option>
+                    <option value="3">3 - Slightly Difficult</option>
+                    <option value="4">4 - Not particularly easy or difficult</option>
+                    <option value="5">5 - Slightly Easy</option>
+                    <option value="6">6 - Somewhat Easy</option>
+                    <option value="7">7 - Very Easy</option>
+                </select>
+
             </li>
-            <li>Reg No.:
-                <input  name="fname_diff" type="range" min="1" max="7" step="1"  size="5"> <label name="lbl_data_ana" style="display: inline-block"></label>
+            <li>Reg No.:&nbsp;&nbsp;&nbsp;&nbsp;
+                <select name="reg_num_diff">
+                    <option value="1">1 - Very Difficult</option>
+                    <option value="2">2 - Somewhat Difficult</option>
+                    <option value="3">3 - Slightly Difficult</option>
+                    <option value="4">4 - Not particularly easy or difficult</option>
+                    <option value="5">5 - Slightly Easy</option>
+                    <option value="6">6 - Somewhat Easy</option>
+                    <option value="7">7 - Very Easy</option>
+                </select>
             </li>
-            <li>Race:
-                <input  name="fname_diff" type="range" min="1" max="7" step="1"  size="5"> <label name="lbl_data_ana" style="display: inline-block"></label>
+            <li>Race:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <select name="race_diff">
+                    <option value="1">1 - Very Difficult</option>
+                    <option value="2">2 - Somewhat Difficult</option>
+                    <option value="3">3 - Slightly Difficult</option>
+                    <option value="4">4 - Not particularly easy or difficult</option>
+                    <option value="5">5 - Slightly Easy</option>
+                    <option value="6">6 - Somewhat Easy</option>
+                    <option value="7">7 - Very Easy</option>
+                </select>
+            </li>
+        </ol>
+    </div>
+
+    <br>
+    <div id="div_column_sotting" style="display: inline-block">
+        4. Please rate how easy or difficult it was to spot decisions when there was a difference in each column:
+        <ol>
+            <li>First Name:
+                <select name="fname_spot">
+                    <option value="1">1 - Very Difficult</option>
+                    <option value="2">2 - Somewhat Difficult</option>
+                    <option value="3">3 - Slightly Difficult</option>
+                    <option value="4">4 - Not particularly easy or difficult</option>
+                    <option value="5">5 - Slightly Easy</option>
+                    <option value="6">6 - Somewhat Easy</option>
+                    <option value="7">7 - Very Easy</option>
+                </select>
+            </li>
+            <li>Last Name:
+                <select name="lname_spot">
+                    <option value="1">1 - Very Difficult</option>
+                    <option value="2">2 - Somewhat Difficult</option>
+                    <option value="3">3 - Slightly Difficult</option>
+                    <option value="4">4 - Not particularly easy or difficult</option>
+                    <option value="5">5 - Slightly Easy</option>
+                    <option value="6">6 - Somewhat Easy</option>
+                    <option value="7">7 - Very Easy</option>
+                </select>
+            </li>
+            <li>DoB:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <select name="dob_spot">
+                    <option value="1">1 - Very Difficult</option>
+                    <option value="2">2 - Somewhat Difficult</option>
+                    <option value="3">3 - Slightly Difficult</option>
+                    <option value="4">4 - Not particularly easy or difficult</option>
+                    <option value="5">5 - Slightly Easy</option>
+                    <option value="6">6 - Somewhat Easy</option>
+                    <option value="7">7 - Very Easy</option>
+                </select>
+
+            </li>
+            <li>Reg No.:&nbsp;&nbsp;&nbsp;&nbsp;
+                <select name="reg_num_spot">
+                    <option value="1">1 - Very Difficult</option>
+                    <option value="2">2 - Somewhat Difficult</option>
+                    <option value="3">3 - Slightly Difficult</option>
+                    <option value="4">4 - Not particularly easy or difficult</option>
+                    <option value="5">5 - Slightly Easy</option>
+                    <option value="6">6 - Somewhat Easy</option>
+                    <option value="7">7 - Very Easy</option>
+                </select>
+            </li>
+            <li>Race:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <select name="race_spot">
+                    <option value="1">1 - Very Difficult</option>
+                    <option value="2">2 - Somewhat Difficult</option>
+                    <option value="3">3 - Slightly Difficult</option>
+                    <option value="4">4 - Not particularly easy or difficult</option>
+                    <option value="5">5 - Slightly Easy</option>
+                    <option value="6">6 - Somewhat Easy</option>
+                    <option value="7">7 - Very Easy</option>
+                </select>
             </li>
         </ol>
     </div>
     <br>
+
+    <!--<div id="frequency">-->
+        <!--1. Please explain any issues that made it harder to make linkage decisions:<br>-->
+        <!--<textarea id="text_area_difficulty" rows="4" cols="50">-->
+        <!--</textarea>-->
+    <!--</div>-->
+
 
 
 </div>

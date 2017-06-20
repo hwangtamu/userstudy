@@ -182,7 +182,7 @@
             d3.select('#d'+i).attr("disabled","true");
         }
 
-        d3.selectAllChildren('div_stud').style("color","white");
+//        d3.selectAllChildren('div_stud').style("color","white");
 //        d3.selectAll('div_stud').style("font-color","white");
 //        d3.selectAll('div_stud').style("fill","white");
 //        d3.selectAll('div_stud').style("stroke","white");
@@ -340,6 +340,7 @@
 
         d3.select('#submitComments')
             .on('click', function () {
+                console.log("submit");
                 experimentr.endTimer('pre_survey_timer');
                 goToNext();
             });
