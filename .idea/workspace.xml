@@ -25,8 +25,8 @@
       <file leaf-file-name="util.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/javascript/misc/util.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="722" column="24" lean-forward="false" selection-start-line="722" selection-start-column="24" selection-end-line="722" selection-end-column="24" />
+            <state relative-caret-position="198">
+              <caret line="714" column="18" lean-forward="false" selection-start-line="714" selection-start-column="18" selection-end-line="714" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -439,21 +439,7 @@
       <workItem from="1497659733161" duration="569000" />
       <workItem from="1497692728929" duration="15483000" />
       <workItem from="1497982728571" duration="1273000" />
-      <workItem from="1497987884420" duration="4797000" />
-    </task>
-    <task id="LOCAL-00011" summary="color fix">
-      <created>1496780859462</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1496780859462</updated>
-    </task>
-    <task id="LOCAL-00012" summary="color fix">
-      <created>1496784126623</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1496784126623</updated>
+      <workItem from="1497987884420" duration="6130000" />
     </task>
     <task id="LOCAL-00013" summary="color fix">
       <created>1496784270424</created>
@@ -784,11 +770,25 @@
       <option name="project" value="LOCAL" />
       <updated>1497994696877</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="modif">
+      <created>1497994876921</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1497994876921</updated>
+    </task>
+    <task id="LOCAL-00061" summary="modif">
+      <created>1497996283736</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1497996283736</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="162840000" />
+    <option name="totallyTimeSpent" value="164173000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
@@ -1174,8 +1174,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/javascript/misc/util.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="722" column="24" lean-forward="false" selection-start-line="722" selection-start-column="24" selection-end-line="722" selection-end-column="24" />
+        <state relative-caret-position="198">
+          <caret line="714" column="18" lean-forward="false" selection-start-line="714" selection-start-column="18" selection-end-line="714" selection-end-column="18" />
           <folding />
         </state>
       </provider>

@@ -712,7 +712,7 @@ function pairs(t,s,n,m) {
     var lwidth = 100 + (len-5) * 5;
     var extra_width = (200-lwidth)/2;
     //console.log(len,lwidth);
-    cwidth = [60,20,60,180,lwidth,150,100+extra_width,80+extra_width,100]; //910
+    cwidth = [60,60,60,180,lwidth,150,100+extra_width,80+extra_width,100]; //910
     for(var i=0;i<n;i++){
         var g = d3.select("#table").append("svg").attr("class","blocks").attr("id","g"+(s*5+i).toString())
             .attr("width", 1800).attr("height", 120);
