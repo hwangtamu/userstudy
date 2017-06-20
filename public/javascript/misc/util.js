@@ -154,6 +154,8 @@ function cell(t,g,j,k){
                         .attr("x",cwidth[j%cwidth.length]-75).attr("y",cy/2-8).attr("width",60).attr("height",60);
                 }
                 if(experimentr.data()["mode"]!="Full"){
+                    t = t.replace(/\&/g, function(){if(j%2){return "&"}return "@"});
+                    t = t.replace(/\@/g, function(){if(j%2){return "&"}return "@"});
                     t = t.replace(/[A-Z0-9]/g, function(){if(j%2){return "&"}return "@"});
                 }
             }
