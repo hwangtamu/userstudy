@@ -35,7 +35,7 @@ var n_pair = 0;
 function cell(t,g,j,k){
     // erase title columns
     var index_r = g.attr("id").slice(1)%5;
-    var x = 60*(j%cwidth.length)+cwidth.slice(0,j%cwidth.length).reduce((a, b) => a + b, 0),
+    var x = 50*(j%cwidth.length)+cwidth.slice(0,j%cwidth.length).reduce((a, b) => a + b, 0),
         y = ys[Math.floor(j/cwidth.length)],
         cx = cwidth[j%cwidth.length],
         cy = height;
@@ -50,7 +50,7 @@ function cell(t,g,j,k){
     //        .attr("height",80).style("fill","#C5E3BF").attr("rx",5).attr("ry",5);
     //}
     if(index_r==0 && j<cwidth.length){
-        rectangle.attr("x",0).attr("y",0).attr("width",cx+60).attr("id","r"+j.toString())
+        rectangle.attr("x",0).attr("y",0).attr("width",cx+50).attr("id","r"+j.toString())
             .attr("height",function(){if(k==2||k==4){return cy*2+23;}if(k==0||k==5||(index_r>0 && k==1)){return 0;}return cy;})
             .style("fill","none")
             .style("fill",function(){if(k==1||k==2){return "#add8e6";}if(k==3||k==4){return "#b2d3e6";}if(k==6){return "#C5E3BF"}})
