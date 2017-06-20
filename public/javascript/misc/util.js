@@ -872,17 +872,14 @@ function parsing(route){
         //console.log(raw_binary.length);
         for (var i = 0; i < raw_binary.length; i++) {
             if (tmp.length == 5 || i == raw_binary.length-1) {
-                if(i==raw_binary.length-1 && tmp.length<5){tmp.push(raw_binary[i]);}
+                if(tmp.length<5){tmp.push(raw_binary[i]);}
                 binary.push(tmp);
-                tmp = [];
+                tmp = [raw_binary[i]];
             } else {
                 tmp.push(raw_binary[i]);
             }
         }
 
-        if (tmp != []) {
-            binary.push(tmp);
-        }
         tmp = values.filter(function (d) {
             return d.length == 4;
         });
