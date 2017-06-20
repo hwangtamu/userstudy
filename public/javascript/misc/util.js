@@ -307,14 +307,14 @@ function cell(t,g,j,k){
                     if(j<2*cwidth.length){
                         for(var i=0;i<__indel.length;i++){
                             g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/indel.png")
-                                .attr("class","icon").attr("x",0.65*__indel[i]+"em")
+                                .attr("class","icon").attr("x",9*__indel[i]+"px")
                                 .attr("y",cy/2+16).attr("width",13).attr("height",13);
                             num+=1;
                         }
 
                         for(var i=0;i<__replace.length;i++){
                             g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/replace.png")
-                                .attr("class", "icon").attr("x", 0.65*__replace[i]+"em")
+                                .attr("class", "icon").attr("x", 9*__replace[i]+"px")
                                 .attr("y", cy/2+16).attr("width", 13).attr("height", 13);
                             num+=1;
                         }
@@ -456,7 +456,7 @@ function cell(t,g,j,k){
         for(var l=0;l<len;l++){
             if(t[l]!="_"){
                 var $tspan = $tb.append('tspan');
-                $tspan.attr("x",function(){if(title[j%cwidth.length]=="Race"){return "2em";}return 0.6*t_count+"em";}).attr("y",cy/2+5)
+                $tspan.attr("x",function(){if(title[j%cwidth.length]=="Race"){return "2em";}return 9*t_count+"px";}).attr("y",cy/2+5)
                     .attr("text-anchor","left")
                     .style("font",function(){
                         if(experimentr.data()['os']=="MacOS"){return "16px Monaco";}
