@@ -409,6 +409,32 @@ function cell(t,g,j,k){
             else if(j>cwidth.length){t = t.replace(/[A-Z0-9]/g, '@');}
         }
     }
+    if(diff==0 && ["First name", "Last name", "DoB(M/D/Y)"].indexOf(title[j%cwidth.length])>-1 && experimentr.data()['mode']=="Opti1"){
+        var p = g.attr("id").slice(1),
+            dat = experimentr.data()['mat'][Math.floor(p/5)];
+        if(textbox.text().indexOf("*")>-1){
+            if(title[j%cwidth.length]=="First name"){
+                t = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length-1] : dat[p%5][1][j%cwidth.length-1];
+            }else if(title[j%cwidth.length]=="Last name"){
+                t = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length] : dat[p%5][1][j%cwidth.length];
+            }else{
+                t = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length+1] : dat[p%5][1][j%cwidth.length+1];
+            }
+        }
+    }
+    if(diff==0 && ["First name", "Last name", "DoB(M/D/Y)"].indexOf(title[j%cwidth.length])>-1 && experimentr.data()['mode']=="Opti1"){
+        var p = g.attr("id").slice(1),
+            dat = experimentr.data()['mat'][Math.floor(p/5)];
+        if(textbox.text().indexOf("*")>-1){
+            if(title[j%cwidth.length]=="First name"){
+                t = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length-1] : dat[p%5][1][j%cwidth.length-1];
+            }else if(title[j%cwidth.length]=="Last name"){
+                t = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length] : dat[p%5][1][j%cwidth.length];
+            }else{
+                t = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length+1] : dat[p%5][1][j%cwidth.length+1];
+            }
+        }
+    }
     if((experimentr.data()['mode']!="Vanilla") && k>=3 && k<=6 &&
         title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
         g.select("#c"+j.toString()).select(".span").remove();
