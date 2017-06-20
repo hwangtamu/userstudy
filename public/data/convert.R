@@ -12,6 +12,9 @@ is_not_empty <- function(string) {
 
 is_not_empty = Vectorize(is_not_empty)
 
+
+#######################
+
 ans1 <- read_csv("./ans1.csv")
 
 ans2 <- ans1 %>%
@@ -34,7 +37,13 @@ ans2 %>%
   arrange(type,ID) %>% 
   write_csv("./ans2_source.csv")
 
-ans2_stars <- read_csv("./ans2_stars.csv") %>% arrange(type) %>% mutate_each(funs(ifelse(is_not_empty(.),.,"")))
+#####################################################
+
+ans2_stars <- read_csv("./ans2_stars.csv") %>% 
+  arrange(type) %>%
+    mutate(`Group ID` = type) %>%
+      mutate_each(funs(ifelse(is_not_empty(.),.,"")))
+  
   
 
 names(ans2_stars) <- c("Group ID", "Record ID", 
@@ -44,6 +53,8 @@ names(ans2_stars) <- c("Group ID", "Record ID",
                        "First Name", "Last Name",
                        "Reg No.", "DoB", "Race",
                        "type","Answer")
+
+
 
 ans2_stars %>%
   write_csv("./ans2_stars.csv")
