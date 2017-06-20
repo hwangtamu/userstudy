@@ -598,7 +598,8 @@ function pair(t,g,m){
                 }
             }
         }
-        if(m=="Opti1" || m=="Opti2"){
+
+        if(m=="Opti2"||m=="Opti1"){
             for(var j=1;j<mapping.length;j++){
                 k1[j] = j<a ? 3:9;k2[j] = j<a ? 3:9;
                 if(j>0 && j<a && title[j] != "FFreq" && title[j] != "LFreq" && row1[j]==row2[j] && row1[j]!=""){
@@ -618,6 +619,7 @@ function pair(t,g,m){
                     }
                 }
             }
+            //console.log(row1, row2);
         }
         if(m=="Partial_Row"||m=="Partial_Cell"){
             for(var j=1;j<mapping.length;j++){
@@ -681,11 +683,11 @@ function pairs(t,s,n,m) {
     cwidth = [60,20,60,160,lwidth,100,140+extra_width,100+extra_width,50]; //910
     for(var i=0;i<n;i++){
         var g = d3.select("#table").append("svg").attr("class","blocks").attr("id","g"+(s*5+i).toString())
-            .attr("width", num>1 ? 1400:900).attr("height", 120);
+            .attr("width", 1400).attr("height", 120);
         t[i][0] = t[i][0].slice(0,t[i][0].length-2);
         t[i][1] = t[i][1].slice(0,t[i][1].length-2);
         pair(title.concat(t[i][0]).concat(t[i][1]),g,m);
-        if(num>1){
+        if(num>0){
             choices(g,1050,1,1);
         }
         if(i==0){
@@ -879,7 +881,10 @@ function parsing(route){
                 tmp.push(raw_binary[i]);
             }
         }
-
+        if (tmp != []) {
+            binary.push(tmp);
+        }
+        binary.push([]);
         tmp = values.filter(function (d) {
             return d.length == 4;
         });
