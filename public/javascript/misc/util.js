@@ -681,7 +681,7 @@ function pair(t,g,m){
     }
     var id = g.attr("id").slice(1)%5;
     if(id%2==1){
-        var bg = g.append("rect").attr("id",j).attr("height", 110).attr("width", 1900).attr("y", 10).style("fill", "#eaf2ff");
+        var bg = g.append("rect").attr("id",j).attr("height", 110).attr("width", 1800).attr("y", 10).style("fill", "#eaf2ff");
     }
     row(t.slice(0,a),g,0,k.slice(0,a));
     row(row1,g,1,k1);
@@ -715,16 +715,16 @@ function pairs(t,s,n,m) {
     cwidth = [60,20,60,200,lwidth,100,140+extra_width,100+extra_width,50]; //910
     for(var i=0;i<n;i++){
         var g = d3.select("#table").append("svg").attr("class","blocks").attr("id","g"+(s*5+i).toString())
-            .attr("width", 1900).attr("height", 120);
+            .attr("width", 1800).attr("height", 120);
         t[i][0] = t[i][0].slice(0,t[i][0].length-2);
         t[i][1] = t[i][1].slice(0,t[i][1].length-2);
         pair(title.concat(t[i][0]).concat(t[i][1]),g,m);
         if(num>0){
-            choices(g,1550,1,1);
+            choices(g,1350,1,1);
         }
         if(i==0){
             // var panel = g.append("g").attr("id","panel").attr("transform","translate(920,0)");
-            var panel = g.append("g").attr("id","panel").attr("transform","translate(1450,0)");
+            var panel = g.append("g").attr("id","panel").attr("transform","translate(1250,0)");
 
             // var re = panel.append("rect").attr("x",30).attr("height",24).attr("width",320).style("fill","add8e6");
             var re = panel.append("rect").attr("x",-20).attr("height",24).attr("width",670).style("fill","add8e6");
