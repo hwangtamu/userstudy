@@ -720,14 +720,14 @@ function pairs(t,s,n,m) {
         t[i][1] = t[i][1].slice(0,t[i][1].length-2);
         pair(title.concat(t[i][0]).concat(t[i][1]),g,m);
         if(num>0){
-            choices(g,1350,1,1);
+            choices(g,1450,1,1);
         }
         if(i==0){
             // var panel = g.append("g").attr("id","panel").attr("transform","translate(920,0)");
-            var panel = g.append("g").attr("id","panel").attr("transform","translate(1250,0)");
+            var panel = g.append("g").attr("id","panel").attr("transform","translate(1350,0)");
 
             // var re = panel.append("rect").attr("x",30).attr("height",24).attr("width",320).style("fill","add8e6");
-            var re = panel.append("rect").attr("x",-20).attr("height",24).attr("width",670).style("fill","add8e6");
+            var re = panel.append("rect").attr("x",-20).attr("height",24).attr("width",570).style("fill","add8e6");
 
             var te = panel.append("text")
                 .attr("x",170)
