@@ -392,10 +392,10 @@ def write_data(data_list,file_name, title_array):
     f.close()
 
 
-d ,title, star_indices , ff, lf, index_file_id = make_list_dict("./data_intermediate/all_no_stars.csv","ID")
+d ,title, star_indices , ff, lf, index_file_id = make_list_dict("./data_intermediate/ans2_source.csv","ID")
 print(title)
 print(star_indices)
 data = star_similarities(d, star_indices,index_file_id)
 data_starred = reorganize_cols(data, star_indices, ["first_name", "last_name", "voter_reg_num", "dob","race"])
 title_array = ['Group ID', 'Record ID','First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB', "Race", 'First Name', 'Last Name', 'Reg No.', 'DoB','Race','type','answer']
-write_data(data_starred, "./data_output/all_starred_race.csv",title_array)
+write_data(data_starred, "./data_output/ans2_stars.csv",title_array)
