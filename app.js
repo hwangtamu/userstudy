@@ -1,6 +1,3 @@
-/* global require:true, console:true, process:true, __dirname:true */
-'use strict'
-
 // Example run command: `node app.js 9000 6380 true`; listen on port 9000, connect to redis on 6380, debug printing on.
 
 var express     = require('express')

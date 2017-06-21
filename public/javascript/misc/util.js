@@ -34,7 +34,7 @@ var n_pair = 0;
 
 function cell(t,g,j,k){
     // erase title columns
-    var index_r = g.attr("id").slice(1)%5;
+    var index_r = g.attr("id").slice(1)%6;
     var x = 40*(j%cwidth.length)+cwidth.slice(0,j%cwidth.length).reduce((a, b) => a + b, 0),
         y = ys[Math.floor(j/cwidth.length)],
         cx = cwidth[j%cwidth.length],
@@ -128,23 +128,23 @@ function cell(t,g,j,k){
         if(title[j%cwidth.length]=="First name"||title[j%cwidth.length]=="Last name"){
             var m = j+cwidth.length,
                 p = g.attr("id").slice(1),
-                dat = experimentr.data()['mat'][Math.floor(p/5)],
+                dat = experimentr.data()['mat'][Math.floor(p/6)],
                 fnj = "",
                 fnm = "",
                 lnj = "",
                 lnm = "";
 
             if(title[j%cwidth.length]=="First name"){
-                fnj = dat[p%5][0][mapping[mapping[j%cwidth.length]]];
-                fnm = dat[p%5][1][mapping[mapping[m%cwidth.length]]];
-                lnj = dat[p%5][0][mapping[mapping[j%cwidth.length+1]]];
-                lnm = dat[p%5][1][mapping[mapping[m%cwidth.length+1]]];
+                fnj = dat[p%6][0][mapping[mapping[j%cwidth.length]]];
+                fnm = dat[p%6][1][mapping[mapping[m%cwidth.length]]];
+                lnj = dat[p%6][0][mapping[mapping[j%cwidth.length+1]]];
+                lnm = dat[p%6][1][mapping[mapping[m%cwidth.length+1]]];
             }
             if(title[j%cwidth.length]=="Last name"){
-                fnj = dat[p%5][0][mapping[mapping[j%cwidth.length-1]]];
-                fnm = dat[p%5][1][mapping[mapping[m%cwidth.length-1]]];
-                lnj = dat[p%5][0][mapping[mapping[j%cwidth.length]]];
-                lnm = dat[p%5][1][mapping[mapping[m%cwidth.length]]];
+                fnj = dat[p%6][0][mapping[mapping[j%cwidth.length-1]]];
+                fnm = dat[p%6][1][mapping[mapping[m%cwidth.length-1]]];
+                lnj = dat[p%6][0][mapping[mapping[j%cwidth.length]]];
+                lnm = dat[p%6][1][mapping[mapping[m%cwidth.length]]];
             }
 
             if(fnj==lnm && fnm==lnj){
@@ -191,9 +191,9 @@ function cell(t,g,j,k){
             if(swap==0 && title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="FFreq" && title[j%cwidth.length]!="LFreq"){
                 var m = j+cwidth.length,
                     p = g.attr("id").slice(1),
-                    dat = experimentr.data()['mat'][Math.floor(p/5)],
-                    t_j = dat[p%5][0][mapping[j%cwidth.length]],
-                    t_m = dat[p%5][1][mapping[m%cwidth.length]],
+                    dat = experimentr.data()['mat'][Math.floor(p/6)],
+                    t_j = dat[p%6][0][mapping[j%cwidth.length]],
+                    t_m = dat[p%6][1][mapping[m%cwidth.length]],
                     bin = [];
                 //console.log(t_j, t_m);
                 if(title[j%cwidth.length]!="Group" && t_j.indexOf("*")==-1 && t_m.indexOf("*")==-1 && t_j.trim()!="" && t_m.trim()!=""){
@@ -418,27 +418,27 @@ function cell(t,g,j,k){
     }
     if(diff==0 && ["First name", "Last name", "DoB(M/D/Y)"].indexOf(title[j%cwidth.length])>-1 && experimentr.data()['mode']=="Opti1"){
         var p = g.attr("id").slice(1),
-            dat = experimentr.data()['mat'][Math.floor(p/5)];
+            dat = experimentr.data()['mat'][Math.floor(p/6)];
         if(textbox.text().indexOf("*")>-1){
             if(title[j%cwidth.length]=="First name"){
-                t = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length-1] : dat[p%5][1][j%cwidth.length-1];
+                t = j<2*cwidth.length ? dat[p%6][0][j%cwidth.length-1] : dat[p%6][1][j%cwidth.length-1];
             }else if(title[j%cwidth.length]=="Last name"){
-                t = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length] : dat[p%5][1][j%cwidth.length];
+                t = j<2*cwidth.length ? dat[p%6][0][j%cwidth.length] : dat[p%6][1][j%cwidth.length];
             }else{
-                t = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length+1] : dat[p%5][1][j%cwidth.length+1];
+                t = j<2*cwidth.length ? dat[p%6][0][j%cwidth.length+1] : dat[p%6][1][j%cwidth.length+1];
             }
         }
     }
     if(diff==0 && ["First name", "Last name", "DoB(M/D/Y)"].indexOf(title[j%cwidth.length])>-1 && experimentr.data()['mode']=="Opti1"){
         var p = g.attr("id").slice(1),
-            dat = experimentr.data()['mat'][Math.floor(p/5)];
+            dat = experimentr.data()['mat'][Math.floor(p/6)];
         if(textbox.text().indexOf("*")>-1){
             if(title[j%cwidth.length]=="First name"){
-                t = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length-1] : dat[p%5][1][j%cwidth.length-1];
+                t = j<2*cwidth.length ? dat[p%6][0][j%cwidth.length-1] : dat[p%6][1][j%cwidth.length-1];
             }else if(title[j%cwidth.length]=="Last name"){
-                t = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length] : dat[p%5][1][j%cwidth.length];
+                t = j<2*cwidth.length ? dat[p%6][0][j%cwidth.length] : dat[p%6][1][j%cwidth.length];
             }else{
-                t = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length+1] : dat[p%5][1][j%cwidth.length+1];
+                t = j<2*cwidth.length ? dat[p%6][0][j%cwidth.length+1] : dat[p%6][1][j%cwidth.length+1];
             }
         }
     }
@@ -446,14 +446,14 @@ function cell(t,g,j,k){
         title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
         g.select("#c"+j.toString()).select(".span").remove();
         var p = g.attr("id").slice(1), //pair id
-            dat = experimentr.data()['mat'][Math.floor(p/5)],
+            dat = experimentr.data()['mat'][Math.floor(p/6)],
             m = j>=2*cwidth.length ? j-cwidth.length : j+cwidth.length,
             len = textbox.text().length,
             $cel = g.select("#c"+j.toString()),
             $tb = $cel.append("text").attr("class","span"),
-            t_j = j<2*cwidth.length ? dat[p%5][0][mapping[j%cwidth.length]] : dat[p%5][1][mapping[j%cwidth.length]],
-            t_m = m<2*cwidth.length ? dat[p%5][0][mapping[m%cwidth.length]] : dat[p%5][1][mapping[m%cwidth.length]],
-            t_jj = j<2*cwidth.length ? dat[p%5][0][j%cwidth.length] : dat[p%5][1][j%cwidth.length],
+            t_j = j<2*cwidth.length ? dat[p%6][0][mapping[j%cwidth.length]] : dat[p%6][1][mapping[j%cwidth.length]],
+            t_m = m<2*cwidth.length ? dat[p%6][0][mapping[m%cwidth.length]] : dat[p%6][1][mapping[m%cwidth.length]],
+            t_jj = j<2*cwidth.length ? dat[p%6][0][j%cwidth.length] : dat[p%6][1][j%cwidth.length],
             scheme = [];
         for(var l=0;l<len;l++){
             if(t_j[l]==t_m[l] && t_j[l]!='T' && t_j[l]!='X'){scheme.push(0);}
@@ -679,7 +679,7 @@ function pair(t,g,m){
             }
         }
     }
-    var id = g.attr("id").slice(1)%5;
+    var id = g.attr("id").slice(1)%6;
     if(id%2==1){
         var bg = g.append("rect").attr("id",j).attr("height", 110).attr("width", 1800).attr("y", 10).style("fill", "#eaf2ff");
     }
@@ -906,8 +906,8 @@ function parsing(route){
         var tmp = [];
         //console.log(raw_binary.length);
         for (var i = 0; i < raw_binary.length; i++) {
-            if (tmp.length == 5 || i == raw_binary.length-1) {
-                if(tmp.length<5){tmp.push(raw_binary[i]);}
+            if (tmp.length == 6 || i == raw_binary.length-1) {
+                if(tmp.length<6){tmp.push(raw_binary[i]);}
                 binary.push(tmp);
                 tmp = [raw_binary[i]];
             } else {
