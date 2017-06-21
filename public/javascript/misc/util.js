@@ -36,7 +36,7 @@ function cell(t,g,j,k){
     // erase title columns
     var index_r = g.attr("id").slice(1)%6;
     var x = 40*(j%cwidth.length)+cwidth.slice(0,j%cwidth.length).reduce((a, b) => a + b, 0),
-        y = ys[Math.floor(j/cwidth.length)],
+        y = index_r==0&&j>=cwidth.length ? ys[Math.floor(j/cwidth.length)]+20 : ys[Math.floor(j/cwidth.length)],
         cx = cwidth[j%cwidth.length],
         cy = height;
     var cel = g.append("g").attr("id","c"+j.toString()).attr("class","cell")
@@ -183,7 +183,7 @@ function cell(t,g,j,k){
             cel.append("svg:image").attr("xlink:href","/resources/checkmark.png").attr("class","icon")
                 .attr("x",function(){if(title[j%cwidth.length]=="First name"||title[j%cwidth.length]=="Last name"){return 0;}
                 else if(title[j%cwidth.length]!="DoB(M/D/Y)"){return cwidth[j%cwidth.length]/3;}
-                return 40;})
+                    return 40;})
                 .attr("y",cy/2-5).attr("width",18).attr("height",18);
 
         }else{
@@ -205,7 +205,7 @@ function cell(t,g,j,k){
                             .attr("x", function(){if(title[j%cwidth.length]=="First name"||title[j%cwidth.length]=="Last name"){return 0;}
                             else if(title[j%cwidth.length]=="DoB(M/D/Y)"){return 25;}
                             else if(title[j%cwidth.length]=="Reg No."){return 28;}
-                            return 20;})
+                                return 20;})
                             .attr("y", cy / 2 + 5).attr("width", 35).attr("height", 35);
 
                     }
@@ -683,7 +683,9 @@ function pair(t,g,m){
     if(id%2==1){
         var bg = g.append("rect").attr("id",j).attr("height", 120).attr("width", 1800).attr("y", 10).style("fill", "#eaf2ff");
     }
-    row(t.slice(0,a),g,0,k.slice(0,a));
+    if(id==0){
+        row(t.slice(0,a),g,0,k.slice(0,a));
+    }
     row(row1,g,1,k1);
     row(row2,g,2,k2);
 }
@@ -715,14 +717,12 @@ function pairs(t,s,n,m) {
     cwidth = [60,60,60,180,lwidth,150,100+extra_width,80+extra_width,100]; //910
     for(var i=0;i<n;i++){
         var g = d3.select("#table").append("svg").attr("class","blocks").attr("id","g"+(s*6+i).toString())
-            .attr("width", 1800).attr("height", 120);
+            .attr("width", 1800).attr("height", function(){if(i==0){return 140;}return 120;});
         t[i][0] = t[i][0].slice(0,t[i][0].length-2);
         t[i][1] = t[i][1].slice(0,t[i][1].length-2);
         pair(title.concat(t[i][0]).concat(t[i][1]),g,m);
-        if(num>0){
-            choices(g,1450,1,1);
-        }
         if(i==0){
+            choices(g,1450,1,1,40);
             // var panel = g.append("g").attr("id","panel").attr("transform","translate(920,0)");
             var panel = g.append("g").attr("id","panel").attr("transform","translate(1350,0)");
 
@@ -740,13 +740,15 @@ function pairs(t,s,n,m) {
                 .style("font-weight","bold")
                 .attr("text-anchor","left")
                 .attr("fill","black");
+        }else{
+            choices(g,1450,1,1,20);
         }
     }
 }
 
 // draw choice panel
 // mode: 1=default 2=introduce
-function choices(svg, lBound, scale, mode) {
+function choices(svg, lBound, scale, mode, yt) {
     var options = ["Highly Likely Different",
         "Moderately Likely Different",
         "Less Likely Different",
@@ -757,7 +759,7 @@ function choices(svg, lBound, scale, mode) {
     var lx = [10, 20, 38, 60, 78, 100, 118, 140, 158, 180, 198, 220, 238, 250];
     var y = 40;
     // add buttons
-    var buttons = svg.append("g").attr("transform", "translate(" + lBound + ",20)");
+    var buttons = svg.append("g").attr("transform", "translate(" + lBound + ","+yt+")").attr("class","choice_panel");
     //buttons.append("rect").attr("x",-10*scale).attr("y",0).attr("width",280*scale).attr("height",85*scale).style("fill","#68a7ca").style("opacity",1);
     if(mode!=2){
         buttons.append("text").attr("x", 220 * scale).attr("y", 78 * scale).text("Same").attr("text-anchor", "middle").style("font", 16 * scale + "px sans-serif");
