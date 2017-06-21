@@ -16,7 +16,7 @@
     <br>
 
 
-    <div id="div_difficulty" style="width: 600px;">
+    <div id="div_difficulty" style="width: 700px;">
         1. Please explain any issues that made it harder to make linkage decisions:<br><br>
         <textarea id="text_area_difficulty" rows="4" cols="75">
         </textarea>
@@ -24,18 +24,19 @@
 
     <br><br>
 
-    <div id="div_easiness" style="width: 600px;">
+    <div id="div_easiness" style="width: 700px;">
         2. Please explain any issues that made it easier to make linkage decisions:<br><br>
         <textarea id="text_area_easiness" rows="4" cols="75">
         </textarea>
     </div>
 
     <br><br>
-    <div id="div_column_difficulty" style="display: inline-block; width: 600px;">
-        3. Please rate how easy or difficult it was to make decisions when there was a difference in each column:
-        <ol>
+    <div id="div_column_difficulty" style="display: inline-block; width: 700px;">
+        3. Please rate how difficult it was to <strong>make decisions</strong> when there was a difference in each column.<br><br>
+        <ol type="a">
             <li>First Name:
                 <select name="fname_diff" style="position: absolute; left: 175px;">
+                    <option value="0">Please select</option>
                     <option value="1">1 - Very Difficult</option>
                     <option value="2">2 - Somewhat Difficult</option>
                     <option value="3">3 - Slightly Difficult</option>
@@ -47,6 +48,7 @@
             </li><br>
             <li>Last Name:
                 <select name="lname_diff" style="position: absolute; left: 175px;">
+                    <option value="0">Please select</option>
                     <option value="1">1 - Very Difficult</option>
                     <option value="2">2 - Somewhat Difficult</option>
                     <option value="3">3 - Slightly Difficult</option>
@@ -58,6 +60,7 @@
             </li><br>
             <li>DoB:
                 <select name="dob_diff" style="position: absolute; left: 175px;">
+                    <option value="0">Please select</option>
                     <option value="1">1 - Very Difficult</option>
                     <option value="2">2 - Somewhat Difficult</option>
                     <option value="3">3 - Slightly Difficult</option>
@@ -70,6 +73,7 @@
             </li><br>
             <li>Reg No.:
                 <select name="reg_num_diff" style="position: absolute; left: 175px;">
+                    <option value="0">Please select</option>
                     <option value="1">1 - Very Difficult</option>
                     <option value="2">2 - Somewhat Difficult</option>
                     <option value="3">3 - Slightly Difficult</option>
@@ -81,6 +85,7 @@
             </li><br>
             <li>Race:
                 <select name="race_diff" style="position: absolute; left: 175px;">
+                    <option value="0">Please select</option>
                     <option value="1">1 - Very Difficult</option>
                     <option value="2">2 - Somewhat Difficult</option>
                     <option value="3">3 - Slightly Difficult</option>
@@ -94,11 +99,12 @@
     </div>
 
     <br><br>
-    <div id="div_column_sotting" style="display: inline-block; width: 600px;">
-        4. Please rate how easy or difficult it was to spot decisions when there was a difference in each column:<br>
-        <ol>
+    <div id="div_column_sotting" style="display: inline-block; width: 700px;">
+        4. Please rate how difficult it was to <strong>spot (detect) a difference in each column.</strong><br><br>
+        <ol type="a">
             <li>First Name:
                 <select name="fname_spot" style="position: absolute; left: 175px;">
+                    <option value="0">Please select</option>
                     <option value="1">1 - Very Difficult</option>
                     <option value="2">2 - Somewhat Difficult</option>
                     <option value="3">3 - Slightly Difficult</option>
@@ -110,6 +116,7 @@
             </li><br>
             <li>Last Name:
                 <select name="lname_spot" style="position: absolute; left: 175px;">
+                    <option value="0">Please select</option>
                     <option value="1">1 - Very Difficult</option>
                     <option value="2">2 - Somewhat Difficult</option>
                     <option value="3">3 - Slightly Difficult</option>
@@ -121,6 +128,7 @@
             </li><br>
             <li>DoB:
                 <select name="dob_spot" style="position: absolute; left: 175px;">
+                    <option value="0">Please select</option>
                     <option value="1">1 - Very Difficult</option>
                     <option value="2">2 - Somewhat Difficult</option>
                     <option value="3">3 - Slightly Difficult</option>
@@ -133,6 +141,7 @@
             </li><br>
             <li>Reg No.:
                 <select name="reg_num_spot" style="position: absolute; left: 175px;">
+                    <option value="0">Please select</option>
                     <option value="1">1 - Very Difficult</option>
                     <option value="2">2 - Somewhat Difficult</option>
                     <option value="3">3 - Slightly Difficult</option>
@@ -144,6 +153,99 @@
             </li><br>
             <li>Race:
                 <select name="race_spot" style="position: absolute; left: 175px;">
+                    <option value="0">Please select</option>
+                    <option value="1">1 - Very Difficult</option>
+                    <option value="2">2 - Somewhat Difficult</option>
+                    <option value="3">3 - Slightly Difficult</option>
+                    <option value="4">4 - Not particularly easy or difficult</option>
+                    <option value="5">5 - Slightly Easy</option>
+                    <option value="6">6 - Somewhat Easy</option>
+                    <option value="7">7 - Very Easy</option>
+                </select>
+            </li><br>
+        </ol>
+    </div>
+
+    <br><br>
+    <div id="div_type_diff" style="display: inline-block; width: 700px;">
+        5. Please rate how difficult it was to <strong>spot (detect) how pairs were different for various types of errors.</strong> <br><br>
+        <ol type="a">
+            <li>Missing:
+                <select name="spot_missing" style="position: absolute; left: 175px;">
+                    <option value="0">Please select</option>
+                    <option value="1">1 - Very Difficult</option>
+                    <option value="2">2 - Somewhat Difficult</option>
+                    <option value="3">3 - Slightly Difficult</option>
+                    <option value="4">4 - Not particularly easy or difficult</option>
+                    <option value="5">5 - Slightly Easy</option>
+                    <option value="6">6 - Somewhat Easy</option>
+                    <option value="7">7 - Very Easy</option>
+                </select>
+            </li><br>
+            <li>Transpose:
+                <select name="spot transpose" style="position: absolute; left: 175px;">
+                    <option value="0">Please select</option>
+                    <option value="1">1 - Very Difficult</option>
+                    <option value="2">2 - Somewhat Difficult</option>
+                    <option value="3">3 - Slightly Difficult</option>
+                    <option value="4">4 - Not particularly easy or difficult</option>
+                    <option value="5">5 - Slightly Easy</option>
+                    <option value="6">6 - Somewhat Easy</option>
+                    <option value="7">7 - Very Easy</option>
+                </select>
+            </li><br>
+            <li>Insert:
+                <select name="spot insert" style="position: absolute; left: 175px;">
+                    <option value="0">Please select</option>
+                    <option value="1">1 - Very Difficult</option>
+                    <option value="2">2 - Somewhat Difficult</option>
+                    <option value="3">3 - Slightly Difficult</option>
+                    <option value="4">4 - Not particularly easy or difficult</option>
+                    <option value="5">5 - Slightly Easy</option>
+                    <option value="6">6 - Somewhat Easy</option>
+                    <option value="7">7 - Very Easy</option>
+                </select>
+
+            </li><br>
+            <li>Replace:
+                <select name="spot_replace" style="position: absolute; left: 175px;">
+                    <option value="0">Please select</option>
+                    <option value="1">1 - Very Difficult</option>
+                    <option value="2">2 - Somewhat Difficult</option>
+                    <option value="3">3 - Slightly Difficult</option>
+                    <option value="4">4 - Not particularly easy or difficult</option>
+                    <option value="5">5 - Slightly Easy</option>
+                    <option value="6">6 - Somewhat Easy</option>
+                    <option value="7">7 - Very Easy</option>
+                </select>
+            </li><br>
+            <li>Different:
+                <select name="spot_diff" style="position: absolute; left: 175px;">
+                    <option value="0">Please select</option>
+                    <option value="1">1 - Very Difficult</option>
+                    <option value="2">2 - Somewhat Difficult</option>
+                    <option value="3">3 - Slightly Difficult</option>
+                    <option value="4">4 - Not particularly easy or difficult</option>
+                    <option value="5">5 - Slightly Easy</option>
+                    <option value="6">6 - Somewhat Easy</option>
+                    <option value="7">7 - Very Easy</option>
+                </select>
+            </li><br>
+            <li>Name Swap:
+                <select name="spot_nswap" style="position: absolute; left: 175px;">
+                    <option value="0">Please select</option>
+                    <option value="1">1 - Very Difficult</option>
+                    <option value="2">2 - Somewhat Difficult</option>
+                    <option value="3">3 - Slightly Difficult</option>
+                    <option value="4">4 - Not particularly easy or difficult</option>
+                    <option value="5">5 - Slightly Easy</option>
+                    <option value="6">6 - Somewhat Easy</option>
+                    <option value="7">7 - Very Easy</option>
+                </select>
+            </li><br>
+            <li>Date Swap:
+                <select name="spot_dswap" style="position: absolute; left: 175px;">
+                    <option value="0">Please select</option>
                     <option value="1">1 - Very Difficult</option>
                     <option value="2">2 - Somewhat Difficult</option>
                     <option value="3">3 - Slightly Difficult</option>
@@ -158,22 +260,26 @@
 
 
     <br><br>
-    <div id="div_freq" style="width: 600px;">
-        5. Did you use the name frequencies to help make linkage decisions? If so, how? If not, why not?<br><br>
+    <div id="div_freq" style="width: 700px;">
+        6. Did you use the name frequencies to help make linkage decisions? &nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="radio" id="e1" name="english" value="Yes"> Yes &nbsp;&nbsp;
+        <input type="radio" id="e2" name="english" value="No"> No
+        <br><br>
+        &nbsp;&nbsp;&nbsp; If yes, why? If not, why not?:
         <textarea id="freq_dec" rows="4" cols="75">
         </textarea>
     </div>
 
     <br><br>
-    <div id="div_int" style="width: 600px;">
-        6. Was there anything you did not understand about the task or interface? Please explain.<br><br>
+    <div id="div_int" style="width: 700px;">
+        7. Was there anything you did not understand about the task or interface? Please explain.<br><br>
         <textarea id="inter_under" rows="4" cols="75">
         </textarea>
     </div>
 
     <br><br>
-    <div id="div_tips" style="width: 600px;">
-        7. Please share any comments or feedback about the user study or ways to improve the interface to support decision making.<br><br>
+    <div id="div_tips" style="width: 700px;">
+        8. Please share any comments or feedback about the user study or ways to improve the interface to support decision making.<br><br>
         <textarea id="tips" rows="4" cols="75">
         </textarea>
     </div>

@@ -13,38 +13,40 @@
     <br>
 </body>
 <script>
-    console.log(experimentr.data()["mode"]);
+    var mode = experimentr.data()["mode"];
+
     (function(){
         experimentr.hideNext();
+        console.log(mode);
         function goToNext() {
             experimentr.endTimer('mode_info');
             experimentr.addData(data);
 
-            if (experimentr.data()["mode"]=="Vanilla"){
+            if (mode=="Vanilla"){
                 // remove icon instructions
                 experimentr.sequence().splice(3,1);
             }
-            //experimentr.release();
             experimentr.next();
         }
 
         d3.select('#submitComments')
             .on('click', function () {
-                console.log("submit");
-                experimentr.endTimer('pre_survey_timer');
-                goToNext();
+                if(mode!="" && mode!=null) {
+                    goToNext();
+                } else{
+                    window.alert("Please include a mode from 1 to 5 in the url");
+                }
             });
         d3.select("#skipComments")
             .on('click',function(){
-                if(data.mode!=""){
-                    //experimentr.endTimer('mode_info');
-                    //experimentr.addData(data);
-                    console.log(experimentr.data()["mode"]);
+                if(mode!="" && mode!=null){
                     experimentr.sequence([
                         'modules/5.html',
                         //'modules/post_study_questionnaire.html',
                         'modules/end.html'
                     ]).start();
+                }else{
+                    window.alert("Please include a mode from 1 to 5 in the url");
                 }
             })
     }());
