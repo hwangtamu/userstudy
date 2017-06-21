@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Training</title>
+</head>
+<body>
+    Do you wish to see the training?
+    <br>
+    <button id="submitComments" class="start-button" type="button">Yes</button>
+    <button id="skipComments" class="start-button" type="button">Skip</button>
+
+    <br>
+</body>
+<script>
+    console.log(experimentr.data()["mode"]);
+    (function(){
+        experimentr.hideNext();
+        function goToNext() {
+            experimentr.endTimer('mode_info');
+            experimentr.addData(data);
+
+            if (experimentr.data()["mode"]=="Vanilla"){
+                // remove icon instructions
+                experimentr.sequence().splice(3,1);
+            }
+            //experimentr.release();
+            experimentr.next();
+        }
+
+        d3.select('#submitComments')
+            .on('click', function () {
+                console.log("submit");
+                experimentr.endTimer('pre_survey_timer');
+                goToNext();
+            });
+        d3.select("#skipComments")
+            .on('click',function(){
+                if(data.mode!=""){
+                    //experimentr.endTimer('mode_info');
+                    //experimentr.addData(data);
+                    console.log(experimentr.data()["mode"]);
+                    experimentr.sequence([
+                        'modules/5.html',
+                        //'modules/post_study_questionnaire.html',
+                        'modules/end.html'
+                    ]).start();
+                }
+            })
+    }());
+</script>
+
+</html>

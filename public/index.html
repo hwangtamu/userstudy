@@ -74,13 +74,38 @@
     }();
 
     //console.log()
-    console.log("The id is", + QueryString.id)
+    console.log("The mode is", + QueryString.mode);
+    var mode = QueryString.mode;
 
-experimentr.data()['id'] = QueryString.id;
+    function find_mode(mode){
+        mode = parseInt(mode);
+        switch(mode) {
+            case 1:
+                return("Vanilla");
+                break;
+            case 2:
+                return("Full");
+                break;
+            case 3:
+                return("Opti1");
+                break;
+            case 4:
+                return("Partial_Cell");
+                break;
+            case 5:
+                return("Partial");
+                break;
+            default:
+                return(null);
+        }
+    }
+console.log("The mode is "+find_mode(mode));
+experimentr.data()['mode'] = find_mode(mode);
 experimentr.sequence([
 //    'modules/consent.html',
-    'modules/pre_study_questionnaire.html',
-    'modules/background.html',
+//    'modules/pre_study_questionnaire.html',
+//    'modules/background.html',
+    'modules/training.html',
     'modules/0.html',
     'modules/icons.html',
     'modules/1.html',
