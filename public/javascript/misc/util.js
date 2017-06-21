@@ -714,7 +714,7 @@ function pairs(t,s,n,m) {
     //console.log(len,lwidth);
     cwidth = [60,60,60,180,lwidth,150,100+extra_width,80+extra_width,100]; //910
     for(var i=0;i<n;i++){
-        var g = d3.select("#table").append("svg").attr("class","blocks").attr("id","g"+(s*5+i).toString())
+        var g = d3.select("#table").append("svg").attr("class","blocks").attr("id","g"+(s*6+i).toString())
             .attr("width", 1800).attr("height", 120);
         t[i][0] = t[i][0].slice(0,t[i][0].length-2);
         t[i][1] = t[i][1].slice(0,t[i][1].length-2);
