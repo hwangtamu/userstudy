@@ -182,21 +182,27 @@
             d3.select('#d'+i).attr("disabled","true");
         }
 
-//        d3.selectAllChildren('div_stud').style("color","white");
+        //d3.select('#div_student').style("font-weight","bold");
+        function colorit(color) {
+            d3.select("#current_degree").style("color",color);
+            d3.select("#degrees").style("color",color);
+            d3.select("#department").style("color",color);
+
+        }
+//        makeitgrey();
 //        d3.selectAll('div_stud').style("font-color","white");
 //        d3.selectAll('div_stud').style("fill","white");
 //        d3.selectAll('div_stud').style("stroke","white");
 
 //      If student
+        colorit("grey");
         d3.selectAll('input')
             .filter(function(d) { return this.name === 'occupation' ? this : null; })
             .on('change', function() {
                 for(i=1;i<7;i++) {
                     d3.select('#d'+i).attr("disabled","true");
                 }
-//                d3.select('div_stud').style("color","white");
-
-//                d3.select("#grey_div").attr("visibility","visible");
+                colorit("grey");
                 d3.select("#dpt").attr("disabled","true");
                 if(d3.select("#o4").property("checked")) {
                     d3.select("#o5")
@@ -207,8 +213,8 @@
                     d3.select("#o5")
                         .style("visibility","hidden");
                     if(d3.select("#o1").property("checked")) {
-//                        d3.select("#grey_div").attr("visibility","hidden");
-//                        d3.select('div_stud').style("color","black");
+                        colorit("black");
+
                         d3.select("#dpt").attr("disabled",null);
                         for(i=1;i<7;i++) {
                             console.log(i);

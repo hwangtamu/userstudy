@@ -28,6 +28,7 @@
         <br> <br>
         <div id="table"></div>
     </div>
+    <br>
     <button id="submitComments" class="next-button" type="button">Submit</button><br>
 </div>
 </body>
@@ -73,6 +74,7 @@
                             d3.selectAll(".icon").remove();
                         }
                     }, 100);
+                    console.log(d3.selectAll(".choice"));
                     step+=1;
                     //console.log(step, experimentr.data()['mat'][step-1]);
                 }
