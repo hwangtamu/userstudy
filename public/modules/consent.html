@@ -90,7 +90,7 @@
             I have read the information provided above and I have asked all the questions I have at this time.<br>
             &nbsp;&nbsp;&nbsp;&nbsp;By checking this box, I am agreeing to participate in the study voluntarily.
         </strong><br>
-    <button id="consentYes" type="button" class="start-button" disabled style="position: absolute; left: 250px;">Next</button>
+    <button id="consentYes" type="button" class="start-button" disabled="true" style="position: absolute; left: 250px;">Next</button>
 
 </div>
 <br>
@@ -98,9 +98,9 @@
 <div id="validateMessage" class="validate"></div>
 </p>
 
-<br/>
+<br>
 </div>
-</body>>
+</body>
 <style>
     #validateMessage {
         color: #FF5555;
@@ -127,6 +127,11 @@
     ,       w = 0
     ,       h = 0;
   init();
+
+  var mode = experimentr.data()["mode"];
+  if(mode == null) {
+      window.alert("Please include a mode from 1 to 5 in the url");
+  }
 
   cbox1.on('change',function(d){ 
     console.log(cbox1.property("value"));
@@ -168,15 +173,18 @@
        // load previous workers file
   }
 
+  d3.select('#consentYes').style('color', "#b3b3b3");
   function validate() {
     if (cbox1.property("value")==1){
       d3.select('#consentYes').attr('disabled', null);
+      d3.select('#consentYes').style('color', "black");
       d3.select('#consentYes').on('click', function() {
         experimentr.addData(data);
         experimentr.next();
       });
     }else{
       d3.select('#consentYes').attr('disabled', 'disabled');
+      d3.select('#consentYes').style('color', "#b3b3b3");
     }
 
   }
