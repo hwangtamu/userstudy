@@ -25,4 +25,21 @@ input_data <-
   select(ID, voter_reg_num, last_name, first_name, dob, race, type, 
          everything(), -name_sufx_cd,-src)
 
+input_data %>%
+  group_by(ID) %>%
+  mutate(n = n()) %>%
+  filter(n != 2) %>%
+  select(-n) %>%
+  ungroup()
+
+
+input_data <- 
+  input_data %>%
+    group_by(ID) %>%
+      mutate(n = n()) %>%
+        filter(n == 2) %>%
+          select(-n) %>%
+            ungroup()
+
 write_csv(input_data, "./data_intermediate/all_no_stars.csv")
+

@@ -333,6 +333,7 @@ def make_list_dict(file_path,id_name):
 def star_similarities(d, star_indices,index_file_id):
     data = []
     id = 1
+    id2 = 1
     #star_val = star_indices.values()
     for p in d:
         for i in range(1, len(d[p])):
@@ -342,13 +343,13 @@ def star_similarities(d, star_indices,index_file_id):
             type_2 = d[p][1][title.index("type")-1]
             answer_1 = d[p][0][title.index("answer")-1]
             answer_2 = d[p][1][title.index("answer")-1]
-            if not file_id_1 == file_id_2:
-                if(file_id_1 == "B-3009") or (file_id_1 == "A-3010"):
-                    print("hi")
-                x, y = pair([d[p][0], d[p][i]], star_indices)
-                data += [[id, file_id_1] + x + [type_1,answer_1]]
-                data += [[id, file_id_2] + y + [type_2,answer_2]]
-                id += 1
+            # if not file_id_1 == file_id_2:
+            x, y = pair([d[p][0], d[p][i]], star_indices)
+            data += [[id, file_id_1] + x + [type_1,answer_1]]
+            data += [[id, file_id_2] + y + [type_2,answer_2]]
+            id += 1
+            print(id2)
+            id2 += 1
     return data
 
 def data_filter(data_as_list,item):
@@ -365,8 +366,6 @@ def get_col_indices(data, star_indices, order):
     offset = (len(data[0]) - 2) / 2 - 1
     star =  [i + offset for i in org]
     all_indices = id_grp + org + star + type_answer
-    print(all_indices)
-    print(offset)
     return all_indices
 
 def reorganize_cols(data, star_indices, order):
@@ -392,10 +391,14 @@ def write_data(data_list,file_name, title_array):
     f.close()
 
 
-d ,title, star_indices , ff, lf, index_file_id = make_list_dict("./data_intermediate/ans2_source.csv","ID")
+d ,title, star_indices , ff, lf, index_file_id = make_list_dict("./data_intermediate/all_no_stars.csv","ID")
+print("The number of items in d are", len(d))
 print(title)
 print(star_indices)
 data = star_similarities(d, star_indices,index_file_id)
+print(d)
+print(data)
+print("The number of items in data are", len(data))
 data_starred = reorganize_cols(data, star_indices, ["first_name", "last_name", "voter_reg_num", "dob","race"])
 title_array = ['Group ID', 'Record ID','First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB', "Race", 'First Name', 'Last Name', 'Reg No.', 'DoB','Race','type','answer']
-write_data(data_starred, "./data_output/ans2_stars.csv",title_array)
+write_data(data_starred, "./data_output/all_starred_race.csv",title_array)
