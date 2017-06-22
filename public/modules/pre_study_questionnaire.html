@@ -48,10 +48,6 @@
         </div>
     <br>
 
-        <!--style="position: absolute; left:0px; width: 1000px; top: 250px" rgba(101,101,101,0.15)-->
-    <!--<svg id="grey_div" height="100px" width="600px" style="position: absolute; left:125px; top: 235px">-->
-       <!--<rect height="100px" width="750px" fill="#F8F8F8"></rect>-->
-    <!--</svg>-->
 
     <div id="div_student" name="div_stud">
         <div id="current_degree" style="position: absolute; left:0px; width: 340px;  text-align: right;  top: 250px">3.1. Current Degree (If student):
@@ -64,7 +60,6 @@
             <input type="radio" id="d5" name="current_degree" value="Other"> Other &nbsp;
             <input type="text" id="d6" name="current_degree" >
         </div>
-        <!--<br>-->
 
         <div id="department"  style="position: absolute; left: 0px;width: 340px;  text-align: right; top: 300px">3.2. Department (If student):
         </div>
@@ -107,7 +102,6 @@
     <div>
         <input type="text" id="country_txt" name="country" style="position: absolute; left: 350px; top: 450px">
     </div>
-    <!--<div id="country_choices"></div>-->
     <br>
 
     <div id="div_english" style="position: absolute; left: 0px;width: 340px;  text-align: right;  top: 500px">
@@ -164,25 +158,20 @@
         experimentr.startTimer('pre_survey_timer');
         experimentr.hideNext();
 
-
-//        d3.select("#div_student").style("display","none");
         d3.select("#o5").style("visibility","hidden");
         d3.select("#d6").style("visibility","hidden");
 
 //      get values
         d3.selectAll('input')
             .filter(function(d) { return this.name === 'sex' ? this : null; })
-            .on('change', function() { data.sex = this.value;})
+            .on('change', function() { data.preSurvey_sex = this.value;})
 
         d3.selectAll('input')
             .filter(function(d) { return this.name === 'age' ? this : null; })
-            .on('change', function() { data.age = this.value;})
+            .on('change', function() { data.preSurvey_age = this.value;})
 
-        for(i=1;i<7;i++) {
-            d3.select('#d'+i).attr("disabled","true");
-        }
 
-        //d3.select('#div_student').style("font-weight","bold");
+        //function used to enable and disable student div
         function disable_stud(status) {
             if(status){
                 d3.select("#current_degree").style("color","#b3b3b3");
@@ -192,7 +181,8 @@
                     d3.select('#d'+i).attr("disabled","true").property("checked","false");
                 }
                 d3.select("#dpt").attr("disabled",true).attr("value","").property("value","");
-
+                data.preSurvey_current_degree = null;
+                data.preSurvey_department=null;
             } else {
                 d3.select("#current_degree").style("color","black");
                 d3.select("#degrees").style("color","black");
@@ -210,7 +200,6 @@
             .filter(function(d) { return this.name === 'occupation' ? this : null; })
             .on('change', function() {
                 disable_stud(true);
-                //d3.select("#dpt").attr("disabled","true");
                 if(d3.select("#o4").property("checked")) {
                     d3.select("#o5")
                         .style("visibility","visible");
@@ -221,11 +210,10 @@
                         .style("visibility","hidden");
                     if(d3.select("#o1").property("checked")) {
                         disable_stud(false);
-                        //d3.select("#dpt").attr("disabled",null);
                     }
                 }
-                data.occupation = this.value;
-                console.log(data.occupation);
+                data.preSurvey_occupation = this.value;
+                console.log(data.preSurvey_occupation);
             })
 
         d3.selectAll('input')
@@ -238,7 +226,7 @@
                     d3.select("#d6")
                         .style("visibility","hidden");
                 }
-                data.current_degree = this.value;
+                data.preSurvey_current_degree = this.value;
             })
 
         d3.selectAll('input')
@@ -251,11 +239,76 @@
                     d3.select("#h6")
                         .style("visibility","hidden");
                 }
-                data.highest_degree = this.value;
+                data.preSurvey_highest_degree = this.value;
             })
 
 
-//        d3.csv("../resources/other_data/dept_list.csv", function(error, dt) {
+
+        d3.select("#us_years")
+            .on('change',function() {
+                data.preSurvey_us_years = this.value;
+            })
+
+        d3.select("#us_months")
+            .on('change',function() {
+                data.preSurvey_us_months = this.value;
+            })
+
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'color' ? this : null; })
+            .on('change', function() { data.preSurvey_color = this.value;})
+
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'english' ? this : null; })
+            .on('change', function() { data.preSurvey_english = this.value;})
+
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'country' ? this : null; })
+            .on('change', function() { data.preSurvey_country = this.value;})
+
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'dpt' ? this : null; })
+            .on('change', function() { data.preSurvey_department = this.value;})
+
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'color' ? this : null; })
+            .on('change', function() { data.preSurvey_color_blind = this.value;})
+
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'data_ana' ? this : null; })
+            .on('change', function() { data.preSurvey_data_analysis_skill = this.value;})
+
+
+        d3.selectAll('textarea')
+            .filter(function(d) { return this.name === 'data_ana_text' ? this : null; })
+            .on('change', function() { data.preSurvey_data_experience_explanation = this.value;})
+
+
+        d3.select("#data_ana").style("width","100px");
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'data_analysis' ? this : null; })
+            .on('change', function() {
+                console.log(this.value); data.preSurvey_data_analysis_skill = this.value;
+                d3.select("#lbl_data_ana").text(function(){return data.preSurvey_data_analysis_skill;});
+            })
+
+
+        //{ return data.preSurvey_data_analysis_skill;})
+
+//      submit
+        function goToNext() {
+            experimentr.addData(data);
+            experimentr.next();
+        };
+
+        d3.select('#submitComments')
+            .on('click', function () {
+                console.log("submit");
+                experimentr.endTimer('pre_survey_timer');
+                goToNext();
+            });
+
+        //        d3.csv("../resources/other_data/dept_list.csv", function(error, dt) {
 //            var select = d3.select("#div_student")
 //                .append("select")
 //                .attr("name","dpt")
@@ -301,54 +354,6 @@
 //                .text(function (d) { return d.countries; });
 //        });
 
-        d3.selectAll('input')
-            .filter(function(d) { return this.name === 'us_years' ? this : null; })
-            .on('change', function() { data.us_years = this.value;})
-
-        d3.selectAll('input')
-            .filter(function(d) { return this.name === 'us_months' ? this : null; })
-            .on('change', function() { data.us_months = this.value;})
-
-        d3.selectAll('input')
-            .filter(function(d) { return this.name === 'english' ? this : null; })
-            .on('change', function() { data.english = this.value;})
-
-        d3.selectAll('input')
-            .filter(function(d) { return this.name === 'country' ? this : null; })
-            .on('change', function() { data.country = this.value;})
-
-        d3.selectAll('input')
-            .filter(function(d) { return this.name === 'dpt' ? this : null; })
-            .on('change', function() { data.department = this.value;})
-
-        d3.selectAll('textarea')
-            .filter(function(d) { return this.name === 'data_ana_text' ? this : null; })
-            .on('change', function() { data.data_experience_explanation = this.value;})
-
-
-        d3.select("#data_ana").style("width","100px");
-        d3.selectAll('input')
-            .filter(function(d) { return this.name === 'data_analysis' ? this : null; })
-            .on('change', function() {
-                console.log(this.value); data.data_analysis_skill = this.value;
-                d3.select("#lbl_data_ana").text(function(){return data.data_analysis_skill;});
-            })
-
-
-        //{ return data.data_analysis_skill;})
-
-//      submit
-        function goToNext() {
-            experimentr.addData(data);
-            experimentr.next();
-        };
-
-        d3.select('#submitComments')
-            .on('click', function () {
-                console.log("submit");
-                experimentr.endTimer('pre_survey_timer');
-                goToNext();
-            });
     }());
 
 

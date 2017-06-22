@@ -19,15 +19,15 @@
 
     <div id="div_difficulty" style="width: 700px;">
         1. Please explain any issues that made it harder to make linkage decisions:<br><br>
-        <textarea id="text_area_difficulty" rows="4" cols="90">
+        <textarea name="text_area_difficulty" rows="4" cols="90">
         </textarea>
     </div>
 
     <br><br>
 
     <div id="div_easiness" style="width: 700px;">
-        2. Please explain any issues that made it easier to make linkage decisions:<br><br>
-        <textarea id="text_area_easiness" rows="4" cols="90">
+        2. Please explain any features that made it easier to make linkage decisions:<br><br>
+        <textarea name="text_area_easiness" rows="4" cols="90">
         </textarea>
     </div>
 
@@ -184,7 +184,7 @@
                 </select>
             </li><br>
             <li>Transpose:
-                <select name="spot transpose" style="position: absolute; left: 175px;">
+                <select name="spot_transpose" style="position: absolute; left: 175px;">
                     <option value="0">Please select</option>
                     <option value="1">1 - Very Difficult</option>
                     <option value="2">2 - Somewhat Difficult</option>
@@ -196,7 +196,7 @@
                 </select>
             </li><br>
             <li>Insert:
-                <select name="spot insert" style="position: absolute; left: 175px;">
+                <select name="spot_insert" style="position: absolute; left: 175px;">
                     <option value="0">Please select</option>
                     <option value="1">1 - Very Difficult</option>
                     <option value="2">2 - Somewhat Difficult</option>
@@ -265,25 +265,25 @@
         6. Did you use the name frequencies to help make linkage decisions?<br><br>
         <!--&nbsp;&nbsp;&nbsp;&nbsp;-->
         &nbsp;&nbsp;&nbsp;
-        <input type="radio" id="e1" name="english" value="Yes"> Yes &nbsp;&nbsp;
-        <input type="radio" id="e2" name="english" value="No"> No
+        <input type="radio" id="e1" name="frequency" value="Yes"> Yes &nbsp;&nbsp;
+        <input type="radio" id="e2" name="frequency" value="No"> No
         <br><br>
         &nbsp;&nbsp;&nbsp; If yes, why? If not, why not?:
-        <textarea id="freq_dec" rows="4" cols="90">
+        <textarea name="freq_dec" rows="4" cols="90">
         </textarea>
     </div>
 
     <br><br>
-    <div id="div_int" style="width: 700px;">
+    <div name="div_int" style="width: 700px;">
         7. Was there anything you did not understand about the task or interface? Please explain.<br><br>
-        <textarea id="inter_under" rows="4" cols="90">
+        <textarea name="inter_under" rows="4" cols="90">
         </textarea>
     </div>
 
     <br><br>
     <div id="div_tips" style="width: 800px;">
         8. Please share any comments or feedback about the user study or ways to improve the interface to support decision making.<br><br>
-        <textarea id="tips" rows="4" cols="90">
+        <textarea name="tips" rows="4" cols="90">
         </textarea>
     </div>
 
@@ -306,26 +306,89 @@
         experimentr.startTimer('post_survey_timer');
         experimentr.hideNext();
 
-        d3.selectAll('input')
-            .filter(function(d) { return this.name === 'fname_diff' ? this : null; })
-            .style("width","100px")
-            .on('change', function() {
-                var fname_diff = this.value
-                console.log(fname_diff );
-                d3.select('#lbl_fname_diff').text(fname_diff);
-            })
 
-        //      submit
-        function goToNext() {
-//            experimentr.addData(data);
-            experimentr.next();
-        };
+
+        d3.selectAll('textarea')
+            .filter(function(d) { return this.name === 'text_area_difficulty' ? this : null; })
+            .on('change', function() { data.ps_issues_difficult = this.value;});
+
+        d3.selectAll('textarea')
+            .filter(function(d) { return this.name === 'text_area_easiness' ? this : null; })
+            .on('change', function() { data.ps_features_easy = this.value;});
+
+
+        d3.selectAll('select')
+            .filter(function(d) { return this.name === 'fname_diff' ? this : null; })
+            .on('change', function() { data.ps_fname_diff = this.value;});
+        d3.selectAll('select')
+            .filter(function(d) { return this.name === 'lname_diff' ? this : null; })
+            .on('change', function() { data.ps_lname_diff = this.value;});
+        d3.selectAll('select')
+            .filter(function(d) { return this.name === 'dob_diff' ? this : null; })
+            .on('change', function() { data.ps_dob_diff = this.value;});
+        d3.selectAll('select')
+            .filter(function(d) { return this.name === 'reg_num_diff' ? this : null; })
+            .on('change', function() { data.ps_reg_diff = this.value;});
+        d3.selectAll('select')
+            .filter(function(d) { return this.name === 'race_diff' ? this : null; })
+            .on('change', function() { data.ps_race_diff = this.value;});
+
+        d3.selectAll('select')
+            .filter(function(d) { return this.name === 'fname_spot' ? this : null; })
+            .on('change', function() { data.ps_fname_spot = this.value;});
+        d3.selectAll('select')
+            .filter(function(d) { return this.name === 'lname_spot' ? this : null; })
+            .on('change', function() { data.ps_lname_spot = this.value;});
+        d3.selectAll('select')
+            .filter(function(d) { return this.name === 'dob_spot' ? this : null; })
+            .on('change', function() { data.ps_dob_spot = this.value;});
+        d3.selectAll('select')
+            .filter(function(d) { return this.name === 'reg_num_spot' ? this : null; })
+            .on('change', function() { data.ps_reg_spot = this.value;});
+        d3.selectAll('select')
+            .filter(function(d) { return this.name === 'race_spot' ? this : null; })
+            .on('change', function() { data.ps_race_spot = this.value;});
+
+        d3.selectAll('select')
+            .filter(function(d) { return this.name === 'spot_missing' ? this : null; })
+            .on('change', function() { data.ps_missing_spot = this.value;});
+        d3.selectAll('select')
+            .filter(function(d) { return this.name === 'spot_transpose' ? this : null; })
+            .on('change', function() { data.ps_transpose_spot = this.value;});
+        d3.selectAll('select')
+            .filter(function(d) { return this.name === 'spot_insert' ? this : null; })
+            .on('change', function() { data.ps_insert_spot = this.value;});
+        d3.selectAll('select')
+            .filter(function(d) { return this.name === 'spot_replace' ? this : null; })
+            .on('change', function() { data.ps_replace_spot = this.value;});
+        d3.selectAll('select')
+            .filter(function(d) { return this.name === 'spot_diff' ? this : null; })
+            .on('change', function() { data.ps_diff_spot = this.value;});
+        d3.selectAll('select')
+            .filter(function(d) { return this.name === 'spot_nswap' ? this : null; })
+            .on('change', function() { data.ps_nswap_spot = this.value;});
+        d3.selectAll('select')
+            .filter(function(d) { return this.name === 'spot_dswap' ? this : null; })
+            .on('change', function() { data.ps_dswap_spot = this.value;});
+
+        d3.selectAll('textarea')
+            .filter(function(d) { return this.name === 'freq_dec' ? this : null; })
+            .on('change', function() { data.ps_frequency_help = this.value;});
+
+        d3.selectAll('textarea')
+            .filter(function(d) { return this.name === 'inter_under' ? this : null; })
+            .on('change', function() { data.ps_interface_understand = this.value;});
+
+        d3.selectAll('textarea')
+            .filter(function(d) { return this.name === 'tips' ? this : null; })
+            .on('change', function() { data.ps_tips = this.value;});
+
 
         d3.select('#submitComments')
             .on('click', function () {
-                console.log("submit");
-                experimentr.endTimer('post_study_timer');
-                goToNext();
+                experimentr.endTimer('post_survey_timer');
+                experimentr.addData(data);
+                experimentr.next();
             });
 
 
