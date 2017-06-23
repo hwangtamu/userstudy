@@ -40,6 +40,7 @@
         experimentr.data()['switch'] = {};
         $.getScript("javascript/misc/util.js");
         var step = 0;
+        var sec_switch = 1;
         var notes = ["Next, you are going to complete the first section of the test: pairwise test."];
         parsing("data/output.csv");
 
@@ -48,6 +49,7 @@
         //    d3.selectAll(".icon").remove();
         //}
         d3.select("#notation").text(notes[step]);
+
         function goToNext() {
             experimentr.next();
         }
@@ -57,26 +59,39 @@
                 d3.select('#submitComments').style("left","2.5%");
                 if(step==experimentr.data()["mat"].length-1){
                     goToNext();
-                }else{
+                }else {
                     //if(experimentr.data()["mat"][step+1].length==0){
                     //    d3.select("#title").text("This is the end of Section 1");
                     //}
                     //if(experimentr.data()["mat"][step].length==0){
                     //    d3.select("#title").text("Section 2: Groupwise Test");
                     //}
-                    // page number
-                    d3.select("#notation").text("Page "+(step+1).toString()+"/"+(experimentr.data()['mat'].length-1).toString());
+                    if (sec_switch == 1) {
+                        d3.select("#notation").text(function () {
+                            console.log("The step is " + step);
 
-                    setTimeout(function (){
-                        d3.selectAll(".blocks").remove();
-                        pairs(experimentr.data()["mat"][step-1],step-1,experimentr.data()["mat"][step-1].length,experimentr.data()["mode"]);
-                        if (experimentr.data()["mode"]=="Vanilla"){
-                            d3.selectAll(".icon").remove();
-                        }
-                    }, 100);
-                    console.log(d3.selectAll(".choice"));
-                    step+=1;
-                    //console.log(step, experimentr.data()['mat'][step-1]);
+                                return ("Hello");
+
+                        });
+                        sec_switch = 0
+                    } else {
+
+                        // page number
+                        d3.select("#notation").text("Page " + (step + 1).toString() + "/" + (experimentr.data()['mat'].length - 1).toString());
+
+
+                        setTimeout(function () {
+                            d3.selectAll(".blocks").remove();
+                            pairs(experimentr.data()["mat"][step - 1], step - 1, experimentr.data()["mat"][step - 1].length, experimentr.data()["mode"]);
+                            if (experimentr.data()["mode"] == "Vanilla") {
+                                d3.selectAll(".icon").remove();
+                            }
+                        }, 100);
+                        console.log(d3.selectAll(".choice"));
+                        step += 1;
+                        sec_switch = 1;
+                        //console.log(step, experimentr.data()['mat'][step-1]);
+                    }
                 }
                 // time elapse
                 experimentr.data()['switch'][step] = Date.now();
