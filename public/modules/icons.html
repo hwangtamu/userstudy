@@ -56,10 +56,12 @@
             svg.append("svg:image").attr("xlink:href","/resources/right-arrow.png")
                 .attr("class","icon").attr("x",530).attr("y",97).attr("width",50).attr("height",50);
             //indel example
-            svg.append("text").attr("x",440).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("Smith");
-            svg.append("text").attr("x",440).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("Smith Jr");
+            svg.append("text").attr("x",440).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("SMITH");
+            svg.append("text").attr("x",440).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("SMITH JR");
             svg.append("text").attr("x",580).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("*****");
-            svg.append("text").attr("x",580).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("***** Jr");
+            svg.append("text").attr("x",580).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("*****");
+            svg.append("text").attr("x",635).attr("y",155).attr("text-anchor","left").style("font","16px Verdana")
+                .style("font-weight","bold").style("fill","#33ce45").text("JR");
         }
 
         function replace(){
@@ -74,8 +76,14 @@
             //replace example
             svg.append("text").attr("x",440).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("Hanks");
             svg.append("text").attr("x",440).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("Henks");
-            svg.append("text").attr("x",580).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("*a***");
-            svg.append("text").attr("x",580).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("*e***");
+            svg.append("text").attr("x",580).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("*");
+            svg.append("text").attr("x",589).attr("y",105).attr("text-anchor","left").style("font","16px Verdana")
+                .style("font-weight","bold").style("fill","#9b3d18").text("a");
+            svg.append("text").attr("x",598).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("***");
+            svg.append("text").attr("x",580).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("*");
+            svg.append("text").attr("x",589).attr("y",155).attr("text-anchor","left").style("font","16px Verdana")
+                .style("font-weight","bold").style("fill","#9b3d18").text("e");
+            svg.append("text").attr("x",598).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("***");
         }
 
         function transpose(){
@@ -90,8 +98,12 @@
             //transpose example
             svg.append("text").attr("x",440).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("05/20/1932");
             svg.append("text").attr("x",440).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("05/20/1923");
-            svg.append("text").attr("x",580).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("**/**/**32");
-            svg.append("text").attr("x",580).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("**/**/**23");
+            svg.append("text").attr("x",580).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("**/**/**");
+            svg.append("text").attr("x",655).attr("y",105).attr("text-anchor","left").style("font","16px Verdana")
+                .style("font-weight","bold").style("fill","#009fff").text("32");
+            svg.append("text").attr("x",580).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("**/**/**");
+            svg.append("text").attr("x",655).attr("y",155).attr("text-anchor","left").style("font","16px Verdana")
+                .style("font-weight","bold").style("fill","#009fff").text("23");
         }
 
         function missing(){
@@ -99,7 +111,7 @@
             svg.append("svg:image").attr("xlink:href","/resources/missing.png")
                 .attr("class","icon").attr("x",250).attr("y",100).attr("width",50).attr("height",50);
             svg.append("svg:image").attr("xlink:href","/resources/missing.png")
-                .attr("class","icon").attr("x",600).attr("y",135).attr("width",18).attr("height",18);
+                .attr("class","icon").attr("x",605).attr("y",135).attr("width",18).attr("height",18);
             svg.append("text").attr("x",310).attr("y",130).attr("text-anchor","left").text("Missing").style("font","16px Verdana");
             svg.append("svg:image").attr("xlink:href","/resources/right-arrow.png")
                 .attr("class","icon").attr("x",530).attr("y",97).attr("width",50).attr("height",50);

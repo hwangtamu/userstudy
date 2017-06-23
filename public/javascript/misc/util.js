@@ -61,6 +61,8 @@ function cell(t,g,j,k){
     textbox.attr("x",function(){
         //if(k==3 && (title[j%10]=="FFreq"||title[j%10]=="LFreq"||
         //title[j%10]=="ID")){return cx/2;}
+        if(t=="Reg No."){return 20;}
+        if(t=="Race"){return 20;}
         if(k==2){return cx/2;}
         return 0;})
     //if(t.length>0){return cx*(0.02+0.48/t.length)-4;}})
