@@ -18,18 +18,6 @@ is_not_empty = Vectorize(is_not_empty)
 (starred_data <- read_csv("./data_output/all_starred_race.csv", col_types = cols(.default = "c")) %>%
   mutate_each(funs(ifelse(is_not_empty(.),.,""))))
 
-# (lookup <- starred_data %>%
-#     select(type,`Group ID`) %>% 
-#     unique() %>%
-#     arrange(type,`Group ID`))
-
-# n_samples <- 10
-# n_group_observations <- 1
-# n_error_types <- length(unique(lookup$type))
-# 
-# sampling_matrix <- matrix(ncol = n_samples, nrow = n_error_types*n_group_observations)
-# colnames(sampling_matrix) <- paste0("sample_",as.character(1:n_samples))
-# rownames(sampling_matrix) <- paste0("type_",(rep(as.character(1:n_error_types),n_group_observations)))
 
 (starred_data <- 
   starred_data %>%
@@ -41,7 +29,7 @@ starred_data %>%
   unique() %>% count(type,`Record ID`)
 
 set.seed(1)
-for(i in 1:n_samples) {
+for(i in 1:10) {
   
   (gids <- 
     starred_data %>%
@@ -80,6 +68,21 @@ for(i in 1:n_samples) {
   sample_i %>%
     write_csv(paste0(sprintf("./data_output/samples/sample_%02d",i),".csv"))
 }
+
+
+
+# (lookup <- starred_data %>%
+#     select(type,`Group ID`) %>% 
+#     unique() %>%
+#     arrange(type,`Group ID`))
+
+# n_samples <- 10
+# n_group_observations <- 1
+# n_error_types <- length(unique(lookup$type))
+# 
+# sampling_matrix <- matrix(ncol = n_samples, nrow = n_error_types*n_group_observations)
+# colnames(sampling_matrix) <- paste0("sample_",as.character(1:n_samples))
+# rownames(sampling_matrix) <- paste0("type_",(rep(as.character(1:n_error_types),n_group_observations)))
 
 
 # set.seed(1)

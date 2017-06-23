@@ -332,9 +332,7 @@ def make_list_dict(file_path,id_name):
 
 def star_similarities(d, star_indices,index_file_id):
     data = []
-    id = 1
-    id2 = 1
-    #star_val = star_indices.values()
+    # id = 1
     for p in d:
         for i in range(1, len(d[p])):
             file_id_1 = d[p][0][index_file_id]
@@ -345,11 +343,9 @@ def star_similarities(d, star_indices,index_file_id):
             answer_2 = d[p][1][title.index("answer")-1]
             # if not file_id_1 == file_id_2:
             x, y = pair([d[p][0], d[p][i]], star_indices)
-            data += [[id, file_id_1] + x + [type_1,answer_1]]
-            data += [[id, file_id_2] + y + [type_2,answer_2]]
-            id += 1
-            print(id2)
-            id2 += 1
+            data += [[p, file_id_1] + x + [type_1,answer_1]]
+            data += [[p, file_id_2] + y + [type_2,answer_2]]
+            # id += 1
     return data
 
 def data_filter(data_as_list,item):
