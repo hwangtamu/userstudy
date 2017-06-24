@@ -14,9 +14,21 @@ is_not_empty <- function(string) {
 
 is_not_empty = Vectorize(is_not_empty)
 
+col_names <- c("Group ID", "Record ID", 
+               "First Name", "FF", 
+               "Last Name", "LF",
+               "Reg No.", "DoB", "Race",
+               "First Name", "Last Name",
+               "Reg No.", "DoB", "Race",
+               "type","Answer")
+
 
 (starred_data <- read_csv("./data_output/all_starred_race.csv", col_types = cols(.default = "c")) %>%
   mutate_each(funs(ifelse(is_not_empty(.),.,""))))
+
+starred_data <- 
+  starred_data %>%
+    arrange(as.numeric(`Group ID`))
 
 
 (starred_data <- 
@@ -58,18 +70,13 @@ for(i in 1:10) {
             arrange(type,`Group ID`)
 
   #make the names standard
-  names(sample_i) <- c("Group ID", "Record ID", 
-                           "First Name", "FF", 
-                           "Last Name", "LF",
-                           "Reg No.", "DoB", "Race",
-                           "First Name", "Last Name",
-                           "Reg No.", "DoB", "Race",
-                           "type","Answer")
+  names(sample_i) <- col_names
   sample_i %>%
     write_csv(paste0(sprintf("./data_output/samples/sample_%02d",i),".csv"))
 }
 
-
+names(starred_data) <- col_names
+write_csv(starred_data,"./data_output/all_starred_race.csv")
 
 # (lookup <- starred_data %>%
 #     select(type,`Group ID`) %>% 
