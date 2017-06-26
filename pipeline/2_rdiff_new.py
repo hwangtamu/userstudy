@@ -81,8 +81,10 @@ def get_edit_distance(s1, s2):
             stJ = stJ - 1
 
         else:
-            finalStr1 = "TX" + finalStr1
-            finalStr2 = "TX" + finalStr2
+            # finalStr1 = "TX" + finalStr1
+            # finalStr2 = "TX" + finalStr2
+            finalStr1 = s1[stI - 2] + s1[stI - 1] + finalStr1
+            finalStr2 = s2[stJ - 2] + s2[stJ - 1] + finalStr2
             stI = stI - 2
             stJ = stJ - 2
 
@@ -153,8 +155,7 @@ def check_starring(s1, s2):
             return True
         b_len = len_2
     edit_distance = damerau_levenshtein_distance(s1, s2)
-    # if s1 in ["BOSSARD","MCCLUSKEY"]:
-    #     print s1, s2, edit_distance, edit_distance/b_len
+
     if float(edit_distance)/b_len > 0.5:
         return False
     return True
@@ -223,20 +224,25 @@ def get_star_vot_reg(n1, n2):
     if not len_1 == len_2:
         return n1, n2
 
-    hamm_trans = hamming_with_transpose(n1,n2)
+    # hamm_trans = hamming_with_transpose(n1,n2)
+    hamm_trans = damerau_levenshtein_distance(n1,n2)
 
     if hamm_trans > 4:
         return n1, n2
     else:
-        for i in range(len_1):
-            if n1[i] == n2[i]:
-                final_1 = final_1 + "*"
-                final_2 = final_2 + "*"
-            else:
-                final_1 = final_1 + n1[i]
-                final_2 = final_2 + n2[i]
+        final_1, final_2 = get_edit_distance(n1,n2)
+        final_1 = final_1[:len(n1)]
+        final_2 = final_2[:len(n2)]
+        # for i in range(len_1):
+        #     if n1[i] == n2[i]:
+        #         final_1 = final_1 + "*"
+        #         final_2 = final_2 + "*"
+        #     else:
+        #         final_1 = final_1 + n1[i]
+        #         final_2 = final_2 + n2[i]
+        return final_1,final_2
 
-    return final_1, final_2
+
 
 def pair(s,star_indices):
     """
