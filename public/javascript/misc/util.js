@@ -3,12 +3,12 @@
 /**
  * Created by hanwang on 1/23/17.
  */
-var title = ["Group","ID","FFreq","First name","Last name","LFreq","DoB(M/D/Y)","Reg No.","Race"];
-var cwidth = [60,20,60,200,200,150,100,100,150]; //870
+var title = ["Group","Reg No.","ID","FFreq","First name","Last name","LFreq","DoB(M/D/Y)","Race"];
+var cwidth = [60,20,100,60,200,200,150,100,150]; //870
 var height = 24; //height per row 0 30 57
 var ys = [0,30,77];
 //index mapping from hidden data to visible data per row
-var mapping = [0,1,3,9,10,5,12,11,13,2,4,7,6,8];
+var mapping = [0,11,1,3,9,10,5,12,13,6,2,4,7,8];
 var data = {}; // experimentr data
 var n_pair = 0;
 /**
@@ -180,7 +180,7 @@ function cell(t,g,j,k){
         //    cel.append("svg:image").attr("xlink:href","/resources/checkmark.png").attr("class","icon")
         //        .attr("x",function(){if(title[j%cwidth.length]!="DoB(M/D/Y)"){return cwidth[j%cwidth.length]/3;}return 40;})
         //        .attr("y",cy/2+15).attr("width",18).attr("height",18);
-        else if(textbox.text()==" " && j%cwidth.length>1){
+        else if(textbox.text()==" " && title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="Group"){
             // double check mark
             cel.append("svg:image").attr("xlink:href","/resources/checkmark.png").attr("class","icon")
                 .attr("x",function(){if(title[j%cwidth.length]=="First name"||title[j%cwidth.length]=="Last name"){return 0;}
@@ -200,6 +200,7 @@ function cell(t,g,j,k){
                 //console.log(t_j, t_m);
                 if(title[j%cwidth.length]!="Group" && t_j.indexOf("*")==-1 && t_m.indexOf("*")==-1 && t_j.trim()!="" && t_m.trim()!=""){
                     //var len = (t_j.length<=t_m.length?t_j.length:t_m.length)/2;
+                    console.log(t_j, t_m);
                     diff = 1;
                     if(j<2*cwidth.length){
                         g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/diff.svg")
@@ -571,9 +572,13 @@ function pair(t,g,m){
         freq = row1[3],
         reg = row1[6],
         dob = row1[7];
+    //console.log(reg);
     row1[3] = f_name;row1[2] = freq;row1[6] = dob;row1[7] = reg;
     f_name = row2[2];freq = row2[3];reg = row2[6]; dob = row2[7];
     row2[3] = f_name;row2[2] = freq;row2[6] = dob; row2[7] = reg;
+    //put reg in front
+    row1 = row1.slice(0,1).concat([row1[7]]).concat(row1.slice(1,7)).concat([row1[8]]);
+    row2 = row2.slice(0,1).concat([row2[7]]).concat(row2.slice(1,7)).concat([row2[8]]);
 
     if(m=="Partial"){
         for(var j=1;j<mapping.length;j++){
@@ -716,7 +721,7 @@ function pairs(t,s,n,m) {
     var lwidth = 100 + (len-5) * 5;
     var extra_width = (200-lwidth)/2;
     //console.log(len,lwidth);
-    cwidth = [60,60,60,180,lwidth,150,100+extra_width,80+extra_width,100]; //910
+    cwidth = [60,80+extra_width,60,60,180,lwidth,150,100+extra_width,100]; //910
     for(var i=0;i<n;i++){
         var g = d3.select("#table").append("svg").attr("class","blocks").attr("id","g"+(s*6+i).toString())
             .attr("width", 1800).attr("height", function(){if(i==0){return 140;}return 120;});
@@ -910,14 +915,17 @@ function parsing(route){
         var tmp = [];
         //console.log(raw_binary.length);
         for (var i = 0; i < raw_binary.length; i++) {
-            if (tmp.length == 6 || i == raw_binary.length-1) {
-                if(tmp.length<6){tmp.push(raw_binary[i]);}
+            if (tmp.length == 6) {
+                if(tmp.length<6){
+                    tmp.push(raw_binary[i]);
+                }
                 binary.push(tmp);
                 tmp = [raw_binary[i]];
             } else {
                 tmp.push(raw_binary[i]);
             }
         }
+        console.log(tmp);
         if (tmp != []) {
             binary.push(tmp);
         }
@@ -950,7 +958,6 @@ function parsing(route){
             answer.push(raw_binary[i][0][raw_binary[i][0].length-1]);
         }
         data.answer = answer;
-
         experimentr.addData(data);
     });
 }

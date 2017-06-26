@@ -85,11 +85,11 @@
 
 </div>
     <div style="position: absolute; left: 500px; top:670px; width: 700px; text-align: left; display: inline;">
-    <input type="checkbox" id="cbox1" value=-1 >
+    <label id="check"><input type="checkbox" id="cbox1" value=-1 >
         <strong>
             I have read the information provided above and I have asked all the questions I have at this time.<br>
             &nbsp;&nbsp;&nbsp;&nbsp;By checking this box, I am agreeing to participate in the study voluntarily.
-        </strong><br>
+        </strong></label><br>
     <button id="consentYes" type="button" class="start-button" disabled="true" style="position: absolute; left: 250px;">Next</button>
 
 </div>
@@ -168,11 +168,12 @@
     //data.ip = ip;
     data.userDate = Date();
     //data.ip = JSON.parse(ip);
-    //data.clicks = {};
+    data.clicks = {};
     load();
        // load previous workers file
   }
-
+  d3.select('#check').on({"mouseover": function(d) {d3.select(this).style("cursor", "pointer")},
+        "mouseout": function(d) {d3.select(this).style("cursor", "default")}});
   d3.select('#consentYes').style('color', "#b3b3b3");
   function validate() {
     if (cbox1.property("value")==1){
