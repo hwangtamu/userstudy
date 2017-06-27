@@ -2,7 +2,7 @@ library(dplyr)
 library(readr)
 library(magrittr)
 library(stringr)
-library(forcats)
+# library(forcats)
 
 is_not_empty <- function(string) {
   if(is.na(string) | string == "" | string == ".") {
@@ -14,22 +14,45 @@ is_not_empty <- function(string) {
 
 is_not_empty = Vectorize(is_not_empty)
 
-col_names <- c("Group ID", "Record ID", 
-               "First Name", "FF", 
+col_names <- c("Group ID", "Reg No.", 
+               "FF", "First Name", 
                "Last Name", "LF",
-               "Reg No.", "DoB", "Race",
-               "First Name", "Last Name",
-               "Reg No.", "DoB", "Race",
-               "type","Answer")
+               "DoB", "Race",
+               "Reg No.", "First Name", "Last Name",
+               "DoB", "Race",
+               "Record ID", "type","Same")
+
+#[Group ID, Reg No., FF, First Name, Last Name, LF, 
+# DoB, Race, Reg No., First Name, Last Name, 
+#DoB, Race, Record ID, type, Answer]
 
 
 (starred_data <- read_csv("./data_output/all_starred_race.csv", col_types = cols(.default = "c")) %>%
-  mutate_each(funs(ifelse(is_not_empty(.),.,""))))
+  mutate_all(funs(ifelse(is_not_empty(.),.,""))))
+
+(fname_freq <- read_csv("./frequencies/fname_freq.csv") %>%
+  rename(`First Name` = fname))
+(lname_freq <- read_csv("./frequencies/lname_freq.csv") %>%
+  rename(`Last Name` = lname))
 
 starred_data <- 
   starred_data %>%
-    arrange(as.numeric(`Group ID`))
+  select(`Group ID`, `Reg No.`, FF, `First Name`, `Last Name`, LF,
+         DoB, Race, `Reg No._1`, `First Name_1`, `Last Name_1`, DoB_1, Race_1, 
+         `Record ID`, type, Same) %>%
+             arrange(as.numeric(`Group ID`))
 
+starred_data <- 
+  starred_data %>%
+    left_join(fname_freq) %>%
+      mutate(FF = ifelse(!is.na(n),n,1)) %>%
+        select(-n)
+
+starred_data <- 
+  starred_data %>%
+    left_join(lname_freq) %>%
+    mutate(LF = ifelse(!is.na(n),n,1)) %>%
+    select(-n)
 
 (starred_data <- 
   starred_data %>%

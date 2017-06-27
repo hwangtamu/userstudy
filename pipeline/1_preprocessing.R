@@ -18,9 +18,9 @@ is_not_empty = Vectorize(is_not_empty)
 #,file_id = str_c(src, file_id, sep = "-")
 (input_data <-
   source_data %>%
-  mutate_each(funs(ifelse(is_not_empty(.),.,""))) %>% 
+  mutate_all(funs(ifelse(is_not_empty(.),.,""))) %>% 
   mutate(last_name = str_c(last_name, name_sufx_cd, sep = " ")) %>%
-  mutate_each(funs(str_trim(.))) %>% 
+  mutate_all(funs(str_trim(.))) %>% 
   select(ID, voter_reg_num, last_name, first_name, dob, race, type, 
          everything(), -name_sufx_cd,-src))
 
@@ -36,7 +36,7 @@ source_data_2 <-
   left_join(lookup_2) %>%
   mutate(ID = n) %>%
   select(-n) %>%
-  mutate_each(funs(ifelse(is_not_empty(.),.,"")))
+  mutate_all(funs(ifelse(is_not_empty(.),.,"")))
 
 names(source_data_2) <- org_names
 write_csv(source_data_2,"./data_input/all_groups_changed.csv")    

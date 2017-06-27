@@ -2,6 +2,8 @@ import csv
 
 
 def get_edit_distance(s1, s2):
+    if(s1 == "BUCKNER"):
+        print "Bucky"
     finalStr1 = ""
     finalStr2 = ""
 
@@ -212,12 +214,25 @@ def get_star_date(date_1, date_2):
             final_2 = final_2 + date_2[i]
     return format_date(final_1),format_date(final_2)
 
+def trailing_space_symbol(str):
+    str = list(str)
+    for i in range((len(str) - 1), -1, -1):
+        if str[i] == "_":
+            str[i] = "?"
+        else:
+            break;
+    str = "".join(str)
+    return str
+
 def get_star_vot_reg(n1, n2):
     n1 = str(n1)
     n2 = str(n2)
-    final_1 = ""
-    final_2 = ""
 
+    if (len(n1) < 10 and len(n2) < 10): return "",""
+    if len(n1) < 10: return "", n2
+    if len(n2) < 10: return n1, ""
+
+    print(n1,n2)
     len_1 = len(n1)
     len_2 = len(n2)
 
@@ -231,8 +246,20 @@ def get_star_vot_reg(n1, n2):
         return n1, n2
     else:
         final_1, final_2 = get_edit_distance(n1,n2)
-        final_1 = final_1[:len(n1)]
-        final_2 = final_2[:len(n2)]
+        print final_1, final_2
+        print(final_1[len(final_1) - 1], final_2[len(final_2) - 1])
+        final_1 = trailing_space_symbol(final_1)
+        final_2 = trailing_space_symbol(final_2)
+        # if final_1[len(final_1) - 1] == "_":
+        #     final_1 = list(final_1)
+        #     final_1[len(final_1) - 1] = "?"
+        #     final_1 = "".join(final_1)
+        # if final_2[len(final_2) - 1] == "_":
+        #     final_2 = list(final_2)
+        #     final_2[len(final_2) - 1] = "?"
+        #     final_2 = "".join(final_2)
+        # final_1 = final_1[:len(n1)]
+        # final_2 = final_2[:len(n2)]
         # for i in range(len_1):
         #     if n1[i] == n2[i]:
         #         final_1 = final_1 + "*"
@@ -402,5 +429,5 @@ print(d)
 print(data)
 print("The number of items in data are", len(data))
 data_starred = reorganize_cols(data, star_indices, ["first_name", "last_name", "voter_reg_num", "dob","race"])
-title_array = ['Group ID', 'Record ID','First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB', "Race", 'First Name', 'Last Name', 'Reg No.', 'DoB','Race','type','answer']
+title_array = ['Group ID', 'Record ID','First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB', "Race", 'First Name', 'Last Name', 'Reg No.', 'DoB','Race','type','Same']
 write_data(data_starred, "./data_output/all_starred_race.csv",title_array)
