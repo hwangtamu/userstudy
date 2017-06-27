@@ -3,12 +3,12 @@
 /**
  * Created by hanwang on 1/23/17.
  */
-var title = ["Group","Reg No.","ID","FFreq","First name","Last name","LFreq","DoB(M/D/Y)","Race"];
-var cwidth = [60,20,100,60,200,200,150,100,150]; //870
+var title = ["Group","Reg No.","FFreq","First name","Last name","LFreq","DoB(M/D/Y)","Race","ID"];
+var cwidth = [60,20,100,60,200,200,150,100,100]; //870
 var height = 24; //height per row 0 30 57
 var ys = [0,30,77];
 //index mapping from hidden data to visible data per row
-var mapping = [0,11,1,3,9,10,5,12,13,6,2,4,7,8];
+var mapping = [0,8,2,9,10,5,11,12,1,3,4,6,7,13];
 var data = {}; // experimentr data
 var n_pair = 0;
 /**
@@ -61,7 +61,7 @@ function cell(t,g,j,k){
     textbox.attr("x",function(){
         //if(k==3 && (title[j%10]=="FFreq"||title[j%10]=="LFreq"||
         //title[j%10]=="ID")){return cx/2;}
-        if(t=="Reg No."){return 20;}
+        if(t=="Reg No."){return 18;}
         if(t=="Race"){return 20;}
         if(k==2){return cx/2;}
         return 0;})
@@ -86,7 +86,7 @@ function cell(t,g,j,k){
                 return "";
             }
             return t;
-        }).style("fill", function(){if(j>=cwidth.length && j%cwidth.length<2){return "grey";}});
+        }).style("fill", function(){if(j>=cwidth.length && j%cwidth.length<1){return "grey";}});
     if(k==1){
         textbox.style("font-weight","bold");
     }
@@ -98,6 +98,8 @@ function cell(t,g,j,k){
         indel_ = [],
         replace_ = [],
         transpose_ = [],
+        trailing = [],
+        trailing_ = [],
         diff = 0,
         swap = 0;
 
@@ -135,7 +137,7 @@ function cell(t,g,j,k){
                 fnm = "",
                 lnj = "",
                 lnm = "";
-
+            //console.log(dat[p%6]);
             if(title[j%cwidth.length]=="First name"){
                 fnj = dat[p%6][0][mapping[mapping[j%cwidth.length]]];
                 fnm = dat[p%6][1][mapping[mapping[m%cwidth.length]]];
@@ -161,7 +163,7 @@ function cell(t,g,j,k){
                     t = t.replace(/[A-Z0-9]/g, function(){if(j%2){return "&"}return "@"});
                 }
             }
-            //console.log(swap);
+            //console.log(j, fnj, fnm, lnj, lnm);
         }
 
         if(textbox.text()==""){
@@ -184,6 +186,7 @@ function cell(t,g,j,k){
             // double check mark
             cel.append("svg:image").attr("xlink:href","/resources/checkmark.png").attr("class","icon")
                 .attr("x",function(){if(title[j%cwidth.length]=="First name"||title[j%cwidth.length]=="Last name"){return 0;}
+                else if(title[j%cwidth.length]=="Reg No."){return 35;}
                 else if(title[j%cwidth.length]!="DoB(M/D/Y)"){return cwidth[j%cwidth.length]/3;}
                     return 40;})
                 .attr("y",cy/2-5).attr("width",18).attr("height",18);
@@ -200,7 +203,7 @@ function cell(t,g,j,k){
                 //console.log(t_j, t_m);
                 if(title[j%cwidth.length]!="Group" && t_j.indexOf("*")==-1 && t_m.indexOf("*")==-1 && t_j.trim()!="" && t_m.trim()!=""){
                     //var len = (t_j.length<=t_m.length?t_j.length:t_m.length)/2;
-                    console.log(t_j, t_m);
+                    //console.log(t_j, t_m);
                     diff = 1;
                     if(j<2*cwidth.length){
                         g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/diff.svg")
@@ -259,18 +262,21 @@ function cell(t,g,j,k){
 
                             //replace
                             else if (bin.indexOf(i) == -1 && t_j[i] != t_m[i] && t_j[i] != " " && t_m[i] != " ") {
-                                bin.push(i);
-                                replace.push(i);
-                                replace_.push(i);
-                                //g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/replace.png")
-                                //    .attr("class", "icon").attr("x", function(){
-                                /*if (d3.select(this.parentNode).text().length==1){
-                                 return cx/2-9;
-                                 }*/
-                                //    return 9*i;
-                                //})
-                                //    .attr("y", cy/2+13).attr("width", 18).attr("height", 18);
+                                if(title[j%cwidth.length]!="Reg No." || (title[j%cwidth.length]=="Reg No." &&
+                                    (j<10 || Math.max(t_j.length, t_m.length)<=10))){
+                                    bin.push(i);
+                                    replace.push(i);
+                                    replace_.push(i);
+                                }else{
+                                    if(t_m[i]=="?"||t_j[i]=="?"){
+                                        bin.push(i);
+                                        trailing.push(i);
+                                        trailing_.push(i);}
+                                }
                             }
+                            // if(title[j%cwidth.length]=="Reg No." && Math.max(t_j.length, t_m.length)>10){
+                            //     console.log(t,trailing_,trailing);
+                            // }
                         }
                     }
 
@@ -419,32 +425,32 @@ function cell(t,g,j,k){
             else if(j>cwidth.length){t = t.replace(/[A-Z0-9]/g, '@');}
         }
     }
-    if(diff==0 && ["First name", "Last name", "DoB(M/D/Y)"].indexOf(title[j%cwidth.length])>-1 && experimentr.data()['mode']=="Opti1"){
-        var p = g.attr("id").slice(1),
-            dat = experimentr.data()['mat'][Math.floor(p/6)];
-        if(textbox.text().indexOf("*")>-1){
-            if(title[j%cwidth.length]=="First name"){
-                t = j<2*cwidth.length ? dat[p%6][0][j%cwidth.length-1] : dat[p%6][1][j%cwidth.length-1];
-            }else if(title[j%cwidth.length]=="Last name"){
-                t = j<2*cwidth.length ? dat[p%6][0][j%cwidth.length] : dat[p%6][1][j%cwidth.length];
-            }else{
-                t = j<2*cwidth.length ? dat[p%6][0][j%cwidth.length+1] : dat[p%6][1][j%cwidth.length+1];
-            }
-        }
-    }
-    if(diff==0 && ["First name", "Last name", "DoB(M/D/Y)"].indexOf(title[j%cwidth.length])>-1 && experimentr.data()['mode']=="Opti1"){
-        var p = g.attr("id").slice(1),
-            dat = experimentr.data()['mat'][Math.floor(p/6)];
-        if(textbox.text().indexOf("*")>-1){
-            if(title[j%cwidth.length]=="First name"){
-                t = j<2*cwidth.length ? dat[p%6][0][j%cwidth.length-1] : dat[p%6][1][j%cwidth.length-1];
-            }else if(title[j%cwidth.length]=="Last name"){
-                t = j<2*cwidth.length ? dat[p%6][0][j%cwidth.length] : dat[p%6][1][j%cwidth.length];
-            }else{
-                t = j<2*cwidth.length ? dat[p%6][0][j%cwidth.length+1] : dat[p%6][1][j%cwidth.length+1];
-            }
-        }
-    }
+    // if(diff==0 && ["First name", "Last name", "DoB(M/D/Y)"].indexOf(title[j%cwidth.length])>-1 && experimentr.data()['mode']=="Opti1"){
+    //     var p = g.attr("id").slice(1),
+    //         dat = experimentr.data()['mat'][Math.floor(p/6)];
+    //     if(textbox.text().indexOf("*")>-1){
+    //         if(title[j%cwidth.length]=="First name"){
+    //             t = j<2*cwidth.length ? dat[p%6][0][j%cwidth.length-1] : dat[p%6][1][j%cwidth.length-1];
+    //         }else if(title[j%cwidth.length]=="Last name"){
+    //             t = j<2*cwidth.length ? dat[p%6][0][j%cwidth.length] : dat[p%6][1][j%cwidth.length];
+    //         }else{
+    //             t = j<2*cwidth.length ? dat[p%6][0][j%cwidth.length+1] : dat[p%6][1][j%cwidth.length+1];
+    //         }
+    //     }
+    // }
+    // if(diff==0 && ["First name", "Last name", "DoB(M/D/Y)"].indexOf(title[j%cwidth.length])>-1 && experimentr.data()['mode']=="Opti1"){
+    //     var p = g.attr("id").slice(1),
+    //         dat = experimentr.data()['mat'][Math.floor(p/6)];
+    //     if(textbox.text().indexOf("*")>-1){
+    //         if(title[j%cwidth.length]=="First name"){
+    //             t = j<2*cwidth.length ? dat[p%6][0][j%cwidth.length-1] : dat[p%6][1][j%cwidth.length-1];
+    //         }else if(title[j%cwidth.length]=="Last name"){
+    //             t = j<2*cwidth.length ? dat[p%6][0][j%cwidth.length] : dat[p%6][1][j%cwidth.length];
+    //         }else{
+    //             t = j<2*cwidth.length ? dat[p%6][0][j%cwidth.length+1] : dat[p%6][1][j%cwidth.length+1];
+    //         }
+    //     }
+    // }
     if((experimentr.data()['mode']!="Vanilla") && k>=3 && k<=6 &&
         title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
         g.select("#c"+j.toString()).select(".span").remove();
@@ -474,13 +480,15 @@ function cell(t,g,j,k){
                     .style("font-weight",function(){if(diff==0 &&
                         (((j<2*cwidth.length && indel.indexOf(l)>-1)||(j>2*cwidth.length && indel_.indexOf(l)>-1))||
                         (j<2*cwidth.length && replace.indexOf(l)>-1)||(j>2*cwidth.length && replace_.indexOf(l)>-1)||
-                        (j<2*cwidth.length && transpose.indexOf(l)>-1)||(j>2*cwidth.length && transpose_.indexOf(l)>-1))){return "bold";}})
+                        (j<2*cwidth.length && transpose.indexOf(l)>-1)||(j>2*cwidth.length && transpose_.indexOf(l)>-1)||
+                        (j<2*cwidth.length && trailing.indexOf(l)>-1)||(j>2*cwidth.length && trailing_.indexOf(l)>-1))){return "bold";}})
                     .attr("fill",function(){
-                        if((j<2*cwidth.length && indel.indexOf(l)>-1)||(j>2*cwidth.length && indel_.indexOf(l)>-1)){return "#33ce45";}
+                        if((j<2*cwidth.length && indel.indexOf(l)>-1)||(j>2*cwidth.length && indel_.indexOf(l)>-1)||
+                            (j<2*cwidth.length && trailing.indexOf(l)>-1)||(j>2*cwidth.length && trailing_.indexOf(l)>-1)){return "#33ce45";}
                         else if((j<2*cwidth.length && replace.indexOf(l)>-1)||(j>2*cwidth.length && replace_.indexOf(l)>-1)){return "#9b3d18";}
                         else if((j<2*cwidth.length && transpose.indexOf(l)>-1)||(j>2*cwidth.length && transpose_.indexOf(l)>-1)){return "#009fff";}
                         return "black";})
-                    .text(t[l]);
+                    .text(function(){if(t[l]=="?"){return "";}return t[l];});
                 t_count+=1;
             }
         }
@@ -557,28 +565,13 @@ function pair(t,g,m){
         b = cwidth.length+mapping.length,
         c = cwidth.length+2*mapping.length;
     var k = new Array(c).fill(1);
-    for(var i=0;i<t.length;i++){
-        if([13, 24].indexOf(i)>-1){
-            t[i] = t[i].replace(/-/g,"/");
-        }
-    }
+
     k[a] = 2;
     k[b] = 0;
     var row1 = t.slice(a,b),
         row2 = t.slice(b,c),
         k1 = k.slice(a,b),
-        k2 = k.slice(b,c),
-        f_name = row1[2],
-        freq = row1[3],
-        reg = row1[6],
-        dob = row1[7];
-    //console.log(reg);
-    row1[3] = f_name;row1[2] = freq;row1[6] = dob;row1[7] = reg;
-    f_name = row2[2];freq = row2[3];reg = row2[6]; dob = row2[7];
-    row2[3] = f_name;row2[2] = freq;row2[6] = dob; row2[7] = reg;
-    //put reg in front
-    row1 = row1.slice(0,1).concat([row1[7]]).concat(row1.slice(1,7)).concat([row1[8]]);
-    row2 = row2.slice(0,1).concat([row2[7]]).concat(row2.slice(1,7)).concat([row2[8]]);
+        k2 = k.slice(b,c);
 
     if(m=="Partial"){
         for(var j=1;j<mapping.length;j++){
@@ -616,6 +609,7 @@ function pair(t,g,m){
                 t[j] = " "; row1[j] = " "; row2[j] = " ";
             }
         }
+        //console.log(row1, row2);
     }
     else if(m=="Full"){
         for(var j=1;j<mapping.length;j++){
@@ -627,7 +621,7 @@ function pair(t,g,m){
         for(var j=0;j<mapping.length;j++){
             row1[j] = t[a+mapping[j]];row2[j] = t[b+mapping[j]];
         }
-
+        //console.log(row1, row2);
         k1[0] = 2;k2[0] = 0;
         if(m=="Hidden"){
             for(var j=1;j<mapping.length;j++){
@@ -721,7 +715,7 @@ function pairs(t,s,n,m) {
     var lwidth = 100 + (len-5) * 5;
     var extra_width = (200-lwidth)/2;
     //console.log(len,lwidth);
-    cwidth = [60,80+extra_width,60,60,180,lwidth,150,100+extra_width,100]; //910
+    cwidth = [60,200,60,180,lwidth,150,60+extra_width,100,20]; //910
     for(var i=0;i<n;i++){
         var g = d3.select("#table").append("svg").attr("class","blocks").attr("id","g"+(s*6+i).toString())
             .attr("width", 1800).attr("height", function(){if(i==0){return 140;}return 120;});
@@ -924,8 +918,9 @@ function parsing(route){
             } else {
                 tmp.push(raw_binary[i]);
             }
+            //console.log(raw_binary[i]);
         }
-        console.log(tmp);
+        //console.log(tmp);
         if (tmp != []) {
             binary.push(tmp);
         }
