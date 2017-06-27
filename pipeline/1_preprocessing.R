@@ -19,7 +19,8 @@ is_not_empty = Vectorize(is_not_empty)
 (input_data <-
   source_data %>%
   mutate_all(funs(ifelse(is_not_empty(.),.,""))) %>% 
-  mutate(last_name = str_c(last_name, name_sufx_cd, sep = " ")) %>%
+  mutate(last_name = str_c(last_name, name_sufx_cd, sep = " "),
+         file_id = str_c(file_id,"-",src)) %>%
   mutate_all(funs(str_trim(.))) %>% 
   select(ID, voter_reg_num, last_name, first_name, dob, race, type, 
          everything(), -name_sufx_cd,-src))

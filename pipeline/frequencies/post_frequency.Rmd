@@ -1,0 +1,157 @@
+---
+title: "Frequency"
+author: "Gurudev Ilangovan"
+date: "June 27, 2017"
+output: html_document
+---
+
+```{r echo='FALSE', include=FALSE, tidy=TRUE}
+library(tidyverse)
+library(ggthemr)
+library(ggvis)
+library(forcats)
+
+setwd("C:/Users/gurud/Google Drive/Research Assistantship/seq/Gurudev Ilangovan/Record Linkage/userstudy/pipeline/frequencies/")
+
+fname_freq <- read_csv("./fname_freq.csv")
+lname_freq <- read_csv("./lname_freq.csv")
+
+starred_data_all <- read_csv("../data_output/all_starred_race.csv")
+
+fname_starred <- 
+  starred_data_all %>%
+    select(`First Name`, n = FF)
+
+lname_starred <- 
+  starred_data_all %>%
+  select(`Last Name`, n = LF)
+
+custom <- define_palette(
+  swatch = c("black","blue","red","darkgreen","darkgrey","darkorange","pink"),
+  gradient = c(lower = "lightblue", upper = "darkblue")
+)
+
+ggthemr(custom)
+
+```
+Current classification:
+
+1. Unique  : 1
+2. Rare    : 2 - 5
+3. Common  : 6 - 10
+4. Frequent: > than 10
+
+```{r include=FALSE}
+calculate_rarity = function(frequency) {
+  frequency = tibble(freq = frequency)
+  frequency %>% 
+    mutate(rarity = as_factor(case_when(
+      freq == 1 ~ "Unique",
+      between(freq, 2, 5) ~ "Rare",
+      between(freq, 5, 10) ~ "Common",
+      freq>10 ~ "Frequent")),
+      rarity = fct_relevel(rarity, "Unique", "Rare", "Common", "Frequent")) %>%
+        pull(rarity) %>%
+          return()
+}
+
+fname_freq <- 
+  fname_freq %>%
+    mutate(Rarity = calculate_rarity(n))
+
+lname_freq <- 
+  lname_freq %>%
+    mutate(Rarity = calculate_rarity(n))
+
+
+fname_starred <- 
+  fname_starred %>%
+    mutate(Rarity = calculate_rarity(n))
+
+lname_starred <- 
+  lname_starred %>%
+    mutate(Rarity = calculate_rarity(n))
+
+```
+
+
+#The original frequencies look like this:
+
+###First Names:
+```{r echo = FALSE}
+fname_freq %>%
+  mutate(src = ifelse(src == "B", "1703", "1304")) %>% 
+  ggplot(aes(n)) + 
+  facet_grid(~src) +
+  geom_histogram(binwidth = 10, aes(fill = Rarity), alpha = 0.75)
+```
+
+###Last Names:
+```{r echo = FALSE}
+lname_freq %>%
+  mutate(src = ifelse(src == "B", "1703", "1304")) %>% 
+  ggplot(aes(n)) + 
+  facet_grid(~src) +
+  geom_histogram(binwidth = 10, aes(fill = Rarity), alpha = 0.8)
+```
+
+#The frequencies in the crafted data look like this:
+
+###First Names:
+```{r echo = FALSE}
+fname_starred %>%
+  ggplot(aes(n)) + geom_histogram(binwidth = 10,  alpha = 0.8, aes(fill = Rarity))
+```
+
+###Last Names:
+```{r echo = FALSE}
+lname_starred %>%
+  ggplot(aes(n)) + geom_histogram(binwidth = 10,  alpha = 0.8, aes(fill = Rarity))
+```
+
+#Percentage of Frequencies in the lookup table vs crafted data
+```{r echo=FALSE}
+ggplot(fname_freq, aes(Rarity, fill = Rarity)) +
+  geom_bar(aes(y = (..count..)/sum(..count..)), alpha = 0.7) +
+  ylab("Proportion") + ggtitle("Lookup First Name")
+
+ggplot(fname_starred, aes(Rarity, fill = Rarity)) +
+  geom_bar(aes(y = (..count..)/sum(..count..)), alpha = 0.7) +
+  ylab("Proportion") + ggtitle("Starred First Name")
+
+ggplot(lname_freq, aes(Rarity, fill = Rarity)) +
+  geom_bar(aes(y = (..count..)/sum(..count..)), alpha = 0.7) +
+  ylab("Proportion") + ggtitle("Lookup Last Name")
+
+ggplot(lname_starred, aes(Rarity, fill = Rarity)) +
+  geom_bar(aes(y = (..count..)/sum(..count..)), alpha = 0.7) +
+  ylab("Proportion") + ggtitle("Starred Last Name")
+
+
+```
+
+
+```{r}
+fname_starred %>%
+  count(n) %>%
+    arrange(desc(nn)) %>%
+      print(n = 100)
+
+
+lname_starred %>%
+  count(n) %>%
+  arrange(desc(nn)) %>%
+    print(n = 100)
+```
+
+
+```{r include=FALSE,eval=FALSE}
+
+fname_starred %>%
+  ggvis(~FF) %>% 
+          layer_histograms(width = input_slider(min = 1,
+                                                max = 100,
+                                                value = 50))
+
+```
+

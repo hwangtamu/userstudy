@@ -430,4 +430,4 @@ print(data)
 print("The number of items in data are", len(data))
 data_starred = reorganize_cols(data, star_indices, ["first_name", "last_name", "voter_reg_num", "dob","race"])
 title_array = ['Group ID', 'Record ID','First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB', "Race", 'First Name', 'Last Name', 'Reg No.', 'DoB','Race','type','Same']
-write_data(data_starred, "./data_output/all_starred_race.csv",title_array)
+write_data(data_starred, "./data_intermediate/all_starred_race.csv",title_array)
