@@ -24,6 +24,7 @@
 <div id="container">
     <div id="instruction" style="text-align:center;">
         <div id="notation" style="text-align:left;">
+            <!--<label id="page"></label>-->
         </div>
         <br> <br>
         <div id="table"></div>
@@ -31,6 +32,7 @@
     <br>
     <button id="submitComments" class="next-button" type="button">Submit</button><br>
 </div>
+<br>
 </body>
 </html>
 <script>
@@ -40,7 +42,7 @@
         experimentr.data()['switch'] = {};
         $.getScript("javascript/misc/util.js");
         var step = 0;
-        var sec_switch = 1;
+        var sec_switch = 0;
         var notes = ["Next, you are going to complete the first section of the test: pairwise test."];
         parsing("data/output.csv");
 
@@ -48,7 +50,23 @@
         //if (experimentr.data()["mode"]=="Vanilla"){
         //    d3.selectAll(".icon").remove();
         //}
-        d3.select("#notation").text(notes[step]);
+
+        function add_mod_intros(img_address){
+            d3.select("#notation")
+                .append("svg")
+                .attr("width", 1500)
+                .attr("height", 700)
+                .append("svg:image")
+                .attr("xlink:href","/resources/module_intros/"+img_address)
+                .attr("x","250px")
+                .attr("y","50px")
+                .attr("width","1000px")
+                .attr("height","600px");
+        };
+
+        add_mod_intros("mod_1.png");
+
+        var mod_pages = [];
 
         function goToNext() {
             experimentr.next();
@@ -60,25 +78,28 @@
                 if(step==experimentr.data()["mat"].length-1){
                     goToNext();
                 }else {
-                    //if(experimentr.data()["mat"][step+1].length==0){
-                    //    d3.select("#title").text("This is the end of Section 1");
-                    //}
-                    //if(experimentr.data()["mat"][step].length==0){
-                    //    d3.select("#title").text("Section 2: Groupwise Test");
-                    //}
-                    if (false) {
-                        d3.select("#notation").text(function () {
-                            console.log("The step is " + step);
-                            d3.selectAll(".blocks").remove();
-                            return ("Hello");
-
-                        });
+                    if (sec_switch==1 && step in mod_pages) {
+                        d3.selectAll(".blocks").remove();
+                        d3.select("#notation").html("");
+                        switch(step){
+                            case 1:
+                                add_mod_intros("diamond3.png");
+                                break;
+                            case 2:
+                                add_mod_intros("replace.png");
+                                break;
+                            case 3:
+                                add_mod_intros("indel.png");
+                                break;
+                            default:
+                                console.log("end");
+                                break;
+                        }
                         sec_switch = 0
                     } else {
-
                         // page number
                         d3.select("#notation").text("Page " + (step + 1).toString() + "/" + (experimentr.data()['mat'].length - 1).toString());
-
+//                        d3.select("#page").text("Page " + (step + 1).toString() + "/" + (experimentr.data()['mat'].length - 1).toString());
 
                         setTimeout(function () {
                             d3.selectAll(".blocks").remove();
@@ -87,11 +108,10 @@
                                 d3.selectAll(".icon").remove();
                             }
                         }, 100);
-                        //console.log(d3.selectAll(".choice"));
-                        //console.log(experimentr.data()['mat']);
+
                         step += 1;
                         sec_switch = 1;
-                        //console.log(step, experimentr.data()['mat'][step-1]);
+
                     }
                 }
                 // time elapse
