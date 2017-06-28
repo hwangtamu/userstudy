@@ -2,8 +2,6 @@ import csv
 
 
 def get_edit_distance(s1, s2):
-    if(s1 == "BUCKNER"):
-        print "Bucky"
     finalStr1 = ""
     finalStr2 = ""
 
@@ -23,39 +21,53 @@ def get_edit_distance(s1, s2):
         for j in range(len2+1):
             dp[i][j] = []
             direction[i][j] = []
-    for i in range(len1+1):
-        for j in range(len2+1):
+
+    for i in range(len1 + 1):
+        for j in range(len2 + 1):
             if i == 0:
                 dp[i][j] = j
                 direction[i][j] = 'd'
             elif j == 0:
                 dp[i][j] = i
                 direction[i][j] = 'i'
-            elif s1[i - 1] == s2[j - 1]:
-                dp[i][j] = dp[i - 1][j - 1]
-                direction[i][j] = 'n'
+
+    for i in range(1,len1+1):
+        for j in range(1,len2+1):
+            # if i == 0:
+            #     dp[i][j] = j
+            #     direction[i][j] = 'd'
+            # elif j == 0:
+            #     dp[i][j] = i
+            #     direction[i][j] = 'i'
+            # # elif s1[i - 1] == s2[j - 1]:
+            # #     dp[i][j] = dp[i - 1][j - 1]
+            # #     direction[i][j] = 'n'
+            # else:
+
+            insertVal = dp[i - 1][j] + 1
+            deleteVal = dp[i][j - 1] + 1
+            subsVal = dp[i - 1][j - 1] + (0 if s1[i - 1] == s2[j - 1] else 1)
+            transVal = 1000000000
+            if i > 1 and j > 1 and s1[i - 1] == s2[j - 2] and s1[i - 2] == s2[j - 1] and s1[i - 1] != s1[i - 2]:
+                transVal = dp[i - 2][j - 2]
+            minAll = min([insertVal, deleteVal, subsVal, transVal])
+            dp[i][j] = minAll
+            # print  i,j,minAll
+
+
+            if minAll == transVal:
+                direction[i][j] = 't'
+            elif minAll == insertVal:
+                direction[i][j] = 'i'
+            elif minAll == deleteVal:
+                direction[i][j] = 'd'
             else:
-                insertVal = dp[i - 1][j]
-                deleteVal = dp[i][j - 1]
-                subsVal = dp[i - 1][j - 1]
-
-                transVal = 1000000000
-                if i > 1 and j > 1 and s1[i - 1] == s2[j - 2] and s1[i - 2] == s2[j - 1]:
-                    transVal = dp[i - 2][j - 2]
-
-
-                minAll = min([insertVal, deleteVal, subsVal, transVal])
-
-                if minAll == transVal:
-                    direction[i][j] = 't'
-                elif minAll == insertVal:
-                    direction[i][j] = 'i'
-                elif minAll == deleteVal:
-                    direction[i][j] = 'd'
+                if s1[i - 1] == s2[j - 1]:
+                    direction[i][j] = 'n'
                 else:
                     direction[i][j] = 's'
 
-                dp[i][j] = minAll + 1
+                # dp[i][j] = minAll + 1
 
     stI = len1
     stJ = len2
@@ -90,6 +102,66 @@ def get_edit_distance(s1, s2):
             stI = stI - 2
             stJ = stJ - 2
 
+    # print(s1,s2)
+    # stI = 1
+    # stJ = 1
+    # ind = 0
+    #
+    # while True:
+    #     if stI not in direction.keys():
+    #         if stJ not in direction[0].keys():
+    #             break
+    #     if stI in direction.keys():
+    #         if stJ not in direction[stI].keys():
+    #             finalStr1 = finalStr1 + s1[stI - 1]
+    #             finalStr2 = finalStr2 + "_"
+    #             stI = stI + 1
+    #             ind = 10
+    #
+    #     if stI not in direction.keys():
+    #         if stJ in direction[0].keys():
+    #             finalStr1 = finalStr1 + "_"
+    #             finalStr2 = finalStr2 + s2[stJ - 1]
+    #             stJ = stJ + 1
+    #             ind = 10
+    #
+    #     if ind != 10:
+    #         if direction[stI][stJ] == 'i':
+    #             if s1 == "BR" or s1 == "BR JR":
+    #                 print(s1)
+    #             finalStr1 = finalStr1 + s1[stI - 1]
+    #             finalStr2 = finalStr2 + "_"
+    #             stI = stI + 1
+    #
+    #
+    #         elif direction[stI][stJ] == 'd':
+    #             if s1 == "BR" or s1 == "BR JR":
+    #                 print(s1)
+    #             finalStr1 = finalStr1 + "_"
+    #             finalStr2 = finalStr2 + s2[stJ - 1]
+    #             stJ = stJ + 1
+    #
+    #
+    #         elif direction[stI][stJ] == 's':
+    #             finalStr1 = finalStr1 + s1[stI - 1]
+    #             finalStr2 = finalStr2 + s2[stJ - 1]
+    #             stI = stI + 1
+    #             stJ = stJ + 1
+    #
+    #
+    #         elif direction[stI][stJ] == 'n':
+    #             finalStr1 = finalStr1 + "*"
+    #             finalStr2 = finalStr2 + "*"
+    #             stI = stI + 1
+    #             stJ = stJ + 1
+    #
+    #         else:
+    #             finalStr1 = finalStr1 + s1[stI - 1] + s1[stI - 2]
+    #             finalStr2 = finalStr2 + s2[stJ - 1] + s2[stJ - 2]
+    #             stI = stI + 2
+    #             stJ = stJ + 2
+
+    print finalStr1, finalStr2
     return finalStr1, finalStr2
 
 def damerau_levenshtein_distance(s1, s2):
@@ -232,41 +304,20 @@ def get_star_vot_reg(n1, n2):
     if len(n1) < 10: return "", n2
     if len(n2) < 10: return n1, ""
 
-    print(n1,n2)
     len_1 = len(n1)
     len_2 = len(n2)
 
     if not len_1 == len_2:
         return n1, n2
 
-    # hamm_trans = hamming_with_transpose(n1,n2)
     hamm_trans = damerau_levenshtein_distance(n1,n2)
 
     if hamm_trans > 4:
         return n1, n2
     else:
         final_1, final_2 = get_edit_distance(n1,n2)
-        print final_1, final_2
-        print(final_1[len(final_1) - 1], final_2[len(final_2) - 1])
         final_1 = trailing_space_symbol(final_1)
         final_2 = trailing_space_symbol(final_2)
-        # if final_1[len(final_1) - 1] == "_":
-        #     final_1 = list(final_1)
-        #     final_1[len(final_1) - 1] = "?"
-        #     final_1 = "".join(final_1)
-        # if final_2[len(final_2) - 1] == "_":
-        #     final_2 = list(final_2)
-        #     final_2[len(final_2) - 1] = "?"
-        #     final_2 = "".join(final_2)
-        # final_1 = final_1[:len(n1)]
-        # final_2 = final_2[:len(n2)]
-        # for i in range(len_1):
-        #     if n1[i] == n2[i]:
-        #         final_1 = final_1 + "*"
-        #         final_2 = final_2 + "*"
-        #     else:
-        #         final_1 = final_1 + n1[i]
-        #         final_2 = final_2 + n2[i]
         return final_1,final_2
 
 
@@ -309,9 +360,7 @@ def pair(s,star_indices):
             rec_2 += [tmp2[i]]
             star_1 += [x]
             star_2 += [y]
-            # print(tmp1[i],rec_1,star_1)
 
-    # print(rec_1 + star_1, rec_2 + star_2)
     return (rec_1 + star_1, rec_2 + star_2)
 
 def find_index(name_list, prop_name):
@@ -425,8 +474,6 @@ print("The number of items in d are", len(d))
 print(title)
 print(star_indices)
 data = star_similarities(d, star_indices,index_file_id)
-print(d)
-print(data)
 print("The number of items in data are", len(data))
 data_starred = reorganize_cols(data, star_indices, ["first_name", "last_name", "voter_reg_num", "dob","race"])
 title_array = ['Group ID', 'Record ID','First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB', "Race", 'First Name', 'Last Name', 'Reg No.', 'DoB','Race','type','Same']
