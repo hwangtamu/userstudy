@@ -121,6 +121,8 @@
 
 <script>
 (function() {
+    experimentr.data()['switch'] = {};
+    $.getScript("javascript/misc/util.js");
   var data    = {}
     , workers = null
     ,   cbox1 = d3.select('input')
@@ -144,6 +146,9 @@
     h = $(window).height();
     console.log(w,h);
   }
+
+  parsing("data/practice.csv","practice");
+  parsing("data/output.csv","mat");
 
   function init() {
     experimentr.hideNext();

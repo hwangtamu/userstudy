@@ -1,1 +1,0 @@
-exec("node app.js &", $output);

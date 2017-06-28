@@ -219,8 +219,8 @@ function cell(t,g,j,k){
                     if(t_j!="" && t_m!="") {
                         for (var i = 0; i < Math.max(t_j.length, t_m.length); i++) {
                             // date swap
-                            if (bin.indexOf(i) == -1 && t_j[i] == t_m[i + 3] && t_j[i + 1] == t_m[i + 4] && t_j[i + 3] == t_m[i] && t_j[i + 4] == t_m[i + 1]
-                                && t_j[i] != "*" && t_j[i + 1] != "*" && t_j[i + 2] != "*" && t_j[i + 3] != "*") {
+                            if (bin.indexOf(i) == -1 && t_j[i] == t_m[i + 3] && t_j[i + 1] == t_m[i + 4] && t_j[i + 3] == t_m[i] &&
+                                t_j[i + 4] == t_m[i + 1] && t_j[i] != "*" && t_j[i + 1] != "*" && t_j[i + 2] != "*" && t_j[i + 3] != "*") {
                                 //console.log(t_m, t_j);
                                 bin.push(i, i + 1, i + 2, i + 3, i + 4);
                                 if(j<2*cwidth.length){
@@ -519,7 +519,8 @@ function cell(t,g,j,k){
      var $tspan = $tb.append('tspan');
      $tspan.attr("x",0.6*l+"em").attr("y",cy/2+5)
      .attr("text-anchor","left")
-     .style("font",function(){if(experimentr.data()['os']=="MacOS"){return "16px Monaco";}if(experimentr.data()['os']=="Linux"){return "16px Lucida Sans Typewriter";}return "16px Lucida Console";})
+     .style("font",function(){if(experimentr.data()['os']=="MacOS"){return "16px Monaco";}
+     if(experimentr.data()['os']=="Linux"){return "16px Lucida Sans Typewriter";}return "16px Lucida Console";})
      .attr("fill",function(){
      if(t_j.length!=t_jj.length){return "black";}
      if(k==3 && scheme[l]==1 && textbox.text()[l]!="*" && textbox.text()[l]!="/"){return"black";}return "black";})
@@ -886,7 +887,7 @@ function alt_choices(svg,lBound,mode) {
     }
 }
 
-function parsing(route){
+function parsing(route, dest){
     d3.text(route, function (csvdata) {
         var groups = {};
         var parsedCSV = d3.csv.parseRows(csvdata);
@@ -945,14 +946,14 @@ function parsing(route){
             }
             other.push(t);
         }
-        data.mat = binary.concat(other);
+        data[dest] = binary.concat(other);
         // answer keys
 
         var answer = [];
         for(var i=0;i<raw_binary.length;i++){
             answer.push(raw_binary[i][0][raw_binary[i][0].length-1]);
         }
-        data.answer = answer;
+        data[dest+'_answer'] = answer;
         experimentr.addData(data);
     });
 }
@@ -969,10 +970,10 @@ function grading(){
         answers.push(experimentr.data()['clicks'][k]);
     }
     for(var i=0;i<answers.length;i++){
-        if(+answers[i][2]>2 && experimentr.data()['answer'][+answers[i][0]]==1){
+        if(+answers[i][2]>2 && experimentr.data()['mat_answer'][+answers[i][0]]==1){
             grades[+answers[i][0]] = 1;
         }
-        else if(+answers[i][2]<3 && experimentr.data()['answer'][+answers[i][0]]==0){
+        else if(+answers[i][2]<3 && experimentr.data()['mat_answer'][+answers[i][0]]==0){
             grades[+answers[i][0]] = 1;
         }
         else{
@@ -985,7 +986,7 @@ function grading(){
             total+=1;
         }
     }
-    data.grades = grades;
-    data.total_score = total;
+    data['grades'] = grades;
+    data['total_score'] = total;
     experimentr.addData(data);
 }

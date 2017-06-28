@@ -37,35 +37,34 @@
 </html>
 <script>
     (function(){
+        $.getScript("javascript/misc/util.js");
         experimentr.hideNext();
         // pages
-        experimentr.data()['switch'] = {};
-        $.getScript("javascript/misc/util.js");
-        var step = 0;
-        var sec_switch = 0;
-        var notes = ["Next, you are going to complete the first section of the test: pairwise test."];
-        parsing("data/output.csv");
 
-        //pairs(experimentr.data()["mat"][step],step,experimentr.data()["mat"][step].length,experimentr.data()["mode"]);
-        //if (experimentr.data()["mode"]=="Vanilla"){
-        //    d3.selectAll(".icon").remove();
-        //}
+        var step = 0,
+            sec_switch = 0;
 
         function add_mod_intros(img_address){
+            d3.select("#notation").select(".image").remove();
+
             d3.select("#notation")
                 .append("svg")
-                .attr("width", 1500)
+                .attr("class", "image")
+                .attr("width", 1800)
                 .attr("height", 700)
                 .append("svg:image")
                 .attr("xlink:href","/resources/module_intros/"+img_address)
-                .attr("x","250px")
+                .attr("x","400px")
                 .attr("y","50px")
                 .attr("width","1000px")
                 .attr("height","600px");
         };
 
+        console.log(experimentr.data());
         add_mod_intros("mod_1.png");
-
+        setTimeout(
+            pairs(experimentr.data()["practice"][0], 0, experimentr.data()["practice"][0].length, experimentr.data()["mode"]),200
+        );
         var mod_pages = [];
 
         function goToNext() {
@@ -95,12 +94,10 @@
                                 console.log("end");
                                 break;
                         }
-                        sec_switch = 0
+                        sec_switch = 1
                     } else {
                         // page number
                         d3.select("#notation").text("Page " + (step + 1).toString() + "/" + (experimentr.data()['mat'].length - 1).toString());
-//                        d3.select("#page").text("Page " + (step + 1).toString() + "/" + (experimentr.data()['mat'].length - 1).toString());
-
                         setTimeout(function () {
                             d3.selectAll(".blocks").remove();
                             pairs(experimentr.data()["mat"][step - 1], step - 1, experimentr.data()["mat"][step - 1].length, experimentr.data()["mode"]);

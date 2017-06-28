@@ -41,7 +41,7 @@
         experimentr.hideNext();
         $.getScript("javascript/misc/util.js");
         var step = 0;
-        var notes = ["There are four operations in the modification of editing distance: indel, replace, transpose and missing."
+        var notes = ["There are 6 operations in the modification of editing distance: indel, replace, transpose, missing, name swap and date swap."
         ];
         d3.select("#notation").text(notes[step]);
         var svg = d3.select("#instruction").append("svg").attr("class","blocks").attr("width", 900).attr("height", 200);
@@ -56,11 +56,11 @@
             svg.append("svg:image").attr("xlink:href","/resources/right-arrow.png")
                 .attr("class","icon").attr("x",530).attr("y",97).attr("width",50).attr("height",50);
             //indel example
-            svg.append("text").attr("x",440).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("SMITH");
-            svg.append("text").attr("x",440).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("SMITH JR");
-            svg.append("text").attr("x",580).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("*****");
-            svg.append("text").attr("x",580).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("*****");
-            svg.append("text").attr("x",635).attr("y",155).attr("text-anchor","left").style("font","16px Verdana")
+            svg.append("text").attr("x",440).attr("y",105).attr("text-anchor","left").style("font","16px Lucida Console").text("SMITH");
+            svg.append("text").attr("x",440).attr("y",155).attr("text-anchor","left").style("font","16px Lucida Console").text("SMITH JR");
+            svg.append("text").attr("x",580).attr("y",105).attr("text-anchor","left").style("font","16px Lucida Console").text("*****");
+            svg.append("text").attr("x",580).attr("y",155).attr("text-anchor","left").style("font","16px Lucida Console").text("*****");
+            svg.append("text").attr("x",635).attr("y",155).attr("text-anchor","left").style("font","16px Lucida Console")
                 .style("font-weight","bold").style("fill","#33ce45").text("JR");
         }
 
@@ -74,16 +74,16 @@
             svg.append("svg:image").attr("xlink:href","/resources/right-arrow.png")
                 .attr("class","icon").attr("x",530).attr("y",97).attr("width",50).attr("height",50);
             //replace example
-            svg.append("text").attr("x",440).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("Hanks");
-            svg.append("text").attr("x",440).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("Henks");
-            svg.append("text").attr("x",580).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("*");
-            svg.append("text").attr("x",589).attr("y",105).attr("text-anchor","left").style("font","16px Verdana")
+            svg.append("text").attr("x",440).attr("y",105).attr("text-anchor","left").style("font","16px Lucida Console").text("Hanks");
+            svg.append("text").attr("x",440).attr("y",155).attr("text-anchor","left").style("font","16px Lucida Console").text("Henks");
+            svg.append("text").attr("x",580).attr("y",105).attr("text-anchor","left").style("font","16px Lucida Console").text("*");
+            svg.append("text").attr("x",589).attr("y",105).attr("text-anchor","left").style("font","16px Lucida Console")
                 .style("font-weight","bold").style("fill","#9b3d18").text("a");
-            svg.append("text").attr("x",598).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("***");
-            svg.append("text").attr("x",580).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("*");
-            svg.append("text").attr("x",589).attr("y",155).attr("text-anchor","left").style("font","16px Verdana")
+            svg.append("text").attr("x",598).attr("y",105).attr("text-anchor","left").style("font","16px Lucida Console").text("***");
+            svg.append("text").attr("x",580).attr("y",155).attr("text-anchor","left").style("font","16px Lucida Console").text("*");
+            svg.append("text").attr("x",589).attr("y",155).attr("text-anchor","left").style("font","16px Lucida Console")
                 .style("font-weight","bold").style("fill","#9b3d18").text("e");
-            svg.append("text").attr("x",598).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("***");
+            svg.append("text").attr("x",598).attr("y",155).attr("text-anchor","left").style("font","16px Lucida Console").text("***");
         }
 
         function transpose(){
@@ -96,13 +96,13 @@
             svg.append("svg:image").attr("xlink:href","/resources/right-arrow.png")
                 .attr("class","icon").attr("x",530).attr("y",97).attr("width",50).attr("height",50);
             //transpose example
-            svg.append("text").attr("x",440).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("05/20/1932");
-            svg.append("text").attr("x",440).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("05/20/1923");
-            svg.append("text").attr("x",580).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("**/**/**");
-            svg.append("text").attr("x",655).attr("y",105).attr("text-anchor","left").style("font","16px Verdana")
+            svg.append("text").attr("x",440).attr("y",105).attr("text-anchor","left").style("font","16px Lucida Console").text("05/20/1932");
+            svg.append("text").attr("x",440).attr("y",155).attr("text-anchor","left").style("font","16px Lucida Console").text("05/20/1923");
+            svg.append("text").attr("x",580).attr("y",105).attr("text-anchor","left").style("font","16px Lucida Console").text("**/**/**");
+            svg.append("text").attr("x",655).attr("y",105).attr("text-anchor","left").style("font","16px Lucida Console")
                 .style("font-weight","bold").style("fill","#009fff").text("32");
-            svg.append("text").attr("x",580).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("**/**/**");
-            svg.append("text").attr("x",655).attr("y",155).attr("text-anchor","left").style("font","16px Verdana")
+            svg.append("text").attr("x",580).attr("y",155).attr("text-anchor","left").style("font","16px Lucida Console").text("**/**/**");
+            svg.append("text").attr("x",655).attr("y",155).attr("text-anchor","left").style("font","16px Lucida Console")
                 .style("font-weight","bold").style("fill","#009fff").text("23");
         }
 
@@ -116,17 +116,72 @@
             svg.append("svg:image").attr("xlink:href","/resources/right-arrow.png")
                 .attr("class","icon").attr("x",530).attr("y",97).attr("width",50).attr("height",50);
             //missing example
-            svg.append("text").attr("x",460).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("Hanks");
-            svg.append("text").attr("x",425).attr("y",155).attr("text-anchor","left").style("font","16px Verdana").text("Missing Record").style("fill", "red");
-            svg.append("text").attr("x",590).attr("y",105).attr("text-anchor","left").style("font","16px Verdana").text("*****");
+            svg.append("text").attr("x",460).attr("y",105).attr("text-anchor","left").style("font","16px Lucida Console").text("Hanks");
+            svg.append("text").attr("x",425).attr("y",155).attr("text-anchor","left").style("font","14px Lucida Console").text("Missing Record").style("fill", "red");
+            svg.append("text").attr("x",590).attr("y",105).attr("text-anchor","left").style("font","16px Lucida Console").text("*****");
+        }
+
+        function name_swap(){
+            d3.select("#title").text("Instructions: Name Swap");
+            svg.append("svg:image").attr("xlink:href","/resources/name_swap.svg")
+                .attr("class","icon").attr("x",250).attr("y",100).attr("width",50).attr("height",50);
+            svg.append("text").attr("x",310).attr("y",130).attr("text-anchor","left").text("Name swap").style("font","16px Verdana");
+            svg.append("svg:image").attr("xlink:href","/resources/right-arrow.png")
+                .attr("class","icon").attr("x",530).attr("y",97).attr("width",50).attr("height",50);
+            //missing example
+            svg.append("svg:image").attr("xlink:href","/resources/name_swap.svg")
+                .attr("class","icon").attr("x",600).attr("y",105).attr("width",50).attr("height",50);
+            svg.append("text").attr("x",430).attr("y",110).attr("text-anchor","left").style("font","16px Lucida Console").text("James Taylor");
+            svg.append("text").attr("x",430).attr("y",155).attr("text-anchor","left").style("font","16px Lucida Console").text("Taylor James");
+            svg.append("text").attr("x",560).attr("y",110).attr("text-anchor","left").style("font","12px Lucida Console").text("James");
+            svg.append("text").attr("x",560).attr("y",155).attr("text-anchor","left").style("font","12px Lucida Console").text("Taylor");
+            svg.append("text").attr("x",650).attr("y",110).attr("text-anchor","left").style("font","12px Lucida Console").text("Taylor");
+            svg.append("text").attr("x",650).attr("y",155).attr("text-anchor","left").style("font","12px Lucida Console").text("James");
+
+        }
+
+        function date_swap(){
+            d3.select("#title").text("Instructions: Date Swap");
+            svg.append("svg:image").attr("xlink:href","/resources/swap_date.svg")
+                .attr("class","icon").attr("x",250).attr("y",100).attr("width",50).attr("height",50);
+            svg.append("text").attr("x",310).attr("y",130).attr("text-anchor","left").text("Date swap").style("font","16px Verdana");
+            svg.append("svg:image").attr("xlink:href","/resources/right-arrow.png")
+                .attr("class","icon").attr("x",530).attr("y",97).attr("width",50).attr("height",50);
+            //missing example
+            svg.append("svg:image").attr("xlink:href","/resources/swap_date.svg")
+                .attr("class","icon").attr("x",590).attr("y",110).attr("width",30).attr("height",30);
+            svg.append("text").attr("x",440).attr("y",105).attr("text-anchor","left").style("font","16px Lucida Console").text("03/01/1963");
+            svg.append("text").attr("x",440).attr("y",155).attr("text-anchor","left").style("font","16px Lucida Console").text("01/03/1963");
+            svg.append("text").attr("x",580).attr("y",105).attr("text-anchor","left").style("font","16px Lucida Console").text("03/01/1963");
+            svg.append("text").attr("x",580).attr("y",155).attr("text-anchor","left").style("font","16px Lucida Console").text("01/03/1963");
+
+        }
+
+        function freq(){
+            d3.select("#title").text("Instructions: Name Frequency");
+            d3.select(".blocks").selectAll(".frame").remove();
+            d3.select("#notation").text("");
+            svg.attr("height",500);
+            svg.append("svg:image").attr("xlink:href","/resources/unique.png")
+                .attr("class","icon").attr("x",250).attr("y",100).attr("width",50).attr("height",50);
+            svg.append("text").attr("x",310).attr("y",130).attr("text-anchor","left").text("Unique").style("font","16px Verdana");
+            svg.append("svg:image").attr("xlink:href","/resources/rare_2_rect.svg")
+                .attr("class","icon").attr("x",250).attr("y",200).attr("width",50).attr("height",50);
+            svg.append("text").attr("x",310).attr("y",230).attr("text-anchor","left").text("Rare").style("font","16px Verdana");
+            svg.append("svg:image").attr("xlink:href","/resources/3_dots.png")
+                .attr("class","icon").attr("x",250).attr("y",300).attr("width",50).attr("height",50);
+            svg.append("text").attr("x",310).attr("y",330).attr("text-anchor","left").text("Common").style("font","16px Verdana");
+            svg.append("svg:image").attr("xlink:href","/resources/infinity.png")
+                .attr("class","icon").attr("x",250).attr("y",400).attr("width",50).attr("height",50);
+            svg.append("text").attr("x",310).attr("y",430).attr("text-anchor","left").text("Extremly Frequent").style("font","16px Verdana");
+
         }
 
         // boxes
-        svg.append("rect").attr("x", 420).attr("y", 75).attr("height", 95).attr("width", 130).attr("rx",6).attr("ry",6)
+        svg.append("rect").attr("class","frame").attr("x", 420).attr("y", 75).attr("height", 95).attr("width", 130).attr("rx",6).attr("ry",6)
             .style("stroke", "blue").style("fill", "none").style("stroke-width", 1);
-        svg.append("rect").attr("x", 560).attr("y", 75).attr("height", 95).attr("width", 135).attr("rx",6).attr("ry",6)
+        svg.append("rect").attr("class","frame").attr("x", 560).attr("y", 75).attr("height", 95).attr("width", 135).attr("rx",6).attr("ry",6)
             .style("stroke", "blue").style("fill", "none").style("stroke-width", 1);
-
 
 
         if(step==0){indel();}
@@ -143,12 +198,22 @@
                     if(step==1){indel();}
                     if(step==2){replace();}
                     if(step==3){transpose();}
+                    if(step==4){missing();}
+                    if(step==5){name_swap();}
+                    if(step==6){date_swap();}
                     step = Math.max(step-1,0);
+                    svg.attr("height",200);
+                    d3.select("#notation").text(notes[0]);
+                    svg.append("rect").attr("class","frame").attr("x", 420).attr("y", 75).attr("height", 95).attr("width", 130).attr("rx",6).attr("ry",6)
+                        .style("stroke", "blue").style("fill", "none").style("stroke-width", 1);
+                    svg.append("rect").attr("class","frame").attr("x", 560).attr("y", 75).attr("height", 95).attr("width", 135).attr("rx",6).attr("ry",6)
+                        .style("stroke", "blue").style("fill", "none").style("stroke-width", 1);
+
                 }
             });
         d3.select('#next')
             .on('click', function () {
-                if(step==3){
+                if(step==6){
                     goToNext();
                 }
                 else{
@@ -157,6 +222,9 @@
                     if(step==0){replace();}
                     if(step==1){transpose();}
                     if(step==2){missing();}
+                    if(step==3){name_swap();}
+                    if(step==4){date_swap();}
+                    if(step==5){freq();}
                     step+=1;
                 }
             });
