@@ -86,14 +86,16 @@ app.post('/upload',function(req,res) {
     var files = req.files;
     var oldpath = files.filetoupload.path;
     //var newpath = "./public/" + files.filetoupload.name;
-    var newpath = "./public/data/" + "output.csv";
+    // var newpath = "./public/data/" + "output.csv";
+    var newpath = "./public/data/" + req.body.type;
     mv(oldpath, newpath, function (err) {
-            if (err) {
-                throw err;
-            };
+        if (err) {
+            throw err;
+        };
     });
     console.log('File uploaded');
     res.write('<p>File uploaded</p> </br>');
+    // res.write('<button onclick="location.href = '/';" id="myButton" class="float-left submit-button" >Home</button>');
     res.end();
 });
 

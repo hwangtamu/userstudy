@@ -134,7 +134,7 @@ ggplot(lname_starred, aes(Rarity, fill = Rarity)) +
 ```{r}
 fname_starred %>%
   count(n) %>%
-    arrange(desc(nn)) %>%
+    arrange((n)) %>%
       print(n = 100)
 
 
