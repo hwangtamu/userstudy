@@ -50,6 +50,7 @@
 
 <script>
 
+
     var QueryString = function () {
         // This function is anonymous, is executed immediately and
         // the return value is assigned to QueryString!
@@ -99,17 +100,23 @@
                 return(null);
         }
     }
-console.log("The mode is "+find_mode(mode));
-experimentr.data()['mode'] = find_mode(mode);
-experimentr.data()['mode_number'] = mode;
-experimentr.sequence([
-    'modules/consent.html',
-    'modules/pre_study_questionnaire.html',
-    'modules/training.html',
-    'modules/0.html',
-    'modules/icons.html',
-    'modules/5.html',
-    'modules/post_study_questionnaire.html',
-    'modules/end.html'
-]).start();
+
+    if(QueryString.sampling == 'true') {
+
+        console.log("helelo");
+    };
+
+    console.log("The mode is "+find_mode(mode));
+    experimentr.data()['mode'] = find_mode(mode);
+    experimentr.data()['mode_number'] = mode;
+    experimentr.sequence([
+        'modules/consent.html',
+        'modules/pre_study_questionnaire.html',
+        'modules/training.html',
+        'modules/0.html',
+        'modules/icons.html',
+        'modules/5.html',
+        'modules/post_study_questionnaire.html',
+        'modules/end.html'
+    ]).start();
 </script>

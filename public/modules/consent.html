@@ -147,8 +147,33 @@
     console.log(w,h);
   }
 
-  parsing("data/practice.csv","practice");
-  parsing("data/output.csv","mat");
+    function getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+    };
+
+    var sample_name
+    parsing("data/practice.csv","practice");
+    if(QueryString.sampling == 'true') {
+        experimentr.data()["sampled_data"] = "true";
+        var sample_num = getRandomInt(1,10);
+        if(sample_num == 10) {
+            sample_name = "data/sample_"+sample_num+".csv";
+        } else {
+            sample_name = "data/sample_0"+sample_num+".csv";
+        }
+        parsing(sample_name,"mat");
+    } else {
+        experimentr.data()["sampled_data"] = "false";
+        sample_name = "data/output.csv";
+        parsing("data/output.csv","mat");
+    }
+
+    console.log(sample_name);
+    experimentr.data()["sample_name"] = sample_name;
+
+
 
   function init() {
     experimentr.hideNext();
