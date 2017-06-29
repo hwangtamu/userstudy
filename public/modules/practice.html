@@ -2,24 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<style>
-    #submitComments {
-        position: relative;
-        left: 50%;
-        transform: translate(-50%, 0%);
-    }
-    body{
-        color:#000;
-    }
-    #container{
-        /*Styling for any element with the id="container" */
-        width:1800px; /* The width is fixed by pixels */
-        height:800px; /* The height is fixed by pixels*/
-        color:black;
-    }
-</style>
+    <title><!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>Title</title>
+        </head>
+        <style>
+            #submitComments {
+                position: relative;
+                left: 50%;
+                transform: translate(-50%, 0%);
+            }
+            body{
+                color:#000;
+            }
+            #container{
+                /*Styling for any element with the id="container" */
+                width:1800px; /* The width is fixed by pixels */
+                height:800px; /* The height is fixed by pixels*/
+                color:black;
+            }
+        </style>
 <body>
 <div id="container">
     <div id="instruction" style="text-align:center;">
@@ -62,9 +66,10 @@
 
         console.log(experimentr.data());
         add_mod_intros("mod_1.png");
-
-//        Add the page numbers after which you want the slides
-        var mod_pages = [1,2,3,4];
+        setTimeout(
+            pairs(experimentr.data()["practice"][0], 0, experimentr.data()["practice"][0].length, experimentr.data()["mode"]),200
+        );
+        var mod_pages = [];
 
         function goToNext() {
             experimentr.next();
@@ -72,7 +77,6 @@
 
         d3.select('#submitComments')
             .on('click', function () {
-                console.log(step);
                 d3.select('#submitComments').style("left","2.5%");
                 if(step==experimentr.data()["mat"].length-1){
                     goToNext();
@@ -94,7 +98,7 @@
                                 console.log("end");
                                 break;
                         }
-                        sec_switch = 0
+                        sec_switch = 1
                     } else {
                         // page number
                         d3.select("#notation").text("Page " + (step + 1).toString() + "/" + (experimentr.data()['mat'].length - 1).toString());
@@ -116,4 +120,9 @@
                 experimentr.save();
             });
     }());
-</script>
+</script></title>
+</head>
+<body>
+
+</body>
+</html>

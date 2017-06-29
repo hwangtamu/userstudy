@@ -2,7 +2,9 @@
 title: "Frequency"
 author: "Gurudev Ilangovan"
 date: "June 27, 2017"
-output: html_document
+output:
+  html_document:
+    toc: true
 ---
 
 ```{r echo='FALSE', include=FALSE, tidy=TRUE}
@@ -10,6 +12,7 @@ library(tidyverse)
 library(ggthemr)
 library(ggvis)
 library(forcats)
+library(RColorBrewer)
 
 setwd("C:/Users/gurud/Google Drive/Research Assistantship/seq/Gurudev Ilangovan/Record Linkage/userstudy/pipeline/frequencies/")
 
@@ -27,29 +30,41 @@ lname_starred <-
   select(`Last Name`, n = LF)
 
 custom <- define_palette(
-  swatch = c("black","blue","red","darkgreen","darkgrey","darkorange","pink"),
+  # swatch = c("black","blue","red","darkgreen","darkgrey","darkorange","pink"),
+  swatch = c("#000000", brewer.pal(5,"Set1")),
   gradient = c(lower = "lightblue", upper = "darkblue")
 )
 
 ggthemr(custom)
 
 ```
-Current classification:
 
-1. Unique  : 1
-2. Rare    : 2 - 5
-3. Common  : 6 - 10
-4. Frequent: > than 10
 
 ```{r include=FALSE}
-calculate_rarity = function(frequency) {
-  frequency = tibble(freq = frequency)
+calculate_freq_thresh <- function(name_type,percentile){
+   if(name_type == "fname"){
+    freq <- fname_freq$n
+    freq = freq[freq>5]
+    return(quantile(freq,percentile))
+  } else {
+    lreq <- lname_freq$n
+    lreq = lreq[lreq>5]
+    return(quantile(lreq,percentile)  )
+  }
+}
+
+calculate_rarity <- function(frequency,name_type = "fname", percentile = 0.5) {
+  
+  freq_threshold <- calculate_freq_thresh(name_type,percentile)  
+  print(paste0("The threshold is ",freq_threshold))
+    
+  frequency <- tibble(freq = frequency)
   frequency %>% 
     mutate(rarity = as_factor(case_when(
       freq == 1 ~ "Unique",
       between(freq, 2, 5) ~ "Rare",
-      between(freq, 5, 10) ~ "Common",
-      freq>10 ~ "Frequent")),
+      between(freq, 5, freq_threshold) ~ "Common",
+      freq>freq_threshold ~ "Frequent")),
       rarity = fct_relevel(rarity, "Unique", "Rare", "Common", "Frequent")) %>%
         pull(rarity) %>%
           return()
@@ -57,25 +72,37 @@ calculate_rarity = function(frequency) {
 
 fname_freq <- 
   fname_freq %>%
-    mutate(Rarity = calculate_rarity(n))
+    mutate(Rarity = calculate_rarity(n), name_type = "fname")
 
 lname_freq <- 
   lname_freq %>%
-    mutate(Rarity = calculate_rarity(n))
+    mutate(Rarity = calculate_rarity(n), name_type = "lname")
 
 
 fname_starred <- 
   fname_starred %>%
-    mutate(Rarity = calculate_rarity(n))
+    mutate(Rarity = calculate_rarity(n), name_type = "fname")
 
 lname_starred <- 
   lname_starred %>%
-    mutate(Rarity = calculate_rarity(n))
+    mutate(Rarity = calculate_rarity(n), name_type = "lname")
 
+f_threshold <- calculate_freq_thresh("fname",0.5)
+l_threshold <- calculate_freq_thresh("lname",0.5)
 ```
+Current classification:
 
+1. Unique  : 1
+2. Rare    : 2 - 5
+3. Common  : 6 - `r f_threshold`(for first name) / `r l_threshold`(for last name)
+4. Frequent: Greater than `r f_threshold`(for first name) / `r l_threshold`(for last name)
 
-#The original frequencies look like this:
+The thresholds have been arrived at, using the following procedure:
+
+- In the lookup table for the corresponding name, subset the frequencies greater than 5.
+- With the remaining frequencies, calculate the frequency at the 50th percentile
+
+##The original frequencies look like this:
 
 ###First Names:
 ```{r echo = FALSE}
@@ -95,7 +122,7 @@ lname_freq %>%
   geom_histogram(binwidth = 10, aes(fill = Rarity), alpha = 0.8)
 ```
 
-#The frequencies in the crafted data look like this:
+##The frequencies in the crafted data look like this:
 
 ###First Names:
 ```{r echo = FALSE}
@@ -109,23 +136,23 @@ lname_starred %>%
   ggplot(aes(n)) + geom_histogram(binwidth = 10,  alpha = 0.8, aes(fill = Rarity))
 ```
 
-#Percentage of Frequencies in the lookup table vs crafted data
+##Percentage of Frequencies in the lookup table vs crafted data
 ```{r echo=FALSE}
 ggplot(fname_freq, aes(Rarity, fill = Rarity)) +
-  geom_bar(aes(y = (..count..)/sum(..count..)), alpha = 0.7) +
-  ylab("Proportion") + ggtitle("Lookup First Name")
+  geom_bar(aes(y = 100 * (..count..)/sum(..count..)), alpha = 0.7) +
+  ylab("Percentage") + ggtitle("Lookup First Name")
 
 ggplot(fname_starred, aes(Rarity, fill = Rarity)) +
-  geom_bar(aes(y = (..count..)/sum(..count..)), alpha = 0.7) +
-  ylab("Proportion") + ggtitle("Starred First Name")
+  geom_bar(aes(y = 100 * (..count..)/sum(..count..)), alpha = 0.7) +
+  ylab("Percentage") + ggtitle("Starred First Name")
 
 ggplot(lname_freq, aes(Rarity, fill = Rarity)) +
-  geom_bar(aes(y = (..count..)/sum(..count..)), alpha = 0.7) +
-  ylab("Proportion") + ggtitle("Lookup Last Name")
+  geom_bar(aes(y = 100 * (..count..)/sum(..count..)), alpha = 0.7) +
+  ylab("Percentage") + ggtitle("Lookup Last Name")
 
 ggplot(lname_starred, aes(Rarity, fill = Rarity)) +
-  geom_bar(aes(y = (..count..)/sum(..count..)), alpha = 0.7) +
-  ylab("Proportion") + ggtitle("Starred Last Name")
+  geom_bar(aes(y = 100 * (..count..)/sum(..count..)), alpha = 0.7) +
+  ylab("Percentage") + ggtitle("Starred Last Name")
 
 
 ```
