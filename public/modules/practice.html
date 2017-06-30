@@ -27,6 +27,7 @@
 <body>
 <div id="container">
     <div id="instruction" style="text-align:center;">
+        <h3>Practice</h3>
         <div id="notation" style="text-align:left;">
             <!--<label id="page"></label>-->
         </div>
@@ -34,7 +35,7 @@
         <div id="table"></div>
     </div>
     <br>
-    <button id="submitComments" class="next-button" type="button">Submit</button><br>
+    <button id="submitComments" class="next-button" type="button" style="left: 45px">Submit</button><br>
 </div>
 <br>
 </body>
@@ -45,8 +46,8 @@
         experimentr.hideNext();
         // pages
 
-        var step = 0,
-            sec_switch = 0;
+        console.log("practice");
+        var step = 1;
 
         function add_mod_intros(img_address){
             d3.select("#notation").select(".image").remove();
@@ -64,12 +65,28 @@
                 .attr("height","600px");
         };
 
-        console.log(experimentr.data());
+        page_nums = [];
+        num_in_page = [2,4,5]
+//        practice_data = d3.csv("/data/practice.csv", function(error, data) {
+//            if (error) throw error;
+//            console.log(data);
+//            data.forEach(function(d) {
+//                page_nums.push(d['type']);
+//            })
+//        });
+//
+//        var unique_page_nums = d3.map(page_nums).keys();
+//        console.log(unique_page_nums);
+//
+//        for(var i=0; i<page_nums.length; ){
+//
+//        };
+
+
         add_mod_intros("mod_1.png");
         setTimeout(
             pairs(experimentr.data()["practice"][0], 0, experimentr.data()["practice"][0].length, experimentr.data()["mode"]),200
         );
-        var mod_pages = [];
 
         function goToNext() {
             experimentr.next();
@@ -78,42 +95,17 @@
         d3.select('#submitComments')
             .on('click', function () {
                 d3.select('#submitComments').style("left","2.5%");
-                if(step==experimentr.data()["mat"].length-1){
+                if(step==experimentr.data()["practice"].length-1){
                     goToNext();
                 }else {
-                    if (sec_switch==1 && step in mod_pages) {
-                        d3.selectAll(".blocks").remove();
-                        d3.select("#notation").html("");
-                        switch(step){
-                            case 1:
-                                add_mod_intros("diamond3.png");
-                                break;
-                            case 2:
-                                add_mod_intros("replace.png");
-                                break;
-                            case 3:
-                                add_mod_intros("indel.png");
-                                break;
-                            default:
-                                console.log("end");
-                                break;
-                        }
-                        sec_switch = 1
-                    } else {
-                        // page number
-                        d3.select("#notation").text("Page " + (step + 1).toString() + "/" + (experimentr.data()['mat'].length - 1).toString());
-                        setTimeout(function () {
-                            d3.selectAll(".blocks").remove();
-                            pairs(experimentr.data()["mat"][step - 1], step - 1, experimentr.data()["mat"][step - 1].length, experimentr.data()["mode"]);
-                            if (experimentr.data()["mode"] == "Vanilla") {
-                                d3.selectAll(".icon").remove();
-                            }
-                        }, 100);
-
-                        step += 1;
-                        sec_switch = 1;
-
-                    }
+                    d3.selectAll(".blocks").remove();
+                    d3.select("#notation").html("");
+                    add_mod_intros("mod_"+(step+1)+".png");
+                    console.log(num_in_page[step]);
+                    setTimeout(
+                        pairs(experimentr.data()["practice"][step], step, experimentr.data()["practice"][step].length, experimentr.data()["mode"]),200
+                    );
+                    step += 1;
                 }
                 // time elapse
                 experimentr.data()['switch'][step] = Date.now();

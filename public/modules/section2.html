@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>Title</title>
+        </head>
+        <style>
+            #submitComments {
+                position: relative;
+                left: 50%;
+                transform: translate(-50%, 0%);
+            }
+            body{
+                color:#000;
+            }
+            #container{
+                /*Styling for any element with the id="container" */
+                width:1800px; /* The width is fixed by pixels */
+                height:800px; /* The height is fixed by pixels*/
+                color:black;
+            }
+        </style>
+<body>
+<div id="container">
+    <div id="instruction" style="text-align:center;">
+        <h3>Section 2</h3>
+        <div id="notation" style="text-align:left;">
+            <!--<label id="page"></label>-->
+        </div>
+        <br> <br>
+        <div id="table"></div>
+    </div>
+    <br>
+    <button id="submitComments" class="next-button" type="button">Submit</button><br>
+</div>
+<br>
+</body>
+</html>
+<script>
+    (function(){
+        $.getScript("javascript/misc/util.js");
+        experimentr.hideNext();
+        console.log("in");
+        parsing("data/section2.csv","section2");
+        var step = 0;
+
+        function goToNext() {
+            experimentr.next();
+        };
+
+       d3.select("#notation").append("h4").text("Now you are moving to section 2. ");
+
+        d3.select('#submitComments')
+            .on('click', function () {
+                console.log(step);
+                d3.select('#submitComments').style("left","2.5%");
+                if(step==experimentr.data()["section2"].length-1){
+                    goToNext();
+                }else {
+                    d3.select("#notation").text("Page " + (step + 1).toString() + "/" + (experimentr.data()['section2'].length - 1).toString());
+                    setTimeout(function () {
+                        d3.selectAll(".blocks").remove();
+                        console.log(experimentr.data()["section2"][step-1]);
+                        pairs(experimentr.data()["section2"][step-1], step-1, experimentr.data()["section2"][step-1].length, experimentr.data()["mode"]);
+                        if (experimentr.data()["section2"] == "Vanilla") {
+                            d3.selectAll(".icon").remove();
+                        }
+                    }, 100);
+                    step += 1;
+                 }
+                // time elapse
+                experimentr.data()['switch'][step] = Date.now();
+                experimentr.save();
+            });
+    }());
+</script></title>
+</head>
+<body>
+
+</body>
+</html>

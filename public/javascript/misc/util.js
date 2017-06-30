@@ -990,3 +990,75 @@ function grading(){
     data['total_score'] = total;
     experimentr.addData(data);
 }
+
+
+function parsing2(route, dest){
+    d3.text(route, function (csvdata) {
+        var groups = {};
+        var parsedCSV = d3.csv.parseRows(csvdata);
+        for (var j = 1; j < parsedCSV.length; j++) {
+            if (!(parsedCSV[j][0] in groups)) {
+                groups[parsedCSV[j][0]] = [parsedCSV[j]];
+            } else {
+                groups[parsedCSV[j][0]] = groups[parsedCSV[j][0]].concat([parsedCSV[j]]);
+            }
+        }
+        var values = Object.keys(groups).map(function (key) {
+            return groups[key];
+        });
+        var raw_binary = values.filter(function (d) {
+            return d.length == 2;
+        });
+        n_pair = raw_binary.length;
+        var binary = [];
+        var other = [];
+        var tmp = [];
+        //console.log(raw_binary.length);
+        for (var i = 0; i < raw_binary.length; i++) {
+            if (tmp.length == 2) {
+                if(tmp.length<2){
+                    tmp.push(raw_binary[i]);
+                }
+                binary.push(tmp);
+                tmp = [raw_binary[i]];
+            } else {
+                tmp.push(raw_binary[i]);
+            }
+            //console.log(raw_binary[i]);
+        }
+        //console.log(tmp);
+        if (tmp != []) {
+            binary.push(tmp);
+        }
+        binary.push([]);
+        tmp = values.filter(function (d) {
+            return d.length == 4;
+        });
+        for (var i = 0; i < tmp.length; i++) {
+            var t = [];
+            for (var j = 0; j < tmp[i].length / 2; j++) {
+                t.push([tmp[i][2 * j], tmp[i][2 * j + 1]]);
+            }
+            other.push(t);
+        }
+        tmp = values.filter(function (d) {
+            return d.length == 6;
+        });
+        for (var i = 0; i < tmp.length; i++) {
+            var t = [];
+            for (var j = 0; j < tmp[i].length / 2; j++) {
+                t.push([tmp[i][2 * j], tmp[i][2 * j + 1]]);
+            }
+            other.push(t);
+        }
+        data[dest] = binary.concat(other);
+        // answer keys
+
+        var answer = [];
+        for(var i=0;i<raw_binary.length;i++){
+            answer.push(raw_binary[i][0][raw_binary[i][0].length-1]);
+        }
+        data[dest+'_answer'] = answer;
+        experimentr.addData(data);
+    });
+}

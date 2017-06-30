@@ -42,6 +42,7 @@ ggthemr(custom)
 
 ```{r include=FALSE}
 calculate_freq_thresh <- function(name_type,percentile){
+  return(100)
    if(name_type == "fname"){
     freq <- fname_freq$n
     freq = freq[freq>5]

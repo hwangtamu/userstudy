@@ -21,15 +21,18 @@
 <body>
 <div id="container" style="text-align:center;">
 <div id="welcome">
-    <h1>Welcome</h1>
+    <h3>Introduction</h3>
     <p>Thank you for participating in our user study. Next, let's go through the instructions of the record linkage interface.<br> <br>
+        <iframe id="iframe_instruction" src = "resources/ViewerJS/#/resources/Record Linkage_kum.pdf" width='1200' height='700' allowfullscreen webkitallowfullscreen></iframe>
+
 </div>
 <button id="submitComments" class="next-button" type="button">Next</button><br>
 </div>
 </body>
 </html>
 <script>
-    
+
+
     experimentr.hideNext();
     function goToNext() {
         experimentr.next();
