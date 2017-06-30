@@ -122,7 +122,7 @@
 <script>
 (function() {
     experimentr.data()['switch'] = {};
-    experimentr.startTimer('time_of_website_start');
+    experimentr.data()['time_of_website_start'] = Date.now();
     $.getScript("javascript/misc/util.js");
   var data    = {}
     , workers = null

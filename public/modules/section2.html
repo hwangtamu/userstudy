@@ -58,6 +58,15 @@
             .on('click', function () {
                 console.log(step);
                 d3.select('#submitComments').style("left","2.5%");
+//                console.log(Date.now());
+                console.log((Date.now()-experimentr.data()["time_of_website_start"])/(1000*60));
+                if(((Date.now()-experimentr.data()["time_of_website_start"])/(1000*60)) > 1){
+                    console.log("time elapsed");
+                    goToNext();
+                } else {
+                    console.log("time not elapsed");
+                };
+
                 if(step==experimentr.data()["section2"].length-1){
                     goToNext();
                 }else {
