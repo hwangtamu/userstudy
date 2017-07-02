@@ -36,12 +36,11 @@
         if(experimentr.data()["mode"]==="Vanilla"){
             console.log("Ho");
             d3.select("#iframe_instruction").attr("src","resources/ViewerJS/#/resources/RL_no_disclosure.pdf");
-
         }
 
         experimentr.hideNext();
         function goToNext() {
-            if(experimentr.data()["mode"]==="Vanilla"){
+            if(experimentr.data()["mode"]==="Vanilla" || experimentr.data()["mode"]==="Full"){
                 experimentr.sequence([
                     'modules/practice.html',
                     'modules/5.html',
