@@ -92,19 +92,19 @@
                     if(sec_switch==1){
                         d3.selectAll(".blocks").remove();
                         d3.select("#notation").html("");
-                        add_mod_intros("practice_2a_section.png");
+                        add_mod_intros("practice_2a_section.PNG");
                         sec_switch = 0;
                     } else {
                         d3.selectAll(".blocks").remove();
                         d3.select("#notation").html("");
-                        add_mod_intros("practice_"+(step+1)+".png");
+                        add_mod_intros("practice_"+(step+1)+".PNG");
                         setTimeout(
                             pairs(experimentr.data()["practice"][step], step, experimentr.data()["practice"][step].length, experimentr.data()["mode"]),200
                         );
 //                        sec_switch=0;
                         step += 1;
                     }
-                                    }
+                }
                 // time elapse
                 experimentr.data()['switch'][step] = Date.now();
                 experimentr.save();
