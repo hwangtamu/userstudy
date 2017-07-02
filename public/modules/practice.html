@@ -27,7 +27,7 @@
 <body>
 <div id="container">
     <div id="instruction" style="text-align:center;">
-        <h3>Practice</h3>
+        <h2>Practice</h2>
         <div id="notation" style="text-align:left;">
             <!--<label id="page"></label>-->
         </div>
@@ -45,9 +45,11 @@
         $.getScript("javascript/misc/util.js");
         experimentr.hideNext();
         // pages
+        var page_date = Date.now();
 
         console.log("practice");
-        var step = 1;
+        var step = 1,
+        sec_switch = 1;
 
         function add_mod_intros(img_address){
             d3.select("#notation").select(".image").remove();
@@ -56,34 +58,21 @@
                 .append("svg")
                 .attr("class", "image")
                 .attr("width", 1800)
-                .attr("height", 700)
+                .attr("height", 620)
                 .append("svg:image")
                 .attr("xlink:href","/resources/module_intros/"+img_address)
                 .attr("x","400px")
-                .attr("y","50px")
+                .attr("y","20px")
                 .attr("width","1000px")
                 .attr("height","600px");
         };
 
-        page_nums = [];
-        num_in_page = [2,4,5]
-//        practice_data = d3.csv("/data/practice.csv", function(error, data) {
-//            if (error) throw error;
-//            console.log(data);
-//            data.forEach(function(d) {
-//                page_nums.push(d['type']);
-//            })
-//        });
-//
-//        var unique_page_nums = d3.map(page_nums).keys();
-//        console.log(unique_page_nums);
-//
-//        for(var i=0; i<page_nums.length; ){
-//
-//        };
 
 
-        add_mod_intros("mod_1.png");
+
+
+
+        add_mod_intros("practice_1.png");
         setTimeout(
             pairs(experimentr.data()["practice"][0], 0, experimentr.data()["practice"][0].length, experimentr.data()["mode"]),200
         );
@@ -92,21 +81,30 @@
             experimentr.next();
         }
 
+        console.log(experimentr.data()["mat"]);
         d3.select('#submitComments')
             .on('click', function () {
+                console.log(step);
                 d3.select('#submitComments').style("left","2.5%");
                 if(step==experimentr.data()["practice"].length-1){
                     goToNext();
                 }else {
-                    d3.selectAll(".blocks").remove();
-                    d3.select("#notation").html("");
-                    add_mod_intros("mod_"+(step+1)+".png");
-                    console.log(num_in_page[step]);
-                    setTimeout(
-                        pairs(experimentr.data()["practice"][step], step, experimentr.data()["practice"][step].length, experimentr.data()["mode"]),200
-                    );
-                    step += 1;
-                }
+                    if(sec_switch==1){
+                        d3.selectAll(".blocks").remove();
+                        d3.select("#notation").html("");
+                        add_mod_intros("practice_2a_section.png");
+                        sec_switch = 0;
+                    } else {
+                        d3.selectAll(".blocks").remove();
+                        d3.select("#notation").html("");
+                        add_mod_intros("practice_"+(step+1)+".png");
+                        setTimeout(
+                            pairs(experimentr.data()["practice"][step], step, experimentr.data()["practice"][step].length, experimentr.data()["mode"]),200
+                        );
+//                        sec_switch=0;
+                        step += 1;
+                    }
+                                    }
                 // time elapse
                 experimentr.data()['switch'][step] = Date.now();
                 experimentr.save();

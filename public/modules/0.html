@@ -21,9 +21,9 @@
 <body>
 <div id="container" style="text-align:center;">
 <div id="welcome">
-    <h3>Introduction</h3>
-    <p>Thank you for participating in our user study. Next, let's go through the instructions of the record linkage interface.<br> <br>
-        <iframe id="iframe_instruction" src = "resources/ViewerJS/#/resources/Record Linkage_kum.pdf" width='1200' height='700' allowfullscreen webkitallowfullscreen></iframe>
+    <h1>Introduction</h1>
+    <h2>Thank you for participating in our user study. Next, let's go through the instructions of the record linkage interface.</h2><br> <br>
+        <iframe id="iframe_instruction" src = "resources/ViewerJS/#/resources/RL_disclosure.pdf" width='1200' height='700' allowfullscreen webkitallowfullscreen></iframe>
 
 </div>
 <button id="submitComments" class="next-button" type="button">Next</button><br>
@@ -32,13 +32,33 @@
 </html>
 <script>
 
+    (function(){
+        if(experimentr.data()["mode"]==="Vanilla"){
+            console.log("Ho");
+            d3.select("#iframe_instruction").attr("src","resources/ViewerJS/#/resources/RL_no_disclosure.pdf");
 
-    experimentr.hideNext();
-    function goToNext() {
-        experimentr.next();
-    }
-    d3.select('#submitComments')
-        .on('click', function () {
-            goToNext();
-        });
+        }
+
+        experimentr.hideNext();
+        function goToNext() {
+            if(experimentr.data()["mode"]==="Vanilla"){
+                experimentr.sequence([
+                    'modules/practice.html',
+                    'modules/5.html',
+                    'modules/section2.html',
+                    'modules/post_study_questionnaire.html',
+                    'modules/end.html'
+                ]).start();
+            }
+            else{
+                experimentr.next();
+            }
+
+        }
+        d3.select('#submitComments')
+            .on('click', function () {
+                goToNext();
+            });
+
+    }());
 </script>

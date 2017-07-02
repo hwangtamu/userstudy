@@ -992,7 +992,7 @@ function grading(){
 }
 
 
-function parsing2(route, dest){
+function parsing2(route, dest, num_in_page){
     d3.text(route, function (csvdata) {
         var groups = {};
         var parsedCSV = d3.csv.parseRows(csvdata);
@@ -1015,6 +1015,10 @@ function parsing2(route, dest){
         var tmp = [];
         //console.log(raw_binary.length);
         for (var i = 0; i < raw_binary.length; i++) {
+            // console.log(i);
+            // console.log(tmp);
+            // console.log(num_in_page[i]);
+            // console.log(raw_binary[i]);
             if (tmp.length == 2) {
                 if(tmp.length<2){
                     tmp.push(raw_binary[i]);

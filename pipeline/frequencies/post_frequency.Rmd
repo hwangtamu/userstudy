@@ -41,15 +41,24 @@ ggthemr(custom)
 
 
 ```{r include=FALSE}
+calc_percentile <- function(x_vector,value){
+  x <- ecdf(x_vector)
+  return(x(value))
+}
+
 calculate_freq_thresh <- function(name_type,percentile){
-  return(100)
-   if(name_type == "fname"){
+  arbitrary <- 100 
+  if(name_type == "fname"){
     freq <- fname_freq$n
+    print(calc_percentile(freq,arbitrary))
     freq = freq[freq>5]
+    return(arbitrary)
     return(quantile(freq,percentile))
   } else {
     lreq <- lname_freq$n
+    print(calc_percentile(lreq,arbitrary))
     lreq = lreq[lreq>5]
+    return(arbitrary)
     return(quantile(lreq,percentile)  )
   }
 }
@@ -64,9 +73,9 @@ calculate_rarity <- function(frequency,name_type = "fname", percentile = 0.5) {
     mutate(rarity = as_factor(case_when(
       freq == 1 ~ "Unique",
       between(freq, 2, 5) ~ "Rare",
-      between(freq, 5, freq_threshold) ~ "Common",
+      between(freq, 5, freq_threshold) ~ "Often",
       freq>freq_threshold ~ "Frequent")),
-      rarity = fct_relevel(rarity, "Unique", "Rare", "Common", "Frequent")) %>%
+      rarity = fct_relevel(rarity, "Unique", "Rare", "Often", "Frequent")) %>%
         pull(rarity) %>%
           return()
 }
@@ -111,7 +120,7 @@ fname_freq %>%
   mutate(src = ifelse(src == "B", "1703", "1304")) %>% 
   ggplot(aes(n)) + 
   facet_grid(~src) +
-  geom_histogram(binwidth = 10, aes(fill = Rarity), alpha = 0.75)
+  geom_histogram(binwidth = 10, aes(fill = Rarity), alpha = 0.75) + theme(legend.position="none")
 ```
 
 ###Last Names:
@@ -120,7 +129,7 @@ lname_freq %>%
   mutate(src = ifelse(src == "B", "1703", "1304")) %>% 
   ggplot(aes(n)) + 
   facet_grid(~src) +
-  geom_histogram(binwidth = 10, aes(fill = Rarity), alpha = 0.8)
+  geom_histogram(binwidth = 10, aes(fill = Rarity), alpha = 0.8) + theme(legend.position="none")
 ```
 
 ##The frequencies in the crafted data look like this:
@@ -128,38 +137,38 @@ lname_freq %>%
 ###First Names:
 ```{r echo = FALSE}
 fname_starred %>%
-  ggplot(aes(n)) + geom_histogram(binwidth = 10,  alpha = 0.8, aes(fill = Rarity))
+  ggplot(aes(n)) + geom_histogram(binwidth = 10,  alpha = 0.8, aes(fill = Rarity)) + theme(legend.position="none")
 ```
 
 ###Last Names:
 ```{r echo = FALSE}
 lname_starred %>%
-  ggplot(aes(n)) + geom_histogram(binwidth = 10,  alpha = 0.8, aes(fill = Rarity))
+  ggplot(aes(n)) + geom_histogram(binwidth = 10,  alpha = 0.8, aes(fill = Rarity)) + theme(legend.position="none")
 ```
 
 ##Percentage of Frequencies in the lookup table vs crafted data
 ```{r echo=FALSE}
 ggplot(fname_freq, aes(Rarity, fill = Rarity)) +
   geom_bar(aes(y = 100 * (..count..)/sum(..count..)), alpha = 0.7) +
-  ylab("Percentage") + ggtitle("Lookup First Name")
+  ylab("Percentage") + ggtitle("Lookup First Name") + theme(legend.position="none")
 
 ggplot(fname_starred, aes(Rarity, fill = Rarity)) +
   geom_bar(aes(y = 100 * (..count..)/sum(..count..)), alpha = 0.7) +
-  ylab("Percentage") + ggtitle("Starred First Name")
+  ylab("Percentage") + ggtitle("Starred First Name") + theme(legend.position="none")
 
 ggplot(lname_freq, aes(Rarity, fill = Rarity)) +
   geom_bar(aes(y = 100 * (..count..)/sum(..count..)), alpha = 0.7) +
-  ylab("Percentage") + ggtitle("Lookup Last Name")
+  ylab("Percentage") + ggtitle("Lookup Last Name") + theme(legend.position="none")
 
 ggplot(lname_starred, aes(Rarity, fill = Rarity)) +
   geom_bar(aes(y = 100 * (..count..)/sum(..count..)), alpha = 0.7) +
-  ylab("Percentage") + ggtitle("Starred Last Name")
+  ylab("Percentage") + ggtitle("Starred Last Name") + theme(legend.position="none")
 
 
 ```
 
 
-```{r}
+```{r include=FALSE,eval=FALSE}
 fname_starred %>%
   count(n) %>%
     arrange((n)) %>%

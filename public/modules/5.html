@@ -77,14 +77,15 @@
                 console.log((Date.now()-experimentr.data()["time_of_website_start"])/(1000*60));
 
                 if(step==experimentr.data()["mat"].length-1){
-                    if(((Date.now()-experimentr.data()["time_of_website_start"])/(1000*60)) > 1.5){
-                        experimentr.sequence([
-                            'modules/post_study_questionnaire.html',
-                            'modules/end.html'
-                        ]).start();
-                    } else{
-                        goToNext();
-                    }
+                    goToNext();
+//                    if(((Date.now()-experimentr.data()["time_of_website_start"])/(1000*60)) > 1.5){
+//                        experimentr.sequence([
+//                            'modules/post_study_questionnaire.html',
+//                            'modules/end.html'
+//                        ]).start();
+//                    } else{
+//                        goToNext();
+//                    }
                 }else {
                     if (sec_switch==1 && step in mod_pages) {
                         d3.selectAll(".blocks").remove();

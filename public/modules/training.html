@@ -7,7 +7,7 @@
 <body>
     Do you wish to see the training?
     <br>
-    <button id="submitComments" class="start-button" type="button">Yes</button>
+    <button id="submitComments" class="start-button" type="button">Yes</button> &nbsp;
     <button id="skipComments" class="start-button" type="button">Skip</button>
 
     <br>
@@ -22,10 +22,10 @@
             experimentr.endTimer('mode_info');
             experimentr.addData(data);
 
-            if (mode=="Vanilla"){
-                // remove icon instructions
-                experimentr.sequence().splice(3,1);
-            }
+//            if (mode=="Vanilla"){
+//                // remove icon instructions
+//                experimentr.sequence().splice(3,1);
+//            }
             experimentr.next();
         }
 

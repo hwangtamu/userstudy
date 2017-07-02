@@ -35,7 +35,8 @@
         <div id="table"></div>
     </div>
     <br>
-    <button id="submitComments" class="next-button" type="button">Submit</button><br>
+    <button id="submitComments" class="next-button" type="button">Submit</button>
+    <button id="endStudy" class="next-button" type="button" style="position: absolute; left: 1600px;">End Study</button><br>
 </div>
 <br>
 </body>
@@ -47,22 +48,28 @@
         console.log("in");
         parsing("data/section2.csv","section2");
         var step = 0;
+        d3.select("#endStudy").style("visibility","hidden");
 
         function goToNext() {
             experimentr.next();
         };
 
-       d3.select("#notation").append("h4").text("Now you are moving to section 2. ");
+       d3.select("#notation").append("h4").text("Now you are moving to section 2.").style("text-align","center");
+
+        d3.select('#endStudy')
+            .on('click', function () {
+                goToNext();
+            });
 
         d3.select('#submitComments')
             .on('click', function () {
                 console.log(step);
-                d3.select('#submitComments').style("left","2.5%");
+                d3.select('#submitComments').style("position","absolute").style("left","90px");
 //                console.log(Date.now());
                 console.log((Date.now()-experimentr.data()["time_of_website_start"])/(1000*60));
-                if(((Date.now()-experimentr.data()["time_of_website_start"])/(1000*60)) > 1){
+                if(((Date.now()-experimentr.data()["time_of_website_start"])/(1000*60)) > 0.2){
                     console.log("time elapsed");
-                    goToNext();
+                    d3.select("#endStudy").style("visibility", "visible");
                 } else {
                     console.log("time not elapsed");
                 };
