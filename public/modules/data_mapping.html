@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Introduction</title>
+    <title>Data Mapping</title>
 </head>
 <style>
     body{
@@ -20,38 +20,31 @@
 </style>
 <body>
 <div id="container" style="text-align:center;">
-<div id="welcome">
-    <h1>Introduction</h1>
-    <h2>Thank you for participating in our user study. Next, let's go through the instructions of the record linkage interface.</h2><br> <br>
+    <div id="welcome">
+        <h1>Data Mapping</h1><br>
         <iframe id="iframe_instruction" src = "resources/ViewerJS/#/resources/RL_disclosure.pdf" width='1300' height='800' allowfullscreen webkitallowfullscreen></iframe>
-
-</div>
-<button id="submitComments" class="next-button" type="button">Next</button><br>
+    </div>
+    <br>
+    <button id="submitComments" class="next-button" type="button">Next</button><br>
 </div>
 </body>
 </html>
 <script>
 
     (function(){
-        if(experimentr.data()["mode"]==="Vanilla"){
-            console.log("Ho");
-            d3.select("#iframe_instruction").attr("src","resources/ViewerJS/#/resources/RL_no_disclosure.pdf");
+        if(experimentr.data()["mode"]==="Opti1"){
+            d3.select("#iframe_instruction").attr("src","resources/ViewerJS/#/resources/mode_3_data_mapping.pdf");
+        } else if(experimentr.data()["mode"]==="Partial_Cell"){
+            d3.select("#iframe_instruction").attr("src","resources/ViewerJS/#/resources/mode_3_data_mapping.pdf");
+        } else if(experimentr.data()["mode"]==="Partial"){
+            d3.select("#iframe_instruction").attr("src","resources/ViewerJS/#/resources/mode_3_data_mapping.pdf");
         }
 
         experimentr.hideNext();
         function goToNext() {
-            if(experimentr.data()["mode"]==="Vanilla" || experimentr.data()["mode"]==="Full"){
-                experimentr.sequence([
-                    'modules/practice.html',
-                    'modules/5.html',
-                    'modules/section2.html',
-                    'modules/post_study_questionnaire.html',
-                    'modules/end.html'
-                ]).start();
-            }
-            else{
+
                 experimentr.next();
-            }
+
 
         }
         d3.select('#submitComments')
