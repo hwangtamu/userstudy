@@ -47,7 +47,7 @@
         experimentr.hideNext();
         // pages
         var page_date = Date.now();
-//        parsing("data/practice2.csv","practice");
+        parsing("data/practice.csv","practice2");
 
         console.log("practice");
         var step = 1;
@@ -85,7 +85,7 @@
         add_mod_intros("practice_1.PNG");
         console.log(experimentr.data()["practice"]);
         setTimeout(
-            pairs(experimentr.data()["practice"][0], 0, experimentr.data()["practice"][0].length, experimentr.data()["mode"]),
+            pairs(experimentr.data()["practice2"][0], 0, experimentr.data()["practice2"][0].length, experimentr.data()["mode"]),
             200
         );
 
@@ -126,7 +126,7 @@
                         d3.select("#notation").html("");
                         add_mod_intros("practice_"+(step+1)+".PNG");
                         setTimeout(
-                            pairs(experimentr.data()["practice"][step], step, experimentr.data()["practice"][step].length, experimentr.data()["mode"]),
+                            pairs(experimentr.data()["practice2"][step], step, experimentr.data()["practice2"][step].length, experimentr.data()["mode"]),
                             200
                         );
 
@@ -139,8 +139,8 @@
                     }
                 }
                 // time elapse
-                experimentr.data()['switch'][step] = Date.now();
-                experimentr.save();
+//                experimentr.data()['switch'][step] = Date.now();
+//                experimentr.save();
             });
     }());
 </script></title>
