@@ -21,11 +21,19 @@
 <body>
 <div id="container" style="text-align:center;">
     <div id="welcome">
-        <h1>Data Mapping</h1><br>
+        <h1>Privacy</h1>
+        <h4>Please use the arrow keys in the bottom left portion of the slideshow viewer to view the instructions</h4><br> <br>
         <iframe id="iframe_instruction" src = "resources/ViewerJS/#/resources/RL_disclosure.pdf" width='1300' height='800' allowfullscreen webkitallowfullscreen></iframe>
     </div>
-    <br>
-    <button id="submitComments" class="next-button" type="button">Next</button><br><br>
+    <br><br>
+    <div>
+        <label id="check"><input type="checkbox" id="cbox1" value=-1 >
+            <strong>
+                I have viewed all the slides and I am aware of the instructions.
+            </strong></label><br><br>
+        <button id="submitComments" type="button" class="start-button" disabled="true">Next</button>
+        <br><br>
+    </div>
 </div>
 </body>
 </html>
@@ -41,14 +49,37 @@
         }
 
         experimentr.hideNext();
-        function goToNext() {
-                experimentr.next();
+//        function goToNext() {
+//                experimentr.next();
+//        }
+//
+//        d3.select('#submitComments')
+//            .on('click', function () {
+//                goToNext();
+//            });
+
+        d3.select('#submitComments').style('color', "#b3b3b3");
+        function validate() {
+            if (cbox1.property("value")==1){
+                d3.select('#submitComments').attr('disabled', null);
+                d3.select('#submitComments').style('color', "black");
+                d3.select('#submitComments').on('click', function() {
+                    experimentr.next();
+                });
+            }else{
+                d3.select('#submitComments').attr('disabled', 'disabled');
+                d3.select('#submitComments').style('color', "#b3b3b3");
+            }
+
         }
 
-        d3.select('#submitComments')
-            .on('click', function () {
-                goToNext();
-            });
+        var cbox1 = d3.select('input');
+        cbox1.on('change',function(d){
+            console.log(cbox1.property("value"));
+            cbox1.property("value",-cbox1.property("value"));
+            validate();
+        })
+
 
     }());
 </script>

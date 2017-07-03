@@ -21,13 +21,23 @@
 <body>
 <div id="container" style="text-align:center;">
 <div id="welcome">
-    <h1>Introduction</h1>
-    <h2>Thank you for participating in our user study. Next, let's go through the instructions of the record linkage interface.</h2><br> <br>
+    <h1>Welcome</h1>
+    <!--<h4>Thank you for participating in our user study. Next, let's go through the instructions of the record linkage interface.</h4>-->
+    <h4>Please use the arrow keys in the bottom left portion of the slideshow viewer to view the instructions</h4><br> <br>
         <iframe id="iframe_instruction" src = "resources/ViewerJS/#/resources/RL_intervention.pdf" width='1300' height='800' allowfullscreen webkitallowfullscreen></iframe>
 
 </div>
-    <br>
-<button id="submitComments" class="next-button" type="button">Next</button><br>
+    <br><br>
+    <!--<div style="position: absolute; left: 500px; top:670px; width: 700px; text-align: left; display: inline;">-->
+    <div>
+        <label id="check"><input type="checkbox" id="cbox1" value=-1 >
+            <strong>
+                I have viewed all the slides and I am aware of the instructions.
+            </strong></label><br><br>
+        <button id="submitComments" type="button" class="start-button" disabled="true">Next</button>
+        <br><br>
+    </div>
+<!--<button id="submitComments" class="next-button" type="button">Next</button><br>-->
 </div>
 </body>
 </html>
@@ -38,26 +48,38 @@
             console.log("Ho");
             d3.select("#iframe_instruction").attr("src","resources/ViewerJS/#/resources/RL_no_intervention.pdf");
         }
-
+//
         experimentr.hideNext();
-        function goToNext() {
-//            if(experimentr.data()["mode"]==="Vanilla" || experimentr.data()["mode"]==="Full"){
-//                experimentr.sequence([
-//                    'modules/5.html',
-//                    'modules/section2.html',
-//                    'modules/post_study_questionnaire.html',
-//                    'modules/end.html'
-//                ]).start();
-//            }
-//            else{
-                experimentr.next();
-//            }
+//        function goToNext() {
+//                experimentr.next();
+//        }
+//        d3.select('#submitComments')
+//            .on('click', function () {
+//                goToNext();
+//            });
+
+        d3.select('#submitComments').style('color', "#b3b3b3");
+        function validate() {
+            if (cbox1.property("value")==1){
+                d3.select('#submitComments').attr('disabled', null);
+                d3.select('#submitComments').style('color', "black");
+                d3.select('#submitComments').on('click', function() {
+                    experimentr.next();
+                });
+            }else{
+                d3.select('#submitComments').attr('disabled', 'disabled');
+                d3.select('#submitComments').style('color', "#b3b3b3");
+            }
 
         }
-        d3.select('#submitComments')
-            .on('click', function () {
-                goToNext();
-            });
+
+        var cbox1 = d3.select('input');
+        cbox1.on('change',function(d){
+            console.log(cbox1.property("value"));
+            cbox1.property("value",-cbox1.property("value"));
+            validate();
+        })
+
 
     }());
 </script>
