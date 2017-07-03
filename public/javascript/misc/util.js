@@ -1019,8 +1019,8 @@ function parsing2(route, dest){
             // console.log(tmp);
             // console.log(num_in_page[i]);
             // console.log(raw_binary[i]);
-            if (tmp.length == 2) {
-                if(tmp.length<2){
+            if (tmp.length == 4) {
+                if(tmp.length<4){
                     tmp.push(raw_binary[i]);
                 }
                 binary.push(tmp);

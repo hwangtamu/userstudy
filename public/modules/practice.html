@@ -27,15 +27,15 @@
 <body>
 <div id="container">
     <div id="instruction" style="text-align:center;">
-        <h2>Practice</h2>
+        <!--<h2>Practice</h2>-->
         <div id="notation" style="text-align:left;">
             <!--<label id="page"></label>-->
         </div>
-        <br> <br>
+        <br>
         <div id="table"></div>
     </div>
     <br>
-    <button id="submitComments" class="next-button" type="button" style="left: 45px">Submit</button><br>
+    <button id="submitComments" class="next-button" type="button" style="left: 45px">Submit</button><br><br>
 </div>
 <br>
 </body>
@@ -53,19 +53,31 @@
         var sec_switch = 1;
 
         function add_mod_intros(img_address){
-            d3.select("#notation").select(".image").remove();
+            var height = "530px",
+                width = "900px",
+                x = "450px",
+                y = "20px";
 
-            d3.select("#notation")
-                .append("svg")
-                .attr("class", "image")
-                .attr("width", 1800)
-                .attr("height", 620)
-                .append("svg:image")
-                .attr("xlink:href","/resources/module_intros/"+img_address)
-                .attr("x","400px")
-                .attr("y","20px")
-                .attr("width","1000px")
-                .attr("height","600px");
+            d3.select("#notation").select(".image").remove();
+            var svg = d3.select("#notation")
+                        .append("svg")
+                        .attr("class", "image")
+                        .attr("width", 1800)
+                        .attr("height", 550);
+                         svg.append("svg:image")
+                            .attr("xlink:href","/resources/module_intros/"+img_address)
+                            .attr("x",x)
+                            .attr("y",y)
+                            .attr("width",width)
+                            .attr("height",height);
+                        svg.append("rect")
+                            .attr("x", x)
+                            .attr("y", y)
+                            .attr("height", height)
+                            .attr("width", width)
+                            .style("stroke", "black")
+                            .style("fill", "none");
+//                    .style("stroke-width", "20px");
         }
 
 
@@ -94,6 +106,7 @@
                         d3.select("#notation").html("");
                         add_mod_intros("practice_2a_section.PNG");
                         sec_switch = 0;
+                        d3.select('#submitComments').style("left","50%");
 //                        step=0;
                     } else {
                         d3.selectAll(".blocks").remove();

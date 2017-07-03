@@ -23,7 +23,7 @@
 <body>
 <div id="container">
     <div id="instruction" style="text-align:center;">
-        <h3>Main Study</h3>
+        <h1 id="heading">Main Study</h1>
         <div id="notation" style="text-align:left;">
             <!--<label id="page"></label>-->
         </div>
@@ -46,20 +46,31 @@
             sec_switch = 0;
 
         function add_mod_intros(img_address){
-            d3.select("#notation").select(".image").remove();
+            var height = "550px",
+                width = "1000px",
+                x = "400px",
+                y = "20px";
 
-            d3.select("#notation")
+            d3.select("#notation").select(".image").remove();
+            var svg = d3.select("#notation")
                 .append("svg")
                 .attr("class", "image")
                 .attr("width", 1800)
-                .attr("height", 700)
-                .append("svg:image")
+                .attr("height", 600);
+            svg.append("svg:image")
                 .attr("xlink:href","/resources/module_intros/"+img_address)
-                .attr("x","400px")
-                .attr("y","50px")
-                .attr("width","1000px")
-                .attr("height","600px");
-        };
+                .attr("x",x)
+                .attr("y",y)
+                .attr("width",width)
+                .attr("height",height);
+            svg.append("rect")
+                .attr("x", x)
+                .attr("y", y)
+                .attr("height", height)
+                .attr("width", width)
+                .style("stroke", "black")
+                .style("fill", "none");
+        }
 
         console.log(experimentr.data());
         add_mod_intros("practice_1.PNG");
@@ -73,6 +84,7 @@
 
         d3.select('#submitComments')
             .on('click', function () {
+                d3.select("#heading").remove();
                 d3.select('#submitComments').style("left","2.5%");
                 console.log((Date.now()-experimentr.data()["time_of_website_start"])/(1000*60));
 
@@ -88,6 +100,7 @@
 //                    }
                 }else {
                     if (sec_switch==1 && step in mod_pages) {
+                        d3.select('#submitComments').style("left","50%");
                         d3.selectAll(".blocks").remove();
                         d3.select("#notation").html("");
                         switch(step){
