@@ -74,10 +74,10 @@
         }
 
         console.log(experimentr.data());
-        add_mod_intros("practice_1.PNG");
+        add_mod_intros("recap_1.PNG");
 
 
-        var mod_pages = [1,2,3,4,5,6];
+        var mod_pages = [1,2,4];
 
         function goToNext() {
             experimentr.next();
@@ -100,30 +100,33 @@
 //                        goToNext();
 //                    }
                 }else {
-                    if (sec_switch==1 && step in mod_pages) {
+
+                    if (sec_switch==1 && (mod_pages.indexOf(step)>-1)) {
+                        console.log(step);
                         d3.select('#submitComments').style("left","50%");
                         d3.selectAll(".blocks").remove();
                         d3.select("#notation").html("");
-                        switch(step){
-                            case 1:
-                                add_mod_intros("practice_2.PNG");
-                                break;
-                            case 2:
-                                add_mod_intros("practice_3.PNG");
-                                break;
-                            case 3:
-                                add_mod_intros("practice_4.PNG");
-                                break;
-                            case 4:
-                                add_mod_intros("practice_5.PNG");
-                                break;
-                            case 5:
-                                add_mod_intros("practice_6.PNG");
-                                break;
-                            default:
-                                console.log("end");
-                                break;
-                        }
+                        add_mod_intros("recap_" + (step+1) + ".PNG");
+//                        switch(step){
+//                            case 1:
+//                                add_mod_intros("practice_2.PNG");
+//                                break;
+//                            case 2:
+//                                add_mod_intros("practice_3.PNG");
+//                                break;
+//                            case 3:
+//                                add_mod_intros("practice_4.PNG");
+//                                break;
+//                            case 4:
+//                                add_mod_intros("practice_5.PNG");
+//                                break;
+//                            case 5:
+//                                add_mod_intros("practice_6.PNG");
+//                                break;
+//                            default:
+//                                console.log("end");
+//                                break;
+//                        }
                         sec_switch = 0
                     } else {
 
