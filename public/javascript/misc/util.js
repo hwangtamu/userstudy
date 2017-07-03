@@ -340,9 +340,6 @@ function cell(t,g,j,k){
             }
         }
     }
-    if(indel.length+indel_.length){
-        console.log(indel, indel_,t_j, t_m);
-    }
 
     if(j<2*cwidth.length && textbox.text()=="  "){
         g.select("#c"+j.toString()).selectAll(".icon").remove();
@@ -471,10 +468,6 @@ function cell(t,g,j,k){
         var t_count = 0;
         for(var l=0;l<len;l++){
             if(t[l]!="_"){
-                if(experimentr.data()['mode']=="Full" && trailing.length+trailing_.length>0){
-                    if(trailing_.length>0){trailing_[0]=9;}
-                    if(trailing.length>0){trailing[0]=9;}
-                }
                 var $tspan = $tb.append('tspan').attr("class","char");
                 $tspan.attr("x",function(){if(title[j%cwidth.length]=="Race"){return "2em";}return 9*t_count+"px";}).attr("y",cy/2+5)
                     .style("font",function(){
@@ -488,7 +481,7 @@ function cell(t,g,j,k){
                         (j<2*cwidth.length && trailing.indexOf(l)>-1)||(j>2*cwidth.length && trailing_.indexOf(l)>-1))){return "bold";}})
                     .attr("fill",function(){
                         if((j<2*cwidth.length && indel.indexOf(l)>-1)||(j>2*cwidth.length && indel_.indexOf(l)>-1)||
-                            (j<2*cwidth.length && trailing.indexOf(l)>-1)||(j>2*cwidth.length && trailing_.indexOf(l)>-1)){console.log(indel,indel_,t.length);return "#33ce45";}
+                            (j<2*cwidth.length && trailing.indexOf(l)>-1)||(j>2*cwidth.length && trailing_.indexOf(l)>-1)){console.log(t);return "#33ce45";}
                         else if((j<2*cwidth.length && replace.indexOf(l)>-1)||(j>2*cwidth.length && replace_.indexOf(l)>-1)){return "#9b3d18";}
                         else if((j<2*cwidth.length && transpose.indexOf(l)>-1)||(j>2*cwidth.length && transpose_.indexOf(l)>-1)){return "#009fff";}
                         return "black";})
@@ -619,7 +612,28 @@ function pair(t,g,m){
     else if(m=="Full"){
         for(var j=1;j<mapping.length;j++){
             k[a+j] = j<a ? 3:9;k[b+j] = j<a ? 3:9;
+            if(j<cwidth.length){
+                if(["First name", "Last name", "Reg No."].indexOf(title[j%cwidth.length])>-1){
+                    //console.log(t[a+j].length, t[a+mapping[j]].length, t[b+j].length, t[b+mapping[j]].length);
+                    if(row1[j].length!=row1[mapping[j]].length){
+                        for(var i=0;i<row1[mapping[j]].length;i++){
+                            if(row1[mapping[j]][i]=="_"){
+                                row1[j] = row1[j].slice(0,i)+"_"+row1[j].slice(i)
+                            }
+                        }
+                        console.log(row1[j], row1[mapping[j]]);
+                    }
+                    if(row2[j].length!=row2[mapping[j]].length){
+                        for(var i=0;i<row2[mapping[j]].length;i++){
+                            if(row2[mapping[j]][i]=="_"){
+                                row2[j] = row2[j].slice(0,i)+"_"+row2[j].slice(i)
+                            }
+                        }
+                        console.log(row2[j], row2[mapping[j]]);
+                    }
 
+                }
+            }
         }
         k1 = k.slice(a,b);k2 = k.slice(b,c);
     }else{
