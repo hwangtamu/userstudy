@@ -992,7 +992,7 @@ function grading(){
 }
 
 
-function parsing2(route, dest, num_in_page){
+function parsing2(route, dest){
     d3.text(route, function (csvdata) {
         var groups = {};
         var parsedCSV = d3.csv.parseRows(csvdata);

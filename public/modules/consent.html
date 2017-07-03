@@ -173,6 +173,8 @@
         parsing("data/output.csv","mat");
     }
 
+    parsing2("data/practice2.csv","practice");
+
     console.log(sample_name);
     experimentr.data()["sample_name"] = sample_name;
 
@@ -189,34 +191,35 @@
             prev = arr[i];
         }
         return [a, b];
-    }
+    };
 
-    var page_nums = [];
-    var num_in_page = [];
-    d3.csv("/data/practice.csv", function(error, data) {
-        if (error) throw error;
-        data.forEach(function(d) {
-            page_nums.push(d['type']);
-        });
-        num_in_page_pairs = count(page_nums)[1];
-        num_in_page_pairs.forEach(function(d) {
-            num_in_page.push(d/2);
-        });
-        num_in_page_parsed = [];
-        num_in_page.forEach(function(d) {
-            for(var i=0;i<d;i++) {
-                num_in_page_parsed.push(d);
-            };
-        });
-        console.log(num_in_page_parsed);
-        parsing2("data/practice.csv","practice",num_in_page_parsed);
+//    var page_nums = [];
+//    var num_in_page = [];
+//    d3.csv("/data/practice.csv", function(error, data) {
+//        if (error) throw error;
+//        data.forEach(function(d) {
+//            page_nums.push(d['type']);
+//        });
+//        num_in_page_pairs = count(page_nums)[1];
+//        num_in_page_pairs.forEach(function(d) {
+//            num_in_page.push(d/2);
+//        });
+//        num_in_page_parsed = [];
+//        num_in_page.forEach(function(d) {
+//            for(var i=0;i<d;i++) {
+//                num_in_page_parsed.push(d);
+//            };
+//        });
+//        console.log(num_in_page_parsed);
+//        parsing("data/practice.csv","practice",num_in_page_parsed);
+//        parsing("data/practice.csv","practice");
+//    });
 
-    });
 
   function init() {
     experimentr.hideNext();
 
-    //d3.json('data/sequence.json', function(err, d) {
+      //d3.json('data/sequence.json', function(err, d) {
       //data.workerId = d.worker_id + "_" + Math.random().toString(36).substring(2, 7);
       //d3.select("#p_id").append("h3")
         //.text("Participant ID: " + d.worker_id);
