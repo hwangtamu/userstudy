@@ -3,7 +3,7 @@
 /**
  * Created by hanwang on 1/23/17.
  */
-var title = ["Group","Reg No.","FFreq","First name","Last name","LFreq","DoB(M/D/Y)","Race","ID"];
+var title = ["Pair","Reg No.","FFreq","First name","Last name","LFreq","DoB(M/D/Y)","Race","ID"];
 var cwidth = [60,20,100,60,200,200,150,100,100]; //870
 var height = 24; //height per row 0 30 57
 var ys = [0,30,77];
@@ -11,6 +11,7 @@ var ys = [0,30,77];
 var mapping = [0,8,2,9,10,5,11,12,1,3,4,6,7,13];
 var data = {}; // experimentr data
 var n_pair = 0;
+
 /**
  * draw a cell
  * x,y : position
@@ -31,7 +32,6 @@ var n_pair = 0;
  *      9:hidden data
  *      }
  */
-
 function cell(t,g,j,k){
     // erase title columns
     var index_r = g.attr("id").slice(1)%6;
@@ -132,7 +132,7 @@ function cell(t,g,j,k){
         if(title[j%cwidth.length]=="First name"||title[j%cwidth.length]=="Last name"){
             var m = j+cwidth.length,
                 p = g.attr("id").slice(1),
-                dat = experimentr.data()['mat'][Math.floor(p/6)],
+                dat = experimentr.data()[experimentr.data()['section']][Math.floor(p/6)],
                 fnj = "",
                 fnm = "",
                 lnj = "",
@@ -182,7 +182,7 @@ function cell(t,g,j,k){
         //    cel.append("svg:image").attr("xlink:href","/resources/checkmark.png").attr("class","icon")
         //        .attr("x",function(){if(title[j%cwidth.length]!="DoB(M/D/Y)"){return cwidth[j%cwidth.length]/3;}return 40;})
         //        .attr("y",cy/2+15).attr("width",18).attr("height",18);
-        else if(textbox.text()==" " && title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="Group"){
+        else if(textbox.text()==" " && title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="Pair"){
             // double check mark
             cel.append("svg:image").attr("xlink:href","/resources/checkmark.png").attr("class","icon")
                 .attr("x",function(){if(title[j%cwidth.length]=="First name"||title[j%cwidth.length]=="Last name"){return 0;}
@@ -196,12 +196,12 @@ function cell(t,g,j,k){
             if(swap==0 && title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="FFreq" && title[j%cwidth.length]!="LFreq"){
                 var m = j+cwidth.length,
                     p = g.attr("id").slice(1),
-                    dat = experimentr.data()['mat'][Math.floor(p/6)],
+                    dat = experimentr.data()[experimentr.data()['section']][Math.floor(p/6)],
                     t_j = dat[p%6][0][mapping[j%cwidth.length]],
                     t_m = dat[p%6][1][mapping[m%cwidth.length]],
                     bin = [];
                 //console.log(t_j, t_m);
-                if(title[j%cwidth.length]!="Group" && t_j.indexOf("*")==-1 && t_m.indexOf("*")==-1 && t_j.trim()!="" && t_m.trim()!=""){
+                if(title[j%cwidth.length]!="Pair" && t_j.indexOf("*")==-1 && t_m.indexOf("*")==-1 && t_j.trim()!="" && t_m.trim()!=""){
                     //var len = (t_j.length<=t_m.length?t_j.length:t_m.length)/2;
                     //console.log(t_j, t_m);
                     diff = 1;
@@ -274,9 +274,6 @@ function cell(t,g,j,k){
                                         trailing_.push(i);}
                                 }
                             }
-                            // if(title[j%cwidth.length]=="Reg No." && Math.max(t_j.length, t_m.length)>10){
-                            //     console.log(t,trailing_,trailing);
-                            // }
                         }
                     }
 
@@ -343,9 +340,9 @@ function cell(t,g,j,k){
             }
         }
     }
-    //if(transpose.length+transpose_.length){
-    //    console.log(transpose, transpose_);
-    //}
+    if(indel.length+indel_.length){
+        console.log(indel, indel_,t_j, t_m);
+    }
 
     if(j<2*cwidth.length && textbox.text()=="  "){
         g.select("#c"+j.toString()).selectAll(".icon").remove();
@@ -400,7 +397,6 @@ function cell(t,g,j,k){
 
     // coloring letters based on operations
     // indel, indel_, replace, replace_, transpose, transpose_
-
     // coloring '@' and '#'
     if(diff==1){
         indel=[];
@@ -455,9 +451,10 @@ function cell(t,g,j,k){
         title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
         g.select("#c"+j.toString()).select(".span").remove();
         var p = g.attr("id").slice(1), //pair id
-            dat = experimentr.data()['mat'][Math.floor(p/6)],
+            dat = experimentr.data()[experimentr.data()['section']][Math.floor(p/6)],
             m = j>=2*cwidth.length ? j-cwidth.length : j+cwidth.length,
-            len = textbox.text().length,
+            //len = textbox.text().length,
+            len = t.length,
             $cel = g.select("#c"+j.toString()),
             $tb = $cel.append("text").attr("class","span"),
             t_j = j<2*cwidth.length ? dat[p%6][0][mapping[j%cwidth.length]] : dat[p%6][1][mapping[j%cwidth.length]],
@@ -468,9 +465,16 @@ function cell(t,g,j,k){
             if(t_j[l]==t_m[l] && t_j[l]!='T' && t_j[l]!='X'){scheme.push(0);}
             else{scheme.push(1);}
         }
+        if(trailing_.length+trailing.length>0){
+            console.log(t_j, t_m);
+        }
         var t_count = 0;
         for(var l=0;l<len;l++){
             if(t[l]!="_"){
+                if(experimentr.data()['mode']=="Full" && trailing.length+trailing_.length>0){
+                    if(trailing_.length>0){trailing_[0]=9;}
+                    if(trailing.length>0){trailing[0]=9;}
+                }
                 var $tspan = $tb.append('tspan').attr("class","char");
                 $tspan.attr("x",function(){if(title[j%cwidth.length]=="Race"){return "2em";}return 9*t_count+"px";}).attr("y",cy/2+5)
                     .style("font",function(){
@@ -484,7 +488,7 @@ function cell(t,g,j,k){
                         (j<2*cwidth.length && trailing.indexOf(l)>-1)||(j>2*cwidth.length && trailing_.indexOf(l)>-1))){return "bold";}})
                     .attr("fill",function(){
                         if((j<2*cwidth.length && indel.indexOf(l)>-1)||(j>2*cwidth.length && indel_.indexOf(l)>-1)||
-                            (j<2*cwidth.length && trailing.indexOf(l)>-1)||(j>2*cwidth.length && trailing_.indexOf(l)>-1)){return "#33ce45";}
+                            (j<2*cwidth.length && trailing.indexOf(l)>-1)||(j>2*cwidth.length && trailing_.indexOf(l)>-1)){console.log(indel,indel_,t.length);return "#33ce45";}
                         else if((j<2*cwidth.length && replace.indexOf(l)>-1)||(j>2*cwidth.length && replace_.indexOf(l)>-1)){return "#9b3d18";}
                         else if((j<2*cwidth.length && transpose.indexOf(l)>-1)||(j>2*cwidth.length && transpose_.indexOf(l)>-1)){return "#009fff";}
                         return "black";})
@@ -589,7 +593,7 @@ function pair(t,g,m){
 
         for(var j = 0;j<a;j++){
 
-            if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Group" && title[j] != "ID"){
+            if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Pair" && title[j] != "ID"){
                 if(row1[j] == row2[j] && row1[j]!=""){
                     row1[j] = " ";
                     row2[j] = " ";
@@ -615,6 +619,7 @@ function pair(t,g,m){
     else if(m=="Full"){
         for(var j=1;j<mapping.length;j++){
             k[a+j] = j<a ? 3:9;k[b+j] = j<a ? 3:9;
+
         }
         k1 = k.slice(a,b);k2 = k.slice(b,c);
     }else{
@@ -642,7 +647,7 @@ function pair(t,g,m){
             }
 
             for(var j = 0;j<a;j++){
-                if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Group" && title[j] != "ID"){
+                if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Pair" && title[j] != "ID"){
                     if(row1[j] == row2[j] && row1[j]!=""){
                         row1[j] = " ";
                         row2[j] = " ";
@@ -668,7 +673,7 @@ function pair(t,g,m){
 
             //for check mark
             for(var j = 0;j<a;j++){
-                if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Group" && title[j] != "ID"){
+                if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Pair" && title[j] != "ID"){
                     if(row1[j] == row2[j] && row1[j]!=""){
                         row1[j] = " ";
                         row2[j] = " ";
@@ -991,7 +996,9 @@ function grading(){
     experimentr.addData(data);
 }
 
-
+/*
+Parsing for practice part
+ */
 function parsing2(route, dest){
     d3.text(route, function (csvdata) {
         var groups = {};
@@ -1012,49 +1019,23 @@ function parsing2(route, dest){
         n_pair = raw_binary.length;
         var binary = [];
         var other = [];
-        var tmp = [];
-        //console.log(raw_binary.length);
+        var new_group = {};
+
         for (var i = 0; i < raw_binary.length; i++) {
-            // console.log(i);
-            // console.log(tmp);
-            // console.log(num_in_page[i]);
-            // console.log(raw_binary[i]);
-            if (tmp.length == 4) {
-                if(tmp.length<4){
-                    tmp.push(raw_binary[i]);
-                }
-                binary.push(tmp);
-                tmp = [raw_binary[i]];
-            } else {
-                tmp.push(raw_binary[i]);
+            var indice = raw_binary[i][0][raw_binary[i][0].length-2];
+            if(!(indice in new_group)){
+                new_group[indice] = [raw_binary[i]];
+            }else{
+                new_group[indice] = new_group[indice].concat([raw_binary[i]]);
             }
-            //console.log(raw_binary[i]);
         }
-        //console.log(tmp);
-        if (tmp != []) {
-            binary.push(tmp);
+        var keys = Object.keys(new_group);
+
+        for(var key in keys){
+            //console.log(key+1,new_group[+key+1]);
+            binary = binary.concat([new_group[+key+1]]);
         }
         binary.push([]);
-        tmp = values.filter(function (d) {
-            return d.length == 4;
-        });
-        for (var i = 0; i < tmp.length; i++) {
-            var t = [];
-            for (var j = 0; j < tmp[i].length / 2; j++) {
-                t.push([tmp[i][2 * j], tmp[i][2 * j + 1]]);
-            }
-            other.push(t);
-        }
-        tmp = values.filter(function (d) {
-            return d.length == 6;
-        });
-        for (var i = 0; i < tmp.length; i++) {
-            var t = [];
-            for (var j = 0; j < tmp[i].length / 2; j++) {
-                t.push([tmp[i][2 * j], tmp[i][2 * j + 1]]);
-            }
-            other.push(t);
-        }
         data[dest] = binary.concat(other);
         // answer keys
 

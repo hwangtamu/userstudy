@@ -43,6 +43,7 @@
 <script>
     (function(){
         $.getScript("javascript/misc/util.js");
+        experimentr.data()['section'] = 'practice';
         experimentr.hideNext();
         // pages
         var page_date = Date.now();
@@ -82,7 +83,7 @@
 
 
         add_mod_intros("practice_1.PNG");
-        console.log(experimentr.data()["practice"]);
+        //console.log(experimentr.data()["practice"]);
         setTimeout(
             pairs(experimentr.data()["practice"][0], 0, experimentr.data()["practice"][0].length, experimentr.data()["mode"]),
             200

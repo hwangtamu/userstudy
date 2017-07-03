@@ -193,27 +193,27 @@
         return [a, b];
     };
 
-//    var page_nums = [];
-//    var num_in_page = [];
-//    d3.csv("/data/practice.csv", function(error, data) {
-//        if (error) throw error;
-//        data.forEach(function(d) {
-//            page_nums.push(d['type']);
-//        });
-//        num_in_page_pairs = count(page_nums)[1];
-//        num_in_page_pairs.forEach(function(d) {
-//            num_in_page.push(d/2);
-//        });
-//        num_in_page_parsed = [];
-//        num_in_page.forEach(function(d) {
-//            for(var i=0;i<d;i++) {
-//                num_in_page_parsed.push(d);
-//            };
-//        });
-//        console.log(num_in_page_parsed);
+    var page_nums = [];
+    var num_in_page = [];
+    d3.csv("/data/practice.csv", function(error, data) {
+        if (error) throw error;
+        data.forEach(function(d) {
+            page_nums.push(d['type']);
+        });
+        num_in_page_pairs = count(page_nums)[1];
+        num_in_page_pairs.forEach(function(d) {
+            num_in_page.push(d/2);
+        });
+        num_in_page_parsed = [];
+        num_in_page.forEach(function(d) {
+            for(var i=0;i<d;i++) {
+                num_in_page_parsed.push(d);
+            };
+        });
+        console.log(experimentr.data());
 //        parsing("data/practice.csv","practice",num_in_page_parsed);
 //        parsing("data/practice.csv","practice");
-//    });
+    });
 
 
   function init() {
