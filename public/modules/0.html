@@ -23,7 +23,7 @@
 <div id="welcome">
     <h1>Introduction</h1>
     <h2>Thank you for participating in our user study. Next, let's go through the instructions of the record linkage interface.</h2><br> <br>
-        <iframe id="iframe_instruction" src = "resources/ViewerJS/#/resources/RL_disclosure.pdf" width='1300' height='800' allowfullscreen webkitallowfullscreen></iframe>
+        <iframe id="iframe_instruction" src = "resources/ViewerJS/#/resources/RL_intervention.pdf" width='1300' height='800' allowfullscreen webkitallowfullscreen></iframe>
 
 </div>
     <br>
@@ -36,14 +36,13 @@
     (function(){
         if(experimentr.data()["mode"]==="Vanilla"){
             console.log("Ho");
-            d3.select("#iframe_instruction").attr("src","resources/ViewerJS/#/resources/RL_no_disclosure.pdf");
+            d3.select("#iframe_instruction").attr("src","resources/ViewerJS/#/resources/RL_no_intervention.pdf");
         }
 
         experimentr.hideNext();
         function goToNext() {
             if(experimentr.data()["mode"]==="Vanilla" || experimentr.data()["mode"]==="Full"){
                 experimentr.sequence([
-                    'modules/practice.html',
                     'modules/5.html',
                     'modules/section2.html',
                     'modules/post_study_questionnaire.html',
