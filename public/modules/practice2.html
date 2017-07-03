@@ -44,10 +44,6 @@
     (function(){
         $.getScript("javascript/misc/util.js");
         experimentr.data()['section'] = 'practice';
-        var mode = experimentr.data()["mode"];
-        if(experimentr.data()["mode"] != "Vanilla") {
-            experimentr.data()["mode"] = "Full";
-        }
         experimentr.hideNext();
         // pages
         var page_date = Date.now();
@@ -65,29 +61,29 @@
 
             d3.select("#notation").select(".image").remove();
             var svg = d3.select("#notation")
-                        .append("svg")
-                        .attr("class", "image")
-                        .attr("width", 1800)
-                        .attr("height", 550);
-                         svg.append("svg:image")
-                            .attr("xlink:href","/resources/module_intros/"+img_address)
-                            .attr("x",x)
-                            .attr("y",y)
-                            .attr("width",width)
-                            .attr("height",height);
-                        svg.append("rect")
-                            .attr("x", x)
-                            .attr("y", y)
-                            .attr("height", height)
-                            .attr("width", width)
-                            .style("stroke", "black")
-                            .style("fill", "none");
+                .append("svg")
+                .attr("class", "image")
+                .attr("width", 1800)
+                .attr("height", 550);
+            svg.append("svg:image")
+                .attr("xlink:href","/resources/module_intros/"+img_address)
+                .attr("x",x)
+                .attr("y",y)
+                .attr("width",width)
+                .attr("height",height);
+            svg.append("rect")
+                .attr("x", x)
+                .attr("y", y)
+                .attr("height", height)
+                .attr("width", width)
+                .style("stroke", "black")
+                .style("fill", "none");
 //                    .style("stroke-width", "20px");
         }
 
 
         add_mod_intros("practice_1.PNG");
-        //console.log(experimentr.data()["practice"]);
+        console.log(experimentr.data()["practice"]);
         setTimeout(
             pairs(experimentr.data()["practice"][0], 0, experimentr.data()["practice"][0].length, experimentr.data()["mode"]),
             200
@@ -98,7 +94,7 @@
         }
 
         function goToNext() {
-            experimentr.data()["mode"] = mode;
+//            experimentr.data()["mode"] = mode;
             if(experimentr.data()["mode"]==="Vanilla" || experimentr.data()["mode"]==="Full") {
                 experimentr.sequence([
                     'modules/5.html',

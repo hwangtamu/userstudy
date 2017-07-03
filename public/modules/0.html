@@ -41,17 +41,17 @@
 
         experimentr.hideNext();
         function goToNext() {
-            if(experimentr.data()["mode"]==="Vanilla" || experimentr.data()["mode"]==="Full"){
-                experimentr.sequence([
-                    'modules/5.html',
-                    'modules/section2.html',
-                    'modules/post_study_questionnaire.html',
-                    'modules/end.html'
-                ]).start();
-            }
-            else{
+//            if(experimentr.data()["mode"]==="Vanilla" || experimentr.data()["mode"]==="Full"){
+//                experimentr.sequence([
+//                    'modules/5.html',
+//                    'modules/section2.html',
+//                    'modules/post_study_questionnaire.html',
+//                    'modules/end.html'
+//                ]).start();
+//            }
+//            else{
                 experimentr.next();
-            }
+//            }
 
         }
         d3.select('#submitComments')
