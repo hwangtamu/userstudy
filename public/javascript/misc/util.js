@@ -190,7 +190,6 @@ function cell(t,g,j,k){
                 else if(title[j%cwidth.length]!="DoB(M/D/Y)"){return cwidth[j%cwidth.length]/3;}
                     return 40;})
                 .attr("y",cy/2-5).attr("width",18).attr("height",18);
-
         }else{
             var num = 0;
             if(swap==0 && title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="FFreq" && title[j%cwidth.length]!="LFreq"){
@@ -200,7 +199,7 @@ function cell(t,g,j,k){
                     t_j = dat[p%6][0][mapping[j%cwidth.length]],
                     t_m = dat[p%6][1][mapping[m%cwidth.length]],
                     bin = [];
-                //console.log(t_j, t_m);
+                //console.log(dat[p%6][0][12]);
                 if(title[j%cwidth.length]!="Pair" && t_j.indexOf("*")==-1 && t_m.indexOf("*")==-1 && t_j.trim()!="" && t_m.trim()!=""){
                     //var len = (t_j.length<=t_m.length?t_j.length:t_m.length)/2;
                     //console.log(t_j, t_m);
@@ -213,7 +212,6 @@ function cell(t,g,j,k){
                             else if(title[j%cwidth.length]=="Reg No."){return 28;}
                                 return 20;})
                             .attr("y", cy / 2 + 5).attr("width", 35).attr("height", 35);
-
                     }
                 } else {
                     if(t_j!="" && t_m!="") {
@@ -462,9 +460,9 @@ function cell(t,g,j,k){
             if(t_j[l]==t_m[l] && t_j[l]!='T' && t_j[l]!='X'){scheme.push(0);}
             else{scheme.push(1);}
         }
-        if(trailing_.length+trailing.length>0){
-            console.log(t_j, t_m);
-        }
+        //if(trailing_.length+trailing.length>0){
+        //    console.log(t_j, t_m);
+        //}
         var t_count = 0;
         for(var l=0;l<len;l++){
             if(t[l]!="_"){
@@ -481,7 +479,7 @@ function cell(t,g,j,k){
                         (j<2*cwidth.length && trailing.indexOf(l)>-1)||(j>2*cwidth.length && trailing_.indexOf(l)>-1))){return "bold";}})
                     .attr("fill",function(){
                         if((j<2*cwidth.length && indel.indexOf(l)>-1)||(j>2*cwidth.length && indel_.indexOf(l)>-1)||
-                            (j<2*cwidth.length && trailing.indexOf(l)>-1)||(j>2*cwidth.length && trailing_.indexOf(l)>-1)){console.log(t);return "#33ce45";}
+                            (j<2*cwidth.length && trailing.indexOf(l)>-1)||(j>2*cwidth.length && trailing_.indexOf(l)>-1)){return "#33ce45";}
                         else if((j<2*cwidth.length && replace.indexOf(l)>-1)||(j>2*cwidth.length && replace_.indexOf(l)>-1)){return "#9b3d18";}
                         else if((j<2*cwidth.length && transpose.indexOf(l)>-1)||(j>2*cwidth.length && transpose_.indexOf(l)>-1)){return "#009fff";}
                         return "black";})
@@ -621,7 +619,7 @@ function pair(t,g,m){
                                 row1[j] = row1[j].slice(0,i)+"_"+row1[j].slice(i)
                             }
                         }
-                        console.log(row1[j], row1[mapping[j]]);
+                        //console.log(row1[j], row1[mapping[j]]);
                     }
                     if(row2[j].length!=row2[mapping[j]].length){
                         for(var i=0;i<row2[mapping[j]].length;i++){
@@ -629,7 +627,7 @@ function pair(t,g,m){
                                 row2[j] = row2[j].slice(0,i)+"_"+row2[j].slice(i)
                             }
                         }
-                        console.log(row2[j], row2[mapping[j]]);
+                        //console.log(row2[j], row2[mapping[j]]);
                     }
 
                 }
