@@ -83,9 +83,9 @@
 
 
         add_mod_intros("practice_1.PNG");
-        console.log(experimentr.data()["practice"]);
+        console.log(experimentr.data()["practice2"]);
         setTimeout(
-            pairs(experimentr.data()["practice"][0], 0, experimentr.data()["practice"][0].length, experimentr.data()["mode"]),
+            pairs(experimentr.data()["practice2"][0], 0, experimentr.data()["practice2"][0].length, experimentr.data()["mode"]),
             200
         );
 
@@ -111,7 +111,7 @@
             .on('click', function () {
 //                console.log(step);
                 d3.select('#submitComments').style("left","2.5%");
-                if(step==experimentr.data()["practice"].length-1){
+                if(step==experimentr.data()["practice2"].length-1){
                     goToNext();
                 }else {
                     if(sec_switch==1){
@@ -126,7 +126,7 @@
                         d3.select("#notation").html("");
                         add_mod_intros("practice_"+(step+1)+".PNG");
                         setTimeout(
-                            pairs(experimentr.data()["practice"][step], step, experimentr.data()["practice"][step].length, experimentr.data()["mode"]),
+                            pairs(experimentr.data()["practice2"][step], step, experimentr.data()["practice2"][step].length, experimentr.data()["mode"]),
                             200
                         );
 
