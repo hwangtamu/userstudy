@@ -63,6 +63,17 @@
 //                goToNext();
 //            });
 
+        function delay_next(time){
+            d3.select("#submitComments").attr("disabled","true");
+            d3.select("#submitComments").style("color","#b3b3b3");
+            setTimeout(function(){
+                d3.select("#submitComments").attr("disabled",null);
+                d3.select("#submitComments").style("color","black");
+            },time);
+        }
+
+        delay_next(1000);
+
         d3.select('#submitComments').style('color', "#b3b3b3");
         function validate() {
             if (cbox1.property("value")==1){

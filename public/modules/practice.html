@@ -53,6 +53,17 @@
         var page_date = Date.now();
 //        parsing("data/practice2.csv","practice");
 
+        function delay_next(time){
+            d3.select("#submitComments").attr("disabled","true");
+            d3.select("#submitComments").style("color","#b3b3b3");
+            setTimeout(function(){
+                d3.select("#submitComments").attr("disabled",null);
+                d3.select("#submitComments").style("color","black");
+            },time);
+        }
+
+        delay_next(1000);
+
         console.log("practice");
         var step = 1;
         var sec_switch = 1;
@@ -124,6 +135,7 @@
                         add_mod_intros("practice_2a_section.PNG");
                         sec_switch = 0;
                         d3.select('#submitComments').style("left","50%");
+                        delay_next(1000);
 //                        step=0;
                     } else {
                         d3.selectAll(".blocks").remove();
@@ -138,6 +150,7 @@
                             d3.selectAll(".icon").remove();
                         }
 
+                        delay_next(2000);
 //                        sec_switch=0;
                         step = step + 1;
                     }
