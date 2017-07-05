@@ -27,7 +27,7 @@
 <body>
 <div id="container">
     <div id="instruction" style="text-align:center;">
-        <h3>Section 2</h3>
+        <h3>Section <button style="background:none; border:none; margin:0; padding:0;" id="summonEnd">2</button></h3>
         <div id="notation" style="text-align:left;">
             <!--<label id="page"></label>-->
         </div>
@@ -47,14 +47,36 @@
         experimentr.hideNext();
         console.log("in");
         parsing("data/section2.csv","section2");
+        experimentr.data()['section'] = 'mat';
         var step = 0;
         d3.select("#endStudy").style("visibility","hidden");
+
+        function delay_next(time){
+            d3.select("#submitComments").attr("disabled","true");
+            d3.select("#submitComments").style("color","#b3b3b3");
+            setTimeout(function(){
+                d3.select("#submitComments").attr("disabled",null);
+                d3.select("#submitComments").style("color","black");
+            },time);
+        }
+
+        delay_next(1000);
 
         function goToNext() {
             experimentr.next();
         };
 
        d3.select("#notation").append("h4").text("Now you are moving to section 2.").style("text-align","center");
+
+       d3.select("#summonEnd").on('click', function(){
+           console.log((Date.now()-experimentr.data()["time_of_website_start"])/(1000*60));
+           if(((Date.now()-experimentr.data()["time_of_website_start"])/(1000*60)) > 0.2){
+               console.log("time elapsed");
+               d3.select("#endStudy").style("visibility", "visible");
+           } else {
+               console.log("time not elapsed");
+           }
+       });
 
         d3.select('#endStudy')
             .on('click', function () {
@@ -66,18 +88,13 @@
                 console.log(step);
                 d3.select('#submitComments').style("position","absolute").style("left","90px");
 //                console.log(Date.now());
-                console.log((Date.now()-experimentr.data()["time_of_website_start"])/(1000*60));
-                if(((Date.now()-experimentr.data()["time_of_website_start"])/(1000*60)) > 0.2){
-                    console.log("time elapsed");
-                    d3.select("#endStudy").style("visibility", "visible");
-                } else {
-                    console.log("time not elapsed");
-                };
+
 
                 if(step==experimentr.data()["section2"].length-1){
                     goToNext();
                 }else {
-                    d3.select("#notation").text("Page " + (step + 1).toString() + "/" + (experimentr.data()['section2'].length - 1).toString());
+//                    d3.select("#notation").text("Page " + (step + 1).toString() + "/" + (experimentr.data()['section2'].length - 1).toString());
+                    d3.select("#notation").html("");
                     setTimeout(function () {
                         d3.selectAll(".blocks").remove();
                         console.log(experimentr.data()["section2"][step-1]);
@@ -86,6 +103,8 @@
                             d3.selectAll(".icon").remove();
                         }
                     }, 100);
+
+                    delay_next(2000);
                     step += 1;
                  }
                 // time elapse

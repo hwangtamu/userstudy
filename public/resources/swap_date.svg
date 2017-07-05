@@ -4,7 +4,7 @@
 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="600" height="600" viewBox="0 0 600 600" style="enable-background:new 0 0 600 600;" xml:space="preserve">
 	<g>       
-		<path d="M0 0 h600 L600 600 L0 600 Z" fill="none" stroke="blue"/>
+		<!--<path d="M0 0 h600 L600 600 L0 600 Z" fill="none" stroke="blue"/>-->
 
 		<!-- <g transform="scale(2,2)"> -->
 			<!-- <g transform="translate(50,50)"> -->

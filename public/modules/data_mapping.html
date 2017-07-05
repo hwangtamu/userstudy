@@ -19,18 +19,22 @@
     }
 </style>
 <body>
-<div id="container" style="text-align:center;">
+<div id="container" style="text-align:left;">
     <div id="welcome">
-        <h1>Privacy</h1>
-        <h4>Please use the arrow keys in the bottom left portion of the slideshow viewer to view the instructions</h4><br> <br>
-        <iframe id="iframe_instruction" src = "resources/ViewerJS/#/resources/RL_disclosure.pdf" width='1300' height='800' allowfullscreen webkitallowfullscreen></iframe>
+        <iframe id="iframe_instruction" src = "resources/ViewerJS/#/resources/RL_disclosure.pdf" width='1200' height='750' allowfullscreen webkitallowfullscreen></iframe>
+        <svg width="5cm" height="1cm" version="1.1"
+             xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink">
+            <image href="/resources/up_arrow.png" x="10px" y="0" height="50px" width="50px"/>
+        </svg>
+        <h4 style="position:absolute; left:65px;">Please use the <img src="/resources/slide_control.png" height="30px" width="55px"/> controls above in the slideshow viewer to view the instructions</h4>
+
     </div>
     <br><br>
     <div>
         <label id="check"><input type="checkbox" id="cbox1" value=-1 >
             <strong>
                 I have viewed all the slides and I am aware of the instructions.
-            </strong></label><br><br>
+            </strong></label><br>
         <button id="submitComments" type="button" class="start-button" disabled="true">Next</button>
         <br><br>
     </div>
@@ -39,6 +43,7 @@
 </html>
 <script>
 
+//    window.alert("Please use the arrow keys in the bottom left portion of the slideshow viewer which will appear, to move around the slides. Once you have completed viewing all the instructions, check the box to acknowledge and click on Next");
     (function(){
         if(experimentr.data()["mode"]==="Opti1"){
             d3.select("#iframe_instruction").attr("src","resources/ViewerJS/#/resources/mode_3_data_mapping.pdf");
@@ -57,6 +62,17 @@
 //            .on('click', function () {
 //                goToNext();
 //            });
+
+        function delay_next(time){
+            d3.select("#submitComments").attr("disabled","true");
+            d3.select("#submitComments").style("color","#b3b3b3");
+            setTimeout(function(){
+                d3.select("#submitComments").attr("disabled",null);
+                d3.select("#submitComments").style("color","black");
+            },time);
+        }
+
+        delay_next(1000);
 
         d3.select('#submitComments').style('color', "#b3b3b3");
         function validate() {
