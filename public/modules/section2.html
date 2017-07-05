@@ -47,6 +47,7 @@
         experimentr.hideNext();
         console.log("in");
         parsing("data/section2.csv","section2");
+        experimentr.data()['section'] = 'mat';
         var step = 0;
         d3.select("#endStudy").style("visibility","hidden");
 
@@ -63,7 +64,7 @@
                d3.select("#endStudy").style("visibility", "visible");
            } else {
                console.log("time not elapsed");
-           };
+           }
        });
 
         d3.select('#endStudy')

@@ -46,6 +46,17 @@
         var step = 0,
             sec_switch = 0;
 
+        function delay_next(time){
+            d3.select("#submitComments").attr("disabled","true");
+            d3.select("#submitComments").style("color","#b3b3b3");
+            setTimeout(function(){
+                d3.select("#submitComments").attr("disabled",null);
+                d3.select("#submitComments").style("color","black");
+            },time);
+        }
+
+        delay_next(1000);
+
         function add_mod_intros(img_address){
             var height = "550px",
                 width = "1000px",
@@ -127,6 +138,7 @@
 //                                console.log("end");
 //                                break;
 //                        }
+                        delay_next(1000);
                         sec_switch = 0
                     } else {
 
@@ -139,6 +151,8 @@
                                 d3.selectAll(".icon").remove();
                             }
                         }, 100);
+
+                        delay_next(2000);
 
                         step += 1;
                         sec_switch = 1;
