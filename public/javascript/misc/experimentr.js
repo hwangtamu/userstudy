@@ -88,6 +88,9 @@ experimentr = function() {
     if('mat' in tmp){
       delete tmp['mat'];
     }
+    //if('practice' in tmp){
+    //  delete tmp['practice'];
+    //}
     d3.xhr('/')
       .header("Content-Type", "application/json")
       .post(JSON.stringify(tmp), function(err, res) {

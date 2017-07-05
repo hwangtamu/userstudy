@@ -43,13 +43,15 @@
 <script>
     (function(){
         $.getScript("javascript/misc/util.js");
-        experimentr.data()['section'] = 'practice';
+        experimentr.data()['section'] = 'practice2';
         experimentr.hideNext();
         // pages
         var page_date = Date.now();
 //        parsing("data/practice2.csv","practice");
 
         console.log("practice");
+        console.log(experimentr.data()[experimentr.data()["section"]]);
+
         var step = 1;
         var sec_switch = 1;
 
@@ -83,10 +85,11 @@
 
 
         add_mod_intros("practice_1.PNG");
-        console.log(experimentr.data()["practice"]);
+        //pairs(experimentr.data()["practice"][0], 0, experimentr.data()["practice"][0].length, experimentr.data()["mode"]);
+
         setTimeout(
-            pairs(experimentr.data()["practice"][0], 0, experimentr.data()["practice"][0].length, experimentr.data()["mode"]),
-            200
+            pairs(experimentr.data()["practice2"][0], 0, experimentr.data()["practice2"][0].length, experimentr.data()["mode"]),
+            500
         );
 
         if (experimentr.data()["mode"] == "Vanilla") {
@@ -126,7 +129,7 @@
                         d3.select("#notation").html("");
                         add_mod_intros("practice_"+(step+1)+".PNG");
                         setTimeout(
-                            pairs(experimentr.data()["practice"][step], step, experimentr.data()["practice"][step].length, experimentr.data()["mode"]),
+                            pairs(experimentr.data()["practice2"][step], step, experimentr.data()["practice2"][step].length, experimentr.data()["mode"]),
                             200
                         );
 
