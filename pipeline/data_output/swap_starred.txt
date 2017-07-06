@@ -1,0 +1,3 @@
+Group ID,Reg No.,FF,First Name,Last Name,LF,DoB,Race,Reg No.,First Name,Last Name,DoB,Race,Record ID,type,Same
+2,0000006947,1,BRYANT,MADELINE,1,02/05/1962,W,**********,BRYANT,MADELINE,02/05/**62,*,2,1,1
+2,0000006947,3,MADELINE,BRYANT,69,05/02/1926,W,**********,MADELINE,BRYANT,05/02/**26,*,2,1,1
