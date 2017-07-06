@@ -3,7 +3,7 @@
 /**
  * Created by hanwang on 1/23/17.
  */
-var title = ["Pair","Reg No.","FFreq","First name","Last name","LFreq","DoB(M/D/Y)","Race","ID"];
+var title = ["Pair","ID","FFreq","First name","Last name","LFreq","DoB(M/D/Y)","Race","ID."];
 var cwidth = [60,20,100,60,200,200,150,100,100]; //870
 var height = 24; //height per row 0 30 57
 var ys = [0,30,77];
@@ -60,8 +60,8 @@ function cell(t,g,j,k){
     var textbox = cel.append("text").attr("class","tbox").attr("id","t"+j.toString());
     textbox.attr("x",function(){
         //if(k==3 && (title[j%10]=="FFreq"||title[j%10]=="LFreq"||
-        //title[j%10]=="ID")){return cx/2;}
-        if(t=="Reg No."){return 18;}
+        //title[j%10]=="ID.")){return cx/2;}
+        if(t=="ID"){return 18;}
         if(t=="Race"){return 20;}
         if(k==2){return cx/2;}
         return 0;})
@@ -69,7 +69,7 @@ function cell(t,g,j,k){
         .attr("y",function(){if(k==2){return cy/2+28;}if(k==1||k==3||k==4||k==5||k==6){return cy/2+5;}})
         .attr("text-anchor",function(){
             //if(k==3 && (title[j%10]=="FFreq"||title[j%10]=="LFreq"||j%10==0||
-            //title[j%10]=="ID")){return "middle";}
+            //title[j%10]=="ID.")){return "middle";}
             if(k==2){return "middle";}
             // || title[j%cwidth.length]=="Race"
             return "left";})
@@ -78,7 +78,7 @@ function cell(t,g,j,k){
             if(experimentr.data()['os']=="Linux"){return "16px Lucida Sans Typewriter";}
             return "16px Lucida Console";})//.style("font-weight","bold")
         .text(function(){
-            if(title[j%cwidth.length]=="ID"){return " ";}
+            if(title[j%cwidth.length]=="ID."){return " ";}
             else if(k==0||(index_r>0 && k==1)){return " ";}
             else if(k==3 && (title[j%cwidth.length]=="FFreq"||title[j%cwidth.length]=="LFreq")){
                 //if(d3.select(this.parentNode.previousSibling).select("text").text()==""){return "NA";}
@@ -171,7 +171,7 @@ function cell(t,g,j,k){
                 // missing
                 cel.append("svg:image").attr("xlink:href","/resources/missing.png").attr("class","icon")
                     .attr("x",function(){
-                        if(title[j%cwidth.length]=="Reg No."){return 36;}
+                        if(title[j%cwidth.length]=="ID"){return 36;}
                         else if(title[j%cwidth.length]!="DoB(M/D/Y)"){return cwidth[j%cwidth.length]/3;}
                         return 40;})
                     .attr("y",cy/2-9).attr("width",18).attr("height",18);
@@ -182,17 +182,17 @@ function cell(t,g,j,k){
         //    cel.append("svg:image").attr("xlink:href","/resources/checkmark.png").attr("class","icon")
         //        .attr("x",function(){if(title[j%cwidth.length]!="DoB(M/D/Y)"){return cwidth[j%cwidth.length]/3;}return 40;})
         //        .attr("y",cy/2+15).attr("width",18).attr("height",18);
-        else if(textbox.text()==" " && title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="Pair"){
+        else if(textbox.text()==" " && title[j%cwidth.length]!="ID." && title[j%cwidth.length]!="Pair"){
             // double check mark
             cel.append("svg:image").attr("xlink:href","/resources/checkmark.png").attr("class","icon")
                 .attr("x",function(){if(title[j%cwidth.length]=="First name"||title[j%cwidth.length]=="Last name"){return 0;}
-                else if(title[j%cwidth.length]=="Reg No."){return 35;}
+                else if(title[j%cwidth.length]=="ID"){return 35;}
                 else if(title[j%cwidth.length]!="DoB(M/D/Y)"){return cwidth[j%cwidth.length]/3;}
                     return 40;})
                 .attr("y",cy/2-5).attr("width",18).attr("height",18);
         }else{
             var num = 0;
-            if(swap==0 && title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="FFreq" && title[j%cwidth.length]!="LFreq"){
+            if(swap==0 && title[j%cwidth.length]!="ID." && title[j%cwidth.length]!="FFreq" && title[j%cwidth.length]!="LFreq"){
                 var m = j+cwidth.length,
                     p = g.attr("id").slice(1),
                     dat = experimentr.data()[experimentr.data()['section']][Math.floor(p/6)],
@@ -209,7 +209,7 @@ function cell(t,g,j,k){
                             .attr("class", "icon")
                             .attr("x", function(){if(title[j%cwidth.length]=="First name"||title[j%cwidth.length]=="Last name"){return 0;}
                             else if(title[j%cwidth.length]=="DoB(M/D/Y)"){return 25;}
-                            else if(title[j%cwidth.length]=="Reg No."){return 28;}
+                            else if(title[j%cwidth.length]=="ID"){return 28;}
                                 return 20;})
                             .attr("y", cy / 2 + 5).attr("width", 35).attr("height", 35);
                     }
@@ -260,7 +260,7 @@ function cell(t,g,j,k){
 
                             //replace
                             else if (bin.indexOf(i) == -1 && t_j[i] != t_m[i] && t_j[i] != " " && t_m[i] != " ") {
-                                if(title[j%cwidth.length]!="Reg No." || (title[j%cwidth.length]=="Reg No." &&
+                                if(title[j%cwidth.length]!="ID" || (title[j%cwidth.length]=="ID" &&
                                     (j<10 || Math.max(t_j.length, t_m.length)<=10))){
                                     bin.push(i);
                                     replace.push(i);
@@ -406,7 +406,7 @@ function cell(t,g,j,k){
             if(j>2*cwidth.length){t = '&';}
             else if(j>cwidth.length){t = '@';}
         }
-        if(["Full", "Opti2"].indexOf(experimentr.data()['mode'])<0 && title[j%cwidth.length]=="Reg No."){
+        if(["Full", "Opti2"].indexOf(experimentr.data()['mode'])<0 && title[j%cwidth.length]=="ID"){
             if(j>2*cwidth.length){t = t.replace(/[A-Z0-9]/g, '&');}
             else if(j>cwidth.length){t = t.replace(/[A-Z0-9]/g, '@');}
         }
@@ -443,7 +443,7 @@ function cell(t,g,j,k){
     //     }
     // }
     if((experimentr.data()['mode']!="Vanilla") && k>=3 && k<=6 &&
-        title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
+        title[j%cwidth.length]!="ID." && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
         g.select("#c"+j.toString()).select(".span").remove();
         var p = g.attr("id").slice(1), //pair id
             dat = experimentr.data()[experimentr.data()['section']][Math.floor(p/6)],
@@ -493,7 +493,7 @@ function cell(t,g,j,k){
     // coloring text
     /*
      if(experimentr.data()['mode']!="Full"
-     &&(k==6||k==3)&&title[j%cwidth.length]!="ID" && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
+     &&(k==6||k==3)&&title[j%cwidth.length]!="ID." && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
      textbox.attr("opacity",0);
      g.select("#c"+j.toString()).select(".span").remove();
      var p = g.attr("id").slice(1), //pair id
@@ -584,7 +584,7 @@ function pair(t,g,m){
 
         for(var j = 0;j<a;j++){
 
-            if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Pair" && title[j] != "ID"){
+            if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Pair" && title[j] != "ID."){
                 if(row1[j] == row2[j] && row1[j]!=""){
                     row1[j] = " ";
                     row2[j] = " ";
@@ -611,7 +611,7 @@ function pair(t,g,m){
         for(var j=1;j<mapping.length;j++){
             k[a+j] = j<a ? 3:9;k[b+j] = j<a ? 3:9;
             if(j<cwidth.length){
-                if(["First name", "Last name", "Reg No."].indexOf(title[j%cwidth.length])>-1){
+                if(["First name", "Last name", "ID"].indexOf(title[j%cwidth.length])>-1){
                     //console.log(t[a+j].length, t[a+mapping[j]].length, t[b+j].length, t[b+mapping[j]].length);
                     if(row1[j].length!=row1[mapping[j]].length){
                         for(var i=0;i<row1[mapping[j]].length;i++){
@@ -659,7 +659,7 @@ function pair(t,g,m){
             }
 
             for(var j = 0;j<a;j++){
-                if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Pair" && title[j] != "ID"){
+                if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Pair" && title[j] != "ID."){
                     if(row1[j] == row2[j] && row1[j]!=""){
                         row1[j] = " ";
                         row2[j] = " ";
@@ -685,7 +685,7 @@ function pair(t,g,m){
 
             //for check mark
             for(var j = 0;j<a;j++){
-                if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Pair" && title[j] != "ID"){
+                if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Pair" && title[j] != "ID."){
                     if(row1[j] == row2[j] && row1[j]!=""){
                         row1[j] = " ";
                         row2[j] = " ";

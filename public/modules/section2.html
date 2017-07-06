@@ -36,7 +36,7 @@
     </div>
     <br>
     <button id="submitComments" class="next-button" type="button">Submit</button>
-    <button id="endStudy" class="next-button" type="button" style="position: absolute; left: 1600px;">End Study</button><br>
+    <button id="endStudy" class="next-button" type="button" style="position: absolute; left: 1600px; top: 25px;">End Study</button><br>
 </div>
 <br>
 </body>
@@ -47,9 +47,10 @@
         experimentr.hideNext();
         console.log("in");
         parsing("data/section2.csv","section2");
-        experimentr.data()['section'] = 'mat';
+        experimentr.data()['section'] = 'section2';
         var step = 0;
         d3.select("#endStudy").style("visibility","hidden");
+        console.log(experimentr.data()["section2"]);
 
         function delay_next(time){
             d3.select("#submitComments").attr("disabled","true");
