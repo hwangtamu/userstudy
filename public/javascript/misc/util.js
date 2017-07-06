@@ -836,6 +836,7 @@ function choices(svg, lBound, scale, mode, yt) {
     var clk = '';
     if(sec=='mat'){clk='clicks';}
     if(sec=='practice'){clk='practice_clicks';}
+    if(sec=='practice2'){clk='practice_clicks';}
     if(sec=='section2'){clk='s2_clicks';}
     for(var m=0;m<6;m++){
         var radioButton = buttons.append("g").attr("transform","translate("+x[m]*scale+","+y*scale+")");

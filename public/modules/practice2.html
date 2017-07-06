@@ -165,7 +165,7 @@
                 }
                 restore = answer;
                 if(text.length==0){
-                    text = ['Well done!', 'All the answers are correct.','Please click "Next" button again to proceed.'];
+                    text = ['Well done!', 'All the answers are correct.','Please click "Next" button to proceed.'];
                     d3.select("#submitComments").attr("disabled",null);
                     d3.select("#submitComments").style("color","black");
                     restore = {};
@@ -181,8 +181,8 @@
                         .attr("dy",((-(text.length-1)/2+i)*1.5).toString()+"em")
                         .text(text[i])
                 }
-                console.log(text);
-                console.log(score, d3.select("#table").selectAll(".blocks")[0].length);
+                //console.log(text);
+                //console.log(score, d3.select("#table").selectAll(".blocks")[0].length);
 
             });
         d3.select('#submitComments')
