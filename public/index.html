@@ -50,6 +50,19 @@
 
 <script>
 
+    var sequence = [
+        'modules/consent.html',                      //0
+        'modules/pre_study_questionnaire.html',      //1
+        'modules/training.html',                     //2
+        'modules/0.html',                            //3
+        'modules/practice.html',                     //4
+        'modules/data_mapping.html',                 //5
+        'modules/practice2.html',                    //6
+        'modules/5.html',                            //7
+        'modules/post_study_questionnaire.html',     //8
+        'modules/section2.html',                     //9
+        'modules/end.html'                           //10
+    ];
 
     var QueryString = function () {
         // This function is anonymous, is executed immediately and
@@ -104,18 +117,15 @@
 
     console.log("The mode is "+find_mode(mode));
     experimentr.data()['mode'] = find_mode(mode);
-        experimentr.data()['mode_number'] = mode;
-    experimentr.sequence([
-        'modules/consent.html',
-        'modules/pre_study_questionnaire.html',
-        'modules/training.html',
-        'modules/0.html',
-        'modules/practice.html',
-        'modules/data_mapping.html',
-        'modules/practice2.html',
-        'modules/5.html',
-        'modules/post_study_questionnaire.html',
-        'modules/section2.html',
-        'modules/end.html'
-    ]).start();
+    experimentr.data()['mode_number'] = mode;
+    experimentr.data()['id'] = QueryString.id;
+    console.log("Skipping to section ",+QueryString.section);
+    if(!isNaN(QueryString.section)){
+        sequence = sequence.slice(QueryString.section);
+//        console.log(sequence);
+        sequence.splice(0, 0, "modules/consent.html");
+        console.log(sequence);
+    }
+
+    experimentr.sequence(sequence).start();
 </script>

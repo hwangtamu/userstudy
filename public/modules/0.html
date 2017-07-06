@@ -50,22 +50,9 @@
 
     (function(){
         if(experimentr.data()["mode"]==="Vanilla"){
-            console.log("Ho");
             d3.select("#iframe_instruction").attr("src","resources/ViewerJS/#/resources/RL_no_intervention.pdf");
         }
-//
-//        window.alert("Please use the arrow keys in the bottom left portion of the slideshow viewer which will appear, to move around the slides. Once you have completed viewing all the instructions, check the box to acknowledge and click on Next");
 
-        function delay_next(time){
-            d3.select("#submitComments").attr("disabled","true");
-            d3.select("#submitComments").style("color","#b3b3b3");
-            setTimeout(function(){
-                d3.select("#submitComments").attr("disabled",null);
-                d3.select("#submitComments").style("color","black");
-            },time);
-        }
-
-        delay_next(250);
 
         experimentr.hideNext();
 //        function goToNext() {
