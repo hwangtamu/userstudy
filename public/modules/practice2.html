@@ -162,8 +162,8 @@
                 }
                 if(Object.keys(answer).length < d3.selectAll(".blocks")[0].length){
                     text = ['You have to answer all the questions to proceed.'];
-
                 }
+                restore = answer;
                 if(text.length==0){
                     text = ['Well done!', 'All the answers are correct.','Please click "Next" button again to proceed.'];
                     d3.select("#submitComments").attr("disabled",null);
