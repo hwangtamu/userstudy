@@ -57,18 +57,18 @@
         // pages
         var page_date = Date.now();
 //        parsing("data/practice2.csv","practice");
-        d3.select("#submitComments").attr("disabled","true");
-        d3.select("#submitComments").style("color","#b3b3b3");
-        function delay_next(time){
-            d3.select("#submitAnswers").attr("disabled","true");
-            d3.select("#submitAnswers").style("color","#b3b3b3");
-            setTimeout(function(){
-                d3.select("#submitAnswers").attr("disabled",null);
-                d3.select("#submitAnswers").style("color","black");
-            },time);
-        }
-
-        delay_next(250);
+//        d3.select("#submitComments").attr("disabled","true");
+//        d3.select("#submitComments").style("color","#b3b3b3");
+//        function delay_next(time){
+//            d3.select("#submitAnswers").attr("disabled","true");
+//            d3.select("#submitAnswers").style("color","#b3b3b3");
+//            setTimeout(function(){
+//                d3.select("#submitAnswers").attr("disabled",null);
+//                d3.select("#submitAnswers").style("color","black");
+//            },time);
+//        }
+//
+//        delay_next(250);
 
         console.log("practice");
         var step = 1;
@@ -137,7 +137,7 @@
                 experimentr.next();
             }
         }
-        var restore = {}
+        var restore = {};
         d3.select('#submitAnswers')
             .on('click', function(){
                 var prev = start;
