@@ -12,7 +12,7 @@
             #submitComments {
                 position: relative;
                 left: 50%;
-                transform: translate(-50%, 0%);
+                /*transform: translate(-50%, 0%);*/
             }
             body{
                 color:#000;
@@ -35,7 +35,10 @@
         <div id="table"></div>
     </div>
     <br>
-    <button id="submitComments" class="next-button" type="button" style="left: 45px">Submit</button><br><br>
+    <button id="submitAnswers" class="next-button" type="button" style="left: 45px">Submit</button>
+    <!--<button id="submitComments" class="next-button" type="button" style="float: right;">Next</button><br><br>-->
+    <button id="submitComments" class="next-button" type="button">Next</button><br><br>
+
 </div>
 <br>
 </body>
@@ -49,30 +52,33 @@
             experimentr.data()["mode"] = "Full";
         }
         experimentr.hideNext();
+        d3.select('#submitComments').style("left","2.5%");
+
         // pages
         var page_date = Date.now();
 //        parsing("data/practice2.csv","practice");
-
+        d3.select("#submitComments").attr("disabled","true");
+        d3.select("#submitComments").style("color","#b3b3b3");
         function delay_next(time){
-            d3.select("#submitComments").attr("disabled","true");
-            d3.select("#submitComments").style("color","#b3b3b3");
+            d3.select("#submitAnswers").attr("disabled","true");
+            d3.select("#submitAnswers").style("color","#b3b3b3");
             setTimeout(function(){
-                d3.select("#submitComments").attr("disabled",null);
-                d3.select("#submitComments").style("color","black");
+                d3.select("#submitAnswers").attr("disabled",null);
+                d3.select("#submitAnswers").style("color","black");
             },time);
         }
 
         delay_next(250);
 
         console.log("practice");
-        console.log(experimentr.data()["practice"]);
         var step = 1;
         var sec_switch = 1;
+        var default_text = 'Please click "Submit" button to submit your answers.';
 
-        function add_mod_intros(img_address){
+        function add_mod_intros(img_address, x_pos){
             var height = "530px",
                 width = "900px",
-                x = "450px",
+                x = x_pos,
                 y = "20px";
 
             d3.select("#notation").select(".image").remove();
@@ -95,20 +101,29 @@
                             .style("stroke", "black")
                             .style("fill", "none");
 //                    .style("stroke-width", "20px");
+
         }
 
+        d3.select(".image")
+            .append("text")
+            .attr("class","result")
+            .attr("x",1000)
+            .attr("y",300)
+            .attr("dy","0em")
+            .attr("font-size",30)
+            .text(default_text);
 
-        add_mod_intros("practice_1.PNG");
+        add_mod_intros("practice_1.PNG", "0px");
         //console.log(experimentr.data()["practice"]);
         setTimeout(
             pairs(experimentr.data()["practice"][0], 0, experimentr.data()["practice"][0].length, experimentr.data()["mode"]),
             200
         );
-
+        var start = Date.now();
+        console.log(start);
         if (experimentr.data()["mode"] == "Vanilla") {
             d3.selectAll(".icon").remove();
         }
-
         function goToNext() {
             experimentr.data()["mode"] = mode;
             if(experimentr.data()["mode"]==="Vanilla" || experimentr.data()["mode"]==="Full") {
@@ -122,26 +137,77 @@
                 experimentr.next();
             }
         }
+        var restore = {}
+        d3.select('#submitAnswers')
+            .on('click', function(){
+                var prev = start;
+                var answer = Object.keys(restore).length>0? restore:{};
+                var text = [];
+                d3.selectAll(".result").remove();
+                start = Date.now();
+                for(i in experimentr.data()["practice_clicks"]){
+                    if(+i>+prev){
+                        answer[+experimentr.data()["practice_clicks"][i][1]-1] = Math.floor(+experimentr.data()["practice_clicks"][i][2]/3);
+                    }
+                }
+                //console.log(Object.keys(answer).length, d3.selectAll(".blocks")[0].length);
+                //console.log(experimentr.data()['practice_answer']);
+                var score = 0;
+                for(i in answer){
+                    if(experimentr.data()['practice_answer'][+i]==answer[i]){
+                        score+=1;
+                    }else{
+                        if(text.length==0){text.push("Please review your answers:");}
+                        text.push("The answer to Pair "+(+i+1).toString()+" is incorrect.");
+                    }
+                }
+                if(Object.keys(answer).length < d3.selectAll(".blocks")[0].length){
+                    text = ['You have to answer all the questions to proceed.'];
+                    restore = answer;
+                }
+                if(text.length==0){
+                    text = ['Well done!', 'All the answers are correct.','Please click "Next" button again to proceed.'];
+                    d3.select("#submitComments").attr("disabled",null);
+                    d3.select("#submitComments").style("color","black");
+                    restore = {};
+                }
+                d3.selectAll(".result").remove();
+                for(var i=0;i<text.length;i++){
+                    d3.select(".image")
+                        .append("text")
+                        .attr("class","result")
+                        .attr("x",1000)
+                        .attr("y",300)
+                        .attr("font-size",30)
+                        .attr("dy",((-(text.length-1)/2+i)*1.5).toString()+"em")
+                        .text(text[i])
+                }
+                console.log(text);
+                console.log(score, d3.select("#table").selectAll(".blocks")[0].length);
 
+            });
         d3.select('#submitComments')
             .on('click', function () {
-//                console.log(step);
+                d3.select(".image").selectAll(".result").remove();
                 d3.select('#submitComments').style("left","2.5%");
                 if(step==experimentr.data()["practice"].length-1){
                     goToNext();
                 }else {
                     if(sec_switch==1){
+                        d3.select('#submitAnswers').style('display', 'none');
                         d3.selectAll(".blocks").remove();
                         d3.select("#notation").html("");
-                        add_mod_intros("practice_2a_section.PNG");
+                        add_mod_intros("practice_2a_section.PNG", "450px");
                         sec_switch = 0;
                         d3.select('#submitComments').style("left","50%");
                         delay_next(250);
 //                        step=0;
                     } else {
+                        d3.select("#result").text(default_text);
+                        d3.select('#submitAnswers').style('display', 'inline');
                         d3.selectAll(".blocks").remove();
                         d3.select("#notation").html("");
-                        add_mod_intros("practice_"+(step+1)+".PNG");
+                        add_mod_intros("practice_"+(step+1)+".PNG", "0px");
                         setTimeout(
                             pairs(experimentr.data()["practice"][step], step, experimentr.data()["practice"][step].length, experimentr.data()["mode"]),
                             200
@@ -154,6 +220,8 @@
                         delay_next(350);
 //                        sec_switch=0;
                         step = step + 1;
+                        d3.select("#submitComments").attr("disabled","true");
+                        d3.select("#submitComments").style("color","#b3b3b3");
                     }
                 }
                 // time elapse

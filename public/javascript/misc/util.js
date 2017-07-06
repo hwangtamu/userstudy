@@ -100,6 +100,7 @@ function cell(t,g,j,k){
         transpose_ = [],
         trailing = [],
         trailing_ = [],
+        date_swap = 0,
         diff = 0,
         swap = 0;
 
@@ -226,8 +227,7 @@ function cell(t,g,j,k){
                                         .attr("class", "icon").attr("x", 9 * i + 12)
                                         .attr("y", cy / 2 + 13).attr("width", 23).attr("height", 23);
                                 }
-                                //transpose.push(i, i + 1, i + 3, i + 4);
-                                //transpose_.push(i, i + 1, i + 3, i + 4);
+                               date_swap = 1;
                                 num += 1
                             }
                             //indel
@@ -339,6 +339,16 @@ function cell(t,g,j,k){
         }
     }
 
+    //date swap with special charecters
+    if(date_swap==1 && experimentr.data()['mode']=="Partial"){
+        if(j<2*cwidth.length){
+            t = t.slice(0,3)+'&&'+t.slice(5);
+        }else{
+            t = t.slice(0,3)+'@@'+t.slice(5);
+        }
+        //console.log(t);
+    }
+
     if(j<2*cwidth.length && textbox.text()=="  "){
         g.select("#c"+j.toString()).selectAll(".icon").remove();
         //    cel.append("svg:image").attr("xlink:href","/resources/replace.png").attr("class","icon")
@@ -401,7 +411,7 @@ function cell(t,g,j,k){
         transpose = [];
         transpose_ = [];
 
-        // replace display content to spacial symbols '@', '&'
+        // replace display content to special symbols '@', '&'
         if(experimentr.data()['mode']!="Full" && title[j%cwidth.length]=="Race"){
             if(j>2*cwidth.length){t = '&';}
             else if(j>cwidth.length){t = '@';}
@@ -822,6 +832,11 @@ function choices(svg, lBound, scale, mode, yt) {
     buttons.append('polyline')
         .attr('points', rightTrianglePoints).attr("stroke","none").style('fill', 'black');
 
+    var sec = experimentr.data()['section'];
+    var clk = '';
+    if(sec=='mat'){clk='clicks';}
+    if(sec=='practice'){clk='practice_clicks';}
+    if(sec=='section2'){clk='s2_clicks';}
     for(var m=0;m<6;m++){
         var radioButton = buttons.append("g").attr("transform","translate("+x[m]*scale+","+y*scale+")");
         radioButton.append("svg:image").attr("xlink:href","/resources/0.png").attr("class","choice").attr("id",m)
@@ -832,10 +847,13 @@ function choices(svg, lBound, scale, mode, yt) {
                 buttons.select(".no").attr("opacity",0.2);
                 buttons.selectAll(".choice").attr("xlink:href","/resources/0.png");
                 d3.select(this).select("image").attr("xlink:href","/resources/1.png");
-                //console.log(experimentr.data()["clicks"]);
                 var t = Date.now();
-                experimentr.data()["clicks"][t] = [svg.attr("id").slice(1),d3.select(this.parentNode.parentNode).select("#c9").text(), d3.select(this).select(".choice").attr("id")];
 
+                experimentr.data()[clk][t] = [
+                    svg.attr("id").slice(1),
+                    d3.select(this.parentNode.parentNode).select("#c9").text(),
+                    d3.select(this).select(".choice").attr("id")
+                ];
             });
     }
 }
@@ -921,7 +939,9 @@ function parsing(route, dest){
         var raw_binary = values.filter(function (d) {
             return d.length == 2;
         });
-        n_pair = raw_binary.length;
+        if(experimentr.data()['section']=='mat'){
+            n_pair = raw_binary.length;
+        }
         var binary = [];
         var other = [];
         var tmp = [];

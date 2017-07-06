@@ -45,9 +45,10 @@
             "To be brief, 6 Letters are used to represent the choices."
         ];
         //let svg = d3.select("#instruction").append("svg").attr("class","blocks").attr("width", 900).attr("height", 100);
-        let choice = d3.select("#instruction").append("svg").attr("class","choicePanel").attr("width", 900).attr("height", 280);
+        let choice = d3.select("#instruction").append("svg").attr("class","choicePanel")
+            .attr('transform','translate(800, 0)').attr("width", 900).attr("height", 280);
         d3.select("#notation").text(notes[step]);
-        alt_choices(choice,0,2);
+        alt_choices(choice,0,1);
         function goToNext() {
             experimentr.next();
         }
@@ -67,8 +68,21 @@
                                 .attr("x", bbox.x).attr("y", bbox.y)
                                 .attr("width", bbox.width).attr("height", bbox.height)
                                 .style("fill", "#ccc").style("fill-opacity", ".0")
-                                .style("stroke", "red").style("stroke-width", "1px");
+                                .style("stroke", "grey").style("stroke-width", "3px");
+
                         }
+
+                        // draw arrows
+                        let lineFunction = d3.svg.line()
+                            .x(function(d) { return d.x; })
+                            .y(function(d) { return d.y; })
+                            .interpolate("linear");
+
+                        let linedata = [{"x":10,"y":10},{"x":100,"y":100}];
+                        choice.append("path").attr("d", lineFunction(lineData))
+                            .attr("stroke", "grey")
+                            .attr("stroke-width", 5)
+                            .style("fill","none");
                     }
                     if(step==2){
                         d3.selectAll("#bbox").remove();
