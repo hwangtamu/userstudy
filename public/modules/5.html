@@ -134,9 +134,19 @@
 
                     }
                 }
+                test_mode();
                 // time elapse
                 experimentr.data()['switch'].push(Date.now());
                 experimentr.save();
             });
+
+        function test_mode(){
+            if(parse_url().testing == 'true') {
+                d3.select("#submitComments").attr("disabled",null);
+                d3.select("#submitComments").style("color","black");
+            };
+        };
+
+        test_mode();
     }());
 </script>

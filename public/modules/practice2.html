@@ -168,6 +168,15 @@
                 experimentr.save();
                 goToNext();
             });
+
+        function test_mode(){
+            if(parse_url().testing == 'true') {
+                d3.select("#submitComments").attr("disabled",null);
+                d3.select("#submitComments").style("color","black");
+            };
+        };
+
+        test_mode();
     }());
 </script></title>
 </head>

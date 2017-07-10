@@ -185,18 +185,22 @@
                 }
 
                 var ans_ques = Object.keys(answer);
+                var unaswered_ques = [];
                 console.log("wrong_ans",wrong_ans);
                 console.log("ans_ques",ans_ques);
                 for(var i=0; i < questions.length;i++){
                     if(ans_ques.indexOf((parseInt(questions[i])-1).toString())<0){
                         console.log("q not answered");
+                        unaswered_ques.push((questions[i]).toString());
                         wrong_ans.push((questions[i]).toString());
                     }
                 }
 
                 console.log("wrong_ans",wrong_ans);
                 if(wrong_ans.length > 0){
-                    if(lock.indexOf(step)>=0) {
+                    if(unaswered_ques.length > 0){
+                        text.push("Please review question(s) "+formatted_join(wrong_ans));
+                    } else if(lock.indexOf(step)>=0) {
                             text.push("The question(s) "+formatted_join(wrong_ans) +" might be wrong but it's a judgement call");
                         } else{
                             text.push("Please review question(s) "+formatted_join(wrong_ans));
@@ -211,14 +215,12 @@
 //                }
                 restore = answer;
 
-                console.log(lock.indexOf(step)>=0);
                 if(text.length==0){
                     text = ['Good job!','Please click "Next" button to proceed.'];
                     d3.select("#submitComments").attr("disabled",null);
                     d3.select("#submitComments").style("color","black");
                     restore = {};
-                } else if(lock.indexOf(step)>=0 && text.indexOf("You have to answer all the questions to proceed.")<0){
-                    console.log("Second block");
+                } else if(lock.indexOf(step)>=0 && unaswered_ques.length === 0){
                     text.push("You can still proceed to the next section");
                     d3.select("#submitComments").attr("disabled",null);
                     d3.select("#submitComments").style("color","black");
@@ -243,7 +245,7 @@
 
             });
 
-        test_mode();
+
 
         d3.select('#submitComments')
             .on('click', function () {
@@ -294,6 +296,8 @@
                 d3.select("#submitComments").style("color","black");
             };
         };
+
+        test_mode();
 
     }());
 </script></title>
