@@ -203,8 +203,6 @@
                     restore = {};
                 }
 
-
-
                 d3.selectAll(".result").remove();
                 for(var i=0;i<text.length;i++){
                     d3.select(".image")
@@ -216,9 +214,6 @@
                         .attr("dy",((-(text.length-1)/2+i)*1.5).toString()+"em")
                         .text(text[i])
                 }
-                //console.log(text);
-                //console.log(score, d3.select("#table").selectAll(".blocks")[0].length);
-
             });
 
         test_mode();
@@ -264,9 +259,6 @@
                     }
                 }
                 test_mode();
-                // time elapse
-//                experimentr.data()['switch'][step] = Date.now();
-//                experimentr.save();
             });
         function test_mode(){
             if(parse_url().testing == 'true') {
