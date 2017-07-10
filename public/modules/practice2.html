@@ -124,6 +124,7 @@
         }
         function goToNext() {
             experimentr.data()["mode"] = mode;
+            delete experimentr.data()["practice2"];
             if(experimentr.data()["mode"]==="Vanilla" || experimentr.data()["mode"]==="Full") {
                 experimentr.sequence([
                     'modules/5.html',
@@ -185,44 +186,11 @@
             });
         d3.select('#submitComments')
             .on('click', function () {
+
                 d3.select(".image").selectAll(".result").remove();
                 d3.select('#submitComments').style("left","2.5%");
-//                if(step==experimentr.data()["practice"].length-1){
-//                    goToNext();}
-//                }else {
-//                    if(sec_switch==1){
-//                        d3.select('#submitAnswers').style('display', 'none');
-//                        d3.selectAll(".blocks").remove();
-//                        d3.select("#notation").html("");
-//                        add_mod_intros("practice_2a_section.PNG", "450px");
-//                        sec_switch = 0;
-//                        d3.select('#submitComments').style("left","50%");
-//                        delay_next(250);
-////                        step=0;
-//                    } else {
-//                        d3.select("#result").text(default_text);
-//                        d3.select('#submitAnswers').style('display', 'inline');
-//                        d3.selectAll(".blocks").remove();
-//                        d3.select("#notation").html("");
-//                        add_mod_intros("practice_"+(step+1)+".PNG", "0px");
-//                        setTimeout(
-//                            pairs(experimentr.data()["practice2"][step], step, experimentr.data()["practice2"][step].length, experimentr.data()["mode"]),
-//                            200
-//                        );
-//
-//                        if (experimentr.data()["mode"] == "Vanilla") {
-//                            d3.selectAll(".icon").remove();
-//                        }
-//
-//                        delay_next(350);
-////                        sec_switch=0;
-//                        step = step + 1;
-//                        d3.select("#submitComments").attr("disabled","true");
-//                        d3.select("#submitComments").style("color","#b3b3b3");
-//                    }
-//                }
-//                 time elapse
-                experimentr.data()['switch'][step] = Date.now();
+
+                experimentr.data()['switch'].push(Date.now());
                 experimentr.save();
                 goToNext();
             });

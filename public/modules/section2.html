@@ -64,6 +64,7 @@
         delay_next(250);
 
         function goToNext() {
+            delete experimentr.data()['section2'];
             experimentr.next();
         };
 
@@ -109,7 +110,7 @@
                     step += 1;
                  }
                 // time elapse
-                experimentr.data()['switch'][step] = Date.now();
+                experimentr.data()['switch'].push(Date.now());
                 experimentr.save();
             });
     }());

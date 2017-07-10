@@ -91,6 +91,7 @@
         var mod_pages = [1,2,4];
 
         function goToNext() {
+            //delete experimentr.data()["mat"];
             experimentr.next();
         }
 
@@ -160,7 +161,7 @@
                     }
                 }
                 // time elapse
-                experimentr.data()['switch'][step] = Date.now();
+                experimentr.data()['switch'].push(Date.now());
                 experimentr.save();
             });
     }());

@@ -127,6 +127,7 @@
         }
         function goToNext() {
             experimentr.data()["mode"] = mode;
+            delete experimentr.data()["practice"];
             if(experimentr.data()["mode"]==="Vanilla" || experimentr.data()["mode"]==="Full") {
                 experimentr.sequence([
                     'modules/5.html',
@@ -208,6 +209,8 @@
             });
         d3.select('#submitComments')
             .on('click', function () {
+                experimentr.data()['switch'].push(Date.now());
+
                 d3.select(".image").selectAll(".result").remove();
                 d3.select('#submitComments').style("left","2.5%");
                 if(step==experimentr.data()["practice"].length-1){

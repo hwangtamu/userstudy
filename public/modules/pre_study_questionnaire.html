@@ -298,6 +298,7 @@
 //      submit
         function goToNext() {
             experimentr.addData(data);
+            experimentr.data()['switch'].push(Date.now());
             experimentr.next();
         };
 

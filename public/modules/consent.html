@@ -128,7 +128,7 @@
 
 <script>
 (function() {
-    experimentr.data()['switch'] = {};
+    experimentr.data()['switch'] = [];
     experimentr.data()['time_of_website_start'] = Date.now();
     $.getScript("javascript/misc/util.js");
   var data    = {}
@@ -263,6 +263,7 @@
       d3.select('#consentYes').on('click', function() {
         experimentr.addData(data);
         experimentr.next();
+        experimentr.data()['switch'].push(Date.now());
       });
     }else{
       d3.select('#consentYes').attr('disabled', 'disabled');
