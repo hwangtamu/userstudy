@@ -138,7 +138,6 @@
         }
         function goToNext() {
             experimentr.data()["mode"] = mode;
-            delete experimentr.data()["practice"];
             if(experimentr.data()["mode"]==="Vanilla" || experimentr.data()["mode"]==="Full") {
                 experimentr.sequence([
                     'modules/5.html',
@@ -150,10 +149,17 @@
                 experimentr.next();
             }
         }
+//        console.log(d3.select("#t9").property("value"));
         var restore = {};
         d3.select('#submitAnswers')
             .on('click', function(){
-                //console.log(step);
+                var questions = [];
+                var data_pairs = experimentr.data()["practice"][step-1];
+                for(var i =0; i<data_pairs.length; i++){
+                    questions.push(data_pairs[i][0][0])
+                }
+                console.log(questions);
+                console.log(step);
                 var prev = start;
                 var answer = Object.keys(restore).length>0? restore:{};
                 var text = [];
@@ -169,7 +175,7 @@
                 var lock = [5,6];
                 var wrong_ans = [];
                 var score = 0;
-                //console.log(answer);
+                console.log(answer);
                 for(i in answer){
                     if(experimentr.data()['practice_answer'][+i]==answer[i]){
                         score+=1;
@@ -177,31 +183,46 @@
                         wrong_ans.push((+i+1).toString());
                     }
                 }
-                //console.log(wrong_ans);
+
+                ans_ques = Object.keys(answer);
+                for(i in questions){
+                    if(ans_ques.indexOf(i)<0){
+                        wrong_ans.push((+i+1).toString());
+                    }
+                }
+
+                console.log(wrong_ans);
                 if(wrong_ans.length > 0){
-                    text.push("Please review questions "+formatted_join(wrong_ans));
+                    if(lock.indexOf(step)>=0) {
+                            text.push("The question(s) "+formatted_join(wrong_ans) +" might be wrong but it's a judgement call");
+                        } else{
+                            text.push("Please review question(s) "+formatted_join(wrong_ans));
+                        }
+
                 }
 
-                //console.log(d3.selectAll(".blocks")[0]);
-                if(Object.keys(answer).length < d3.selectAll(".blocks")[0].length){
 
-                    text = ['You have to answer all the questions to proceed.'];
-                }
+//                if(Object.keys(answer).length < d3.selectAll(".blocks")[0].length){
+//
+//                    text = ['You have to answer all the questions to proceed.'];
+//                }
                 restore = answer;
 
-                //console.log(lock.indexOf(step)>=0);
+                console.log(lock.indexOf(step)>=0);
                 if(text.length==0){
                     text = ['Good job!','Please click "Next" button to proceed.'];
                     d3.select("#submitComments").attr("disabled",null);
                     d3.select("#submitComments").style("color","black");
                     restore = {};
                 } else if(lock.indexOf(step)>=0 && text.indexOf("You have to answer all the questions to proceed.")<0){
-                    //console.log("Second block");
+                    console.log("Second block");
                     text.push("You can still proceed to the next section");
                     d3.select("#submitComments").attr("disabled",null);
                     d3.select("#submitComments").style("color","black");
                     restore = {};
                 }
+
+
 
                 d3.selectAll(".result").remove();
                 for(var i=0;i<text.length;i++){
@@ -214,14 +235,15 @@
                         .attr("dy",((-(text.length-1)/2+i)*1.5).toString()+"em")
                         .text(text[i])
                 }
+                //console.log(text);
+                //console.log(score, d3.select("#table").selectAll(".blocks")[0].length);
+
             });
 
         test_mode();
 
         d3.select('#submitComments')
             .on('click', function () {
-                experimentr.data()['switch'].push(Date.now());
-
                 d3.select(".image").selectAll(".result").remove();
                 d3.select('#submitComments').style("left","2.5%");
                 if(step==experimentr.data()["practice"].length-1){
@@ -259,6 +281,9 @@
                     }
                 }
                 test_mode();
+                // time elapse
+//                experimentr.data()['switch'][step] = Date.now();
+//                experimentr.save();
             });
         function test_mode(){
             if(parse_url().testing == 'true') {

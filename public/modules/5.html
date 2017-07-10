@@ -104,14 +104,6 @@
                 if(step==experimentr.data()["mat"].length-1){
                     grading();
                     goToNext();
-//                    if(((Date.now()-experimentr.data()["time_of_website_start"])/(1000*60)) > 1.5){
-//                        experimentr.sequence([
-//                            'modules/post_study_questionnaire.html',
-//                            'modules/end.html'
-//                        ]).start();
-//                    } else{
-//                        goToNext();
-//                    }
                 }else {
 
                     if (sec_switch==1 && (mod_pages.indexOf(step)>-1)) {
@@ -120,26 +112,7 @@
                         d3.selectAll(".blocks").remove();
                         d3.select("#notation").html("");
                         add_mod_intros("recap_" + (step+1) + ".PNG");
-//                        switch(step){
-//                            case 1:
-//                                add_mod_intros("practice_2.PNG");
-//                                break;
-//                            case 2:
-//                                add_mod_intros("practice_3.PNG");
-//                                break;
-//                            case 3:
-//                                add_mod_intros("practice_4.PNG");
-//                                break;
-//                            case 4:
-//                                add_mod_intros("practice_5.PNG");
-//                                break;
-//                            case 5:
-//                                add_mod_intros("practice_6.PNG");
-//                                break;
-//                            default:
-//                                console.log("end");
-//                                break;
-//                        }
+
                         delay_next(250);
                         sec_switch = 0
                     } else {
