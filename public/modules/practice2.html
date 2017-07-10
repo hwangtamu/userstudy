@@ -116,6 +116,11 @@
         var restore = {};
         d3.select('#submitAnswers')
             .on('click', function(){
+                var questions = [];
+                var data_pairs = experimentr.data()["practice2"][step-1];
+                for(var i =0; i<data_pairs.length; i++){
+                    questions.push(data_pairs[i][0][0])
+                }
                 var prev = start;
                 var answer = Object.keys(restore).length>0 ? restore:{};
                 var text = [];
@@ -135,13 +140,25 @@
                         score+=1;
                     }else{
                         wrong_ans.push((+i+1).toString());
-//                        if(text.length==0){text.push("Please review your answers:");}
-//                        text.push("The answer to Pair "+(+i+1).toString()+" is incorrect.");
                     }
                 }
-                if(Object.keys(answer).length < d3.selectAll(".blocks")[0].length){
-                    text = ['You have to answer all the questions to proceed.'];
+
+                var ans_ques = Object.keys(answer);
+                var unaswered_ques = [];
+                console.log("wrong_ans",wrong_ans);
+                console.log("ans_ques",ans_ques);
+                for(var i=0; i < questions.length;i++){
+                    if(ans_ques.indexOf((parseInt(questions[i])-1).toString())<0){
+                        console.log("q not answered");
+                        unaswered_ques.push((questions[i]).toString());
+                        wrong_ans.push((questions[i]).toString());
+                    }
                 }
+
+//
+//                if(Object.keys(answer).length < d3.selectAll(".blocks")[0].length){
+//                    text = ['You have to answer all the questions to proceed.'];
+//                }
 
                 if(wrong_ans.length > 0){
                     text.push("Please review question(s) "+formatted_join(wrong_ans));
