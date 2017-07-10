@@ -158,8 +158,8 @@
                 for(var i =0; i<data_pairs.length; i++){
                     questions.push(data_pairs[i][0][0])
                 }
-                console.log(questions);
-                console.log(step);
+                console.log("questions",questions);
+                console.log("step",step);
                 var prev = start;
                 var answer = Object.keys(restore).length>0? restore:{};
                 var text = [];
@@ -175,7 +175,7 @@
                 var lock = [5,6];
                 var wrong_ans = [];
                 var score = 0;
-                console.log(answer);
+                console.log("answer",answer);
                 for(i in answer){
                     if(experimentr.data()['practice_answer'][+i]==answer[i]){
                         score+=1;
@@ -184,14 +184,17 @@
                     }
                 }
 
-                ans_ques = Object.keys(answer);
-                for(i in questions){
-                    if(ans_ques.indexOf(i)<0){
-                        wrong_ans.push((+i+1).toString());
+                var ans_ques = Object.keys(answer);
+                console.log("wrong_ans",wrong_ans);
+                console.log("ans_ques",ans_ques);
+                for(var i=0; i < questions.length;i++){
+                    if(ans_ques.indexOf((parseInt(questions[i])-1).toString())<0){
+                        console.log("q not answered");
+                        wrong_ans.push((questions[i]).toString());
                     }
                 }
 
-                console.log(wrong_ans);
+                console.log("wrong_ans",wrong_ans);
                 if(wrong_ans.length > 0){
                     if(lock.indexOf(step)>=0) {
                             text.push("The question(s) "+formatted_join(wrong_ans) +" might be wrong but it's a judgement call");
