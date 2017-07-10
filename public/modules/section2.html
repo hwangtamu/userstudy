@@ -89,13 +89,11 @@
             .on('click', function () {
                 console.log(step);
                 d3.select('#submitComments').style("position","absolute").style("left","90px");
-//                console.log(Date.now());
 
 
                 if(step==experimentr.data()["section2"].length-1){
                     goToNext();
                 }else {
-//                    d3.select("#notation").text("Page " + (step + 1).toString() + "/" + (experimentr.data()['section2'].length - 1).toString());
                     d3.select("#notation").html("");
                     setTimeout(function () {
                         d3.selectAll(".blocks").remove();
@@ -110,6 +108,7 @@
                     step += 1;
                  }
                 // time elapse
+                grading2();
                 experimentr.data()['switch'].push(Date.now());
                 experimentr.save();
             });

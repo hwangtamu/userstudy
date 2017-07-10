@@ -153,7 +153,7 @@
         var restore = {};
         d3.select('#submitAnswers')
             .on('click', function(){
-                console.log(step);
+                //console.log(step);
                 var prev = start;
                 var answer = Object.keys(restore).length>0? restore:{};
                 var text = [];
@@ -169,44 +169,34 @@
                 var lock = [5,6];
                 var wrong_ans = [];
                 var score = 0;
-                console.log(answer);
+                //console.log(answer);
                 for(i in answer){
                     if(experimentr.data()['practice_answer'][+i]==answer[i]){
                         score+=1;
                     }else{
                         wrong_ans.push((+i+1).toString());
-
-//                        if(text.length==0){text.push("Please review your answers:");}
-//                        console.log(i+1);
-//                        if(lock.indexOf(step)>=0) {
-//                            text.push("The answer to Pair "+(+i+1).toString()+" might be incorrect but it's a judgement call.");
-//                            text.push("Please take a moment to think about these questions again.");
-//                        } else{
-//                            text.push("The answer to Pair "+(+i+1).toString()+" is incorrect.");
-//                        }
-
                     }
                 }
-                console.log(wrong_ans);
+                //console.log(wrong_ans);
                 if(wrong_ans.length > 0){
                     text.push("Please review questions "+formatted_join(wrong_ans));
                 }
 
-                console.log(d3.selectAll(".blocks")[0]);
+                //console.log(d3.selectAll(".blocks")[0]);
                 if(Object.keys(answer).length < d3.selectAll(".blocks")[0].length){
 
                     text = ['You have to answer all the questions to proceed.'];
                 }
                 restore = answer;
 
-                console.log(lock.indexOf(step)>=0);
+                //console.log(lock.indexOf(step)>=0);
                 if(text.length==0){
                     text = ['Good job!','Please click "Next" button to proceed.'];
                     d3.select("#submitComments").attr("disabled",null);
                     d3.select("#submitComments").style("color","black");
                     restore = {};
                 } else if(lock.indexOf(step)>=0 && text.indexOf("You have to answer all the questions to proceed.")<0){
-                    console.log("Second block");
+                    //console.log("Second block");
                     text.push("You can still proceed to the next section");
                     d3.select("#submitComments").attr("disabled",null);
                     d3.select("#submitComments").style("color","black");

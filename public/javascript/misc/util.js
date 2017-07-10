@@ -11,6 +11,7 @@ var ys = [0,30,77];
 var mapping = [0,8,2,9,10,5,11,12,1,3,4,6,7,13];
 var data = {}; // experimentr data
 var n_pair = 0;
+var s2_n_pair = 0;
 
 /**
  * draw a cell
@@ -943,6 +944,9 @@ function parsing(route, dest){
         if(experimentr.data()['section']=='mat'){
             n_pair = raw_binary.length;
         }
+        if(experimentr.data()['section']=='section2'){
+            s2_n_pair = raw_binary.length;
+        }
         var binary = [];
         var other = [];
         var tmp = [];
@@ -996,6 +1000,7 @@ function parsing(route, dest){
     });
 }
 
+// main study grading
 function grading(){
     //init
     var grades = {},
@@ -1018,14 +1023,38 @@ function grading(){
             grades[+answers[i][0]] = 0;
         }
     }
-    var total = 0;
-    for(var i=0;i<n_pair;i++){
-        if(grades[i]==1){
-            total+=1;
-        }
-    }
+    var total = Object.values(grades).reduce((a, b) => a + b, 0);
     data['grades'] = grades;
     data['total_score'] = total;
+    experimentr.addData(data);
+}
+
+// section2 grading
+function grading2(){
+    //init
+    var grades = {},
+        answers = [];
+    for(var i=0;i<s2_n_pair;i++){
+        grades[i] = 0;
+    }
+    //retrieve answers
+    for(var k in experimentr.data()['s2_clicks']){
+        answers.push(experimentr.data()['s2_clicks'][k]);
+    }
+    for(var i=0;i<answers.length;i++){
+        if(+answers[i][2]>2 && experimentr.data()['section2_answer'][+answers[i][0]]==1){
+            grades[+answers[i][0]] = 1;
+        }
+        else if(+answers[i][2]<3 && experimentr.data()['section2_answer'][+answers[i][0]]==0){
+            grades[+answers[i][0]] = 1;
+        }
+        else{
+            grades[+answers[i][0]] = 0;
+        }
+    }
+    var total = Object.values(grades).reduce((a, b) => a + b, 0);
+    data['s2_grades'] = grades;
+    data['s2_total_score'] = total;
     experimentr.addData(data);
 }
 
@@ -1049,7 +1078,12 @@ function parsing2(route, dest){
         var raw_binary = values.filter(function (d) {
             return d.length == 2;
         });
-        n_pair = raw_binary.length;
+        if(experimentr.data()['section']=='mat'){
+            n_pair = raw_binary.length;
+        }
+        if(experimentr.data()['section']=='section2'){
+            s2_n_pair = raw_binary.length;
+        }
         var binary = [];
         var other = [];
         var new_group = {};
