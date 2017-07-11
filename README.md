@@ -26,7 +26,7 @@ node app.js
 ```
 ## Url Parameters
 There are a number of parameters that you can use to control the application. In addition to the url already present, adding the following will affect the app behaviour. To use multiple parameters in conjunction, use & to separate the parameters. For instance,
-[https://ppirldev.herokuapp.com/?mode=2&section=4&testing=true]https://ppirldev.herokuapp.com/?mode=2&section=4&testing=true
+[https://ppirldev.herokuapp.com/?mode=2&section=4&testing=true](https://ppirldev.herokuapp.com/?mode=2&section=4&testing=true)
 
 1. Mode of disclosure:  
 
