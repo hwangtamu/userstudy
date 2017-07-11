@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<title>Title</title>-->
+</head>
+<body>
+    <div id="notation" style="text-align:left;">
+
+    </div>
+    <!--<img src="resources/module_intros/main_study.png" alt="main study start" height="550px" width="1000px" style="position: absolute; left: 400px; top:20px">-->
+    <button id="submitComments" class="next-button" type="button" style="position: absolute; left: 900px;">Next</button>
+</body>
+<script>
+    (function(){
+        function add_mod_intros(img_address){
+            var height = "550px",
+                width = "1000px",
+                x = "400px",
+                y = "20px";
+
+            d3.select("#notation").select(".image").remove();
+            var svg = d3.select("#notation")
+                .append("svg")
+                .attr("class", "image")
+                .attr("width", 1800)
+                .attr("height", 600);
+            svg.append("svg:image")
+                .attr("xlink:href","/resources/module_intros/"+img_address)
+                .attr("x",x)
+                .attr("y",y)
+                .attr("width",width)
+                .attr("height",height);
+            svg.append("rect")
+                .attr("x", x)
+                .attr("y", y)
+                .attr("height", height)
+                .attr("width", width)
+                .style("stroke", "black")
+                .style("fill", "none");
+        }
+
+        add_mod_intros("main_study.PNG");
+        experimentr.hideNext();
+        d3.select('#submitComments')
+            .on('click', function(){
+                experimentr.next();
+            });
+    }());
+</script>
+
+</html>
