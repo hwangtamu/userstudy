@@ -28,19 +28,19 @@ node app.js
 There are a number of parameters that you can use to control the application. In addition to the url already present, adding the following will affect the app behaviour. To use multiple parameters in conjunction, use & to separate the parameters. For instance,
 [https://ppirldev.herokuapp.com/?mode=2&section=4&testing=true](https://ppirldev.herokuapp.com/?mode=2&section=4&testing=true)
 
-1. Mode of disclosure:  
+1. **Mode of disclosure:**
 
 > /?mode=3
 
 This is a compulsory parameter without which the website won't work. Takes any value from 1 to 5. 
 
-2. ID:
+2. **ID:**
 
 > /?id=123
 
 User supplied ID will be added to the data. Handy when user needs to be linked with other data. 
 
-3. Data for display:
+3. **Data for display:**
 By default, the data present in output.csv will be displayed in the main section. This data can be controlled by using 
 > /upload
 
@@ -48,11 +48,11 @@ and uploading the data there.
 However, if you want one of the predefined datasets chosen at random (that also give the recap slides meaning) use
 > /?sampling=true
 
-4. Testing mode:
+4. **Testing mode:**
 By default, many pages force user input. To bypass this behaviour, use
 > /?testing=true
 
-5. Skip to section:
+5. **Skip to section:**
 If you want to skip directly to a section there you can use,
 > /?section=7
 
