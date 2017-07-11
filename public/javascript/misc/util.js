@@ -787,7 +787,7 @@ function choices(svg, lBound, scale, mode, yt) {
         "Highly Likely Same"];
     var x = [20, 60, 100, 140, 180, 220];
     var lx = [10, 20, 38, 60, 78, 100, 118, 140, 158, 180, 198, 220, 238, 250];
-    var y = 40;
+    var y = 37;
     // add buttons
     var buttons = svg.append("g").attr("transform", "translate(" + lBound + ","+yt+")").attr("class","choice_panel");
     //buttons.append("rect").attr("x",-10*scale).attr("y",0).attr("width",280*scale).attr("height",85*scale).style("fill","#68a7ca").style("opacity",1);
@@ -842,7 +842,7 @@ function choices(svg, lBound, scale, mode, yt) {
     for(var m=0;m<6;m++){
         var radioButton = buttons.append("g").attr("transform","translate("+x[m]*scale+","+y*scale+")");
         radioButton.append("svg:image").attr("xlink:href","/resources/0.png").attr("class","choice").attr("id",m)
-            .attr("x",0).attr("y",-5).attr("width",18*scale).attr("height",18*scale);
+            .attr("x",0).attr("y",-5).attr("width",18*scale).attr("height",25*scale);
         radioButton.on({"mouseover": function(d) {d3.select(this).style("cursor", "pointer")},
             "mouseout": function(d) {d3.select(this).style("cursor", "default")}})
             .on("click",function(d){
