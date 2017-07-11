@@ -837,7 +837,7 @@ function choices(svg, lBound, scale, mode, yt) {
     var clk = '';
     if(sec=='mat'){clk='clicks';}
     if(sec=='practice'){clk='practice_clicks';}
-    if(sec=='practice2'){clk='practice_clicks';}
+    if(sec=='practice2'){clk='practice2_clicks';}
     if(sec=='section2'){clk='s2_clicks';}
     for(var m=0;m<6;m++){
         var radioButton = buttons.append("g").attr("transform","translate("+x[m]*scale+","+y*scale+")");
@@ -850,12 +850,12 @@ function choices(svg, lBound, scale, mode, yt) {
                 buttons.selectAll(".choice").attr("xlink:href","/resources/0.png");
                 d3.select(this).select("image").attr("xlink:href","/resources/1.png");
                 var t = Date.now();
-
-                experimentr.data()[clk][t] = [
-                    svg.attr("id").slice(1),
+                experimentr.data()[clk].push([
+                    t,
+                    //svg.attr("id").slice(1),
                     d3.select(this.parentNode.parentNode).select("#c9").text(),
                     d3.select(this).select(".choice").attr("id")
-                ];
+                ]);
             });
     }
 }
@@ -1003,24 +1003,25 @@ function parsing(route, dest){
 // main study grading
 function grading(){
     //init
-    var grades = {},
-        answers = [];
+    var grades = [],
+        answers = {};
     for(var i=0;i<n_pair;i++){
-        grades[i] = 0;
+        grades.push(0);
     }
     //retrieve answers
     for(var k in experimentr.data()['clicks']){
-        answers.push(experimentr.data()['clicks'][k]);
+        answers[+experimentr.data()['clicks'][k][1]-1] = +experimentr.data()['clicks'][k][2];
     }
-    for(var i=0;i<answers.length;i++){
-        if(+answers[i][2]>2 && experimentr.data()['mat_answer'][+answers[i][0]]==1){
-            grades[+answers[i][0]] = 1;
+    //console.log(answers);
+    for(var i in Object.keys(answers)){
+        if(+answers[i]>2 && experimentr.data()['mat_answer'][+i]==1){
+            grades[+i] = 1;
         }
-        else if(+answers[i][2]<3 && experimentr.data()['mat_answer'][+answers[i][0]]==0){
-            grades[+answers[i][0]] = 1;
+        else if(+answers[i]<3 && experimentr.data()['mat_answer'][+i]==0){
+            grades[+i] = 1;
         }
         else{
-            grades[+answers[i][0]] = 0;
+            grades[+i] = 0;
         }
     }
     var total = Object.values(grades).reduce((a, b) => a + b, 0);
@@ -1032,24 +1033,24 @@ function grading(){
 // section2 grading
 function grading2(){
     //init
-    var grades = {},
-        answers = [];
+    var grades = [],
+        answers = {};
     for(var i=0;i<s2_n_pair;i++){
-        grades[i] = 0;
+        grades.push(0);
     }
     //retrieve answers
     for(var k in experimentr.data()['s2_clicks']){
-        answers.push(experimentr.data()['s2_clicks'][k]);
+        answers[+experimentr.data()['s2_clicks'][k][1]-1] = +experimentr.data()['s2_clicks'][k][2];
     }
-    for(var i=0;i<answers.length;i++){
-        if(+answers[i][2]>2 && experimentr.data()['section2_answer'][+answers[i][0]]==1){
-            grades[+answers[i][0]] = 1;
+    for(var i in Object.keys(answers)){
+        if(+answers[i]>2 && experimentr.data()['section2_answer'][+i]==1){
+            grades[+i] = 1;
         }
-        else if(+answers[i][2]<3 && experimentr.data()['section2_answer'][+answers[i][0]]==0){
-            grades[+answers[i][0]] = 1;
+        else if(+answers[i]<3 && experimentr.data()['section2_answer'][+i]==0){
+            grades[+i] = 1;
         }
         else{
-            grades[+answers[i][0]] = 0;
+            grades[+i] = 0;
         }
     }
     var total = Object.values(grades).reduce((a, b) => a + b, 0);

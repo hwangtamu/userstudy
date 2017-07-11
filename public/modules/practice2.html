@@ -128,9 +128,9 @@
                 var text = [];
                 d3.selectAll(".result").remove();
                 start = Date.now();
-                for(i in experimentr.data()["practice_clicks"]){
-                    if(+i>+prev){
-                        answer[+experimentr.data()["practice_clicks"][i][1]-1] = Math.floor(+experimentr.data()["practice_clicks"][i][2]/3);
+                for(i in experimentr.data()["practice2_clicks"]){
+                    if(+experimentr.data()['practice2_clicks'][i][0]>+prev){
+                        answer[+experimentr.data()["practice2_clicks"][i][1]-1] = Math.floor(+experimentr.data()["practice2_clicks"][i][2]/3);
                     }
                 }
                 //console.log(Object.keys(answer).length, d3.selectAll(".blocks")[0].length);
@@ -147,11 +147,11 @@
 
                 var ans_ques = Object.keys(answer);
                 var unaswered_ques = [];
-                console.log("wrong_ans",wrong_ans);
-                console.log("ans_ques",ans_ques);
+                //console.log("wrong_ans",wrong_ans);
+                //console.log("ans_ques",ans_ques);
                 for(var i=0; i < questions.length;i++){
                     if(ans_ques.indexOf((parseInt(questions[i])-1).toString())<0){
-                        console.log("q not answered");
+                        //console.log("q not answered");
                         unaswered_ques.push((questions[i]).toString());
                         wrong_ans.push((questions[i]).toString());
                     }
