@@ -31,7 +31,7 @@
         <div id="table"></div>
     </div>
     <br>
-    <button id="submitComments" class="next-button" type="button">Submit</button><label id="answer_all"></label><br>
+    <button id="submitComments" class="next-button" type="button">Submit</button><label id="answer_all" style="position: absolute; left: 150px; color: red;"></label><br>
 </div>
 <br>
 </body>
@@ -94,27 +94,27 @@
             //delete experimentr.data()["mat"];
             experimentr.next();
         }
-//        var start = Date.now();
-
-//        function all_answered(){
-//            var prev = start;
-//            var answer = Object.keys(restore).length>0? restore:{};
-//            var text = [];
-//            d3.selectAll(".result").remove();
-//            start = Date.now();
-//            for(i in experimentr.data()["clicks"]){
-//                if(+i>+prev){
-//                    answer[+experimentr.data()["clicks"][i][1]-1] = Math.floor(+experimentr.data()["clicks"][i][2]/3);
-//                }
-//            }
-//            if(Object.keys(answer).length < d3.selectAll(".blocks")[0].length){
-//                return(false);
-////                disable_submit();
-//            } else {
-//                return(true);
-////                enable_submit();
-//            }
-//        };
+        var start = Date.now();
+        var restore = {};
+        function all_answered(){
+            var prev = start;
+            var answer = Object.keys(restore).length>0? restore:{};
+            var text = [];
+            d3.selectAll(".result").remove();
+            start = Date.now();
+            for(i in experimentr.data()["clicks"]){
+                if(+i>+prev){
+                    answer[+experimentr.data()["clicks"][i][1]-1] = Math.floor(+experimentr.data()["clicks"][i][2]/3);
+                }
+            }
+            if(Object.keys(answer).length < d3.selectAll(".blocks")[0].length){
+                return(false);
+//                disable_submit();
+            } else {
+                return(true);
+//                enable_submit();
+            }
+        };
 //
 //        function disable_submit(){
 //            d3.select("#submitAnswers").attr("disabled","true");
@@ -128,45 +128,112 @@
 
         d3.select('#submitComments')
             .on('click', function () {
+                d3.select("#answer_all").text("");
                 d3.select("#heading").remove();
                 d3.select('#submitComments').style("left","2.5%");
                 console.log((Date.now()-experimentr.data()["time_of_website_start"])/(1000*60));
+                if(d3.selectAll(".blocks")[0].length > 0){
+                    if(all_answered()){
+                        if(step==experimentr.data()["mat"].length-1){
+                            grading();
+                            goToNext();
+                        }else {
+                            if (sec_switch == 1 && (mod_pages.indexOf(step) > -1)) {
+                                console.log(step);
+                                d3.select('#submitComments').style("left", "50%");
+                                d3.selectAll(".blocks").remove();
+                                d3.select("#notation").html("");
+                                add_mod_intros("recap_" + (step + 1) + ".PNG");
 
-                if(step==experimentr.data()["mat"].length-1){
-                    grading();
-                    goToNext();
-                }else {
+                                delay_next(250);
+                                sec_switch = 0
+                            } else {
+                                d3.select("#notation").text("Page " + (step + 1).toString() + "/" + (experimentr.data()['mat'].length - 1).toString());
 
-                    if (sec_switch == 1 && (mod_pages.indexOf(step) > -1)) {
-                        console.log(step);
-                        d3.select('#submitComments').style("left", "50%");
-                        d3.selectAll(".blocks").remove();
-                        d3.select("#notation").html("");
-                        add_mod_intros("recap_" + (step + 1) + ".PNG");
+                                setTimeout(function () {
+                                    d3.selectAll(".blocks").remove();
+                                    pairs(experimentr.data()["mat"][step - 1], step - 1, experimentr.data()["mat"][step - 1].length, experimentr.data()["mode"]);
+                                    if (experimentr.data()["mode"] == "Vanilla") {
+                                        d3.selectAll(".icon").remove();
+                                    }
+                                }, 100);
 
-                        delay_next(250);
-                        sec_switch = 0
-                    } else {
-//                        if (!all_answered()) {
-//                            d3.select("#answer_all").text("Please answer all questions to proceed")
-//                        } else {
-                        d3.select("#notation").text("Page " + (step + 1).toString() + "/" + (experimentr.data()['mat'].length - 1).toString());
+                                delay_next(350);
 
-                        setTimeout(function () {
-                            d3.selectAll(".blocks").remove();
-                            pairs(experimentr.data()["mat"][step - 1], step - 1, experimentr.data()["mat"][step - 1].length, experimentr.data()["mode"]);
-                            if (experimentr.data()["mode"] == "Vanilla") {
-                                d3.selectAll(".icon").remove();
+                                step += 1;
+                                sec_switch = 1;
                             }
-                        }, 100);
-
-                        delay_next(350);
-
-                        step += 1;
-                        sec_switch = 1;
-
+                        }
+                    } else {
+                        d3.select("#answer_all").text("Please answer all questions to proceed")
                     }
-//                }
+                } else {
+                    if(step==experimentr.data()["mat"].length-1){
+                        grading();
+                        goToNext();
+                    }else {
+                        if (sec_switch == 1 && (mod_pages.indexOf(step) > -1)) {
+                            console.log(step);
+                            d3.select('#submitComments').style("left", "50%");
+                            d3.selectAll(".blocks").remove();
+                            d3.select("#notation").html("");
+                            add_mod_intros("recap_" + (step + 1) + ".PNG");
+
+                            delay_next(250);
+                            sec_switch = 0
+                        } else {
+                            d3.select("#notation").text("Page " + (step + 1).toString() + "/" + (experimentr.data()['mat'].length - 1).toString());
+
+                            setTimeout(function () {
+                                d3.selectAll(".blocks").remove();
+                                pairs(experimentr.data()["mat"][step - 1], step - 1, experimentr.data()["mat"][step - 1].length, experimentr.data()["mode"]);
+                                if (experimentr.data()["mode"] == "Vanilla") {
+                                    d3.selectAll(".icon").remove();
+                                }
+                            }, 100);
+
+                            delay_next(350);
+
+                            step += 1;
+                            sec_switch = 1;
+                        }
+                }
+
+//                if(step==experimentr.data()["mat"].length-1){
+//                    grading();
+//                    goToNext();
+//                }else {
+//
+//                    if (sec_switch == 1 && (mod_pages.indexOf(step) > -1)) {
+//                        console.log(step);
+//                        d3.select('#submitComments').style("left", "50%");
+//                        d3.selectAll(".blocks").remove();
+//                        d3.select("#notation").html("");
+//                        add_mod_intros("recap_" + (step + 1) + ".PNG");
+//
+//                        delay_next(250);
+//                        sec_switch = 0
+//                    } else {
+////                        if (!all_answered()) {
+////                            d3.select("#answer_all").text("Please answer all questions to proceed")
+////                        } else {
+//                        d3.select("#notation").text("Page " + (step + 1).toString() + "/" + (experimentr.data()['mat'].length - 1).toString());
+//
+//                        setTimeout(function () {
+//                            d3.selectAll(".blocks").remove();
+//                            pairs(experimentr.data()["mat"][step - 1], step - 1, experimentr.data()["mat"][step - 1].length, experimentr.data()["mode"]);
+//                            if (experimentr.data()["mode"] == "Vanilla") {
+//                                d3.selectAll(".icon").remove();
+//                            }
+//                        }, 100);
+//
+//                        delay_next(350);
+//
+//                        step += 1;
+//                        sec_switch = 1;
+//
+//                    }
+////                }
                 }
 
                 // time elapse
