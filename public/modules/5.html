@@ -103,14 +103,16 @@
             d3.selectAll(".result").remove();
             start = Date.now();
             for(i in experimentr.data()["clicks"]){
-                if(+i>+prev){
+                if(+experimentr.data()["clicks"][i][0]>+prev){
                     answer[+experimentr.data()["clicks"][i][1]-1] = Math.floor(+experimentr.data()["clicks"][i][2]/3);
                 }
             }
             if(Object.keys(answer).length < d3.selectAll(".blocks")[0].length){
+                restore = answer;
                 return(false);
 //                disable_submit();
             } else {
+                restore = {};
                 return(true);
 //                enable_submit();
             }
