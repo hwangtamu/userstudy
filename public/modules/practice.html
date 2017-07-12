@@ -131,8 +131,7 @@
             pairs(experimentr.data()["practice"][0], 0, experimentr.data()["practice"][0].length, experimentr.data()["mode"]),
             200
         );
-        var start = Date.now();
-        console.log(start);
+
         if (experimentr.data()["mode"] == "Vanilla") {
             d3.selectAll(".icon").remove();
         }
@@ -152,6 +151,8 @@
         }
 //        console.log(d3.select("#t9").property("value"));
         var restore = {};
+        var start = Date.now();
+        console.log(start);
         d3.select('#submitAnswers')
             .on('click', function(){
                 var questions = [];
@@ -167,7 +168,7 @@
                 d3.selectAll(".result").remove();
                 start = Date.now();
                 for(i in experimentr.data()["practice_clicks"]){
-                    if(+i>+prev){
+                    if(+experimentr.data()["practice_clicks"][i][0]>+prev){
                         answer[+experimentr.data()["practice_clicks"][i][1]-1] = Math.floor(+experimentr.data()["practice_clicks"][i][2]/3);
                     }
                 }
