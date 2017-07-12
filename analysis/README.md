@@ -30,7 +30,7 @@ redis-server redis.conf
 ```
 to sync the database.
 
-__Trouble Shooting__:
+__Troubleshooting__:
 1. binding error. This error happens if you already have a redis-server running on your local machine. This error can be simply solved by shutting down the local redis service.
 ```
 redis-cli SHUTDOWN
