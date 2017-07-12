@@ -99,7 +99,7 @@
                         d3.selectAll(".blocks").remove();
                         console.log(experimentr.data()["section2"][step-1]);
                         pairs(experimentr.data()["section2"][step-1], step-1, experimentr.data()["section2"][step-1].length, experimentr.data()["mode"]);
-                        if (experimentr.data()["section2"] == "Vanilla") {
+                        if (experimentr.data()["mode"] == "Vanilla") {
                             d3.selectAll(".icon").remove();
                         }
                     }, 100);

@@ -845,19 +845,19 @@ function choices(svg, lBound, scale, mode, yt) {
         radioButton.append("svg:image").attr("xlink:href","/resources/0.png").attr("class","choice").attr("id",m)
             .attr("x",0).attr("y",-5).attr("width",18*scale).attr("height",25*scale);
         radioButton.on({"mouseover": function(d) {d3.select(this).style("cursor", "pointer")},
-            "mouseout": function(d) {d3.select(this).style("cursor", "default")}})
-            .on("click",function(d){
-                buttons.select(".no").attr("opacity",0.2);
-                buttons.selectAll(".choice").attr("xlink:href","/resources/0.png");
-                d3.select(this).select("image").attr("xlink:href","/resources/1.png");
-                var t = Date.now();
-                experimentr.data()[clk].push([
-                    t,
-                    //svg.attr("id").slice(1),
-                    d3.select(this.parentNode.parentNode).select("#c9").text(),
-                    d3.select(this).select(".choice").attr("id")
-                ]);
-            });
+                        "mouseout": function(d) {d3.select(this).style("cursor", "default")}})
+                   .on("click",function(d){
+                        buttons.select(".no").attr("opacity",0.2);
+                        buttons.selectAll(".choice").attr("xlink:href","/resources/0.png");
+                        d3.select(this).select("image").attr("xlink:href","/resources/1.png");
+                        var t = Date.now();
+                        experimentr.data()[clk].push([
+                            t,
+                            //svg.attr("id").slice(1),
+                            d3.select(this.parentNode.parentNode).select("#c9").text(),
+                            d3.select(this).select(".choice").attr("id")
+                        ]);
+                    });
     }
 }
 
