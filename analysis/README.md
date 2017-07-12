@@ -2,7 +2,7 @@
 
 Steps of converting Redis database on Heroku to local csv file.
 
-### 0.Requirement
+### 0.Requirements
 
 * Python 2.7.x
 * Redis
