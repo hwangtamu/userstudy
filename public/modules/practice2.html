@@ -75,6 +75,7 @@
         delay_next(250);
 
         console.log("practice");
+        //console.log(experimentr.data());
         var step = 1;
         var sec_switch = 1;
         var default_text = 'Please click "Submit" button to submit your answers.';
@@ -138,7 +139,7 @@
                 var score = 0;
                 var wrong_ans = [];
                 for(i in answer){
-                    if(experimentr.data()['practice_answer'][+i]==answer[i]){
+                    if(experimentr.data()['practice2_answer'][+i]==answer[i]){
                         score+=1;
                     }else{
                         wrong_ans.push((+i+1).toString());
