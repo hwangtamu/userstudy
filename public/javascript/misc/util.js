@@ -64,6 +64,7 @@ function cell(t,g,j,k){
         //title[j%10]=="ID.")){return cx/2;}
         if(t=="ID"){return 18;}
         if(t=="Race"){return 20;}
+        if(j>cwidth.length && title[j%cwidth.length]=="Race"){return "2em";}
         if(k==2){return cx/2;}
         return 0;})
     //if(t.length>0){return cx*(0.02+0.48/t.length)-4;}})
@@ -219,7 +220,7 @@ function cell(t,g,j,k){
                     if(t_j!="" && t_m!="") {
                         for (var i = 0; i < Math.max(t_j.length, t_m.length); i++) {
                             // date swap
-                            if (bin.indexOf(i) == -1 && t_j[i] == t_m[i + 3] && t_j[i + 1] == t_m[i + 4] && t_j[i + 3] == t_m[i] &&
+                            if (i==0 && bin.indexOf(i) == -1 && t_j[i] == t_m[i + 3] && t_j[i + 1] == t_m[i + 4] && t_j[i + 3] == t_m[i] &&
                                 t_j[i + 4] == t_m[i + 1] && t_j[i] != "*" && t_j[i + 1] != "*" && t_j[i + 2] != "*" && t_j[i + 3] != "*") {
                                 //console.log(t_m, t_j);
                                 bin.push(i, i + 1, i + 2, i + 3, i + 4);
@@ -844,19 +845,19 @@ function choices(svg, lBound, scale, mode, yt) {
         radioButton.append("svg:image").attr("xlink:href","/resources/0.png").attr("class","choice").attr("id",m)
             .attr("x",0).attr("y",-5).attr("width",18*scale).attr("height",25*scale);
         radioButton.on({"mouseover": function(d) {d3.select(this).style("cursor", "pointer")},
-            "mouseout": function(d) {d3.select(this).style("cursor", "default")}})
-            .on("click",function(d){
-                buttons.select(".no").attr("opacity",0.2);
-                buttons.selectAll(".choice").attr("xlink:href","/resources/0.png");
-                d3.select(this).select("image").attr("xlink:href","/resources/1.png");
-                var t = Date.now();
-                experimentr.data()[clk].push([
-                    t,
-                    //svg.attr("id").slice(1),
-                    d3.select(this.parentNode.parentNode).select("#c9").text(),
-                    d3.select(this).select(".choice").attr("id")
-                ]);
-            });
+                        "mouseout": function(d) {d3.select(this).style("cursor", "default")}})
+                   .on("click",function(d){
+                        buttons.select(".no").attr("opacity",0.2);
+                        buttons.selectAll(".choice").attr("xlink:href","/resources/0.png");
+                        d3.select(this).select("image").attr("xlink:href","/resources/1.png");
+                        var t = Date.now();
+                        experimentr.data()[clk].push([
+                            t,
+                            //svg.attr("id").slice(1),
+                            d3.select(this.parentNode.parentNode).select("#c9").text(),
+                            d3.select(this).select(".choice").attr("id")
+                        ]);
+                    });
     }
 }
 

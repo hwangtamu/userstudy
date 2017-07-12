@@ -75,6 +75,7 @@
         delay_next(250);
 
         console.log("practice");
+        //console.log(experimentr.data());
         var step = 1;
         var sec_switch = 1;
         var default_text = 'Please click "Submit" button to submit your answers.';
@@ -106,8 +107,9 @@
                 experimentr.sequence([
                     'modules/main_section_start.html',
                     'modules/5.html',
-                    'modules/post_study_questionnaire.html',
                     'modules/section2.html',
+                    'modules/post_study_questionnaire.html',
+                    'modules/thanks.html',
                     'modules/end.html'
                 ]).start();
             } else {
@@ -138,7 +140,7 @@
                 var score = 0;
                 var wrong_ans = [];
                 for(i in answer){
-                    if(experimentr.data()['practice_answer'][+i]==answer[i]){
+                    if(experimentr.data()['practice2_answer'][+i]==answer[i]){
                         score+=1;
                     }else{
                         wrong_ans.push((+i+1).toString());

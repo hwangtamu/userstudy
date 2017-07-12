@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<title>Title</title>-->
+</head>
+<body>
+<div id="notation" style="text-align:left;">
+
+</div>
+<h1>Thank you!</h1>
+<div id="thanks" style="font-size: 25px">
+    <p id="score"></p><br>
+    You can now collect your $10 Amazon gift card. You will be contacted by the recruitment coordinator if you are the high scorer in today's session and be rewarded with a $35 Amazon gift card (If you have opted in with your email for the process).<br><br>
+    Thank you very much for participating in the study. Have a great rest of the day!
+</div>
+
+<button id="submitComments" class="next-button" type="button" style="position: absolute; left: 900px;">Finish</button>
+</body>
+<script>
+    (function(){
+        experimentr.hideNext();
+        var score = parseInt(experimentr.data()["total_score"]);
+        var report = "You have scored "+ score + " out of 36 ("+ Math.floor(score/36) +"%)";
+
+        d3.select('#score').text(report);
+
+        d3.select('#submitComments')
+            .on('click', function(){
+                experimentr.next();
+            });
+    }());
+</script>
+
+</html>

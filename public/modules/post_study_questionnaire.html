@@ -72,8 +72,8 @@
                 </select>
 
             </li><br>
-            <li>Reg No.:
-                <select name="reg_num_diff" style="position: absolute; left: 200px;">
+            <li>ID.:
+                <select name="id_diff" style="position: absolute; left: 200px;">
                     <option value="0">Please select</option>
                     <option value="1">1 - Very Difficult</option>
                     <option value="2">2 - Somewhat Difficult</option>
@@ -140,8 +140,8 @@
                 </select>
 
             </li><br>
-            <li>Reg No.:
-                <select name="reg_num_spot" style="position: absolute; left: 200px;">
+            <li>ID:
+                <select name="id_spot" style="position: absolute; left: 200px;">
                     <option value="0">Please select</option>
                     <option value="1">1 - Very Difficult</option>
                     <option value="2">2 - Somewhat Difficult</option>
@@ -262,7 +262,7 @@
 
     <br><br>
     <div id="div_freq" style="width: 700px;">
-        6. Did you use the name frequencies to help make linkage decisions?<br><br>
+        6. Did you take into account the rarity/commonness of the first name and last name when you made linkage decisions?<br><br>
         <!--&nbsp;&nbsp;&nbsp;&nbsp;-->
         &nbsp;&nbsp;&nbsp;
         <input type="radio" id="e1" name="frequency" value="Yes"> Yes &nbsp;&nbsp;
@@ -271,9 +271,10 @@
         &nbsp;&nbsp;&nbsp; If yes, why? If not, why not?:
         <textarea name="freq_dec" rows="4" cols="90">
         </textarea>
+        <br><br>
     </div>
 
-    <br><br>
+
     <div name="div_int" style="width: 700px;">
         7. Was there anything you did not understand about the task or interface? Please explain.<br><br>
         <textarea name="inter_under" rows="4" cols="90">
@@ -306,7 +307,9 @@
         experimentr.startTimer('post_survey_timer');
         experimentr.hideNext();
 
-
+//        if(experimentr.data()["mode"]=="Vanilla"){
+//            d3.select("#div_freq").property("innerHTML","");
+//        }
 
         d3.selectAll('textarea')
             .filter(function(d) { return this.name === 'text_area_difficulty' ? this : null; })
@@ -327,7 +330,7 @@
             .filter(function(d) { return this.name === 'dob_diff' ? this : null; })
             .on('change', function() { data.ps_dob_diff = this.value;});
         d3.selectAll('select')
-            .filter(function(d) { return this.name === 'reg_num_diff' ? this : null; })
+            .filter(function(d) { return this.name === 'id_diff' ? this : null; })
             .on('change', function() { data.ps_reg_diff = this.value;});
         d3.selectAll('select')
             .filter(function(d) { return this.name === 'race_diff' ? this : null; })
@@ -343,7 +346,7 @@
             .filter(function(d) { return this.name === 'dob_spot' ? this : null; })
             .on('change', function() { data.ps_dob_spot = this.value;});
         d3.selectAll('select')
-            .filter(function(d) { return this.name === 'reg_num_spot' ? this : null; })
+            .filter(function(d) { return this.name === 'id_spot' ? this : null; })
             .on('change', function() { data.ps_reg_spot = this.value;});
         d3.selectAll('select')
             .filter(function(d) { return this.name === 'race_spot' ? this : null; })
@@ -370,6 +373,12 @@
         d3.selectAll('select')
             .filter(function(d) { return this.name === 'spot_dswap' ? this : null; })
             .on('change', function() { data.ps_dswap_spot = this.value;});
+
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'frequency' ? this : null; })
+            .on('change', function() {
+                data.ps_frequency_use = this.value;
+            })
 
         d3.selectAll('textarea')
             .filter(function(d) { return this.name === 'freq_dec' ? this : null; })

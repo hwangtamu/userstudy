@@ -1,32 +1,59 @@
-Before testing
-1. Make sure redis has been flushed by running ./flushdb
-2. Make sure public/data/sequence.json is correct
-	This file should contain the next participants id
-	To increment participants id and shift sequence run the following in public/data folder:
-	./datashift.py
+# README
 
-After a single test
-1. ./pull.sh this will pull the data into results/data.json
-2. rename the file with the particpant id. For ex. using A1 as participant id
-	mv results/data.json results/a1_data.json
-3. once test is finished run ./flushdb this will make cleanup redis to be ready for next test
-	ONLY flush once you backed up file.
+Steps of converting Redis database on Heroku to local csv file.
 
-After all tests
-1. ./process.sh this will process each xx_data.json
-2. ./merge.sh this will merge each processed file into one large file
-3. ./convert.sh this will convert the marged file into csv format
+### 0.Requirements
 
-Important Note
-After each single tests you may want to backup each one to an external drive.
+* Python 2.7.x
+* Redis
+* rdbtools (https://github.com/sripathikrishnan/redis-rdb-tools)
 
 
+### 1.Sync RDB from Heroku
 
-### Notes
+By default, Redis stores data in `dump.rdb`. Once the Redis-to-go plugin is installed on the Heroku project, a remote Redis instance is created. The configuration of the remote Redis instance can be accessed on the overview page of the Heroku project. An address of the Redis instance is in the format of 
 
-Answers to questions.
+(example)
+```
+redis://redistogo:2d183080d0db8a6a037c76f4f6c898e2@sculpin.redistogo.com:9449/
+```
+To sync the remote data, we have to create a `redis.conf` file
 
-Create output file to each page.
-Think about how to capture data for each user.
+(example)
+```
+masterauth 2d183080d0db8a6a037c76f4f6c898e2
+slaveof sculpin.redistogo.com 9449
+```
+Then run
+```
+redis-server redis.conf
+```
+to sync the database.
 
-Data: time spent on each page, clicks on the whole browser,
+__Troubleshooting__:
+1. binding error. This error happens if you already have a redis-server running on your local machine. This error can be simply solved by shutting down the local redis service.
+```
+redis-cli SHUTDOWN
+```
+2. rdb version/format error. This error happens probably due to the version conflicts between Heroku and your local machine. This error can be simply solved by deleting your local `dump.rdb` file.
+
+### 2. RDB to JSON
+First make sure the package `rdbtools` in installed.
+
+Run command
+```
+rdb -c json [path to dump.rdb] -f [path to *.json to be created]
+```
+to create a json file.
+
+### 3. JSON to CSV
+Use the Python script `json2csv` from command line:
+```
+json2csv.py [path to json] [path to csv]
+```
+Check if the csv file is created.
+
+
+
+
+

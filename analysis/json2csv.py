@@ -1,5 +1,6 @@
-import csv
-import json
+# written by Han Wang
+# 7/11/2017
+import csv,json,sys
 
 def flatten(new_key, old_key, d):
     """
@@ -32,9 +33,9 @@ def flatten_clicks(d):
                 d[i].pop(o[k])
 
 
+arg = sys.argv[1:]
 
-
-with open('a.json', 'r') as f:
+with open(arg[0], 'r') as f:
     data = json.load(f)[0]
 
 new_keys = ['next', 'sec_ans', 'sec2_ans', 'prac_ans', 'prac2_ans', 'grades', 'sec2_grades']
@@ -56,7 +57,7 @@ fieldnames.remove('section2')
 #fieldnames.remove('answer')
 fieldnames = sorted(list(fieldnames))
 
-c = open('result.csv','wb')
+c = open(arg[1],'wb')
 writer = csv.DictWriter(c, ['postId']+fieldnames,extrasaction='ignore')
 
 writer.writeheader()

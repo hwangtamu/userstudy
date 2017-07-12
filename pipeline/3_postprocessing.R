@@ -102,6 +102,10 @@ for(i in 1:10) {
 names(starred_data) <- col_names
 write_csv(starred_data,"./data_output/all_starred_race.csv")
 
+starred_data %>%
+  sample_n(nrow(.)) %>%
+  write_csv("./data_output/section2.csv")
+
 # (lookup <- starred_data %>%
 #     select(type,`Group ID`) %>% 
 #     unique() %>%
