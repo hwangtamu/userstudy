@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0e29c6df-9fc3-4c4c-ab4e-18561c52b86a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/modules/practice.html" afterPath="$PROJECT_DIR$/public/modules/practice.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -605,14 +604,7 @@
       <workItem from="1499796222908" duration="5252000" />
       <workItem from="1499877857480" duration="9691000" />
       <workItem from="1499891790131" duration="3057000" />
-      <workItem from="1499897718157" duration="1970000" />
-    </task>
-    <task id="LOCAL-00068" summary="new data added">
-      <created>1498087099370</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1498087099370</updated>
+      <workItem from="1499897718157" duration="2018000" />
     </task>
     <task id="LOCAL-00069" summary="surveys saved to backend">
       <created>1498108219957</created>
@@ -950,11 +942,18 @@
       <option name="project" value="LOCAL" />
       <updated>1499901042391</updated>
     </task>
-    <option name="localTasksCounter" value="117" />
+    <task id="LOCAL-00117" summary="practice 1 has updated feedback. Again. and a bug fix">
+      <created>1499902035619</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1499902035619</updated>
+    </task>
+    <option name="localTasksCounter" value="118" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="328353000" />
+    <option name="totallyTimeSpent" value="328401000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
@@ -1022,7 +1021,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added upload functionality for practice" />
     <MESSAGE value="squashed a few bugs." />
     <MESSAGE value="bug fix" />
     <MESSAGE value="fix practice2" />
@@ -1047,7 +1045,8 @@
     <MESSAGE value="practice 2 bug fix" />
     <MESSAGE value="new disclosure mode tutorials" />
     <MESSAGE value="practice 1 has updated feedback. Again." />
-    <option name="LAST_COMMIT_MESSAGE" value="practice 1 has updated feedback. Again." />
+    <MESSAGE value="practice 1 has updated feedback. Again. and a bug fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="practice 1 has updated feedback. Again. and a bug fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
