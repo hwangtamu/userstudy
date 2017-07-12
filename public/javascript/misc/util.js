@@ -454,6 +454,10 @@ function cell(t,g,j,k){
     //         }
     //     }
     // }
+    // if(j>cwidth.length && diff==0 && experimentr.data()['mode']=='Opti1' &&
+    //     ['First name', 'Last name', 'DoB(M/D/Y)'].indexOf(title[j%cwidth.length])>-1){
+    //     console.log(t);
+    // }
     if((experimentr.data()['mode']!="Vanilla") && k>=3 && k<=6 &&
         title[j%cwidth.length]!="ID." && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
         g.select("#c"+j.toString()).select(".span").remove();
@@ -472,9 +476,13 @@ function cell(t,g,j,k){
             if(t_j[l]==t_m[l] && t_j[l]!='T' && t_j[l]!='X'){scheme.push(0);}
             else{scheme.push(1);}
         }
-        //if(trailing_.length+trailing.length>0){
-        //    console.log(t_j, t_m);
-        //}
+        if(j>cwidth.length && diff==0 && experimentr.data()['mode']=='Opti1' &&
+            ['First name', 'Last name', 'DoB(M/D/Y)'].indexOf(title[j%cwidth.length])>-1){
+            if(t.indexOf('*')>-1){
+                t = t_jj
+            }
+            //console.log(t, t_jj);
+        }
         var t_count = 0;
         for(var l=0;l<len;l++){
             if(t[l]!="_"){
@@ -844,7 +852,8 @@ function choices(svg, lBound, scale, mode, yt) {
         var radioButton = buttons.append("g").attr("transform","translate("+x[m]*scale+","+y*scale+")");
         radioButton.append("svg:image").attr("xlink:href","/resources/0.png").attr("class","choice").attr("id",m)
             .attr("x",0).attr("y",-5).attr("width",18*scale).attr("height",25*scale);
-        radioButton.on({"mouseover": function(d) {d3.select(this).style("cursor", "pointer")},
+        radioButton.on({"mouseover": function(d) {
+            d3.select(this).style("cursor", "pointer")},
                         "mouseout": function(d) {d3.select(this).style("cursor", "default")}})
                    .on("click",function(d){
                         buttons.select(".no").attr("opacity",0.2);
@@ -860,6 +869,7 @@ function choices(svg, lBound, scale, mode, yt) {
                     });
     }
 }
+
 
 // draw choice panel
 // mode: 1=default 2=introduce
