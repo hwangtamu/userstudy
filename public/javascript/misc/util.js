@@ -478,8 +478,9 @@ function cell(t,g,j,k){
         }
         if(j>cwidth.length && diff==0 && experimentr.data()['mode']=='Opti1' &&
             ['First name', 'Last name', 'DoB(M/D/Y)'].indexOf(title[j%cwidth.length])>-1){
-            if(t.indexOf('*')>-1){
-                t = t_jj
+            if(t.indexOf('*')>-1 && t_m!="" && t_j!=""){
+                t = t_jj;
+                //console.log(t_m, t_j);
             }
             //console.log(t, t_jj);
         }
