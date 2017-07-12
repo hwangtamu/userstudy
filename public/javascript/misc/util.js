@@ -870,6 +870,7 @@ function choices(svg, lBound, scale, mode, yt) {
     }
 }
 
+
 // draw choice panel
 // mode: 1=default 2=introduce
 function alt_choices(svg,lBound,mode) {
