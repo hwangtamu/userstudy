@@ -42,14 +42,14 @@ First make sure the package `rdbtools` in installed.
 
 Run command
 ```
-rdb -c json <path to dump.rdb> -f <path to *.json to be created>
+rdb -c json [path to dump.rdb] -f [path to *.json to be created]
 ```
 to create a json file.
 
 #### 3. JSON to CSV
 Use the Python script `json2csv` from command line:
 ```
-json2csv.py <path to json> <path to csv>
+json2csv.py [path to json] [path to csv]
 ```
 Check if the csv file is created.
 
