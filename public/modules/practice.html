@@ -95,23 +95,23 @@
 
             d3.select("#notation").select(".image").remove();
             var svg = d3.select("#notation")
-                        .append("svg")
-                        .attr("class", "image")
-                        .attr("width", 1800)
-                        .attr("height", 550);
-                         svg.append("svg:image")
-                            .attr("xlink:href","/resources/module_intros/"+img_address)
-                            .attr("x",x)
-                            .attr("y",y)
-                            .attr("width",width)
-                            .attr("height",height);
-                        svg.append("rect")
-                            .attr("x", x)
-                            .attr("y", y)
-                            .attr("height", height)
-                            .attr("width", width)
-                            .style("stroke", "black")
-                            .style("fill", "none");
+                .append("svg")
+                .attr("class", "image")
+                .attr("width", 1800)
+                .attr("height", 550);
+            svg.append("svg:image")
+                .attr("xlink:href","/resources/module_intros/"+img_address)
+                .attr("x",x)
+                .attr("y",y)
+                .attr("width",width)
+                .attr("height",height);
+            svg.append("rect")
+                .attr("x", x)
+                .attr("y", y)
+                .attr("height", height)
+                .attr("width", width)
+                .style("stroke", "black")
+                .style("fill", "none");
 //                    .style("stroke-width", "20px");
 
         }
@@ -144,7 +144,6 @@
                     'modules/5.html',
                     'modules/section2.html',
                     'modules/post_study_questionnaire.html',
-                    'modules/thanks.html',
                     'modules/end.html'
                 ]).start();
             } else {
@@ -167,18 +166,17 @@
                 var text = [];
                 d3.selectAll(".result").remove();
                 start = Date.now();
-                //console.log(experimentr.data()["practice_clicks"]);
                 for(i in experimentr.data()["practice_clicks"]){
-                    if(+experimentr.data()['practice_clicks'][i][0]>+prev){
+                    if(+i>+prev){
                         answer[+experimentr.data()["practice_clicks"][i][1]-1] = Math.floor(+experimentr.data()["practice_clicks"][i][2]/3);
                     }
                 }
                 //console.log(Object.keys(answer).length, d3.selectAll(".blocks")[0].length);
                 //console.log(experimentr.data()['practice_answer']);
-                var lock = [5,6];
+                var lock = [6];
                 var wrong_ans = [];
                 var score = 0;
-                //console.log("answer",answer);
+                console.log("answer",answer);
                 for(i in answer){
                     if(experimentr.data()['practice_answer'][+i]==answer[i]){
                         score+=1;
@@ -189,26 +187,30 @@
 
                 var ans_ques = Object.keys(answer);
                 var unaswered_ques = [];
-                //console.log("wrong_ans",wrong_ans);
-                //console.log("ans_ques",ans_ques);
+                console.log("wrong_ans",wrong_ans);
+                console.log("ans_ques",ans_ques);
                 for(var i=0; i < questions.length;i++){
                     if(ans_ques.indexOf((parseInt(questions[i])-1).toString())<0){
-                        //console.log("q not answered");
+                        console.log("q not answered");
                         unaswered_ques.push((questions[i]).toString());
                         wrong_ans.push((questions[i]).toString());
                     }
                 }
 
-                //console.log("wrong_ans",wrong_ans);
+                console.log("wrong_ans",wrong_ans);
                 if(wrong_ans.length > 0){
                     if(unaswered_ques.length > 0){
                         text.push("Please review question(s) "+formatted_join(wrong_ans));
                     } else if(lock.indexOf(step)>=0) {
-                            text.push("The question(s) "+formatted_join(wrong_ans) +" might be wrong but it's a judgement call");
-                        } else{
-                            text.push("Please review question(s) "+formatted_join(wrong_ans));
-                        }
+                        text.push("No one can be 100% sure of the answer. ", "Trust your judgement.");
+                    } else{
+                        text.push("Please review question(s) "+formatted_join(wrong_ans));
+                    }
 
+                }
+
+                if((unaswered_ques.length === 0) && (lock.indexOf(step)>=0)){
+                    text = ["No one can be 100% sure of the answer. ", "Trust your judgement."];
                 }
 
 
@@ -219,12 +221,12 @@
                 restore = answer;
 
                 if(text.length==0){
-                    text = ['Good job!','Please click "Next" button to proceed.'];
+                    text = ['Good job!','Please click the "Next" button to proceed.'];
                     d3.select("#submitComments").attr("disabled",null);
                     d3.select("#submitComments").style("color","black");
                     restore = {};
                 } else if(lock.indexOf(step)>=0 && unaswered_ques.length === 0){
-                    text.push("You can still proceed to the next section");
+                    text.push("You may proceed to the next section.");
                     d3.select("#submitComments").attr("disabled",null);
                     d3.select("#submitComments").style("color","black");
                     restore = {};
