@@ -8,27 +8,47 @@
 <div id="notation" style="text-align:left;">
 
 </div>
-<h1>Thank you!</h1>
+<h1>Thank you<button style="background:none; border:none; margin:0; padding:0;" id="summon_dumpdata">!</button></h1><br>
 <div id="thanks" style="font-size: 25px">
-    <p id="score"></p><br>
-    You can now collect your $10 Amazon gift card. You will be contacted by the recruitment coordinator if you are the high scorer in today's session and be rewarded with a $35 Amazon gift card (If you have opted in with your email for the process).<br><br>
+    <p id="score"></p>
+    <strong>Please do not log off or close this page. Please raise your hand and one of the volunteers will come to your place and give you the $10 Amazon gift card.</strong><br><br>
+    You will be contacted by the recruitment coordinator if you are the high scorer in today's session and be rewarded with a $35 Amazon gift card (If you have opted in with your email for the process).<br><br>
     Thank you very much for participating in the study. Have a great rest of the day!
-</div>
+</div><br><br>
+<div id="dumpdata" style="visibility: hidden;"></div>
 
-<button id="submitComments" class="next-button" type="button" style="position: absolute; left: 900px;">Finish</button>
+
+<!--<button id="submitComments" class="next-button" type="button" style="position: absolute; left: 900px;">Finish</button>-->
 </body>
 <script>
     (function(){
         experimentr.hideNext();
         var score = parseInt(experimentr.data()["total_score"]);
-        var report = "You have scored "+ score + " out of 36 ("+ Math.floor(score/36) +"%)";
+        var report = "Good job! You have scored "+ score + " out of 36 ("+ Math.floor(score*100/36) +"%).";
 
         d3.select('#score').text(report);
 
-        d3.select('#submitComments')
-            .on('click', function(){
-                experimentr.next();
-            });
+        delete experimentr.data()['mat'];
+        delete experimentr.data()['section2'];
+        delete experimentr.data()['practice'];
+        delete experimentr.data()['practice2'];
+
+        var k = Object.keys(experimentr.data()),
+            t = "";
+        for(var i=0;i<k.length;i++){
+            t+=k[i]+' : '+JSON.stringify(experimentr.data()[k[i]])+'<br>';
+        }
+        document.getElementById("dumpdata").innerHTML = t;
+        experimentr.save(t);
+
+        d3.select("#summon_dumpdata").on("click", function(){
+            d3.select("#dumpdata").style("visibility","visible");
+        });
+
+//        d3.select('#submitComments')
+//            .on('click', function(){
+//                experimentr.next();
+//            });
     }());
 </script>
 
