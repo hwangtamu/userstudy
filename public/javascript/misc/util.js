@@ -229,7 +229,7 @@ function cell(t,g,j,k){
                                         .attr("class", "icon").attr("x", 9 * i + 12)
                                         .attr("y", cy / 2 + 13).attr("width", 23).attr("height", 23);
                                 }
-                               date_swap = 1;
+                                date_swap = 1;
                                 num += 1
                             }
                             //indel
@@ -851,42 +851,23 @@ function choices(svg, lBound, scale, mode, yt) {
     if(sec=='section2'){clk='s2_clicks';}
     for(var m=0;m<6;m++){
         var radioButton = buttons.append("g").attr("transform","translate("+x[m]*scale+","+y*scale+")");
-        radioButton.append("svg:image").attr("xlink:href","/resources/0.png").attr("class","choice").attr("id","b"+m)
+        radioButton.append("svg:image").attr("xlink:href","/resources/0.png").attr("class","choice").attr("id",m)
             .attr("x",0).attr("y",-5).attr("width",18*scale).attr("height",25*scale);
         radioButton.on({"mouseover": function(d) {
-            // switch(m){
-            //     case 0:
-            //         console.log(m);
-            //         break;
-            //     case 1:
-            //         console.log(m);
-            //         break;
-            //     case 2:
-            //         console.log(m);
-            //         break;
-            //     case 3:
-            //         console.log(m);
-            //         break;
-            //     default:
-            //         console.log(d);
-            //         break;
-            // }
-            // console.log(radioButton.attr("x"));
-            d3.select(this).style("cursor", "pointer");
-            },
-                        "mouseout": function(d) {d3.select(this).style("cursor", "default")}})
-                   .on("click",function(d){
-                        buttons.select(".no").attr("opacity",0.2);
-                        buttons.selectAll(".choice").attr("xlink:href","/resources/0.png");
-                        d3.select(this).select("image").attr("xlink:href","/resources/1.png");
-                        var t = Date.now();
-                        experimentr.data()[clk].push([
-                            t,
-                            //svg.attr("id").slice(1),
-                            d3.select(this.parentNode.parentNode).select("#c9").text(),
-                            d3.select(this).select(".choice").attr("id")
-                        ]);
-                    });
+            d3.select(this).style("cursor", "pointer")},
+            "mouseout": function(d) {d3.select(this).style("cursor", "default")}})
+            .on("click",function(d){
+                buttons.select(".no").attr("opacity",0.2);
+                buttons.selectAll(".choice").attr("xlink:href","/resources/0.png");
+                d3.select(this).select("image").attr("xlink:href","/resources/1.png");
+                var t = Date.now();
+                experimentr.data()[clk].push([
+                    t,
+                    //svg.attr("id").slice(1),
+                    d3.select(this.parentNode.parentNode).select("#c9").text(),
+                    d3.select(this).select(".choice").attr("id")
+                ]);
+            });
     }
 }
 
@@ -953,13 +934,6 @@ function alt_choices(svg,lBound,mode) {
                 d3.select(this).select("image").attr("xlink:href","/resources/1.png");
             });
     }
-
-    // for(var m=0;m<6;m++){
-    //     console.log(options[m]);
-    //     d3.select("#"+m).on({"mouseover": function(d) {
-    //         console.log(options[m]);
-    //     }})
-    // }
 }
 
 function parsing(route, dest){
@@ -1098,7 +1072,7 @@ function grading2(){
 }
 
 /*
-Parsing for practice part
+ Parsing for practice part
  */
 function parsing2(route, dest){
     d3.text(route, function (csvdata) {
