@@ -954,7 +954,12 @@ function alt_choices(svg,lBound,mode) {
             });
     }
 
-
+    // for(var m=0;m<6;m++){
+    //     console.log(options[m]);
+    //     d3.select("#"+m).on({"mouseover": function(d) {
+    //         console.log(options[m]);
+    //     }})
+    // }
 }
 
 function parsing(route, dest){

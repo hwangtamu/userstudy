@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0e29c6df-9fc3-4c4c-ab4e-18561c52b86a" name="Default" comment="practice 1 has updated feedback. Again. and a bug fix">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/resources/RL_intervention.pdf" afterPath="$PROJECT_DIR$/public/resources/RL_intervention.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/resources/RL_no_intervention.pdf" afterPath="$PROJECT_DIR$/public/resources/RL_no_intervention.pdf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/resources/Scale2.png" afterPath="$PROJECT_DIR$/public/resources/Scale2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/resources/disclosure_mode_3.pdf" afterPath="$PROJECT_DIR$/public/resources/disclosure_mode_3.pdf" />
+    <list default="true" id="0e29c6df-9fc3-4c4c-ab4e-18561c52b86a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/output.csv" afterPath="$PROJECT_DIR$/public/data/output.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.html" afterPath="$PROJECT_DIR$/public/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/modules/5.html" afterPath="$PROJECT_DIR$/public/modules/5.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/modules/practice.html" afterPath="$PROJECT_DIR$/public/modules/practice.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/modules/practice2.html" afterPath="$PROJECT_DIR$/public/modules/practice2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/modules/thanks.html" afterPath="$PROJECT_DIR$/public/modules/thanks.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascript/misc/util.js" afterPath="$PROJECT_DIR$/public/javascript/misc/util.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -31,11 +22,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="thanks.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="thanks.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/modules/thanks.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="17" column="46" lean-forward="false" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
+            <state relative-caret-position="343">
+              <caret line="51" column="9" lean-forward="true" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
               <folding>
                 <element signature="n#style#0;n#button#0;n#h1#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -45,43 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pre_study_questionnaire.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/modules/pre_study_questionnaire.html">
+      <file leaf-file-name="util.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/javascript/misc/util.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="216" column="36" lean-forward="false" selection-start-line="216" selection-start-column="32" selection-end-line="216" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="end.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/modules/end.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="42" column="44" lean-forward="true" selection-start-line="42" selection-start-column="44" selection-end-line="42" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="section2.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/modules/section2.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="29" column="102" lean-forward="false" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="102" />
-              <folding>
-                <element signature="n#style#0;n#button#0;n#h3#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="output.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/data/output.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="452">
-              <caret line="26" column="86" lean-forward="false" selection-start-line="26" selection-start-column="86" selection-end-line="26" selection-end-column="86" />
+            <state relative-caret-position="434">
+              <caret line="958" column="21" lean-forward="false" selection-start-line="958" selection-start-column="21" selection-end-line="958" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -194,7 +153,6 @@
         <option value="$PROJECT_DIR$/public/modules/consent.html" />
         <option value="$PROJECT_DIR$/public/modules/section2.html" />
         <option value="$PROJECT_DIR$/public/modules/post_study_questionnaire.html" />
-        <option value="$PROJECT_DIR$/public/javascript/misc/util.js" />
         <option value="$PROJECT_DIR$/public/modules/pre_study_questionnaire.html" />
         <option value="$PROJECT_DIR$/public/data/section2.csv" />
         <option value="$PROJECT_DIR$/public/modules/data_mapping.html" />
@@ -204,6 +162,7 @@
         <option value="$PROJECT_DIR$/public/modules/practice.html" />
         <option value="$PROJECT_DIR$/public/modules/practice2.html" />
         <option value="$PROJECT_DIR$/public/modules/thanks.html" />
+        <option value="$PROJECT_DIR$/public/javascript/misc/util.js" />
       </list>
     </option>
   </component>
@@ -550,21 +509,7 @@
       <workItem from="1499877857480" duration="9691000" />
       <workItem from="1499891790131" duration="3057000" />
       <workItem from="1499897718157" duration="2644000" />
-      <workItem from="1499969438688" duration="4576000" />
-    </task>
-    <task id="LOCAL-00070" summary="enabled surveys(even if skipped)">
-      <created>1498108494416</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1498108494416</updated>
-    </task>
-    <task id="LOCAL-00071" summary="pipeline updated">
-      <created>1498164503488</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1498164503490</updated>
+      <workItem from="1499969438688" duration="6757000" />
     </task>
     <task id="LOCAL-00072" summary="interface updates">
       <created>1498169788435</created>
@@ -895,11 +840,25 @@
       <option name="project" value="LOCAL" />
       <updated>1499902069983</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="tiny bug fixes">
+      <created>1499974295527</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1499974295527</updated>
+    </task>
+    <task id="LOCAL-00120" summary="thanks message changed">
+      <created>1499975844976</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1499975844976</updated>
+    </task>
+    <option name="localTasksCounter" value="121" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="333603000" />
+    <option name="totallyTimeSpent" value="335784000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
@@ -967,8 +926,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="squashed a few bugs." />
-    <MESSAGE value="bug fix" />
     <MESSAGE value="fix practice2" />
     <MESSAGE value="feedback &amp; bug fix" />
     <MESSAGE value="tutorial data" />
@@ -992,7 +949,9 @@
     <MESSAGE value="new disclosure mode tutorials" />
     <MESSAGE value="practice 1 has updated feedback. Again." />
     <MESSAGE value="practice 1 has updated feedback. Again. and a bug fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="practice 1 has updated feedback. Again. and a bug fix" />
+    <MESSAGE value="tiny bug fixes" />
+    <MESSAGE value="thanks message changed" />
+    <option name="LAST_COMMIT_MESSAGE" value="thanks message changed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1189,13 +1148,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascript/misc/util.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="847" column="20" lean-forward="false" selection-start-line="847" selection-start-column="20" selection-end-line="847" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/data/sample_01.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1214,13 +1166,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="693">
           <caret line="33" column="30" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="51" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/data/practice.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="30" column="2" lean-forward="false" selection-start-line="30" selection-start-column="2" selection-end-line="30" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -1332,15 +1277,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/data/practice.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/modules/thanks.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="17" column="46" lean-forward="false" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
+        <state relative-caret-position="343">
+          <caret line="51" column="9" lean-forward="true" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
           <folding>
             <element signature="n#style#0;n#button#0;n#h1#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascript/misc/util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="958" column="21" lean-forward="false" selection-start-line="958" selection-start-column="21" selection-end-line="958" selection-end-column="21" />
+          <folding />
         </state>
       </provider>
     </entry>
