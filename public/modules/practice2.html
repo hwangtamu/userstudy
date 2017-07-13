@@ -52,6 +52,7 @@
 <script>
     (function(){
         $.getScript("javascript/misc/util.js");
+        experimentr.startTimer('practice2');
         experimentr.data()['section'] = 'practice2';
         var mode = experimentr.data()["mode"];
 
@@ -187,6 +188,7 @@
                 d3.select('#submitComments').style("left","2.5%");
                 experimentr.data()['switch'][step] = Date.now();
                 experimentr.save();
+                experimentr.endTimer('practice2');
                 goToNext();
             });
 

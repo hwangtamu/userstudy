@@ -39,6 +39,7 @@
 <script>
     (function(){
         $.getScript("javascript/misc/util.js");
+        experimentr.startTimer('main_section');
         experimentr.data()['section'] = 'mat';
         experimentr.hideNext();
         // pages
@@ -130,6 +131,7 @@
 
         function render_content(){
             if(step==experimentr.data()["mat"].length-1){
+                experimentr.endTimer('main_section');
                 grading();
                 goToNext();
             }else {

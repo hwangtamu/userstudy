@@ -44,6 +44,7 @@
 <script>
     (function(){
         $.getScript("javascript/misc/util.js");
+        experimentr.startTimer('section2');
         experimentr.hideNext();
         console.log("in");
         parsing("data/section2.csv","section2");
@@ -65,6 +66,7 @@
 
         function goToNext() {
             delete experimentr.data()['section2'];
+            experimentr.endTimer('section2');
             experimentr.next();
         };
 

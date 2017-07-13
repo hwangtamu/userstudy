@@ -31,8 +31,10 @@
 <script>
     (function(){
         experimentr.hideNext();
+        experimentr.startTimer('website_instructions');
         d3.select('#submitComments')
             .on('click', function(){
+               experimentr.endTimer('website_instructions');
                experimentr.next();
             });
     }());
