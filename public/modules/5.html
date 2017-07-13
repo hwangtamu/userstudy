@@ -144,8 +144,9 @@
                     delay_next(250);
                     sec_switch = 0
                 } else {
-                    d3.select("#notation").text("Page " + (step + 1).toString() + "/" + (experimentr.data()['mat'].length - 1).toString());
-                    d3.select('#submitComments').style("left", "50%").property("innerHTML","Submit");
+//                    d3.select("#notation").text("Page " + (step + 1).toString() + "/" + (experimentr.data()['mat'].length - 1).toString());
+                    d3.select("#notation").text("");
+                    d3.select('#submitComments').style("left", "35px").property("innerHTML","Submit");
 
                     setTimeout(function () {
                         d3.selectAll(".blocks").remove();
