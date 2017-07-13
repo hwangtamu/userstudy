@@ -45,6 +45,7 @@
 
 //    window.alert("Please use the arrow keys in the bottom left portion of the slideshow viewer which will appear, to move around the slides. Once you have completed viewing all the instructions, check the box to acknowledge and click on Next");
     (function(){
+        experimentr.startTimer('data_mapping_tutorial');
         if(experimentr.data()["mode"]==="Opti1"){
             d3.select("#iframe_instruction").attr("src","resources/ViewerJS/#/resources/disclosure_mode_3.pdf");
         } else if(experimentr.data()["mode"]==="Partial_Cell"){
@@ -71,6 +72,7 @@
                 d3.select('#submitComments').attr('disabled', null);
                 d3.select('#submitComments').style('color', "black");
                 d3.select('#submitComments').on('click', function() {
+                    experimentr.endTimer('data_mapping_tutorial');
                     experimentr.next();
                 });
             }else{

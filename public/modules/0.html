@@ -49,6 +49,7 @@
 <script>
 
     (function(){
+        experimentr.startTimer('rl_tutorial');
         if(experimentr.data()["mode"]==="Vanilla"){
             d3.select("#iframe_instruction").attr("src","resources/ViewerJS/#/resources/RL_no_intervention.pdf");
         }
@@ -69,6 +70,7 @@
                 d3.select('#submitComments').attr('disabled', null);
                 d3.select('#submitComments').style('color', "black");
                 d3.select('#submitComments').on('click', function() {
+                    experimentr.endTimer('rl_tutorial');
                     experimentr.next();
                 });
             }else{
