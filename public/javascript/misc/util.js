@@ -114,13 +114,13 @@ function cell(t,g,j,k){
                 cel.append("svg:image").attr("xlink:href","/resources/unique.png").attr("class","icon")
                     .attr("x",10).attr("y",cy/2-9).attr("width",20).attr("height",20);
             } else {
-                if(t<=3) {
+                if(t<=5) {
                     // cel.append("svg:image").attr("xlink:href","/resources/rare.svg").attr("class","icon")
                     //     .attr("x",cwidth[j%cwidth.length]/3).attr("y",cy/2-9).attr("width",20).attr("height",20);
                     cel.append("svg:image").attr("xlink:href","/resources/rare_2_rect.svg").attr("class","icon")
                         .attr("x",10).attr("y",cy/2-9).attr("width",22).attr("height",22);
                 } else {
-                    if(t<=10) {
+                    if(t<=100) {
                         cel.append("svg:image").attr("xlink:href", "/resources/3_dots.png").attr("class", "icon")
                             .attr("x", 10).attr("y", cy / 2 - 9).attr("width", 20).attr("height", 20);
                     } else {
