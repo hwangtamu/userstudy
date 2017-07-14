@@ -161,7 +161,7 @@ def get_edit_distance(s1, s2):
     #             stI = stI + 2
     #             stJ = stJ + 2
 
-    print finalStr1, finalStr2
+    # print finalStr1, finalStr2
     return finalStr1, finalStr2
 
 def damerau_levenshtein_distance(s1, s2):
@@ -349,7 +349,7 @@ def pair(s,star_indices):
                     x, y = get_edit_distance(tmp1[i], tmp2[i])
                 else:
                     x, y = tmp1[i], tmp2[i]
-            elif i == star_indices["race"]:
+            elif i == star_indices["race"] or i == star_indices["sex"]:
                 if tmp1[i] == tmp2[i]:
                     x, y = "*", "*"
                 else:
@@ -387,6 +387,7 @@ def make_list_dict(file_path,id_name):
     index_file_id = find_index(title,"file_id") -1
     star_calc_indexes = {"voter_reg_num":index_vot_reg-1, "last_name":index_lname-1,"first_name":index_fname-1,"dob":index_dob-1}
     star_calc_indexes["race"] = find_index(title,"race") -1
+    star_calc_indexes["sex"] = find_index(title, "sex") - 1
     data = {}
     ff = {}
     lf = {}
@@ -439,7 +440,8 @@ def data_filter(data_as_list,item):
 
 def get_col_indices(data, star_indices, order):
     id_grp = [0,1]
-    type_answer = [12,13]
+    len_array = len(data[0])
+    type_answer = [len_array-2,len_array-1]
     org = [star_indices[item] + 2 for item in order]
     offset = (len(data[0]) - 2) / 2 - 1
     star =  [i + offset for i in org]
@@ -475,6 +477,6 @@ print(title)
 print(star_indices)
 data = star_similarities(d, star_indices,index_file_id)
 print("The number of items in data are", len(data))
-data_starred = reorganize_cols(data, star_indices, ["first_name", "last_name", "voter_reg_num", "dob","race"])
-title_array = ['Group ID', 'Record ID','First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB', "Race", 'First Name', 'Last Name', 'Reg No.', 'DoB','Race','type','Same']
+data_starred = reorganize_cols(data, star_indices, ["first_name", "last_name", "voter_reg_num", "dob","sex","race"])
+title_array = ['Group ID', 'Record ID','First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB','Sex', "Race", 'First Name', 'Last Name', 'Reg No.', 'DoB','Sex','Race','type','Same']
 write_data(data_starred, "./data_intermediate/all_starred_race.csv",title_array)

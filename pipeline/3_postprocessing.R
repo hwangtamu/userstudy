@@ -17,9 +17,9 @@ is_not_empty = Vectorize(is_not_empty)
 col_names <- c("Group ID", "Reg No.", 
                "FF", "First Name", 
                "Last Name", "LF",
-               "DoB", "Race",
+               "DoB", "Sex", "Race",
                "Reg No.", "First Name", "Last Name",
-               "DoB", "Race",
+               "DoB", "Sex", "Race",
                "Record ID", "type","Same")
 
 #[Group ID, Reg No., FF, First Name, Last Name, LF, 
@@ -55,7 +55,7 @@ starred_data <-
 starred_data <- 
   starred_data %>%
   select(`Group ID`, `Reg No.`, FF, fname, lname, LF,
-         DoB, Race, `Reg No._1`, `First Name_1`, `Last Name_1`, DoB_1, Race_1, 
+         DoB,Sex, Race, `Reg No._1`, `First Name_1`, `Last Name_1`, DoB_1,Sex_1, Race_1, 
          `Record ID`, type, Same) %>%
   arrange(as.numeric(`Group ID`))
 

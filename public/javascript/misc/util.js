@@ -3,12 +3,17 @@
 /**
  * Created by hanwang on 1/23/17.
  */
-var title = ["Pair","ID","FFreq","First name","Last name","LFreq","DoB(M/D/Y)","Race","ID."];
-var cwidth = [60,20,100,60,200,200,150,100,100]; //870
+
+// Group ID,Reg No.,FF,First Name,Last Name,LF,DoB,Sex,Race,Reg No.,First Name,Last Name,DoB,Sex,Race,Record ID,type,Same
+// 1,1597730921,33,VIRGINIA,FOX,211,11/07/1945, F, W,1597730921,********,***,11/07/****, *, *, 35,  1,  1
+// 0,         1, 2,       3,  4,  5,         6, 7, 8,         9,      10, 11,        12,13,14, 15, 16,  1
+
+var title = ["Pair","ID","FFreq","First name","Last name","LFreq","DoB(M/D/Y)","Sex","Race","ID."];
+var cwidth = [60,150,60,150,150,150,150,60,60,80]; //870
 var height = 24; //height per row 0 30 57
 var ys = [0,30,77];
 //index mapping from hidden data to visible data per row
-var mapping = [0,8,2,9,10,5,11,12,1,3,4,6,7,13];
+var mapping = [0,9,2,10,11,5,12,13,14,1,3,4,6,7,8,15];
 var data = {}; // experimentr data
 var n_pair = 0;
 var s2_n_pair = 0;
@@ -577,11 +582,12 @@ function row(t,g,j,k){
  * @param m:mode
  */
 function pair(t,g,m){
-    //console.log(t);
+    console.log(t);
     var a = cwidth.length,
         b = cwidth.length+mapping.length,
         c = cwidth.length+2*mapping.length;
     var k = new Array(c).fill(1);
+    console.log(cwidth);
 
     k[a] = 2;
     k[b] = 0;
@@ -739,6 +745,7 @@ function pair(t,g,m){
  * @param m : mode
  */
 function pairs(t,s,n,m) {
+    // console.log(t);
     var num = n;
     var len = 0;
     for(var i=0;i<n;i++){
@@ -751,10 +758,10 @@ function pairs(t,s,n,m) {
     //console.log(t);
     //var cwidth = [60,80,60,160,200,60,140,150]; //910
     //var lwidth = len* 13;
-    var lwidth = 100 + (len-5) * 5;
-    var extra_width = (200-lwidth)/2;
-    //console.log(len,lwidth);
-    cwidth = [60,200,60,180,lwidth,150,60+extra_width,100,20]; //910
+    // var lwidth = 100 + (len-5) * 5;
+    // var extra_width = (200-lwidth)/2;
+    // //console.log(len,lwidth);
+    // cwidth = [60,200,60,180,lwidth,150,60+extra_width,100,20]; //910
     for(var i=0;i<n;i++){
         var g = d3.select("#table").append("svg").attr("class","blocks").attr("id","g"+(s*6+i).toString())
             .attr("width", 1800).attr("height", function(){if(i==0){return 140;}return 120;});
