@@ -54,7 +54,6 @@
         $.getScript("javascript/misc/util.js");
         experimentr.startTimer('practice2');
         experimentr.data()['section'] = 'practice2';
-        var mode = experimentr.data()["mode"];
 
         experimentr.hideNext();
         d3.select('#submitComments').style("left","2.5%");
@@ -103,7 +102,6 @@
             d3.selectAll(".icon").remove();
         }
         function goToNext() {
-            experimentr.data()["mode"] = mode;
             if(experimentr.data()["mode"]==="Vanilla" || experimentr.data()["mode"]==="Full") {
                 experimentr.sequence([
                     'modules/main_section_start.html',

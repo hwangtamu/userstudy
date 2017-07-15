@@ -595,7 +595,6 @@ function cell(t,g,j,k){
  * @param k : cell type list
  */
 function row(t,g,j,k){
-    console.log(t);
     var l = 0;
     for(var i=0;i<cwidth.length;i++){
         if(k[i]!=9){
@@ -638,6 +637,8 @@ function pair(t,g,m){
 
     if(m=="Vanilla" || m=="Full"){
         mapping = [0,9,2,10,11,5,12,7,14,1,3,4,6,7,8,15];
+    } else{
+        mapping = [0,9,2,10,11,5,12,13,14,1,3,4,6,7,8,15];
     }
 
     if(m=="Partial"){
