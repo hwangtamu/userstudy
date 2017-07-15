@@ -1,53 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0e29c6df-9fc3-4c4c-ab4e-18561c52b86a" name="Default" comment="practice bug">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pipeline/data_input/all.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pipeline/data_input/all_groups_changed.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pipeline/data_input/bak/all.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pipeline/data_input/bak/desktop.ini" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pipeline/data_input/practice.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pipeline/data_input/tutorial.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pipeline/data_input/tutorial_data_mapping.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pipeline/data_input/tutorial_operations.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pipeline/data_intermediate/ans2_source.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pipeline/data_output/mapping_starred.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pipeline/data_output/operations_starred.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pipeline/data_output/practice_starred.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/desktop.ini" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pipeline/data_output/swap_starred.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pipeline/data_output/tutorial.csv" afterPath="" />
+    <list default="true" id="0e29c6df-9fc3-4c4c-ab4e-18561c52b86a" name="Default" comment="new pipelines and survey mods">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dump.rdb" afterPath="$PROJECT_DIR$/dump.rdb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/.Rhistory" afterPath="$PROJECT_DIR$/pipeline/.Rhistory" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/1_preprocessing.R" afterPath="$PROJECT_DIR$/pipeline/1_preprocessing.R" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/2_rdiff_new.py" afterPath="$PROJECT_DIR$/pipeline/2_rdiff_new.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/3_postprocessing.R" afterPath="$PROJECT_DIR$/pipeline/3_postprocessing.R" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_intermediate/all_no_stars.csv" afterPath="$PROJECT_DIR$/pipeline/data_intermediate/all_no_stars.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_intermediate/all_starred_race.csv" afterPath="$PROJECT_DIR$/pipeline/data_intermediate/all_starred_race.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/all_starred_race.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/all_starred_race.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/sample_01.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/sample_01.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/sample_02.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/sample_02.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/sample_03.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/sample_03.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/sample_04.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/sample_04.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/sample_05.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/sample_05.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/sample_06.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/sample_06.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/sample_07.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/sample_07.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/sample_08.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/sample_08.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/sample_09.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/sample_09.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/sample_10.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/sample_10.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/section2.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/section2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/sample_01.csv" afterPath="$PROJECT_DIR$/public/data/sample_01.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/sample_02.csv" afterPath="$PROJECT_DIR$/public/data/sample_02.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/sample_03.csv" afterPath="$PROJECT_DIR$/public/data/sample_03.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/sample_04.csv" afterPath="$PROJECT_DIR$/public/data/sample_04.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/sample_05.csv" afterPath="$PROJECT_DIR$/public/data/sample_05.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/sample_06.csv" afterPath="$PROJECT_DIR$/public/data/sample_06.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/sample_07.csv" afterPath="$PROJECT_DIR$/public/data/sample_07.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/sample_08.csv" afterPath="$PROJECT_DIR$/public/data/sample_08.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/sample_09.csv" afterPath="$PROJECT_DIR$/public/data/sample_09.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/sample_10.csv" afterPath="$PROJECT_DIR$/public/data/sample_10.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascript/misc/util.js" afterPath="$PROJECT_DIR$/public/javascript/misc/util.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/modules/5.html" afterPath="$PROJECT_DIR$/public/modules/5.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -66,41 +23,31 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="util.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="util.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/javascript/misc/util.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="11" column="35" lean-forward="false" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+            <state relative-caret-position="88">
+              <caret line="596" column="22" lean-forward="false" selection-start-line="596" selection-start-column="22" selection-end-line="596" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/index.html">
+      <file leaf-file-name="post_study_questionnaire.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/modules/post_study_questionnaire.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1344">
-              <caret line="64" column="25" lean-forward="false" selection-start-line="64" selection-start-column="25" selection-end-line="64" selection-end-column="25" />
+            <state relative-caret-position="130">
+              <caret line="241" column="60" lean-forward="true" selection-start-line="241" selection-start-column="60" selection-end-line="241" selection-end-column="60" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="5.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/modules/5.html">
+      <file leaf-file-name="pre_study_questionnaire.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/modules/pre_study_questionnaire.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="861">
-              <caret line="41" column="43" lean-forward="false" selection-start-line="41" selection-start-column="43" selection-end-line="41" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sample_01.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/data/sample_01.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+            <state relative-caret-position="153">
+              <caret line="134" column="28" lean-forward="false" selection-start-line="134" selection-start-column="28" selection-end-line="134" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -118,23 +65,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>51</find>
-      <find>'practice</find>
-      <find>'mat'</find>
-      <find>'practice'</find>
-      <find>Group</find>
-      <find>&quot;_&quot;</find>
-      <find>swap</find>
-      <find>prac</find>
-      <find>vanilla</find>
-      <find>object</find>
-      <find>test</find>
-      <find>click</find>
-      <find>result</find>
-      <find>practice_cl</find>
-      <find>png</find>
-      <find>submitComments</find>
-      <find>hide</find>
       <find>clicks</find>
       <find>goto</find>
       <find>practice2_clicks</find>
@@ -148,6 +78,23 @@
       <find>100</find>
       <find>visi</find>
       <find>end</find>
+      <find>grading</find>
+      <find>cons</find>
+      <find>c9</find>
+      <find>swap</find>
+      <find>cell</find>
+      <find>mapp</find>
+      <find>'&amp;</find>
+      <find>console</find>
+      <find>'*'</find>
+      <find>&quot;*&quot;</find>
+      <find>vanilla</find>
+      <find>diff</find>
+      <find>'@'</find>
+      <find>Race</find>
+      <find>2em</find>
+      <find>race</find>
+      <find>mode</find>
     </findStrings>
     <replaceStrings>
       <replace>current_degree</replace>
@@ -209,21 +156,21 @@
         <option value="$PROJECT_DIR$/output/j4r7899v.json" />
         <option value="$PROJECT_DIR$/public/data/practice.csv" />
         <option value="$PROJECT_DIR$/public/modules/consent.html" />
-        <option value="$PROJECT_DIR$/public/modules/post_study_questionnaire.html" />
-        <option value="$PROJECT_DIR$/public/modules/pre_study_questionnaire.html" />
         <option value="$PROJECT_DIR$/public/data/section2.csv" />
         <option value="$PROJECT_DIR$/public/modules/thanks.html" />
         <option value="$PROJECT_DIR$/public/index.html" />
-        <option value="$PROJECT_DIR$/public/modules/practice.html" />
-        <option value="$PROJECT_DIR$/public/modules/practice2.html" />
         <option value="$PROJECT_DIR$/public/modules/website_introduction.html" />
         <option value="$PROJECT_DIR$/public/modules/0.html" />
         <option value="$PROJECT_DIR$/public/modules/data_mapping.html" />
         <option value="$PROJECT_DIR$/public/modules/main_section_start.html" />
         <option value="$PROJECT_DIR$/public/modules/section2.html" />
-        <option value="$PROJECT_DIR$/public/data/output.csv" />
         <option value="$PROJECT_DIR$/public/modules/5.html" />
+        <option value="$PROJECT_DIR$/public/modules/practice.html" />
+        <option value="$PROJECT_DIR$/public/data/output.csv" />
+        <option value="$PROJECT_DIR$/public/modules/practice2.html" />
         <option value="$PROJECT_DIR$/public/javascript/misc/util.js" />
+        <option value="$PROJECT_DIR$/public/modules/post_study_questionnaire.html" />
+        <option value="$PROJECT_DIR$/public/modules/pre_study_questionnaire.html" />
       </list>
     </option>
   </component>
@@ -259,8 +206,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -365,6 +310,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -576,49 +523,9 @@
       <workItem from="1499969438688" duration="8882000" />
       <workItem from="1499981379429" duration="7138000" />
       <workItem from="1500066832664" duration="6314000" />
-      <workItem from="1500074600429" duration="1718000" />
-    </task>
-    <task id="LOCAL-00077" summary="makes all_grouped.csv as well">
-      <created>1498268362778</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1498268362778</updated>
-    </task>
-    <task id="LOCAL-00078" summary="transpose and insert for reg num handled">
-      <created>1498506601729</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1498506601729</updated>
-    </task>
-    <task id="LOCAL-00079" summary="streamlined pipeline">
-      <created>1498523805130</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1498523805130</updated>
-    </task>
-    <task id="LOCAL-00080" summary="made a frequency lookup from yancey">
-      <created>1498601531035</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1498601531036</updated>
-    </task>
-    <task id="LOCAL-00081" summary="Enabled module intros">
-      <created>1498623096145</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1498623096146</updated>
-    </task>
-    <task id="LOCAL-00082" summary="corrected indel bug (br jr and br)">
-      <created>1498687572716</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1498687572720</updated>
+      <workItem from="1500074600429" duration="6055000" />
+      <workItem from="1500085445631" duration="12205000" />
+      <workItem from="1500148457762" duration="5322000" />
     </task>
     <task id="LOCAL-00083" summary="added upload functionality for practice">
       <created>1498691554724</created>
@@ -921,26 +828,68 @@
       <option name="project" value="LOCAL" />
       <updated>1500059906307</updated>
     </task>
-    <option name="localTasksCounter" value="126" />
+    <task id="LOCAL-00126" summary="gender added">
+      <created>1500076367295</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1500076367295</updated>
+    </task>
+    <task id="LOCAL-00127" summary="gender pipeline updated">
+      <created>1500077463100</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1500077463100</updated>
+    </task>
+    <task id="LOCAL-00128" summary="grading works">
+      <created>1500086328529</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1500086328529</updated>
+    </task>
+    <task id="LOCAL-00129" summary="race and sex conform to current interface table">
+      <created>1500105846632</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1500105846632</updated>
+    </task>
+    <task id="LOCAL-00130" summary="Mapping bug fix">
+      <created>1500150947660</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1500150947660</updated>
+    </task>
+    <task id="LOCAL-00131" summary="new pipelines and survey mods">
+      <created>1500160921736</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1500160921736</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="353079000" />
+    <option name="totallyTimeSpent" value="374943000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1660497" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1660497" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.50185674" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16089386" sideWeight="0.49814323" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23356807" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16089386" sideWeight="0.49814323" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25594923" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25594923" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31396648" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39907193" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -993,12 +942,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update" />
-    <MESSAGE value="feedback changed" />
-    <MESSAGE value="bug fix with practice feedback" />
-    <MESSAGE value="new feedback mechanism" />
-    <MESSAGE value="feedback mechanism for practice" />
-    <MESSAGE value="new practice" />
     <MESSAGE value="latest version" />
     <MESSAGE value="updated order" />
     <MESSAGE value="new consent form" />
@@ -1018,7 +961,13 @@
     <MESSAGE value="practice bug" />
     <MESSAGE value="frequency thresholds corrected" />
     <MESSAGE value="practice csv" />
-    <option name="LAST_COMMIT_MESSAGE" value="practice csv" />
+    <MESSAGE value="gender added" />
+    <MESSAGE value="gender pipeline updated" />
+    <MESSAGE value="grading works" />
+    <MESSAGE value="race and sex conform to current interface table" />
+    <MESSAGE value="Mapping bug fix" />
+    <MESSAGE value="new pipelines and survey mods" />
+    <option name="LAST_COMMIT_MESSAGE" value="new pipelines and survey mods" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1027,13 +976,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/css/bootstrap.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/modules/training.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="416">
@@ -1057,20 +999,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pipeline/data_output/ans2_stars.csv" />
-    <entry file="file://$PROJECT_DIR$/pipeline/data_input/all_groups_changed.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pipeline/data_input/all.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="7" lean-forward="false" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/pipeline/data_input/all_groups_changed.csv" />
+    <entry file="file://$PROJECT_DIR$/pipeline/data_input/all.csv" />
     <entry file="file://$PROJECT_DIR$/public/modules/5 (1).html" />
     <entry file="file://$PROJECT_DIR$/public/modules/3.html">
       <provider selected="true" editor-type-id="text-editor">
@@ -1200,20 +1130,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/pre_study_questionnaire.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="216" column="36" lean-forward="false" selection-start-line="216" selection-start-column="32" selection-end-line="216" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/data/practice.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/data/practice2.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -1225,28 +1141,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
           <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/post_study_questionnaire.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="397" column="31" lean-forward="false" selection-start-line="397" selection-start-column="28" selection-end-line="397" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/practice.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="262" column="20" lean-forward="true" selection-start-line="262" selection-start-column="20" selection-end-line="262" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/practice2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="53" column="47" lean-forward="true" selection-start-line="53" selection-start-column="47" selection-end-line="53" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1292,13 +1186,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/data/output.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="72" column="70" lean-forward="false" selection-start-line="72" selection-start-column="70" selection-end-line="72" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/modules/section2.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1785">
@@ -1307,10 +1194,61 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../Github/userstudy/app.js">
+    <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascript/misc/util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="579" column="19" lean-forward="true" selection-start-line="579" selection-start-column="19" selection-end-line="579" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="29" column="17" lean-forward="false" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/data/sample_03.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/data/practice.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" column="1" lean-forward="false" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/data/output.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="72" column="75" lean-forward="false" selection-start-line="72" selection-start-column="74" selection-end-line="72" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/data/sample_01.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="14" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/modules/5.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1113">
+          <caret line="54" column="34" lean-forward="false" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1322,50 +1260,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/5.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="861">
-          <caret line="41" column="43" lean-forward="false" selection-start-line="41" selection-start-column="43" selection-end-line="41" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/data/sample_01.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
+        <state relative-caret-position="21">
           <caret line="26" column="18" lean-forward="false" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../Github/userstudy/public/javascript/misc/util.js">
+    <entry file="file://$PROJECT_DIR$/public/modules/practice.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="579" column="19" lean-forward="true" selection-start-line="579" selection-start-column="19" selection-end-line="579" selection-end-column="19" />
+        <state relative-caret-position="273">
+          <caret line="139" column="45" lean-forward="false" selection-start-line="139" selection-start-column="41" selection-end-line="139" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
+    <entry file="file://$PROJECT_DIR$/public/modules/practice2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="29" column="17" lean-forward="false" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+        <state relative-caret-position="231">
+          <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/javascript/misc/util.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="35" lean-forward="false" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+        <state relative-caret-position="88">
+          <caret line="596" column="22" lean-forward="false" selection-start-line="596" selection-start-column="22" selection-end-line="596" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/modules/pre_study_questionnaire.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="134" column="28" lean-forward="false" selection-start-line="134" selection-start-column="28" selection-end-line="134" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/modules/post_study_questionnaire.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="241" column="60" lean-forward="true" selection-start-line="241" selection-start-column="60" selection-end-line="241" selection-end-column="60" />
           <folding />
         </state>
       </provider>
