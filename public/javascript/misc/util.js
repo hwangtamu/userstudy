@@ -871,7 +871,7 @@ function choices(svg, lBound, scale, mode, yt) {
                 experimentr.data()[clk].push([
                     t,
                     //svg.attr("id").slice(1),
-                    d3.select(this.parentNode.parentNode).select("#c9").text(),
+                    d3.select(this.parentNode.parentNode).select("#c10").text(),
                     d3.select(this).select(".choice").attr("id")
                 ]);
             });
