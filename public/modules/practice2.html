@@ -36,9 +36,9 @@
         <div id="table"></div>
     </div>
     <br>
-    <button id="submitAnswers" class="next-button" type="button" style="left: 45px">Submit</button>
+    <button id="submitAnswers" class="next-button" type="button" style="position: absolute; left: 65px;">Submit</button>
     <!--<button id="submitComments" class="next-button" type="button" style="float: right;">Next</button><br><br>-->
-    <button id="submitComments" class="next-button" type="button">Next</button>
+    <button id="submitComments" class="next-button" type="button" style="position: absolute; left: 85px;">Next</button>
     <div id="notation" style="position: absolute; top:835px; left:250px;">
         <label id="page"></label>
     </div>
@@ -56,13 +56,13 @@
         experimentr.data()['section'] = 'practice2';
 
         experimentr.hideNext();
-        d3.select('#submitComments').style("left","2.5%");
+        d3.select('#submitComments').style('display', 'none');
 
         // pages
         var page_date = Date.now();
 //        parsing("data/practice2.csv","practice");
-        d3.select("#submitComments").attr("disabled","true");
-        d3.select("#submitComments").style("color","#b3b3b3");
+//        d3.select("#submitComments").attr("disabled","true");
+//        d3.select("#submitComments").style("color","#b3b3b3");
         function delay_next(time){
             d3.select("#submitAnswers").attr("disabled","true");
             d3.select("#submitAnswers").style("color","#b3b3b3");
@@ -169,9 +169,11 @@
 
                 restore = answer;
                 if(text.length==0){
-                    text = ['Good job!','Please click "Next" button to proceed.'];
-                    d3.select("#submitComments").attr("disabled",null);
-                    d3.select("#submitComments").style("color","black");
+                    text = ['Good job! Please click "Next" button to proceed.'];
+                    d3.select("#submitComments").style("display","inline");
+                    d3.select("#submitAnswers").style("display","none");
+//                    d3.select("#submitComments").attr("disabled",null);
+//                    d3.select("#submitComments").style("color","black");
                     restore = {};
                 }
                 d3.selectAll(".result").remove();
@@ -183,7 +185,6 @@
         d3.select('#submitComments')
             .on('click', function () {
                 d3.select(".image").selectAll(".result").remove();
-                d3.select('#submitComments').style("left","2.5%");
                 experimentr.data()['switch'][step] = Date.now();
                 experimentr.save();
                 experimentr.endTimer('practice2');
@@ -192,8 +193,9 @@
 
         function test_mode(){
             if(parse_url().testing == 'true') {
-                d3.select("#submitComments").attr("disabled",null);
-                d3.select("#submitComments").style("color","black");
+                d3.select('#submitComments').style('display', 'inline').style("left","130px");
+//                d3.select("#submitComments").attr("disabled",null);
+//                d3.select("#submitComments").style("color","black");
             };
         };
 

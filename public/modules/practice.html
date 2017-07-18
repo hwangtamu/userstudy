@@ -35,9 +35,9 @@
         <div id="table"></div>
     </div>
     <br>
-    <button id="submitAnswers" class="next-button" type="button" style="left: 45px">Submit</button>
+    <button id="submitAnswers" class="next-button" type="button" style="position: absolute; left: 65px;">Submit</button>
     <!--<button id="submitComments" class="next-button" type="button" style="float: right;">Next</button><br><br>-->
-    <button id="submitComments" class="next-button" type="button">Next</button><br><br>
+    <button id="submitComments" class="next-button" type="button" style="position: absolute; left: 85px;">Next</button><br><br>
 
 </div>
 <br>
@@ -54,12 +54,12 @@
             experimentr.data()["mode"] = "Full";
         }
         experimentr.hideNext();
-        d3.select('#submitComments').style("left","2.5%");
+//        d3.select('#submitComments').style("left","2.5%");
 
         // pages
         var page_date = Date.now();
-        d3.select("#submitComments").attr("disabled","true");
-        d3.select("#submitComments").style("color","#b3b3b3");
+//        d3.select("#submitComments").attr("disabled","true");
+//        d3.select("#submitComments").style("color","#b3b3b3");
         function delay_next(time){
             d3.select("#submitAnswers").attr("disabled","true");
             d3.select("#submitAnswers").style("color","#b3b3b3");
@@ -151,7 +151,8 @@
                 experimentr.next();
             }
         }
-//        console.log(d3.select("#t9").property("value"));
+
+        d3.select('#submitComments').style('display', 'none');
         var restore = {};
         var start = Date.now();
         console.log(start);
@@ -227,13 +228,17 @@
 
                 if(text.length==0){
                     text = ['Good job!','Please click the "Next" button to proceed.'];
-                    d3.select("#submitComments").attr("disabled",null);
-                    d3.select("#submitComments").style("color","black");
+//                    d3.select("#submitComments").attr("disabled",null);
+//                    d3.select("#submitComments").style("color","black");
+                    d3.select('#submitAnswers').style('display', 'none');
+                    d3.select('#submitComments').style('display', 'inline');
                     restore = {};
                 } else if(lock.indexOf(step)>=0 && unaswered_ques.length === 0){
                     text.push("You may proceed to the next section.");
-                    d3.select("#submitComments").attr("disabled",null);
-                    d3.select("#submitComments").style("color","black");
+                    d3.select('#submitAnswers').style('display', 'none');
+                    d3.select('#submitComments').style('display', 'inline');
+//                    d3.select("#submitComments").attr("disabled",null);
+//                    d3.select("#submitComments").style("color","black");
                     restore = {};
                 }
 
@@ -250,6 +255,8 @@
                         .attr("dy",((-(text.length-1)/2+i)*1.5).toString()+"em")
                         .text(text[i])
                 }
+
+                test_mode()
                 //console.log(text);
                 //console.log(score, d3.select("#table").selectAll(".blocks")[0].length);
 
@@ -267,6 +274,7 @@
                 }else {
                     if(sec_switch==1){
                         d3.select('#submitAnswers').style('display', 'none');
+                        d3.select('#submitComments').style('display', 'inline');
                         d3.selectAll(".blocks").remove();
                         d3.select("#notation").html("");
                         add_mod_intros("practice_2a_section.PNG", "450px");
@@ -277,6 +285,7 @@
                     } else {
                         d3.select("#result").text(default_text);
                         d3.select('#submitAnswers').style('display', 'inline');
+                        d3.select('#submitComments').style('display', 'none');
                         d3.selectAll(".blocks").remove();
                         d3.select("#notation").html("");
                         add_mod_intros("practice_"+(step+1)+".PNG", "0px");
@@ -292,8 +301,8 @@
                         delay_next(350);
 //                        sec_switch=0;
                         step = step + 1;
-                        d3.select("#submitComments").attr("disabled","true");
-                        d3.select("#submitComments").style("color","#b3b3b3");
+//                        d3.select("#submitComments").attr("disabled","true");
+//                        d3.select("#submitComments").style("color","#b3b3b3");
                     }
                 }
                 test_mode();
@@ -303,8 +312,8 @@
             });
         function test_mode(){
             if(parse_url().testing == 'true') {
-                d3.select("#submitComments").attr("disabled",null);
-                d3.select("#submitComments").style("color","black");
+//                d3.select('#submitAnswers').style('display', 'inline').style("left", "65px");
+                d3.select('#submitComments').style('display', 'inline').style("left","130px");
             };
         };
 
