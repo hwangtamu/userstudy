@@ -53,7 +53,7 @@ get_name_freq <- function(name){
           pull(n))
 }
 
-get_random_name(fname_freq,"unique")
+get_random_name(lname_freq,"often")
 get_random_name(fname_freq,"unique",TRUE)
 get_name_freq(get_random_name(lname_freq,"unique"))
 get_name_freq("mendez")

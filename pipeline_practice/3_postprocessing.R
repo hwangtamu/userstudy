@@ -68,7 +68,7 @@ starred_data %>%
 
 starred_data2 <- starred_data
 names(starred_data) <- col_names
-write_csv(starred_data,"./data_output/practice.csv")
+write_csv(starred_data,"./data_output/tutorial_operations_star.csv")
 
 practice2_rows <- c(2,8,10,5,16,18)
 # practice2_rows <- c(practice2_rows,(practice2_rows*2 - 1))
@@ -82,5 +82,5 @@ starred_data2 <-
               mutate(`Group ID` = cumsum(x)) %>%
                 select(-x)
 
-names(starred_data2) <- col_names
-write_csv(starred_data2,"./data_output/practice2.csv")
+# names(starred_data2) <- col_names
+# write_csv(starred_data2,"./data_output/practice2.csv")
