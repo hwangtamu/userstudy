@@ -222,154 +222,154 @@ function cell(t,g,j,k){
                     }
                 } else {
 
-                if (title[j % cwidth.length] != "Pair" && t_j.indexOf("*") == -1 && t_m.indexOf("*") == -1 && t_j.trim() != "" && t_m.trim() != "") {
-                    //var len = (t_j.length<=t_m.length?t_j.length:t_m.length)/2;
-                    //console.log(t_j, t_m);
+                    if (title[j % cwidth.length] != "Pair" && t_j.indexOf("*") == -1 && t_m.indexOf("*") == -1 && t_j.trim() != "" && t_m.trim() != "") {
+                        //var len = (t_j.length<=t_m.length?t_j.length:t_m.length)/2;
+                        //console.log(t_j, t_m);
 
-                    diff = 1;
-                    if (j < 2 * cwidth.length) {
-                        g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/diff.svg")
-                            .attr("class", "icon")
-                            .attr("x", function () {
-                                if (title[j % cwidth.length] == "First name" || title[j % cwidth.length] == "Last name") {
-                                    return 0;
+                        diff = 1;
+                        if (j < 2 * cwidth.length) {
+                            g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/diff.svg")
+                                .attr("class", "icon")
+                                .attr("x", function () {
+                                    if (title[j % cwidth.length] == "First name" || title[j % cwidth.length] == "Last name") {
+                                        return 0;
+                                    }
+                                    else if (title[j % cwidth.length] == "DoB(M/D/Y)") {
+                                        return 25;
+                                    }
+                                    else if (title[j % cwidth.length] == "ID") {
+                                        return 28;
+                                    } else if (title[j % cwidth.length] == "Sex") {
+                                        return 17;
+                                    }
+                                    return 20;
+                                })
+                                .attr("y", cy / 2 + 5).attr("width", 35).attr("height", 35);
+                        }
+                    } else {
+                        if (t_j != "" && t_m != "") {
+                            for (var i = 0; i < Math.max(t_j.length, t_m.length); i++) {
+                                // date swap
+                                if (i == 0 && bin.indexOf(i) == -1 && t_j[i] == t_m[i + 3] && t_j[i + 1] == t_m[i + 4] && t_j[i + 3] == t_m[i] &&
+                                    t_j[i + 4] == t_m[i + 1] && t_j[i] != "*" && t_j[i + 1] != "*" && t_j[i + 2] != "*" && t_j[i + 3] != "*") {
+                                    //console.log(t_m, t_j);
+                                    bin.push(i, i + 1, i + 2, i + 3, i + 4);
+                                    if (j < 2 * cwidth.length) {
+                                        g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/swap_date.svg")
+                                            .attr("class", "icon").attr("x", 9 * i + 12)
+                                            .attr("y", cy / 2 + 13).attr("width", 23).attr("height", 23);
+                                    }
+                                    date_swap = 1;
+                                    num += 1
                                 }
-                                else if (title[j % cwidth.length] == "DoB(M/D/Y)") {
-                                    return 25;
-                                }
-                                else if (title[j % cwidth.length] == "ID") {
-                                    return 28;
-                                } else if (title[j % cwidth.length] == "Sex") {
-                                    return 17;
-                                }
-                                return 20;
-                            })
-                            .attr("y", cy / 2 + 5).attr("width", 35).attr("height", 35);
-                    }
-                } else {
-                    if (t_j != "" && t_m != "") {
-                        for (var i = 0; i < Math.max(t_j.length, t_m.length); i++) {
-                            // date swap
-                            if (i == 0 && bin.indexOf(i) == -1 && t_j[i] == t_m[i + 3] && t_j[i + 1] == t_m[i + 4] && t_j[i + 3] == t_m[i] &&
-                                t_j[i + 4] == t_m[i + 1] && t_j[i] != "*" && t_j[i + 1] != "*" && t_j[i + 2] != "*" && t_j[i + 3] != "*") {
-                                //console.log(t_m, t_j);
-                                bin.push(i, i + 1, i + 2, i + 3, i + 4);
-                                if (j < 2 * cwidth.length) {
-                                    g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/swap_date.svg")
-                                        .attr("class", "icon").attr("x", 9 * i + 12)
-                                        .attr("y", cy / 2 + 13).attr("width", 23).attr("height", 23);
-                                }
-                                date_swap = 1;
-                                num += 1
-                            }
-                            //indel
-                            else if ((t_j[i] == "_" && t_m[i] != "_") || (t_j[i] != "_" && t_m[i] == "_")) {
-                                bin.push(i);
-                                if ((t_j[i] == "_" && t_m[i] != "_") || i > t_j.length) {
-                                    indel_.push(i);
-                                }
-                                if ((t_j[i] != "_" && t_m[i] == "_") || i > t_m.length) {
-                                    indel.push(i);
-                                }
-                                //g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/indel.png")
-                                //    .attr("class","icon").attr("x",9*i)
-                                //    .attr("y",cy/2+15).attr("width",16).attr("height",16);
-                            }
-                            //transpose
-                            else if (bin.indexOf(i) == -1 && t_j[i] == t_m[i + 1] && t_j[i + 1] == t_m[i] && t_j[i] != "*" && t_m[i] != "*"
-                                && t_j[i + 1] != "*" && t_m[i + 1] != "*" && t_j[i] == t_m[i + 1] && t_j[i] != t_j[i + 1]) {
-                                //console.log(t_m, t_j);
-                                bin.push(i, i + 1);
-                                if (j < 2 * cwidth.length) {
-                                    g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/transpose.png")
-                                        .attr("class", "icon").attr("x", 9 * i + 4)
-                                        .attr("y", cy / 2 + 13).attr("width", 18).attr("height", 18);
-                                }
-                                transpose.push(i, i + 1);
-                                transpose_.push(i, i + 1);
-                                num += 1;
-                            }
-
-                            //replace
-                            else if (bin.indexOf(i) == -1 && t_j[i] != t_m[i] && t_j[i] != " " && t_m[i] != " ") {
-                                if (title[j % cwidth.length] != "ID" || (title[j % cwidth.length] == "ID" &&
-                                    (j < 10 || Math.max(t_j.length, t_m.length) <= 10))) {
+                                //indel
+                                else if ((t_j[i] == "_" && t_m[i] != "_") || (t_j[i] != "_" && t_m[i] == "_")) {
                                     bin.push(i);
-                                    replace.push(i);
-                                    replace_.push(i);
-                                } else {
-                                    if (t_m[i] == "?" || t_j[i] == "?") {
+                                    if ((t_j[i] == "_" && t_m[i] != "_") || i > t_j.length) {
+                                        indel_.push(i);
+                                    }
+                                    if ((t_j[i] != "_" && t_m[i] == "_") || i > t_m.length) {
+                                        indel.push(i);
+                                    }
+                                    //g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/indel.png")
+                                    //    .attr("class","icon").attr("x",9*i)
+                                    //    .attr("y",cy/2+15).attr("width",16).attr("height",16);
+                                }
+                                //transpose
+                                else if (bin.indexOf(i) == -1 && t_j[i] == t_m[i + 1] && t_j[i + 1] == t_m[i] && t_j[i] != "*" && t_m[i] != "*"
+                                    && t_j[i + 1] != "*" && t_m[i + 1] != "*" && t_j[i] == t_m[i + 1] && t_j[i] != t_j[i + 1]) {
+                                    //console.log(t_m, t_j);
+                                    bin.push(i, i + 1);
+                                    if (j < 2 * cwidth.length) {
+                                        g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/transpose.png")
+                                            .attr("class", "icon").attr("x", 9 * i + 4)
+                                            .attr("y", cy / 2 + 13).attr("width", 18).attr("height", 18);
+                                    }
+                                    transpose.push(i, i + 1);
+                                    transpose_.push(i, i + 1);
+                                    num += 1;
+                                }
+
+                                //replace
+                                else if (bin.indexOf(i) == -1 && t_j[i] != t_m[i] && t_j[i] != " " && t_m[i] != " ") {
+                                    if (title[j % cwidth.length] != "ID" || (title[j % cwidth.length] == "ID" &&
+                                        (j < 10 || Math.max(t_j.length, t_m.length) <= 10))) {
                                         bin.push(i);
-                                        trailing.push(i);
-                                        trailing_.push(i);
+                                        replace.push(i);
+                                        replace_.push(i);
+                                    } else {
+                                        if (t_m[i] == "?" || t_j[i] == "?") {
+                                            bin.push(i);
+                                            trailing.push(i);
+                                            trailing_.push(i);
+                                        }
                                     }
                                 }
                             }
                         }
-                    }
 
-                    // reduce duplicate icons
-                    var _indel = [],
-                        _replace = [],
-                        __indel = [],
-                        __replace = [];
+                        // reduce duplicate icons
+                        var _indel = [],
+                            _replace = [],
+                            __indel = [],
+                            __replace = [];
 
-                    for (var i = 0; i < indel.length; i++) {
-                        //console.log(indel.indexOf(indel[i]-1));
-                        if (indel.indexOf(indel[i] - 1) == -1) {
-                            _indel.push([indel[i]]);
-                        } else {
-                            _indel[_indel.length - 1].push(indel[i]);
-                        }
-                    }
-
-                    for (var i = 0; i < indel_.length; i++) {
-                        //console.log(indel.indexOf(indel[i]-1));
-                        if (indel_.indexOf(indel_[i] - 1) == -1) {
-                            _indel.push([indel_[i]]);
-                        } else {
-                            _indel[_indel.length - 1].push(indel_[i]);
-                        }
-                    }
-
-                    for (var i = 0; i < _indel.length; i++) {
-                        __indel.push(_indel[i].reduce((previous, current) => current += previous) / _indel[i].length);
-                    }
-
-                    for (var i = 0; i < replace.length; i++) {
-                        //console.log(replace.indexOf(replace[i]-1));
-                        if (replace.indexOf(replace[i] - 1) == -1) {
-                            _replace.push([replace[i]]);
-                        } else {
-                            _replace[_replace.length - 1].push(replace[i]);
-                        }
-                    }
-
-                    for (var i = 0; i < _replace.length; i++) {
-                        __replace.push(_replace[i].reduce((previous, current) => current += previous) / _replace[i].length);
-                    }
-                    if (j < 2 * cwidth.length) {
-                        for (var i = 0; i < __indel.length; i++) {
-                            g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/indel.png")
-                                .attr("class", "icon").attr("x", 9 * __indel[i] + "px")
-                                .attr("y", cy / 2 + 16).attr("width", 13).attr("height", 13);
-                            num += 1;
+                        for (var i = 0; i < indel.length; i++) {
+                            //console.log(indel.indexOf(indel[i]-1));
+                            if (indel.indexOf(indel[i] - 1) == -1) {
+                                _indel.push([indel[i]]);
+                            } else {
+                                _indel[_indel.length - 1].push(indel[i]);
+                            }
                         }
 
-                        for (var i = 0; i < __replace.length; i++) {
-                            g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/replace.png")
-                                .attr("class", "icon").attr("x", 9 * __replace[i] + "px")
-                                .attr("y", cy / 2 + 16).attr("width", 13).attr("height", 13);
-                            num += 1;
+                        for (var i = 0; i < indel_.length; i++) {
+                            //console.log(indel.indexOf(indel[i]-1));
+                            if (indel_.indexOf(indel_[i] - 1) == -1) {
+                                _indel.push([indel_[i]]);
+                            } else {
+                                _indel[_indel.length - 1].push(indel_[i]);
+                            }
                         }
+
+                        for (var i = 0; i < _indel.length; i++) {
+                            __indel.push(_indel[i].reduce((previous, current) => current += previous) / _indel[i].length);
+                        }
+
+                        for (var i = 0; i < replace.length; i++) {
+                            //console.log(replace.indexOf(replace[i]-1));
+                            if (replace.indexOf(replace[i] - 1) == -1) {
+                                _replace.push([replace[i]]);
+                            } else {
+                                _replace[_replace.length - 1].push(replace[i]);
+                            }
+                        }
+
+                        for (var i = 0; i < _replace.length; i++) {
+                            __replace.push(_replace[i].reduce((previous, current) => current += previous) / _replace[i].length);
+                        }
+                        if (j < 2 * cwidth.length) {
+                            for (var i = 0; i < __indel.length; i++) {
+                                g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/indel.png")
+                                    .attr("class", "icon").attr("x", 9 * __indel[i] + "px")
+                                    .attr("y", cy / 2 + 16).attr("width", 13).attr("height", 13);
+                                num += 1;
+                            }
+
+                            for (var i = 0; i < __replace.length; i++) {
+                                g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/replace.png")
+                                    .attr("class", "icon").attr("x", 9 * __replace[i] + "px")
+                                    .attr("y", cy / 2 + 16).attr("width", 13).attr("height", 13);
+                                num += 1;
+                            }
+                        }
+                        //if(bin.length>0){
+                        //    console.log(indel, replace);
+                        //}
+                        //console.log(num);
                     }
-                    //if(bin.length>0){
-                    //    console.log(indel, replace);
-                    //}
-                    //console.log(num);
                 }
             }
-        }
         }
     }
 
