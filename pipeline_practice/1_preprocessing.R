@@ -13,7 +13,7 @@ is_not_empty <- function(string) {
 
 is_not_empty = Vectorize(is_not_empty)
 
-(source_data <- read_csv("data_input/tutorial_operations.csv", 
+(source_data <- read_csv("data_input/pracg.csv", 
                          col_types = cols(.default = "c")))
 #,file_id = str_c(src, file_id, sep = "-")
 (input_data <-
