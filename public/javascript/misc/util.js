@@ -871,8 +871,8 @@ function choices(svg, lBound, scale, mode, yt) {
     var buttons = svg.append("g").attr("transform", "translate(" + lBound + ","+yt+")").attr("class","choice_panel");
     //buttons.append("rect").attr("x",-10*scale).attr("y",0).attr("width",280*scale).attr("height",85*scale).style("fill","#68a7ca").style("opacity",1);
     if(mode!=2){
-        buttons.append("text").attr("x", 220 * scale).attr("y", 78 * scale).text("Same").attr("text-anchor", "middle").style("font", 16 * scale + "px sans-serif");
-        buttons.append("text").attr("x", 50 * scale).attr("y", 78 * scale).text("Different").attr("text-anchor", "middle").style("font", 16 * scale + "px sans-serif");
+        buttons.append("text").attr("x", 220 * scale).attr("y", 78 * scale).text("Same").attr("text-anchor", "middle").style("font", 16 * scale + "px sans-serif").attr("id","lbl_same");
+        buttons.append("text").attr("x", 50 * scale).attr("y", 78 * scale).text("Different").attr("text-anchor", "middle").style("font", 16 * scale + "px sans-serif").attr("id","lbl_diff");
     }
     for (var p = 0; p < options.length; p++) {
         buttons.append("text").attr("id","labelText"+p.toString())
@@ -936,6 +936,37 @@ function choices(svg, lBound, scale, mode, yt) {
                     d3.select(this.parentNode.parentNode).select("#c10").text(),
                     d3.select(this).select(".choice").attr("id")
                 ]);
+                // window.alert(d3.select(this).select(".choice").attr("id"));
+                var choice = parseInt(d3.select(this).select(".choice").attr("id"));
+                if(choice<3){
+                    buttons.select("#selection_rect").remove();
+                    buttons.append("rect")
+                        .attr("x",13)
+                        .attr("y",60)
+                        .attr("width",75)
+                        .attr("height",25)
+                        .style("fill","none")
+                        .style("stroke","#CC1100")
+                        .style("stroke-width","3")
+                        .attr("id","selection_rect");
+                    buttons.select("#lbl_same").style("font-weight","normal");
+                    buttons.select("#lbl_diff").style("font-weight","bold");
+
+                } else {
+                    buttons.select("#selection_rect").remove();
+                    buttons.append("rect")
+                        .attr("x",195)
+                        .attr("y",60)
+                        .attr("width",50)
+                        .attr("height",25)
+                        .style("fill","none")
+                        .style("stroke","#33CE45")
+                        .style("stroke-width","3")
+                        .attr("id","selection_rect");
+                    buttons.select("#lbl_same").style("font-weight","bold");
+                    buttons.select("#lbl_diff").style("font-weight","normal");
+
+                }
             });
     }
 }
