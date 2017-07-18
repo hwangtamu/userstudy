@@ -17,9 +17,9 @@ is_not_empty = Vectorize(is_not_empty)
 col_names <- c("Group ID", "Reg No.", 
                "FF", "First Name", 
                "Last Name", "LF",
-               "DoB", "Race",
+               "DoB", "Sex", "Race",
                "Reg No.", "First Name", "Last Name",
-               "DoB", "Race",
+               "DoB", "Sex", "Race",
                "Record ID", "type","Same")
 
 #[Group ID, Reg No., FF, First Name, Last Name, LF, 
@@ -55,7 +55,7 @@ starred_data <-
 starred_data <- 
   starred_data %>%
   select(`Group ID`, `Reg No.`, FF, fname, lname, LF,
-         DoB, Race, `Reg No._1`, `First Name_1`, `Last Name_1`, DoB_1, Race_1, 
+         DoB,Sex, Race, `Reg No._1`, `First Name_1`, `Last Name_1`, DoB_1,Sex_1, Race_1, 
          `Record ID`, type, Same) %>%
   arrange(as.numeric(`Group ID`))
 
@@ -100,62 +100,8 @@ for(i in 1:10) {
 }
 
 names(starred_data) <- col_names
-write_csv(starred_data,"./data_output/all_starred_race.csv")
+write_csv(starred_data,"./data_output/allg_starred.csv")
 
 starred_data %>%
   sample_n(nrow(.)) %>%
   write_csv("./data_output/section2.csv")
-
-# (lookup <- starred_data %>%
-#     select(type,`Group ID`) %>% 
-#     unique() %>%
-#     arrange(type,`Group ID`))
-
-# n_samples <- 10
-# n_group_observations <- 1
-# n_error_types <- length(unique(lookup$type))
-# 
-# sampling_matrix <- matrix(ncol = n_samples, nrow = n_error_types*n_group_observations)
-# colnames(sampling_matrix) <- paste0("sample_",as.character(1:n_samples))
-# rownames(sampling_matrix) <- paste0("type_",(rep(as.character(1:n_error_types),n_group_observations)))
-
-
-# set.seed(1)
-# for(i in 1:n_samples) {
-#   gids  <- 
-#     lookup %>%
-#     group_by(type) %>%
-#     sample_n(n_group_observations) %$%
-#     `Group ID`
-#   sampling_matrix[,i] <- gids
-#   sampled_data <- 
-#     starred_data %>%
-#     filter(`Group ID` %in% gids) 
-#   
-#   #randomize the order
-#   `Group ID` <- sample(gids,length(gids),replace = F)
-#   qnum <- 1:length(gids)
-#   qnum_lookup <- tibble(`Group ID`,qnum)
-#   
-#   
-#   sampled_data <- 
-#     sampled_data %>% 
-#     left_join(qnum_lookup, by = "Group ID") %>%
-#     mutate(`Group ID` = qnum) %>%
-#     select(-qnum) %>%
-#     arrange(`Group ID`)
-#   
-#   
-#   #make the names standard
-#   names(sampled_data) <- c("Group ID", "Record ID", 
-#                            "First Name", "FF", 
-#                            "Last Name", "LF",
-#                            "Reg No.", "DoB", "Race",
-#                            "First Name", "Last Name",
-#                            "Reg No.", "DoB", "Race",
-#                            "type","Answer")
-#   sampled_data %>%
-#     write_csv(paste0(sprintf("./data_output/samples/sample_%02d",i),".csv"))
-# }
-# 
-# 
