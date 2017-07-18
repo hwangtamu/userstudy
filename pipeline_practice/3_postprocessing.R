@@ -65,5 +65,22 @@ starred_data %>%
   unique() %>% count(type,`Record ID`)
 
 
+
+starred_data2 <- starred_data
 names(starred_data) <- col_names
-write_csv(starred_data,"./data_output/practice2.csv")
+write_csv(starred_data,"./data_output/practice.csv")
+
+practice2_rows <- c(2,8,10,5,16,18)
+# practice2_rows <- c(practice2_rows,(practice2_rows*2 - 1))
+
+starred_data2 <- 
+  starred_data2 %>%
+    filter(`Group ID` %in% practice2_rows) %>%
+      group_by(`Group ID`) %>%
+          mutate(x = c(1,0)) %>%
+            ungroup() %>%
+              mutate(`Group ID` = cumsum(x)) %>%
+                select(-x)
+
+names(starred_data2) <- col_names
+write_csv(starred_data2,"./data_output/practice2.csv")
