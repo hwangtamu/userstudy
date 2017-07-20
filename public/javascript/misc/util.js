@@ -117,7 +117,9 @@ function cell(t,g,j,k){
         //icons for frequency
         if(k==3 && (title[j%cwidth.length]=="FFreq"||title[j%cwidth.length]=="LFreq")) {
             var div = cel.append("g").style("opacity",0);
-            var bg = div.append("rect").style("fill","#add8e6").attr("x",0).attr("y",-13).attr("width",0).attr("height",20);
+            var bg = div.append("rect").style("fill","none").attr("x",-2).attr("y",-14).attr("width",0).attr("height",20)
+                .attr("stroke", "grey")
+                .attr("stroke-width",1);
             var tip = div.append("text").style("fill","grey").attr("text-anchor", "left");
 
             if(t==1){
@@ -711,8 +713,8 @@ function pair(t,g,m){
                     row1[j] = " ";
                     row2[j] = " ";
                 } else {
-                    row1[j] = row1[j].replace(/[A-Z0-9]/g, '@');
-                    row2[j] = row2[j].replace(/[A-Z0-9]/g, '&');
+                    //row1[j] = row1[j].replace(/[A-Z0-9]/g, '@');
+                    //row2[j] = row2[j].replace(/[A-Z0-9]/g, '&');
                 }
             }
         }
