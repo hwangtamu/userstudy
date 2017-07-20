@@ -103,6 +103,7 @@
                         pairs(experimentr.data()["section2"][step-1], step-1, experimentr.data()["section2"][step-1].length, experimentr.data()["mode"]);
                         if (experimentr.data()["mode"] == "Vanilla") {
                             d3.selectAll(".icon").remove();
+                            d3.selectAll(".freq").remove();
                         }
                     }, 100);
 
