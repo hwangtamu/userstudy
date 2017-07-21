@@ -51,8 +51,6 @@ function cell(t,g,j,k){
     var raw_t = t;
 
     //console.log(title[j%cwidth.length],t);
-
-    //console.log(title[j%cwidth.length],t);
     var rectangle = cel.append("rect").attr("id",j);
     //only show rect on clickable cells
     //if(k==6 && j<2*cwidth.length){
@@ -156,9 +154,8 @@ function cell(t,g,j,k){
                 div.style("opacity",0);
             });
         }
-
         // check if it's a name swap
-        if(title[j%cwidth.length]=="First name"||title[j%cwidth.length]=="Last name"){
+        if(experimentr.data()['mode']!='Vanilla' && title[j%cwidth.length]=="First name"||title[j%cwidth.length]=="Last name"){
             var m = j+cwidth.length,
                 p = g.attr("id").slice(1),
                 dat = experimentr.data()[experimentr.data()['section']][Math.floor(p/6)],
@@ -186,13 +183,12 @@ function cell(t,g,j,k){
                     cel.append("svg:image").attr("xlink:href","/resources/name_swap.svg").attr("class","icon")
                         .attr("x",cwidth[j%cwidth.length]-45).attr("y",cy/2-8).attr("width",60).attr("height",60);
                 }
-                if(experimentr.data()["mode"]!="Full"){
+                if(["Vanilla","Full"].indexOf(experimentr.data()["mode"])<0){
                     t = t.replace(/[A-Z0-9]/g, function(){if(j%14>9){return "&";}return "@";});
                 }
             }
             //console.log(j, fnj, fnm, lnj, lnm);
         }
-
         if(textbox.text()==""){
             if(title[j%cwidth.length]!="FFreq" && title[j%cwidth.length]!="LFreq"){
                 // missing
@@ -461,15 +457,15 @@ function cell(t,g,j,k){
         transpose_ = [];
 
         // replace display content to special symbols '@', '&'
-        if((experimentr.data()['mode']!="Full" && experimentr.data()['mode']!="Opti1" && experimentr.data()['mode']!="Vanilla") && title[j%cwidth.length]=="Race"){
+        if(["Full","Vanilla","Opti1"].indexOf(experimentr.data()['mode'])<0 && title[j%cwidth.length]=="Race"){
             if(j>2*cwidth.length){t = '&';}
             else if(j>cwidth.length){t = '@';}
         }
-        if(["Full", "Opti2"].indexOf(experimentr.data()['mode'])<0 && title[j%cwidth.length]=="ID"){
+        if(["Vanilla","Full", "Opti2"].indexOf(experimentr.data()['mode'])<0 && title[j%cwidth.length]=="ID"){
             if(j>2*cwidth.length){t = t.replace(/[A-Z0-9]/g, '&');}
             else if(j>cwidth.length){t = t.replace(/[A-Z0-9]/g, '@');}
         }
-        if(["Full", "Opti1", "Opti2"].indexOf(experimentr.data()['mode'])<0 &&
+        if(["Vanilla","Full", "Opti1", "Opti2"].indexOf(experimentr.data()['mode'])<0 &&
             ["First name", "Last name", "DoB(M/D/Y)","Race"].indexOf(title[j%cwidth.length])>-1){
             if(j>2*cwidth.length){t = t.replace(/[A-Z0-9]/g, '&');}
             else if(j>cwidth.length){t = t.replace(/[A-Z0-9]/g, '@');}
@@ -531,6 +527,12 @@ function cell(t,g,j,k){
             }
             //console.log(t, t_jj);
         }
+
+        if(experimentr.data()['mode']=='Partial'){
+            if(j>2*cwidth.length){t = t.replace(/[A-Z0-9]/g, '&');}
+            else if(j>cwidth.length){t = t.replace(/[A-Z0-9]/g, '@');}
+        }
+
         var t_count = 0;
         for(var l=0;l<len;l++){
             if(t[l]!="_"){
@@ -562,6 +564,7 @@ function cell(t,g,j,k){
         g.select("#t"+j.toString()).remove();
 
     }
+
     // coloring text
     /*
      if(experimentr.data()['mode']!="Full"
@@ -601,16 +604,15 @@ function cell(t,g,j,k){
      }*/
 
     //statictics
-    if(['mat','section2'].indexOf(experimentr.data()['section'])>-1 && j>cwidth.length &&
+    if(['mat'].indexOf(experimentr.data()['section'])>-1 && j>cwidth.length &&
         ['ID', 'Last name', 'First name', 'DoB(M/D/Y)', 'Sex', 'Race'].indexOf(title[j%cwidth.length])>-1){
         if(experimentr.data()['mode']=='Vanilla'||experimentr.data()['mode']=='Full'){
             experimentr.data()['open_cell']+=1;
             //console.log(title[j%cwidth.length], t);
-            experimentr.data()['char_display']+=t.length;
-            if(experimentr.data()['mode']=='Vanilla'){
+            if(t.match(/[A-Z0-9]/g)){
+                experimentr.data()['char_display']+=t.match(/[A-Z0-9]/g).length;
             }
         }else{
-            //console.log(cel.selectAll('.char')[0].length);
             if(cel.selectAll('.char')[0].length==1){
                 if([' ', '@', '&', '*'].indexOf(cel.select('.char').text())>-1){
                     experimentr.data()['close_cell']+=1;
@@ -636,6 +638,41 @@ function cell(t,g,j,k){
         }
         console.log(experimentr.data()['open_cell'],experimentr.data()['partial_cell'],experimentr.data()['close_cell'],
             experimentr.data()['char_display'],experimentr.data()['symbol_display'],experimentr.data()['no_display'],);
+    }
+
+    if(['section2'].indexOf(experimentr.data()['section'])>-1 && j>cwidth.length &&
+        ['ID', 'Last name', 'First name', 'DoB(M/D/Y)', 'Sex', 'Race'].indexOf(title[j%cwidth.length])>-1){
+        if(experimentr.data()['mode']=='Vanilla'||experimentr.data()['mode']=='Full'){
+            experimentr.data()['s2_open_cell']+=1;
+            //console.log(title[j%cwidth.length], t);
+            if(t.match(/[A-Z0-9]/g)){
+                experimentr.data()['s2_char_display']+=t.match(/[A-Z0-9]/g).length;
+            }
+        }else{
+            if(cel.selectAll('.char')[0].length==1){
+                if([' ', '@', '&', '*'].indexOf(cel.select('.char').text())>-1){
+                    experimentr.data()['s2_close_cell']+=1;
+                }else{
+                    experimentr.data()['s2_open_cell']+=1;
+                }
+            }else{
+                if(t.match(/[A-Z0-9]/g)){
+                    if(t.indexOf('*')>-1){
+                        experimentr.data()['s2_partial_cell']+=1;
+                    }else{
+                        experimentr.data()['s2_open_cell']+=1;
+                    }
+                    experimentr.data()['s2_char_display']+=t.match(/[A-Z0-9]/g).length;
+                    experimentr.data()['s2_symbol_display']+=t.length-t.match(/[A-Z0-9]/g).length;
+                }else{
+                    experimentr.data()['s2_close_cell']+=1;
+                    experimentr.data()['s2_symbol_display']+=t.length;
+                }
+            }
+            //console.log(title[j%cwidth.length], t, cel.selectAll('.char').length);
+        }
+        console.log(experimentr.data()['s2_open_cell'],experimentr.data()['s2_partial_cell'],experimentr.data()['s2_close_cell'],
+            experimentr.data()['s2_char_display'],experimentr.data()['s2_symbol_display'],experimentr.data()['s2_no_display'],);
     }
 }
 
