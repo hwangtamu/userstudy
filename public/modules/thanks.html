@@ -10,12 +10,14 @@
 </div>
 <h1>Thank you<button style="background:none; border:none; margin:0; padding:0;" id="summon_dumpdata">!</button></h1><br>
 <div id="thanks" style="font-size: 25px">
-    <p id="score"></p>
-    <strong>Please do not log off or close this page. Please raise your hand and one of the volunteers will come to your place and give you the $10 Amazon gift card.</strong><br><br>
+    <strong>Please do not log off or close this page. Please raise your hand and one of the volunteers will come to your place and give you the $15 Amazon gift card.</strong><br><br>
     You will be contacted by the recruitment coordinator if you are the high scorer in today's session and be rewarded with a $35 Amazon gift card (If you have opted in with your email for the process).<br><br>
     Thank you very much for participating in the study. Have a great rest of the day!
 </div><br><br>
-<div id="dumpdata" style="visibility: hidden;"></div>
+<div id="scoring_info" style="visibility: hidden;">
+    <p id="score"></p>
+    <div id="dumpdata"></div>
+</div>
 
 
 <!--<button id="submitComments" class="next-button" type="button" style="position: absolute; left: 900px;">Finish</button>-->
@@ -42,7 +44,7 @@
         experimentr.save(t);
 
         d3.select("#summon_dumpdata").on("click", function(){
-            d3.select("#dumpdata").style("visibility","visible");
+            d3.select("#scoring_info").style("visibility","visible");
         });
 
 //        d3.select('#submitComments')

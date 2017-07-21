@@ -422,12 +422,17 @@ def star_similarities(d, star_indices,index_file_id):
             file_id_2 = d[p][i][index_file_id]
             type_1 = d[p][0][title.index("type")-1]
             type_2 = d[p][1][title.index("type")-1]
-            answer_1 = d[p][0][title.index("answer")-1]
-            answer_2 = d[p][1][title.index("answer")-1]
+            answer_1 = d[p][0][title.index("same")-1]
+            answer_2 = d[p][1][title.index("same")-1]
+            ff_1 = d[p][0][title.index("cntfn") - 1]
+            ff_2 = d[p][1][title.index("cntfn") - 1]
+            lf_1 = d[p][0][title.index("cntln") - 1]
+            lf_2 = d[p][1][title.index("cntln") - 1]
             # if not file_id_1 == file_id_2:
             x, y = pair([d[p][0], d[p][i]], star_indices)
-            data += [[p, file_id_1] + x + [type_1,answer_1]]
-            data += [[p, file_id_2] + y + [type_2,answer_2]]
+            data += [[p, file_id_1] + x + [ff_1,lf_1,type_1,answer_1]]
+            print [[p, file_id_1] + x + [ff_1,lf_1,type_1,answer_1]]
+            data += [[p, file_id_2] + y + [ff_2,lf_2,type_2,answer_2]]
             # id += 1
     return data
 
@@ -463,11 +468,11 @@ def write_data(data_list,file_name, title_array):
     w = csv.writer(f)
     w.writerow(title_array)
     for i in range(len(data_list)):
-        rec = data_list[i]
-        rec.insert(3, ff[rec[2]])
-        rec.insert(5, lf[rec[4]])
-        data_list[i] = rec
-        w.writerow(rec)
+        # rec = data_list[i]
+        # rec.insert(3, ff[rec[2]])
+        # rec.insert(5, lf[rec[4]])
+        # data_list[i] = rec
+        w.writerow(data_list[i])
     f.close()
 
 
@@ -477,6 +482,6 @@ print(title)
 print(star_indices)
 data = star_similarities(d, star_indices,index_file_id)
 print("The number of items in data are", len(data))
-data_starred = reorganize_cols(data, star_indices, ["first_name", "last_name", "voter_reg_num", "dob","sex","race"])
-title_array = ['Group ID', 'Record ID','First Name', 'FF', 'Last Name', 'LF', 'Reg No.', 'DoB','Sex', "Race", 'First Name', 'Last Name', 'Reg No.', 'DoB','Sex','Race','type','Same']
-write_data(data_starred, "./data_intermediate/all_starred_race.csv",title_array)
+# data_starred = reorganize_cols(data, star_indices, ["voter_reg_num","first_name", "last_name", "dob","sex","race"])
+title_array = ['Group ID', 'Record ID','Reg No.','First Name', 'Last Name', 'DoB','Sex', "Race", 'Reg No.','First Name', 'Last Name', 'DoB','Sex','Race','FF','LF','type','Same']
+write_data(data, "./data_intermediate/all_starred_race.csv",title_array)

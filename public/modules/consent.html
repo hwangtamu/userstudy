@@ -164,19 +164,23 @@
     };
 
     var sample_name;
+    var section2_name;
 
     if(QueryString.sampling == 'true') {
         experimentr.data()["sampled_data"] = "true";
         var sample_num = getRandomInt(1,10);
         if(sample_num == 10) {
             sample_name = "data/sample_"+sample_num+".csv";
+            section2_name = "data/section2_"+sample_num+".csv";
         } else {
             sample_name = "data/sample_0"+sample_num+".csv";
+            section2_name = "data/section2_0"+sample_num+".csv";
         }
         parsing(sample_name,"mat");
     } else {
         experimentr.data()["sampled_data"] = "false";
         sample_name = "data/output.csv";
+        section2_name = "data/section2.csv";
         parsing("data/output.csv","mat");
     }
 
@@ -184,7 +188,9 @@
     parsing("data/practice2.csv","practice2");
 
     console.log(sample_name);
+    console.log(section2_name);
     experimentr.data()["sample_name"] = sample_name;
+    experimentr.data()["section2_sample_name"] = section2_name;
 
     function count(arr) {
         var a = [], b = [], prev;

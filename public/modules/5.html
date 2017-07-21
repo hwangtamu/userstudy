@@ -151,7 +151,7 @@
 
                 if (sec_switch == 1 && (mod_pages.indexOf(step) > -1)) {
                     console.log(step);
-                    d3.select('#submitComments').style("left", "50%").property("innerHTML","Next");
+                    d3.select('#submitComments').style("left", "50%").property("innerHTML","Ready for Answering Questions!");
                     d3.selectAll(".blocks").remove();
                     d3.select("#notation").html("");
                     add_mod_intros("recap_" + (step + 1) + ".PNG");
