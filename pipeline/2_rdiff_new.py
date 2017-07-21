@@ -1,7 +1,29 @@
 import csv
 
+def substring_at_ends(s1, s2):
+    finalStr1 = ""
+    finalStr2 = ""
+    if s1.startswith(s2):
+        for i in range(len(s2)):
+            finalStr2 = finalStr2 + "*"
+            finalStr1 = finalStr1 + "*"
+        for i in range(len(s2),len(s1)):
+            finalStr1 = finalStr1 + s1[i]
+            finalStr2 = finalStr2 + "_"
+    elif s1.endswith(s2):
+        for i in range(len(s1)-1,len(s1)-len(s2)-1,-1):
+            finalStr2 = "*" + finalStr2
+            finalStr1 = "*" + finalStr1
+        for i in range(len(s1)-len(s2)-1,-1,-1):
+            finalStr1 = s1[i] + finalStr1
+            finalStr2 = "_" + finalStr2
+
+    return finalStr1,finalStr2
+
+
 
 def get_edit_distance(s1, s2):
+
     finalStr1 = ""
     finalStr2 = ""
 
@@ -13,155 +35,97 @@ def get_edit_distance(s1, s2):
     len1 = len(s1)
     len2 = len(s2)
 
-    dp = {}
-    direction = {}
-    for i in range(len1+1):
-        dp[i] = {}
-        direction[i] = {}
-        for j in range(len2+1):
-            dp[i][j] = []
-            direction[i][j] = []
+    if len1 > len2:
+        finalStr1,finalStr2 = substring_at_ends(s1,s2)
+    elif len2>len1:
+        finalStr2, finalStr1 = substring_at_ends(s2, s1)
 
-    for i in range(len1 + 1):
-        for j in range(len2 + 1):
-            if i == 0:
-                dp[i][j] = j
-                direction[i][j] = 'd'
-            elif j == 0:
-                dp[i][j] = i
-                direction[i][j] = 'i'
+    if len(finalStr1)==0 and len(finalStr2)==0:
+        dp = {}
+        direction = {}
+        for i in range(len1 + 1):
+            dp[i] = {}
+            direction[i] = {}
+            for j in range(len2 + 1):
+                dp[i][j] = []
+                direction[i][j] = []
 
-    for i in range(1,len1+1):
-        for j in range(1,len2+1):
-            # if i == 0:
-            #     dp[i][j] = j
-            #     direction[i][j] = 'd'
-            # elif j == 0:
-            #     dp[i][j] = i
-            #     direction[i][j] = 'i'
-            # # elif s1[i - 1] == s2[j - 1]:
-            # #     dp[i][j] = dp[i - 1][j - 1]
-            # #     direction[i][j] = 'n'
-            # else:
+        for i in range(len1 + 1):
+            for j in range(len2 + 1):
+                if i == 0:
+                    dp[i][j] = j
+                    direction[i][j] = 'd'
+                elif j == 0:
+                    dp[i][j] = i
+                    direction[i][j] = 'i'
 
-            insertVal = dp[i - 1][j] + 1
-            deleteVal = dp[i][j - 1] + 1
-            subsVal = dp[i - 1][j - 1] + (0 if s1[i - 1] == s2[j - 1] else 1)
-            transVal = 1000000000
-            if i > 1 and j > 1 and s1[i - 1] == s2[j - 2] and s1[i - 2] == s2[j - 1] and s1[i - 1] != s1[i - 2]:
-                transVal = dp[i - 2][j - 2]
-            minAll = min([insertVal, deleteVal, subsVal, transVal])
-            dp[i][j] = minAll
-            # print  i,j,minAll
-
-
-            if minAll == transVal:
-                direction[i][j] = 't'
-            elif minAll == insertVal:
-                direction[i][j] = 'i'
-            elif minAll == deleteVal:
-                direction[i][j] = 'd'
-            else:
-                if s1[i - 1] == s2[j - 1]:
+        for i in range(len1 + 1):
+            for j in range(len2 + 1):
+                if i == 0:
+                    dp[i][j] = j
+                    direction[i][j] = 'd'
+                elif j == 0:
+                    dp[i][j] = i
+                    direction[i][j] = 'i'
+                elif s1[i - 1] == s2[j - 1]:
+                    dp[i][j] = dp[i - 1][j - 1]
                     direction[i][j] = 'n'
                 else:
-                    direction[i][j] = 's'
 
-                # dp[i][j] = minAll + 1
+                    insertVal = dp[i - 1][j] + 1
+                    deleteVal = dp[i][j - 1] + 1
+                    subsVal = dp[i - 1][j - 1] + (0 if s1[i - 1] == s2[j - 1] else 1)
+                    transVal = 1000000000
+                    if i > 1 and j > 1 and s1[i - 1] == s2[j - 2] and s1[i - 2] == s2[j - 1] and s1[i - 1] != s1[i - 2]:
+                        transVal = dp[i - 2][j - 2]
+                    minAll = min([insertVal, deleteVal, subsVal, transVal])
+                    dp[i][j] = minAll + 1
 
-    stI = len1
-    stJ = len2
-    while stI > 0 or stJ > 0:
-        if direction[stI][stJ] == 'i':
-            finalStr1 = s1[stI - 1] + finalStr1
-            finalStr2 = "_" + finalStr2
-            stI = stI - 1
+                    if minAll == transVal:
+                        direction[i][j] = 't'
+                    elif minAll == insertVal:
+                        direction[i][j] = 'i'
+                    elif minAll == deleteVal:
+                        direction[i][j] = 'd'
+                    else:
+                        if s1[i - 1] == s2[j - 1]:
+                            direction[i][j] = 'n'
+                        else:
+                            direction[i][j] = 's'
 
-        elif direction[stI][stJ] == 'd':
-            finalStr1 = "_" + finalStr1
-            finalStr2 = s2[stJ - 1] + finalStr2
-            stJ = stJ - 1
+                            # dp[i][j] = minAll + 1
 
-        elif direction[stI][stJ] == 's':
-            finalStr1 = s1[stI - 1] + finalStr1
-            finalStr2 = s2[stJ - 1] + finalStr2
-            stI = stI - 1
-            stJ = stJ - 1
+        stI = len1
+        stJ = len2
+        while stI > 0 or stJ > 0:
+            if direction[stI][stJ] == 'i':
+                finalStr1 = s1[stI - 1] + finalStr1
+                finalStr2 = "_" + finalStr2
+                stI = stI - 1
 
-        elif direction[stI][stJ] == 'n':
-            finalStr1 = "*" + finalStr1
-            finalStr2 = "*" + finalStr2
-            stI = stI - 1
-            stJ = stJ - 1
+            elif direction[stI][stJ] == 'd':
+                finalStr1 = "_" + finalStr1
+                finalStr2 = s2[stJ - 1] + finalStr2
+                stJ = stJ - 1
 
-        else:
-            # finalStr1 = "TX" + finalStr1
-            # finalStr2 = "TX" + finalStr2
-            finalStr1 = s1[stI - 2] + s1[stI - 1] + finalStr1
-            finalStr2 = s2[stJ - 2] + s2[stJ - 1] + finalStr2
-            stI = stI - 2
-            stJ = stJ - 2
+            elif direction[stI][stJ] == 's':
+                finalStr1 = s1[stI - 1] + finalStr1
+                finalStr2 = s2[stJ - 1] + finalStr2
+                stI = stI - 1
+                stJ = stJ - 1
 
-    # print(s1,s2)
-    # stI = 1
-    # stJ = 1
-    # ind = 0
-    #
-    # while True:
-    #     if stI not in direction.keys():
-    #         if stJ not in direction[0].keys():
-    #             break
-    #     if stI in direction.keys():
-    #         if stJ not in direction[stI].keys():
-    #             finalStr1 = finalStr1 + s1[stI - 1]
-    #             finalStr2 = finalStr2 + "_"
-    #             stI = stI + 1
-    #             ind = 10
-    #
-    #     if stI not in direction.keys():
-    #         if stJ in direction[0].keys():
-    #             finalStr1 = finalStr1 + "_"
-    #             finalStr2 = finalStr2 + s2[stJ - 1]
-    #             stJ = stJ + 1
-    #             ind = 10
-    #
-    #     if ind != 10:
-    #         if direction[stI][stJ] == 'i':
-    #             if s1 == "BR" or s1 == "BR JR":
-    #                 print(s1)
-    #             finalStr1 = finalStr1 + s1[stI - 1]
-    #             finalStr2 = finalStr2 + "_"
-    #             stI = stI + 1
-    #
-    #
-    #         elif direction[stI][stJ] == 'd':
-    #             if s1 == "BR" or s1 == "BR JR":
-    #                 print(s1)
-    #             finalStr1 = finalStr1 + "_"
-    #             finalStr2 = finalStr2 + s2[stJ - 1]
-    #             stJ = stJ + 1
-    #
-    #
-    #         elif direction[stI][stJ] == 's':
-    #             finalStr1 = finalStr1 + s1[stI - 1]
-    #             finalStr2 = finalStr2 + s2[stJ - 1]
-    #             stI = stI + 1
-    #             stJ = stJ + 1
-    #
-    #
-    #         elif direction[stI][stJ] == 'n':
-    #             finalStr1 = finalStr1 + "*"
-    #             finalStr2 = finalStr2 + "*"
-    #             stI = stI + 1
-    #             stJ = stJ + 1
-    #
-    #         else:
-    #             finalStr1 = finalStr1 + s1[stI - 1] + s1[stI - 2]
-    #             finalStr2 = finalStr2 + s2[stJ - 1] + s2[stJ - 2]
-    #             stI = stI + 2
-    #             stJ = stJ + 2
+            elif direction[stI][stJ] == 'n':
+                finalStr1 = "*" + finalStr1
+                finalStr2 = "*" + finalStr2
+                stI = stI - 1
+                stJ = stJ - 1
 
-    # print finalStr1, finalStr2
+            else:
+                finalStr1 = s1[stI - 2] + s1[stI - 1] + finalStr1
+                finalStr2 = s2[stJ - 2] + s2[stJ - 1] + finalStr2
+                stI = stI - 2
+                stJ = stJ - 2
+
     return finalStr1, finalStr2
 
 def damerau_levenshtein_distance(s1, s2):
