@@ -64,13 +64,13 @@ starred_data %>%
   group_by(type,`Record ID`) %>%
   unique() %>% count(type,`Record ID`)
 
-
+practice2_rows <- c(2,5,7,12,16,18)
 
 starred_data2 <- starred_data
 names(starred_data) <- col_names
-write_csv(starred_data,"./data_output/practice.csv")
+write_csv(starred_data,"./data_output/frequency_starred.csv")
 
-practice2_rows <- c(2,5,7,12,16,18)
+
 # practice2_rows <- c(practice2_rows,(practice2_rows*2 - 1))
 
 starred_data2 <- 
