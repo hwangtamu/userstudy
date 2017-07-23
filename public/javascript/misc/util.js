@@ -48,9 +48,7 @@ function cell(t,g,j,k){
         cy = height;
     var cel = g.append("g").attr("id","c"+j.toString()).attr("class","cell")
         .attr("transform","translate("+x+","+y+")");
-
-
-    console.log(title[j%cwidth.length],t);
+    var raw_t = t;
 
     //console.log(title[j%cwidth.length],t);
     var rectangle = cel.append("rect").attr("id",j);
@@ -116,30 +114,48 @@ function cell(t,g,j,k){
     if(j>cwidth.length){
         //icons for frequency
         if(k==3 && (title[j%cwidth.length]=="FFreq"||title[j%cwidth.length]=="LFreq")) {
+            var div = cel.append("g").style("opacity",0);
+            var bg = div.append("rect").style("fill","none").attr("x",-2).attr("y",-14).attr("width",0).attr("height",20)
+                .attr("stroke", "grey")
+                .attr("stroke-width",1);
+            var tip = div.append("text").style("fill","grey").attr("text-anchor", "left");
 
             if(t==1){
-                cel.append("svg:image").attr("xlink:href","/resources/unique.png").attr("class","icon")
+                cel.append("svg:image").attr("xlink:href","/resources/unique.png").attr("class","freq")
                     .attr("x",10).attr("y",cy/2-9).attr("width",20).attr("height",20);
+                tip.text('Unique Name');
+                bg.attr("width",90);
             } else {
                 if(t<=5) {
                     // cel.append("svg:image").attr("xlink:href","/resources/rare.svg").attr("class","icon")
                     //     .attr("x",cwidth[j%cwidth.length]/3).attr("y",cy/2-9).attr("width",20).attr("height",20);
-                    cel.append("svg:image").attr("xlink:href","/resources/rare_2_rect.svg").attr("class","icon")
+                    cel.append("svg:image").attr("xlink:href","/resources/rare_2_rect.svg").attr("class","freq")
                         .attr("x",10).attr("y",cy/2-9).attr("width",22).attr("height",22);
+                    tip.text('Rare Name');
+                    bg.attr("width",80);
                 } else {
                     if(t<=100) {
-                        cel.append("svg:image").attr("xlink:href", "/resources/3_dots.png").attr("class", "icon")
+                        cel.append("svg:image").attr("xlink:href", "/resources/3_dots.png").attr("class", "freq")
                             .attr("x", 10).attr("y", cy / 2 - 9).attr("width", 20).attr("height", 20);
+                        tip.text('Occurred Often');
+                        bg.attr("width",100);
                     } else {
-                        cel.append("svg:image").attr("xlink:href", "/resources/infinity.png").attr("class", "icon")
+                        cel.append("svg:image").attr("xlink:href", "/resources/infinity.png").attr("class", "freq")
                             .attr("x", 10).attr("y", cy / 2 - 9).attr("width", 20).attr("height", 20);
+                        tip.text('Common Name');
+                        bg.attr("width",100);
                     }
                 }
             }
+            cel.on("mouseover",function(d){
+                div.style("opacity",1);
+            });
+            cel.on("mouseout",function(d){
+                div.style("opacity",0);
+            });
         }
-
         // check if it's a name swap
-        if(title[j%cwidth.length]=="First name"||title[j%cwidth.length]=="Last name"){
+        if(experimentr.data()['mode']!='Vanilla' && title[j%cwidth.length]=="First name"||title[j%cwidth.length]=="Last name"){
             var m = j+cwidth.length,
                 p = g.attr("id").slice(1),
                 dat = experimentr.data()[experimentr.data()['section']][Math.floor(p/6)],
@@ -167,30 +183,12 @@ function cell(t,g,j,k){
                     cel.append("svg:image").attr("xlink:href","/resources/name_swap.svg").attr("class","icon")
                         .attr("x",cwidth[j%cwidth.length]-45).attr("y",cy/2-8).attr("width",60).attr("height",60);
                 }
-                if(experimentr.data()["mode"]!="Full"){
-                    t = t.replace(/\&/g, function(){if(j%2){return "&"}return "@"});
-                    t = t.replace(/\@/g, function(){if(j%2){return "&"}return "@"});
-                    var row_number = Math.floor((j - 1)/cwidth.length);
-                    t = t.replace(/[A-Z0-9]/g, function(){
-                        if(row_number == 1) {
-                            if(title[j%cwidth.length]=="First name"){
-                                return "@"
-                            } else if(title[j%cwidth.length]=="Last name"){
-                                return "&"
-                            }
-                        } else{
-                            if(title[j%cwidth.length]=="First name"){
-                                return "&"
-                            } else if(title[j%cwidth.length]=="Last name"){
-                                return "@"
-                            }
-                        }
-                    });
+                if(["Vanilla","Full"].indexOf(experimentr.data()["mode"])<0){
+                    t = t.replace(/[A-Z0-9]/g, function(){if(j%14>9){return "&";}return "@";});
                 }
             }
             //console.log(j, fnj, fnm, lnj, lnm);
         }
-
         if(textbox.text()==""){
             if(title[j%cwidth.length]!="FFreq" && title[j%cwidth.length]!="LFreq"){
                 // missing
@@ -225,8 +223,6 @@ function cell(t,g,j,k){
                     t_m = dat[p % 6][1][mapping[m % cwidth.length]],
                     bin = [];
 
-
-
                 if(experimentr.data()["mode"]=="Full" && title[j % cwidth.length] == "Sex"){
 
                     if(t_j != t_m){
@@ -238,11 +234,9 @@ function cell(t,g,j,k){
                         }
                     }
                 } else {
-
                     if (title[j % cwidth.length] != "Pair" && t_j.indexOf("*") == -1 && t_m.indexOf("*") == -1 && t_j.trim() != "" && t_m.trim() != "") {
                         //var len = (t_j.length<=t_m.length?t_j.length:t_m.length)/2;
                         //console.log(t_j, t_m);
-
                         diff = 1;
                         if (j < 2 * cwidth.length) {
                             g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/diff.svg")
@@ -463,15 +457,15 @@ function cell(t,g,j,k){
         transpose_ = [];
 
         // replace display content to special symbols '@', '&'
-        if((experimentr.data()['mode']!="Full" && experimentr.data()['mode']!="Opti1" && experimentr.data()['mode']!="Vanilla") && title[j%cwidth.length]=="Race"){
+        if(["Full","Vanilla","Opti1"].indexOf(experimentr.data()['mode'])<0 && title[j%cwidth.length]=="Race"){
             if(j>2*cwidth.length){t = '&';}
             else if(j>cwidth.length){t = '@';}
         }
-        if(["Full", "Opti2"].indexOf(experimentr.data()['mode'])<0 && title[j%cwidth.length]=="ID"){
+        if(["Vanilla","Full", "Opti2"].indexOf(experimentr.data()['mode'])<0 && title[j%cwidth.length]=="ID"){
             if(j>2*cwidth.length){t = t.replace(/[A-Z0-9]/g, '&');}
             else if(j>cwidth.length){t = t.replace(/[A-Z0-9]/g, '@');}
         }
-        if(["Full", "Opti1", "Opti2"].indexOf(experimentr.data()['mode'])<0 &&
+        if(["Vanilla","Full", "Opti1", "Opti2"].indexOf(experimentr.data()['mode'])<0 &&
             ["First name", "Last name", "DoB(M/D/Y)","Race"].indexOf(title[j%cwidth.length])>-1){
             if(j>2*cwidth.length){t = t.replace(/[A-Z0-9]/g, '&');}
             else if(j>cwidth.length){t = t.replace(/[A-Z0-9]/g, '@');}
@@ -533,6 +527,12 @@ function cell(t,g,j,k){
             }
             //console.log(t, t_jj);
         }
+
+        if(experimentr.data()['mode']=='Partial'){
+            if(j>2*cwidth.length){t = t.replace(/[A-Z0-9]/g, '&');}
+            else if(j>cwidth.length){t = t.replace(/[A-Z0-9]/g, '@');}
+        }
+
         var t_count = 0;
         for(var l=0;l<len;l++){
             if(t[l]!="_"){
@@ -564,6 +564,7 @@ function cell(t,g,j,k){
         g.select("#t"+j.toString()).remove();
 
     }
+
     // coloring text
     /*
      if(experimentr.data()['mode']!="Full"
@@ -601,6 +602,78 @@ function cell(t,g,j,k){
      //click function not implemented yet.
      }
      }*/
+
+    //statictics
+    if(['mat'].indexOf(experimentr.data()['section'])>-1 && j>cwidth.length &&
+        ['ID', 'Last name', 'First name', 'DoB(M/D/Y)', 'Sex', 'Race'].indexOf(title[j%cwidth.length])>-1){
+        if(experimentr.data()['mode']=='Vanilla'||experimentr.data()['mode']=='Full'){
+            experimentr.data()['open_cell']+=1;
+            //console.log(title[j%cwidth.length], t);
+            if(t.match(/[A-Z0-9]/g)){
+                experimentr.data()['char_display']+=t.match(/[A-Z0-9]/g).length;
+            }
+        }else{
+            if(cel.selectAll('.char')[0].length==1){
+                if([' ', '@', '&', '*'].indexOf(cel.select('.char').text())>-1){
+                    experimentr.data()['close_cell']+=1;
+                }else{
+                    experimentr.data()['open_cell']+=1;
+                }
+            }else{
+                //console.log(t.match(/[A-Z0-9]/g), t, raw_t);
+                if(t.match(/[A-Z0-9]/g)){
+                    if(t.indexOf('*')>-1){
+                        experimentr.data()['partial_cell']+=1;
+                    }else{
+                        experimentr.data()['open_cell']+=1;
+                    }
+                    experimentr.data()['char_display']+=t.match(/[A-Z0-9]/g).length;
+                    experimentr.data()['symbol_display']+=t.length-t.match(/[A-Z0-9]/g).length;
+                }else{
+                    experimentr.data()['close_cell']+=1;
+                    experimentr.data()['symbol_display']+=t.length;
+                }
+            }
+            //console.log(title[j%cwidth.length], t, cel.selectAll('.char').length);
+        }
+        console.log(experimentr.data()['open_cell'],experimentr.data()['partial_cell'],experimentr.data()['close_cell'],
+            experimentr.data()['char_display'],experimentr.data()['symbol_display'],experimentr.data()['no_display'],);
+    }
+
+    if(['section2'].indexOf(experimentr.data()['section'])>-1 && j>cwidth.length &&
+        ['ID', 'Last name', 'First name', 'DoB(M/D/Y)', 'Sex', 'Race'].indexOf(title[j%cwidth.length])>-1){
+        if(experimentr.data()['mode']=='Vanilla'||experimentr.data()['mode']=='Full'){
+            experimentr.data()['s2_open_cell']+=1;
+            //console.log(title[j%cwidth.length], t);
+            if(t.match(/[A-Z0-9]/g)){
+                experimentr.data()['s2_char_display']+=t.match(/[A-Z0-9]/g).length;
+            }
+        }else{
+            if(cel.selectAll('.char')[0].length==1){
+                if([' ', '@', '&', '*'].indexOf(cel.select('.char').text())>-1){
+                    experimentr.data()['s2_close_cell']+=1;
+                }else{
+                    experimentr.data()['s2_open_cell']+=1;
+                }
+            }else{
+                if(t.match(/[A-Z0-9]/g)){
+                    if(t.indexOf('*')>-1){
+                        experimentr.data()['s2_partial_cell']+=1;
+                    }else{
+                        experimentr.data()['s2_open_cell']+=1;
+                    }
+                    experimentr.data()['s2_char_display']+=t.match(/[A-Z0-9]/g).length;
+                    experimentr.data()['s2_symbol_display']+=t.length-t.match(/[A-Z0-9]/g).length;
+                }else{
+                    experimentr.data()['s2_close_cell']+=1;
+                    experimentr.data()['s2_symbol_display']+=t.length;
+                }
+            }
+            //console.log(title[j%cwidth.length], t, cel.selectAll('.char').length);
+        }
+        console.log(experimentr.data()['s2_open_cell'],experimentr.data()['s2_partial_cell'],experimentr.data()['s2_close_cell'],
+            experimentr.data()['s2_char_display'],experimentr.data()['s2_symbol_display'],experimentr.data()['s2_no_display'],);
+    }
 }
 
 
@@ -622,11 +695,9 @@ function row(t,g,j,k){
                 } else {
                     cell(t[mapping[i]],g,j*cwidth.length+l,k[i],t[i]);
                 }
-
             } else {
                 cell(t[i],g,j*cwidth.length+l,k[i],t[mapping[i]]);
             }
-
             l+=1;
         }
     }
@@ -675,11 +746,12 @@ function pair(t,g,m){
 
             if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Pair" && title[j] != "ID."){
                 if(row1[j] == row2[j] && row1[j]!=""){
+                    experimentr.data()["no_display"]+=row1[j].length+row2[j].length;
                     row1[j] = " ";
                     row2[j] = " ";
                 } else {
-                    row1[j] = row1[j].replace(/[A-Z0-9]/g, '@');
-                    row2[j] = row2[j].replace(/[A-Z0-9]/g, '&');
+                    //row1[j] = row1[j].replace(/[A-Z0-9]/g, '@');
+                    //row2[j] = row2[j].replace(/[A-Z0-9]/g, '&');
                 }
             }
         }
@@ -750,6 +822,7 @@ function pair(t,g,m){
             for(var j = 0;j<a;j++){
                 if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Pair" && title[j] != "ID."){
                     if(row1[j] == row2[j] && row1[j]!=""){
+                        experimentr.data()["no_display"]+=row1[j].length+row2[j].length;
                         row1[j] = " ";
                         row2[j] = " ";
                     }else if(row1[j]==""){
@@ -776,6 +849,7 @@ function pair(t,g,m){
             for(var j = 0;j<a;j++){
                 if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Pair" && title[j] != "ID."){
                     if(row1[j] == row2[j] && row1[j]!=""){
+                        experimentr.data()["no_display"]+=row1[j].length+row2[j].length;
                         row1[j] = " ";
                         row2[j] = " ";
                     }else if(row1[j]==""){
@@ -1249,4 +1323,13 @@ function parse_url() {
         }
     }
     return query_string;
-};
+}
+
+/*
+Measure amount of disclosure
+ */
+function statictics(){
+    var d = experimentr.data()['mat'];
+    console.log(d);
+
+}

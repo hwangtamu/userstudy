@@ -32,9 +32,12 @@
 </body>
 </html>
 <script>
+    $.getScript("javascript/misc/util.js");
+
     //d3.select("#notation").text("Page "+experimentr.data()['mat'].length.toString()+"/"+experimentr.data()['mat'].length.toString());
     d3.select("#end").text('You are done! Thank you for participating in this study!');
     //grading();
+    statistics();
     delete experimentr.data()['mat'];
     delete experimentr.data()['section2'];
     delete experimentr.data()['practice'];
