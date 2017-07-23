@@ -13,7 +13,7 @@ is_not_empty <- function(string) {
 
 is_not_empty = Vectorize(is_not_empty)
 
-(source_data <- read_csv("data_input/allg_freq.csv", 
+(source_data <- read_csv("data_input/allv2.csv", 
                          col_types = cols(.default = "c")))
 #,file_id = str_c(src, file_id, sep = "-")
 (input_data <-
@@ -37,7 +37,7 @@ lookup <-
 
 source_data_2 <- 
   source_data %>%
-  left_join(lookup_2) %>%
+  left_join(lookup) %>%
   mutate(ID = n) %>%
   select(-n) %>%
   mutate_all(funs(ifelse(is_not_empty(.),.,"")))
