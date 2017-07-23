@@ -177,7 +177,17 @@
             section2_name = "data/section2_0"+sample_num+".csv";
         }
         parsing(sample_name,"mat");
-    } else {
+    } else if(!isNaN(QueryString.sampling)){
+        var sample_num =  parseInt(QueryString.sampling);
+        if(sample_num == 10) {
+            sample_name = "data/sample_"+sample_num+".csv";
+            section2_name = "data/section2_"+sample_num+".csv";
+        } else {
+            sample_name = "data/sample_0"+sample_num+".csv";
+            section2_name = "data/section2_0"+sample_num+".csv";
+        }
+        parsing(sample_name,"mat");
+    } else{
         experimentr.data()["sampled_data"] = "false";
         sample_name = "data/output.csv";
         section2_name = "data/section2.csv";
