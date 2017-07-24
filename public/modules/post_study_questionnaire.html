@@ -93,6 +93,18 @@
                     <option value="6">6 - Somewhat Easy</option>
                     <option value="7">7 - Very Easy</option>
                 </select>
+            </li><br>
+            <li>Sex:
+                <select name="sex_diff" style="position: absolute; left: 200px;">
+                    <option value="0">Please select</option>
+                    <option value="1">1 - Very Difficult</option>
+                    <option value="2">2 - Somewhat Difficult</option>
+                    <option value="3">3 - Slightly Difficult</option>
+                    <option value="4">4 - Not particularly easy or difficult</option>
+                    <option value="5">5 - Slightly Easy</option>
+                    <option value="6">6 - Somewhat Easy</option>
+                    <option value="7">7 - Very Easy</option>
+                </select>
             </li>
         </ol>
     </div>
@@ -152,6 +164,18 @@
             </li><br>
             <li>Race:
                 <select name="race_spot" style="position: absolute; left: 200px;">
+                    <option value="0">Please select</option>
+                    <option value="1">1 - Very Difficult</option>
+                    <option value="2">2 - Somewhat Difficult</option>
+                    <option value="3">3 - Slightly Difficult</option>
+                    <option value="4">4 - Not particularly easy or difficult</option>
+                    <option value="5">5 - Slightly Easy</option>
+                    <option value="6">6 - Somewhat Easy</option>
+                    <option value="7">7 - Very Easy</option>
+                </select>
+            </li><br>
+            <li>Sex:
+                <select name="sex_spot" style="position: absolute; left: 200px;">
                     <option value="0">Please select</option>
                     <option value="1">1 - Very Difficult</option>
                     <option value="2">2 - Somewhat Difficult</option>
@@ -330,6 +354,9 @@
         d3.selectAll('select')
             .filter(function(d) { return this.name === 'race_diff' ? this : null; })
             .on('change', function() { data.ps_race_diff = this.value;});
+        d3.selectAll('select')
+            .filter(function(d) { return this.name === 'sex_diff' ? this : null; })
+            .on('change', function() { data.ps_sex_diff = this.value;});
 
         d3.selectAll('select')
             .filter(function(d) { return this.name === 'fname_spot' ? this : null; })
@@ -346,6 +373,9 @@
         d3.selectAll('select')
             .filter(function(d) { return this.name === 'race_spot' ? this : null; })
             .on('change', function() { data.ps_race_spot = this.value;});
+        d3.selectAll('select')
+            .filter(function(d) { return this.name === 'sex_spot' ? this : null; })
+            .on('change', function() { data.ps_sex_spot = this.value;});
 
         d3.selectAll('select')
             .filter(function(d) { return this.name === 'spot_missing' ? this : null; })
