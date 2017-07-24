@@ -20,6 +20,7 @@ is_not_empty = Vectorize(is_not_empty)
   source_data %>%
   mutate_all(funs(ifelse(is_not_empty(.),.,""))) %>% 
   mutate(last_name = str_c(last_name, name_sufx_cd, sep = " "),
+         ID = str_c(file_id,ID),
          file_id = str_c(file_id,"-",src)) %>%
   mutate_all(funs(str_trim(.))) %>% 
   select(ID, voter_reg_num,first_name, last_name , dob,sex, race, type, 
@@ -31,6 +32,7 @@ org_names <- c("file_id","voter_reg_num",
                "type","ID","src","same")
 lookup <- 
   source_data %>%
+  mutate(ID = str_c(file_id,ID)) %>% 
   select(ID) %>%
   unique() %>%
   mutate(n = 1:n())
