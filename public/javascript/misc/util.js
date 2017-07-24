@@ -657,8 +657,8 @@ function cell(t,g,j,k){
             }
             //console.log(title[j%cwidth.length], t, cel.selectAll('.char').length);
         }
-        console.log(experimentr.data()['open_cell'],experimentr.data()['partial_cell'],experimentr.data()['close_cell'],
-            experimentr.data()['char_display'],experimentr.data()['symbol_display'],experimentr.data()['no_display'],);
+        //console.log(experimentr.data()['open_cell'],experimentr.data()['partial_cell'],experimentr.data()['close_cell'],
+        //    experimentr.data()['char_display'],experimentr.data()['symbol_display'],experimentr.data()['no_display'],);
     }
 
     if(['section2'].indexOf(experimentr.data()['section'])>-1 && j>cwidth.length &&
@@ -772,6 +772,8 @@ function pair(t,g,m){
                     row1[j] = " ";
                     row2[j] = " ";
                 } else {
+                    if(row1[j]=="" && row2[j]!=""){row2[j] = row2[j].replace(/[A-Z0-9]/g, '*');}
+                    if(row2[j]=="" && row1[j]!=""){row1[j] = row1[j].replace(/[A-Z0-9]/g, '*');}
                     //row1[j] = row1[j].replace(/[A-Z0-9]/g, '@');
                     //row2[j] = row2[j].replace(/[A-Z0-9]/g, '&');
                 }
