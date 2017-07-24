@@ -37,13 +37,13 @@
     <div id="instruction" style="text-align:center;">
         <!--<h1 id="heading">Main Study</h1>-->
         <div id="notation" style="text-align:left;">
-            <h1>Hi</h1>
+            <!--<label id="page"></label>-->
         </div>
         <br> <br>
         <div id="table"></div>
     </div>
     <br>
-    <button id="submitComments" class="next-button" type="button">Next</button><label id="answer_all" style="position: absolute; left: 150px; color: red;"></label><br>
+
 </div>
 <br>
 </body>
@@ -51,54 +51,33 @@
 <script>
     (function(){
         $.getScript("javascript/misc/util.js");
-        experimentr.data()['section'] = 'disclosure';
+        experimentr.data()['section'] = 'mat';
         experimentr.hideNext();
-        console.log(experimentr.data()["disclosure_data"]);
-
+        // pages
 
         var step = 1;
-
-
-        function delay_next(time){
-            d3.select("#submitComments").attr("disabled","true");
-            d3.select("#submitComments").style("color","#b3b3b3");
-            setTimeout(function(){
-                d3.select("#submitComments").attr("disabled",null);
-                d3.select("#submitComments").style("color","black");
-            },time);
-        }
-
-        delay_next(250);
-
-
-        function goToNext() {
-            //delete experimentr.data()["disclosure_data"];
-            experimentr.next();
-        }
-
+       render_content();
 
         function render_content(){
+            console.log(experimentr.data()["mat"][step - 1]);
             setTimeout(function () {
                 d3.selectAll(".blocks").remove();
-                pairs(experimentr.data()["disclosure_data"][step - 1], step - 1, experimentr.data()["disclosure_data"][step - 1].length, experimentr.data()["mode"]);
+                pairs(experimentr.data()["mat"][step - 1], step - 1, experimentr.data()["mat"][step - 1].length, experimentr.data()["mode"]);
                 if (experimentr.data()["mode"] == "Vanilla") {
                     d3.selectAll(".icon").remove();
                     d3.selectAll(".freq").remove();
                 }
-            }, 1000);
-            delay_next(350);
+            }, 5000);
+
+            step += 1;
+            if(step == 7){
+                console.log(experimentr.data()['open_cell']);
+                experimentr.next();
+            } else {
+                setTimeout(render_content(), 5000);
+            }
         }
 
-        render_content();
-
-        d3.select('#submitComments')
-            .on('click', function () {
-                console.log(experimentr.data());
-                render_content();
-                // time elapse
-                experimentr.data()['switch'].push(Date.now());
-                experimentr.save();
-            });
 
 
     }());
