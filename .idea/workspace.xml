@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0e29c6df-9fc3-4c4c-ab4e-18561c52b86a" name="Default" comment="new pipelines and survey mods">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dump.rdb" afterPath="$PROJECT_DIR$/dump.rdb" />
+    <list default="true" id="0e29c6df-9fc3-4c4c-ab4e-18561c52b86a" name="Default" comment="Changing rdiff">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/2_rdiff_new.py" afterPath="$PROJECT_DIR$/pipeline/2_rdiff_new.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_input/allg_freq.csv" afterPath="$PROJECT_DIR$/pipeline/data_input/allg_freq.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_intermediate/all_starred_race.csv" afterPath="$PROJECT_DIR$/pipeline/data_intermediate/all_starred_race.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/allg_starred.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/allg_starred.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/sample_01.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/sample_01.csv" />
@@ -27,9 +27,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/section2_08.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/section2_08.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/section2_09.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/section2_09.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/section2_10.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/section2_10.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/output.csv" afterPath="$PROJECT_DIR$/public/data/output.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/modules/website_introduction.html" afterPath="$PROJECT_DIR$/public/modules/website_introduction.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/resources/rare_2_rect.svg" afterPath="$PROJECT_DIR$/public/resources/rare_2_rect.svg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/pipeline.bat" afterPath="$PROJECT_DIR$/pipeline/pipeline.bat" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -42,18 +40,120 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/userstudy$2_rdiff_new__1_.coverage" NAME="2_rdiff_new (1) Coverage Results" MODIFIED="1500671096455" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/pipeline" />
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="2_rdiff_new.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1344">
+              <caret line="64" column="30" lean-forward="false" selection-start-line="64" selection-start-column="8" selection-end-line="64" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="consent.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/modules/consent.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="768">
+              <caret line="285" column="7" lean-forward="false" selection-start-line="285" selection-start-column="7" selection-end-line="285" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="practice2.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/modules/practice2.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="337">
+              <caret line="97" column="10" lean-forward="false" selection-start-line="97" selection-start-column="10" selection-end-line="97" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="practice.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/modules/practice.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2898">
+              <caret line="138" column="9" lean-forward="false" selection-start-line="138" selection-start-column="9" selection-end-line="138" selection-end-column="9" />
+              <folding>
+                <marker date="1500577006573" expanded="true" signature="13161:13178" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="util.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/javascript/misc/util.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3791">
+              <caret line="765" column="0" lean-forward="false" selection-start-line="765" selection-start-column="0" selection-end-line="765" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="allg_starred.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pipeline/data_output/allg_starred.csv">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="127" column="32" lean-forward="false" selection-start-line="127" selection-start-column="29" selection-end-line="127" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2_rdiff_new.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pipeline/2_rdiff_new.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+            <state relative-caret-position="239">
+              <caret line="455" column="0" lean-forward="false" selection-start-line="455" selection-start-column="0" selection-end-line="455" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="5.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/modules/5.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="630">
+              <caret line="30" column="20" lean-forward="false" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="20" />
+              <folding>
+                <marker date="1500670764141" expanded="true" signature="1309:7185" ph="{...}" />
+                <marker date="1500670764141" expanded="true" signature="4456:6103" ph="{...}" />
+                <marker date="1500670764141" expanded="true" signature="4643:6093" ph="{...}" />
+                <marker date="1500670764141" expanded="true" signature="4717:5149" ph="{...}" />
+                <marker date="1500670764141" expanded="true" signature="5155:6079" ph="{...}" />
+                <marker date="1500670764141" expanded="true" signature="5499:5947" ph="{...}" />
+                <marker date="1500670764141" expanded="true" signature="5778:5925" ph="{...}" />
+                <marker date="1500670764141" expanded="true" signature="6179:7175" ph="{...}" />
+                <marker date="1500670764141" expanded="true" signature="6543:6600" ph="{...}" />
+                <marker date="1500670764141" expanded="true" signature="6606:7030" ph="{...}" />
+                <marker date="1500670764141" expanded="true" signature="6669:6941" ph="{...}" />
+                <marker date="1500670764141" expanded="true" signature="6713:6786" ph="{...}" />
+                <marker date="1500670764141" expanded="true" signature="6792:6919" ph="{...}" />
+                <marker date="1500670764141" expanded="true" signature="6947:7012" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="section2.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/modules/section2.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1125">
+              <caret line="108" column="0" lean-forward="false" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+              <folding>
+                <marker date="1500670764157" expanded="true" signature="3939:3977" ph="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -70,36 +170,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
+      <find>&quot;_&quot;</find>
+      <find>swap</find>
+      <find>prac</find>
+      <find>vanilla</find>
+      <find>object</find>
+      <find>test</find>
+      <find>click</find>
+      <find>result</find>
+      <find>practice_cl</find>
+      <find>png</find>
+      <find>submitComments</find>
+      <find>hide</find>
+      <find>clicks</find>
+      <find>goto</find>
+      <find>practice2_clicks</find>
+      <find>practice_clicks</find>
+      <find>reg</find>
+      <find>reg_num</find>
       <find>proper</find>
       <find>radio</find>
       <find>frequency</find>
       <find>highest_degree</find>
-      <find>100</find>
-      <find>visi</find>
-      <find>end</find>
-      <find>grading</find>
-      <find>cons</find>
-      <find>c9</find>
-      <find>cell</find>
-      <find>mapp</find>
-      <find>'&amp;</find>
-      <find>console</find>
-      <find>'*'</find>
-      <find>&quot;*&quot;</find>
-      <find>vanilla</find>
-      <find>diff</find>
-      <find>'@'</find>
-      <find>Race</find>
-      <find>2em</find>
-      <find>race</find>
-      <find>mode</find>
-      <find>'&amp;'</find>
-      <find>swap</find>
-      <find>alt_choices</find>
-      <find>choices</find>
-      <find>remove</find>
-      <find>same</find>
-      <find>none</find>
+      <find>missing</find>
+      <find>symbol</find>
+      <find>&quot;  &quot;</find>
+      <find>&quot; &quot;</find>
+      <find>stroke</find>
+      <find>JR</find>
+      <find>MANDA</find>
+      <find>R J</find>
     </findStrings>
     <replaceStrings>
       <replace>current_degree</replace>
@@ -155,27 +255,26 @@
         <option value="$PROJECT_DIR$/public/modules/upload.html" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/public/javascript/misc/experimentr.js" />
-        <option value="$PROJECT_DIR$/public/modules/end.html" />
         <option value="$PROJECT_DIR$/public/modules/2.html" />
         <option value="$PROJECT_DIR$/output/j4r7899v.json" />
-        <option value="$PROJECT_DIR$/public/data/section2.csv" />
-        <option value="$PROJECT_DIR$/public/index.html" />
-        <option value="$PROJECT_DIR$/public/modules/0.html" />
-        <option value="$PROJECT_DIR$/public/modules/data_mapping.html" />
+        <option value="$PROJECT_DIR$/public/data/practice.csv" />
+        <option value="$PROJECT_DIR$/public/modules/website_introduction.html" />
         <option value="$PROJECT_DIR$/public/modules/main_section_start.html" />
         <option value="$PROJECT_DIR$/public/modules/post_study_questionnaire.html" />
-        <option value="$PROJECT_DIR$/public/data/mainStudys4.csv" />
+        <option value="$PROJECT_DIR$/public/modules/pre_study_questionnaire.html" />
+        <option value="$PROJECT_DIR$/public/data/output.csv" />
+        <option value="$PROJECT_DIR$/public/data/section2.csv" />
+        <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/public/modules/data_mapping.html" />
+        <option value="$PROJECT_DIR$/public/modules/end.html" />
+        <option value="$PROJECT_DIR$/public/modules/thanks.html" />
         <option value="$PROJECT_DIR$/public/modules/practice2.html" />
         <option value="$PROJECT_DIR$/public/modules/practice.html" />
-        <option value="$PROJECT_DIR$/public/data/practice.csv" />
-        <option value="$PROJECT_DIR$/public/data/output.csv" />
-        <option value="$PROJECT_DIR$/public/modules/pre_study_questionnaire.html" />
-        <option value="$PROJECT_DIR$/public/javascript/misc/util.js" />
-        <option value="$PROJECT_DIR$/public/modules/5.html" />
-        <option value="$PROJECT_DIR$/public/modules/thanks.html" />
-        <option value="$PROJECT_DIR$/public/modules/consent.html" />
         <option value="$PROJECT_DIR$/public/modules/section2.html" />
-        <option value="$PROJECT_DIR$/public/modules/website_introduction.html" />
+        <option value="$PROJECT_DIR$/public/modules/5.html" />
+        <option value="$PROJECT_DIR$/public/modules/consent.html" />
+        <option value="$PROJECT_DIR$/public/javascript/misc/util.js" />
+        <option value="$PROJECT_DIR$/pipeline/data_output/allg_starred.csv" />
         <option value="$PROJECT_DIR$/pipeline/2_rdiff_new.py" />
       </list>
     </option>
@@ -192,10 +291,9 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1938" />
-    <option name="height" value="1060" />
+    <option name="x" value="-8" />
+    <option name="width" value="1932" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -212,6 +310,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -266,11 +365,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javascript" />
+              <option name="myItemId" value="pipeline" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -284,15 +379,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
+              <option name="myItemId" value="pipeline" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="javascript" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="misc" />
+              <option name="myItemId" value="data_output" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -306,18 +397,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
+              <option name="myItemId" value="analysis" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -329,6 +415,188 @@
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/dump.rdb</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/.Rhistory</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/1_preprocessing.R</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/2_rdiff_new.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/3_postprocessing.R</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_input/allg_id_ord.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_intermediate/all_no_stars.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_intermediate/all_starred_race.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_output/allg_starred.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_output/samples/sample_01.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_output/samples/sample_02.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_output/samples/sample_03.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_output/samples/sample_04.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_output/samples/sample_05.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_output/samples/sample_06.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_output/samples/sample_07.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_output/samples/sample_08.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_output/samples/sample_09.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_output/samples/sample_10.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/output.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/sample_01.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/sample_02.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/sample_03.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/sample_04.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/sample_05.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/sample_06.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/sample_07.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/sample_08.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/sample_09.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/sample_10.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/modules/5.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/modules/consent.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/modules/section2.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/modules/thanks.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/modules/website_introduction.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/resources/rare_2_rect.svg</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_input/allg_freq.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_output/samples/section2_01.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_output/samples/section2_02.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_output/samples/section2_03.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_output/samples/section2_04.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_output/samples/section2_05.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_output/samples/section2_06.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_output/samples/section2_07.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_output/samples/section2_08.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_output/samples/section2_09.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_output/samples/section2_10.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/mainStudys4.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/section2_01.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/section2_02.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/section2_03.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/section2_04.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/section2_05.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/section2_06.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/section2_07.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/section2_08.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/section2_09.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/data/section2_10.csv</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/data_output/section2.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/frequencies/.Rhistory</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/frequencies/Rplot.svg</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/frequencies/Rplot01.png</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/frequencies/fname_freq.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/frequencies/lname_freq.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/frequencies/ncvoter100_1304.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/frequencies/ncvoter100_1703.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/frequencies/nmfreq.csv</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/frequencies/post_frequency.R</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/frequencies/post_frequency.Rmd</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/frequencies/post_frequency.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/pipeline/frequencies/pre_frequency.R</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -342,7 +610,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.2_rdiff_new (1)">
     <configuration default="false" name="util.js" type="NodeJSConfigurationType" factoryName="Node.js" temporary="true" path-to-node="project" path-to-js-file="util.js" working-dir="$PROJECT_DIR$/public/javascript/misc">
       <method />
     </configuration>
@@ -358,6 +626,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="userstudy" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/public/data/data_crafted_final/2_rdiff_new.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -376,6 +645,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="userstudy" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pipeline/2_rdiff_new.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -401,7 +671,7 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+    <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -413,10 +683,140 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="userstudy" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="TARGET" value="" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
+      <node-interpreter value="project" />
+      <working-dir value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="userstudy" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="PyLettuceRunConfigurationType" factoryName="Lettuce">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="userstudy" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <module name="userstudy" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="userstudy" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="userstudy" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;.&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method />
     </configuration>
     <list size="3">
@@ -424,12 +824,14 @@
       <item index="1" class="java.lang.String" itemvalue="Python.2_rdiff_new (1)" />
       <item index="2" class="java.lang.String" itemvalue="Python.rdiff" />
     </list>
+    <recent_temporary>
+      <list size="1">
+        <item index="0" class="java.lang.String" itemvalue="Python.2_rdiff_new (1)" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
-  </component>
-  <component name="StructureViewFactory">
-    <option name="AUTOSCROLL_FROM_SOURCE" value="true" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -478,17 +880,156 @@
       <workItem from="1499685930294" duration="31262000" />
       <workItem from="1499796222908" duration="5252000" />
       <workItem from="1499877857480" duration="9691000" />
-      <workItem from="1499891790131" duration="3057000" />
-      <workItem from="1499897718157" duration="2644000" />
-      <workItem from="1499969438688" duration="8882000" />
-      <workItem from="1499981379429" duration="7138000" />
-      <workItem from="1500066832664" duration="6314000" />
-      <workItem from="1500074600429" duration="6055000" />
-      <workItem from="1500085445631" duration="12205000" />
-      <workItem from="1500148457762" duration="7767000" />
-      <workItem from="1500324003125" duration="8853000" />
-      <workItem from="1500400585178" duration="16486000" />
-      <workItem from="1500657729671" duration="1734000" />
+      <workItem from="1499891790131" duration="2818000" />
+      <workItem from="1499898365449" duration="612000" />
+      <workItem from="1500439457541" duration="27207000" />
+    </task>
+    <task id="LOCAL-00070" summary="enabled surveys(even if skipped)">
+      <created>1498108494416</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1498108494416</updated>
+    </task>
+    <task id="LOCAL-00071" summary="pipeline updated">
+      <created>1498164503488</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1498164503490</updated>
+    </task>
+    <task id="LOCAL-00072" summary="interface updates">
+      <created>1498169788435</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1498169788437</updated>
+    </task>
+    <task id="LOCAL-00073" summary="pipeline corrected">
+      <created>1498242444831</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1498242444831</updated>
+    </task>
+    <task id="LOCAL-00074" summary="pipeline moved">
+      <created>1498253226108</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1498253226108</updated>
+    </task>
+    <task id="LOCAL-00075" summary="make dev working (reenabled the other pages)">
+      <created>1498262848179</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1498262848179</updated>
+    </task>
+    <task id="LOCAL-00076" summary="orderer pipeline">
+      <created>1498267682180</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1498267682180</updated>
+    </task>
+    <task id="LOCAL-00077" summary="makes all_grouped.csv as well">
+      <created>1498268362778</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1498268362778</updated>
+    </task>
+    <task id="LOCAL-00078" summary="transpose and insert for reg num handled">
+      <created>1498506601729</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1498506601729</updated>
+    </task>
+    <task id="LOCAL-00079" summary="streamlined pipeline">
+      <created>1498523805130</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1498523805130</updated>
+    </task>
+    <task id="LOCAL-00080" summary="made a frequency lookup from yancey">
+      <created>1498601531035</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1498601531036</updated>
+    </task>
+    <task id="LOCAL-00081" summary="Enabled module intros">
+      <created>1498623096145</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1498623096146</updated>
+    </task>
+    <task id="LOCAL-00082" summary="corrected indel bug (br jr and br)">
+      <created>1498687572716</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1498687572720</updated>
+    </task>
+    <task id="LOCAL-00083" summary="added upload functionality for practice">
+      <created>1498691554724</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1498691554725</updated>
+    </task>
+    <task id="LOCAL-00084" summary="squashed a few bugs.">
+      <created>1498767120400</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1498767120400</updated>
+    </task>
+    <task id="LOCAL-00085" summary="update">
+      <created>1499104511285</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1499104511286</updated>
+    </task>
+    <task id="LOCAL-00086" summary="bug fix">
+      <created>1499106608459</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1499106608459</updated>
+    </task>
+    <task id="LOCAL-00087" summary="bug fix">
+      <created>1499270742988</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1499270742988</updated>
+    </task>
+    <task id="LOCAL-00088" summary="fix practice2">
+      <created>1499271126475</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1499271126476</updated>
+    </task>
+    <task id="LOCAL-00089" summary="feedback &amp; bug fix">
+      <created>1499372213610</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1499372213610</updated>
+    </task>
+    <task id="LOCAL-00090" summary="feedback &amp; bug fix">
+      <created>1499372586034</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1499372586034</updated>
     </task>
     <task id="LOCAL-00091" summary="new consent form">
       <created>1499379918605</created>
@@ -658,201 +1199,56 @@
       <option name="project" value="LOCAL" />
       <updated>1499894174174</updated>
     </task>
-    <task id="LOCAL-00115" summary="new disclosure mode tutorials">
-      <created>1499894653767</created>
+    <task id="LOCAL-00115" summary="New changes">
+      <created>1499898476247</created>
       <option name="number" value="00115" />
       <option name="presentableId" value="LOCAL-00115" />
       <option name="project" value="LOCAL" />
-      <updated>1499894653767</updated>
+      <updated>1499898476247</updated>
     </task>
-    <task id="LOCAL-00116" summary="practice 1 has updated feedback. Again.">
-      <created>1499901042387</created>
+    <task id="LOCAL-00116" summary="New changes">
+      <created>1500582342248</created>
       <option name="number" value="00116" />
       <option name="presentableId" value="LOCAL-00116" />
       <option name="project" value="LOCAL" />
-      <updated>1499901042391</updated>
+      <updated>1500582342248</updated>
     </task>
-    <task id="LOCAL-00117" summary="practice 1 has updated feedback. Again. and a bug fix">
-      <created>1499902035619</created>
+    <task id="LOCAL-00117" summary="Fix a few bugs">
+      <created>1500587285628</created>
       <option name="number" value="00117" />
       <option name="presentableId" value="LOCAL-00117" />
       <option name="project" value="LOCAL" />
-      <updated>1499902035619</updated>
+      <updated>1500587285628</updated>
     </task>
-    <task id="LOCAL-00118" summary="practice 1 has updated feedback. Again. and a bug fix">
-      <created>1499902069983</created>
+    <task id="LOCAL-00118" summary="Changing rdiff">
+      <created>1500672803461</created>
       <option name="number" value="00118" />
       <option name="presentableId" value="LOCAL-00118" />
       <option name="project" value="LOCAL" />
-      <updated>1499902069983</updated>
+      <updated>1500672803461</updated>
     </task>
-    <task id="LOCAL-00119" summary="tiny bug fixes">
-      <created>1499974295527</created>
-      <option name="number" value="00119" />
-      <option name="presentableId" value="LOCAL-00119" />
-      <option name="project" value="LOCAL" />
-      <updated>1499974295527</updated>
-    </task>
-    <task id="LOCAL-00120" summary="thanks message changed">
-      <created>1499975844976</created>
-      <option name="number" value="00120" />
-      <option name="presentableId" value="LOCAL-00120" />
-      <option name="project" value="LOCAL" />
-      <updated>1499975844976</updated>
-    </task>
-    <task id="LOCAL-00121" summary="trying hover for choice panel">
-      <created>1499977297527</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
-      <option name="project" value="LOCAL" />
-      <updated>1499977297527</updated>
-    </task>
-    <task id="LOCAL-00122" summary="practice bug">
-      <created>1499981490664</created>
-      <option name="number" value="00122" />
-      <option name="presentableId" value="LOCAL-00122" />
-      <option name="project" value="LOCAL" />
-      <updated>1499981490664</updated>
-    </task>
-    <task id="LOCAL-00123" summary="practice bug">
-      <created>1499985696016</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1499985696016</updated>
-    </task>
-    <task id="LOCAL-00124" summary="frequency thresholds corrected">
-      <created>1500057554045</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
-      <option name="project" value="LOCAL" />
-      <updated>1500057554045</updated>
-    </task>
-    <task id="LOCAL-00125" summary="practice csv">
-      <created>1500059906306</created>
-      <option name="number" value="00125" />
-      <option name="presentableId" value="LOCAL-00125" />
-      <option name="project" value="LOCAL" />
-      <updated>1500059906307</updated>
-    </task>
-    <task id="LOCAL-00126" summary="gender added">
-      <created>1500076367295</created>
-      <option name="number" value="00126" />
-      <option name="presentableId" value="LOCAL-00126" />
-      <option name="project" value="LOCAL" />
-      <updated>1500076367295</updated>
-    </task>
-    <task id="LOCAL-00127" summary="gender pipeline updated">
-      <created>1500077463100</created>
-      <option name="number" value="00127" />
-      <option name="presentableId" value="LOCAL-00127" />
-      <option name="project" value="LOCAL" />
-      <updated>1500077463100</updated>
-    </task>
-    <task id="LOCAL-00128" summary="grading works">
-      <created>1500086328529</created>
-      <option name="number" value="00128" />
-      <option name="presentableId" value="LOCAL-00128" />
-      <option name="project" value="LOCAL" />
-      <updated>1500086328529</updated>
-    </task>
-    <task id="LOCAL-00129" summary="race and sex conform to current interface table">
-      <created>1500105846632</created>
-      <option name="number" value="00129" />
-      <option name="presentableId" value="LOCAL-00129" />
-      <option name="project" value="LOCAL" />
-      <updated>1500105846632</updated>
-    </task>
-    <task id="LOCAL-00130" summary="Mapping bug fix">
-      <created>1500150947660</created>
-      <option name="number" value="00130" />
-      <option name="presentableId" value="LOCAL-00130" />
-      <option name="project" value="LOCAL" />
-      <updated>1500150947660</updated>
-    </task>
-    <task id="LOCAL-00131" summary="new pipelines and survey mods">
-      <created>1500160921736</created>
-      <option name="number" value="00131" />
-      <option name="presentableId" value="LOCAL-00131" />
-      <option name="project" value="LOCAL" />
-      <updated>1500160921736</updated>
-    </task>
-    <task id="LOCAL-00132" summary="new pipelines and survey mods">
-      <created>1500161124378</created>
-      <option name="number" value="00132" />
-      <option name="presentableId" value="LOCAL-00132" />
-      <option name="project" value="LOCAL" />
-      <updated>1500161124378</updated>
-    </task>
-    <task id="LOCAL-00133" summary="new data">
-      <created>1500382948392</created>
-      <option name="number" value="00133" />
-      <option name="presentableId" value="LOCAL-00133" />
-      <option name="project" value="LOCAL" />
-      <updated>1500382948393</updated>
-    </task>
-    <task id="LOCAL-00134" summary="new ppts">
-      <created>1500394913177</created>
-      <option name="number" value="00134" />
-      <option name="presentableId" value="LOCAL-00134" />
-      <option name="project" value="LOCAL" />
-      <updated>1500394913177</updated>
-    </task>
-    <task id="LOCAL-00135" summary="practice buttons streamlined">
-      <created>1500403403748</created>
-      <option name="number" value="00135" />
-      <option name="presentableId" value="LOCAL-00135" />
-      <option name="project" value="LOCAL" />
-      <updated>1500403403750</updated>
-    </task>
-    <task id="LOCAL-00136" summary="resubmit button for practice">
-      <created>1500405933134</created>
-      <option name="number" value="00136" />
-      <option name="presentableId" value="LOCAL-00136" />
-      <option name="project" value="LOCAL" />
-      <updated>1500405933134</updated>
-    </task>
-    <task id="LOCAL-00137" summary="presurvey options and practice order">
-      <created>1500415843881</created>
-      <option name="number" value="00137" />
-      <option name="presentableId" value="LOCAL-00137" />
-      <option name="project" value="LOCAL" />
-      <updated>1500415843881</updated>
-    </task>
-    <task id="LOCAL-00138" summary="choice panel emphasis added">
-      <created>1500417867924</created>
-      <option name="number" value="00138" />
-      <option name="presentableId" value="LOCAL-00138" />
-      <option name="project" value="LOCAL" />
-      <updated>1500417867924</updated>
-    </task>
-    <task id="LOCAL-00139" summary="pipeline updated">
-      <created>1500657943481</created>
-      <option name="number" value="00139" />
-      <option name="presentableId" value="LOCAL-00139" />
-      <option name="project" value="LOCAL" />
-      <updated>1500657943481</updated>
-    </task>
-    <option name="localTasksCounter" value="140" />
+    <option name="localTasksCounter" value="119" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="404461000" />
+    <option name="totallyTimeSpent" value="353963000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
+    <frame x="-8" y="0" width="1932" height="1038" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1707841" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.50185674" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16089386" sideWeight="0.49814323" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32946634" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23356807" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25594923" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31322506" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49654377" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15898618" sideWeight="0.49814323" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946634" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3164706" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1693376" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25647804" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39907193" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -860,11 +1256,9 @@
       <window_info id="Debug Logs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Execute Anonymous" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Salesforce" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
@@ -905,32 +1299,32 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="squashed a few bugs." />
+    <MESSAGE value="bug fix" />
+    <MESSAGE value="fix practice2" />
+    <MESSAGE value="feedback &amp; bug fix" />
+    <MESSAGE value="tutorial data" />
+    <MESSAGE value="force correct answer removed for 5 and 6 practice pages" />
+    <MESSAGE value="update" />
+    <MESSAGE value="feedback changed" />
+    <MESSAGE value="bug fix with practice feedback" />
+    <MESSAGE value="new feedback mechanism" />
+    <MESSAGE value="feedback mechanism for practice" />
+    <MESSAGE value="new practice" />
+    <MESSAGE value="latest version" />
+    <MESSAGE value="updated order" />
+    <MESSAGE value="new consent form" />
+    <MESSAGE value="heading for practice 2" />
+    <MESSAGE value="Forces answer in the main section" />
+    <MESSAGE value="testing mode included for main section" />
+    <MESSAGE value="PRACTICE 2 error position fixed" />
     <MESSAGE value="clickable area expanded in panel" />
     <MESSAGE value="numerous bug fixes" />
     <MESSAGE value="practice 2 bug fix" />
-    <MESSAGE value="new disclosure mode tutorials" />
-    <MESSAGE value="practice 1 has updated feedback. Again." />
-    <MESSAGE value="practice 1 has updated feedback. Again. and a bug fix" />
-    <MESSAGE value="tiny bug fixes" />
-    <MESSAGE value="thanks message changed" />
-    <MESSAGE value="trying hover for choice panel" />
-    <MESSAGE value="practice bug" />
-    <MESSAGE value="frequency thresholds corrected" />
-    <MESSAGE value="practice csv" />
-    <MESSAGE value="gender added" />
-    <MESSAGE value="gender pipeline updated" />
-    <MESSAGE value="grading works" />
-    <MESSAGE value="race and sex conform to current interface table" />
-    <MESSAGE value="Mapping bug fix" />
-    <MESSAGE value="new pipelines and survey mods" />
-    <MESSAGE value="new data" />
-    <MESSAGE value="new ppts" />
-    <MESSAGE value="practice buttons streamlined" />
-    <MESSAGE value="resubmit button for practice" />
-    <MESSAGE value="presurvey options and practice order" />
-    <MESSAGE value="choice panel emphasis added" />
-    <MESSAGE value="pipeline updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="pipeline updated" />
+    <MESSAGE value="New changes" />
+    <MESSAGE value="Fix a few bugs" />
+    <MESSAGE value="Changing rdiff" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changing rdiff" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -939,15 +1333,22 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/data/data_crafted_final/2_rdiff_new.py" />
-    <entry file="file://$PROJECT_DIR$/pipeline/data_output/samples/sample_01.csv">
+    <entry file="file://$PROJECT_DIR$/public/css/bootstrap.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pipeline/1_preprocessing.R">
+    <entry file="file://$PROJECT_DIR$/public/modules/training.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="48" column="81" lean-forward="false" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/data/data_crafted_final/2_rdiff_new.py" />
+    <entry file="file://$PROJECT_DIR$/pipeline/data_output/samples/sample_01.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1050,95 +1451,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/data/section2.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11065">
-          <caret line="527" column="0" lean-forward="true" selection-start-line="527" selection-start-column="0" selection-end-line="527" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/end.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="42" column="44" lean-forward="true" selection-start-line="42" selection-start-column="44" selection-end-line="42" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/data/desktop.ini">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/0.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="71" column="69" lean-forward="true" selection-start-line="71" selection-start-column="69" selection-end-line="71" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/data_mapping.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="74" column="66" lean-forward="true" selection-start-line="74" selection-start-column="66" selection-end-line="74" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/data/sample_04.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="56" column="40" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascript/misc/util.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="579" column="19" lean-forward="true" selection-start-line="579" selection-start-column="19" selection-end-line="579" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js" />
-    <entry file="file://$PROJECT_DIR$/public/data/sample_03.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/data/sample_01.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="14" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1344">
-          <caret line="64" column="25" lean-forward="false" selection-start-line="64" selection-start-column="25" selection-end-line="64" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/data/mainStudys4.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1512">
-          <caret line="72" column="80" lean-forward="false" selection-start-line="72" selection-start-column="80" selection-end-line="72" selection-end-column="80" />
+        <state relative-caret-position="-1137">
+          <caret line="22" column="4" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
         </state>
       </provider>
     </entry>
@@ -1149,109 +1465,202 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/post_study_questionnaire.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2184">
-          <caret line="253" column="60" lean-forward="false" selection-start-line="253" selection-start-column="60" selection-end-line="253" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/data/practice.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="40" column="87" lean-forward="false" selection-start-line="40" selection-start-column="87" selection-end-line="40" selection-end-column="87" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/data/output.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="72" column="83" lean-forward="false" selection-start-line="72" selection-start-column="82" selection-end-line="72" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/pre_study_questionnaire.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="138" column="52" lean-forward="false" selection-start-line="138" selection-start-column="52" selection-end-line="138" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/practice2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/practice.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="275" column="56" lean-forward="false" selection-start-line="275" selection-start-column="56" selection-end-line="275" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/javascript/misc/util.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20979">
-          <caret line="999" column="50" lean-forward="false" selection-start-line="999" selection-start-column="50" selection-end-line="999" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/5.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3213">
-          <caret line="153" column="125" lean-forward="false" selection-start-line="153" selection-start-column="125" selection-end-line="153" selection-end-column="125" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/main_section_start.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="14" column="16" lean-forward="false" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/consent.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3927">
-          <caret line="193" column="0" lean-forward="false" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/section2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="49" column="71" lean-forward="false" selection-start-line="49" selection-start-column="71" selection-end-line="49" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="26" column="18" lean-forward="false" selection-start-line="26" selection-start-column="18" selection-end-line="26" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pipeline/2_rdiff_new.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="424">
+          <caret line="30" column="2" lean-forward="false" selection-start-line="30" selection-start-column="2" selection-end-line="30" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/modules/website_introduction.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="14" column="60" lean-forward="false" selection-start-line="14" selection-start-column="60" selection-end-line="14" selection-end-column="60" />
+        <state relative-caret-position="501">
+          <caret line="37" column="9" lean-forward="true" selection-start-line="31" selection-start-column="4" selection-end-line="37" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/thanks.html">
+    <entry file="file://$PROJECT_DIR$/public/modules/1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="16" column="50" lean-forward="false" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/modules/post_study_questionnaire.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="381" column="0" lean-forward="true" selection-start-line="381" selection-start-column="0" selection-end-line="381" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/modules/pre_study_questionnaire.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="144" column="35" lean-forward="false" selection-start-line="144" selection-start-column="35" selection-end-line="144" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/data/sample_01.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/modules/main_section_start.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="726">
+          <caret line="33" column="30" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="51" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/modules/data_mapping.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1144">
+          <caret line="52" column="105" lean-forward="false" selection-start-line="52" selection-start-column="105" selection-end-line="52" selection-end-column="105" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/data/output.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="773">
+          <caret line="72" column="71" lean-forward="false" selection-start-line="72" selection-start-column="71" selection-end-line="72" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/modules/thanks.html" />
+    <entry file="file://$PROJECT_DIR$/public/modules/0.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-506">
+          <caret line="3" column="15" lean-forward="false" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/modules/end.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/modules/practice.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2898">
+          <caret line="138" column="9" lean-forward="false" selection-start-line="138" selection-start-column="9" selection-end-line="138" selection-end-column="9" />
+          <folding>
+            <marker date="1500577006573" expanded="true" signature="13161:13178" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/modules/5.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="30" column="20" lean-forward="false" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="20" />
+          <folding>
+            <marker date="1500670764141" expanded="true" signature="1309:7185" ph="{...}" />
+            <marker date="1500670764141" expanded="true" signature="4456:6103" ph="{...}" />
+            <marker date="1500670764141" expanded="true" signature="4643:6093" ph="{...}" />
+            <marker date="1500670764141" expanded="true" signature="4717:5149" ph="{...}" />
+            <marker date="1500670764141" expanded="true" signature="5155:6079" ph="{...}" />
+            <marker date="1500670764141" expanded="true" signature="5499:5947" ph="{...}" />
+            <marker date="1500670764141" expanded="true" signature="5778:5925" ph="{...}" />
+            <marker date="1500670764141" expanded="true" signature="6179:7175" ph="{...}" />
+            <marker date="1500670764141" expanded="true" signature="6543:6600" ph="{...}" />
+            <marker date="1500670764141" expanded="true" signature="6606:7030" ph="{...}" />
+            <marker date="1500670764141" expanded="true" signature="6669:6941" ph="{...}" />
+            <marker date="1500670764141" expanded="true" signature="6713:6786" ph="{...}" />
+            <marker date="1500670764141" expanded="true" signature="6792:6919" ph="{...}" />
+            <marker date="1500670764141" expanded="true" signature="6947:7012" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/data/section2.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1543">
+          <caret line="527" column="0" lean-forward="true" selection-start-line="527" selection-start-column="0" selection-end-line="527" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/analysis/temp-1500586495.15660.rdb" />
+    <entry file="file://$PROJECT_DIR$/analysis/temp-1500501076.2264.rdb" />
+    <entry file="file://$PROJECT_DIR$/analysis/json2csv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-371">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1344">
+          <caret line="64" column="30" lean-forward="false" selection-start-line="64" selection-start-column="8" selection-end-line="64" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pipeline/1_preprocessing.R">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pipeline/.Rhistory">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pipeline/data_output/allg_starred.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="127" column="32" lean-forward="false" selection-start-line="127" selection-start-column="29" selection-end-line="127" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/javascript/misc/util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3791">
+          <caret line="765" column="0" lean-forward="false" selection-start-line="765" selection-start-column="0" selection-end-line="765" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pipeline/2_rdiff_new.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="455" column="0" lean-forward="false" selection-start-line="455" selection-start-column="0" selection-end-line="455" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/modules/practice2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="337">
+          <caret line="97" column="10" lean-forward="false" selection-start-line="97" selection-start-column="10" selection-end-line="97" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/modules/section2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1125">
+          <caret line="108" column="0" lean-forward="false" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+          <folding>
+            <marker date="1500670764157" expanded="true" signature="3939:3977" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/modules/consent.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="768">
+          <caret line="285" column="7" lean-forward="false" selection-start-line="285" selection-start-column="7" selection-end-line="285" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
