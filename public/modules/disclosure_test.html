@@ -59,25 +59,26 @@
        render_content();
 
         function render_content(){
-            console.log("rendering content");
-            if(step==experimentr.data()["mat"].length-1){
-                window.alert("Hi");
-            }else {
-                window.alert("Hi");
-                    setTimeout(function () {
-                        d3.selectAll(".blocks").remove();
-                        pairs(experimentr.data()["mat"][step - 1], step - 1, experimentr.data()["mat"][step - 1].length, experimentr.data()["mode"]);
-                        if (experimentr.data()["mode"] == "Vanilla") {
-                            d3.selectAll(".icon").remove();
-                            d3.selectAll(".freq").remove();
-                        }
-                    }, 100);
+            console.log(experimentr.data()["mat"][step - 1]);
+            setTimeout(function () {
+                d3.selectAll(".blocks").remove();
+                pairs(experimentr.data()["mat"][step - 1], step - 1, experimentr.data()["mat"][step - 1].length, experimentr.data()["mode"]);
+                if (experimentr.data()["mode"] == "Vanilla") {
+                    d3.selectAll(".icon").remove();
+                    d3.selectAll(".freq").remove();
+                }
+            }, 5000);
 
-                step += 1;
-
-                setTimeout(render_content(), 2000);
+            step += 1;
+            if(step == 7){
+                console.log(experimentr.data()['open_cell']);
+                experimentr.next();
+            } else {
+                setTimeout(render_content(), 5000);
             }
         }
+
+
 
     }());
 </script>
