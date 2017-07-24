@@ -231,7 +231,7 @@ function cell(t,g,j,k){
 
                 if(experimentr.data()["mode"]=="Full" && title[j % cwidth.length] == "Sex"){
 
-                    if(t_j != t_m){
+                    if(t_j != t_m && !(t_j=="" || t_m=="")){
                         if (j < 2 * cwidth.length) {
                             g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/diff.svg")
                                 .attr("class", "icon")
