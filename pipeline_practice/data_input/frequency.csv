@@ -1,0 +1,5 @@
+file_id,voter_reg_num,last_name,first_name,dob,name_sufx_cd,type,ID,src,sex,race,answer
+1,8000002767 , SMITH ,JOHN ,09/09/1906 , ,1 ,1 ,A , M, W ,1
+1,8000003567 , SMITH ,JOHN ,09/09/1906 , ,1 ,1 ,B , M, W ,1
+2,0000006847 ,WAMBOLDT ,DEQUAN ,05/02/1962 , ,1 ,3 ,A , F, W ,1
+2,0000006947 ,WAMBOLDT ,DEQUAN ,05/02/1962 , ,1 ,3 ,B , F, W ,1

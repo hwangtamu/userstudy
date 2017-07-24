@@ -65,6 +65,8 @@ starred_data %>%
   group_by(type,`Record ID`) %>%
   unique() %>% count(type,`Record ID`)
 
+attention_test = c(1,7,13,19,25,31)
+
 set.seed(1)
 for(i in 1:10) {
   #group by page and question number and get 1 group id from each
@@ -105,7 +107,8 @@ for(i in 1:10) {
   #extract everything but those ids for section 2
   section2  <- 
     starred_data %>%
-    filter(!(`Group ID` %in% gids))
+    filter(!(`Group ID` %in% gids)) %>%
+      filter(!(`Group ID` %in% attention_test))
   
   (gids_ordered2 <- 
       section2 %>%

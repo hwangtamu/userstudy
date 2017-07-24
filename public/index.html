@@ -129,5 +129,9 @@
         console.log(sequence);
     }
 
+    if(QueryString.disclosure_test == "true"){
+        sequence = ['modules/consent.html', "modules/disclosure_test.html"];
+    }
+
     experimentr.sequence(sequence).start();
 </script>
