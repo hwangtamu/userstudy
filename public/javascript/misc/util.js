@@ -1326,7 +1326,7 @@ function parse_url() {
 }
 
 /*
-Measure amount of disclosure
+ Measure amount of disclosure
  */
 function statictics(){
     var d = experimentr.data()['mat'];

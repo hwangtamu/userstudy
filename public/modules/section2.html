@@ -96,7 +96,7 @@
                 if(step==experimentr.data()["section2"].length-1){
                     goToNext();
                 }else {
-                    d3.select("#notation").html("");
+                    d3.select("#notation").text("Page " + (step + 1).toString());
                     setTimeout(function () {
                         d3.selectAll(".blocks").remove();
                         console.log(experimentr.data()["section2"][step-1]);

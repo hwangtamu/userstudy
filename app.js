@@ -72,6 +72,9 @@ app.get('/upload',function(req,res){
     res.sendfile(path.join(__dirname+'/public/modules'+'/upload.html'));
 });
 
+// app.get('/disclosure',function(req,res){
+//     res.sendfile(path.join(__dirname+'/public/modules'+'/disclosure_test.html'));
+// });
 
 //
 // app.get('/', function(req,res) {
