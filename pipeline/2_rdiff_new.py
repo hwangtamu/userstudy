@@ -79,7 +79,7 @@ def get_edit_distance(s1, s2):
                     if i > 1 and j > 1 and s1[i - 1] == s2[j - 2] and s1[i - 2] == s2[j - 1] and s1[i - 1] != s1[i - 2]:
                         transVal = dp[i - 2][j - 2]
                     minAll = min([insertVal, deleteVal, subsVal, transVal])
-                    dp[i][j] = minAll + 1
+                    dp[i][j] = minAll
 
                     if minAll == transVal:
                         direction[i][j] = 't'
