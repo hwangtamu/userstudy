@@ -22,7 +22,7 @@ def substring_at_ends(s1, s2):
 
 
 
-def get_edit_distance(s1, s2):
+def get_edit_distance(s1, s2, title=''):
 
     finalStr1 = ""
     finalStr2 = ""
@@ -79,7 +79,10 @@ def get_edit_distance(s1, s2):
                     if i > 1 and j > 1 and s1[i - 1] == s2[j - 2] and s1[i - 2] == s2[j - 1] and s1[i - 1] != s1[i - 2]:
                         transVal = dp[i - 2][j - 2]
                     minAll = min([insertVal, deleteVal, subsVal, transVal])
-                    dp[i][j] = minAll
+                    if title=='ID':
+                        dp[i][j] = minAll
+                    else:
+                        dp[i][j] = minAll + 1
 
                     if minAll == transVal:
                         direction[i][j] = 't'
@@ -279,7 +282,7 @@ def get_star_vot_reg(n1, n2):
     if hamm_trans > 4:
         return n1, n2
     else:
-        final_1, final_2 = get_edit_distance(n1,n2)
+        final_1, final_2 = get_edit_distance(n1,n2,"ID")
         final_1 = trailing_space_symbol(final_1)
         final_2 = trailing_space_symbol(final_2)
         return final_1,final_2
