@@ -43,7 +43,7 @@
         <div id="table"></div>
     </div>
     <br>
-    <button id="submitComments" class="next-button" type="button">Ready to Answer Questions!</button><label id="answer_all" style="position: absolute; left: 150px; color: red;"></label><br>
+    <button id="submitComments" class="next-button" type="button">Ready to Answer Questions?</button><label id="answer_all" style="position: absolute; left: 150px; color: red;"></label><br>
 </div>
 <br>
 </body>
@@ -151,7 +151,7 @@
 
                 if (sec_switch == 1 && (mod_pages.indexOf(step) > -1)) {
                     console.log(step);
-                    d3.select('#submitComments').style("left", "50%").property("innerHTML","Ready to Answer Questions!");
+                    d3.select('#submitComments').style("left", "50%").property("innerHTML","Ready to Answer Questions?");
                     d3.selectAll(".blocks").remove();
                     d3.select("#notation").html("");
                     add_mod_intros("recap_" + (step + 1) + ".PNG");
