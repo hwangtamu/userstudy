@@ -199,6 +199,7 @@ function cell(t,g,j,k){
                 cel.append("svg:image").attr("xlink:href","/resources/missing.png").attr("class","icon")
                     .attr("x",function(){
                         if(title[j%cwidth.length]=="ID"){return 36;}
+                        if(title[j%cwidth.length]=="Race"){return 28;}
                         else if(title[j%cwidth.length]!="DoB(M/D/Y)"){return cwidth[j%cwidth.length]/3;}
                         return 40;})
                     .attr("y",cy/2-9).attr("width",18).attr("height",18);
