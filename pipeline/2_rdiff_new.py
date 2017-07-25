@@ -1,22 +1,32 @@
 import csv
 
 def substring_at_ends(s1, s2):
+    len1 = len(s1)
+    len2 = len(s2)
     finalStr1 = ""
     finalStr2 = ""
     if s1.startswith(s2):
-        for i in range(len(s2)):
-            finalStr2 = finalStr2 + "*"
-            finalStr1 = finalStr1 + "*"
-        for i in range(len(s2),len(s1)):
-            finalStr1 = finalStr1 + s1[i]
-            finalStr2 = finalStr2 + "_"
+        if (len1-len2)/float(len(s1)) > 0.5:
+            finalStr1 = s1
+            finalStr2 = s2
+        else:
+            for i in range(len(s2)):
+                finalStr2 = finalStr2 + "*"
+                finalStr1 = finalStr1 + "*"
+            for i in range(len(s2),len(s1)):
+                finalStr1 = finalStr1 + s1[i]
+                finalStr2 = finalStr2 + "_"
     elif s1.endswith(s2):
-        for i in range(len(s1)-1,len(s1)-len(s2)-1,-1):
-            finalStr2 = "*" + finalStr2
-            finalStr1 = "*" + finalStr1
-        for i in range(len(s1)-len(s2)-1,-1,-1):
-            finalStr1 = s1[i] + finalStr1
-            finalStr2 = "_" + finalStr2
+        if (len1-len2)/float(len(s1)) > 0.5:
+            finalStr1 = s1
+            finalStr2 = s2
+        else:
+            for i in range(len(s1)-1,len(s1)-len(s2)-1,-1):
+                finalStr2 = "*" + finalStr2
+                finalStr1 = "*" + finalStr1
+            for i in range(len(s1)-len(s2)-1,-1,-1):
+                finalStr1 = s1[i] + finalStr1
+                finalStr2 = "_" + finalStr2
 
     return finalStr1,finalStr2
 
