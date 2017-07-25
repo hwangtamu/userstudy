@@ -80,9 +80,9 @@ def get_edit_distance(s1, s2, title=''):
                         transVal = dp[i - 2][j - 2]
                     minAll = min([insertVal, deleteVal, subsVal, transVal])
                     if title=='ID':
-                        dp[i][j] = minAll
-                    else:
                         dp[i][j] = minAll + 1
+                    else:
+                        dp[i][j] = minAll
 
                     if minAll == transVal:
                         direction[i][j] = 't'
