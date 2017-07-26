@@ -54,6 +54,14 @@ json2csv.py [path to json] [path to csv]
 Check if the csv file is created.
 
 
-
-
-
+### 4. Flush the Database
+Open a terminal or cmd.exe. 
+Use the command
+```
+redis-cli -h [Host Name] -p [Port] -a [Auth Key] flushall
+```
+Example:
+```
+redis-cli -h catfish.redistogo.com -p 9402 -a d20739cffb0c0a6fff719acc2728c236 flushall
+```
+This command cleans up the redis database and should be carefully used.
