@@ -125,7 +125,7 @@ for(i in 1:10) {
     left_join(lookup2, by = "Group ID") %>%
     mutate(`Group ID` = qnum) %>%
     select(-qnum) %>%
-    arrange(type,`Group ID`)
+    arrange(`Group ID`)
 
   #make the names standard
   names(sample_i) <- col_names

@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0e29c6df-9fc3-4c4c-ab4e-18561c52b86a" name="Default" comment="bug with data collection fixed">
+    <list default="true" id="0e29c6df-9fc3-4c4c-ab4e-18561c52b86a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/3_postprocessing.R" afterPath="$PROJECT_DIR$/pipeline/3_postprocessing.R" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/section2_01.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/section2_01.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/section2_02.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/section2_02.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/section2_03.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/section2_03.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/section2_04.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/section2_04.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/section2_05.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/section2_05.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/section2_06.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/section2_06.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/section2_07.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/section2_07.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/section2_08.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/section2_08.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/section2_09.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/section2_09.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/section2_10.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/section2_10.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/section2.csv" afterPath="$PROJECT_DIR$/public/data/section2.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/section2_01.csv" afterPath="$PROJECT_DIR$/public/data/section2_01.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/section2_02.csv" afterPath="$PROJECT_DIR$/public/data/section2_02.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/section2_03.csv" afterPath="$PROJECT_DIR$/public/data/section2_03.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/section2_04.csv" afterPath="$PROJECT_DIR$/public/data/section2_04.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/section2_05.csv" afterPath="$PROJECT_DIR$/public/data/section2_05.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/section2_06.csv" afterPath="$PROJECT_DIR$/public/data/section2_06.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/section2_07.csv" afterPath="$PROJECT_DIR$/public/data/section2_07.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/section2_08.csv" afterPath="$PROJECT_DIR$/public/data/section2_08.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/section2_09.csv" afterPath="$PROJECT_DIR$/public/data/section2_09.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/section2_10.csv" afterPath="$PROJECT_DIR$/public/data/section2_10.csv" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -44,7 +66,7 @@
       <file leaf-file-name="consent.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/modules/consent.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2268">
+            <state relative-caret-position="507">
               <caret line="285" column="7" lean-forward="false" selection-start-line="285" selection-start-column="7" selection-end-line="285" selection-end-column="7" />
               <folding />
             </state>
@@ -54,7 +76,7 @@
       <file leaf-file-name="pre_study_questionnaire.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/modules/pre_study_questionnaire.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="507">
+            <state relative-caret-position="6741">
               <caret line="321" column="9" lean-forward="false" selection-start-line="321" selection-start-column="9" selection-end-line="321" selection-end-column="9" />
               <folding />
             </state>
@@ -350,121 +372,6 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/javascript/misc/util.js</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/modules/5.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/modules/practice.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/modules/section2.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/modules/thanks.html</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/analysis/merge.py</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
-  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -606,14 +513,8 @@
       <workItem from="1501113214755" duration="1488000" />
       <workItem from="1501207258889" duration="623000" />
       <workItem from="1501212504413" duration="1841000" />
-      <workItem from="1501266944741" duration="1086000" />
-    </task>
-    <task id="LOCAL-00082" summary="corrected indel bug (br jr and br)">
-      <created>1498687572716</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1498687572720</updated>
+      <workItem from="1501266944741" duration="1246000" />
+      <workItem from="1501270971642" duration="21000" />
     </task>
     <task id="LOCAL-00083" summary="added upload functionality for practice">
       <created>1498691554724</created>
@@ -951,14 +852,22 @@
       <option name="project" value="LOCAL" />
       <updated>1501213750623</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="section2.csv added">
+      <created>1501268751965</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1501268751966</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="373654000" />
+    <option name="totallyTimeSpent" value="373835000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17398202" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -967,7 +876,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49654377" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25912216" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3150838" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3150838" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39907193" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1022,7 +931,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="latest version" />
     <MESSAGE value="updated order" />
     <MESSAGE value="new consent form" />
     <MESSAGE value="heading for practice 2" />
@@ -1047,7 +955,8 @@
     <MESSAGE value="substring threshold added" />
     <MESSAGE value="bug with data collection fixed" />
     <MESSAGE value="pdf name change" />
-    <option name="LAST_COMMIT_MESSAGE" value="pdf name change" />
+    <MESSAGE value="section2.csv added" />
+    <option name="LAST_COMMIT_MESSAGE" value="section2.csv added" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1322,7 +1231,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/modules/pre_study_questionnaire.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
+        <state relative-caret-position="6741">
           <caret line="321" column="9" lean-forward="false" selection-start-line="321" selection-start-column="9" selection-end-line="321" selection-end-column="9" />
           <folding />
         </state>
@@ -1346,7 +1255,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/modules/consent.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2268">
+        <state relative-caret-position="507">
           <caret line="285" column="7" lean-forward="false" selection-start-line="285" selection-start-column="7" selection-end-line="285" selection-end-column="7" />
           <folding />
         </state>
