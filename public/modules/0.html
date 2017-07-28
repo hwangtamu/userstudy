@@ -23,7 +23,7 @@
 <div id="welcome">
     <!--<h4>Thank you for participating in our user study. Next, let's go through the instructions of the record linkage interface.</h4>-->
 
-        <iframe id="iframe_instruction" src = "resources/ViewerJS/#/resources/RL_intervention.pdf" width='1200' height='750' allowfullscreen webkitallowfullscreen></iframe>
+        <iframe id="iframe_instruction" src = "resources/ViewerJS/#/resources/RL_tutorial.pdf" width='1200' height='750' allowfullscreen webkitallowfullscreen></iframe>
         <svg width="5cm" height="1cm" version="1.1"
              xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink">
             <image href="/resources/up_arrow.png" x="10px" y="0" height="50px" width="50px"/>
@@ -51,7 +51,7 @@
     (function(){
         experimentr.startTimer('rl_tutorial');
         if(experimentr.data()["mode"]==="Vanilla"){
-            d3.select("#iframe_instruction").attr("src","resources/ViewerJS/#/resources/RL_no_intervention.pdf");
+            d3.select("#iframe_instruction").attr("src","resources/ViewerJS/#/resources/RL_tutorial_0.pdf");
         }
 
 

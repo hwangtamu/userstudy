@@ -295,12 +295,12 @@
             .filter(function(d) { return this.name === 'data_ana' ? this : null; })
             .on('change', function() {
                 console.log(this.value);
-                data.preSurvey_data_analysis_skill = this.value;})
+                data.preSurvey_data_analysis_skill = this.value;});
 
 
         d3.selectAll('textarea')
             .filter(function(d) { return this.name === 'data_ana_text' ? this : null; })
-            .on('change', function() { data.preSurvey_data_experience_explanation = this.value;})
+            .on('change', function() { data.preSurvey_data_experience_explanation = this.value;});
 
 
         d3.select("#data_ana").style("width","100px");
@@ -309,7 +309,7 @@
             .on('change', function() {
                 console.log(this.value); data.preSurvey_data_analysis_skill = this.value;
                 d3.select("#lbl_data_ana").text(function(){return data.preSurvey_data_analysis_skill;});
-            })
+            });
 
 
         //{ return data.preSurvey_data_analysis_skill;})
@@ -319,7 +319,7 @@
             experimentr.addData(data);
             experimentr.data()['switch'].push(Date.now());
             experimentr.next();
-        };
+        }
 
         d3.select('#submitComments')
             .on('click', function () {
