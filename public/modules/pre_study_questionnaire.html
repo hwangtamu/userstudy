@@ -291,9 +291,11 @@
             .filter(function(d) { return this.name === 'color' ? this : null; })
             .on('change', function() { data.preSurvey_color_blind = this.value;})
 
-        d3.selectAll('input')
+        d3.selectAll('select')
             .filter(function(d) { return this.name === 'data_ana' ? this : null; })
-            .on('change', function() { data.preSurvey_data_analysis_skill = this.value;})
+            .on('change', function() {
+                console.log(this.value);
+                data.preSurvey_data_analysis_skill = this.value;})
 
 
         d3.selectAll('textarea')
