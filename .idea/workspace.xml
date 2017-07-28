@@ -1,56 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0e29c6df-9fc3-4c4c-ab4e-18561c52b86a" name="Default" comment="substring threshold added">
+    <list default="true" id="0e29c6df-9fc3-4c4c-ab4e-18561c52b86a" name="Default" comment="bug with data collection fixed">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/.Rhistory" afterPath="$PROJECT_DIR$/pipeline/.Rhistory" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/2_rdiff_new.py" afterPath="$PROJECT_DIR$/pipeline/2_rdiff_new.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_input/allg_id_ord.csv" afterPath="$PROJECT_DIR$/pipeline/data_input/allg_id_ord.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_intermediate/all_no_stars.csv" afterPath="$PROJECT_DIR$/pipeline/data_intermediate/all_no_stars.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_intermediate/all_starred_race.csv" afterPath="$PROJECT_DIR$/pipeline/data_intermediate/all_starred_race.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/allg_starred.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/allg_starred.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/sample_01.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/sample_01.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/sample_02.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/sample_02.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/sample_03.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/sample_03.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/sample_04.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/sample_04.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/sample_05.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/sample_05.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/sample_06.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/sample_06.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/sample_07.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/sample_07.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/sample_08.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/sample_08.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/sample_09.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/sample_09.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/sample_10.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/sample_10.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/section2_01.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/section2_01.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/section2_02.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/section2_02.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/section2_03.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/section2_03.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/section2_04.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/section2_04.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/section2_05.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/section2_05.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/section2_06.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/section2_06.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/section2_07.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/section2_07.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/section2_08.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/section2_08.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/section2_09.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/section2_09.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/samples/section2_10.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/samples/section2_10.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pipeline/data_output/section2.csv" afterPath="$PROJECT_DIR$/pipeline/data_output/section2.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/output.csv" afterPath="$PROJECT_DIR$/public/data/output.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/sample_01.csv" afterPath="$PROJECT_DIR$/public/data/sample_01.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/sample_02.csv" afterPath="$PROJECT_DIR$/public/data/sample_02.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/sample_03.csv" afterPath="$PROJECT_DIR$/public/data/sample_03.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/sample_04.csv" afterPath="$PROJECT_DIR$/public/data/sample_04.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/sample_05.csv" afterPath="$PROJECT_DIR$/public/data/sample_05.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/sample_06.csv" afterPath="$PROJECT_DIR$/public/data/sample_06.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/sample_07.csv" afterPath="$PROJECT_DIR$/public/data/sample_07.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/sample_08.csv" afterPath="$PROJECT_DIR$/public/data/sample_08.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/sample_09.csv" afterPath="$PROJECT_DIR$/public/data/sample_09.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/sample_10.csv" afterPath="$PROJECT_DIR$/public/data/sample_10.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/section2_01.csv" afterPath="$PROJECT_DIR$/public/data/section2_01.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/section2_02.csv" afterPath="$PROJECT_DIR$/public/data/section2_02.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/section2_03.csv" afterPath="$PROJECT_DIR$/public/data/section2_03.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/section2_04.csv" afterPath="$PROJECT_DIR$/public/data/section2_04.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/section2_05.csv" afterPath="$PROJECT_DIR$/public/data/section2_05.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/section2_06.csv" afterPath="$PROJECT_DIR$/public/data/section2_06.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/section2_07.csv" afterPath="$PROJECT_DIR$/public/data/section2_07.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/section2_08.csv" afterPath="$PROJECT_DIR$/public/data/section2_08.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/section2_09.csv" afterPath="$PROJECT_DIR$/public/data/section2_09.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/data/section2_10.csv" afterPath="$PROJECT_DIR$/public/data/section2_10.csv" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -69,31 +21,41 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="21" column="16" lean-forward="false" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="output.csv" pinned="false" current-in-tab="true">
+      <file leaf-file-name="output.csv" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/data/output.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="516">
-              <caret line="746" column="76" lean-forward="false" selection-start-line="746" selection-start-column="76" selection-end-line="746" selection-end-column="76" />
+            <state relative-caret-position="1512">
+              <caret line="72" column="103" lean-forward="false" selection-start-line="72" selection-start-column="103" selection-end-line="72" selection-end-column="103" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="5.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/modules/5.html">
+      <file leaf-file-name="sample_01.csv" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/data/sample_01.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3213">
-              <caret line="153" column="118" lean-forward="false" selection-start-line="153" selection-start-column="118" selection-end-line="153" selection-end-column="118" />
+            <state relative-caret-position="315">
+              <caret line="15" column="78" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="consent.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/public/modules/consent.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2268">
+              <caret line="285" column="7" lean-forward="false" selection-start-line="285" selection-start-column="7" selection-end-line="285" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pre_study_questionnaire.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/modules/pre_study_questionnaire.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="507">
+              <caret line="321" column="9" lean-forward="false" selection-start-line="321" selection-start-column="9" selection-end-line="321" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -111,7 +73,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>object</find>
       <find>test</find>
       <find>click</find>
       <find>result</find>
@@ -141,6 +102,7 @@
       <find>stat</find>
       <find>read</find>
       <find>get_edit_distance</find>
+      <find>data_ana</find>
     </findStrings>
     <replaceStrings>
       <replace>current_degree</replace>
@@ -202,7 +164,6 @@
         <option value="$PROJECT_DIR$/public/data/practice.csv" />
         <option value="$PROJECT_DIR$/public/modules/main_section_start.html" />
         <option value="$PROJECT_DIR$/public/modules/post_study_questionnaire.html" />
-        <option value="$PROJECT_DIR$/public/modules/pre_study_questionnaire.html" />
         <option value="$PROJECT_DIR$/public/data/section2.csv" />
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/public/modules/data_mapping.html" />
@@ -218,7 +179,9 @@
         <option value="$PROJECT_DIR$/public/modules/5.html" />
         <option value="$PROJECT_DIR$/public/modules/website_introduction.html" />
         <option value="$PROJECT_DIR$/pipeline/2_rdiff_new.py" />
+        <option value="$PROJECT_DIR$/public/modules/0.html" />
         <option value="$PROJECT_DIR$/public/data/output.csv" />
+        <option value="$PROJECT_DIR$/public/modules/pre_study_questionnaire.html" />
       </list>
     </option>
   </component>
@@ -372,8 +335,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -386,6 +349,121 @@
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/javascript/misc/util.js</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/modules/5.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/modules/practice.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/modules/section2.html</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/public/modules/thanks.html</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/analysis/merge.py</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -524,27 +602,11 @@
       <workItem from="1500994536624" duration="3325000" />
       <workItem from="1501004897226" duration="5279000" />
       <workItem from="1501024688615" duration="1409000" />
-    </task>
-    <task id="LOCAL-00079" summary="streamlined pipeline">
-      <created>1498523805130</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1498523805130</updated>
-    </task>
-    <task id="LOCAL-00080" summary="made a frequency lookup from yancey">
-      <created>1498601531035</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1498601531036</updated>
-    </task>
-    <task id="LOCAL-00081" summary="Enabled module intros">
-      <created>1498623096145</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1498623096146</updated>
+      <workItem from="1501101616650" duration="52000" />
+      <workItem from="1501113214755" duration="1488000" />
+      <workItem from="1501207258889" duration="623000" />
+      <workItem from="1501212504413" duration="1841000" />
+      <workItem from="1501266944741" duration="1086000" />
     </task>
     <task id="LOCAL-00082" summary="corrected indel bug (br jr and br)">
       <created>1498687572716</created>
@@ -868,48 +930,58 @@
       <option name="project" value="LOCAL" />
       <updated>1501011801237</updated>
     </task>
-    <option name="localTasksCounter" value="128" />
+    <task id="LOCAL-00128" summary="substring threshold added">
+      <created>1501027017264</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1501027017266</updated>
+    </task>
+    <task id="LOCAL-00129" summary="bug with data collection fixed">
+      <created>1501207868098</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1501207868098</updated>
+    </task>
+    <task id="LOCAL-00130" summary="pdf name change">
+      <created>1501213750622</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1501213750623</updated>
+    </task>
+    <option name="localTasksCounter" value="131" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="367338000" />
+    <option name="totallyTimeSpent" value="373654000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17133792" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17398202" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.50185674" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15642458" sideWeight="0.49814323" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49654377" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25965098" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31620112" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25912216" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3150838" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39907193" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295325" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug Logs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.50185674" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32946634" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49654377" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15642458" sideWeight="0.49814323" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Execute Anonymous" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31554523" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17400645" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2593985" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39907193" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Salesforce" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
@@ -950,9 +1022,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="new feedback mechanism" />
-    <MESSAGE value="feedback mechanism for practice" />
-    <MESSAGE value="new practice" />
     <MESSAGE value="latest version" />
     <MESSAGE value="updated order" />
     <MESSAGE value="new consent form" />
@@ -975,7 +1044,10 @@
     <MESSAGE value="rdiff id fixed" />
     <MESSAGE value="star for mode 5 ppt" />
     <MESSAGE value="website intro bold closing tag" />
-    <option name="LAST_COMMIT_MESSAGE" value="website intro bold closing tag" />
+    <MESSAGE value="substring threshold added" />
+    <MESSAGE value="bug with data collection fixed" />
+    <MESSAGE value="pdf name change" />
+    <option name="LAST_COMMIT_MESSAGE" value="pdf name change" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1103,34 +1175,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/post_study_questionnaire.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="381" column="0" lean-forward="true" selection-start-line="381" selection-start-column="0" selection-end-line="381" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/pre_study_questionnaire.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="144" column="35" lean-forward="false" selection-start-line="144" selection-start-column="35" selection-end-line="144" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/data_mapping.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1144">
-          <caret line="52" column="105" lean-forward="false" selection-start-line="52" selection-start-column="105" selection-end-line="52" selection-end-column="105" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/0.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-506">
-          <caret line="3" column="15" lean-forward="false" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/modules/end.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -1190,21 +1234,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/consent.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="768">
-          <caret line="285" column="7" lean-forward="false" selection-start-line="285" selection-start-column="7" selection-end-line="285" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/modules/disclosure_test.html" />
-    <entry file="file://$PROJECT_DIR$/public/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-828">
-          <caret line="64" column="30" lean-forward="false" selection-start-line="64" selection-start-column="8" selection-end-line="64" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/modules/thanks.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-471">
@@ -1219,25 +1249,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/data/sample_01.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="16" column="24" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/modules/main_section_start.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="506">
           <caret line="33" column="30" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="51" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/modules/5.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3213">
-          <caret line="153" column="118" lean-forward="false" selection-start-line="153" selection-start-column="118" selection-end-line="153" selection-end-column="118" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1255,26 +1270,84 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="21" column="16" lean-forward="false" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pipeline/2_rdiff_new.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="8" column="21" lean-forward="false" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/modules/post_study_questionnaire.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8001">
+          <caret line="381" column="0" lean-forward="false" selection-start-line="381" selection-start-column="0" selection-end-line="381" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="64" column="30" lean-forward="false" selection-start-line="64" selection-start-column="8" selection-end-line="64" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="21" column="16" lean-forward="false" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/modules/5.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="153" column="118" lean-forward="false" selection-start-line="153" selection-start-column="118" selection-end-line="153" selection-end-column="118" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/modules/data_mapping.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="52" column="58" lean-forward="true" selection-start-line="52" selection-start-column="58" selection-end-line="52" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/modules/0.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="25" column="89" lean-forward="false" selection-start-line="25" selection-start-column="89" selection-end-line="25" selection-end-column="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/modules/pre_study_questionnaire.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="507">
+          <caret line="321" column="9" lean-forward="false" selection-start-line="321" selection-start-column="9" selection-end-line="321" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/data/output.csv">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="516">
-          <caret line="746" column="76" lean-forward="false" selection-start-line="746" selection-start-column="76" selection-end-line="746" selection-end-column="76" />
+        <state relative-caret-position="1512">
+          <caret line="72" column="103" lean-forward="false" selection-start-line="72" selection-start-column="103" selection-end-line="72" selection-end-column="103" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/data/sample_01.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" column="78" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/modules/consent.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2268">
+          <caret line="285" column="7" lean-forward="false" selection-start-line="285" selection-start-column="7" selection-end-line="285" selection-end-column="7" />
           <folding />
         </state>
       </provider>
