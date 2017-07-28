@@ -118,7 +118,7 @@ function cell(t,g,j,k){
             var bg = div.append("rect").style("fill","none").attr("x",-2).attr("y",-14).attr("width",0).attr("height",20)
                 .attr("stroke", "grey")
                 .attr("stroke-width",1);
-            var tip = div.append("text").style("fill","grey").attr("text-anchor", "left");
+            var tip = div.append("text").attr("class","tip").style("fill","grey").attr("text-anchor", "left");
 
             if(t==1){
                 cel.append("svg:image").attr("xlink:href","/resources/unique.png").attr("class","freq")
@@ -147,14 +147,16 @@ function cell(t,g,j,k){
                     }
                 }
             }
-            cel.on("mouseover",function(d){
-                div.style("opacity",1);
-            });
-            cel.on("mouseout",function(d){
-                div.style("opacity",0);
-            });
             if(experimentr.data()['mode']!='Vanilla'){
-                experimentr.data()['freq']+=1;
+                cel.on("mouseover",function(d){
+                    div.style("opacity",1);
+                });
+                cel.on("mouseout",function(d){
+                    div.style("opacity",0);
+                });
+            }
+            if(experimentr.data()['mode']!='Vanilla'){
+                if(experimentr.data()['mode']!='Vanilla'){experimentr.data()['freq']+=1;}
             }
         }
         // check if it's a name swap
@@ -189,7 +191,7 @@ function cell(t,g,j,k){
                 if(["Vanilla","Full"].indexOf(experimentr.data()["mode"])<0){
                     t = t.replace(/[A-Z0-9]/g, function(){if(j%14>9){return "&";}return "@";});
                 }
-                experimentr.data()['nswap']+=0.25;
+                if(experimentr.data()['mode']!='Vanilla'){experimentr.data()['nswap']+=0.25};
             }
             //console.log(j, fnj, fnm, lnj, lnm);
         }
@@ -203,7 +205,7 @@ function cell(t,g,j,k){
                         else if(title[j%cwidth.length]!="DoB(M/D/Y)"){return cwidth[j%cwidth.length]/3;}
                         return 40;})
                     .attr("y",cy/2-9).attr("width",18).attr("height",18);
-                experimentr.data()['missing']+=1;
+                if(experimentr.data()['mode']!='Vanilla'){experimentr.data()['missing']+=1;}
             }
         }
         //else if(textbox.text()==" " && j<cwidth.length*2){
@@ -219,7 +221,7 @@ function cell(t,g,j,k){
                 else if(title[j%cwidth.length]!="DoB(M/D/Y)"){return cwidth[j%cwidth.length]/3;}
                     return 40;})
                 .attr("y",cy/2-5).attr("width",18).attr("height",18);
-            experimentr.data()['checks']+=0.5;
+            if(experimentr.data()['mode']!='Vanilla'){experimentr.data()['checks']+=0.5;}
         }else {
             var num = 0;
             if (swap == 0 && title[j % cwidth.length] != "ID." && title[j % cwidth.length] != "FFreq" && title[j % cwidth.length] != "LFreq") {
@@ -263,7 +265,7 @@ function cell(t,g,j,k){
                                     return 20;
                                 })
                                 .attr("y", cy / 2 + 5).attr("width", 35).attr("height", 35);
-                            experimentr.data()['diff']+=1;
+                            if(experimentr.data()['mode']!='Vanilla'){experimentr.data()['diff']+=1;}
                         }
                     } else {
                         if (t_j != "" && t_m != "") {
@@ -278,7 +280,7 @@ function cell(t,g,j,k){
                                             .attr("class", "icon").attr("x", 9 * i + 12)
                                             .attr("y", cy / 2 + 13).attr("width", 23).attr("height", 23);
                                     }
-                                    experimentr.data()['dswap']+=0.5;
+                                    if(experimentr.data()['mode']!='Vanilla'){experimentr.data()['dswap']+=0.5;}
                                     date_swap = 1;
                                     num += 1
                                 }
@@ -291,7 +293,7 @@ function cell(t,g,j,k){
                                     if ((t_j[i] != "_" && t_m[i] == "_") || i > t_m.length) {
                                         indel.push(i);
                                     }
-                                    experimentr.data()['indel']+=1;
+                                    if(experimentr.data()['mode']!='Vanilla'){experimentr.data()['indel']+=1;}
                                     //g.select("#c"+j.toString()).append("svg:image").attr("xlink:href","/resources/indel.png")
                                     //    .attr("class","icon").attr("x",9*i)
                                     //    .attr("y",cy/2+15).attr("width",16).attr("height",16);
@@ -306,7 +308,7 @@ function cell(t,g,j,k){
                                             .attr("class", "icon").attr("x", 9 * i + 4)
                                             .attr("y", cy / 2 + 13).attr("width", 18).attr("height", 18);
                                     }
-                                    experimentr.data()['transpose']+=1;
+                                    if(experimentr.data()['mode']!='Vanilla'){experimentr.data()['transpose']+=1;}
                                     transpose.push(i, i + 1);
                                     transpose_.push(i, i + 1);
                                     num += 1;
@@ -319,7 +321,7 @@ function cell(t,g,j,k){
                                         bin.push(i);
                                         replace.push(i);
                                         replace_.push(i);
-                                        experimentr.data()['replace']+=1;
+                                        if(experimentr.data()['mode']!='Vanilla'){experimentr.data()['replace']+=1;}
                                     } else {
                                         if (t_m[i] == "?" || t_j[i] == "?") {
                                             bin.push(i);
@@ -473,14 +475,14 @@ function cell(t,g,j,k){
             if(j>2*cwidth.length){t = '&';}
             else if(j>cwidth.length){t = '@';}
         }
-        if(["Vanilla","Full", "Opti2"].indexOf(experimentr.data()['mode'])<0 && title[j%cwidth.length]=="ID"){
-            if(j>2*cwidth.length){t = t.replace(/[A-Z0-9]/g, '&');}
-            else if(j>cwidth.length){t = t.replace(/[A-Z0-9]/g, '@');}
+        if(["Vanilla","Full", "Opti2"].indexOf(experimentr.data()['mode'])<0 && title[j%cwidth.length]=="ID" && t!=" "){
+            if(j>2*cwidth.length){t = t.replace(/[A-Z0-9]|\040|\'|\-/g, '&');}
+            else if(j>cwidth.length){t = t.replace(/[A-Z0-9]|\040|\'|\-/g, '@');}
         }
         if(["Vanilla","Full", "Opti1", "Opti2"].indexOf(experimentr.data()['mode'])<0 &&
-            ["First name", "Last name", "DoB(M/D/Y)","Race"].indexOf(title[j%cwidth.length])>-1){
-            if(j>2*cwidth.length){t = t.replace(/[A-Z0-9]/g, '&');}
-            else if(j>cwidth.length){t = t.replace(/[A-Z0-9]/g, '@');}
+            ["First name", "Last name", "DoB(M/D/Y)","Race"].indexOf(title[j%cwidth.length])>-1 && t!=" "){
+            if(j>2*cwidth.length){t = t.replace(/[A-Z0-9]|\040|\'|\-/g, '&');}
+            else if(j>cwidth.length){t = t.replace(/[A-Z0-9]|\040|\'|\-/g, '@');}
         }
     }
     // if(diff==0 && ["First name", "Last name", "DoB(M/D/Y)"].indexOf(title[j%cwidth.length])>-1 && experimentr.data()['mode']=="Opti1"){
@@ -540,9 +542,9 @@ function cell(t,g,j,k){
             //console.log(t, t_jj);
         }
 
-        if(experimentr.data()['mode']=='Partial'){
-            if(j>2*cwidth.length){t = t.replace(/[A-Z0-9]/g, '&');}
-            else if(j>cwidth.length){t = t.replace(/[A-Z0-9]/g, '@');}
+        if(experimentr.data()['mode']=='Partial' && t!=" "){
+            if(j>2*cwidth.length){t = t.replace(/[A-Z0-9]|\040|\'|\-/g, '&');}
+            else if(j>cwidth.length){t = t.replace(/[A-Z0-9]|\040|\'|\-/g, '@');}
         }
 
         var t_count = 0;
@@ -620,12 +622,8 @@ function cell(t,g,j,k){
         ['ID', 'Last name', 'First name', 'DoB(M/D/Y)', 'Sex', 'Race'].indexOf(title[j%cwidth.length])>-1){
         if(experimentr.data()['mode']=='Vanilla'||experimentr.data()['mode']=='Full'){
             experimentr.data()['open_cell']+=1;
-            //console.log(title[j%cwidth.length], t);
-            if(t.match(/[A-Z0-9]/g)){
-                experimentr.data()['char_display']+=t.match(/[A-Z0-9]/g).length;
-                experimentr.data()['char_display']+=t.match("-") ? t.match("-").length:0;
-                experimentr.data()['char_display']+=t.match("'") ? t.match("'").length:0;
-                experimentr.data()['char_display']+=t.match(" ") ? t.match(" ").length:0;
+            if(t.match(/[A-Z0-9]|\040|\'|\-/g)){
+                experimentr.data()['char_display']+=t.match(/[A-Z0-9]|\040|\'|\-/g).length;
             }
         }else{
             if(cel.selectAll('.char')[0].length==1){
@@ -633,33 +631,33 @@ function cell(t,g,j,k){
                     experimentr.data()['close_cell']+=1;
                     if(['@', '&', '*'].indexOf(cel.select('.char').text())>-1){
                         experimentr.data()['symbol_display']+=1;
+                        console.log(cel.select('.char').text());
                     }
                 }else{
                     experimentr.data()['open_cell']+=1;
                     experimentr.data()['char_display']+=1;
                 }
             }else{
-                //console.log(t.match(/[A-Z0-9]/g), t, raw_t);
-                if(t.match(/[A-Z0-9]/g)){
-                    if(t.indexOf('*')>-1){
+                if(t.match(/[A-Z0-9]|\040|\'|\-/g)){
+                    //console.log(t.match(/[A-Z0-9]|\040|\'|\-/g));
+                    if(t.match(/\*/g)){
                         experimentr.data()['partial_cell']+=1;
                     }else{
                         experimentr.data()['open_cell']+=1;
                     }
-                    experimentr.data()['char_display']+=t.match(/[A-Z0-9]/g).length;
-                    experimentr.data()['symbol_display']+=t.length-t.match(/[A-Z0-9]/g).length;
                 }else{
                     experimentr.data()['close_cell']+=1;
-                    experimentr.data()['symbol_display']+=t.length;
                 }
-                if(title[j%cwidth.length]=='DoB(M/D/Y)'){
-                    experimentr.data()['symbol_display']-=2;
-                }
+                if(t.match(/\&|\@|\*/g)){console.log(t.match(/\&|\@|\*/g));}
+                //if(t.match(/[A-Z0-9]|\'|\-/g)){console.log(t.match(/[A-Z0-9]|\'|\-/g));}
+                experimentr.data()['symbol_display']+= t.match(/\&|\@|\*/g)? t.match(/\&|\@|\*/g).length:0;
+                experimentr.data()['char_display']+=t.match(/[A-Z0-9]|\'|\-/g)?t.match(/[A-Z0-9]|\'|\-/g).length:0;
+
             }
             //console.log(title[j%cwidth.length], t, cel.selectAll('.char').length);
         }
-        //console.log(experimentr.data()['open_cell'],experimentr.data()['partial_cell'],experimentr.data()['close_cell'],
-        //    experimentr.data()['char_display'],experimentr.data()['symbol_display'],experimentr.data()['no_display'],);
+        console.log(experimentr.data()['open_cell'],experimentr.data()['partial_cell'],experimentr.data()['close_cell'],
+            experimentr.data()['char_display'],experimentr.data()['symbol_display'],experimentr.data()['no_display'],);
     }
 
     if(['section2'].indexOf(experimentr.data()['section'])>-1 && j>cwidth.length &&
@@ -768,13 +766,17 @@ function pair(t,g,m){
 
             if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Pair" && title[j] != "ID."){
                 if(row1[j] == row2[j] && row1[j]!=""){
-                    experimentr.data()["no_display"]+=row1[j].length+row2[j].length;
-                    //console.log(row1[j],row2[j]);
+                    if(['ID', 'Last name', 'First name', 'DoB(M/D/Y)', 'Sex', 'Race'].indexOf(title[j%cwidth.length])>-1){
+                        experimentr.data()["no_display"]+=row1[mapping[j%cwidth.length]].match(/[A-Z0-9]|\040|\'|\-\./g)?
+                            row1[mapping[j%cwidth.length]].match(/[A-Z0-9]|\040|\'|\-\./g).length:0;
+                        experimentr.data()["no_display"]+=row2[mapping[j%cwidth.length]].match(/[A-Z0-9]|\040|\'|\-\./g)?
+                            row2[mapping[j%cwidth.length]].match(/[A-Z0-9]|\040|\'|\-\./g).length:0;
+                    }
                     row1[j] = " ";
                     row2[j] = " ";
                 } else {
-                    if(row1[j]=="" && row2[j]!=""){row2[j] = row2[j].replace(/[A-Z0-9]/g, '*');}
-                    if(row2[j]=="" && row1[j]!=""){row1[j] = row1[j].replace(/[A-Z0-9]/g, '*');}
+                    if(row1[j]=="" && row2[j]!=""){row2[j] = row2[j].replace(/[A-Z0-9]|\040|\'|\-/g, '*');}
+                    if(row2[j]=="" && row1[j]!=""){row1[j] = row1[j].replace(/[A-Z0-9]|\040|\'|\-/g, '*');}
                     //row1[j] = row1[j].replace(/[A-Z0-9]/g, '@');
                     //row2[j] = row2[j].replace(/[A-Z0-9]/g, '&');
                 }
@@ -847,14 +849,16 @@ function pair(t,g,m){
             for(var j = 0;j<a;j++){
                 if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Pair" && title[j] != "ID."){
                     if(row1[j] == row2[j] && row1[j]!=""){
-                        experimentr.data()["no_display"]+=row1[j].length+row2[j].length;
-                        //console.log(row1[j],row2[j]);
+                        if(['ID', 'Last name', 'First name', 'DoB(M/D/Y)', 'Race'].indexOf(title[j%cwidth.length])>-1){
+                            experimentr.data()["no_display"]+=row1[mapping[j%cwidth.length]].match(/[A-Z0-9]|\040|\'|\-\./g).length;
+                            experimentr.data()["no_display"]+=row2[mapping[j%cwidth.length]].match(/[A-Z0-9]|\040|\'|\-\./g).length;
+                        }
                         row1[j] = " ";
                         row2[j] = " ";
                     }else if(row1[j]==""){
-                        row2[j] = row2[j].replace(/[A-Z0-9]/g, "*");
+                        row2[j] = row2[j].replace(/[A-Z0-9]|\040|\'|\-/g, "*");
                     }else if(row2[j]==""){
-                        row1[j] = row1[j].replace(/[A-Z0-9]/g, "*");
+                        row1[j] = row1[j].replace(/[A-Z0-9]|\040|\'|\-/g, "*");
                     }
                 }
             }
@@ -875,7 +879,10 @@ function pair(t,g,m){
             for(var j = 0;j<a;j++){
                 if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Pair" && title[j] != "ID."){
                     if(row1[j] == row2[j] && row1[j]!=""){
-                        experimentr.data()["no_display"]+=row1[j].length+row2[j].length;
+                        if(['ID', 'Last name', 'First name', 'DoB(M/D/Y)', 'Race'].indexOf(title[j%cwidth.length])>-1){
+                            experimentr.data()["no_display"]+=row1[mapping[j%cwidth.length]].match(/[A-Z0-9]|\040|\'|\-\./g).length;
+                            experimentr.data()["no_display"]+=row2[mapping[j%cwidth.length]].match(/[A-Z0-9]|\040|\'|\-\./g).length;
+                        }
                         row1[j] = " ";
                         row2[j] = " ";
                     }else if(row1[j]==""){

@@ -169,6 +169,7 @@
                         if (experimentr.data()["mode"] == "Vanilla") {
                             d3.selectAll(".icon").remove();
                             d3.selectAll(".freq").remove();
+                            d3.selectAll(".tip").remove();
                         }
                     }, 100);
 
@@ -183,11 +184,11 @@
 
         d3.select('#submitComments')
             .on('click', function () {
-                console.log(experimentr.data());
+                //console.log(experimentr.data());
                 d3.select("#answer_all").text("");
                 d3.select("#heading").remove();
                 d3.select('#submitComments').style("left","2.5%");
-                console.log((Date.now()-experimentr.data()["time_of_website_start"])/(1000*60));
+                //console.log((Date.now()-experimentr.data()["time_of_website_start"])/(1000*60));
                 if(parse_url().testing === 'true'){
                     render_content();
                 } else {

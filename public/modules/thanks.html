@@ -34,7 +34,13 @@
         delete experimentr.data()['section2'];
         delete experimentr.data()['practice'];
         delete experimentr.data()['practice2'];
-
+        var l = ['mode', 'open_cell', 'partial_cell', 'close_cell', 'char_display', 'symbol_display','no_display', 'missing', 'checks',
+        'indel','replace','transpose','nswap','dswap','diff','freq'];
+        var t = '';
+        for(i in l){
+            t+=experimentr.data()[l[i]]+',';
+        }
+        console.log(t);
         var k = Object.keys(experimentr.data()),
             t = "";
         for(var i=0;i<k.length;i++){

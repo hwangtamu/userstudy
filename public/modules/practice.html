@@ -136,6 +136,7 @@
         if (experimentr.data()["mode"] == "Vanilla") {
             d3.selectAll(".icon").remove();
             d3.selectAll(".freq").remove();
+            d3.selectAll(".tip").remove();
         }
         function goToNext() {
             experimentr.data()["mode"] = mode;
@@ -305,6 +306,8 @@
 
                         if (experimentr.data()["mode"] == "Vanilla") {
                             d3.selectAll(".icon").remove();
+                            d3.selectAll(".freq").remove();
+                            d3.selectAll(".tip").remove();
                         }
 
                         delay_next(350);
