@@ -54,6 +54,7 @@ for i in k:
 fieldnames.remove('practice')
 fieldnames.remove('practice2')
 fieldnames.remove('section2')
+#fieldnames.remove('mat')
 #fieldnames.remove('answer')
 fieldnames = sorted(list(fieldnames))
 

@@ -1,111 +1,217 @@
 <body>
 <div id="container" style="text-align:center;">
 
+    <div id="p_id"  style="position: absolute; left: 200px; width:1200px; top:15px;">
+        <h2 style="position: absolute; left: 280px; ">Interactive Record Linkage Configuration Panel</h2><br>
+        <div style="position: absolute; left: 0; width: 100px;  text-align: center; top: 90px; font-weight: bold">Field</div>
+        <div style="position: absolute; left: 70px; width: 150px;  text-align: center; top: 90px; font-weight: bold">Add Intervention</div>
+        <div style="position: absolute; left: 200px; width: 150px;  text-align: center; top: 90px; font-weight: bold">(*)Checkmark Mask</div>
+        <div style="position: absolute; left: 350px; width: 100px;  text-align: center; top: 90px; font-weight: bold">(**)Star Mask</div>
+        <div style="position: absolute; left: 500px; width: 200px;  text-align: center; top: 90px; font-weight: bold">For Similar Data:</div>
+        <div style="position: absolute; left: 750px; width: 200px;  text-align: center; top: 90px; font-weight: bold">For Very Different Data:</div>
+        <div style="position: absolute; left: 950px; width: 150px;  text-align: center; top: 90px; font-weight: bold">Swap Detection</div><br>
+        <div id="name" style="position: absolute; left: 0; width: 100px;  text-align: center; top: 130px;">Names</div>
+        <div id="id" style="position: absolute; left: 0; width: 100px;  text-align: center; top: 170px;">ID</div>
+        <div id="dob" style="position: absolute; left: 0; width: 100px;  text-align: center; top: 210px;">DoB</div>
+        <div id="race" style="position: absolute; left: 0; width: 100px;  text-align: center; top: 250px;">Race</div>
+        <div id="gender" style="position: absolute; left: 0; width: 100px;  text-align: center; top: 290px;">Gender</div>
 
+        <div id="n_options" style="position: absolute; left: 100px; top: 130px; text-align: center; display: inline;" >
+            <div style="position:absolute;left:0;width:100px">
+                <input type="radio" name="n_intervention" id="n1" value="Y">
+                <label id="n1l" for="n1">Yes</label>
+                <input type="radio" name="n_intervention" id="n2" value="N" checked="checked">
+                <label id="n2l" for="n2">No</label>
+            </div>
+            <div style="position:absolute;left:120px;width:100px">
+                <input type="radio" name="n_check" id="n3" value="Y">
+                <label id="n3l" for="n3">Yes</label>
+                <input type="radio" name="n_check" id="n4" value="N">
+                <label id="n4l" for="n4">No</label>
+            </div>
+            <div style="position:absolute;left:250px;width:100px">
+                <input type="radio" name="n_star" id="n5" value="Y">
+                <label id="n5l" for="n5">Yes</label>
+                <input type="radio" name="n_star" id="n6" value="N">
+                <label id="n6l" for="n6">No</label>
+            </div>
+            <div style="position:absolute;left:350px;width:300px">
+                <input type="radio" name="n_similar" id="n7" value="A">
+                <label id="n7l" for="n7">Show All</label>
+                <input type="radio" name="n_similar" id="n8" value="D">
+                <label id="n8l" for="n8">Show Diff Chars</label>
+                <input type="radio" name="n_similar" id="n9" value="Y">
+                <label id="n9l" for="n9">Use Mask</label>
+            </div>
+            <div style="position:absolute;left:650px;width:200px">
+                <input type="radio" name="n_diff" id="n10" value="A">
+                <label id="n10l"or="n10">Show All</label>
+                <input type="radio" name="n_diff" id="n11" value="Y">
+                <label id="n11l" for="n11">Use Mask</label>
+            </div>
+            <div style="position:absolute;left:870px;width:100px">
+                <input type="radio" name="n_swap" id="n12" value="Y">
+                <label id="n12l" for="n12">Yes</label>
+                <input type="radio" name="n_swap" id="n13" value="N">
+                <label id="n13l" for="n13">No</label>
+            </div>
+        </div>
 
-<div id="p_id"  style="position: absolute; left: 500px; top:15px;">
-    <h2>Study of Record Linkage and Information Disclosure</h2>
-</div>
+        <div id="i_options" style="position: absolute; left: 100px; top: 170px; text-align: center; display: inline;" >
+            <div style="position:absolute;left:0;width:100px">
+                <input type="radio" name="i_intervention" id="i1" value="Y">
+                <label id="i1l" for="i1">Yes</label>
+                <input type="radio" name="i_intervention" id="i2" value="N" checked="checked">
+                <label id="i2l" for="i2">No</label>
+            </div>
+            <div style="position:absolute;left:120px;width:100px">
+                <input type="radio" name="i_check" id="i3" value="Y">
+                <label id="i3l" for="i3">Yes</label>
+                <input type="radio" name="i_check" id="i4" value="N">
+                <label id="i4l" for="i4">No</label>
+            </div>
+            <div style="position:absolute;left:250px;width:100px">
+                <input type="radio" name="i_star" id="i5" value="Y">
+                <label id="i5l" for="i5">Yes</label>
+                <input type="radio" name="i_star" id="i6" value="N">
+                <label id="i6l" for="i6">No</label>
+            </div>
+            <div style="position:absolute;left:350px;width:300px">
+                <input type="radio" name="i_similar" id="i7" value="A">
+                <label id="i7l" for="i7">Show All</label>
+                <input type="radio" name="i_similar" id="i8" value="D">
+                <label id="i8l" for="i8">Show Diff Chars</label>
+                <input type="radio" name="i_similar" id="i9" value="Y">
+                <label id="i9l" for="i9">Use Mask</label>
+            </div>
+            <div style="position:absolute;left:650px;width:200px">
+                <input type="radio" name="i_diff" id="i10" value="A">
+                <label id="i10l" for="i10">Show All</label>
+                <input type="radio" name="i_diff" id="i11" value="Y">
+                <label id="i11l" for="i11">Use Mask</label>
+            </div>
+        </div>
 
-<div name="consent_box" style="position: absolute;top: 100px;left: 350px; height:550px;width:1000px;border:1px solid #ccc;overflow:auto; text-align: left">
-<!--<h3>Investigating privacy issues in data integration</h3>-->
-    <strong>IRB Study Number:</strong> 06/19/2017<br>
-    <strong>Principal Investigator:</strong> Hye-Chung Kum [TAMU Department: Health Policy & Management]<br>
-    <strong>Student Research Assistants:</strong> Han Wang, Gurudev Ilangovan<br>
-    <strong>Study Contact:</strong> email: kum@tamu.edu, phone: (979) 436-9439
-    <br><br>
+        <div id="d_options" style="position: absolute; left: 100px; top: 210px; text-align: center; display: inline;" >
+            <div style="position:absolute;left:0;width:100px">
+                <input type="radio" name="d_intervention" id="d1" value="Y">
+                <label id="d1l" for="d1">Yes</label>
+                <input type="radio" name="d_intervention" id="d2" value="N" checked="checked">
+                <label id="d2l" for="d2">No</label>
+            </div>
+            <div style="position:absolute;left:120px;width:100px">
+                <input type="radio" name="d_check" id="d3" value="Y">
+                <label id="d3l" for="d3">Yes</label>
+                <input type="radio" name="d_check" id="d4" value="N">
+                <label id="d4l" for="d4">No</label>
+            </div>
+            <div style="position:absolute;left:250px;width:100px">
+                <input type="radio" name="d_star" id="d5" value="Y">
+                <label id="d5l" for="d5">Yes</label>
+                <input type="radio" name="d_star" id="d6" value="N">
+                <label id="d6l" for="d6">No</label>
+            </div>
+            <div style="position:absolute;left:350px;width:300px">
+                <input type="radio" name="d_similar" id="d7" value="A">
+                <label id="d7l" for="d7">Show All</label>
+                <input type="radio" name="d_similar" id="d8" value="D">
+                <label id="d8l" for="d8">Show Diff Chars</label>
+                <input type="radio" name="d_similar" id="d9" value="Y">
+                <label id="d9l" for="d9">Use Mask</label>
+            </div>
+            <div style="position:absolute;left:650px;width:200px">
+                <input type="radio" name="d_diff" id="d10" value="A">
+                <label id="d10l" for="d10">Show All</label>
+                <input type="radio" name="d_diff" id="d11" value="Y">
+                <label id="d11l" for="d11">Use Mask</label>
+            </div>
+            <div style="position:absolute;left:870px;width:100px">
+                <input type="radio" name="d_swap" id="d12" value="Y">
+                <label id="d12l" for="d12">Yes</label>
+                <input type="radio" name="d_swap" id="d13" value="N">
+                <label id="d13l" for="d13">No</label>
+            </div>
+        </div>
 
-    <p><strong>What are some general things you should know about research studies?</strong>
-    <br>You are being asked to take part in a research study.
-        Joining the study is voluntary.
-        You may refuse to join, or you may withdraw your consent to be in the study,
-            for any reason, without penalty. <br>
-        Research studies are designed to obtain new knowledge.
-        This new information may help people in the future.
-        You may not receive any direct benefit from being in the research study.
-        There also may be risks associated with being in research studies.
-        (Find details in question below.)<br>
-        Details about this study are discussed below.
-        It is important that you understand this information so that you can make an informed decision about being in this research study.
-        You can save an electronic copy of this consent form. You should ask the researchers or student research assistants named above any questions you have about this study at any time.</p>
+        <div id="r_options" style="position: absolute; left: 100px; top: 250px; text-align: center; display: inline;" >
+            <div style="position:absolute;left:0;width:100px">
+                <input type="radio" name="r_intervention" id="r1" value="Y">
+                <label id="r1l" for="r1">Yes</label>
+                <input type="radio" name="r_intervention" id="r2" value="N" checked="checked">
+                <label id="r2l" for="r2">No</label>
+            </div>
+            <div style="position:absolute;left:120px;width:100px">
+                <input type="radio" name="r_check" id="r3" value="Y">
+                <label id="r3l" for="r3">Yes</label>
+                <input type="radio" name="r_check" id="r4" value="N">
+                <label id="r4l" for="r4">No</label>
+            </div>
+            <div style="position:absolute;left:250px;width:100px">
+                <input type="radio" name="r_star" id="r5" value="Y">
+                <label id="r5l" for="r5">Yes</label>
+                <input type="radio" name="r_star" id="r6" value="N">
+                <label id="r6l" for="r6">No</label>
+            </div>
+            <div style="position:absolute;left:650px;width:200px">
+                <input type="radio" name="r_diff" id="r10" value="A">
+                <label id="r10l" for="r10">Show All</label>
+                <input type="radio" name="r_diff" id="r11" value="Y">
+                <label id="r11l" for="r11">Use Mask</label>
+            </div>
+        </div>
 
+        <div id="g_options" style="position: absolute; left: 100px; top: 290px; text-align: center; display: inline;" >
+            <div style="position:absolute;left:0;width:100px">
+                <input type="radio" name="g_intervention" id="g1" value="Y">
+                <label id="g1l" for="g1">Yes</label>
+                <input type="radio" name="g_intervention" id="g2" value="N" checked="checked">
+                <label id="g2l" for="g2">No</label>
+            </div>
+            <div style="position:absolute;left:120px;width:100px">
+                <input type="radio" name="g_check" id="g3" value="Y">
+                <label id="g3l" for="g3">Yes</label>
+                <input type="radio" name="g_check" id="g4" value="N">
+                <label id="g4l" for="g4">No</label>
+            </div>
+            <div style="position:absolute;left:250px;width:100px">
+                <input type="radio" name="g_star" id="g5" value="Y">
+                <label id="g5l" for="g5">Yes</label>
+                <input type="radio" name="g_star" id="g6" value="N">
+                <label id="g6l" for="g6">No</label>
+            </div>
+            <div style="position:absolute;left:650px;width:200px">
+                <input type="radio" name="g_diff" id="g10" value="A">
+                <label id="g10l" for="g10">Show All</label>
+                <input type="radio" name="g_diff" id="g11" value="Y">
+                <label id="g11l" for="g11">Use Mask</label>
+            </div>
+        </div>
 
-    <p><strong>What is the purpose of this study?</strong>
-    <br>The purpose of this research study is to understand what information disclosure is optimal for properly integrating data about people for research while also protecting their privacy during the process.
+        <div id="pairs" style="position: absolute; left: 420px; top: 350px; text-align: center; display: inline;" >
+            Number of Pairs Per Page:
+            <input type="text" id="num_pair" name="num_pair" placeholder="The default value is 6."><br>
+            <div style="position:absolute;left:0px;width:300px; top: 50px" >
+            <label id="grp" for="groups">Show Groups Instead of Pairs</label>
+                <input type="checkbox" name="groups" id="groups">
+            </div>
+        </div>
+        <div style="position: absolute; left: 0; width: 800px;  text-align: left; top: 460px">
+            (*): <strong>Checkmark mask</strong> covers a field if a pair of records share the same value in that field.<br>
+            (**): <strong>Star mask</strong> covers a field if empty value is found in that field from one of the records in a pair.
+        </div>
+
+    </div>
+
+    <div style="position: absolute; left: 500px; top:550px; width: 700px; text-align: left; display: inline;">
+        <button id="consentYes" type="button" class="start-button" style="position: absolute; left: 250px;">Next</button>
+
+    </div>
+    <br>
+    <p>
+    <div id="validateMessage" class="validate"></div>
     </p>
 
-    <p><strong>How many people will take part in this study?</strong>
-    <br>Approximately 300 people will participate in the research study.
-    </p>
-
-    <p><strong>How long will your part in this study last?</strong>
-    <br>The study should take no more than 90 minutes.
-    </p>
-
-    <p><strong>What will happen if you take part in the study?</strong>
-    <br>You will be shown a series of identifying information about FAKE people. You will then be asked questions about what you think about the data we show you and your confidence level of your thought.
-    </p>
-
-    <p><strong>What are the possible benefits from being in this study?</strong>
-    <br>Research is designed to benefit society by gaining new knowledge. Your participation is important to help us understand how to provide privacy protection as well as do good research on people using personal data, but you may not benefit personally from being in this research study.
-    </p>
-
-
-    <p><strong>What are the possible risks or discomforts involved from being in this study?</strong>
-    <br>The things that you will be doing are no more than the risks that you would come across in everyday life. We do not think you will experience any discomfort or risk from the study. We will be studying privacy protection by looking at how people make inferences, BUT we will NOT be asking you any personal questions about yourself or anyone you know.
-    </p>
-
-    <p><strong>How will your privacy be protected?</strong>
-    <br>We will not collect any personal identification information during this study, so no one here, or elsewhere, will know what your responses are or who participated in the study.
-    </p>
-
-    <p><strong>Will you receive anything for being in this study?</strong>
-    <br>You will receive a $15 gift card for taking part in this study. You also have the option to compete for the highest score to win an additional $35 gift card.
-    </p>
-
-    <p><strong>Will it cost you anything to be in this study?</strong>
-    <br>Aside from your time, there are no costs for taking part in this study. There are no costs for participation in the study.
-    </p>
-
-
-    <p><strong>Will information from this study be kept private?</strong>
-    <br>Information about you will be kept confidential to the extent permitted or required by law. People who have access to your information include the Principal Investigator and research study personnel. Representatives of regulatory agencies such as the Office of Human Research Protections (OHRP) and entities such as the Texas A&M University Human Research Protection Program may access your records to make sure the study is being run correctly and that information is collected properly.<br>
-    <strong>The records of this study will be kept confidential.  No identifiers linking you to this study will be included in any sort of report that might be published. </strong>
-    </p>
-
-    <!--<p><strong>How will your privacy be protected?</strong>-->
-    <!--<br>We will not collect any personal identification information during this study, so no one here, or elsewhere, will know what your responses are or who participated in the study.-->
-    <!--<br><u> The records of this study will be kept private.  No identifiers linking you to this study will be included in any sort of report that might be published.</u>-->
-    <!--</p>-->
-
-
-    <p><strong>What if you have questions about this study?</strong>
-    <br>You have the right to ask and get answers to any questions you may have about this research. If you have questions, or concerns, you should contact me at kum@tamu.edu.
-    </p>
-
-
-    <p><strong>What if you have questions about your rights as a research participant?</strong>
-    <br>All research on human volunteers is reviewed by a committee that works to protect your rights and welfare. For questions about your rights as a research participant; or if you have questions, complaints, or concerns about the research, you may contact the Texas A&M University Human Subjects Protection Program at 979.458.4067, toll-free at 1.855.795.8636, or email at irb@tamu.edu
-    </p>
-
-
-
-</div>
-    <div style="position: absolute; left: 500px; top:670px; width: 700px; text-align: left; display: inline;">
-    <label id="check"><input type="checkbox" id="cbox1" value=-1 >
-        <strong>
-            I have read the information provided above and I have asked all the questions I have at this time.<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;By checking this box, I am agreeing to participate in the study voluntarily.
-        </strong></label><br>
-    <button id="consentYes" type="button" class="start-button" disabled="true" style="position: absolute; left: 250px;">Next</button>
-
-</div>
-<br>
-<p>
-<div id="validateMessage" class="validate"></div>
-</p>
-
-<br>
+    <br>
 </div>
 </body>
 <style>
@@ -127,226 +233,405 @@
 </style>
 
 <script>
-(function() {
-    experimentr.data()['switch'] = [];
-    experimentr.data()['time_of_website_start'] = Date.now();
-    $.getScript("javascript/misc/util.js");
-  var data    = {}
-    , workers = null
-    ,   cbox1 = d3.select('input')
-    ,       w = 0
-    ,       h = 0;
-  init();
+    (function() {
+        experimentr.data()['switch'] = [];
+        experimentr.data()['time_of_website_start'] = Date.now();
+        $.getScript("javascript/misc/util.js");
+        var data    = {}
+            ,       w = 0
+            ,       h = 0
+            , field   = ["n","i","d","r","g"];
+        init();
 
-  var mode = experimentr.data()["mode"];
-  if(mode == null) {
-      window.alert("Please include a mode from 1 to 5 in the url");
-  }
-
-
-
-  cbox1.on('change',function(d){ 
-    console.log(cbox1.property("value"));
-    cbox1.property("value",-cbox1.property("value")); 
-    validate();
-  })
-  
-  function load(){
-    w = $(window).width();
-    h = $(window).height();
-    console.log(w,h);
-  }
-
-    function getRandomInt(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
-    };
-
-    var sample_name;
-    var section2_name;
-
-    if(QueryString.sampling == 'true') {
-        experimentr.data()["sampled_data"] = "true";
-        var sample_num = getRandomInt(1,10);
-        if(sample_num == 10) {
-            sample_name = "data/sample_"+sample_num+".csv";
-            section2_name = "data/section2_"+sample_num+".csv";
-        } else {
-            sample_name = "data/sample_0"+sample_num+".csv";
-            section2_name = "data/section2_0"+sample_num+".csv";
+        function load(){
+            w = $(window).width();
+            h = $(window).height();
+            console.log(w,h);
         }
-        parsing(sample_name,"mat");
-    } else if(!isNaN(QueryString.sampling)){
-        var sample_num =  parseInt(QueryString.sampling);
-        if(sample_num == 10) {
-            sample_name = "data/sample_"+sample_num+".csv";
-            section2_name = "data/section2_"+sample_num+".csv";
-        } else {
-            sample_name = "data/sample_0"+sample_num+".csv";
-            section2_name = "data/section2_0"+sample_num+".csv";
-        }
-        parsing(sample_name,"mat");
-    } else{
-        experimentr.data()["sampled_data"] = "false";
-        sample_name = "data/output.csv";
-        section2_name = "data/section2.csv";
+
+        var sample_name;
+        var section2_name;
+        parsing2("data/practice.csv","practice");
+        parsing("data/practice2.csv","practice2");
         parsing("data/output.csv","mat");
-    }
+        parsing("data/section2.csv","section2");
 
-    parsing2("data/practice.csv","practice");
-    parsing("data/practice2.csv","practice2");
 
-    console.log(sample_name);
-    console.log(section2_name);
-    experimentr.data()["sample_name"] = sample_name;
-    experimentr.data()["section2_sample_name"] = section2_name;
-//    parsing_disclosure(experimentr.data()["sample_name"],"disclosure_data");
+        experimentr.data()["sample_name"] = sample_name;
+        experimentr.data()["section2_sample_name"] = section2_name;
 
-    function count(arr) {
-        var a = [], b = [], prev;
-        arr.sort();
-        for ( var i = 0; i < arr.length; i++ ) {
-            if ( arr[i] !== prev ) {
-                a.push(arr[i]);
-                b.push(1);
-            } else {
-                b[b.length-1]++;
+        function count(arr) {
+            var a = [], b = [], prev;
+            arr.sort();
+            for ( var i = 0; i < arr.length; i++ ) {
+                if ( arr[i] !== prev ) {
+                    a.push(arr[i]);
+                    b.push(1);
+                } else {
+                    b[b.length-1]++;
+                }
+                prev = arr[i];
             }
-            prev = arr[i];
+            return [a, b];
         }
-        return [a, b];
-    };
 
-    var page_nums = [];
-    var num_in_page = [];
-    d3.csv("/data/practice.csv", function(error, data) {
-        if (error) throw error;
-        data.forEach(function(d) {
-            page_nums.push(d['type']);
+        var page_nums = [];
+        var num_in_page = [];
+        d3.csv("/data/practice.csv", function(error, data) {
+            if (error) throw error;
+            data.forEach(function(d) {
+                page_nums.push(d['type']);
+            });
+            num_in_page_pairs = count(page_nums)[1];
+            num_in_page_pairs.forEach(function(d) {
+                num_in_page.push(d/2);
+            });
+            num_in_page_parsed = [];
+            num_in_page.forEach(function(d) {
+                for(var i=0;i<d;i++) {
+                    num_in_page_parsed.push(d);
+                }
+            });
         });
-        num_in_page_pairs = count(page_nums)[1];
-        num_in_page_pairs.forEach(function(d) {
-            num_in_page.push(d/2);
-        });
-        num_in_page_parsed = [];
-        num_in_page.forEach(function(d) {
-            for(var i=0;i<d;i++) {
-                num_in_page_parsed.push(d);
-            };
-        });
-        console.log(experimentr.data());
-//        parsing("data/practice.csv","practice",num_in_page_parsed);
-//        parsing("data/practice.csv","practice");
-    });
 
 
-  function init() {
-    experimentr.hideNext();
+        function init() {
+            experimentr.hideNext();
 
-      //d3.json('data/sequence.json', function(err, d) {
-      //data.workerId = d.worker_id + "_" + Math.random().toString(36).substring(2, 7);
-      //d3.select("#p_id").append("h3")
-        //.text("Participant ID: " + d.worker_id);
-    //});
+            var browser = get_browser_info();
+            var os = get_os_info();
+            var ip = $.ajax({type: "GET", url: "http://freegeoip.net/json/", async: false}).responseText;
 
-    var browser = get_browser_info();
-    var os = get_os_info();
-    var ip = $.ajax({type: "GET", url: "http://freegeoip.net/json/", async: false}).responseText;
+            console.log(browser);
+            console.log(os);
+            //console.log(ip);
 
-    console.log(browser);
-    console.log(os);
-    //console.log(ip);
+            data.browserName = browser.name;
+            data.browserVersion = browser.version;
+            data.os = os;
+            //data.ip = ip;
+            data.userDate = Date();
+            //data.ip = JSON.parse(ip);
+            data.clicks = [];
+            data.practice_clicks = [];
+            data.practice2_clicks = [];
+            data.s2_clicks = [];
+            // statictics
+            data.open_cell = 0;
+            data.partial_cell = 0;
+            data.close_cell = 0;
+            data.char_display = 0;
+            data.symbol_display = 0;
+            data.no_display = 0;
+            data.s2_open_cell = 0;
+            data.s2_partial_cell = 0;
+            data.s2_close_cell = 0;
+            data.s2_char_display = 0;
+            data.s2_symbol_display = 0;
+            data.s2_no_display = 0;
 
-    data.browserName = browser.name;
-    data.browserVersion = browser.version;
-    data.os = os;
-    //data.ip = ip;
-    data.userDate = Date();
-    //data.ip = JSON.parse(ip);
-    data.clicks = [];
-    data.practice_clicks = [];
-    data.practice2_clicks = [];
-    data.s2_clicks = [];
-    // statictics
-    data.open_cell = 0;
-    data.partial_cell = 0;
-    data.close_cell = 0;
-    data.char_display = 0;
-    data.symbol_display = 0;
-    data.no_display = 0;
-    data.s2_open_cell = 0;
-    data.s2_partial_cell = 0;
-    data.s2_close_cell = 0;
-    data.s2_char_display = 0;
-    data.s2_symbol_display = 0;
-    data.s2_no_display = 0;
+            data.missing = 0;
+            data.checks = 0;
+            data.indel = 0;
+            data.replace = 0;
+            data.transpose = 0;
+            data.nswap = 0;
+            data.dswap = 0;
+            data.diff = 0;
+            data.freq = 0;
 
-    data.missing = 0;
-    data.checks = 0;
-    data.indel = 0;
-    data.replace = 0;
-    data.transpose = 0;
-    data.nswap = 0;
-    data.dswap = 0;
-    data.diff = 0;
-    data.freq = 0;
+            //config
+            data.n_intervention = 'N';
+            data.n_check = 'N';
+            data.n_star = 'N';
+            data.n_similar = 'N';
+            data.n_diff = 'N';
+            data.n_swap = 'N';
 
-    load();
-       // load previous workers file
-  }
-  d3.select('#check').on({"mouseover": function(d) {d3.select(this).style("cursor", "pointer")},
-        "mouseout": function(d) {d3.select(this).style("cursor", "default")}});
-  d3.select('#consentYes').style('color', "#b3b3b3");
-  function validate() {
-    if (cbox1.property("value")==1){
-      d3.select('#consentYes').attr('disabled', null);
-      d3.select('#consentYes').style('color', "black");
-      d3.select('#consentYes').on('click', function() {
-        experimentr.addData(data);
-        experimentr.next();
-        experimentr.data()['switch'].push(Date.now());
-      });
-    }else{
-      d3.select('#consentYes').attr('disabled', 'disabled');
-      d3.select('#consentYes').style('color', "#b3b3b3");
-    }
+            data.i_intervention = 'N';
+            data.i_check = 'N';
+            data.i_star = 'N';
+            data.i_similar = 'N';
+            data.i_diff = 'N';
 
-  }
+            data.d_intervention = 'N';
+            data.d_check = 'N';
+            data.d_star = 'N';
+            data.d_similar = 'N';
+            data.d_diff = 'N';
+            data.d_swap = 'N';
 
-  function badBrowser() {
-    var messageThing = d3.select('#validateMessage');
-    messageThing.html("Oops. You need to run this application in either a Chrome or Firefox browser. It will not work correctly in other browsers. Please copy the address into the address bar of Chrome or Firefox to participate in this study.");
+            data.r_intervention = 'N';
+            data.r_check = 'N';
+            data.r_star = 'N';
+            data.r_diff = 'N';
 
-    d3.select('#consentYes').attr('disabled', 'disabled');
-  }
-  function get_os_info(){
-    var OSName="Linux";
-    if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
-    if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
-    //if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
-    //if (navigator.oscpu.indexOf("Linux")!=-1) OSName="Linux";
-    return OSName;
-  }
-  function get_browser_info(){
-    var ua=navigator.userAgent,tem,M=ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
-    console.log(ua);
-    if(/trident/i.test(M[1])){
-        tem=/\brv[ :]+(\d+)/g.exec(ua) || [];
-        return 'IE '+(tem[1]||'');
+            data.g_intervention = 'N';
+            data.g_check = 'N';
+            data.g_star = 'N';
+            data.g_diff = 'N';
+
+            data.show_group = false;
+            data.num_pairs = '6';
+
+            load();
+            for(var i in field){
+                for(var j=3;j<14;j++){
+                    if(d3.select('#'+field[i]+'2').attr("checked") && d3.select('#'+field[i]+j.toString())){
+                        d3.select('#'+field[i]+j.toString()).attr("disabled","true");
+                        d3.select('#'+field[i]+j.toString()+"l").style("color","#b3b3b3");
+                    }
+                }
+            }
+
+            // load previous workers file
         }
-    if(M[1]==='Chrome'){
-        tem=ua.match(/\bOPR\/(\d+)/)
-        if(tem!=null)   {return 'Opera '+tem[1];}
-        }
-    M=M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
-    if((tem=ua.match(/version\/(\d+)/i))!=null) {M.splice(1,1,tem[1]);}
-    return {
-      name: M[0],
-      version: M[1]
-    }
- }
+        d3.select('#consentYes').on('click', function() {
+            experimentr.addData(data);
+            console.log(experimentr.data());
+            experimentr.save();
+            //reload data
+            if(experimentr.data()['show_group']){
+                group_parsing("data/output.csv","mat");
+                group_parsing("data/section2.csv","section2");
+            }else{
+                //parsing2("data/practice.csv","practice");
+                //parsing("data/practice2.csv","practice2");
+                parsing("data/output.csv","mat");
+                parsing("data/section2.csv","section2");
+            }
 
-}());
+
+            experimentr.next();
+            experimentr.data()['switch'].push(Date.now());
+        });
+
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'n_intervention' ? this : null; })
+            .on('change', function() { data.n_intervention = this.value;});
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'i_intervention' ? this : null; })
+            .on('change', function() { data.i_intervention = this.value;});
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'd_intervention' ? this : null; })
+            .on('change', function() { data.d_intervention = this.value;});
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'r_intervention' ? this : null; })
+            .on('change', function() { data.r_intervention = this.value;});
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'g_intervention' ? this : null; })
+            .on('change', function() { data.g_intervention = this.value;});
+
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'n_check' ? this : null; })
+            .on('change', function() { data.n_check = this.value;});
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'i_check' ? this : null; })
+            .on('change', function() { data.i_check = this.value;});
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'd_check' ? this : null; })
+            .on('change', function() { data.d_check = this.value;});
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'r_check' ? this : null; })
+            .on('change', function() { data.r_check = this.value;});
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'g_check' ? this : null; })
+            .on('change', function() { data.g_check = this.value;});
+
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'n_star' ? this : null; })
+            .on('change', function() { data.n_star = this.value;});
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'i_star' ? this : null; })
+            .on('change', function() { data.i_star = this.value;});
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'd_star' ? this : null; })
+            .on('change', function() { data.d_star = this.value;});
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'r_star' ? this : null; })
+            .on('change', function() { data.r_star = this.value;});
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'g_star' ? this : null; })
+            .on('change', function() { data.g_star = this.value;});
+
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'n_similar' ? this : null; })
+            .on('change', function() { data.n_similar = this.value;});
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'i_similar' ? this : null; })
+            .on('change', function() { data.i_similar = this.value;});
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'd_similar' ? this : null; })
+            .on('change', function() { data.d_similar = this.value;});
+
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'n_diff' ? this : null; })
+            .on('change', function() { data.n_diff = this.value;});
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'i_diff' ? this : null; })
+            .on('change', function() { data.i_diff = this.value;});
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'd_diff' ? this : null; })
+            .on('change', function() { data.d_diff = this.value;});
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'r_diff' ? this : null; })
+            .on('change', function() { data.r_diff = this.value;});
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'g_diff' ? this : null; })
+            .on('change', function() { data.g_diff = this.value;});
+
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'n_swap' ? this : null; })
+            .on('change', function() { data.n_swap = this.value;});
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'd_swap' ? this : null; })
+            .on('change', function() { data.d_swap = this.value;});
+
+
+
+        d3.select('#n1').on('click', function(){
+            d3.select('#n1').attr("checked", "checked");
+            for(var j=3;j<14;j++){
+                if(d3.select('#n'+j.toString())){
+                    d3.select('#n'+j.toString()).attr("disabled",null);
+                    d3.select('#n'+j.toString()+"l").style("color","black");
+                }
+            }
+        });
+        d3.select('#i1').on('click', function(){
+            for(var j=3;j<14;j++){
+                if(d3.select('#i'+j.toString())){
+                    d3.select('#i'+j.toString()).attr("disabled",null);
+                    d3.select('#i'+j.toString()+"l").style("color","black");
+                }
+            }
+        });
+        d3.select('#d1').on('click', function(){
+            for(var j=3;j<14;j++){
+                if(d3.select('#d'+j.toString())){
+                    d3.select('#d'+j.toString()).attr("disabled",null);
+                    d3.select('#d'+j.toString()+"l").style("color","black");
+                }
+            }
+        });
+        d3.select('#r1').on('click', function(){
+            for(var j=3;j<14;j++){
+                if(d3.select('#r'+j.toString())){
+                    d3.select('#r'+j.toString()).attr("disabled",null);
+                    d3.select('#r'+j.toString()+"l").style("color","black");
+                }
+            }
+        });
+        d3.select('#g1').on('click', function(){
+            for(var j=3;j<14;j++){
+                if(d3.select('#g'+j.toString())){
+                    d3.select('#g'+j.toString()).attr("disabled",null);
+                    d3.select('#g'+j.toString()+"l").style("color","black");
+                }
+            }
+        });
+
+        d3.select('#n2').on('click', function(){
+            data.n_check = 'N';
+            data.n_star = 'N';
+            data.n_similar = 'N';
+            data.n_diff = 'N';
+            data.n_swap = 'N';
+            for(var j=3;j<14;j++){
+                if(d3.select('#n'+j.toString())){
+                    d3.select('#n'+j.toString()).attr("disabled","true").property("checked",false);
+                    d3.select('#n'+j.toString()+"l").style("color","#b3b3b3");
+                }
+            }
+        });
+        d3.select('#i2').on('click', function(){
+            data.i_check = 'N';
+            data.i_star = 'N';
+            data.i_similar = 'N';
+            data.i_diff = 'N';
+            for(var j=3;j<14;j++){
+                if(d3.select('#i'+j.toString())){
+                    d3.select('#i'+j.toString()).attr("disabled","true").property("checked",false);
+                    d3.select('#i'+j.toString()+"l").style("color","#b3b3b3");
+                }
+            }
+        });
+        d3.select('#d2').on('click', function(){
+            data.d_check = 'N';
+            data.d_star = 'N';
+            data.d_similar = 'N';
+            data.d_diff = 'N';
+            data.d_swap = 'N';
+            for(var j=3;j<14;j++){
+                if(d3.select('#d'+j.toString())){
+                    d3.select('#d'+j.toString()).attr("disabled","true").property("checked",false);
+                    d3.select('#d'+j.toString()+"l").style("color","#b3b3b3");
+                }
+            }
+        });
+        d3.select('#r2').on('click', function(){
+            data.r_check = 'N';
+            data.r_star = 'N';
+            data.r_diff = 'N';
+            for(var j=3;j<14;j++){
+                if(d3.select('#r'+j.toString())){
+                    d3.select('#r'+j.toString()).attr("disabled","true").property("checked",false);
+                    d3.select('#r'+j.toString()+"l").style("color","#b3b3b3");
+                }
+            }
+        });
+        d3.select('#g2').on('click', function(){
+            data.g_check = 'N';
+            data.g_star = 'N';
+            data.g_diff = 'N';
+            for(var j=3;j<14;j++){
+                if(d3.select('#g'+j.toString())){
+                    d3.select('#g'+j.toString()).attr("disabled","true").property("checked",false);
+                    d3.select('#g'+j.toString()+"l").style("color","#b3b3b3");
+                }
+            }
+        });
+
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'num_pair' ? this : null; })
+            .on('change', function() { data.num_pairs = this.value;});
+
+        d3.selectAll('input')
+            .filter(function(d) { return this.name === 'groups' ? this : null; })
+            .on('change', function() {
+                if(d3.select("#groups").property("checked")) {
+                    data.show_group = true;
+                }else{
+                    data.show_group = false;
+                }
+            });
+
+        function get_os_info(){
+            var OSName="Linux";
+            if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
+            if (navigator.appVersion.indexOf("Mac")!=-1) OSName="MacOS";
+            //if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
+            //if (navigator.oscpu.indexOf("Linux")!=-1) OSName="Linux";
+            return OSName;
+        }
+        function get_browser_info(){
+            var ua=navigator.userAgent,tem,M=ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+            console.log(ua);
+            if(/trident/i.test(M[1])){
+                tem=/\brv[ :]+(\d+)/g.exec(ua) || [];
+                return 'IE '+(tem[1]||'');
+            }
+            if(M[1]==='Chrome'){
+                tem=ua.match(/\bOPR\/(\d+)/)
+                if(tem!=null)   {return 'Opera '+tem[1];}
+            }
+            M=M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+            if((tem=ua.match(/version\/(\d+)/i))!=null) {M.splice(1,1,tem[1]);}
+            return {
+                name: M[0],
+                version: M[1]
+            }
+        }
+    }());
 
 </script>

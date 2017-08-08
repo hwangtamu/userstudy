@@ -39,49 +39,36 @@ var swap_switch=0;
  *      9:hidden data
  *      }
  */
-function cell(t,g,j,k){
-    // erase title columns
-    var index_r = g.attr("id").slice(1)%6;
-    var x = 40*(j%cwidth.length)+cwidth.slice(0,j%cwidth.length).reduce((a, b) => a + b, 0),
+
+function cell_(t,g,j){
+    var num = +experimentr.data()['num_pairs'],
+        index_r = g.attr("id").slice(1)%num,
+        x = 40*(j%cwidth.length)+cwidth.slice(0,j%cwidth.length).reduce((a, b) => a + b, 0),
         y = index_r==0&&j>=cwidth.length ? ys[Math.floor(j/cwidth.length)]+20 : ys[Math.floor(j/cwidth.length)],
         cx = cwidth[j%cwidth.length],
-        cy = height;
-    var cel = g.append("g").attr("id","c"+j.toString()).attr("class","cell")
-        .attr("transform","translate("+x+","+y+")");
-    var raw_t = t;
-
-    //console.log(title[j%cwidth.length],t);
+        cy = height,
+        cel = g.append("g").attr("id","c"+j.toString()).attr("class","cell")
+            .attr("transform","translate("+x+","+y+")");
     var rectangle = cel.append("rect").attr("id",j);
-    //only show rect on clickable cells
-    //if(k==6 && j<2*cwidth.length){
-    //    rectangle.attr("x",-5).attr("y",-5).attr("width",cx).attr("id","r"+j.toString())
-    //        .attr("height",80).style("fill","#C5E3BF").attr("rx",5).attr("ry",5);
-    //}
+
     if(index_r==0 && j<cwidth.length){
         rectangle.attr("x",0).attr("y",0).attr("width",cx+40).attr("id","r"+j.toString())
-            .attr("height",function(){if(k==2||k==4){return cy*2+23;}if(k==0||k==5||(index_r>0 && k==1)){return 0;}return cy;})
+            .attr("height",function(){if(j==cwidth.length){return cy*2+23;}
+            if(j==2*cwidth.length||(index_r>0 && j<cwidth.length)){return 0;}return cy;})
             .style("fill","none")
-            .style("fill",function(){if(k==1||k==2){return "#add8e6";}if(k==3||k==4){return "#b2d3e6";}if(k==6){return "#C5E3BF"}})
+            .style("fill",function(){if(j<=cwidth.length){return "#add8e6";}})
             .style("opacity",1);
     }
-
     var textbox = cel.append("text").attr("class","tbox").attr("id","t"+j.toString());
     textbox.attr("x",function(){
-        //if(k==3 && (title[j%10]=="FFreq"||title[j%10]=="LFreq"||
-        //title[j%10]=="ID.")){return cx/2;}
         if(t=="ID"){return 18;}
-        if(t=="Race"){return 20;}
-        if(t=="Sex"){return 20;}
-        if(title[j%cwidth.length]=="Sex" && experimentr.data()["mode"]=="Vanilla"){return "2em";}
-        if(j>cwidth.length && title[j%cwidth.length]=="Race"){return "2em";}
-        if(k==2){return cx/2;}
+        if(t=="Race"||t=="Sex"){return 20;}
+        if(j>cwidth.length && (title[j%cwidth.length]=="Race"||title[j%cwidth.length]=="Sex")){return "2em";}
+        if(j==cwidth.length){return cx/2;}
         return 0;})
-    //if(t.length>0){return cx*(0.02+0.48/t.length)-4;}})
-        .attr("y",function(){if(k==2){return cy/2+28;}if(k==1||k==3||k==4||k==5||k==6){return cy/2+5;}})
+        .attr("y",function(){if(j==cwidth.length){return cy/2+28;}return cy/2+5;})
         .attr("text-anchor",function(){
-            //if(k==3 && (title[j%10]=="FFreq"||title[j%10]=="LFreq"||j%10==0||
-            //title[j%10]=="ID.")){return "middle";}
-            if(k==2){return "middle";}
+            if(j==cwidth.length){return "middle";}
             // || title[j%cwidth.length]=="Race"
             return "left";})
         .style("font",function(){
@@ -90,11 +77,467 @@ function cell(t,g,j,k){
             return "16px Lucida Console";})//.style("font-weight","bold")
         .text(function(){
             if(title[j%cwidth.length]=="ID."){return " ";}
-            else if(k==0||(index_r>0 && k==1)){return " ";}
-            else if(k==3 && (title[j%cwidth.length]=="FFreq"||title[j%cwidth.length]=="LFreq")){return "";}
+            else if(j==2*cwidth.length||(index_r>0 && j<cwidth.length)){return " ";}
+            else if(j>cwidth.length && (title[j%cwidth.length]=="FFreq"||title[j%cwidth.length]=="LFreq")){return "";}
             return t;
         }).style("fill", function(){if(j>=cwidth.length && j%cwidth.length<1){return "grey";}});
-    if(k==1){
+    if(j<cwidth.length){
+        textbox.style("font-weight","bold");
+    }
+
+    //freq
+    if(j>cwidth.length){
+        if(j%cwidth.length>0 && (title[j%cwidth.length]=="FFreq"||title[j%cwidth.length]=="LFreq")) {
+            var div = cel.append("g").style("opacity",0);
+            var bg = div.append("rect").style("fill","none").attr("x",-2).attr("y",-14).attr("width",0).attr("height",20)
+                .attr("stroke", "grey")
+                .attr("stroke-width",1);
+            var tip = div.append("text").attr("class","tip").style("fill","grey").attr("text-anchor", "left");
+
+            if(t==1){
+                cel.append("svg:image").attr("xlink:href","/resources/unique.png").attr("class","freq")
+                    .attr("x",10).attr("y",cy/2-9).attr("width",20).attr("height",20);
+                tip.text('Unique Name');
+                bg.attr("width",90);
+            } else {
+                if(t<=5) {
+                    // cel.append("svg:image").attr("xlink:href","/resources/rare.svg").attr("class","icon")
+                    //     .attr("x",cwidth[j%cwidth.length]/3).attr("y",cy/2-9).attr("width",20).attr("height",20);
+                    cel.append("svg:image").attr("xlink:href","/resources/rare_2_rect.svg").attr("class","freq")
+                        .attr("x",10).attr("y",cy/2-9).attr("width",22).attr("height",22);
+                    tip.text('Rare Name');
+                    bg.attr("width",80);
+                } else {
+                    if(t<=100) {
+                        cel.append("svg:image").attr("xlink:href", "/resources/3_dots.png").attr("class", "freq")
+                            .attr("x", 10).attr("y", cy / 2 - 9).attr("width", 20).attr("height", 20);
+                        tip.text('Occurred Often');
+                        bg.attr("width",100);
+                    } else {
+                        cel.append("svg:image").attr("xlink:href", "/resources/infinity.png").attr("class", "freq")
+                            .attr("x", 10).attr("y", cy / 2 - 9).attr("width", 20).attr("height", 20);
+                        tip.text('Common Name');
+                        bg.attr("width",100);
+                    }
+                }
+            }
+            if(experimentr.data()['mode']!='Vanilla'){
+                cel.on("mouseover",function(d){
+                    div.style("opacity",1);
+                });
+                cel.on("mouseout",function(d){
+                    div.style("opacity",0);
+                });
+            }
+            experimentr.data()['freq']+=1;
+        }
+        //interventions
+        var swap = 0,
+            date_swap = 0,
+            diff = 0,
+            check = 0,
+            bin = [];
+        //name swap
+        if(experimentr.data()['n_swap']=='Y' && (title[j%cwidth.length]=="First name"||title[j%cwidth.length]=="Last name")){
+            var m = j+cwidth.length,
+                p = g.attr("id").slice(1),
+                dat = experimentr.data()[experimentr.data()['section']][Math.floor(p/num)],
+                fnj = "",
+                fnm = "",
+                lnj = "",
+                lnm = "";
+            //console.log(dat[p%6]);
+            if(title[j%cwidth.length]=="First name"){
+                fnj = dat[p%num][0][mapping[mapping[j%cwidth.length]]];
+                fnm = dat[p%num][1][mapping[mapping[m%cwidth.length]]];
+                lnj = dat[p%num][0][mapping[mapping[j%cwidth.length+1]]];
+                lnm = dat[p%num][1][mapping[mapping[m%cwidth.length+1]]];
+            }
+            if(title[j%cwidth.length]=="Last name"){
+                fnj = dat[p%num][0][mapping[mapping[j%cwidth.length-1]]];
+                fnm = dat[p%num][1][mapping[mapping[m%cwidth.length-1]]];
+                lnj = dat[p%num][0][mapping[mapping[j%cwidth.length]]];
+                lnm = dat[p%num][1][mapping[mapping[m%cwidth.length]]];
+            }
+
+            if(fnj==lnm && fnm==lnj){
+                swap = 1;
+                if(j<2*cwidth.length && title[j%cwidth.length]=="First name"){
+                    cel.append("svg:image").attr("xlink:href","/resources/name_swap.svg").attr("class","icon")
+                        .attr("x",cwidth[j%cwidth.length]-45).attr("y",cy/2-8).attr("width",60).attr("height",60);
+                }
+                t = t.replace(/[A-Z0-9]/g, function(){if(j%14>9){return "&";}return "@";});
+                experimentr.data()['nswap']+=0.25;
+            }
+        }
+        //missing
+        var n_cond = experimentr.data()['n_star']=='Y' && ['First name', 'Last name'].indexOf(title[j%cwidth.length])>-1,
+            i_cond = experimentr.data()['i_star']=='Y' && title[j%cwidth.length]=='ID',
+            d_cond = experimentr.data()['d_star']=='Y' && title[j%cwidth.length]=='DoB(M/D/Y)',
+            r_cond = experimentr.data()['r_star']=='Y' && title[j%cwidth.length]=='Race',
+            g_cond = experimentr.data()['g_star']=='Y' && title[j%cwidth.length]=='Sex';
+
+        if(textbox.text()=="" && (n_cond||i_cond||d_cond||r_cond||g_cond)){
+            cel.append("svg:image").attr("xlink:href","/resources/missing.png").attr("class","icon")
+                .attr("x",function(){
+                    if(title[j%cwidth.length]=="ID"){return 36;}
+                    if(title[j%cwidth.length]=="Race"){return 28;}
+                    else if(title[j%cwidth.length]!="DoB(M/D/Y)"){return cwidth[j%cwidth.length]/3;}
+                    return 40;})
+                .attr("y",cy/2-9).attr("width",18).attr("height",18);
+            //var m = j <2*cwidth.length ? j+cwidth.length : j-cwidth.length;
+            //console.log(g.select("#c"+j.toString()), m);
+        }
+        else if (textbox.text()!="" && (n_cond||i_cond||d_cond||r_cond||g_cond)){
+            var p = g.attr("id").slice(1),
+                ind = j<2*cwidth.length ? 1:0,
+                d = experimentr.data()[experimentr.data()['section']][Math.floor(p/num)][p%num][ind][j%cwidth.length];
+            if(d==""){
+                t = t.replace(/[A-Z0-9]/g, '*');
+            }
+        }
+
+        //checkmark
+        n_cond = experimentr.data()['n_check']=='Y' && ['First name', 'Last name'].indexOf(title[j%cwidth.length])>-1 && swap==0;
+        i_cond = experimentr.data()['i_check']=='Y' && title[j%cwidth.length]=='ID';
+        d_cond = experimentr.data()['d_check']=='Y' && title[j%cwidth.length]=='DoB(M/D/Y)';
+        r_cond = experimentr.data()['r_check']=='Y' && title[j%cwidth.length]=='Race';
+        g_cond = experimentr.data()['g_check']=='Y' && title[j%cwidth.length]=='Sex';
+
+        if(n_cond||i_cond||d_cond||r_cond||g_cond){
+            var p = g.attr("id").slice(1),
+                d1 = experimentr.data()[experimentr.data()['section']][Math.floor(p/num)][p%num][0][j%cwidth.length],
+                d2 = experimentr.data()[experimentr.data()['section']][Math.floor(p/num)][p%num][1][j%cwidth.length];
+            if(d1==d2){
+                cel.append("svg:image").attr("xlink:href","/resources/checkmark.png").attr("class","icon")
+                    .attr("x",function(){
+                        if(title[j%cwidth.length]=="First name"||title[j%cwidth.length]=="Last name"){return 0;}
+                        if(title[j%cwidth.length]=="ID"){return 35;}
+                        if(title[j%cwidth.length]=="DoB(M/D/Y)"){return 40;}
+                        if(title[j%cwidth.length]=="Sex"){return 20;}
+                        if(title[j%cwidth.length]=="Race"){return 25;}
+                    })
+                    .attr("y",cy/2-5).attr("width",18).attr("height",18);
+                t = "";
+                check = 1;
+                experimentr.data()['checks']+=0.5;
+            }
+        }
+
+        //diff
+        n_cond = experimentr.data()['n_diff']=='A' && ['First name', 'Last name'].indexOf(title[j%cwidth.length])>-1;
+        i_cond = experimentr.data()['i_diff']=='A' && title[j%cwidth.length]=='ID';
+        d_cond = experimentr.data()['d_diff']=='A' && title[j%cwidth.length]=='DoB(M/D/Y)';
+        r_cond = experimentr.data()['r_diff']=='A' && title[j%cwidth.length]=='Race';
+        g_cond = experimentr.data()['g_diff']=='A' && title[j%cwidth.length]=='Sex';
+
+        if(n_cond||i_cond||d_cond||r_cond||g_cond){
+            var p = g.attr("id").slice(1),
+                d1 = experimentr.data()[experimentr.data()['section']][Math.floor(p/num)][p%num][0][mapping[j%cwidth.length]],
+                d2 = experimentr.data()[experimentr.data()['section']][Math.floor(p/num)][p%num][1][mapping[j%cwidth.length]];
+            if(d1.indexOf('*')<0 && d2.indexOf('*')<0 && d1.length*d2.length>0 && t.indexOf('&')<0 && t.indexOf('@')<0){
+                if(j<2*cwidth.length){
+                    g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/diff.svg")
+                        .attr("class", "icon")
+                        .attr("x", function () {
+                            if (title[j%cwidth.length]=="First name" || title[j%cwidth.length]=="Last name"){return 0;}
+                            if (title[j%cwidth.length]=="DoB(M/D/Y)"){return 25;}
+                            if (title[j%cwidth.length]=="ID"){return 28;}
+                            if (title[j%cwidth.length]=="Sex"){return 17;}
+                            return 20;
+                        })
+                        .attr("y", cy / 2 + 5).attr("width", 35).attr("height", 35);
+                }
+                diff=1;
+            }
+        }
+
+        n_cond = experimentr.data()['n_diff']=='Y' && ['First name', 'Last name'].indexOf(title[j%cwidth.length])>-1;
+        i_cond = experimentr.data()['i_diff']=='Y' && title[j%cwidth.length]=='ID';
+        d_cond = experimentr.data()['d_diff']=='Y' && title[j%cwidth.length]=='DoB(M/D/Y)';
+        r_cond = experimentr.data()['r_diff']=='Y' && title[j%cwidth.length]=='Race';
+        g_cond = experimentr.data()['g_diff']=='Y' && title[j%cwidth.length]=='Sex';
+
+        if(n_cond||i_cond||d_cond||r_cond||g_cond){
+            var p = g.attr("id").slice(1),
+                d1 = experimentr.data()[experimentr.data()['section']][Math.floor(p/num)][p%num][0][mapping[j%cwidth.length]],
+                d2 = experimentr.data()[experimentr.data()['section']][Math.floor(p/num)][p%num][1][mapping[j%cwidth.length]];
+
+            if(d1.indexOf('*')<0 && d2.indexOf('*')<0 && d1.length*d2.length>0 && t.indexOf('&')<0 && t.indexOf('@')<0){
+                if(j>2*cwidth.length){t = t.replace(/[A-Z0-9]|\040|\'|\-/g, '&');}
+                else if(j>cwidth.length){
+                    t = t.replace(/[A-Z0-9]|\040|\'|\-/g, '@');
+                    g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/diff.svg")
+                        .attr("class", "icon")
+                        .attr("x", function () {
+                            if (title[j%cwidth.length]=="First name" || title[j%cwidth.length]=="Last name"){return 0;}
+                            if (title[j%cwidth.length]=="DoB(M/D/Y)"){return 25;}
+                            if (title[j%cwidth.length]=="ID"){return 28;}
+                            if (title[j%cwidth.length]=="Sex"){return 17;}
+                            return 20;
+                        })
+                        .attr("y", cy / 2 + 5).attr("width", 35).attr("height", 35);
+                }
+                diff=1;
+            }
+        }
+
+        //date swap
+        d_cond = experimentr.data()['d_swap']=='Y' && title[j%cwidth.length]=='DoB(M/D/Y)';
+        if(d_cond){
+            var p = g.attr("id").slice(1),
+                d1 = experimentr.data()[experimentr.data()['section']][Math.floor(p/num)][p%num][0][j%cwidth.length],
+                d2 = experimentr.data()[experimentr.data()['section']][Math.floor(p/num)][p%num][1][j%cwidth.length];
+            if(d1.length*d2.length>0){
+                if(d1[0]==d2[3] && d1[1]==d2[4] && d1[3]==d2[0] && d1[4]==d2[1]){
+                    if(j<2*cwidth.length){
+                        g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/swap_date.svg")
+                            .attr("class", "icon").attr("x", 15)
+                            .attr("y", cy / 2 + 13).attr("width", 23).attr("height", 23);
+                    }
+                    bin.push(0,1,3,4);
+                    experimentr.data()['dswap']+=0.5;
+                    date_swap = 1;
+                }
+            }
+        }
+
+        // indel, transpose, replace
+        n_cond = ['A', 'D', 'Y'].indexOf(experimentr.data()['n_similar'])>-1 && ['First name', 'Last name'].indexOf(title[j%cwidth.length])>-1;
+        i_cond = ['A', 'D', 'Y'].indexOf(experimentr.data()['i_similar'])>-1 && title[j%cwidth.length]=='ID';
+        d_cond = ['A', 'D', 'Y'].indexOf(experimentr.data()['d_similar'])>-1 && title[j%cwidth.length]=='DoB(M/D/Y)';
+        var indel = [],
+            replace = [],
+            transpose = [],
+            indel_ = [],
+            replace_ = [],
+            transpose_ = [],
+            trailing = [],
+            trailing_ = [];
+        if((n_cond||i_cond||d_cond) && swap==0 && diff==0 && check==0){
+            var p = g.attr("id").slice(1),
+                t_j = experimentr.data()[experimentr.data()['section']][Math.floor(p/num)][p%num][0][mapping[j%cwidth.length]],
+                t_m = experimentr.data()[experimentr.data()['section']][Math.floor(p/num)][p%num][1][mapping[j%cwidth.length]];
+            if (t_j != "" && t_m != ""){
+                for (var i = 0; i < Math.max(t_j.length, t_m.length); i++) {
+                    if ((t_j[i] == "_" && t_m[i] != "_") || (t_j[i] != "_" && t_m[i] == "_")){
+                        bin.push(i);
+                        if ((t_j[i] == "_" && t_m[i] != "_") || i > t_j.length) {
+                            indel_.push(i);
+                        }
+                        if ((t_j[i] != "_" && t_m[i] == "_") || i > t_m.length) {
+                            indel.push(i);
+                        }
+                        experimentr.data()['indel']+=1;
+                    }else if (bin.indexOf(i) == -1 && t_j[i] == t_m[i + 1] && t_j[i + 1] == t_m[i] && t_j[i] != "*" && t_m[i] != "*"
+                        && t_j[i + 1] != "*" && t_m[i + 1] != "*" && t_j[i] == t_m[i + 1] && t_j[i] != t_j[i + 1]) {
+                        //console.log(t_m, t_j);
+                        bin.push(i, i + 1);
+                        if (j < 2 * cwidth.length) {
+                            g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/transpose.png")
+                                .attr("class", "icon").attr("x", 9 * i + 4)
+                                .attr("y", cy / 2 + 13).attr("width", 18).attr("height", 18);
+                        }
+                        if(experimentr.data()['mode']!='Vanilla'){experimentr.data()['transpose']+=1;}
+                        transpose.push(i, i + 1);
+                        transpose_.push(i, i + 1);
+                    }else if (bin.indexOf(i) == -1 && t_j[i] != t_m[i] && t_j[i] != " " && t_m[i] != " ") {
+                        if (title[j % cwidth.length] != "ID" || (title[j % cwidth.length] == "ID" &&
+                            (j < 10 || Math.max(t_j.length, t_m.length) <= 10))) {
+                            bin.push(i);
+                            replace.push(i);
+                            replace_.push(i);
+                            if(experimentr.data()['mode']!='Vanilla'){experimentr.data()['replace']+=1;}
+                        } else {
+                            if (t_m[i] == "?" || t_j[i] == "?") {
+                                bin.push(i);
+                                trailing.push(i);
+                                trailing_.push(i);
+                            }
+                        }
+                    }
+                }
+                // reduce duplicate icons
+                var _indel = [],
+                    _replace = [],
+                    __indel = [],
+                    __replace = [];
+
+                for (var i = 0; i < indel.length; i++) {
+                    //console.log(indel.indexOf(indel[i]-1));
+                    if (indel.indexOf(indel[i] - 1) == -1) {
+                        _indel.push([indel[i]]);
+                    } else {
+                        _indel[_indel.length - 1].push(indel[i]);
+                    }
+                }
+
+                for (var i = 0; i < indel_.length; i++) {
+                    //console.log(indel.indexOf(indel[i]-1));
+                    if (indel_.indexOf(indel_[i] - 1) == -1) {
+                        _indel.push([indel_[i]]);
+                    } else {
+                        _indel[_indel.length - 1].push(indel_[i]);
+                    }
+                }
+
+                for (var i = 0; i < _indel.length; i++) {
+                    __indel.push(_indel[i].reduce((previous, current) => current += previous) / _indel[i].length);
+                }
+
+                for (var i = 0; i < replace.length; i++) {
+                    //console.log(replace.indexOf(replace[i]-1));
+                    if (replace.indexOf(replace[i] - 1) == -1) {
+                        _replace.push([replace[i]]);
+                    } else {
+                        _replace[_replace.length - 1].push(replace[i]);
+                    }
+                }
+
+                for (var i = 0; i < _replace.length; i++) {
+                    __replace.push(_replace[i].reduce((previous, current) => current += previous) / _replace[i].length);
+                }
+                if (j < 2 * cwidth.length) {
+                    for (var i = 0; i < __indel.length; i++) {
+                        g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/indel.png")
+                            .attr("class", "icon").attr("x", 9 * __indel[i] + "px")
+                            .attr("y", cy / 2 + 16).attr("width", 13).attr("height", 13);
+                    }
+
+                    for (var i = 0; i < __replace.length; i++) {
+                        g.select("#c" + j.toString()).append("svg:image").attr("xlink:href", "/resources/replace.png")
+                            .attr("class", "icon").attr("x", 9 * __replace[i] + "px")
+                            .attr("y", cy / 2 + 16).attr("width", 13).attr("height", 13);
+                    }
+                }
+                //console.log(_indel, __indel, _replace, __replace);
+            }
+        }
+
+        n_cond = ['D', 'Y'].indexOf(experimentr.data()['n_similar'])>-1 && ['First name', 'Last name'].indexOf(title[j%cwidth.length])>-1;
+        i_cond = ['D', 'Y'].indexOf(experimentr.data()['i_similar'])>-1 && title[j%cwidth.length]=='ID';
+        d_cond = ['D', 'Y'].indexOf(experimentr.data()['d_similar'])>-1 && title[j%cwidth.length]=='DoB(M/D/Y)';
+
+        if((n_cond||i_cond||d_cond) && swap==0 && diff==0 && check==0) {
+            var p = g.attr("id").slice(1),
+                ind = j<2*cwidth.length? 0:1;
+                t = experimentr.data()[experimentr.data()['section']][Math.floor(p / num)][p % num][ind][mapping[j % cwidth.length]];
+        }
+
+        n_cond = experimentr.data()['n_similar']=='Y' && ['First name', 'Last name'].indexOf(title[j%cwidth.length])>-1;
+        i_cond = experimentr.data()['i_similar']=='Y' && title[j%cwidth.length]=='ID';
+        d_cond = experimentr.data()['d_similar']=='Y' && title[j%cwidth.length]=='DoB(M/D/Y)';
+
+        if((n_cond||i_cond||d_cond) && swap==0 && diff==0 && check==0){
+            if(j>2*cwidth.length){
+                t = t.replace(/[A-Z0-9]|\040|\'|\-/g, '&');
+            } else if(j>cwidth.length){
+                t = t.replace(/[A-Z0-9]|\040|\'|\-/g, '@');
+            }
+        }
+
+
+        var t_count = 0;
+        g.select("#c"+j.toString()).select(".span").remove();
+        var p = g.attr("id").slice(1), //pair id
+            dat = experimentr.data()[experimentr.data()['section']][Math.floor(p/num)],
+            m = j>=2*cwidth.length ? j-cwidth.length : j+cwidth.length,
+            //len = textbox.text().length,
+            len = t.length,
+            $cel = g.select("#c"+j.toString()),
+            $tb = $cel.append("text").attr("class","span");
+        if(['Pair', 'FFreq', 'LFreq', 'ID.'].indexOf(title[j%cwidth.length])<0){
+            for(var l=0;l<len;l++){
+            if(t[l]!="_") {
+                var $tspan = $tb.append('tspan').attr("class", "char");
+                $tspan.attr("x", function () {
+                    if (title[j % cwidth.length] == "Race") {
+                        return "2em";
+                    }
+                    if (title[j % cwidth.length] == "Sex") {
+                        return "1.75em";
+                    }
+                    return 9 * t_count + "px";
+                }).attr("y", cy / 2 + 5)
+                    .style("font", function () {
+                        if (experimentr.data()['os'] == "MacOS") {
+                            return "16px Monaco";
+                        }
+                        if (experimentr.data()['os'] == "Linux") {
+                            return "16px Lucida Sans Typewriter";
+                        }
+                        return "16px Lucida Console";
+                    })
+                    .style("font-weight",function(){
+                        if((((j<2*cwidth.length && indel.indexOf(l)>-1)||(j>2*cwidth.length && indel_.indexOf(l)>-1))||
+                        (j<2*cwidth.length && replace.indexOf(l)>-1)||(j>2*cwidth.length && replace_.indexOf(l)>-1)||
+                        (j<2*cwidth.length && transpose.indexOf(l)>-1)||(j>2*cwidth.length && transpose_.indexOf(l)>-1)||
+                        (j<2*cwidth.length && trailing.indexOf(l)>-1)||(j>2*cwidth.length && trailing_.indexOf(l)>-1))){return "bold";}})
+                    .attr("fill",function(){
+                        if((j<2*cwidth.length && indel.indexOf(l)>-1)||(j>2*cwidth.length && indel_.indexOf(l)>-1)||
+                            (j<2*cwidth.length && trailing.indexOf(l)>-1)||(j>2*cwidth.length && trailing_.indexOf(l)>-1)){return "#33ce45";}
+                        else if((j<2*cwidth.length && replace.indexOf(l)>-1)||(j>2*cwidth.length && replace_.indexOf(l)>-1)){return "#9b3d18";}
+                        else if((j<2*cwidth.length && transpose.indexOf(l)>-1)||(j>2*cwidth.length && transpose_.indexOf(l)>-1)){return "#009fff";}
+                        return "black";})
+                    .text(function () {
+                        if (t[l] == "?") {
+                            return "";
+                        }
+                        return t[l];
+                    });
+                t_count += 1;
+            }
+            }
+        }
+        g.select("#t"+j.toString()).remove();
+    }
+
+}
+
+function cell(t,g,j){
+    // erase title columns
+    var index_r = g.attr("id").slice(1)%6,
+        x = 40*(j%cwidth.length)+cwidth.slice(0,j%cwidth.length).reduce((a, b) => a + b, 0),
+        y = index_r==0&&j>=cwidth.length ? ys[Math.floor(j/cwidth.length)]+20 : ys[Math.floor(j/cwidth.length)],
+        cx = cwidth[j%cwidth.length],
+        cy = height,
+        cel = g.append("g").attr("id","c"+j.toString()).attr("class","cell")
+        .attr("transform","translate("+x+","+y+")");
+
+    var rectangle = cel.append("rect").attr("id",j);
+    if(index_r==0 && j<cwidth.length){
+        rectangle.attr("x",0).attr("y",0).attr("width",cx+40).attr("id","r"+j.toString())
+            .attr("height",function(){if(j==cwidth.length){return cy*2+23;}if(j==2*cwidth.length||(index_r>0 && j<cwidth.length)){return 0;}return cy;})
+            .style("fill","none")
+            .style("fill",function(){if(j<=cwidth.length){return "#add8e6";}})
+            .style("opacity",1);
+    }
+
+    var textbox = cel.append("text").attr("class","tbox").attr("id","t"+j.toString());
+    textbox.attr("x",function(){
+        if(t=="ID"){return 18;}
+        if(t=="Race"){return 20;}
+        if(t=="Sex"){return 20;}
+        if(title[j%cwidth.length]=="Sex" && experimentr.data()["mode"]=="Vanilla"){return "2em";}
+        if(j>cwidth.length && title[j%cwidth.length]=="Race"){return "2em";}
+        if(j==cwidth.length){return cx/2;}
+        return 0;})
+        .attr("y",function(){if(j==cwidth.length){return cy/2+28;}return cy/2+5;})
+        .attr("text-anchor",function(){
+            if(j==cwidth.length){return "middle";}
+            // || title[j%cwidth.length]=="Race"
+            return "left";})
+        .style("font",function(){
+            if(experimentr.data()['os']=="MacOS"){return "16px Monaco";}
+            if(experimentr.data()['os']=="Linux"){return "16px Lucida Sans Typewriter";}
+            return "16px Lucida Console";})//.style("font-weight","bold")
+        .text(function(){
+            if(title[j%cwidth.length]=="ID."){return " ";}
+            else if(j==2*cwidth.length||(index_r>0 && j<cwidth.length)){return " ";}
+            else if(j>cwidth.length && (title[j%cwidth.length]=="FFreq"||title[j%cwidth.length]=="LFreq")){return "";}
+            return t;
+        }).style("fill", function(){if(j>=cwidth.length && j%cwidth.length<1){return "grey";}});
+    if(j<cwidth.length){
         textbox.style("font-weight","bold");
     }
 
@@ -113,7 +556,7 @@ function cell(t,g,j,k){
 
     if(j>cwidth.length){
         //icons for frequency
-        if(k==3 && (title[j%cwidth.length]=="FFreq"||title[j%cwidth.length]=="LFreq")) {
+        if(j%cwidth.length>0 && (title[j%cwidth.length]=="FFreq"||title[j%cwidth.length]=="LFreq")) {
             var div = cel.append("g").style("opacity",0);
             var bg = div.append("rect").style("fill","none").attr("x",-2).attr("y",-14).attr("width",0).attr("height",20)
                 .attr("stroke", "grey")
@@ -191,9 +634,8 @@ function cell(t,g,j,k){
                 if(["Vanilla","Full"].indexOf(experimentr.data()["mode"])<0){
                     t = t.replace(/[A-Z0-9]/g, function(){if(j%14>9){return "&";}return "@";});
                 }
-                if(experimentr.data()['mode']!='Vanilla'){experimentr.data()['nswap']+=0.25};
+                if(experimentr.data()['mode']!='Vanilla'){experimentr.data()['nswap']+=0.25;}
             }
-            //console.log(j, fnj, fnm, lnj, lnm);
         }
         if(textbox.text()==""){
             if(title[j%cwidth.length]!="FFreq" && title[j%cwidth.length]!="LFreq"){
@@ -515,7 +957,7 @@ function cell(t,g,j,k){
     //     ['First name', 'Last name', 'DoB(M/D/Y)'].indexOf(title[j%cwidth.length])>-1){
     //     console.log(t);
     // }
-    if((experimentr.data()['mode']!="Vanilla") && k>=3 && k<=6 &&
+    if((experimentr.data()['mode']!="Vanilla") && j>cwidth.length && j%cwidth.length>0 &&
         title[j%cwidth.length]!="ID." && title[j%cwidth.length]!="LFreq" && title[j%cwidth.length]!="FFreq"){
         g.select("#c"+j.toString()).select(".span").remove();
         var p = g.attr("id").slice(1), //pair id
@@ -648,7 +1090,7 @@ function cell(t,g,j,k){
                 }else{
                     experimentr.data()['close_cell']+=1;
                 }
-                if(t.match(/\&|\@|\*/g)){console.log(t.match(/\&|\@|\*/g));}
+                //if(t.match(/\&|\@|\*/g)){console.log(t.match(/\&|\@|\*/g));}
                 //if(t.match(/[A-Z0-9]|\'|\-/g)){console.log(t.match(/[A-Z0-9]|\'|\-/g));}
                 experimentr.data()['symbol_display']+= t.match(/\&|\@|\*/g)? t.match(/\&|\@|\*/g).length:0;
                 experimentr.data()['char_display']+=t.match(/[A-Z0-9]|\'|\-/g)?t.match(/[A-Z0-9]|\'|\-/g).length:0;
@@ -656,8 +1098,8 @@ function cell(t,g,j,k){
             }
             //console.log(title[j%cwidth.length], t, cel.selectAll('.char').length);
         }
-        console.log(experimentr.data()['open_cell'],experimentr.data()['partial_cell'],experimentr.data()['close_cell'],
-            experimentr.data()['char_display'],experimentr.data()['symbol_display'],experimentr.data()['no_display'],);
+        //console.log(experimentr.data()['open_cell'],experimentr.data()['partial_cell'],experimentr.data()['close_cell'],
+        //    experimentr.data()['char_display'],experimentr.data()['symbol_display'],experimentr.data()['no_display'],);
     }
 
     if(['section2'].indexOf(experimentr.data()['section'])>-1 && j>cwidth.length &&
@@ -704,22 +1146,11 @@ function cell(t,g,j,k){
  * @param j : row number 0/1/2
  * @param k : cell type list
  */
-function row(t,g,j,k){
+function row(t,g,j){
     var l = 0;
     for(var i=0;i<cwidth.length;i++){
-        if(k[i]!=9){
-            // console.log("The t is ",t[mapping[i]]);
-            if(title[i%cwidth.length]=="Sex" && k[i]!=1){
-                if(experimentr.data()["mode"]=="Partial") {
-                    cell(t[i],g,j*cwidth.length+l,k[i],t[mapping[i]]);
-                } else {
-                    cell(t[mapping[i]],g,j*cwidth.length+l,k[i],t[i]);
-                }
-            } else {
-                cell(t[i],g,j*cwidth.length+l,k[i],t[mapping[i]]);
-            }
-            l+=1;
-        }
+        cell_(t[i],g,j*cwidth.length+l);
+        l+=1;
     }
 }
 
@@ -730,179 +1161,24 @@ function row(t,g,j,k){
  * @param g:svg
  * @param m:mode
  */
-function pair(t,g,m){
+function pair(t,g){
     var a = cwidth.length,
         b = cwidth.length+mapping.length,
-        c = cwidth.length+2*mapping.length;
-    var k = new Array(c).fill(1);
-
-    k[a] = 2;
-    k[b] = 0;
-    var row1 = t.slice(a,b),
-        row2 = t.slice(b,c),
-        k1 = k.slice(a,b),
-        k2 = k.slice(b,c);
-
-    if(m=="Vanilla" || m=="Full"){
-        mapping = [0,9,2,10,11,5,12,7,14,1,3,4,6,7,8,15];
-    } else{
-        mapping = [0,9,2,10,11,5,12,13,14,1,3,4,6,7,8,15];
-    }
-
-    if(m=="Partial"){
-        for(var j=1;j<mapping.length;j++){
-            k[a+j] = j<a ? 3:9; k[b+j] = j<a ? 3:9;
-        }
-        row1 = t.slice(a,b);row2 = t.slice(b,c);
-        k1 = k.slice(a,b);k2 = k.slice(b,c);
-
-
-        for(var j=0;j<mapping.length;j++){
-            row1[j] = t[a+mapping[j]];row2[j] = t[b+mapping[j]];
-        }
-        //console.log(row1, row2);
-
-        for(var j = 0;j<a;j++){
-
-            if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Pair" && title[j] != "ID."){
-                if(row1[j] == row2[j] && row1[j]!=""){
-                    if(['ID', 'Last name', 'First name', 'DoB(M/D/Y)', 'Sex', 'Race'].indexOf(title[j%cwidth.length])>-1){
-                        experimentr.data()["no_display"]+=row1[mapping[j%cwidth.length]].match(/[A-Z0-9]|\040|\'|\-\./g)?
-                            row1[mapping[j%cwidth.length]].match(/[A-Z0-9]|\040|\'|\-\./g).length:0;
-                        experimentr.data()["no_display"]+=row2[mapping[j%cwidth.length]].match(/[A-Z0-9]|\040|\'|\-\./g)?
-                            row2[mapping[j%cwidth.length]].match(/[A-Z0-9]|\040|\'|\-\./g).length:0;
-                    }
-                    row1[j] = " ";
-                    row2[j] = " ";
-                } else {
-                    if(row1[j]=="" && row2[j]!=""){row2[j] = row2[j].replace(/[A-Z0-9]|\040|\'|\-/g, '*');}
-                    if(row2[j]=="" && row1[j]!=""){row1[j] = row1[j].replace(/[A-Z0-9]|\040|\'|\-/g, '*');}
-                    //row1[j] = row1[j].replace(/[A-Z0-9]/g, '@');
-                    //row2[j] = row2[j].replace(/[A-Z0-9]/g, '&');
-                }
-            }
-        }
-    }
-    else if(m=="Vanilla"){
-        for(var j=1;j<mapping.length;j++){
-            k[a+j] = j<a ? 3:9; k[b+j] = j<a ? 3:9;
-        }
-        k1 = k.slice(a,b);k2 = k.slice(b,c);
-        for(var j=2;j<a;j++){
-            if(title[j] == "FFreq" || title[j] == "LFreq"){
-                t[j] = " "; row1[j] = " "; row2[j] = " ";
-            }
-        }
-        //console.log(row1, row2);
-    }
-    else if(m=="Full"){
-        for(var j=1;j<mapping.length;j++){
-            k[a+j] = j<a ? 3:9;k[b+j] = j<a ? 3:9;
-            if(j<cwidth.length){
-                if(["First name", "Last name", "ID"].indexOf(title[j%cwidth.length])>-1){
-                    //console.log(t[a+j].length, t[a+mapping[j]].length, t[b+j].length, t[b+mapping[j]].length);
-                    if(row1[j].length!=row1[mapping[j]].length){
-                        for(var i=0;i<row1[mapping[j]].length;i++){
-                            if(row1[mapping[j]][i]=="_"){
-                                row1[j] = row1[j].slice(0,i)+"_"+row1[j].slice(i)
-                            }
-                        }
-                        //console.log(row1[j], row1[mapping[j]]);
-                    }
-                    if(row2[j].length!=row2[mapping[j]].length){
-                        for(var i=0;i<row2[mapping[j]].length;i++){
-                            if(row2[mapping[j]][i]=="_"){
-                                row2[j] = row2[j].slice(0,i)+"_"+row2[j].slice(i)
-                            }
-                        }
-                        //console.log(row2[j], row2[mapping[j]]);
-                    }
-
-                }
-            }
-        }
-        k1 = k.slice(a,b);k2 = k.slice(b,c);
-    }else{
-        // var mapping = [0,1,3,8,9,5,10,11,2,4,6,7];
-        for(var j=0;j<mapping.length;j++){
-            row1[j] = t[a+mapping[j]];row2[j] = t[b+mapping[j]];
-        }
-        //console.log(row1, row2);
-        k1[0] = 2;k2[0] = 0;
-        if(m=="Hidden"){
-            for(var j=1;j<mapping.length;j++){
-                k1[j] = j<a ? 3:9;k2[j] = j<a ? 3:9;
-                if(j>0 && j<a && title[j] != "FFreq" && title[j] != "LFreq" && row1[j]==row2[j] && row1[j]!=""){
-                    k1[j] = 4;k2[j] = 5;
-                }
-            }
-        }
-
-        if(m=="Opti2"||m=="Opti1"){
-            for(var j=1;j<mapping.length;j++){
-                k1[j] = j<a ? 3:9;k2[j] = j<a ? 3:9;
-                if(j>0 && j<a && title[j] != "FFreq" && title[j] != "LFreq" && row1[j]==row2[j] && row1[j]!=""){
-                    k1[j] = 4;k2[j] = 5;
-                }
-            }
-
-            for(var j = 0;j<a;j++){
-                if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Pair" && title[j] != "ID."){
-                    if(row1[j] == row2[j] && row1[j]!=""){
-                        if(['ID', 'Last name', 'First name', 'DoB(M/D/Y)', 'Race'].indexOf(title[j%cwidth.length])>-1){
-                            experimentr.data()["no_display"]+=row1[mapping[j%cwidth.length]].match(/[A-Z0-9]|\040|\'|\-\./g).length;
-                            experimentr.data()["no_display"]+=row2[mapping[j%cwidth.length]].match(/[A-Z0-9]|\040|\'|\-\./g).length;
-                        }
-                        row1[j] = " ";
-                        row2[j] = " ";
-                    }else if(row1[j]==""){
-                        row2[j] = row2[j].replace(/[A-Z0-9]|\040|\'|\-/g, "*");
-                    }else if(row2[j]==""){
-                        row1[j] = row1[j].replace(/[A-Z0-9]|\040|\'|\-/g, "*");
-                    }
-                }
-            }
-            //console.log(row1, row2);
-        }
-        if(m=="Partial_Row"||m=="Partial_Cell"){
-            for(var j=1;j<mapping.length;j++){
-                k1[j] = j<a ? 3:9;k2[j] = j<a ? 3:9;
-                if(j>0 && j<a && title[j] != "FFreq" && title[j] != "LFreq" && row1[j]==row2[j] && row1[j]!=""){
-                    k1[j] = 4;k2[j] = 5;
-                }
-                if(j>1 && j<a && title[j] != "FFreq" && title[j] != "LFreq" && row1[j]!=row2[j] && row1[j]!="" && row2[j]!=""){
-                    k1[j] = 6;k2[j] = 6;
-                }
-            }
-
-            //for check mark
-            for(var j = 0;j<a;j++){
-                if(title[j] != "FFreq" && title[j] != "LFreq" && title[j] != "Pair" && title[j] != "ID."){
-                    if(row1[j] == row2[j] && row1[j]!=""){
-                        if(['ID', 'Last name', 'First name', 'DoB(M/D/Y)', 'Race'].indexOf(title[j%cwidth.length])>-1){
-                            experimentr.data()["no_display"]+=row1[mapping[j%cwidth.length]].match(/[A-Z0-9]|\040|\'|\-\./g).length;
-                            experimentr.data()["no_display"]+=row2[mapping[j%cwidth.length]].match(/[A-Z0-9]|\040|\'|\-\./g).length;
-                        }
-                        row1[j] = " ";
-                        row2[j] = " ";
-                    }else if(row1[j]==""){
-                        row2[j] = row2[j].replace(/[A-Z0-9]/g, "*");
-                    }else if(row2[j]==""){
-                        row1[j] = row1[j].replace(/[A-Z0-9]/g, "*");
-                    }
-                }
-            }
-        }
-    }
-    var id = g.attr("id").slice(1)%6;
+        c = cwidth.length+2*mapping.length,
+        num = +experimentr.data()['num_pairs'],
+        row1 = t.slice(a,b),
+        row2 = t.slice(b,c);
+    var id = g.attr("id").slice(1)%num;
     if(id%2==1){
-        var bg = g.append("rect").attr("id",j).attr("height", 120).attr("width", 1800).attr("y", 10).style("fill", "#eaf2ff");
+        var bg = g.append("rect").attr("id",id).attr("height", 120).attr("width", 1800).attr("y", 10).style("fill", "#eaf2ff");
     }
     if(id==0){
-        row(t.slice(0,a),g,0,k.slice(0,a));
+        row(t.slice(0,a),g,0);
     }
-    row(row1,g,1,k1);
-    row(row2,g,2,k2);
+    //console.log(row1);
+    //console.log(row2);
+    row(row1,g,1);
+    row(row2,g,2);
 }
 
 
@@ -913,51 +1189,46 @@ function pair(t,g,m){
  * @param n : number of pairs
  * @param m : mode
  */
-function pairs(t,s,n,m) {
-    // console.log(t);
-    var num = n;
-    var len = 0;
+function pairs(t,s,n) {
+    var num = +experimentr.data()['num_pairs'],
+        len = 0;
     for(var i=0;i<n;i++){
-        var pr = t[i];
-        var ls_1 = pr[0][9].length;
-        var ls_2 = pr[1][9].length;
-        var cur_len = ls_1 >= ls_2 ? ls_1:ls_2;
+        var pr = t[i],
+            ls_1 = pr[0][9].length,
+            ls_2 = pr[1][9].length,
+            cur_len = ls_1 >= ls_2 ? ls_1:ls_2;
         len = len >= cur_len ? len:cur_len;
     }
-    //console.log(t);
-    //var cwidth = [60,80,60,160,200,60,140,150]; //910
-    //var lwidth = len* 13;
-    // var lwidth = 100 + (len-5) * 5;
-    // var extra_width = (200-lwidth)/2;
-    // //console.log(len,lwidth);
-    // cwidth = [60,200,60,180,lwidth,150,60+extra_width,100,20]; //910
-    for(var i=0;i<n;i++){
-        var g = d3.select("#table").append("svg").attr("class","blocks").attr("id","g"+(s*6+i).toString())
-            .attr("width", 1800).attr("height", function(){if(i==0){return 140;}return 120;});
-        t[i][0] = t[i][0].slice(0,t[i][0].length-2);
-        t[i][1] = t[i][1].slice(0,t[i][1].length-2);
-        pair(title.concat(t[i][0]).concat(t[i][1]),g,m);
-        if(i==0){
-            choices(g,1450,1,1,40);
-            // var panel = g.append("g").attr("id","panel").attr("transform","translate(920,0)");
-            var panel = g.append("g").attr("id","panel").attr("transform","translate(1350,0)");
+    console.log(num);
+    for(var i=0;i<num;i++){
+        if(t[i]){
+            var g = d3.select("#table").append("svg").attr("class","blocks").attr("id","g"+(s*num+i).toString())
+                .attr("width", 1800).attr("height", function(){if(i==0){return 140;}return 120;});
+            t[i][0] = t[i][0].slice(0,16);
+            t[i][1] = t[i][1].slice(0,16);
+            pair(title.concat(t[i][0]).concat(t[i][1]),g);
+            if(i==0){
+                choices(g,1450,1,1,40);
+                // var panel = g.append("g").attr("id","panel").attr("transform","translate(920,0)");
+                var panel = g.append("g").attr("id","panel").attr("transform","translate(1350,0)");
 
-            // var re = panel.append("rect").attr("x",30).attr("height",24).attr("width",320).style("fill","add8e6");
-            var re = panel.append("rect").attr("x",-20).attr("height",24).attr("width",570).style("fill","add8e6");
+                // var re = panel.append("rect").attr("x",30).attr("height",24).attr("width",320).style("fill","add8e6");
+                var re = panel.append("rect").attr("x",-20).attr("height",24).attr("width",570).style("fill","add8e6");
 
-            var te = panel.append("text")
-                .attr("x",170)
-                .attr("y",17)
-                .text("Choice Panel")
-                .style("font",function(){
-                    if(experimentr.data()['os']=="MacOS"){return "16px Monaco";}
-                    if(experimentr.data()['os']=="Linux"){return "16px Lucida Sans Typewriter";}
-                    return "16px Lucida Console";})
-                .style("font-weight","bold")
-                .attr("text-anchor","left")
-                .attr("fill","black");
-        }else{
-            choices(g,1450,1,1,20);
+                var te = panel.append("text")
+                    .attr("x",170)
+                    .attr("y",17)
+                    .text("Choice Panel")
+                    .style("font",function(){
+                        if(experimentr.data()['os']=="MacOS"){return "16px Monaco";}
+                        if(experimentr.data()['os']=="Linux"){return "16px Lucida Sans Typewriter";}
+                        return "16px Lucida Console";})
+                    .style("font-weight","bold")
+                    .attr("text-anchor","left")
+                    .attr("fill","black");
+            }else{
+                choices(g,1450,1,1,20);
+            }
         }
     }
 }
@@ -1146,6 +1417,7 @@ function alt_choices(svg,lBound,mode) {
 function parsing(route, dest){
     d3.text(route, function (csvdata) {
         var groups = {};
+        var num = +experimentr.data()['num_pairs'];
         var parsedCSV = d3.csv.parseRows(csvdata);
         for (var j = 1; j < parsedCSV.length; j++) {
             if (!(parsedCSV[j][0] in groups)) {
@@ -1171,8 +1443,8 @@ function parsing(route, dest){
         var tmp = [];
         //console.log(raw_binary.length);
         for (var i = 0; i < raw_binary.length; i++) {
-            if (tmp.length == 6) {
-                if(tmp.length<6){
+            if (tmp.length == num) {
+                if(tmp.length<num){
                     tmp.push(raw_binary[i]);
                 }
                 binary.push(tmp);
@@ -1218,6 +1490,60 @@ function parsing(route, dest){
         experimentr.addData(data);
     });
 }
+
+/*
+ parsing data as groups
+ */
+function group_parsing(route, dest){
+    d3.text(route, function (csvdata) {
+        var groups = {};
+        var grouped = {};
+        var num = +experimentr.data()['num_pairs'];
+        var parsedCSV = d3.csv.parseRows(csvdata);
+        for (var j = 1; j < parsedCSV.length; j++) {
+            if (!(parsedCSV[j][0] in groups)) {
+                groups[parsedCSV[j][0]] = [parsedCSV[j]];
+            } else {
+                groups[parsedCSV[j][0]] = groups[parsedCSV[j][0]].concat([parsedCSV[j]]);
+            }
+        }
+        var values = Object.keys(groups).map(function (key) {
+            return groups[key];
+        });
+        var raw_binary = values.filter(function (d) {
+            return d.length == 2;
+        });
+        if(experimentr.data()['section']=='mat'){
+            n_pair = raw_binary.length;
+        }
+        if(experimentr.data()['section']=='section2'){
+            s2_n_pair = raw_binary.length;
+        }
+        for(i in groups){
+            var t = groups[i][0][groups[i][0].length-1];
+            if(!(t in grouped)){
+                grouped[t] = [groups[i]];
+            }else{
+                grouped[t] = grouped[t].concat([groups[i]]);
+            }
+        }
+        data[dest] = [];
+        var keys = Object.keys(grouped);
+        keys.sort();
+        var i, len = keys.length;
+        for(i=0;i<len;i++){
+            data[dest].push(grouped[keys[i]]);
+        }
+        var answer = [];
+        for(var i=0;i<raw_binary.length;i++){
+            answer.push(raw_binary[i][0][17]);
+        }
+        data[dest+'_answer'] = answer;
+        experimentr.addData(data);
+    });
+}
+
+
 
 // main study grading
 function grading(){
@@ -1277,6 +1603,7 @@ function grading2(){
     data['s2_total_score'] = total;
     experimentr.addData(data);
 }
+
 
 /*
  Parsing for practice part

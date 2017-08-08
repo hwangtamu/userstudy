@@ -43,7 +43,8 @@
         <div id="table"></div>
     </div>
     <br>
-    <button id="submitComments" class="next-button" type="button">Ready to Answer Questions?</button><label id="answer_all" style="position: absolute; left: 150px; color: red;"></label><br>
+    <button id="submitComments" class="next-button" type="button" style="color: black; left: 35px;">Submit</button>
+    <label id="answer_all" style="position: absolute; left: 150px; color: red;"></label><br>
 </div>
 <br>
 </body>
@@ -55,8 +56,8 @@
         experimentr.startTimer('main_section');
         experimentr.data()['section'] = 'mat';
         experimentr.hideNext();
+        console.log(experimentr.data());
         // pages
-
         var step = 0,
             sec_switch = 0;
 
@@ -98,8 +99,9 @@
                 .style("fill", "none");
         }
 
-        console.log(experimentr.data());
-        add_mod_intros("recap_1.PNG");
+        //console.log(experimentr.data());
+        //add_mod_intros("recap_1.PNG");
+        pairs(experimentr.data()["mat"][0], 0, experimentr.data()["mat"][0].length);
 
 
         var mod_pages = [1,2,4];
@@ -143,42 +145,19 @@
 //        }
 
         function render_content(){
-            if(step==experimentr.data()["mat"].length-1){
+            if(step==experimentr.data()["mat"].length-2){
                 experimentr.endTimer('main_section');
                 grading();
                 goToNext();
             }else {
-
-                if (sec_switch == 1 && (mod_pages.indexOf(step) > -1)) {
-                    console.log(step);
-                    d3.select('#submitComments').style("left", "50%").property("innerHTML","Ready to Answer Questions?");
+                d3.select("#notation").text("");
+                d3.select('#submitComments').style("left", "35px").property("innerHTML","Submit");
+                setTimeout(function () {
                     d3.selectAll(".blocks").remove();
-                    d3.select("#notation").html("");
-                    add_mod_intros("recap_" + (step + 1) + ".PNG");
-
-                    delay_next(250);
-                    sec_switch = 0
-                } else {
-//                    d3.select("#notation").text("Page " + (step + 1).toString() + "/" + (experimentr.data()['mat'].length - 1).toString());
-                    d3.select("#notation").text("");
-                    d3.select('#submitComments').style("left", "35px").property("innerHTML","Submit");
-
-                    setTimeout(function () {
-                        d3.selectAll(".blocks").remove();
-                        pairs(experimentr.data()["mat"][step - 1], step - 1, experimentr.data()["mat"][step - 1].length, experimentr.data()["mode"]);
-                        if (experimentr.data()["mode"] == "Vanilla") {
-                            d3.selectAll(".icon").remove();
-                            d3.selectAll(".freq").remove();
-                            d3.selectAll(".tip").remove();
-                        }
-                    }, 100);
-
-                    delay_next(350);
-
-                    step += 1;
-                    sec_switch = 1;
-
-                }
+                    pairs(experimentr.data()["mat"][step], step, experimentr.data()["mat"][step].length);
+                }, 100);
+                delay_next(350);
+                step += 1;
             }
         }
 
@@ -192,7 +171,7 @@
                 if(parse_url().testing === 'true'){
                     render_content();
                 } else {
-                    if(d3.selectAll(".blocks")[0].length > 0){
+                    if(d3.selectAll(".blocks")[0].length>0){
                         if(all_answered()){
                             render_content();
                         } else {
