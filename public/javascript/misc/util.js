@@ -486,7 +486,7 @@ function cell_(t,g,j){
                         return t[l];
                     });
                 t_count += 1;
-            }
+                }
             }
         }
         g.select("#t"+j.toString()).remove();
@@ -1534,6 +1534,7 @@ function group_parsing(route, dest){
         for(i=0;i<len;i++){
             data[dest].push(grouped[keys[i]]);
         }
+        data[dest].push([]);
         var answer = [];
         for(var i=0;i<raw_binary.length;i++){
             answer.push(raw_binary[i][0][17]);
