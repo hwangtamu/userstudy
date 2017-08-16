@@ -52,15 +52,14 @@
 <script>
     (function(){
         $.getScript("javascript/misc/util.js");
-        console.log(experimentr.data()["mat"]);
+        //console.log(experimentr.data()["mat"]);
         experimentr.startTimer('main_section');
         experimentr.data()['section'] = 'mat';
         experimentr.hideNext();
-        console.log(experimentr.data());
+        //console.log(experimentr.data());
         // pages
         var step = 0,
             sec_switch = 0;
-
         function delay_next(time){
             d3.select("#submitComments").attr("disabled","true");
             d3.select("#submitComments").style("color","#b3b3b3");
@@ -145,6 +144,8 @@
 //        }
 
         function render_content(){
+            //console.log(experimentr.data()["mat"]);
+            get_output();
             if(step==experimentr.data()["mat"].length-2){
                 experimentr.endTimer('main_section');
                 grading();
@@ -181,12 +182,9 @@
                         render_content();
                     }
                 }
-
                 // time elapse
                 experimentr.data()['switch'].push(Date.now());
                 experimentr.save();
             });
-
-
     }());
 </script>

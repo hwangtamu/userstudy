@@ -138,7 +138,7 @@ function cell_(t,g,j){
             check = 0,
             bin = [];
         //name swap
-        if(experimentr.data()['n_swap']=='Y' && (title[j%cwidth.length]=="First name"||title[j%cwidth.length]=="Last name")){
+        if(['Y', 'A'].indexOf(experimentr.data()['n_swap'])>-1 && (title[j%cwidth.length]=="First name"||title[j%cwidth.length]=="Last name")){
             var m = j+cwidth.length,
                 p = g.attr("id").slice(1),
                 dat = experimentr.data()[experimentr.data()['section']][Math.floor(p/num)],
@@ -166,7 +166,9 @@ function cell_(t,g,j){
                     cel.append("svg:image").attr("xlink:href","/resources/name_swap.svg").attr("class","icon")
                         .attr("x",cwidth[j%cwidth.length]-45).attr("y",cy/2-8).attr("width",60).attr("height",60);
                 }
-                t = t.replace(/[A-Z0-9]/g, function(){if(j%14>9){return "&";}return "@";});
+                if(experimentr.data()['n_swap']=='Y'){
+                    t = t.replace(/[A-Z0-9]/g, function(){if(j%14>9){return "&";}return "@";});
+                }
                 experimentr.data()['nswap']+=0.25;
             }
         }
@@ -225,7 +227,7 @@ function cell_(t,g,j){
         }
 
         //diff
-        n_cond = experimentr.data()['n_diff']=='A' && ['First name', 'Last name'].indexOf(title[j%cwidth.length])>-1;
+        n_cond = swap==0 && experimentr.data()['n_diff']=='A' && ['First name', 'Last name'].indexOf(title[j%cwidth.length])>-1;
         i_cond = experimentr.data()['i_diff']=='A' && title[j%cwidth.length]=='ID';
         d_cond = experimentr.data()['d_diff']=='A' && title[j%cwidth.length]=='DoB(M/D/Y)';
         r_cond = experimentr.data()['r_diff']=='A' && title[j%cwidth.length]=='Race';
@@ -252,7 +254,7 @@ function cell_(t,g,j){
             }
         }
 
-        n_cond = experimentr.data()['n_diff']=='Y' && ['First name', 'Last name'].indexOf(title[j%cwidth.length])>-1;
+        n_cond = swap==0 && experimentr.data()['n_diff']=='Y' && ['First name', 'Last name'].indexOf(title[j%cwidth.length])>-1;
         i_cond = experimentr.data()['i_diff']=='Y' && title[j%cwidth.length]=='ID';
         d_cond = experimentr.data()['d_diff']=='Y' && title[j%cwidth.length]=='DoB(M/D/Y)';
         r_cond = experimentr.data()['r_diff']=='Y' && title[j%cwidth.length]=='Race';
@@ -283,7 +285,7 @@ function cell_(t,g,j){
         }
 
         //date swap
-        d_cond = experimentr.data()['d_swap']=='Y' && title[j%cwidth.length]=='DoB(M/D/Y)';
+        d_cond = experimentr.data()['d_swap']=='Y' && title[j%cwidth.length]=='DoB(M/D/Y)' && diff==0;
         if(d_cond){
             var p = g.attr("id").slice(1),
                 d1 = experimentr.data()[experimentr.data()['section']][Math.floor(p/num)][p%num][0][j%cwidth.length],
@@ -303,9 +305,9 @@ function cell_(t,g,j){
         }
 
         // indel, transpose, replace
-        n_cond = ['A', 'D', 'Y'].indexOf(experimentr.data()['n_similar'])>-1 && ['First name', 'Last name'].indexOf(title[j%cwidth.length])>-1;
-        i_cond = ['A', 'D', 'Y'].indexOf(experimentr.data()['i_similar'])>-1 && title[j%cwidth.length]=='ID';
-        d_cond = ['A', 'D', 'Y'].indexOf(experimentr.data()['d_similar'])>-1 && title[j%cwidth.length]=='DoB(M/D/Y)';
+        n_cond = diff==0 && ['A', 'D', 'Y'].indexOf(experimentr.data()['n_similar'])>-1 && ['First name', 'Last name'].indexOf(title[j%cwidth.length])>-1;
+        i_cond = diff==0 && ['A', 'D', 'Y'].indexOf(experimentr.data()['i_similar'])>-1 && title[j%cwidth.length]=='ID';
+        d_cond = diff==0 && ['A', 'D', 'Y'].indexOf(experimentr.data()['d_similar'])>-1 && title[j%cwidth.length]=='DoB(M/D/Y)';
         var indel = [],
             replace = [],
             transpose = [],
@@ -414,9 +416,9 @@ function cell_(t,g,j){
             }
         }
 
-        n_cond = ['D', 'Y'].indexOf(experimentr.data()['n_similar'])>-1 && ['First name', 'Last name'].indexOf(title[j%cwidth.length])>-1;
-        i_cond = ['D', 'Y'].indexOf(experimentr.data()['i_similar'])>-1 && title[j%cwidth.length]=='ID';
-        d_cond = ['D', 'Y'].indexOf(experimentr.data()['d_similar'])>-1 && title[j%cwidth.length]=='DoB(M/D/Y)';
+        n_cond = diff==0 && ['D', 'Y'].indexOf(experimentr.data()['n_similar'])>-1 && ['First name', 'Last name'].indexOf(title[j%cwidth.length])>-1;
+        i_cond = diff==0 && ['D', 'Y'].indexOf(experimentr.data()['i_similar'])>-1 && title[j%cwidth.length]=='ID';
+        d_cond = diff==0 && ['D', 'Y'].indexOf(experimentr.data()['d_similar'])>-1 && title[j%cwidth.length]=='DoB(M/D/Y)';
 
         if((n_cond||i_cond||d_cond) && swap==0 && diff==0 && check==0) {
             var p = g.attr("id").slice(1),
@@ -424,9 +426,9 @@ function cell_(t,g,j){
                 t = experimentr.data()[experimentr.data()['section']][Math.floor(p / num)][p % num][ind][mapping[j % cwidth.length]];
         }
 
-        n_cond = experimentr.data()['n_similar']=='Y' && ['First name', 'Last name'].indexOf(title[j%cwidth.length])>-1;
-        i_cond = experimentr.data()['i_similar']=='Y' && title[j%cwidth.length]=='ID';
-        d_cond = experimentr.data()['d_similar']=='Y' && title[j%cwidth.length]=='DoB(M/D/Y)';
+        n_cond = diff==0 && experimentr.data()['n_similar']=='Y' && ['First name', 'Last name'].indexOf(title[j%cwidth.length])>-1;
+        i_cond = diff==0 && experimentr.data()['i_similar']=='Y' && title[j%cwidth.length]=='ID';
+        d_cond = diff==0 && experimentr.data()['d_similar']=='Y' && title[j%cwidth.length]=='DoB(M/D/Y)';
 
         if((n_cond||i_cond||d_cond) && swap==0 && diff==0 && check==0){
             if(j>2*cwidth.length){
@@ -1492,6 +1494,130 @@ function parsing(route, dest){
 }
 
 /*
+upload a data set
+ */
+function reload(dest){
+    var groups = {};
+    var num = +experimentr.data()['num_pairs'];
+    var parsedCSV = d3.csv.parseRows(experimentr.data()['raw']);
+    for (var j = 1; j < parsedCSV.length; j++) {
+        if (!(parsedCSV[j][0] in groups)) {
+            groups[parsedCSV[j][0]] = [parsedCSV[j]];
+        } else {
+            groups[parsedCSV[j][0]] = groups[parsedCSV[j][0]].concat([parsedCSV[j]]);
+        }
+    }
+    var values = Object.keys(groups).map(function (key) {
+        return groups[key];
+    });
+    var raw_binary = values.filter(function (d) {
+        return d.length == 2;
+    });
+    n_pair = raw_binary.length;
+    var binary = [];
+    var other = [];
+    var tmp = [];
+    //console.log(raw_binary.length);
+    for (var i = 0; i < raw_binary.length; i++) {
+        if (tmp.length == num) {
+            if(tmp.length<num){
+                tmp.push(raw_binary[i]);
+            }
+            binary.push(tmp);
+            tmp = [raw_binary[i]];
+        } else {
+            tmp.push(raw_binary[i]);
+        }
+        //console.log(raw_binary[i]);
+    }
+    //console.log(tmp);
+    if (tmp != []) {
+        binary.push(tmp);
+    }
+    binary.push([]);
+    tmp = values.filter(function (d) {
+        return d.length == 4;
+    });
+    for (var i = 0; i < tmp.length; i++) {
+        var t = [];
+        for (var j = 0; j < tmp[i].length / 2; j++) {
+            t.push([tmp[i][2 * j], tmp[i][2 * j + 1]]);
+        }
+        other.push(t);
+    }
+    tmp = values.filter(function (d) {
+        return d.length == 6;
+    });
+    for (var i = 0; i < tmp.length; i++) {
+        var t = [];
+        for (var j = 0; j < tmp[i].length / 2; j++) {
+            t.push([tmp[i][2 * j], tmp[i][2 * j + 1]]);
+        }
+        other.push(t);
+    }
+    data[dest] = binary.concat(other);
+    // answer keys
+
+    var answer = [];
+    for(var i=0;i<raw_binary.length;i++){
+        answer.push(raw_binary[i][0][raw_binary[i][0].length-1]);
+    }
+    data[dest+'_answer'] = answer;
+    experimentr.addData(data);
+}
+
+/*
+upload a data set in groups
+ */
+function reload_group(dest){
+    var groups = {};
+    var grouped = {};
+    var num = +experimentr.data()['num_pairs'];
+    var parsedCSV = d3.csv.parseRows(experimentr.data()['raw']);
+    for (var j = 1; j < parsedCSV.length; j++) {
+        if (!(parsedCSV[j][0] in groups)) {
+            groups[parsedCSV[j][0]] = [parsedCSV[j]];
+        } else {
+            groups[parsedCSV[j][0]] = groups[parsedCSV[j][0]].concat([parsedCSV[j]]);
+        }
+    }
+    var values = Object.keys(groups).map(function (key) {
+        return groups[key];
+    });
+    var raw_binary = values.filter(function (d) {
+        return d.length == 2;
+    });
+    if(experimentr.data()['section']=='mat'){
+        n_pair = raw_binary.length;
+    }
+    if(experimentr.data()['section']=='section2'){
+        s2_n_pair = raw_binary.length;
+    }
+    for(i in groups){
+        var t = groups[i][0][groups[i][0].length-1];
+        if(!(t in grouped)){
+            grouped[t] = [groups[i]];
+        }else{
+            grouped[t] = grouped[t].concat([groups[i]]);
+        }
+    }
+    data[dest] = [];
+    var keys = Object.keys(grouped);
+    keys.sort();
+    var i, len = keys.length;
+    for(i=0;i<len;i++){
+        data[dest].push(grouped[keys[i]]);
+    }
+    data[dest].push([]);
+    var answer = [];
+    for(var i=0;i<raw_binary.length;i++){
+        answer.push(raw_binary[i][0][17]);
+    }
+    data[dest+'_answer'] = answer;
+    experimentr.addData(data);
+}
+
+/*
  parsing data as groups
  */
 function group_parsing(route, dest){
@@ -1550,9 +1676,11 @@ function group_parsing(route, dest){
 function grading(){
     //init
     var grades = [],
-        answers = {};
+        answers = {},
+        decision = [];
     for(var i=0;i<n_pair;i++){
         grades.push(0);
+        decision.push(-1);
     }
     //retrieve answers
     for(var k in experimentr.data()['clicks']){
@@ -1569,8 +1697,10 @@ function grading(){
         else{
             grades[+i] = 0;
         }
+        decision[+i] = answers[i]+1;
     }
     var total = Object.values(grades).reduce((a, b) => a + b, 0);
+    data['decision'] = decision;
     data['grades'] = grades;
     data['total_score'] = total;
     experimentr.addData(data);
@@ -1689,7 +1819,20 @@ function parse_url() {
 /*
  Measure amount of disclosure
  */
-function statictics(){
-    var d = experimentr.data()['mat'];
-    console.log(d);
+function get_output(){
+    grading();
+    if(experimentr.data()['mat']){
+        var t = d3.csv.parseRows(experimentr.data()['raw'])[0];
+        t.push('Decision');
+
+        var csvContent = "data:text/csv;charset=utf-8,"+t.join(',')+'\n';
+        var tmp = experimentr.data()['raw'].split('\n').slice(1);
+        for(var i in tmp){
+            tmp[i]=tmp[i].slice(0,tmp[i].length-1)+','+experimentr.data()['decision'][Math.round(i/2-0.5)]+',';
+        }
+        //console.log(tmp);
+        csvContent+=tmp.join('\n');
+        experimentr.data()['output'] = encodeURI(csvContent);
+    }
+
 }
