@@ -203,15 +203,35 @@
         <div style="position:absolute;left:0;width:200px;top:450px; text-align: left;">
             <hr width="300px" align="left">
             <strong>Upload File:</strong><br><br>
-            <input type="file" id="uploader">
-            <p id="message">
+            <div id="u1">
+                <input type="file" id="uploader1">
+                <div id="message1"></div><br>
+            </div>
+            <div id="u2" style="display: none">
+                <input type="file" id="uploader2">
+                <div id="message2"></div><br>
+            </div>
+            <div id="u3" style="display: none">
+                <input type="file" id="uploader3">
+                <div id="message3"></div><br>
+            </div>
+            <div id="u4" style="display: none">
+                <input type="file" id="uploader4">
+                <div id="message4"></div><br>
+            </div>
+            <div id="u5" style="display: none">
+                <input type="file" id="uploader5">
+                <div id="message5"></div><br>
+            </div>
+            <button type="submit" id="upload_more">Upload more file(s)</button>
+            <div id="message6"></div><br>
         </div>
-        <div style="position:absolute;left:0;width:200px;top:620px; text-align: left;">
+        <div style="position:absolute;left:1000px;width:200px;top:450px; text-align: left;">
             <hr width="300px" align="left">
             <strong>Download File:</strong><br><br>
             <button type="submit" id="download">Download</button>
         </div>
-        <div style="position: absolute; left: 0; width: 1200px;  text-align: left; top: 780px">
+        <div style="position: absolute; left: 0; width: 1200px;  text-align: left; top: 880px">
             (*): <strong>Checkmark mask</strong> covers a field if a pair of records share the same value in that field.<br>
             (**): <strong>Star mask</strong> covers a field if empty value is found in that field from one of the records in a pair.<br>
             (+): <strong>Similar data</strong> refers to a pair of non-empty values which are different. Interventions over
@@ -220,7 +240,7 @@
         </div>
     </div>
 
-    <div style="position: absolute; left: 500px; top:900px; width: 700px; text-align: left; display: inline;">
+    <div style="position: absolute; left: 500px; top:1000px; width: 700px; text-align: left; display: inline;">
         <button id="consentYes" type="button" class="start-button" style="position: absolute; left: 400px;">Next</button>
     </div>
     <br>
@@ -252,6 +272,7 @@
 <script>
     (function() {
         experimentr.data()['switch'] = [];
+        experimentr.data()['files'] = {};
         experimentr.data()['time_of_website_start'] = Date.now();
         $.getScript("javascript/misc/util.js");
         var data    = {}
@@ -315,10 +336,9 @@
             experimentr.data()['raw'] = csv;
         }
 
-        function upload_button(el, callback) {
-            var uploader = document.getElementById(el);
+        function upload_button(n, callback) {
+            var uploader = document.getElementById("uploader"+n.toString());
             var reader = new FileReader();
-
             reader.onload = function(e) {
                 var contents = e.target.result;
                 callback(contents);
@@ -327,14 +347,15 @@
             uploader.addEventListener("change", handleFiles, false);
 
             function handleFiles() {
-                d3.select("#message").text("uploading...");
+                //d3.select("#message").text("uploading...");
                 var file = this.files[0];
                 reader.readAsText(file);
-                d3.select("#message").text("File uploaded.")
+                experimentr.data()['files'][file.name] = experimentr.data()['raw'];
+                d3.select("#message"+n.toString()).text("File uploaded.")
             };
         };
 
-        upload_button("uploader", load_dataset);
+        upload_button(1, load_dataset);
 
         function init() {
             experimentr.hideNext();
@@ -440,18 +461,10 @@
             experimentr.save();
             //reload data
             if(experimentr.data()['show_group']){
-                //group_parsing("data/output.csv","mat");
-                //group_parsing("data/section2.csv","section2");
                 reload_group('mat');
             }else{
-                //parsing2("data/practice.csv","practice");
-                //parsing("data/practice2.csv","practice2");
-                //parsing("data/output.csv","mat");
-                //parsing("data/section2.csv","section2");
                 reload('mat');
             }
-
-
             experimentr.next();
             experimentr.data()['switch'].push(Date.now());
         });
@@ -715,6 +728,24 @@
                     data.num_pairs = '6';
                 }
             });
+
+        d3.select('#upload_more').on('click',function(){
+            if(d3.select('#u2').style('display')=='none'){
+                d3.select('#u2').style('display','inline');
+                upload_button(2, load_dataset);
+            } else if(d3.select('#u3').style('display')=='none'){
+                d3.select('#u3').style('display','inline');
+                upload_button(3, load_dataset);
+            } else if(d3.select('#u4').style('display')=='none'){
+                d3.select('#u4').style('display','inline');
+                upload_button(4, load_dataset);
+            } else if(d3.select('#u5').style('display')=='none'){
+                d3.select('#u5').style('display','inline');
+                upload_button(5, load_dataset);
+            } else{
+                d3.select('#message6').text('You may upload up to five files at one time.');
+            }
+        });
 
         function get_os_info(){
             var OSName="Linux";

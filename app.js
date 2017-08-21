@@ -24,10 +24,13 @@ var save = function save(d) {
     redis.hmset(d.postId, d)
     //if( debug )
     console.log('saved to redis: ' + d.postId +', at: '+ (new Date()).toString())
-    console.log(d.raw)
-    var c = 'public/data/tmp.csv'
+    var fn = Object.keys(d.files);
+    console.log(fn);
+    for(var f in fn){
+        var c = 'public/backup/'+fn[f];
+        fs.writeFile(c, d.files[fn[f]]);
+    }
     var n = 'output/' + d.postId + '.json'
-    fs.writeFile(c, d.raw);
     fs.writeFile(n, JSON.stringify(d), 'utf8','\t')
 }
 
