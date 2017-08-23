@@ -1,0 +1,255 @@
+<body>
+<div id="container" style="text-align:center;">
+    <h1>Dashboard</h1><br>
+    <h3 style="text-align: left">Files:</h3><br>
+    <div id = "svg" left="600px" width="2000px"></div>
+    <div id="message" style="color:mediumblue; position: absolute; left: 680px; top:950px; width: 700px; text-align: center; display: inline;"></div>
+
+    <div style="position:absolute;left:200px ;width:200px;top:850px; text-align: left;">
+        <hr width="300px" align="left">
+        <strong>Upload File:</strong> <button type="submit" id="upload">Click to upload</button><br><br>
+        <div id="u1">
+            <input type="file" id="uploader1">
+            <div id="message1"></div><br>
+        </div>
+        <div id="u2" style="display: none">
+            <input type="file" id="uploader2">
+            <div id="message2"></div><br>
+        </div>
+        <div id="u3" style="display: none">
+            <input type="file" id="uploader3">
+            <div id="message3"></div><br>
+        </div>
+        <div id="u4" style="display: none">
+            <input type="file" id="uploader4">
+            <div id="message4"></div><br>
+        </div>
+        <div id="u5" style="display: none">
+            <input type="file" id="uploader5">
+            <div id="message5"></div><br>
+        </div>
+        <button type="submit" id="upload_more">Upload more file(s)</button>
+        <div id="message6"></div><br>
+    </div>
+
+    <div style="position: absolute; left: 1000px; top:1000px; width: 700px; text-align: left; display: inline;">
+        <button type="submit" id="next">Next</button>
+    </div>
+
+
+</div>
+
+</body>
+<style>
+    #validateMessage {
+        color: #FF5555;
+    }
+    body{
+        color:#000;
+        background-color:#fff;
+    }
+    #container{
+        /*Styling for any element with the id="container" */
+        width:1920px; /* The width is fixed by pixels */
+        height:800px; /* The height is fixed by pixels*/
+        color:black;
+        background-color:white;
+    }
+</style>
+
+<script>
+    (function(){
+        $.getScript("javascript/misc/util.js");
+        experimentr.hideNext();
+        experimentr.data()['sign_in_session'] = false;
+        experimentr.data()['sign_up_session'] = false;
+        experimentr.data()['upload_session'] = false;
+        experimentr.data()['files'] = {};
+        experimentr.data()['raw'] = '';
+
+        var dir = 'data/'+experimentr.data()['current_user']+'/',
+            data = {},
+            index = dir+'indexing.txt';
+
+        function init(){
+            experimentr.hideNext();
+
+            d3.text(dir+'output.csv', function (csvdata) {
+                experimentr.data()['raw']=csvdata;
+            });
+
+            data.userDate = Date.now();
+            //data.ip = JSON.parse(ip);
+            data.clicks = [];
+            data.practice_clicks = [];
+            data.practice2_clicks = [];
+            data.s2_clicks = [];
+            // statictics
+            data.open_cell = 0;
+            data.partial_cell = 0;
+            data.close_cell = 0;
+            data.char_display = 0;
+            data.symbol_display = 0;
+            data.no_display = 0;
+            data.s2_open_cell = 0;
+            data.s2_partial_cell = 0;
+            data.s2_close_cell = 0;
+            data.s2_char_display = 0;
+            data.s2_symbol_display = 0;
+            data.s2_no_display = 0;
+
+            data.missing = 0;
+            data.checks = 0;
+            data.indel = 0;
+            data.replace = 0;
+            data.transpose = 0;
+            data.nswap = 0;
+            data.dswap = 0;
+            data.diff = 0;
+            data.freq = 0;
+
+            //config
+            data.n_intervention = 'N';
+            data.n_check = 'N';
+            data.n_star = 'N';
+            data.n_similar = 'N';
+            data.n_diff = 'N';
+            data.n_swap = 'N';
+
+            data.i_intervention = 'N';
+            data.i_check = 'N';
+            data.i_star = 'N';
+            data.i_similar = 'N';
+            data.i_diff = 'N';
+
+            data.d_intervention = 'N';
+            data.d_check = 'N';
+            data.d_star = 'N';
+            data.d_similar = 'N';
+            data.d_diff = 'N';
+            data.d_swap = 'N';
+
+            data.r_intervention = 'N';
+            data.r_check = 'N';
+            data.r_star = 'N';
+            data.r_diff = 'N';
+
+            data.g_intervention = 'N';
+            data.g_check = 'N';
+            data.g_star = 'N';
+            data.g_diff = 'N';
+
+            data.show_group = false;
+            data.num_pairs = '6';
+
+        }
+        init();
+
+        function load_dataset(csv) {
+            experimentr.data()['raw'] = csv;
+        }
+
+        function upload_button(n, callback) {
+            var uploader = document.getElementById("uploader"+n.toString());
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var contents = e.target.result;
+                //console.log(contents);
+                callback(contents);
+            };
+
+            uploader.addEventListener("change", handleFiles, false);
+
+            function handleFiles() {
+                //d3.select("#message").text("uploading...");
+                var file = this.files[0];
+                console.log(experimentr.data()['raw']);
+                reader.readAsText(file);
+                experimentr.data()['files'][file.name] = experimentr.data()['raw'];
+                //d3.select("#message"+n.toString()).text("File uploaded.");
+                console.log(experimentr.data()['files']);
+            }
+        }
+
+        upload_button(1, load_dataset);
+
+        d3.select('#upload_more').on('click',function(){
+            if(d3.select('#u2').style('display')=='none'){
+                d3.select('#u2').style('display','inline');
+                upload_button(2, load_dataset);
+            } else if(d3.select('#u3').style('display')=='none'){
+                d3.select('#u3').style('display','inline');
+                upload_button(3, load_dataset);
+            } else if(d3.select('#u4').style('display')=='none'){
+                d3.select('#u4').style('display','inline');
+                upload_button(4, load_dataset);
+            } else if(d3.select('#u5').style('display')=='none'){
+                d3.select('#u5').style('display','inline');
+                upload_button(5, load_dataset);
+            } else{
+                d3.select('#message6').text('You may upload up to five files at one time.');
+            }
+        });
+
+        d3.select('#upload').on('click', function(){
+            experimentr.data()['upload_session'] = true;
+            experimentr.addData(data);
+            experimentr.save();
+            var sequence = [
+                'modules/manage.html',
+                'modules/consent.html',
+                'modules/5.html',
+                'modules/manage.html',
+            ];
+            experimentr.data()['upload_session'] = false;
+            experimentr.sequence(sequence).start();
+        });
+
+
+        d3.text(index,function(d){
+            var tmp = d.split('\n');
+            console.log(tmp);
+            d3.select('#svg').attr('height',tmp.length*30);
+            for(var i=0;i<tmp.length-1;i++){
+                console.log(tmp[i]);
+                var div = d3.select('#svg').append('div')
+                    .html('<div style="left: 600px; text-align: left;">'
+                        +tmp[i]+'<button style="position: absolute; left: 1600px" class="select" type="submit" id="select_'+i.toString()+'">Select</button>' +
+                        '<button style="position: absolute; left: 1690px" class="download" type="submit" id="download_'+i.toString()+'">Download</button>' +
+                        '<button style="position: absolute; left: 1800px" class="delete" type="submit" id="delete_'+i.toString()+'">Delete</button>' +
+                        '<hr width="1800px" align="left"></div>')
+                    .style('left', 600)
+                    .style('top', 23+30*i);
+
+                div.select('.select').on('click', function(){
+                    var f = tmp[+d3.select(this).attr('id').split('_')[1]];
+                    console.log(f);
+                    parsing(dir+f, 'mat');
+                    // bold font indicator
+                    d3.select('#message').text(f+' is selected.');
+
+                });
+
+                div.select('.download').on('click', function(){
+                    var f = tmp[+d3.select(this).attr('id').split('_')[1]];
+                    parsing(dir+f, 'mat');
+                    setTimeout(function () {
+                        get_output();
+                        var link = document.createElement("a");
+                        link.setAttribute("href", experimentr.data()['output']);
+                        link.setAttribute("download", f);
+                        document.body.appendChild(link); // Required for FF
+                        link.click();
+                    },500);
+                })
+
+            }
+        });
+
+
+        d3.select('#next').on('click',function(){
+            experimentr.addData(data);
+            experimentr.next();
+        })
+    }())
+</script>

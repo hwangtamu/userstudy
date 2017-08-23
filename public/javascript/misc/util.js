@@ -1421,6 +1421,7 @@ function parsing(route, dest){
         var groups = {};
         var num = +experimentr.data()['num_pairs'];
         var parsedCSV = d3.csv.parseRows(csvdata);
+        experimentr.data()['raw'] = csvdata;
         for (var j = 1; j < parsedCSV.length; j++) {
             if (!(parsedCSV[j][0] in groups)) {
                 groups[parsedCSV[j][0]] = [parsedCSV[j]];
@@ -1670,8 +1671,6 @@ function group_parsing(route, dest){
     });
 }
 
-
-
 // main study grading
 function grading(){
     //init
@@ -1822,6 +1821,7 @@ function parse_url() {
 function get_output(){
     grading();
     if(experimentr.data()['mat']){
+        experimentr.data()['output'] = '';
         var t = d3.csv.parseRows(experimentr.data()['raw'])[0];
         t.push('Decision');
 
@@ -1834,5 +1834,45 @@ function get_output(){
         csvContent+=tmp.join('\n');
         experimentr.data()['output'] = encodeURI(csvContent);
     }
+
+}
+
+function load_user(){
+    var user = {};
+    d3.text('auth/user.csv', function(csvdata){
+        var parsedCSV = d3.csv.parseRows(csvdata);
+        experimentr.data()['u_title'] = [parsedCSV[0]];
+        for(var u=1;u<parsedCSV.length;u++){
+            //console.log(parsedCSV[u]);
+            if(!(parsedCSV[u][3] in user)){
+                user[parsedCSV[u][3]] = {};
+            }
+            user[parsedCSV[u][3]][parsedCSV[u][1]] = parsedCSV[u];
+            if(u==parsedCSV.length-1){
+                experimentr.data()['users'] = user;
+            }
+        }
+    });
+}
+
+function update_user(){
+    var keys = Object.keys(experimentr.data()['users']);
+    for(var k in keys){
+        var keys_ = Object.keys(experimentr.data()['users'][keys[k]]);
+        //console.log(experimentr.data()['users'][keys[i]]);
+        for(var kk in keys_){
+            experimentr.data()['u_title'].push(experimentr.data()['users'][keys[k]][keys_[kk]]);
+        }
+    }
+    var csvContent = "";
+    for(var i=0; i<experimentr.data()['u_title'].length;i++){
+        csvContent+=experimentr.data()['u_title'][i].join(',')+'\n';
+    }
+    experimentr.data()['u_title'] = csvContent;
+
+}
+
+function save_content(){
+    get_output();
 
 }

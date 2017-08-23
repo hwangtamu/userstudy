@@ -200,38 +200,8 @@
                 <input type="checkbox" name="groups" id="groups">
             </div>
         </div>
-        <div style="position:absolute;left:0;width:200px;top:450px; text-align: left;">
-            <hr width="300px" align="left">
-            <strong>Upload File:</strong><br><br>
-            <div id="u1">
-                <input type="file" id="uploader1">
-                <div id="message1"></div><br>
-            </div>
-            <div id="u2" style="display: none">
-                <input type="file" id="uploader2">
-                <div id="message2"></div><br>
-            </div>
-            <div id="u3" style="display: none">
-                <input type="file" id="uploader3">
-                <div id="message3"></div><br>
-            </div>
-            <div id="u4" style="display: none">
-                <input type="file" id="uploader4">
-                <div id="message4"></div><br>
-            </div>
-            <div id="u5" style="display: none">
-                <input type="file" id="uploader5">
-                <div id="message5"></div><br>
-            </div>
-            <button type="submit" id="upload_more">Upload more file(s)</button>
-            <div id="message6"></div><br>
-        </div>
-        <div style="position:absolute;left:1000px;width:200px;top:450px; text-align: left;">
-            <hr width="300px" align="left">
-            <strong>Download File:</strong><br><br>
-            <button type="submit" id="download">Download</button>
-        </div>
-        <div style="position: absolute; left: 0; width: 1200px;  text-align: left; top: 880px">
+
+        <div style="position: absolute; left: 0; width: 1200px;  text-align: left; top: 580px">
             (*): <strong>Checkmark mask</strong> covers a field if a pair of records share the same value in that field.<br>
             (**): <strong>Star mask</strong> covers a field if empty value is found in that field from one of the records in a pair.<br>
             (+): <strong>Similar data</strong> refers to a pair of non-empty values which are different. Interventions over
@@ -240,7 +210,7 @@
         </div>
     </div>
 
-    <div style="position: absolute; left: 500px; top:1000px; width: 700px; text-align: left; display: inline;">
+    <div style="position: absolute; left: 500px; top:700px; width: 700px; text-align: left; display: inline;">
         <button id="consentYes" type="button" class="start-button" style="position: absolute; left: 400px;">Next</button>
     </div>
     <br>
@@ -274,6 +244,12 @@
         experimentr.data()['switch'] = [];
         experimentr.data()['files'] = {};
         experimentr.data()['time_of_website_start'] = Date.now();
+        experimentr.data()['sign_in_session'] = false;
+        experimentr.data()['sign_up_session'] = false;
+
+        var dir = 'data/'+experimentr.data()['current_user'];
+
+
         $.getScript("javascript/misc/util.js");
         var data    = {}
             ,       w = 0
@@ -332,114 +308,8 @@
             });
         });
 
-        function load_dataset(csv) {
-            experimentr.data()['raw'] = csv;
-        }
-
-        function upload_button(n, callback) {
-            var uploader = document.getElementById("uploader"+n.toString());
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                var contents = e.target.result;
-                callback(contents);
-            };
-
-            uploader.addEventListener("change", handleFiles, false);
-
-            function handleFiles() {
-                //d3.select("#message").text("uploading...");
-                var file = this.files[0];
-                reader.readAsText(file);
-                experimentr.data()['files'][file.name] = experimentr.data()['raw'];
-                d3.select("#message"+n.toString()).text("File uploaded.")
-            };
-        };
-
-        upload_button(1, load_dataset);
-
         function init() {
             experimentr.hideNext();
-
-            var browser = get_browser_info();
-            var os = get_os_info();
-            var ip = $.ajax({type: "GET", url: "http://freegeoip.net/json/", async: false}).responseText;
-
-            console.log(browser);
-            console.log(os);
-            //console.log(ip);
-
-            d3.text('data/output.csv', function (csvdata) {
-                experimentr.data()['raw']=csvdata;
-            });
-
-
-            data.browserName = browser.name;
-            data.browserVersion = browser.version;
-            data.os = os;
-            //data.ip = ip;
-            data.userDate = Date.now();
-            //data.ip = JSON.parse(ip);
-            data.clicks = [];
-            data.practice_clicks = [];
-            data.practice2_clicks = [];
-            data.s2_clicks = [];
-            // statictics
-            data.open_cell = 0;
-            data.partial_cell = 0;
-            data.close_cell = 0;
-            data.char_display = 0;
-            data.symbol_display = 0;
-            data.no_display = 0;
-            data.s2_open_cell = 0;
-            data.s2_partial_cell = 0;
-            data.s2_close_cell = 0;
-            data.s2_char_display = 0;
-            data.s2_symbol_display = 0;
-            data.s2_no_display = 0;
-
-            data.missing = 0;
-            data.checks = 0;
-            data.indel = 0;
-            data.replace = 0;
-            data.transpose = 0;
-            data.nswap = 0;
-            data.dswap = 0;
-            data.diff = 0;
-            data.freq = 0;
-
-            //config
-            data.n_intervention = 'N';
-            data.n_check = 'N';
-            data.n_star = 'N';
-            data.n_similar = 'N';
-            data.n_diff = 'N';
-            data.n_swap = 'N';
-
-            data.i_intervention = 'N';
-            data.i_check = 'N';
-            data.i_star = 'N';
-            data.i_similar = 'N';
-            data.i_diff = 'N';
-
-            data.d_intervention = 'N';
-            data.d_check = 'N';
-            data.d_star = 'N';
-            data.d_similar = 'N';
-            data.d_diff = 'N';
-            data.d_swap = 'N';
-
-            data.r_intervention = 'N';
-            data.r_check = 'N';
-            data.r_star = 'N';
-            data.r_diff = 'N';
-
-            data.g_intervention = 'N';
-            data.g_check = 'N';
-            data.g_star = 'N';
-            data.g_diff = 'N';
-
-            data.show_group = false;
-            data.num_pairs = '6';
 
             load();
             for(var i in field){
@@ -729,24 +599,6 @@
                 }
             });
 
-        d3.select('#upload_more').on('click',function(){
-            if(d3.select('#u2').style('display')=='none'){
-                d3.select('#u2').style('display','inline');
-                upload_button(2, load_dataset);
-            } else if(d3.select('#u3').style('display')=='none'){
-                d3.select('#u3').style('display','inline');
-                upload_button(3, load_dataset);
-            } else if(d3.select('#u4').style('display')=='none'){
-                d3.select('#u4').style('display','inline');
-                upload_button(4, load_dataset);
-            } else if(d3.select('#u5').style('display')=='none'){
-                d3.select('#u5').style('display','inline');
-                upload_button(5, load_dataset);
-            } else{
-                d3.select('#message6').text('You may upload up to five files at one time.');
-            }
-        });
-
         function get_os_info(){
             var OSName="Linux";
             if (navigator.appVersion.indexOf("Win")!=-1) OSName="Windows";
@@ -772,19 +624,6 @@
                 name: M[0],
                 version: M[1]
             }
-        }
-        if(experimentr.data()['output']){
-            d3.select("#download").on('click', function(){
-                var link = document.createElement("a");
-                link.setAttribute("href", experimentr.data()['output']);
-                link.setAttribute("download", "output.csv");
-                document.body.appendChild(link); // Required for FF
-                link.click();
-            })
-        }else{
-            d3.select("#download").on('click', function(){
-                window.open('data/output.csv');
-            })
         }
     }());
 

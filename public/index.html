@@ -51,7 +51,9 @@
 <script>
 
     var sequence = [
-        'modules/consent.html',                      //0
+        'modules/registration.html',
+        'modules/manage.html',
+        'modules/consent.html',//0
         //'modules/pre_study_questionnaire.html',      //1
         //'modules/website_introduction.html',         //2
         //'modules/0.html',                            //3
@@ -62,7 +64,7 @@
         'modules/5.html',                            //8
         //'modules/section2.html',                     //9
         //'modules/post_study_questionnaire.html',     //10
-        'modules/consent.html',                       //11
+        'modules/manage.html',                       //11
 //        'modules/end.html'
     ];
 
@@ -90,7 +92,7 @@
     }();
 
     //console.log()
-    console.log("The mode is", + QueryString.mode);
+    //console.log("The mode is", + QueryString.mode);
     var mode = QueryString.mode;
 
     function find_mode(mode){
@@ -117,11 +119,11 @@
     }
 
 
-    console.log("The mode is "+find_mode(mode));
+    //console.log("The mode is "+find_mode(mode));
     experimentr.data()['mode'] = find_mode(mode);
     experimentr.data()['mode_number'] = mode;
     experimentr.data()['id'] = QueryString.id;
-    console.log("Skipping to section ",+QueryString.section);
+    //console.log("Skipping to section ",+QueryString.section);
     if(!isNaN(QueryString.section)){
         sequence = sequence.slice(QueryString.section);
 //        console.log(sequence);

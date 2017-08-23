@@ -1,0 +1,170 @@
+<body>
+<div id="container" style="text-align:center;">
+    <h1>Interactive Record Linkage User System</h1><br>
+    <svg>
+    <div id="login" style="position: absolute; left: 900px; top: 150px; text-align: right; display: block;">
+        <div style="position: absolute; left: 100px; top: -30px; text-align: left; display: inline;">Log in</div>
+        User name:
+        <input type="text" id="login_u" value = "" name="username"><br><br>
+        Password:
+        <input type="password" id="login_p" name="password"><br><br>
+
+    </div>
+
+    <div id="signup" style="position: absolute; left: 860px; top: 150px; text-align: right; display: none;">
+        <div style="position: absolute; left: 135px; top: -30px; text-align: left; display: inline;">Activate</div>
+        User name:
+        <input type="text" id="signup_u" name="username"><br><br>
+        Password:
+        <input type="password" id="signup_p" name="password"><br><br>
+        Repeat Password:
+        <input type="password" id="signup_rp" name="password2"><br><br>
+    </div>
+        <div style="position: absolute; left: 970px; top: 280px; text-align: left; display: inline;">
+            <span id="switch" name="switch" style="color:blue;text-decoration: underline;">I need an account</span>
+        </div>
+    </svg>
+    <div id="message" style="color:red; position: absolute; left: 680px; top:350px; width: 700px; text-align: center; display: inline;"></div>
+    <div style="position: absolute; left: 1000px; top:400px; width: 700px; text-align: left; display: inline;">
+        <button type="submit" id="Yes">Log in</button>
+    </div>
+
+
+</div>
+
+</body>
+<style>
+    #validateMessage {
+        color: #FF5555;
+    }
+    body{
+        color:#000;
+        background-color:#fff;
+    }
+    #container{
+        /*Styling for any element with the id="container" */
+        width:1920px; /* The width is fixed by pixels */
+        height:800px; /* The height is fixed by pixels*/
+        color:black;
+        background-color:white;
+    }
+</style>
+
+<script>
+    (function(){
+        $.getScript("javascript/misc/util.js");
+        load_user();
+        console.log(experimentr.data());
+        var uname  = ' ',
+            pwd = ' ',
+            pwd2 = '  ',
+            tmp_uname = '';
+
+        experimentr.data()['sign_in_session'] = false;
+        experimentr.data()['sign_up_session'] = false;
+        experimentr.data()['current_user'] = null;
+
+        function init(){
+            experimentr.hideNext();
+
+            d3.select('#switch').on('click',function(){
+                if(d3.select('#login').style('display')=='none'){
+                    d3.select('#login').style('display', 'block');
+                    d3.select('#signup').style('display','none');
+                    d3.select('#switch').text('I need an account');
+                    d3.select('#Yes').text('Log in');
+                }else{
+                    d3.select('#login').style('display', 'none');
+                    d3.select('#signup').style('display','block');
+                    d3.select('#switch').text('I have an account');
+                    d3.select('#Yes').text('Activate');
+                }
+                d3.select('#message').text('');
+            }).on({"mouseover": function(d) {
+                d3.select(this).style("cursor", "pointer")},
+                "mouseout": function(d) {d3.select(this).style("cursor", "default")}});
+
+            d3.selectAll('input')
+                .filter(function(d) { return this.name == "username" ? this : null; })
+                .on('change', function() { uname = this.value;});
+            d3.selectAll('input')
+                .filter(function(d) { return this.name == "password" ? this : null; })
+                .on('change', function() { pwd = this.value;});
+            d3.selectAll('input')
+                .filter(function(d) { return this.name == "password2" ? this : null; })
+                .on('change', function() { pwd2 = this.value;});
+        }
+
+        init();
+
+        function signup(){
+            if(pwd!=pwd2){
+                d3.select('#message').text('Passwords do not match.').style('color', 'red');
+            }else{
+                if(uname in experimentr.data()['users']['user']){
+                    if(experimentr.data()['users']['user'][uname][2]==pwd){
+                        if(experimentr.data()['users']['user'][uname][4]=='0'){
+                            // sign up
+                            experimentr.data()['sign_up_session'] = true;
+                            experimentr.data()['current_user'] = experimentr.data()['users']['user'][uname][0];
+                            experimentr.data()['users']['user'][uname][4]='1';
+                            tmp_uname = uname;
+                            update_user();
+                            experimentr.save();
+                            experimentr.data()['sign_up_session'] = false;
+                            d3.select('#message').text('Successfully activated!').style('color', '#00FF00');
+                        }else{
+                            d3.select('#message').text('This user name has been registered').style('color', 'red');
+                        }
+                    }
+                }else{
+                    d3.select('#message').text('Invalid user name.').style('color', 'red');
+                }
+            }
+
+        }
+
+        function login(){
+            //console.log(uname, pwd,123);
+            console.log(Object.keys(experimentr.data()['users']));
+            if(uname in experimentr.data()['users']['user']){
+                if(experimentr.data()['users']['user'][uname][2]==pwd
+                    && experimentr.data()['users']['user'][uname][4]=='1'){
+                    // user authenticated.
+                    experimentr.data()['sign_in_session'] = true;
+                    //console.log('user');
+                    experimentr.data()['current_user'] = experimentr.data()['users']['user'][uname][0];
+                    experimentr.save();
+                    experimentr.data()['sign_in_session'] = false;
+                    experimentr.next();
+
+                }
+            }
+            else if(uname in experimentr.data()['users']['admin']){
+                if(experimentr.data()['users']['admin'][uname][2]==pwd
+                    && experimentr.data()['users']['admin'][uname][4]=='1'){
+                    // admin authenticated.
+                    //console.log('admin');
+                }
+            }else{
+                d3.select('#message').text('Incorrect Username or password.').style('color', 'red');
+            }
+        }
+
+        d3.select('#Yes').on('click', function(){
+            if(d3.select('#login').style('display')=='block'){
+                //log in
+                login();
+            }else {
+                //sign up
+                signup();
+                if (d3.select('#message').text() == 'Successfully activated!') {
+                    document.getElementById('switch').click();
+                    d3.select('#login_u').attr('value', tmp_uname);
+                    d3.select('#message').text('Successfully activated!').style('color', '#00FF00');
+                }
+            }
+            //experimentr.next();
+        });
+    }())
+</script>

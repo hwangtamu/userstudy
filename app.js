@@ -24,15 +24,44 @@ var save = function save(d) {
     redis.hmset(d.postId, d)
     //if( debug )
     console.log('saved to redis: ' + d.postId +', at: '+ (new Date()).toString())
-    var fn = Object.keys(d.files);
-    console.log(fn);
-    for(var f in fn){
-        var c = 'public/backup/'+fn[f];
-        fs.writeFile(c, d.files[fn[f]]);
+    var dir = 'public/data/'+d.current_user;
+
+    // save file session
+    if(d.upload_session){
+        var fn = Object.keys(d.files);
+        //console.log(fn);
+        for(var f in fn){
+            var c = dir+'/'+fn[f];
+            fs.writeFile(c, d.files[fn[f]]);
+            fs.appendFile(dir+'/indexing.txt',fn[f]+'\n');
+        }
+        var n = 'output/' + d.postId + '.json'
+        fs.writeFile(n, JSON.stringify(d), 'utf8','\t')
     }
-    var n = 'output/' + d.postId + '.json'
-    fs.writeFile(n, JSON.stringify(d), 'utf8','\t')
+    // sign in session
+    if(d.sign_in_session){
+        fs.appendFile(dir+'/log.txt', 'Logged in at '+(new Date())+'\n');
+    }
+
+    // sign up session
+    if(d.sign_up_session){
+        fs.writeFile('public/auth/user.csv', d.u_title);
+        if (!fs.existsSync(dir)){
+            fs.mkdirSync(dir);
+        }
+        // create log
+        fs.writeFile(dir+'/log.txt', 'Activated at '+(new Date())+'\n');
+        // file indexing
+        fs.writeFile(dir+'/indexing.txt', 'output.csv'+'\n');
+        // create sample file
+        fs.createReadStream('public/data/output.csv').pipe(fs.createWriteStream(dir+'/output.csv'));
+        fs.writeFile(dir+'/output.conf','');
+    }
 }
+
+
+
+
 
 // Server setup
 var app = express()
@@ -89,24 +118,24 @@ app.get('/',function(req,res){
 //     console.log(query)
 // })
 
-app.post('/',function(req,res) {
-    //console.log("moving code");
-    var files = req.files;
-    var oldpath = files.filetoupload.path;
-    //var newpath = "./public/" + files.filetoupload.name;
-    // var newpath = "./public/data/" + "output.csv";
-    var newpath = "./public/data/" + req.body.type;
-    console.log(req)
-    mv(oldpath, newpath, function (err) {
-        if (err) {
-            throw err;
-        };
-    });
-    console.log('File uploaded');
-    //res.write('<p>File uploaded</p> </br>');
-    // res.write('<button onclick="location.href = '/';" id="myButton" class="float-left submit-button" >Home</button>');
-    res.end();
-});
+// app.post('/',function(req,res) {
+//     //console.log("moving code");
+//     var files = req.files;
+//     var oldpath = files.filetoupload.path;
+//     //var newpath = "./public/" + files.filetoupload.name;
+//     // var newpath = "./public/data/" + "output.csv";
+//     var newpath = "./public/data/" + req.body.type;
+//     console.log(req)
+//     mv(oldpath, newpath, function (err) {
+//         if (err) {
+//             throw err;
+//         };
+//     });
+//     console.log('File uploaded');
+//     //res.write('<p>File uploaded</p> </br>');
+//     // res.write('<button onclick="location.href = '/';" id="myButton" class="float-left submit-button" >Home</button>');
+//     res.end();
+// });
 
 // Create the server and tell which port to listen to
 app.listen(app.get('port'), function() {
