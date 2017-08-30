@@ -6,6 +6,7 @@ var path = require('path')
 var formidable = require('express-formidable')
 var fs = require('fs')
 var mv = require('mv')
+var dateFormat = require('dateformat')
 var bodyParser = require('body-parser')
 
 
@@ -25,6 +26,7 @@ var save = function save(d) {
     //if( debug )
     console.log('saved to redis: ' + d.postId +', at: '+ (new Date()).toString())
     var dir = 'public/data/'+d.current_user;
+    var tmp = {};
 
     // save file session
     if(d.upload_session){
@@ -33,9 +35,10 @@ var save = function save(d) {
         for(var f in fn){
             var c = dir+'/'+fn[f];
             fs.writeFile(c, d.files[fn[f]]);
+            fs.writeFile(c+'.conf', '');
             fs.appendFile(dir+'/indexing.txt',fn[f]+'\n');
         }
-        var n = 'output/' + d.postId + '.json'
+        var n = 'output/' + d.postId + '.json';
         fs.writeFile(n, JSON.stringify(d), 'utf8','\t')
     }
     // sign in session
@@ -55,12 +58,77 @@ var save = function save(d) {
         fs.writeFile(dir+'/indexing.txt', 'output.csv'+'\n');
         // create sample file
         fs.createReadStream('public/data/output.csv').pipe(fs.createWriteStream(dir+'/output.csv'));
-        fs.writeFile(dir+'/output.conf','');
+        fs.writeFile(dir+'/output.csv.conf','');
+    }
+
+    // save config
+    if(d.control_session){
+        var tmp = {};
+
+        tmp.n_intervention = d.n_intervention;
+        tmp.n_check = d.n_check;
+        tmp.n_star = d.n_star;
+        tmp.n_similar = d.n_similar;
+        tmp.n_diff = d.n_diff;
+        tmp.n_swap = d.n_swap;
+
+        tmp.i_intervention = d.i_intervention;
+        tmp.i_check = d.i_check;
+        tmp.i_star = d.i_star;
+        tmp.i_similar = d.i_similar;
+        tmp.i_diff = d.i_diff;
+
+        tmp.d_intervention = d.d_intervention;
+        tmp.d_check = d.d_check;
+        tmp.d_star = d.d_star;
+        tmp.d_similar = d.d_similar;
+        tmp.d_diff = d.d_diff;
+        tmp.d_swap = d.d_swap;
+
+        tmp.r_intervention = d.r_intervention;
+        tmp.r_check = d.r_check;
+        tmp.r_star = d.r_star;
+        tmp.r_diff = d.r_diff;
+
+        tmp.g_intervention = d.g_intervention;
+        tmp.g_check = d.g_check;
+        tmp.g_star = d.g_star;
+        tmp.g_diff = d.g_diff;
+
+        tmp.show_group = d.show_group;
+        tmp.num_pairs = d.num_pairs;
+        tmp.decision = [];
+        tmp.date = dateFormat(new Date(), "dddd, mmmm dS, yyyy, h:MM:ss TT");
+
+        fs.readFile(dir+'/'+d.current_file+'.conf', 'utf8', function(err, data){
+            //if (err) throw err; // we'll not consider error handling for now
+            var obj = {};
+            if(data.length>1){
+                var obj = JSON.parse(data);
+            }
+            if(d.current_conf){
+                obj[d.current_conf] = tmp;
+            }else{
+                obj[0] = tmp;
+            }
+            //console.log(obj);
+            fs.writeFile(dir+'/'+d.current_file+'.conf',JSON.stringify(obj), 'utf8','\t' )
+        })
+
+
+
+    }
+
+    if(d.working_session){
+        fs.readFile(dir+'/'+d.current_file+'.conf', 'utf8', function(err, data){
+            if (err) throw err; // we'll not consider error handling for now
+            var obj = JSON.parse(data);
+            obj[d.current_conf].decision = d.decision;
+            obj[d.current_conf].date = dateFormat(new Date(), "dddd, mmmm dS, yyyy, h:MM:ss TT");
+            fs.writeFile(dir+'/'+d.current_file+'.conf',JSON.stringify(obj), 'utf8','\t' )
+        })
     }
 }
-
-
-
 
 
 // Server setup
@@ -83,9 +151,6 @@ app.post('/', function handlePost(req, res) {
     // Send a 'success' response to the frontend
     res.send(200)
 })
-
-
-
 
 //bodyparser
 app.use(bodyParser.json());

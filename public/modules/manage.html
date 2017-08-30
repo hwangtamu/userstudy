@@ -64,8 +64,11 @@
         experimentr.data()['sign_in_session'] = false;
         experimentr.data()['sign_up_session'] = false;
         experimentr.data()['upload_session'] = false;
+        experimentr.data()['control_session'] = false;
+        experimentr.data()['working_session'] = false;
         experimentr.data()['files'] = {};
         experimentr.data()['raw'] = '';
+        experimentr.data()['current_conf'] = null;
 
         var dir = 'data/'+experimentr.data()['current_user']+'/',
             data = {},
@@ -197,6 +200,7 @@
             experimentr.save();
             var sequence = [
                 'modules/manage.html',
+                'modules/load.html',
                 'modules/consent.html',
                 'modules/5.html',
                 'modules/manage.html',
@@ -223,6 +227,7 @@
 
                 div.select('.select').on('click', function(){
                     var f = tmp[+d3.select(this).attr('id').split('_')[1]];
+                    experimentr.data()['current_file'] = f;
                     console.log(f);
                     parsing(dir+f, 'mat');
                     // bold font indicator
@@ -249,6 +254,7 @@
 
         d3.select('#next').on('click',function(){
             experimentr.addData(data);
+            load_config(experimentr.data()['current_file']);
             experimentr.next();
         })
     }())

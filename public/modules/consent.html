@@ -327,7 +327,7 @@
 
         d3.select('#consentYes').on('click', function() {
             experimentr.addData(data);
-            console.log(experimentr.data());
+            experimentr.data()['control_session'] = true;
             experimentr.save();
             //reload data
             if(experimentr.data()['show_group']){
@@ -335,8 +335,9 @@
             }else{
                 reload('mat');
             }
-            experimentr.next();
             experimentr.data()['switch'].push(Date.now());
+            experimentr.data()['control_session'] = false;
+            experimentr.next();
         });
 
         d3.selectAll('input')

@@ -43,7 +43,9 @@
         <div id="table"></div>
     </div>
     <br>
-    <button id="submitComments" class="next-button" type="button" style="color: black; left: 35px;">Submit</button>
+    <button id="submitComments" class="next-button" type="button" style="position: absolute; left: 135px;">Submit</button>
+    <button id="saveAnswers" class="next-button" type="button" style="position: absolute; left: 1735px;">Save</button>
+
     <label id="answer_all" style="position: absolute; left: 150px; color: red;"></label><br>
 </div>
 <br>
@@ -52,12 +54,11 @@
 <script>
     (function(){
         $.getScript("javascript/misc/util.js");
-        //console.log(experimentr.data()["mat"]);
         experimentr.startTimer('main_section');
         experimentr.data()['section'] = 'mat';
         experimentr.hideNext();
+
         //console.log(experimentr.data());
-        // pages
         var step = 0,
             sec_switch = 0;
         function delay_next(time){
@@ -162,9 +163,72 @@
             }
         }
 
+        d3.select('#saveAnswers')
+            .on('click', function(){
+                experimentr.data()['working_session'] = true;
+                grading();
+                console.log(experimentr.data()['decision']);
+                experimentr.save();
+                experimentr.data()['working_session'] = false;
+            });
+
+
+        // click simulation
+        if('decision' in experimentr.data()){
+            var tmp = experimentr.data()['decision'];
+            if(tmp.length>0){
+                for(var i=0;i<tmp.length;i++){
+                    if([1,2,3,4,5,6].indexOf(tmp[i])>-1){
+                        //console.log(d3.select('#g'+i.toString()).select('#rbtn'+(tmp[i]-1).toString()));
+                        d3.select('#g'+i.toString()).select('#rbtn'+(tmp[i]-1).toString())
+                            .select("image").attr("xlink:href","/resources/1.png");
+                        var buttons = d3.select('#g'+i.toString()).select('.choice_panel')
+
+                        if(tmp[i]<4){
+                            buttons.select("#selection_rect").remove();
+                            buttons.append("rect")
+                                .attr("x",13)
+                                .attr("y",60)
+                                .attr("width",75)
+                                .attr("height",25)
+                                .style("fill","none")
+                                .style("stroke","#CC1100")
+                                .style("stroke-width","3")
+                                .attr("id","selection_rect");
+                            buttons.select("#lbl_same").style("font-weight","normal");
+                            buttons.select("#lbl_diff").style("font-weight","bold");
+
+                        } else {
+                            buttons.select("#selection_rect").remove();
+                            buttons.append("rect")
+                                .attr("x",195)
+                                .attr("y",60)
+                                .attr("width",50)
+                                .attr("height",25)
+                                .style("fill","none")
+                                .style("stroke","#33CE45")
+                                .style("stroke-width","3")
+                                .attr("id","selection_rect");
+                            buttons.select("#lbl_same").style("font-weight","bold");
+                            buttons.select("#lbl_diff").style("font-weight","normal");
+                        }
+
+                        experimentr.data()['clicks'].push([
+                            Date.now(),
+                            //svg.attr("id").slice(1),
+                            d3.select('#g'+i.toString()).select("#c10").text(),
+                            tmp[i]
+                        ]);
+                    }
+                }
+            }
+            console.log(experimentr.data()['decision']);
+        }
+        console.log(d3.selectAll('.blocks'));
         d3.select('#submitComments')
             .on('click', function () {
                 //console.log(experimentr.data());
+                experimentr.data()['working_session'] = true;
                 d3.select("#answer_all").text("");
                 d3.select("#heading").remove();
                 d3.select('#submitComments').style("left","2.5%");
@@ -185,6 +249,7 @@
                 // time elapse
                 experimentr.data()['switch'].push(Date.now());
                 experimentr.save();
+                experimentr.data()['working_session'] = false;
             });
     }());
 </script>

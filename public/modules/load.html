@@ -1,0 +1,92 @@
+<body>
+<div id="container" style="text-align:center;">
+    <h1>Project Management</h1><br>
+    <div id = "svg" left="600px" width="2000px"></div>
+    <div id="message" style="color:mediumblue; position: absolute; left: 680px; top:950px; width: 700px; text-align: center; display: inline;"></div>
+    <div style="position: absolute; left: 1000px; top:1000px; width: 700px; text-align: left; display: inline;">
+        <button type="submit" id="next">Next</button>
+    </div>
+
+</div>
+
+</body>
+<script>
+(function(){
+    experimentr.data()['need_config'] = true;
+    experimentr.hideNext();
+    var config = experimentr.data()['config'],
+        tmp = Object.keys(config);
+
+    for(var i=0;i<tmp.length;i++){
+        var div = d3.select('#svg').append('div')
+            .html('<div style="left: 600px; text-align: left;">'
+                +tmp[i]+', last saved at '+config[tmp[i]]['date']+'<button style="position: absolute; left: 1700px" class="select" type="submit" id="select_'+i.toString()+'">Select</button>' +
+                '<button style="position: absolute; left: 1770px" class="delete" type="submit" id="delete_'+i.toString()+'">Delete</button>' +
+                '<hr width="1800px" align="left"></div>')
+            .style('left', 600)
+            .style('top', 23+30*i);
+
+        div.select('.select').on('click', function(){
+            var f = tmp[+d3.select(this).attr('id').split('_')[1]];
+            experimentr.data()['current_conf'] = f;
+            experimentr.data()['need_config'] = false;
+            reload_config();
+            // bold font indicator
+            d3.select('#message').text(f+' is selected.');
+        });
+    }
+
+    var y = tmp.length*30+23;
+    var div = d3.select('#svg').append('div')
+        .html('<div style="left: 600px; text-align: left;">Create a new project:' +
+            '<input type="text" id="config_name" name="config_name" placeholder="New project name">' +
+            '<button style="position: absolute; left: 400px" class="create" type="submit" id="create">Create</button></div>')
+        .style('left', 600)
+        .style('top', y);
+
+    var conf_name = "";
+
+    d3.selectAll('input')
+        .filter(function(d) { return this.name === 'config_name' ? this : null; })
+        .on('change', function() { conf_name = this.value;});
+
+    function reload_config(){
+        //config
+        var data = config[experimentr.data()['current_conf']];
+        delete data['date'];
+        delete data['answer'];
+        console.log(config[experimentr.data()['current_conf']]);
+        experimentr.addData(data);
+    }
+
+
+
+    d3.select('.create').on('click', function(){
+        console.log(conf_name);
+        experimentr.data()['control_session'] = true;
+        experimentr.data()['need_config'] = true;
+        experimentr.data()['current_conf'] = conf_name;
+        experimentr.save();
+        console.log(experimentr.data());
+        experimentr.data()['control_session'] = false;
+        experimentr.next();
+    });
+
+
+    d3.select('#next').on('click', function(){
+        if(experimentr.data()['need_config']){
+            experimentr.next();
+        }else{
+            var sequence = [
+                'modules/5.html',
+                'modules/manage.html',
+            ];
+            experimentr.sequence(sequence).start();
+        }
+
+        //console.log(experimentr.data());
+    })
+
+}())
+
+</script>

@@ -1299,7 +1299,7 @@ function choices(svg, lBound, scale, mode, yt) {
     if(sec=='practice2'){clk='practice2_clicks';}
     if(sec=='section2'){clk='s2_clicks';}
     for(var m=0;m<6;m++){
-        var radioButton = buttons.append("g").attr("transform","translate("+x[m]*scale+","+y*scale+")");
+        var radioButton = buttons.append("g").attr("transform","translate("+x[m]*scale+","+y*scale+")").attr("class", "rbtn").attr("id","rbtn"+m);
         radioButton.append("svg:image").attr("xlink:href","/resources/0.png").attr("class","choice").attr("id",m)
             .attr("x",0).attr("y",-5).attr("width",18*scale).attr("height",25*scale);
         radioButton.on({"mouseover": function(d) {
@@ -1869,6 +1869,20 @@ function update_user(){
         csvContent+=experimentr.data()['u_title'][i].join(',')+'\n';
     }
     experimentr.data()['u_title'] = csvContent;
+
+}
+
+function load_config(fname){
+    d3.text('data/'+experimentr.data()['current_user']+'/'+fname+'.conf', function(d){
+        if(d.length>1){
+            data['config'] = JSON.parse(d);
+        }else{
+            data['config'] = [];
+        }
+        //console.log(d);
+        experimentr.addData(data);
+    });
+
 
 }
 
