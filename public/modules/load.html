@@ -14,8 +14,11 @@
 (function(){
     experimentr.data()['need_config'] = true;
     experimentr.hideNext();
-    var config = experimentr.data()['config'],
+    var config = experimentr.data()['config'];
+    tmp = [];
+    if(config){
         tmp = Object.keys(config);
+    }
 
     for(var i=0;i<tmp.length;i++){
         var div = d3.select('#svg').append('div')
